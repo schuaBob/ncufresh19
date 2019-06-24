@@ -1,0 +1,28 @@
+# Logs
+logs
+*.log
+
+# Dependency directory
+node_modules
+
+# OS X
+.DS_Store*
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+*~
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+#vscode configures
+.vscode/
+
