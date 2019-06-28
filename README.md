@@ -1,5 +1,3 @@
-# ncufresh19
-
 # 統整大禮包
 ## 指令篇
 ### git
@@ -19,9 +17,8 @@ $ git pull            //更新本地repo
 ### start server
 ```shell=
 $ npm i
-$  DEBUG=ncufresh19*: npm start
+$ DEBUG=ncufresh19*: npm start
 ```
-
 ## 進度篇
 第一週 : 熟悉架構，確定排版定型，想好哪些部分要寫死哪些要用ejs排
 第二週 : 後端基本功能要會動，基礎排版架構弄好
@@ -60,10 +57,73 @@ $  DEBUG=ncufresh19*: npm start
 * login只需要做到login路由即可
 * register的post要寫
 ## 常用工具篇
-### Mongodb、Mongoose
 ### Ckeditor 5
+**script**
+```javascript=
+<script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+```
+**掛上ckeditor與應用**
+```javascript=
+ClassicEditor
+    .create(document.querySelector('#editor'))
+    .then( neweditor => {
+        console.log(neweditor)
+    })
+    .catch( error => {
+        console.error(error);
+    });
+//拿資料
+neweditor.getData()
+//設定資料
+neweditor.setData('<p>abcd</p>')
+//當內文有變化時
+neweditor.model.document.on('change:data',()=>{
+    console.log('data changed.');
+})
+```
+
+
 ### Ajax
-### EJS
+加個promise可能會比較順，或好看
+#### Get method
+* 前端
+```javascript=
+$.ajax({
+    url:`/documents/require_data/?id=${id}`,
+    method:'GET',
+    dataType:'JSON',
+    error: function(err){
+        //失敗要做的事
+    },
+    success: function(data){
+        //成功要做的事
+    }
+});
+```
+* [後端拿資料](https://expressjs.com/zh-tw/4x/api.html#req.query)
+```javascript=
+req.query.id
+```
+#### POST method
+* 前端
+```javascript=
+$.ajax({
+    url:    "/documents/require_data",
+    method:'POST',
+    data: {id : id},
+    error: function(err){
+        //失敗要做的事
+    },
+    success: function(data){
+        //成功要做的事
+    }
+});
+```
+* 後端拿資料
+```javascript=
+req.body.id
+```
+### [EJS](https://ejs.co/#docs)
 * 標籤 
     > 普通輸出用```<%= %>```
     > 只有在輸出html用```<%- %>```
@@ -77,6 +137,90 @@ $  DEBUG=ncufresh19*: npm start
     > [color=yellow]
 
 ### [Velocity.js](https://github.com/julianshapiro/velocity/wiki)
-### upload、load圖片、download file
-### css
+**include**
+```htmlmixed=
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.5/velocity.min.js" integrity="sha384-OAa+lnzjUAtY24vqAEB8CYxD/8pX99G3ieMIN16c7UyXUDfFrAEMK+5VDIBDkc55" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.5/velocity.ui.min.js" integrity="sha384-B81jJfvCuCC7708e/RFAhEDAXxDl+6utSMjMUPKbjXNAxc4p4swDRGU9EAqBsQiY" crossorigin="anonymous"></script>
+```
+**usage**
+> Velocity takes a map of CSS properties and values as its > > first argument. An options object can optionally be passed > in as a second argument:
+> [color=yellow]
+```javascript=
+$("aaa").velocity({color: "red"},{duration:500});
+//or
+Velocity($("aaa"),{color: "red"},{duration:500});
+```
+
+
+
+### upload image
+**前端**
+```htmlmixed=
+//name需要為img
+<form action="uplaodimg" method="post" enctype="multipart/form-data">
+    <input type="file" name="img">
+    <button type="submit">submit</button>
+</form>
+```
+**後端**
+```javascript=
+//上傳單一圖片
+var size_in_mb = req.file.size*Math.pow(10,-6);//檔案不可超過4mb
+if(size_in_mb<4) {
+    fs.readFile(req.file.path,{encoding:"base64"},(err,bufferData)=>{//encoding file to buffer
+    if(err) {return next(err);}
+    /**便buffer後要做的事，以下存在為存在mongodb，範例僅供參考**/
+    new docImg({
+        img : {
+            data : bufferData,
+            contentType : req.file.mimetype
+        }
+    }).save((err)=>{
+        if(err){return next(err);}
+        /*******刪去暫存的圖片********/
+        fs.unlink(req.file.path, (err)=>{
+            if(err){return next(err)};
+        })
+        res.redirect('/')
+      })
+    })
+} else {
+    /*******刪去暫存的圖片********/
+    fs.unlink(req.file.path, (err)=>{
+        if(err){return next(err)};
+    })
+}
+```
+**Display in Front End**
+```htmlmixed=
+<img src="data:contentType;base64,Bufferdata">
+```
 ## 其他提醒
+### 合作建議
+1. 重點是溝通
+2. 不要一開始就打槍企劃組
+    * ＸＸＸ為什麼做不到
+    * ＸＸＸ比較好
+    * 不然ＸＸＸ怎麼樣
+3. 圖片如果不好排的話可以跟美工組溝通一下
+    * ＸＸ圖可以幫我做成X比Y的嗎？
+    * ＸＸ圖可以幫我去背嗎？
+4. 要消失記得告訴組長和你的隊友，不要讓隊友以為你神隱了
+### 語法建議
+1. absolute route👎 v.s. relative route👍
+2. css inline-style👎 v.s. embedded style👌 v.s. external styles👍
+### 效能建議
+1. 做動畫的效能：css > velocity.js > jquery animation
+2. 如果只是想用jquery的選擇器的話：``document.querySelector()``
+3. 資料庫query可以用Promise寫(想學可以問組長ＸＤ)
+4. 資料表的各種操作: [populate](http://mongoosejs.com/docs/populate.html) [aggrgrate](https://docs.mongodb.com/manual/aggregation/)
+### 其他工具
+1. url跳到網頁特定區段 -> ``http://網址...../#class名稱``
+2. 在前端解析get url
+    ```javascript
+    var url = new URL(window.location.href);
+    console.log(url.searchParams.get('想get的值'));
+    ```
+3. 下載檔案 -> [``res.download();``](http://expressjs.com/zh-tw/4x/api.html#res.download)
+
+![image alt](https://theharmonyclinic.com/wp-content/uploads/2016/08/child_girl_cartoon_poor_good_posture40829013_M.jpg)
