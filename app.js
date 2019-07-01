@@ -52,7 +52,7 @@ router.all('*');
 // Pages
 var index = require('./routes/index');
 var documents = require('./routes/documents');
-var smallgame = require('./routes/smallgame');
+var coolgame = require('./routes/coolgame');
 var vedio = require('./routes/vedio');
 var qna = require('./routes/qna');
 var about = require('./routes/about');
@@ -68,7 +68,7 @@ app.use('/', index);
 // 新生必讀
 app.use('/documents', documents);
 // 小遊戲
-app.use('/smallgame', smallgame);
+app.use('/coolgame', coolgame);
 // 影音專區
 app.use('/vedio', vedio);
 // 新生Q&A

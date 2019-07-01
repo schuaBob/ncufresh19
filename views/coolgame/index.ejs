@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script>
+        var stage ;
+        var fisherman;
+        var t_boatmove_left ;
+        var t_boatmove_right ;
+        var b_left=false;
+        var b_right=false;
+        var keyvalue=-1;
+        function mousedown(event){
+          var t_Harpoonmove ;
+          var x=event.clientX-fisherman.x+fisherman.image.width*0.2;
+          var y=event.clientY;
+          var harpoon =createharpoon();
+          harpoon.x = fisherman.x;
+          stage.addChild(harpoon);
+          stage.update();
+          console.log(harpoon);
+          t_Harpoonmove = setInterval(function() { Harpoonmove(5,5,harpoon,t_Harpoonmove); },10);  
+        }
+        function createharpoon(x,y){
+          var harpoon = new createjs.Bitmap("harpoon.png");
+          harpoon.scaleX=0.2;
+          harpoon.scaleY=0.2;
+          return harpoon;
+        }
+        function Harpoonmove(x,y,harpoon,timer){
+          clearInterval(timer);
+          harpoon.x+=x;
+          harpoon.y+=y;
+          if(harpoon.y >=300){
+            clearInterval(timer);
+          }
+          stage.update();
+        }
+        function boatmove_left(){
+          fisherman.x-=5;
+          stage.update();
+        }
+        function boatmove_right(){
+          fisherman.x+=5;
+          stage.update();
+        }
+        function keyDown(event){
+          if(event.keyCode == 37){
+            if(!b_left){
+              t_boatmove_left = setInterval(boatmove_left,10);
+              b_left=true;
+            }
+          }
+          else if(event.keyCode == 39){
+            if(!b_right){
+              t_boatmove_right = setInterval(boatmove_right,10);
+              b_right=true;
+            }
+          }
+        }
+        function keyUp(event){
+          if(event.keyCode == 37){
+            b_left=false;
+            clearInterval(t_boatmove_left);
+          }
+          else if(event.keyCode == 39){
+            b_right=false;
+            clearInterval(t_boatmove_right);
+          }
+      }
+        function init(){
+          stage = new createjs.Stage(document.getElementById("gameStage"));
+          var sea = new createjs.Shape();
+
+          sea.graphics.beginFill("rgba(58,206,230,0.6)").drawRect(0,200,800,300);
+          fisherman = new createjs.Bitmap("finsherman.png");
+          fisherman.image.onload = function (){
+              //在这里写操作逻辑，或者写好操作逻辑在这里调用
+              fisherman.scaleX=0.2;
+              fisherman.scaleY=0.2;
+              fisherman.y=105;
+              stage.addChild(fisherman);
+              stage.addChild(sea);
+              stage.update();
+            
+          }
+          document.onmousedown = mousedown;
+          document.onkeydown = keyDown;
+          document.onkeyup = keyUp;
+        }
+    </script>
+    <title><%= title %></title>
+  </head>
+  <body onload="init();">
+    <div style="margin:auto;display:grid;justify-content:center;align-items:center;height:100%;">
+        <canvas id="gameStage" width="800" height="500" style="background-color: rgb(142, 219, 245)"></canvas>
+    </div>
+   
+  </body>
+</html>
