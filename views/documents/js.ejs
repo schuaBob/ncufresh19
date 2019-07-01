@@ -1,0 +1,31 @@
+<script>
+    $(document).ready(function () {
+            //身分選擇動畫
+            $(".undergraduate").hide();
+            $(".graduate").hide();
+            $(".common").hide();
+
+            $(".identity").show();
+            $(".under").hover(function(){
+                $(this).addClass("big");
+            },function(){
+                $(this).removeClass("big")
+            });
+            $(".gra").hover(function(){
+                $(this).addClass("big");
+            },function(){
+                $(this).removeClass("big")
+            });
+            $(".com").hover(function(){
+                $(this).addClass("big");
+            },function(){
+                $(this).removeClass("big")
+            });
+
+            //大學生
+            $(".under").click(function(){
+                $(".identity").hide();
+                $(".undergraduate").show();
+            })
+    })
+</script>

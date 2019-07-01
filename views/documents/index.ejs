@@ -2,10 +2,56 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='documents/style.css' />
+    <link rel='stylesheet' href='style.css' />
+    <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <% /*使用者介面*/ %>
+
+      <% /*身分選擇*/ %>
+      <div class="identity">
+          <div class="character under">
+              <img src="temp.png" ><br>
+              <a href="#undergraduate">大學生</a>
+          </div>
+          <div class="character gra">
+              <img src="temp.png"><br>
+              <a href="#graduate">研究生</a>
+          </div>
+          <div class="character com">
+              <img src="temp.png"><br>
+              <a href="#common">共同事項</a>
+          </div> 
+      </div>
+
+      <% /*大學生*/ %>
+      <div class="undergraduate" id="undergraduate">
+          <div class="sidenav">
+              <a href="#">Link</a>
+              <a href="#">Link</a>
+              <a href="#">Link</a>
+            </div>
+            <div class="sidenav sidenav2">
+              <a href="#">Link</a>
+              <a href="#">Link</a>
+              <a href="#">Link</a>
+            </div>
+            <div class="content">
+                <h2>content</h2>
+                <p></p>
+              </div>
+      </div>
+
+      <% /*研究生*/%>
+      <div class="graduate" id="graduate">
+
+      </div>
+
+      <% /*共同事項*/ %>
+      <div class="common" id="common">
+        
+      </div>
+
+      <% include js %>
   </body>
 </html>
