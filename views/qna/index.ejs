@@ -1,11 +1,155 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='qna/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      body{
+        overflow: hidden;
+      }
+      .navBar{
+        top:0px;
+        left:0px;
+        width:100%;
+        position: absolute;
+        height: 60px;
+        background-color:#0D4966;
+        
+        line-height: 60px;
+        color: white;
+      }
+      .leftSide{
+        top:180px;
+        left:0px;
+        position: absolute;
+        width: 350px;
+        height: 100%;
+        background-color: rgb(102, 252, 164);
+      }
+      .pic_classification{
+        background-color:orange;
+        width: 100%;
+        height: 120px;
+      }
+      .rightSide{
+        top:180px;
+        left:350px;
+        position: absolute;
+        width:950px;
+        height: 480px;
+        background-color:rgb(67, 238, 238);
+      }
+      .filter_SearchBar{
+        background-color: bisque;
+        width:100%;
+        height: 60px;
+      }
+      .content{
+        padding-top: 40px;
+        padding-left: 25px;
+        padding-right:25px;
+      }
+      .contentTable{
+        height:300px;        
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+      tr{
+        border-bottom: 1px solid black;
+      }
+    </style>
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <body>      
+      <nav class="navBar">navBar</nav>
+      <div class="leftSide">
+        <div class="pic_classification">
+          QA的分類圖片
+        </div>
+        <div>
+          放選項
+        </div>
+      </div>
+      <div class="rightSide">
+        <!-- 過濾以及搜尋框 -->
+        <div class="filter_SearchBar">
+          <div class="buttonGroup">
+            <div>排序</div>
+            <div>時間</div>
+            <div>人氣</div>
+          </div>
+          
+        </div>
+        <div class="content">
+            <div class="contentTable">
+                <table class="table table-hover table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">分類</th>
+                        <th scope="col">日期</th>
+                        <th scope="col">標題</th>
+                        <th scope="col">點閱率</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">3</th>
+                          <td colspan="2">Larry the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">3</th>
+                              <td colspan="2">Larry the Bird</td>
+                              <td>@twitter</td>
+                            </tr>
+                            <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">3</th>
+                          <td colspan="2">Larry the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        
+      </div>
   </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script>
+  
+  </script>
+
 </html>
