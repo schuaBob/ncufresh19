@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
 var app = express();
-var multer = require('multer');
+
 
 // other middleware
 var compression = require('compression');
