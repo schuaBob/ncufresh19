@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='comingsoon/style.css' />
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='/comingsoon/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <main>
+      <div id="block">
+        <a href="https://www.facebook.com/groups/HelloNCU2019/"><img src="/comingsoon/FBicon.jpg" id="fbPic"></a>
+      </div>
+      
+    </main>
+    <div id="countdown">
+        <% include js %>
+    </div>
   </body>
 </html>
