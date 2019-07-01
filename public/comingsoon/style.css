@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Itim');
+
+body{
+    overflow: auto;
+    background-image: url("comingsoonBG.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto 100%;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    overflow: hidden;
+}
+
+#countdown{
+    color: white;
+    font-size: 100px;
+    text-align: center;
+    font-family: 'Itim', cursive !important;
+    padding: 100px 0px;
+}
+
+#fbPic{
+    height: 50px;
+}
