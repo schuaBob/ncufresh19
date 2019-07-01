@@ -33,7 +33,7 @@ $ DEBUG=ncufresh19*: npm start
 
 ### 呂晨瑀 : 新生必讀 (documents)
 * 架構不要太亂，類似的分頁風格要統一
-### 陳皇宇 : 小遊戲 (smallgame)
+### 陳皇宇 : 小遊戲 (coolgame)
 * 找[game engine](https://html5gameengine.com/)
 * 要做好post以及其他Vulnerable的防犯
 ### 邱馨倫 : 影音專區 (vedio)
