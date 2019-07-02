@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
 var app = express();
-var multer = require('multer');
+
 
 // other middleware
 var compression = require('compression');
@@ -25,12 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('NcuFresh19'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(multer({storage : multer.diskStorage({
-  destination: 'public/images/',
-  filename   : function(req, file, cb){
-    cb(null, `${file.filename}-${Date.now()}`); 
-  }
-})}).single('img'))
+
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(compression());
