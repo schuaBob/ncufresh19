@@ -1,10 +1,6 @@
 <script>
     $(document).ready(function () {
             //身分選擇動畫
-            $(".undergraduate").hide();
-            $(".graduate").hide();
-            $(".common").hide();
-
             $(".identity").show();
             $(".under").hover(function(){
                 $(this).addClass("big");
@@ -22,10 +18,8 @@
                 $(this).removeClass("big")
             });
 
+
             //大學生
-            $(".under").click(function(){
-                $(".identity").hide();
-                $(".undergraduate").show();
-            })
+            
     })
 </script>
