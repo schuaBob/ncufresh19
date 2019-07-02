@@ -48,7 +48,7 @@ router.all('*');
 var index = require('./routes/index');
 var documents = require('./routes/documents');
 var coolgame = require('./routes/coolgame');
-var vedio = require('./routes/video');
+var video = require('./routes/video');
 var qna = require('./routes/qna');
 var about = require('./routes/about');
 var campus = require('./routes/campus');
@@ -65,7 +65,7 @@ app.use('/documents', documents);
 // 小遊戲
 app.use('/coolgame', coolgame);
 // 影音專區
-app.use('/vedio', vedio);
+app.use('/video', video);
 // 新生Q&A
 app.use('/qna', qna);
 // 關於我們
