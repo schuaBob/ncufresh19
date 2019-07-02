@@ -4,18 +4,42 @@
 <head>
   <title><%= title %></title>
   <link rel='stylesheet' href='index/style.css' />
+  
 </head>
 
 <body>
+  <header>
+    <ul id="navbar">
+      <li id="toLinks">links</li>
+    </ul>
+    <div id="mySidenav" class="sidenav closed">
+      <ul id="links">
+        <li><a class="link" href="">新生必讀</a></li>
+        <li><a class="link" href="">新生問答</a></li>
+        <li><a class="link" href="">校園地圖</a></li>
+        <li><a class="link" href="">系所社團</a></li>
+        <li><a class="link" href="">中大生活</a></li>
+        <li><a class="link" href="">影音專區</a></li>
+        <li><a class="link" href="">常用連結</a></li>
+        <li><a class="link" href="">小遊戲</a></li>
+        <li><a class="link" href="">關於我們</a></li>
+      </ul>
+    </div>
+
+  </header>
+  <main>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+  </main>
+
+  <footer>
+
+  </footer>
 
 
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
-
-
-
-
-
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="js.ejs"></script>
 </body>
 
 </html>

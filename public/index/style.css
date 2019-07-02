@@ -1,8 +1,45 @@
 body {
-  padding: 50px;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
 }
+#navbar{
+  position: relative;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  height: 60px;
+  background-color: #051030;
+}
+#toLinks{
+  float: right;
+  color: antiquewhite; 
+}
+.sidenav {
+  height: calc(100% - 60px); /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 60; /* Stay at the top */
+  left: 0;
+  background-color: #051030; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 
-a {
-  color: #00B7FF;
+}
+#links{
+  list-style: none;
+  height: auto;
+  margin: 0;
+  overflow-x: hidden;
+}
+#links li{
+  width: auto;
+  padding: 20px 30px;
+}
+#links .link{
+  font: 20px;
+  color: aliceblue;
+  text-decoration: none;
 }
