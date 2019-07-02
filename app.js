@@ -48,7 +48,7 @@ router.all('*');
 var index = require('./routes/index');
 var documents = require('./routes/documents');
 var coolgame = require('./routes/coolgame');
-var vedio = require('./routes/vedio');
+var vedio = require('./routes/video');
 var qna = require('./routes/qna');
 var about = require('./routes/about');
 var campus = require('./routes/campus');
