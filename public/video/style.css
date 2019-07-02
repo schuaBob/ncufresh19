@@ -1,0 +1,45 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Microsoft JhengHei;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {
+  color: #0163b0;
+}
+
+.line {
+  height: 70px;
+  width: 0px;
+  border-color: #ec6d4f;
+  border-style: solid;
+  border-width: 5px;
+  margin-top: 20px;
+  margin-right: 10px;
+  float: left;
+}
+
+.title {
+  height: 50px;
+  width: 150px;
+  margin: 5px 10px 30px 10px;
+  float: left;
+}
+
+.rect {
+  height: 0px;
+  width: 0px;
+  border-style: solid;
+  border-width: 20px;
+  border-color: transparent transparent transparent #0163b0;
+  margin: 30px 20px 25px 20px;
+  float: left;
+}
+
+.button {
+  margin-top: 150px; 
+}
