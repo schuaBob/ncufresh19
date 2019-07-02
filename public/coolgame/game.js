@@ -16,15 +16,14 @@
     var c = Math.pow(x*x+y*y,0.5);
     var r = Math.acos(y/c);
     fisherman_harpoon.rotation = r_x*(r*180/Math.PI);
-    console.log("AAA");
     stage.update();
   }
 
   function mousedown(event) {
     var t_Harpoonmove;
     var shoot_harpoon = createharpoon();
-    shoot_harpoon.x = fisherman.x+fisherman.image.width*fisherman.scaleX/2//-harpoon.image.width*harpoon.scaleX/2;
-    shoot_harpoon.y = fisherman.image.height*fisherman.scaleX/2+fisherman.y//-harpoon.image.height*harpoon.scaleX/2;
+    shoot_harpoon.x = fisherman.x+fisherman.image.width*fisherman.scaleX/2-30//-harpoon.image.width*harpoon.scaleX/2;
+    shoot_harpoon.y = fisherman.image.height*fisherman.scaleX/2+fisherman.y-15//-harpoon.image.height*harpoon.scaleX/2;
     var x = stage.mouseX- (shoot_harpoon.x );
     var y = stage.mouseY - (shoot_harpoon.y );
     var r_x=-1;
@@ -33,24 +32,30 @@
     var c = Math.pow(x*x+y*y,0.5);
     var r = Math.acos(y/c);
     shoot_harpoon.rotation = r_x*(r*180/Math.PI);
-    shoot_harpoon.image.onload=function(){
-      stage.addChild(shoot_harpoon);
-      stage.update();
-      t_Harpoonmove = setInterval(function () { Harpoonmove(x*5/c,y*5/c,shoot_harpoon,t_Harpoonmove); }, 10);
-    }
+    t_Harpoonmove = setInterval(function () { Harpoonmove(x,y,c,shoot_harpoon,t_Harpoonmove); }, 10);
   }
 
   function createharpoon() {
     var harpoon = new createjs.Bitmap("/images/coolgame/harpoon.png");
-    harpoon.scaleX = harpoon.scaleY =0.2;
+    harpoon.scaleX = harpoon.scaleY =0.16;
     harpoon.regX=harpoon.image.width/2 ;// harpoon.image.width*harpoon.scaleX/2;
     harpoon.regY=harpoon.image.height/2
+    stage.addChildAt(harpoon,2);
+    harpoon.image.onload=function(){
+      stage.update();
+    }
     return harpoon;
   }
 
-  function Harpoonmove(x, y, harpoon, timer) {
-    harpoon.x += x;
-    harpoon.y += y;
+  function Harpoonmove(x,y,c, harpoon, timer) {
+    if(harpoon.y>150){
+      harpoon.x += x*4/c;
+      harpoon.y += y*4/c;
+    }
+    else{
+      harpoon.x += x*8/c;
+      harpoon.y += y*8/c;
+    }
     if (harpoon.y-harpoon.image.height*harpoon.scaleY/2 >= stage.canvas.height || harpoon.y+harpoon.image.height*harpoon.scaleY/2 <= 0 || harpoon.x-harpoon.image.height*harpoon.scaleX/2 >= stage.canvas.width||harpoon.x+harpoon.image.height*harpoon.scaleX/2 <= 0) {
       clearInterval(timer);
       stage.removeChild(harpoon);
@@ -59,14 +64,14 @@
   }
 
   function boatmove_left() {
-    fisherman.x -= 5;
-    fisherman_harpoon.x-=5;
+    fisherman.x -= 2;
+    fisherman_harpoon.x-=2;
     mousemove();
   }
 
   function boatmove_right() {
-    fisherman.x += 5;
-    fisherman_harpoon.x+=5;
+    fisherman.x += 2;
+    fisherman_harpoon.x+=2;
     mousemove();
   }
   function keyDown(event) {
@@ -101,23 +106,30 @@
   function init() {
     div = document.getElementById("game");
     stage = new createjs.Stage(document.getElementById("gameStage"));
-    var sea = new createjs.Shape();
-    sea.graphics.beginFill("rgba(58,206,230,0.6)").drawRect(0, 150, 800, 350);
+    var backbround = new createjs.Bitmap("/images/coolgame/background.png");
+    backbround.scaleX=backbround.scaleY=0.5;
+    stage.addChild(backbround);
+    backbround.image.onload=function(){
+      stage.update();
+    }
     fisherman = new createjs.Bitmap("/images/coolgame/finsherman.png");
     stage.addChild(fisherman);
     fisherman.image.onload = function () {
      stage.update();
     }
-    fisherman.scaleX = fisherman.scaleY=0.2;
-    fisherman.y = 55;
+    fisherman.scaleX = fisherman.scaleY=0.16;
+    fisherman.y = 75;
     fisherman_harpoon = createharpoon();
-    fisherman_harpoon.x = fisherman.x+fisherman.image.width*fisherman.scaleX/2//-harpoon.image.width*harpoon.scaleX/2;
-    fisherman_harpoon.y = fisherman.image.height*fisherman.scaleX/2+fisherman.y//-harpoon.image.height*harpoon.scaleX/2;
-    stage.addChild(sea);
-    stage.addChild(fisherman_harpoon);
-    fisherman_harpoon.image.onload=function(){
+    fisherman_harpoon.x = fisherman.x+fisherman.image.width*fisherman.scaleX/2-30//-harpoon.image.width*harpoon.scaleX/2;
+    fisherman_harpoon.y = fisherman.image.height*fisherman.scaleX/2+fisherman.y-15//-harpoon.image.height*harpoon.scaleX/2;
+
+    var sea = new createjs.Bitmap("/images/coolgame/sea.png");
+    sea.image.onload=function(){
       stage.update();
     }
+    sea.scaleX=sea.scaleY=0.5;
+    sea.alpha=0.4;
+    stage.addChild(sea);
     stage.addEventListener("stagemousemove",mousemove);
     document.onmousedown = mousedown;
     document.onkeydown = keyDown;
