@@ -6,7 +6,9 @@ var request = require('request');
 const CLIENT_ID = "Nzc3NzY0MmYtMDM2Ny00MjJhLWIxZTAtYTJmYzFlMDQyYzY4";
 const CLIENT_SECRET = "5e7a8fbddb8f00a3c4c46defd331d412733f08bf893a8194a236fe915c57d11255e1b6c21567fe0c60647e1996a64cf1e6bd302163f18f978c23f0008356c5e7";
 
-
+router.get('/',(req,res,next)=> {
+  res.render('index/index',{title:"新生知訊網"})
+})
 
 router.get('/auth/provider', function(req, res, next){
   var url = 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize?response_type=code&scope=user.info.basic.read&client_id=' + CLIENT_ID;
