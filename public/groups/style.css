@@ -1,6 +1,26 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
+}
+.seaBlueBg{
+  background-color: #0D4966;
+}
+.yellowBg{
+  background-color:#FFCC00;
+}
+.grayBg{
+  background-color:#D0CECE;
+}
+.navBar{
+  top:0px;
+  left:0px;
+  width:100%;
+  position: absolute;
+  height: 60px;
+  
+  line-height: 60px;
+  color: white;
 }
 
 a {
