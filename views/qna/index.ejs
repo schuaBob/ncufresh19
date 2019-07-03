@@ -5,8 +5,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
     <style>
+      .seaBlue{
+        color:#0D4966;
+      }
+      .yellow{
+        color: #FFCC00;
+      }
       .seaBlueBg{
         background-color: #0D4966;
       }
@@ -19,24 +26,37 @@
 
       body{
         overflow: hidden;
+        moz-user-select: none;  /* for Firefox */ 
+        -webkit-user-select: none;   /* for Chrome */
       }
       .navBar{
         top:0px;
         left:0px;
         width:100%;
         position: absolute;
-        height: 60px;
+        height: 10vh;
         
         line-height: 60px;
         color: white;
       }
-      .leftSide{
-        top:300px;
-        left:0px;
-        position: absolute;
-        width: 500px;
-        bottom: 0px;
-        background-color: rgb(102, 252, 164);
+
+      .main{
+        position: relative;
+        top:14vh;
+        height:65vh;
+      }
+      .titleSpace{
+        position: relative;
+        top:9vh;        
+        width: 90%;
+        /* background-color: beige;  */
+        margin: auto;
+        border-left: 6px solid #FFCC00;
+        padding-left:20px;
+      }
+      .leftSide{               
+        width: 25%;      
+        /* background-color: rgb(102, 252, 164);        */
       }
       /* "分類"圖片 */
       .pic_classification{
@@ -44,143 +64,258 @@
         width: 100%;
         height: 120px;
       }
-      .rightSide{
-        top:300px;
-        left:500px;
-        position: absolute;
-        right:0px;
-        bottom: 0px;
-        background-color:rgb(67, 238, 238);
+      .option{
+        height: 480px;
+        font-size: 3vh;
+        color: #0D4966;
+        
+      }
+      .option ul{
+        margin: 20px auto;
+        padding: 0px;
+        list-style-type: none;
+        width: 50%;
+      }
+      .option li{
+        margin-bottom: 3vh;              
+      }
+      .option li:hover{
+        cursor:pointer;
+      }
+      /* 選單箭頭 */
+      .fa-angle-right{
+        font-size: 1.3em;
+        position: relative;
+        top: 3px;
+        margin-right: 6px;
+        display: none;
+      }
+
+
+
+      .rightSide{              
+        /* background-color:rgb(67, 238, 238); */
       }
       /* 過濾器以及搜尋框 */
       .filter_SearchBar{
-        background-color: bisque;
+        /* background-color: bisque; */
         width:100%;
-        padding: 10px 80px;
+        padding: 10px 80px;        
+      }
+      .fa-arrow-alt-circle-up{
+        float: right;
+        visibility: hidden;
       }
       .content{  
         overflow-x: hidden;      
-        overflow-y: scroll;
+        overflow-y: auto;
         margin: 20px 60px;
         height: 80%;
       }
 
-      tr{
+      tbody tr{
         border-bottom: 1px solid #0D4966 ;
       }
-      .head{
+      tbody tr:hover{
+        cursor:pointer;
+      }
+      thead > tr{
         border-bottom:1px dashed #0D4966;
       }
       .filterButton{
-        border-radius: 2px;
+        border-radius: 5px;
         padding: 2px 10px;
       }
       .searchBar{
         min-width: 187px;
         float: right;
       }
+      .modal{
+        background-color:rgba(0, 0, 0, 0.4);        
+      }
+      .modal-dialog{
+        max-width: 60vw;
+      }
       .form-control{
         border-radius:30px;
+        margin-right:2px; 
       }
       
     </style>
   </head>
-  <body>      
-      <nav class="navBar seaBlueBg">navBar</nav>
-      <div class="leftSide">
-        <div class="pic_classification">
-          QA的分類圖片
-        </div>
-        <div>
-          放選項
+  <body>   
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="rightSide">
-        <!-- 過濾以及搜尋框 -->
-        <div class="filter_SearchBar">
-          <div class="buttonGroup d-inline-flex">
-            <div class="filterButton text-white seaBlueBg">排序</div>
-            <div class="filterButton yellowBg">時間</div>
-            <div class="filterButton grayBg">人氣</div>
-          </div>
-          <div class="searchBar">
-            <form class="form-inline">
-              <i class="fas fa-search" aria-hidden="true"></i>
-              <input class="form-control form-control-sm ml-2" type="text" placeholder="Search"
-                aria-label="Search">
-            </form>
-          </div>
-        </div>
-        <div class="content">
-            <div class="contentTable">
-                <table class="table table-hover table-borderless">
-                    <thead>
-                      <tr class="head">
-                        <th scope="col">分類</th>
-                        <th scope="col">日期</th>
-                        <th scope="col">標題</th>
-                        <th scope="col">點閱率</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                          <th scope="row">3</th>
-                          <td colspan="2">Larry the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
-                          <tr>
+      <nav class="navBar seaBlueBg">navBar</nav>
+      <div class="titleSpace">        
+          <h2 class="seaBlue font-weight-bold">Q&A</h2>
+          <h3>新生問答</h3>        
+      </div>
+      <div class="main d-flex">
+          <div class="leftSide">
+              <div class="pic_classification">
+                QA的分類圖片
+              </div>
+              <div class="option">
+                <ul>
+                  <li><i class="fas fa-angle-right"></i>全部問題</li>
+                  <li><i class="fas fa-angle-right"></i>校園生活</li>
+                  <li><i class="fas fa-angle-right"></i>課程相關</li>
+                  <li><i class="fas fa-angle-right"></i>學生事務</li>
+                  <li><i class="fas fa-angle-right"></i>其他</li>
+                </ul>
+              </div>
+            </div>
+            <div class="rightSide flex-fill">              
+              <!-- 過濾以及搜尋框 -->
+              <div class="filter_SearchBar">
+                <div class="buttonGroup d-inline-flex">
+                  <div class="filterButton text-white seaBlueBg">排序</div>
+                  <div class="filterButton yellowBg">時間</div>
+                  <div class="filterButton grayBg">人氣</div>
+                </div>
+                <div class="searchBar">
+                  <form class="form-inline">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input class="form-control form-control-sm ml-2" type="text" placeholder="Search"
+                      aria-label="Search">
+                  </form>
+                </div>
+              </div>
+              <i class="far fa-arrow-alt-circle-up fa-2x"></i>  
+              <div class="content">                                  
+                  <div class="contentTable">
+                      <table class="table table-hover table-borderless">
+                          <thead>
+                            <tr class="head">
+                              <th scope="col">分類</th>
+                              <th scope="col">日期</th>
+                              <th scope="col">標題</th>
+                              <th scope="col">點閱率</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Mark</td>
+                              <td>Otto</td>
+                              <td>@mdoi</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Jacob</td>
+                              <td>Thornton</td>
+                              <td>@fat</td>
+                            </tr>
+                            <tr>
                               <th scope="row">3</th>
                               <td colspan="2">Larry the Bird</td>
                               <td>@twitter</td>
                             </tr>
                             <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                          <th scope="row">3</th>
-                          <td colspan="2">Larry the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
-                    </tbody>
-                  </table>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                              </tr>
+                              <tr>
+                                  <th scope="row">3</th>
+                                  <td colspan="2">Larry the Bird</td>
+                                  <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                  </tr>
+                                  <tr>
+                              <th scope="row">3</th>
+                              <td colspan="2">Larry the Bird</td>
+                              <td>@twitter</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                              </tr>
+                              <tr>
+                                  <th scope="row">3</th>
+                                  <td colspan="2">Larry the Bird</td>
+                                  <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td colspan="2">Larry the Bird</td>
+                                        <td>@twitter</td>
+                                      </tr>
+                          </tbody>
+                        </table>
+                  </div>
+              </div>              
             </div>
-        </div>
-        
       </div>
+      
   </body>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script>
+    $(document).ready(function(){
+
+      $(".option li").mouseenter(function(){
+        $(this).children("i").css("display","inline");        
+      });
+      $(".option li").mouseout(function(){
+        $(this).children("i").css("display", "none");
+      });
+
+      //按問題後觸發modal
+      $("tbody > tr").click(function(){
+        $("#exampleModal").modal();
+      });
+
+      $(".fa-arrow-alt-circle-up").click(function(){        
+        $(".content").scrollTop(0);
+      });
+      $(".content").scroll(function() {
+        if ( $(this).scrollTop() > 10){            
+            $('.fa-arrow-alt-circle-up').css("visibility","visible");
+        } else {
+            $('.fa-arrow-alt-circle-up').css("visibility","hidden");
+        }
+      
+      });
+
+
+
+    });
   
   </script>
 
