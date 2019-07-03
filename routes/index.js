@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var Users = require("../models/index/user");
+var checkUser = require('./check-user');
 // for oauth
 var url = require('url');
 var request = require('request');
@@ -8,7 +10,18 @@ const CLIENT_SECRET = "5e7a8fbddb8f00a3c4c46defd331d412733f08bf893a8194a236fe915
 
 router.get('/',(req,res,next)=> {
   res.render('index/index',{title:"新生知訊網"})
-})
+});
+
+router.get('/comingsoon', function (req, res, next) {
+  res.render('comingsoon/index', {
+    title: '新生知訊網'
+  });
+});
+
+router.get('/logout', function(req, res, next){
+  req.session.destroy();
+  res.redirect('/');
+});
 
 router.get('/auth/provider', function(req, res, next){
   var url = 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize?response_type=code&scope=user.info.basic.read&client_id=' + CLIENT_ID;
@@ -58,22 +71,35 @@ router.get('/auth/provider/callback', function(req, res, next){
       // personal info
       personalObj = JSON.parse(info);
 
-      
+      if(!personalObj.id){
+        console.log(personalObj.id + ' is not allowed to login');
+      }
+      Users.findOne({ 'id': personalObj.id }, function(err, obj){
+        if(err) next(err);
+        // If found, login
+        // else, create user
+      });
     });
   });
 });
 
 router.post('/login', function(req, res, next){
-  let grade = req.body.id.substring(0, 3);
-  if(grade !== 107)
-    return res.redirect('auth/provider');
-});
-
-router.get('/comingsoon', function (req, res, next) {
-  res.render('comingsoon/index', {
-    title: '新生知訊網',
-    user: req.user
-  });
+  // let grade = req.body.id.substring(0, 3);
+  // if(grade !== 108)
+  //   return res.redirect('auth/provider');
+  Users.findOne({ "id": req.body.id }, function(err, user){
+    console.log(user);
+    if(err) next(err);
+    if(user && user.password === req.body.password){
+      req.session.regenerate(function(err){
+        if(err) next(err);
+        req.session.id = user.id;
+        res.redirect("/login");
+      });
+    } else {
+      res.redirect("/login");
+    }
+  })
 });
 
 module.exports = router;
