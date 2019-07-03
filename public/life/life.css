@@ -1,6 +1,7 @@
 body {
   padding: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fff9dc;
 }
 
 a {
@@ -17,9 +18,12 @@ h3 {
 
 .content {
   position: absolute;
-  width: 850px;
+  width: 950px;
   height: 400px;
   overflow-y: scroll;
+}
+.content::-webkit-scrollbar {
+  -webkit-appearance: none;
 }
 
 main {
@@ -43,7 +47,7 @@ main {
   max-width: 100px;
   max-height: 100px;
   right: 20px;
-  width: 160px;
+  /*width: 100px;*/
 }
 
 /*.studyPicture {
@@ -59,9 +63,12 @@ main {
   max-height: 300px;
 }
 
-.studyTitle {
+.subTitle {
   text-align: center;
   padding: 10px;
+}
+.studyTitle {
+  padding: -100px;
 }
 
 /*
@@ -86,7 +93,11 @@ main {
   max-width: 850px;
   max-height: 400px;
 }
-.livePicture div {
+.livePicture {
+  display:block;
+  margin:0 auto;
+}
+.pic {
   float: left;
   padding: 5px;
 }
