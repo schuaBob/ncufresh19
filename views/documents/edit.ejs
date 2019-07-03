@@ -1,0 +1,40 @@
+
+<html>
+    <head>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <% /*管理者介面 */%>
+        <div class="modal fade " id="edit" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="false">
+
+            <div class="modal-dialog  modal-lg " role="document">
+                <form name="add" id="add" method="post" accept-charset="utf-8">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                標題
+                                <input type="text" name="title" id="edit_title">
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <% /*ckeditor放置地方*/ %>
+                            <textarea class="form-control" id="edit_content" name="add_text"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="save" id="save">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    
+</html>
+

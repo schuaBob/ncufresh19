@@ -7,24 +7,27 @@
     </head>
     <body>
         <main>
+                <% /*編輯框*/ %>
+                <% include edit %>
+                
                 <% /*研究生*/%>
                 <div class="graduate" id="graduate">
                     <div class="sidenav">
                             <a href="/documents/graduate_must"><img src="circle.png" class="icon"></a>
                             <a href="/documents/graduate_fresh"><img src="circle.png" class="icon"></a>
-                            <a href="/documents"><img src="return.png" class="icon"></a>
+                            <a href="/documents"><img src="return.png" class="return"></a>
                     </div>
           
                     <div class="must" id="must">
                             <div class="sidenav2">
                                 <img src="must.jpg" class="sign">
-                                <p>＞ 學籍登陸</p>
-                                <p>＞ 住宿注意事項</p>
-                                <p>＞ 兵役注意資料</p>
-                                <p>＞ 腳踏車證申請</p>
-                                <p>＞ 入住流程管制圖</p>
-                                <p>＞ 註冊通知、日程表</p>
-                                <p>＞ 學費減免及助學金</p>
+                                <p id="22">＞ 學籍登陸</p>
+                                <p id="23">＞ 住宿注意事項</p>
+                                <p id="24">＞ 兵役注意資料</p>
+                                <p id="25">＞ 腳踏車證申請</p>
+                                <p id="26">＞ 入住流程管制圖</p>
+                                <p id="27">＞ 註冊通知、日程表</p>
+                                <p id="28">＞ 學費減免及助學金</p>
                             </div>
                             <div class="content" >
 
@@ -32,5 +35,6 @@
                     </div>
                 </div> 
         </main>
+        <% include js %>
     </body>
 </html>

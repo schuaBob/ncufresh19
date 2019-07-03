@@ -7,25 +7,28 @@
     </head>
     <body>
         <main>
+                <% /*編輯框*/ %>
+                <% include edit %>
+                
                 <% /*大學生*/ %>
                 <div class="undergraduate" id="undergraduate">
                     <div class="sidenav">
                             <a href="/documents/undergraduate_must"><img src="circle.png" class="icon"></a>
                             <a href="/documents/undergraduate_fresh"><img src="circle.png" class="icon"></a>
                             <a href="/documents/undergraduate_study"><img src="circle.png" class="icon"></a>
-                            <a href="/documents"><img src="return.png" class="icon"></a>
+                            <a href="/documents"><img src="return.png" class="return"></a>
                     </div>
       
                     <div class="must" id="must">
                             <div class="sidenav2">
                                 <img src="must.jpg" class="sign">
-                                <p>＞ 新生營</p>
-                                <p>＞ 社團博覽會</p>
-                                <p>＞ 校園安全宣導</p>
-                                <p>＞ 新生週日程表</p>
-                                <p>＞ 新生健康檢查</p>
-                                <p>＞ 心理適應座談</p>
-                                <p>＞ UCAN適性測驗</p>
+                                <p id="8">＞ 新生營</p>
+                                <p id="9">＞ 社團博覽會</p>
+                                <p id="10">＞ 校園安全宣導</p>
+                                <p id="11">＞ 新生週日程表</p>
+                                <p id="12">＞ 新生健康檢查</p>
+                                <p id="13">＞ 心理適應座談</p>
+                                <p id="14">＞ UCAN適性測驗</p>
                             </div>
                             <div class="content" >
                                 
@@ -34,5 +37,6 @@
       
                 </div>
         </main>
+        <% include js %>
     </body>
 </html>

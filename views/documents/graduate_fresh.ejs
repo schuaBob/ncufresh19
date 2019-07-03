@@ -7,25 +7,29 @@
     </head>
     <body>
         <main>
+                <% /*編輯框*/ %>
+                <% include edit %>
+                
                 <% /*研究生*/%>
                 <div class="graduate" id="graduate">
                         <div class="sidenav">
                                 <a href="/documents/graduate_must"><img src="circle.png" class="icon"></a>
                                 <a href="/documents/graduate_fresh"><img src="circle.png" class="icon"></a>
-                                <a href="/documents"><img src="return.png" class="icon"></a>
+                                <a href="/documents"><img src="return.png" class="return"></a>
                         </div>
           
                         <div class="must" id="must">
                                 <div class="sidenav2">
                                     <img src="must.jpg" class="sign">
-                                    <p>＞ 社團博覽會</p>
-                                    <p>＞ 新生健康檢查</p>
+                                    <p id="29">＞ 社團博覽會</p>
+                                    <p id="30">＞ 新生健康檢查</p>
                                 </div>
                                 <div class="content" >
-                                    
+                                    <p>13456</p>
                                 </div>     
                             </div>
                 </div> 
         </main>
+        <% include js %>
     </body>
 </html>
