@@ -7,23 +7,26 @@
     </head>
     <body>
         <main>
-                <% /*共同事項*/ %>
-          <div class="common" id="common">
+            <% /*編輯框*/ %>
+            <% include edit %>
+            
+            <% /*共同事項*/ %>
+            <div class="common" id="common">
                 <div class="sidenav">
                         <a href="/documents/common"><img src="circle.png" class="icon"></a>
-                        <a href="/documents"><img src="return.png" class="icon"></a>
+                        <a href="/documents"><img src="return.png" class="return"></a>
                 </div>
       
                 <div class="must" id="must">
                     <div class="sidenav2">
                         <img src="must.jpg" class="sign">
-                        <p>＞ 108校曆</p>
-                        <p>＞ 中大圖書館</p>
-                        <p>＞ 學生掛號郵件</p>
-                        <p>＞ 熱門連結介紹</p>
-                        <p>＞ 學生申訴管道</p>
-                        <p>＞ 智慧財產權宣導</p>
-                        <p>＞ LMS/ee-CLASS</p>
+                        <p id="31">＞ 108校曆</p>
+                        <p id="32">＞ 中大圖書館</p>
+                        <p id="33">＞ 學生掛號郵件</p>
+                        <p id="34">＞ 熱門連結介紹</p>
+                        <p id="35">＞ 學生申訴管道</p>
+                        <p id="36">＞ 智慧財產權宣導</p>
+                        <p id="37">＞ LMS/ee-CLASS</p>
                     </div>
                     <div class="content" >
                             
@@ -31,5 +34,6 @@
                 </div>
           </div>
         </main>
+        <% include js %>
     </body>
 </html>
