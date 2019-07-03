@@ -3,11 +3,13 @@
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
     <script src="/coolgame/game.js"></script>
     <title><%= title %></title>
+    <% include ../layouts/head %>
   </head>
   <body onload="init();">
+    <% include ../layouts/header %>
     <div id="game" style="width:800px;height:500px;margin:auto;display:grid;justify-content:center;align-items:center;height:100%;">
         <canvas id="gameStage" width="800" height="500" style="background-color: rgb(142, 219, 245)"></canvas>
     </div>
-  
+    <% include ../layouts/js %>
   </body>
 </html>

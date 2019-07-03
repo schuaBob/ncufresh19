@@ -2,10 +2,12 @@
 <html> 
     <head>
             <title><%= title %></title>
+            <% include ../layouts/head %>
             <link rel='stylesheet' href='style.css' />
             <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
     </head>
     <body>
+            <% include ../layouts/header %>
         <main>
                 <% /*大學生*/ %>
                 <div class="undergraduate" id="undergraduate">
@@ -34,5 +36,6 @@
       
                 </div>
         </main>
+        <% include ../layouts/js %>
     </body>
 </html>

@@ -3,6 +3,7 @@
 
 <head>
   <title><%= title %></title>
+  <% include ../layouts/head %>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' href='/campus/style.css' />
@@ -24,6 +25,7 @@
 </head>
 
 <body>
+  <% include ../layouts/header %>
   <div class="main">
     <div class="mapmove">
       <div class="mapshadow">
@@ -410,6 +412,7 @@
       </li>
     </ul>
   </div>
+  <% include ../layouts/js %>
 </body>
 <script>
   $(document).ready(function () {

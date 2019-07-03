@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html> 
-    <head>
-            <title><%= title %></title>
-            <link rel='stylesheet' href='style.css' />
-            <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
-    </head>
-    <body>
+<html>
+
+<head>
+        <title><%= title %></title>
+        <% include ../layouts/head %>
+        <link rel='stylesheet' href='style.css' />
+        <script src="https://code.jquery.com/jquery-3.4.0.js"
+                integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+        <% include ../layouts/header %>
         <main>
                 <% /*研究生*/%>
                 <div class="graduate" id="graduate">
@@ -14,18 +19,20 @@
                                 <a href="/documents/graduate_fresh"><img src="circle.png" class="icon"></a>
                                 <a href="/documents"><img src="return.png" class="icon"></a>
                         </div>
-          
+
                         <div class="must" id="must">
                                 <div class="sidenav2">
-                                    <img src="must.jpg" class="sign">
-                                    <p>＞ 社團博覽會</p>
-                                    <p>＞ 新生健康檢查</p>
+                                        <img src="must.jpg" class="sign">
+                                        <p>＞ 社團博覽會</p>
+                                        <p>＞ 新生健康檢查</p>
                                 </div>
-                                <div class="content" >
-                                    
-                                </div>     
-                            </div>
-                </div> 
+                                <div class="content">
+
+                                </div>
+                        </div>
+                </div>
         </main>
-    </body>
+        <% include ../layouts/js %>
+</body>
+
 </html>
