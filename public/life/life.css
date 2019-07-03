@@ -7,18 +7,86 @@ a {
   color: #00B7FF;
 }
 
-ul li{
+ul li {
   list-style-type:none;
 }
 
-aside {
+h3 {
+  position:fixed;
+}
+
+.content {
   position: absolute;
-  left: 0px;
-  width: 300px;
+  width: 850px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+main {
+  padding-top: 100px;
+}
+
+.foodList {
+  position: absolute;
+  margin-left: -40px;
 }
 
 .sideNav {
-  position: absolute;
+  position: fixed;
+  margin-right: -100px;
   right: 0px;
   width: 300px;
+}
+
+.navSubBtn {
+  position: relative;
+  max-width: 100px;
+  max-height: 100px;
+  right: 20px;
+  width: 160px;
+}
+
+/*.studyPicture {
+  position: relative;
+}
+*/
+.studyPicture div {
+  float: left;
+  padding: 5px;
+}
+.studyImg {
+  max-width: 200px;
+  max-height: 300px;
+}
+
+.studyTitle {
+  text-align: center;
+  padding: 10px;
+}
+
+/*
+.playPicture {
+  position: relative;
+  margin: auto;
+}
+*/
+
+.playImg {
+  max-width: 850px;
+  max-height: 400px;
+}
+.playPicture div {
+  display: block;
+  margin: auto;
+  float: left;
+  padding: 5px;
+}
+
+.liveImg {
+  max-width: 850px;
+  max-height: 400px;
+}
+.livePicture div {
+  float: left;
+  padding: 5px;
 }

@@ -22,6 +22,31 @@ router.get('/live', function(req, res, next) {
   res.render('life/live');
 });
 
+router.get('/study/lit', function(req, res, next) {
+  res.render('life/subStudy');
+});
+router.get('/study/science', function(req, res, next) {
+  res.render('life/subStudy');
+});
+router.get('/study/ec', function(req, res, next) {
+  res.render('life/subStudy');
+});
+router.get('/study/mgt', function(req, res, next) {
+  res.render('life/subStudy');
+});
+router.get('/study/ceecs', function(req, res,next) {
+  res.render('life/subStudy');
+});
+router.get('/study/escollege', function(req, res, next) {
+  res.render('life/subStudy');
+});
+router.get('/study/hakka',function(req, res, next) {
+  res.render('life/subStudy');
+});
+router.get('/study/chst', function(req, res, next) {
+  res.render('life/subStudy');
+});
+
 
 
 module.exports = router;

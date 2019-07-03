@@ -1,11 +1,451 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='campus/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title><%= title %></title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='/campus/style.css' />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.5/velocity.min.js"
+    integrity="sha256-NtPQd/Jy7Ze2E72YS8WJDGMu6xFYomLYibE0hpyLTjs=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.5/velocity.ui.min.js"
+    integrity="sha256-PgWe5aqC6kRlL/L8+bvHr7FQ+m8Tq8O9tVZP3fAXTHU=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="mapmove">
+      <div class="mapshadow">
+        <img title="" pictitle="松苑餐廳" val="3" class="indexelepic modalshow" src="/campus/5b61607bbd7e25092ba0224c.png"
+          alt="5b603117ff44576d27cf6d3b" style="top: 59.4983%; left: 25.9791%; width: 8%; transform: scale(1);"
+          data-original-title="松苑餐廳">
+        <img title="" pictitle="國際處/創新育成中心" val="6" class="indexelepic modalshow"
+          src="/campus/5b6032357f5ada38d9171f8b.png" alt="5b60321396d0da3973334bab"
+          style="top: 69.4629%; left: 27.0235%; width: 5%; transform: scale(1);" data-original-title="國際處/創新育成中心">
+        <img title="" pictitle="女一~四舍" val="5" class="indexelepic modalshow" src="/campus/5b65e51e60a71455bfefc73d.png"
+          alt="5b6035337f5ada38d9171f8c" style="top: 68.93561342925017%;left: 39.81723237597911%; width:15%;"
+          data-original-title="女一~四舍">
+        <img title="" pictitle="室內游泳池" val="2" class="indexelepic modalshow" src="/campus/5b603c81fa38ab3954f9fc78.png"
+          alt="5b603c77175b8738d864dcf2" style="top: 25.6844%; left: 25.718%; width: 6%; transform: scale(1);"
+          data-original-title="室內游泳池">
+        <img title="" pictitle="男三舍" val="5" class="indexelepic modalshow" src="/campus/5b604212fa38ab3954f9fc7a.png"
+          alt="5b6041e4175b8738d864dcf3" style="top: 84.67035914135164%;left: 62.92428198433421%; width:5%;"
+          data-original-title="男三舍">
+        <img title="" pictitle="棒壘球場" val="2" class="indexelepic modalshow" src="/campus/5b6042f9cb1040394b7aaad4.png"
+          alt="5b6042f0f28a5b3913c6340a" style="top: 36.959685057684936%;left: 41.12271540469974%; width:13%;"
+          data-original-title="棒壘球場">
+        <img title="" pictitle="溜冰場" val="2" class="indexelepic modalshow" src="/campus/5b60435afa38ab3954f9fc7b.png"
+          alt="5b604330004f6039807e9ab0" style="top: 35.6221%; left: 35.7702%; width: 4%; transform: scale(1);"
+          data-original-title="溜冰場">
+        <img title="" pictitle="籃球場" val="2" class="indexelepic modalshow" src="/campus/5b6045a8cb1040394b7aaad6.png"
+          alt="5b604593cb1040394b7aaad5" style="top: 33.7931%; left: 21.1488%; width: 15%; transform: scale(1);"
+          data-original-title="籃球場">
+        <img title="" pictitle="網球場" val="2" class="indexelepic modalshow" src="/campus/5b60472ef28a5b3913c6340b.png"
+          alt="5b60471da83f663919fadcc8" style="top: 33.03047067334679%;left: 25.45691906005222%; width:8%;"
+          data-original-title="網球場">
+        <img title="" pictitle="羽球館" val="2" class="indexelepic modalshow" src="/campus/5b604850f28a5b3913c6340c.png"
+          alt="5b60484496d0da3973334bac" style="top: 43.50441299287035%;left: 31.853785900783286%; width:6%;"
+          data-original-title="羽球館">
+        <img title="" pictitle="依仁堂" val="2" class="indexelepic modalshow" src="/campus/5b604b570e4b613b389869d8.png"
+          alt="5b604b4e7dc3a13a8fb1debf" style="top: 48.7473442108557%;left: 30.809399477806785%; width:5%;"
+          data-original-title="依仁堂">
+        <img title="" pictitle="排球場" val="2" class="indexelepic modalshow" src="/campus/5b604da50e4b613b389869da.png"
+          alt="5b604caa275b943a90cdd790" style="top: 34.3055%; left: 18.4073%; width: 15%; z-index: 2;"
+          data-original-title="排球場">
+        <img title="" pictitle="大型環境風洞實驗室" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/1561981206193.png" alt="1561981206193"
+          style="top: 44.871%; left: 16.6298%;width: 6.12%;transform: scale(1.00002);" data-original-title="大型環境風洞實驗室">
+        <img title="" pictitle="小木屋鬆餅" val="3" class="indexelepic modalshow" src="/campus/5b60543d53fbd83acd7b4969.png"
+          alt="5b6054217dc3a13a8fb1dec2" style="top: 28.0437%; left: 58.3551%; width: 4%; z-index: 4;"
+          data-original-title="小木屋鬆餅">
+        <img title="" pictitle="男研舍" val="5" class="indexelepic modalshow" src="/campus/5b60550d7dc3a13a8fb1dec3.png"
+          alt="5b6054fc28d78f3b0f468d9d" style="top: 15.445794889352443%;left: 61.8798955613577%; width:5%;"
+          data-original-title="男研舍">
+        <img title="" pictitle="男九舍" val="5" class="indexelepic modalshow" src="/campus/5b60557e0e4b613b389869e0.png"
+          alt="5b605577bf1b073b0a877b3b" style="top: 17.02165428385983%;left: 74.28198433420366%; width:5%;"
+          data-original-title="男九舍">
+        <img title="" pictitle="國際學生宿舍" val="5" class="indexelepic modalshow" src="/campus/5b60562c53fbd83acd7b496a.png"
+          alt="5b60561128d78f3b0f468d9e" style="top: 77.59538602622227%;left: 72.32375979112271%; width:8%;"
+          data-original-title="國際學生宿舍">
+        <img title="" pictitle="女六舍" val="5" class="indexelepic modalshow" src="/campus/5b609a4d0d7be76f2d07088c.png"
+          alt="5b6056860e4b613b389869e1" style="top: 77.84263644160168%;left: 80.15665796344648%; width:4%;"
+          data-original-title="女六舍">
+        <img title="" pictitle="國鼎圖書資料館" val="6" class="indexelepic modalshow"
+          src="/campus/5b6057fe53fbd83acd7b496b.png" alt="5b6057e44cef5e3b2d7eac61"
+          style="top: 23.849380983648853%;left: 64.62140992167102%; width:5%;" data-original-title="國鼎圖書資料館">
+        <img title="" pictitle="中大會館" val="5" class="indexelepic modalshow" src="/campus/5b605883be589d3ad3b4bcc2.png"
+          alt="5b60587828d78f3b0f468d9f" style="top: 14.41210479127522%;left: 67.1018276762402%; width:6%;"
+          data-original-title="中大會館">
+        <img title="" pictitle="LS 人文社會科學大樓" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b6059fb53fbd83acd7b496c.png" alt="5b6059aa0e4b613b389869e3"
+          style="top: 35.1217%; left: 69.7128%; width: 6%; transform: scale(1.00002);" data-original-title="LS 人文社會科學大樓"
+          aria-describedby="tooltip348728">
+        <img title="" pictitle="志道樓" val="7" class="indexelepic modalshow" src="/campus/5b605b7853fbd83acd7b496f.png"
+          alt="5b605b7153fbd83acd7b496e" style="top: 83.88391945865384%;left: 70.75718015665797%; width:6%;"
+          data-original-title="志道樓">
+        <img title="" pictitle="女十四舍" val="5" class="indexelepic modalshow" src="/campus/5b605c0653fbd83acd7b4970.png"
+          alt="5b605bfe0e4b613b389869e6" style="top: 83.88391945865384%;left: 76.50130548302873%; width:6%;"
+          data-original-title="女十四舍">
+        <img title="" pictitle="中正圖書館" val="6" class="indexelepic modalshow" src="/campus/5b605cc628d78f3b0f468da0.png"
+          alt="5b605c99bf1b073b0a877b3f" style="top: 49.280573419950514%;left: 62.14099216710183%; width:6%;"
+          data-original-title="中正圖書館">
+        <img title="" pictitle="總圖書館" val="6" class="indexelepic modalshow" src="/campus/5b608d120e4b613b389869e8.png"
+          alt="5b605d6f0e4b613b389869e7" style="top: 48.491157708180005%;left: 67.62402088772846%; width:6%;"
+          data-original-title="總圖書館">
+        <img title="" pictitle="行政大樓" val="6" class="indexelepic modalshow" src="/campus/5b6099d6496a9d6f4f60376f.png"
+          alt="5b6093a47dc3a13a8fb1dec5" style="top: 49.80486654174905%;left: 73.36814621409921%; width:6%;"
+          data-original-title="行政大樓">
+        <img title="" pictitle="男十一舍" val="5" class="indexelepic modalshow" src="/campus/5b609afb2b5b870be0351561.png"
+          alt="5b609ad9f79dc90b74724355" style="top: 84.66142705409443%;left: 81.0704960835509%; width:3%;"
+          data-original-title="男十一舍">
+        <img title="" pictitle="男七舍" val="5" class="indexelepic modalshow" src="/campus/5b609b678c22b00bad501c9f.png"
+          alt="5b609b5ff79dc90b74724356" style="top: 87.81314184307014%;left: 83.68146214099217%; width:3%;"
+          data-original-title="男七舍">
+        <img title="" pictitle="游藝館" val="7" class="indexelepic modalshow" src="/campus/5b609bba8c22b00bad501ca0.png"
+          alt="5b609bb4f79dc90b74724357" style="top: 79.94874501609212%;left: 85.11749347258485%; width:4%;"
+          data-original-title="游藝館">
+        <img title="" pictitle="大講堂(校史館)" val="7" class="indexelepic modalshow"
+          src="/campus/5b609c3b9008f00bed722b4a.png" alt="5b609c1d7b671c0c185956db"
+          style="top: 63.43648770851097%;left: 82.76762402088774%; width:5%;" data-original-title="大講堂(校史館)">
+        <img title="" pictitle="據德樓" val="7" class="indexelepic modalshow" src="/campus/5b609c88d9e7eb0bb3f01977.png"
+          alt="5b609c7fc9b8590b6fd66154" style="top: 67.89000321472581%;left: 85.11749347258485%; width:4%;"
+          data-original-title="據德樓">
+        <img title="" pictitle="男十三舍" val="5" class="indexelepic modalshow" src="/campus/5b609ce208cf630c0e50e67a.png"
+          alt="5b609cdbd9e7eb0bb3f01978" style="top: 73.12995440359937%;left: 87.72845953002611%; width:4%;"
+          data-original-title="男十三舍">
+        <img title="" pictitle="男十二舍" val="5" class="indexelepic modalshow" src="/campus/5b609eff7b671c0c185956dc.png"
+          alt="5b609ef808cf630c0e50e67c" style="top: 8.904046983278818%;left: 66.4490861618799%; width:5%;"
+          data-original-title="男十二舍">
+        <img title="" pictitle="操場" val="2" class="indexelepic modalshow" src="/campus/5b6298e4bcfc5f30326bf4e4.png"
+          alt="5b6298b18543ba3068115985" style="top: 47.0688%; left: 22.2014%; width: 9%; transform: scale(1);"
+          data-original-title="操場">
+        <img title="" pictitle="便利商店" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62c2e4bfb67e61586a5d21.png" alt="5b629b12a0c71e303c355310"
+          style="top: 88.0693%; left: 77.4151%; width: 2%; display: none;" data-original-title="便利商店">
+        <img title="" pictitle="便利商店" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62c2ef5d6ed6615680a448.png" alt="5b629bf57ae5a230a1684b82"
+          style="top: 15.7228%; left: 75.4569%; width: 2%; display: none;" data-original-title="便利商店">
+        <img title="" pictitle="便利商店" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62c2f65d6ed6615680a449.png" alt="5b62b6c61b734401614ddc5f"
+          style="top: 64.4881%; left: 27.5457%; width: 2%; display: none;" data-original-title="便利商店">
+        <img title="" pictitle="公車站" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62bbe7c56bc401a12ae693.png" alt="5b62bbdd140e9f7fc068fd8e"
+          style="top: 43.2512%; left: 77.9373%; width: 2%; display: none;" data-original-title="公車站">
+        <img title="" pictitle="公車站" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62bc5fc56bc401a12ae694.png" alt="5b62bc555061e97ffbe59a0e"
+          style="top: 28.568%; left: 62.141%; width: 2%; display: none;" data-original-title="公車站">
+        <img title="" pictitle="公車站" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62bcba8136fa0191a647a2.png" alt="5b62bcae5061e97ffbe59a0f"
+          style="top: 28.571%; left: 44.2559%; width: 2%; display: none;" data-original-title="公車站">
+        <img title="" pictitle="公車站" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62bd0556e2a3012da46708.png" alt="5b62bcf7c56bc401a12ae695"
+          style="top: 50.3172%; left: 34.4648%; width: 2%; display: none;" data-original-title="公車站">
+        <img title="" pictitle="公車站" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62bdf7fab8647fbf36fadc.png" alt="5b62bdecaf1bdf016f499d4f"
+          style="top: 73.1389%; left: 40.47%; width: 2%; display: none;" data-original-title="公車站">
+        <img title="" pictitle="公車站" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62bf301b734401614ddc61.png" alt="5b62bf26af1bdf016f499d50"
+          style="top: 58.1965%; left: 80.9399%; width: 2%; display: none;" data-original-title="公車站">
+        <img title="" pictitle="郵局" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b62c05385074060c779fe6d.png" alt="5b62c049bfb67e61586a5d1f"
+          style="top: 89.6541%; left: 80.6789%; width: 2%; display: none;" data-original-title="郵局">
+        <img title="" pictitle="中大湖" val="9" class="indexelepic modalshow" src="/campus/5b62c1ef9573cf612824a4d9.png"
+          alt="5b62c1b79573cf612824a4d8" style="top: 10.2178%; left: 40.7311%; width: 8%; transform: scale(1.1);"
+          data-original-title="中大湖" aria-describedby="tooltip407556">
+        <img title="" pictitle="中大正門" val="9" class="indexelepic modalshow" src="/campus/5b62c26cbfb67e61586a5d20.png"
+          alt="5b62c26585074060c779fe6e" style="top: 45.61052156736077%;left: 93.99478603592118%; width:3%;"
+          data-original-title="中大正門">
+        <img title="" pictitle="太極銅雕" val="9" class="indexelepic modalshow" src="/campus/5b62c356d6606b6120314c34.png"
+          alt="5b62c34d5d6ed6615680a44a" style="top: 37.74612474038274%;left: 61.48825065274151%; width:3%;"
+          data-original-title="太極銅雕">
+        <img title="" pictitle="百花川" val="9" class="indexelepic modalshow" src="/campus/5b62c3c8b588fc60fa6d3d0f.png"
+          alt="5b62c3bd37fc3260c29860bd" style="top: 26.9726%; left: 57.7024%; width: 9.5%; z-index: 2;"
+          data-original-title="百花川">
+        <img title="" pictitle="男六舍" val="5" class="indexelepic modalshow" src="/campus/5b62c5f79573cf612824a4db.png"
+          alt="5b62c5d0d6606b6120314c35" style="top: 79.16825739153973%;left: 85.37859007832898%; width:2%;"
+          data-original-title="男六舍">
+        <img title="" pictitle="女十四地下商場" val="3" class="indexelepic hide modalshow"
+          src="/campus/5b657b6314cf6c55ff5f9c2b.png" alt="5b657b2f2fcb5d55fe43c201"
+          style="top: 91.221%; left: 79.765%; width: 2%; display: none;" data-original-title="女十四地下商場">
+        <img title="" pictitle="攀岩場" val="2" class="indexelepic modalshow" src="/campus/5b665590f870ca3386b7884c.png"
+          alt="5b665558486b7a339d105790" style="top: 43.254186548418225%;left: 24.151436031331595%; width:2%;"
+          data-original-title="攀岩場">
+        <img title="" pictitle="九舍餐廳" val="3" class="indexelepic hide modalshow"
+          src="/campus/5b66595d5037b333851f2ef8.png" alt="5b66594461cdb833b35d1a37"
+          style="top: 18.8745%; left: 76.6319%; width: 2%; display: none;" data-original-title="九舍餐廳">
+        <img title="" pictitle="松果餐廳" val="3" class="indexelepic hide modalshow"
+          src="/campus/5b665aa15037b333851f2efa.png" alt="5b665a1f486b7a339d105791"
+          style="top: 92.0134%; left: 83.812%; width: 2%; display: none;" data-original-title="松果餐廳">
+        <img title="" pictitle="iicafe" val="3" class="indexelepic hide modalshow"
+          src="/campus/5b665b505037b333851f2efb.png" alt="5b665b15486b7a339d105792"
+          style="top: 14.144%; left: 62.7937%; width: 2%; display: none;" data-original-title="iicafe">
+        <img title="" pictitle="AED" val="8" class="indexelepic hide" src="/campus/5b665dbd486b7a339d105793.png"
+          alt="5b665daab8580a33b29b406b" style="top: 92.0105%; left: 77.0235%; width: 2%; display: none;"
+          data-original-title="AED">
+        <img title="" pictitle="AED" val="8" class="indexelepic hide" src="/campus/5b665e42b8580a33b29b406c.png"
+          alt="5b665e35fd97d13374ceefb8" style="top: 51.5237%; left: 76.893%; width: 2%; display: none;"
+          data-original-title="AED">
+        <img title="" pictitle="AED" val="8" class="indexelepic hide" src="/campus/5b665ecaab0f3b336f09f90b.png"
+          alt="5b665ebc8ddec3339ce66492" style="top: 27.2603%; left: 52.8721%; width: 2%; display: none;"
+          data-original-title="AED">
+        <img title="" pictitle="AED" val="8" class="indexelepic hide" src="/campus/5b665f0561cdb833b35d1a3a.png"
+          alt="5b665efd8ddec3339ce66493" style="top: 52.4293%; left: 33.0287%; width: 2%; display: none;"
+          data-original-title="AED">
+        <img title="" pictitle="AED" val="8" class="indexelepic hide" src="/campus/5b665f525037b333851f2efc.png"
+          alt="5b665f48ab0f3b336f09f90c" style="top: 49.8049%; left: 63.9687%; width: 2%; display: none;"
+          data-original-title="AED">
+        <img title="" pictitle="衛生保健組" val="8" class="indexelepic hide modalshow"
+          src="/campus/5b66605461cdb833b35d1a3b.png" alt="5b665fbcf870ca3386b7884f"
+          style="top: 55.0448%; left: 64.2298%; width: 2%; display: none;" data-original-title="衛生保健組">
+        <img title="" pictitle="宿舍服務中心" val="6" class="indexelepic hide modalshow"
+          src="/campus/5b6668af61cdb833b35d1a3e.png" alt="5b66689a61cdb833b35d1a3d"
+          style="top: 74.1815%; left: 74.1514%; width: 3%; display: none;" data-original-title="宿舍服務中心">
+        <img title="" pictitle="電算中心" val="6" class="indexelepic hide modalshow"
+          src="/campus/5b666c20ab0f3b336f09f90d.png" alt="5b666c01486b7a339d105795"
+          style="top: 19.655%; left: 59.1384%; width: 3%; display: none;" data-original-title="電算中心">
+        <img title="" pictitle="敦煌書局" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b688232797f7c5ae24ca86f.png" alt="5b6672d0fd97d13374ceefbd"
+          style="top: 93.5833%; left: 83.1593%; width: 2%; display: none;" data-original-title="敦煌書局">
+        <img title="" pictitle="影印店" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b6675a4486b7a339d10579a.png" alt="5b667595f870ca3386b78857"
+          style="top: 95.1056%; left: 78.1984%; width: 2%; display: none;" data-original-title="影印店">
+        <img title="" pictitle="影印店" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b6677c9b8580a33b29b4073.png" alt="5b66774e5037b333851f2f07"
+          style="top: 21.4901%; left: 76.7624%; width: 2%; display: none;" data-original-title="影印店">
+        <img title="" pictitle="中大眼鏡行/印象髮廊" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b667b66b8580a33b29b4077.png" alt="5b667ae58ddec3339ce6649c"
+          style="top: 96.1601%; left: 81.4621%; width: 2%; display: none;" data-original-title="中大眼鏡行/印象髮廊">
+        <img title="" pictitle="581生活館" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b66d31e687b102bbf78d75c.png" alt="5b66d30d5416c52bd6c848f8"
+          style="top: 91.4832%; left: 75.8486%; width: 2%; display: none;" data-original-title="581生活館">
+        <img title="" pictitle="停車場" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b66d90c9c32e72bba9f82d2.png" alt="5b66d8e655f86a2c01e22bce"
+          style="top: 62.3909%; left: 13.9687%; width: 2%; display: none;" data-original-title="停車場">
+        <img title="" pictitle="停車場" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b66d99e687b102bbf78d75e.png" alt="5b66d9765416c52bd6c848fd"
+          style="top: 86.2462%; left: 30.2872%; width: 2%; display: none;" data-original-title="停車場">
+        <img title="" pictitle="停車場" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b66da37dd8e712bec1a8ce7.png" alt="5b66da0c9c32e72bba9f82d3"
+          style="top: 72.6146%; left: 45.6919%; width: 2%; display: none;" data-original-title="停車場">
+        <img title="" pictitle="停車場" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b66dabc9c32e72bba9f82d4.png" alt="5b66daaf687b102bbf78d75f"
+          style="top: 63.4395%; left: 82.1149%; width: 2%; display: none;" data-original-title="停車場">
+        <img title="" pictitle="停車場" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b67fb50111e87180b260768.png" alt="5b66db9e856b112bfcdd74e1"
+          style="top: 41.4192%; left: 83.0287%; width: 2%; display: none;" data-original-title="停車場">
+        <img title="" pictitle="藝文中心" val="7" class="indexelepic hide modalshow"
+          src="/campus/5b66ddf8a37fa82be640e8c0.png" alt="5b66dca65416c52bd6c848fe"
+          style="top: 31.7197%; left: 70.6266%; width: 3%; display: none;" data-original-title="藝文中心">
+        <img title="" pictitle="宵夜街" val="9" class="indexelepic modalshow" src="/campus/5b66df7cdd8e712bec1a8ce9.png"
+          alt="5b66df6aa37fa82be640e8c1" style="top: 82.06974173602423%;left: 68.79895561357702%; width:3%;"
+          data-original-title="宵夜街">
+        <img title="" pictitle="後門" val="9" class="indexelepic modalshow" src="/campus/5b66e08d5416c52bd6c84900.png"
+          alt="5b66e019856b112bfcdd74e2" style="top: 82.57616268323021%;left: 27.806788511749346%; width:3%;"
+          data-original-title="後門">
+        <img title="" pictitle="Youbike站" val="4" class="indexelepic hide" src="/campus/5b66e1e1a37fa82be640e8c3.png"
+          alt="5b66e146687b102bbf78d762" style="top: 65.7988%; left: 30.9399%; width: 2%; display: none;"
+          data-original-title="Youbike站">
+        <img title="" pictitle="Youbike站" val="4" class="indexelepic hide" src="/campus/5b66e22fdd8e712bec1a8ceb.png"
+          alt="5b66e22555f86a2c01e22bcf" style="top: 53.9992%; left: 72.3238%; width: 2%; display: none;"
+          data-original-title="Youbike站">
+        <img title="" pictitle="洗手間" val="4" class="indexelepic hide" src="/campus/5b66e2f15416c52bd6c84901.png"
+          alt="5b66e2e59c32e72bba9f82d5" style="top: 34.8625%; left: 29.1123%; width: 2%; display: none;"
+          data-original-title="洗手間">
+        <img title="" pictitle="洗手間" val="4" class="indexelepic hide" src="/campus/5b66e3815416c52bd6c84902.png"
+          alt="5b66e370a37fa82be640e8c4" style="top: 18.0822%; left: 78.9817%; width: 2%; display: none;"
+          data-original-title="洗手間">
+        <img title="" pictitle="洗手間" val="4" class="indexelepic hide" src="/campus/5b66e3f255f86a2c01e22bd0.png"
+          alt="5b66e3e9898e0f2bd08bdd5c" style="top: 44.8241%; left: 80.1567%; width: 2%; display: none;"
+          data-original-title="洗手間">
+        <img title="" pictitle="AED" val="8" class="indexelepic hide" src="/campus/5b67f66963901117ef946bf7.png"
+          alt="5b67f64812295f17de8447da" style="top: 62.3909%; left: 7.5718%; width: 2%; display: none;"
+          data-original-title="AED">
+        <img title="" pictitle="AED" val="8" class="indexelepic hide modalshow"
+          src="/campus/5b67f6ace9894517f5439771.png" alt="5b67f6a2a1290417d991cb06"
+          style="top: 46.397%; left: 32.1149%; width: 2%; display: none;" data-original-title="AED">
+        <img title="" pictitle="洗手間" val="4" class="indexelepic hide" src="/campus/5b67f849111e87180b260765.png"
+          alt="5b67f83c9fcb711822c92d8f" style="top: 95.5286%; left: 76.5013%; width: 2%; display: none;"
+          data-original-title="洗手間">
+        <img title="" pictitle="洗手間" val="4" class="indexelepic hide" src="/campus/5b67f8c7e9894517f5439772.png"
+          alt="5b67f8ba9fcb711822c92d91" style="top: 89.6511%; left: 83.1593%; width: 2%; display: none;"
+          data-original-title="洗手間">
+        <img title="" pictitle="自動繳費機" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b67f956a1290417d991cb07.png" alt="5b67f94a111e87180b260766"
+          style="top: 45.6105%; left: 73.8903%; width: 2%; display: none;" data-original-title="自動繳費機">
+        <img title="" pictitle="自動繳費機" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b67f9daa1290417d991cb09.png" alt="5b67f9aae9894517f5439773"
+          style="top: 75.4952%; left: 28.329%; width: 2%; display: none;" data-original-title="自動繳費機">
+        <img title="" pictitle="自動繳費機" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b67fa4f59eccc181c5c50bb.png" alt="5b67fa48e9894517f5439775"
+          style="top: 68.1581%; left: 82.7676%; width: 2%; display: none;" data-original-title="自動繳費機">
+        <img title="" pictitle="自動繳費機" val="4" class="indexelepic hide" src="/campus/5b67fada111e87180b260767.png"
+          alt="5b67fac9a1290417d991cb0a" style="top: 29.8817%; left: 64.0992%; width: 2%; display: none;"
+          data-original-title="自動繳費機">
+        <img title="" pictitle="停車場" val="4" class="indexelepic hide" src="/campus/5b67fc07a1290417d991cb0b.png"
+          alt="5b67fbe9111e87180b260769" style="top: 22.2825%; left: 30.2872%; width: 2%; display: none;"
+          data-original-title="停車場">
+        <img title="" pictitle="垃圾場" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b67fe0159eccc181c5c50bd.png" alt="5b67fdeb9fcb711822c92d92"
+          style="top: 25.4252%; left: 79.5039%; width: 3%; display: none;" data-original-title="垃圾場">
+        <img title="" pictitle="E 工程一館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b603f6d7f5ada38d9171f8e.png" alt="5b684b84528881bf9bf1a6c9"
+          style="top: 60.2907%; left: 52.0888%; width: 10%; transform: scale(1.00002);" data-original-title="E 工程一館"
+          aria-describedby="tooltip624417">
+        <img title="" pictitle="E1 工程二館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b603e83fa38ab3954f9fc79.png" alt="5b684baf528881bf9bf1a828"
+          style="top: 60.815%; left: 36.0313%; width: 10%; transform: scale(1.00002);" data-original-title="E1 工程二館"
+          aria-describedby="tooltip11722">
+        <img title="" pictitle="工程三館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b602f59e165146cf8c641ec.png" alt="5b684bbe528881bf9bf1a844"
+          style="top: 53.7371%; left: 14.0992%; width: 6%; transform: scale(1.00002);" data-original-title="工程三館"
+          aria-describedby="tooltip191532">
+        <img title="" pictitle="工程四館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b602e95aa20396cb16e2f24.png" alt="5b684bce528881bf9bf1a86a"
+          style="top: 47.6988%; left: 9.79112%; width: 6%; transform: scale(1.00002);" data-original-title="工程四館"
+          aria-describedby="tooltip693596">
+        <img title="" pictitle="E6 工程五館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b6019c7fbf88374a67540ad.png" alt="5b684be0528881bf9bf1a982"
+          style="top: 62.6411%; left: 5.48303%; width: 6%; transform: scale(1.00002);" data-original-title="E6 工程五館"
+          aria-describedby="tooltip437373">
+        <img title="" pictitle="S 科學一館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b605a9c4cef5e3b2d7eac63.png" alt="5b684beb528881bf9bf1a998"
+          style="top: 61.3363%; left: 70.4961%; width: 7%; transform: scale(1.00002);" data-original-title="S 科學一館"
+          aria-describedby="tooltip136138">
+        <img title="" pictitle="S1 科學二館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b604f84275b943a90cdd791.png" alt="5b684bfa528881bf9bf1a9b4"
+          style="top: 22.0144%; left: 43.4726%; width: 6%; transform: scale(1.00002);" data-original-title="S1 科學二館"
+          aria-describedby="tooltip621130">
+        <img title="" pictitle="S2 科學三館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b605152275b943a90cdd792.png" alt="5b684c03528881bf9bf1aa90"
+          style="top: 12.5741%; left: 48.1723%; width: 4%; transform: scale(1.00002);" data-original-title="S2 科學三館"
+          aria-describedby="tooltip151615">
+        <img title="" pictitle="S4科學四館(健雄館)" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b609dfa2b5b870be0351562.png" alt="5b684c0f528881bf9bf1ab19"
+          style="top: 4.44756%; left: 48.3029%; width: 5%; transform: scale(1.00002);" data-original-title="S4科學四館(健雄館)"
+          aria-describedby="tooltip708441">
+        <img title="" pictitle="S5科學五館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b609e5608cf630c0e50e67b.png" alt="5b684c37528881bf9bf1ac32"
+          style="top: 4.7097%; left: 51.5666%; width: 5%; transform: scale(1.00002);" data-original-title="S5科學五館"
+          aria-describedby="tooltip471115">
+        <img title="" pictitle="I 志希館（管理一館）" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b6053b94cef5e3b2d7eac60.png" alt="5b684c41528881bf9bf1ac48"
+          style="top: 23.3221%; left: 57.9634%; width: 7%; transform: scale(1.00002);" data-original-title="I 志希館（管理一館）"
+          aria-describedby="tooltip527703">
+        <img title="" pictitle="I1 管理二館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b60526dbf1b073b0a877b3a.png" alt="5b684c4e528881bf9bf1ac8c"
+          style="top: 14.6743%; left: 57.1802%; width: 5%; transform: scale(1.00002);" data-original-title="I1 管理二館"
+          aria-describedby="tooltip849018">
+        <img title="" pictitle="A 文學一館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b6584ab60a71455bfefc737.png" alt="5b684c5c528881bf9bf1acac"
+          style="top: 34.3352%; left: 64.3603%; width: 5%; transform: scale(1.00002);" data-original-title="A 文學一館"
+          aria-describedby="tooltip613973">
+        <img title="" pictitle="C2 文學二館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b65855814cf6c55ff5f9c2c.png" alt="5b684c65528881bf9bf1acec"
+          style="top: 40.8949%; left: 65.6658%; width: 5%; transform: scale(1.00002);" data-original-title="C2 文學二館">
+        <img title="" pictitle="O 綜教館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b6050414cef5e3b2d7eac5f.png" alt="5b684c6e528881bf9bf1ad30"
+          style="top: 22.0054%; left: 50%; width: 6%; transform: scale(1.00002);" data-original-title="O 綜教館">
+        <img title="" pictitle="M 鴻經館" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b6051ca53fbd83acd7b4968.png" alt="5b684c79528881bf9bf1adbf"
+          style="top: 15.4577%; left: 51.9582%; width: 4%; transform: scale(1.00002);" data-original-title="M 鴻經館">
+        <img title="" pictitle="IL 國鼎光電大樓" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b604e510e4b613b389869db.png" alt="5b684c83528881bf9bf1ae75"
+          style="top: 18.8716%; left: 32.5065%; width: 8%; transform: scale(1.00002);" data-original-title="IL 國鼎光電大樓">
+        <img title="" pictitle="HK 客家學院大樓" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b604ef54cef5e3b2d7eac5e.png" alt="5b684c8c528881bf9bf1af1a"
+          style="top: 7.60225%; left: 32.1149%; width: 8%; transform: scale(1.00002);" data-original-title="HK 客家學院大樓">
+        <img title="" pictitle="R2 太空遙測中心" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b60166c5f9b9974e0a0ea1a.png" alt="5b684c95528881bf9bf1affa"
+          style="top: 54.2345%; left: 3.39426%; width: 5%; transform: scale(1.00002);" data-original-title="R2 太空遙測中心">
+        <img title="" pictitle="研究中心大樓" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b60180bcb71aa74cb7cf667.png" alt="5b684ca4528881bf9bf1b31e"
+          style="top: 56.3496%; left: 8.22454%; width: 5%; transform: scale(1.00002);" data-original-title="研究中心大樓">
+        <img title="" pictitle="教學研究綜合大樓" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b604291175b8738d864dcf4.png" alt="5b684cae528881bf9bf1b334"
+          style="top: 49.5427%; left: 42.6893%; width: 13%; transform: scale(1.00002);" data-original-title="教學研究綜合大樓">
+        <img title="" pictitle="前瞻科技研究中心" val="1" class="indexelepic modalshow velocity-animating"
+          src="/campus/5b602e02e165146cf8c641eb.png" alt="5b684cba528881bf9bf1b350"
+          style="top: 66.3201%; left: 4.56919%; width: 5%; transform: scale(1.00002);" data-original-title="前瞻科技研究中心">
+        <img title="" pictitle="停車場" val="4" class="indexelepic hide modalshow"
+          src="/campus/5b6875bd4da6e955012449fe.png" alt="5b6875a334d48a554b1fcc59"
+          style="top: 20.9717%; left: 64.3603%; width: 2%; display: none;" data-original-title="停車場">
+        <img src="/campus/backgroud.png" id="map">
+      </div>
+    </div>
+    <ul id="List_index">
+      <li class="Main_listele1" val="1">
+        <img src="list1.png" alt="">
+      </li>
+      <li class="Main_listele2" val="2">
+        <img src="list2.png" alt="">
+      </li>
+      <li class="Main_listele3" val="3">
+        <img src="list3.png" alt="">
+      </li>
+      <li class="Main_listele4" val="4">
+        <img src="list4.png" alt="">
+      </li>
+      <li class="Main_listele5" val="5">
+        <img src="list5.png" alt="">
+      </li>
+      <li class="Main_listele6" val="6">
+        <img src="list6.png" alt="">
+      </li>
+      <li class="Main_listele7" val="7">
+        <img src="list7.png" alt="">
+      </li>
+      <li class="Main_listele8" val="8">
+        <img src="list8.png" alt="">
+      </li>
+    </ul>
+  </div>
+</body>
+<script>
+  $(document).ready(function () {
+    $('.indexelepic.hide').hide()
+
+    $('.modal-header span svg').click(function () {
+      $('#indexmodal').modal('hide')
+    })
+    $('.indexelepic').hover(function () {
+      $(this).velocity({
+        transform: ["scale(1.1)", "scale(1)"],
+      }, {
+        duration: 100,
+      })
+    }, function () {
+      $(this).velocity({
+        transform: ["scale(1)", "scale(1.1)"],
+      }, {
+        duration: 100,
+      })
+    })
+    $('#List_index li').hover(function (event) {
+      $('.indexelepic.hide[val=' + event.currentTarget.attributes.val.value + ']').show()
+      $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').velocity({
+        transform: ["scale(1.1)", "scale(1)"],
+      }, 100)
+      $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').stop().tooltip('show')
+    }, function (event) {
+      $('.indexelepic.hide[val=' + event.currentTarget.attributes.val.value + ']').hide()
+      $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').velocity({
+        transform: ["scale(1)", "scale(1.1)"],
+      }, 100)
+      $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').stop().tooltip('hide')
+    })
+    $('.indexelepic').tooltip();
+  });
+</script>
+
 </html>

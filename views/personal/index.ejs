@@ -2,10 +2,21 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='personal/style.css' />
+    <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="row">
+      <div class="column">
+        <div class="circle">
+          <img class="profile-pic" src="default-profile.jpg">
+        </div>
+        <div class="upload-icon">
+          <!-- 放相機圖示當按鈕 -->
+          <div class="upload-button"><img src="camera.png"></div>
+          <input class="file-upload" type="file" accept="image/*"/>
+        </div>
+      </div>
+    </div>
   </body>
+  <% include js %>
 </html>
