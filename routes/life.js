@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var study = require('../models/life/study');
+var live = require('../models/life/live');
+var play = require('../models/life/play');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,11 +18,16 @@ router.get('/food', function(req, res, next) {
 });
 
 router.get('/play', function(req, res, next) {
-  res.render('life/play');
+  play.find({}, function(err, data) {
+    res.render('life/play', { data: data, user: req.user});
+  })
 });
 
 router.get('/live', function(req, res, next) {
-  res.render('life/live');
+  live.find({}, function(err, data) {
+    res.render('life/live', { data: data, user: req.user});
+  })
+  
 });
 
 router.get('/study/lit', function(req, res, next) {
@@ -46,6 +54,10 @@ router.get('/study/hakka',function(req, res, next) {
 router.get('/study/chst', function(req, res, next) {
   res.render('life/subStudy');
 });
+
+/*-----------------------------後台------------------------------*/
+
+
 
 
 
