@@ -1,8 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Noto Sans TC;
 }
 
-a {
-  color: #00B7FF;
+.vertical-line{
+  background-color: #ffd800;
+  width: 5px;
+  height:80px;
+  position: absolute;
+  left: 150px;
+  top: 130px;
+}
+
+.eng-title {
+  font-size: 30px;
+  color: #0163b0;
+  position: absolute;
+  left: 180px;
+  top: 130px;
+  font-weight: bold;
+}
+
+.ch-title {
+  font-size: 18px;
+  color: #736f6e;
+  position: absolute;
+  left: 180px;
+  top: 180px;
+}
+
+.container {
+  background-color: whit;
+  position: absolute;
+  top: 230px;
+  left: 170px;
+  width: 1200px;
+  height: 440px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.links {
+  background-color: #ffd800;
+  width: 300px;
+  height: 180px;
+  border-radius: 20px;
+}
+
+#portal {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+}
+
+#UST {
+  position: absolute;
+  top: 20px;
+  left: 450px;
+}
+
+#LMS {
+  position: absolute;
+  top: 20px;
+  left: 850px;
+}
+
+#ee-class {
+  position: absolute;
+  top: 240px;
+  left: 50px;
+}
+
+#dorm-service {
+  position: absolute;
+  top: 240px;
+  left: 450px;
+}
+
+#dorm {
+  position: absolute;
+  top: 240px;
+  left: 850px;
+}
+
+#helloNCU {
+  position: absolute;
+  top: 460px;
+  left: 50px;
+}
+
+#NCUtalk {
+  position: absolute;
+  top: 460px;
+  left: 450px;
+}
+
+#course {
+  position: absolute;
+  top: 460px;
+  left: 850px;
+}
+
+#service-learning {
+  position: absolute;
+  top: 680px;
+  left: 50px;
 }

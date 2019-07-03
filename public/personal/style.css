@@ -1,22 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
+
 body {
   background-color: white;
+  font-family: Noto Sans TC;
+}
+
+.vertical-line{
+  background-color: #0163b0;
+  width: 28px;
+  height:60px;
+  position: absolute;
+  left: 200px;
+  top: 130px;
+}
+
+.username {
+  font-size: 50px;
+  color: #0163b0;
+  position: absolute;
+  left: 250px;
+  top: 120px;
+}
+
+.student-number {
+  font-size: 15px;
+  color: #ffd800;
+  position: absolute;
+  left: 255px;
+  top: 195px;
+  font-family: Noto Sans TC;
+}
+
+.link {
+  font-size: 15px;
+  color: #0163b0;
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.link:hover {
+  background-color: #736f6e;
+}
+
+#game-score {
+  position: absolute;
+  left: 240px;
+  top: 250px;
+}
+
+#game {
+  position: absolute;
+  left: 350px;
+  top: 250px;
+}
+
+#ask-record {
+  position: absolute;
+  left: 460px;
+  top: 250px;
+}
+
+#ask {
+  position: absolute;
+  left: 570px;
+  top: 250px;
 }
 
 .profile-pic {
-  max-width: 250px;
-  max-height: 250px;
+  max-width: 200px;
+  max-height: 200px;
   display: block;
 }
 
 .circle {
   border-radius: 1000px !important;
   overflow: hidden;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   border: 5px solid #0163b0;
   position: absolute;
-  top: 250px;
-  right:180px;
+  top: 220px;
+  right:200px;
 }
 
 img {
@@ -26,6 +94,6 @@ img {
 
 .upload-icon {
   position: absolute;
-  top: 460px;
-  right: 20px;
+  top: 370px;
+  right: 200px;
 }

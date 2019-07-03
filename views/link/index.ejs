@@ -2,10 +2,25 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='link/style.css' />
+    <link rel='stylesheet' href='/link/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+        <div class="vertical-line"></div>
+        <div class="eng-title">LINK</div>
+        <div class="ch-title">常用連結</div>     
+
+        <div class="container">
+          <div class="links" id="portal" onclick="location.href='https://portal.ncu.edu.tw'"><img src="PORTAL_BTN.png"</div>
+          <div class="links" id="UST" onclick="location.href='http://www.ust.edu.tw/'">台聯大系統</div>
+          <div class="links" id="LMS" onclick="location.href='https://lms.ncu.edu.tw'">LMS</div>
+          <div class="links" id="ee-class" onclick="location.href='https://eeclass.ncu.edu.tw/'">EE-Class</div>
+          <div class="links" id="dorm-service" onclick="location.href='https://in.ncu.edu.tw/ncu7221/OSDS/'">宿服中心</div>
+          <div class="links" id="dorm" onclick="location.href='https://cis.ncu.edu.tw/DormSys/main/index.jsp'">宿舍抽籤</div>
+          <div class="links" id="helloNCU" onclick="location.href='https://www.facebook.com/groups/HelloNCU2019/'">Hello, 中央</div>
+          <div class="links" id="NCUtalk" onclick="location.href='https://www.facebook.com/groups/NCUgroup/'">NCU talk</div>
+          <div class="links" id="course" onclick="location.href='https://cis.ncu.edu.tw/Course/main/news/announce'">選課</div>
+          <div class="links" id="service-learning" onclick="location.href='http://service-learning.ncu.edu.tw'">服務學習</div>
+        </div>
   </body>
+  <% include js %>
 </html>
