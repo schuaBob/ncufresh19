@@ -2,27 +2,37 @@
 <html>
 
 <head>
+  <title><%= title %></title>
   <% include ../layouts/head %>
-  <title><%= title %></title> 
+  <link rel="stylesheet" type="text/css" href="index/fullpage.js/dist/fullpage.min.css" />
+  <link rel="stylesheet" href="index/style.css">
 </head>
 
 <body>
   <% include ../layouts/header%>
   <main>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    
+    <div id="fullpage">
+      <div class="section" id="indexPage1">
+        <img src="index/首頁1.png" id="Page1Pic">
+      </div>
+      
+      <div class="section" id="indexPage2">
+
+      </div>
+      
+      <div class="section" id="indexPage3">
+
+      </div>
+      
+    </div>
   </main>
 
   <footer>
 
   </footer>
-  
   <% include ../layouts/js%>
-  <script>
-    $(document).ready(()=>{
-    })
-  </script>
+  <script type="text/javascript" src="index/fullpage.js/dist/fullpage.min.js"></script>
+  <script type="text/javascript" src="index/index.js"></script>
 </body>
 
 </html>

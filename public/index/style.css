@@ -1,1 +1,10 @@
+#Page1Pic{
+    height: 100vmin;
+    width: 100vmax;
+    position: relative;
+    bottom: 60px;
+}
+#fullpage{
+    position: relative;
+}
 
