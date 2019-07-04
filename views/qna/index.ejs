@@ -23,7 +23,6 @@
       .grayBg{
         background-color:#D0CECE;
       }
-      
 
       body{
         overflow: hidden;
@@ -56,14 +55,19 @@
         padding-left:20px;
       }
       .leftSide{               
-        width: 25%;      
+        width: 20%;      
         /* background-color: rgb(102, 252, 164);        */
       }
       /* "分類"圖片 */
       .pic_classification{
         background-color:orange;
         width: 100%;
-        height: 120px;
+        height: 70px;
+        
+      }
+      .pic_classification img{
+        
+        height: 10vh;
       }
       .option{
         height: 480px;
@@ -78,7 +82,9 @@
         width: 50%;
       }
       .option li{
-        margin-bottom: 3vh;              
+        margin-bottom: 3vh;           
+        text-align: center;   
+        border-radius:2px;         
       }
       .option li:hover{
         cursor:pointer;
@@ -96,6 +102,8 @@
 
       .rightSide{              
         /* background-color:rgb(67, 238, 238); */
+        position: relative;
+        width: 78%;
       }
       /* 過濾器以及搜尋框 */
       .filter_SearchBar{
@@ -106,6 +114,27 @@
       .fa-arrow-alt-circle-up{
         float: right;
         visibility: hidden;
+      }
+      .ask{
+        display: inline-block;
+        width: 12vw;
+        height: auto;
+        padding: 0px;        
+        position: absolute;
+        bottom: 3vh;
+        right: -3vw;
+      }
+      
+      .askTxt{
+        position: absolute;
+        top: -18%;
+        right: 3%;
+        font-size: 20px;
+        color: #0D4966;
+        font-weight:bold;
+      }
+      .ask > img{
+        max-width:100%;
       }
       .content{  
         overflow-x: hidden;      
@@ -136,6 +165,13 @@
       }
       .modal-dialog{
         max-width: 60vw;
+        margin: 7vh auto;
+      }
+      .modal-content{
+        height:85vh;
+      }
+      .question,.answer{
+        height:50%;
       }
       .form-control{
         border-radius:30px;
@@ -144,23 +180,59 @@
       
     </style>
   </head>
-  <body>   
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <body>  
+    <!-- questionModal -->
+    <div class="modal fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <div class="btn-group">
+                <button type="button" class="btn btn-info dropdown-toggle classification_btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  
+                </button>
+                <div class="dropdown-menu">
+                  <li class="dropdown-item">校園生活</li>
+                  <li class="dropdown-item">課程相關</li>
+                  <li class="dropdown-item">學生事務</li>
+                  <li class="dropdown-item">其他</li>                 
+                </div>
+              </div>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              ...
+              <div class="question">
+                Question: <br>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+              </div>              
+            </div>
+            <div class="modal-footer">              
+              <button type="button" class="btn btn-primary">送出</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- answerModal -->
+    <div class="modal fade" id="answerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="answerModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="question">
+                Question:
+              </div>
+              <div class="Answer">
+                Answer:
+              </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              
             </div>
           </div>
         </div>
@@ -173,7 +245,9 @@
       <div class="main d-flex">
           <div class="leftSide">
               <div class="pic_classification">
-                QA的分類圖片
+                
+                
+                
               </div>
               <div class="option">
                 <ul>
@@ -185,7 +259,7 @@
                 </ul>
               </div>
             </div>
-            <div class="rightSide flex-fill">              
+            <div class="rightSide">              
               <!-- 過濾以及搜尋框 -->
               <div class="filter_SearchBar">
                 <div class="buttonGroup d-inline-flex">
@@ -201,7 +275,14 @@
                   </form>
                 </div>
               </div>
-              <i class="far fa-arrow-alt-circle-up fa-2x"></i>  
+              <!-- top按鍵 -->
+              <i class="far fa-arrow-alt-circle-up fa-2x"></i>
+              <!-- 企鵝 -->
+              <div class="ask">
+                  <span class="askTxt">我要發問!</span>
+                  <img src="qna/penguin.png" alt="">
+              </div>
+              <!-- 問題列表 -->
               <div class="content">                                  
                   <div class="contentTable">
                       <table class="table table-hover table-borderless">
@@ -215,64 +296,64 @@
                           </thead>
                           <tbody>
                             <tr>
-                              <th scope="row">1</th>
+                              <th scope="row">校園生活</th>
                               <td>Mark</td>
                               <td>Otto</td>
-                              <td>@mdoi</td>
+                              <td>@mdo</td>
                             </tr>
                             <tr>
-                              <th scope="row">2</th>
+                              <th scope="row">校園生活</th>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
                             </tr>
                             <tr>
-                              <th scope="row">3</th>
+                              <th scope="row">學生事務</th>
                               <td colspan="2">Larry the Bird</td>
                               <td>@twitter</td>
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
+                                <th scope="row">校園生活</th>
                                 <td colspan="2">Larry the Bird</td>
                                 <td>@twitter</td>
                               </tr>
                               <tr>
-                                  <th scope="row">3</th>
-                                  <td colspan="2">Larryfwefwe the Bird</td>
-                                  <td>@twitter</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                  </tr>
-                                  <tr>
-                              <th scope="row">3</th>
-                              <td colspan="2">Larry the Bird</td>
-                              <td>@twitter</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                              </tr>
-                              <tr>
-                                  <th scope="row">3</th>
+                                  <th scope="row">學生事務</th>
                                   <td colspan="2">Larry the Bird</td>
                                   <td>@twitter</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">3</th>
+                                    <th scope="row">課程相關</th>
                                     <td colspan="2">Larry the Bird</td>
                                     <td>@twitter</td>
                                   </tr>
                                   <tr>
-                                      <th scope="row">3</th>
+                              <th scope="row">課程相關</th>
+                              <td colspan="2">Larry the Bird</td>
+                              <td>@twitter</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">校園生活</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                              </tr>
+                              <tr>
+                                  <th scope="row">課程相關</th>
+                                  <td colspan="2">Larry the Bird</td>
+                                  <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">學生事務</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">課程相關</th>
                                       <td colspan="2">Larry the Bird</td>
                                       <td>@twitter</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">3</th>
+                                        <th scope="row">課程相關</th>
                                         <td colspan="2">Larry the Bird</td>
                                         <td>@twitter</td>
                                       </tr>
@@ -291,23 +372,36 @@
     $(document).ready(function(){
 
       $(".option li").mouseenter(function(){
-        $(this).children("i").css("display","inline");        
+        $(this).children("i").css("display","inline"); 
+        $(this).css("background-color","#FFECA1");       
       });
       $(".option li").mouseout(function(){
         $(this).children("i").css("display", "none");
+        $(this).css("background-color","transparent");
       });
 
-      //按問題後觸發modal
+      //按問題後觸發answermodal
       $("tbody > tr").click(function(){
-        $("#exampleModal").modal();
+        $("#answerModal").modal();        
+        //assign分類到Modal標題
+        $("#answerModalLabel").text($(this).children('th').text());
       });
-
+      //按"我要發問"觸發askmodal
+      $(".ask").click(function(){
+        $("#askModal").modal();
+        $(".classification_btn").text("請選擇分類");
+      });
+      //askmodal的分類鈕
+      $(".dropdown-item").click(function(){
+        //點選分類後更新分類按鈕
+        $(".classification_btn").text($(this).text());
+      });
       $(".fa-arrow-alt-circle-up").click(function(){        
         $(".content").scrollTop(0);
       });
       $(".content").scroll(function() {
         if ( $(this).scrollTop() > 10){            
-            $('.fa-arrow-alt-circle-up').css("visibility","visible");
+            $('.fa-arrow-alt-circle-up').css("visibility","visible");            
         } else {
             $('.fa-arrow-alt-circle-up').css("visibility","hidden");
         }
