@@ -71,7 +71,7 @@ a{
   cursor: pointer;
 }
 
-.content {
+.box {
     position: absolute;
     width: 60%;
     height: 70%;
