@@ -4,7 +4,14 @@
         <title>Play</title>
         <link rel=stylesheet type="text/css" href="life.css">
     </head>
-    <% include navi %>
+    <div class="sideNav" id="navi">
+            <ul>
+                <li><a href="/life/study"> <img class="navSubBtn" src="naviBefore0.png"> </a></li><br>
+                <li><a href="/life/food"> <img class="navSubBtn" src="naviBefore1.png"> </a></li><br>
+                <li><a href="/life/play"> <img class="navSubBtn" src="naviAfter2.png"> </a></li><br>
+                <li><a href="/life/live"> <img class="navSubBtn" src="naviBefore3.png"> </a></li>
+            </ul>
+    </div>
     <body>
         <% if(user && user.role === 'admin') { %>
             <botton type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</botton>
@@ -15,15 +22,16 @@
             <div class="content">
                 <div class="playPicture">
                     <div>
-                    <img class="playImg" src="play.png">
+                    <img class="playImg" src="playT.png">
                     </div>
                     <div>
-                    <img class="playImg" src="play.png">
+                    <img class="playImg" src="playT.png">
                     </div>
                 </div>
             </div>
            
            
         </main>
+        <% include js %>
     </body>
 </html>
