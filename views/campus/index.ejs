@@ -3,6 +3,7 @@
 
 <head>
   <title><%= title %></title>
+  <% include ../layouts/head %>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' href='/campus/style.css' />
@@ -21,6 +22,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
 
 <body>
+  <% include ../layouts/header %>
+  <div class="main">
   <main id="campusmain">
     <div class="main_list_detail collapse">
       <li id="listtitle">title</li>

@@ -2,9 +2,11 @@
 <html>
   <head>
     <title><%= title %></title>
+    <% include ../layouts/head %>
     <link rel='stylesheet' href='/link/style.css' />
   </head>
   <body>
+    <% include ../layouts/header %>
         <div class="vertical-line"></div>
         <div class="eng-title">LINK</div>
         <div class="ch-title">常用連結</div>     
@@ -115,5 +117,6 @@
 
         </div>
   </body>
+  <% include ../layouts/js %>
   <% include js %>
 </html>

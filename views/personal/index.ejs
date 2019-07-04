@@ -2,9 +2,11 @@
 <html>
   <head>
     <title><%= title %></title>
+    <% include ../layouts/head %>
     <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
+      <% include ../layouts/header %>
     <div class="container">
       
       <!-- 使用者資訊 待補 -->
@@ -41,5 +43,6 @@
     
     </div>
   </body>
+  <% include ../layouts/js %>
   <% include js %>
 </html>

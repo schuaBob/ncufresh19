@@ -2,10 +2,11 @@
 <html>
     <head>
         <title><%= title %></title>
+        <% include ../layouts/head %>
         <link rel='stylesheet' href='/video/style.css' />
     </head>
     <body>
-
+        <% include ../layouts/header %>
         <%/* 標題 */%>
         <div class="title_bar">
             <%/* 黃線mark */%>
@@ -22,5 +23,5 @@
         </div>
 
     </body>
-    
+    <% include ../layouts/js %>
 </html>

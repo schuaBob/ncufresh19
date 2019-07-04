@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html> 
-    <head>
-            <title><%= title %></title>
-            <link rel='stylesheet' href='style.css' />
-            <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
-    </head>
-    <body>
+<html>
+
+<head>
+        <title><%= title %></title>
+        <% include ../layouts/head %>
+        <link rel='stylesheet' href='style.css' />
+        <script src="https://code.jquery.com/jquery-3.4.0.js"
+                integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+        <% include ../layouts/header %>
         <main>
                 <% /*編輯框*/ %>
                 <% include edit %>
@@ -17,7 +22,7 @@
                                 <a href="/documents/graduate_fresh"><img src="circle.png" class="icon"></a>
                                 <a href="/documents"><img src="return.png" class="return"></a>
                         </div>
-          
+
                         <div class="must" id="must">
                                 <div class="sidenav2">
                                     <img src="must.jpg" class="sign">
