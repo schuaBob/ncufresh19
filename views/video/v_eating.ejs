@@ -11,54 +11,53 @@
             <%/* 黃線mark */%>
             <div class="line"></div>
             <div class="title">
-                <h1>VIDEO<br><span class="small_title">影音專區</span></h1></div>
+              <a href="/video/">
+                <h1>VIDEO<br><span class="small_title">影音專區</span></h1>
+              </a>
+            </div>
             <%/* 三角形*/%>
-            <div class="rect"></div>
+            <div class="tri"></div>
             <div class="title">
-                <h1>LIFE<br><span class="small_title">中大生活</span></h1></div>
+              <a href="/video/v_nculife">
+                <h1>LIFE<br><span class="small_title">中大生活</span></h1>
+              </a>
+            </div>
             <%/* 三角形*/%>
-            <div class="rect"></div>
+            <div class="tri"></div>
             <div class="title">
-                <h1>EATING<br><span class="small_title">食</span></h1></div>
+                <h1><font color="#ec6d4f">EATING</font><br><span class="small_title">食</span></h1></div>
         </div>
 
         <%/* 影片區 */%>
-        <div class="background">
-            <div id="player"></div>
+        <div class="video_area">
+          <div class="background">
+              <div id="player"></div>
+          </div>
         </div>
 
         <%/* Youtube api */%>
         <script>
-                //載入IFrame Player API code
-                var tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/iframe_api";
-                var firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-          
-                //創建<iframe>：API code載入後，將 <div id="player"> 取代為 <iframe> tag
-                var player;
-                //創建影片播放器：API code載入後會自動執行
-                function onYouTubeIframeAPIReady() { 
-                  player = new YT.Player('player', {
-                    fitToBackground: true,
-                    height: '390',
-                    width: '640',
-                    videoId: 'vKSA_idPZkc', //Youtu ID
-                    playerVars: {
-                      'controls': 1, //控制列，0:隱藏，1:顯示(默認)
-                      'fs': 1, //全屏按鈕，0:隱藏，1:顯示(默認)
-                      'iv_load_policy': 3, //影片註釋，1:顯示(默認)，3:不顯示
-                      'rel': 0, //顯示相關影片，0:不顯示，1:顯示(默認)
-                      'modestbranding': 1, //YouTube標籤，0:顯示(默認)，1:不顯示    
-                      'playsinline': 1 //在iOS的播放器中全屏播放，0:全屏(默認)，1:內嵌
-                    },
-                    events: {
-                      'onReady': yt.onPlayerReady, //當播放器準備就緒時執行
-                      'onStateChange': yt.onPlayerStateChange //當播放器狀態改變時執行
-                    }
-                  });
-                }
-          
+        // This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+            height: '360',
+            width: '640',
+            videoId: 'M7lc1UVf-VE',
+            events: {
+              'onReady': yt.onPlayerReady,
+              'onStateChange': yt.onPlayerStateChange
+            }
+          });
+        }
         </script>
     </body>
 </html>
