@@ -1,10 +1,12 @@
-#Page1Pic{
+.indexPage{
     height: 100vmin;
     width: 100vmax;
-    position: relative;
+    position: absolute;
     bottom: 60px;
 }
+
 #fullpage{
     position: relative;
 }
+
 
