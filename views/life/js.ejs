@@ -1,4 +1,43 @@
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 <script>
 
-    
+
+
+
+
+
+/*----------------navi-----------------*/
+var match_num = {
+  'study'         : 0,
+  'food'          : 1,
+  'play'          : 2,
+  'live'          : 3,
+}
+ $(document).ready(function() {
+    var url = new URL(window.location.href);
+    url = url.href.split('/');
+     function navi(i) {
+        $(".navSubBtn").eq(i).hover(
+              function() {
+                $(this).attr("src", "naviAfter" + i + ".png")
+              },
+            function() {
+                if (i != match_num[url[4]])
+                    $(this).attr("src", "naviBefore" + i + ".png")
+            })
+     }
+     for(i=0; i<4; i++) {
+            navi(i);
+     }
+ });
+
+
+
+
+
+
+
+
+ 
 </script>
