@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.0.0",
@@ -18,9 +19,11 @@
     "fullpage.js": "^3.0.5",
     "helmet": "^3.18.0",
     "http-errors": "~1.6.2",
+    "jquery": "^3.4.1",
     "mongoose": "^5.6.0",
     "morgan": "~1.9.0",
     "multer": "^1.4.1",
+    "popper.js": "^1.15.0",
     "request": "^2.88.0",
     "serve-favicon": "^2.5.0"
   }

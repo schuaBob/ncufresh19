@@ -4,36 +4,45 @@
 <head>
   <title><%= title %></title>
   <% include ../layouts/head %>
-  <link rel="stylesheet" type="text/css" href="index/fullpage.js/dist/fullpage.min.css" />
+  <% include ../layouts/script %>
   <link rel="stylesheet" href="index/style.css">
+  <link rel="stylesheet" href="/css/fullpage.css">
+  <script type="text/javascript" src="/js/fullpage.js"></script>
 </head>
 
 <body>
   <% include ../layouts/header%>
   <main>
-
     <div id="fullpage">
       <div class="section" id="indexPage1">
+          <img id="indexLogo" src="/layouts/logo.png">
+          <div id="toPage2">
+            <a href="#secondPage">
+                <svg id="triangle" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" class="svg-inline--fa fa-caret-down fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#fff9dc" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/></svg>
+                <svg height="100" width="100">
+                    <circle cx="50" cy="50" r="40"  fill="#ec6d4f" />
+                </svg>
+            </a>
+          </div>
         <img src="index/首頁1.png" class="indexPage">
 
       </div>
-      
+
       <div class="section" id="indexPage2">
         <img src="index/首頁2.png" class="indexPage">
       </div>
-      
+
       <div class="section" id="indexPage3">
         <img src="index/首頁3.png" class="indexPage">
       </div>
-      
+
     </div>
   </main>
 
   <footer>
 
   </footer>
-  <% include ../layouts/js%>
-  <script type="text/javascript" src="index/fullpage.js/dist/fullpage.min.js"></script>
+  <% include ../layouts/js %>
   <script type="text/javascript" src="index/index.js"></script>
 </body>
 

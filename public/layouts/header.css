@@ -1,21 +1,21 @@
 @font-face{
     font-family: Noto Sans JP;
-    src: url("NotoSansJP-Regular.otf") format("opentype");
+    src: url("/layouts/font/NotoSansJP-Regular.otf") format("opentype");
 }
 @font-face{
     font-family: Noto Sans JP;
     font-weight: 500;
-    src: url("NotoSansJP-Medium.otf") format("opentype");
+    src: url("/layouts/font/NotoSansJP-Medium.otf") format("opentype");
 }
 @font-face{
     font-family: Noto Sans JP;
     font-weight: bold;
-    src: url("NotoSansJP-Bold.otf") format("opentype");
+    src: url("/layouts/font/NotoSansJP-Bold.otf") format("opentype");
 }
 @font-face{
     font-family: Noto Sans JP;
     font-weight: 300;
-    src: url("NotoSansJP-Light.otf") format("opentype");
+    src: url("/layouts/font/NotoSansJP-Light.otf") format("opentype");
 }
 * {
     font-family: Noto Sans JP;
