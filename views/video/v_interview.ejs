@@ -6,18 +6,19 @@
         <link rel='stylesheet' href='/video/style.css' />
     </head>
     <body>
-            <% include ../layouts/header %>
-        <%/* 黃線mark */%>
-        <div class="line"></div>
+        <% include ../layouts/header %>
+        <%/* 標題 */%>
+        <div class="title_bar">
+            <%/* 黃線mark */%>
+            <div class="line"></div>
+            <div class="title">
+                <h1>VIDEO<br><span class="small_title">影音專區</span></h1></div>
+            <%/* 三角形*/%>
+            <div class="rect"></div>
+            <div class="title">
+                <h1>INTERVIEW<br><span class="small_title">學長姐訪談</span></h1></div>
+        </div>
 
-         <%/* 標題 */%>
-        <div class="title">
-        <h1>VIDEO<br>影音專區</h1>
-
-        <%/* 三角形*/%>
-        <div class="rect"></div>
-
-    </div>
     </body>
     <% include ../layouts/js %>
 </html>

@@ -5,6 +5,7 @@
     <title><%= title %></title>
     <% include ../layouts/head %>
     <link rel='stylesheet' href='style.css' />
+<<<<<<< HEAD
     <script src="https://code.jquery.com/jquery-3.4.0.js"
         integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
 </head>
@@ -32,3 +33,25 @@
 </body>
 
 </html>
+=======
+    <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+    
+  </head>
+  <body>
+      <main>
+          <% /*身分選擇*/ %>
+          <div class="identity">
+              <div class="character under">
+                  <a href="/documents/undergraduate_must"><img src="temp.png" class="under">大學生</a>
+              </div>
+             <div class="character gra">
+                  <a href="/documents/graduate_must"><img src="temp.png" class="gra">研究生</a>
+              </div>
+              <div class="character com">
+                  <a href="/documents/common"><img src="temp.png" class="com">共同事項</a>
+          </div> 
+      </main>
+      <% include js %>
+  </body>
+</html>
+>>>>>>> bcfb2b3d0d65c2ae962536f895c5970a1f2d433d

@@ -7,17 +7,32 @@
   </head>
   <body>
       <% include ../layouts/header %>
-    <div class="row">
-      <div class="column">
-        <div class="circle">
-          <img class="profile-pic" src="default-profile.jpg">
-        </div>
-        <div class="upload-icon">
-          <!-- 放相機圖示當按鈕 -->
-          <div class="upload-button"><img src="camera.png"></div>
-          <input class="file-upload" type="file" accept="image/*"/>
-        </div>
+    <div class="container">
+      
+      <!-- 使用者資訊 待補 -->
+      <div class="vertical-line"></div>
+      <div class="username">使用者</div>
+      <div class="student-number">108XXXXXX</div>
+      
+      <!-- 連結待補 -->
+      <div class="link" id="game-score" onclick="location.href='/';">遊戲積分</div>
+      <div class="link" id="game" onclick="location.href='/';">小遊戲</div>
+      <div class="link" id="ask-record" onclick="location.href='/';">發問紀錄</div>
+      <div class="link" id="ask" onclick="location.href='/';">我要發問</div>
+
+      <!-- 頭貼外框 -->
+      <div class="circle">
+        <img class="profile-pic" src="default-profile.png">
       </div>
+
+      <div class="upload-icon">
+        <!-- 放相機圖示當按鈕 -->
+        <label for="upload">
+          <img id="btn" src="camera.png"`>
+          <input class="file-upload" id="upload" type="file" accept="image/*" style="display: none"/>
+        </label>
+      </div>
+    
     </div>
   </body>
   <% include ../layouts/js %>

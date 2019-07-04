@@ -41,7 +41,7 @@ a{
 .sidenav {
   height: 80%;
   width: 150px;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   top: 20%;
   left: 0;
@@ -52,7 +52,7 @@ a{
   top:20%;
   height: 80%;
   width: 230px;
-  position: fixed;
+  position: absolute;
   left: 230px;
 }
 
@@ -72,11 +72,11 @@ a{
 }
 
 .content {
-    position: fixed;
+    position: absolute;
     width: 60%;
     height: 70%;
     margin-top: 5%;
-    margin-left: 440px;
+    left: 500px;
     padding-left: 20px;
     border-color: black;
     border-style: solid;
@@ -95,7 +95,7 @@ a{
   }
 
   .return {
-    margin-top: 85%
+    margin-bottom: 5%;
     width: 100px;
-    height: 100px;
+    height: 80px;
   }

@@ -1,0 +1,14 @@
+<script>
+    function checklength(){
+        var name = $("#student_id").val();
+        if(name.length != 9){
+            $("#student_id").popover({
+                content: "長度有誤" 
+            })
+            $("#student_id").popover('show') ;
+            return false;
+        }
+        return true;
+    }
+    $("#student_id").focus();
+</script>

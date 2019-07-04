@@ -1,42 +1,39 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <title><%= title %></title>
-    <% include ../layouts/head %>
-    <link rel='stylesheet' href='style.css' />
-    <script src="https://code.jquery.com/jquery-3.4.0.js"
-        integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <% include ../layouts/header %>
-    <main>
-        <% /*共同事項*/ %>
-        <div class="common" id="common">
-            <div class="sidenav">
-                <a href="/documents/common"><img src="circle.png" class="icon"></a>
-                <a href="/documents"><img src="return.png" class="icon"></a>
-            </div>
-
-            <div class="must" id="must">
-                <div class="sidenav2">
-                    <img src="must.jpg" class="sign">
-                    <p>＞ 108校曆</p>
-                    <p>＞ 中大圖書館</p>
-                    <p>＞ 學生掛號郵件</p>
-                    <p>＞ 熱門連結介紹</p>
-                    <p>＞ 學生申訴管道</p>
-                    <p>＞ 智慧財產權宣導</p>
-                    <p>＞ LMS/ee-CLASS</p>
+<html> 
+    <head>
+            <title><%= title %></title>
+            <link rel='stylesheet' href='style.css' />
+            <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <main>
+            <% /*編輯框*/ %>
+            <% include edit %>
+            
+            <% /*共同事項*/ %>
+            <div class="common" id="common">
+                <div class="sidenav">
+                        <a href="/documents/common"><img src="circle.png" class="icon"></a>
+                        <a href="/documents"><img src="return.png" class="return"></a>
                 </div>
-                <div class="content">
-
+      
+                <div class="must" id="must">
+                    <div class="sidenav2">
+                        <img src="must.jpg" class="sign">
+                        <p id="31">＞ 108校曆</p>
+                        <p id="32">＞ 中大圖書館</p>
+                        <p id="33">＞ 學生掛號郵件</p>
+                        <p id="34">＞ 熱門連結介紹</p>
+                        <p id="35">＞ 學生申訴管道</p>
+                        <p id="36">＞ 智慧財產權宣導</p>
+                        <p id="37">＞ LMS/ee-CLASS</p>
+                    </div>
+                    <div class="content" >
+                            
+                    </div>     
                 </div>
-            </div>
-        </div>
-    </main>
-    <% include ../layouts/js %>
-</body>
-
+          </div>
+        </main>
+        <% include js %>
+    </body>
 </html>

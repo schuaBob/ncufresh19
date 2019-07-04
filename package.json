@@ -8,12 +8,17 @@
   "dependencies": {
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.0.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
     "express-minify": "^1.0.0",
+<<<<<<< HEAD
     "fullpage.js": "^3.0.5",
+=======
+    "express-session": "^1.16.2",
+>>>>>>> bcfb2b3d0d65c2ae962536f895c5970a1f2d433d
     "helmet": "^3.18.0",
     "http-errors": "~1.6.2",
     "mongoose": "^5.6.0",

@@ -6,12 +6,13 @@ var logger = require('morgan');
 var favicon = require('serve-favicon');
 var app = express();
 
-
 // other middleware
 var compression = require('compression');
 var minify = require('express-minify');
 var helmet = require('helmet');
 var flash = require('connect-flash');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 // cache views
 app.set('view cache', true);
@@ -26,19 +27,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('NcuFresh19'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(compression());
-app.use(minify());
-app.use(helmet());
-app.use(flash());
-
 // mongoose
 var mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb://localhost:27017/ncufresh19', {
   useNewUrlParser: true
 });
+
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(compression());
+app.use(minify());
+app.use(helmet());
+app.use(flash());
+app.use(session({
+  secret: 'ThisIsNcuFresh19Speaking.',
+  name: 'ncufresh.session.id',
+  resave: false,  /* 不要每次讀取就存回去一次 */
+  saveUninitialized: false, /* 除非做儲存的動作，不然不要為每個使用者都存session */
+  store: new MongoStore({ 
+    mongooseConnection: mongoose.connection,  
+    touchAfter: 24 * 3600   /* 沒動session的話，二十四小時之後再去動它 */
+  })
+}));
 
 // strict router  
 var router = express.Router({ strict: true });

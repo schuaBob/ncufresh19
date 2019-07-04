@@ -8,19 +8,18 @@
     <% include navi %>
     <body>
             <% include ../layouts/header %>
+        <% if(user && user.role === 'admin') { %>
+            <botton type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</botton>
+        <% } %>
         <h3>LIVE <br> 如何生活 </h3>
         <main>
-                <!--content-->
-               <div class="content">
-                   <div class="livePicture">
-                       <div>
-                       <img class="liveImg" src="live.png">
-                       </div>
-                       <div>
-                       <img class="liveImg" src="live.png">
-                       </div>
-                   </div>
-               </div>
+            <!--content-->
+            <div class="content">
+                <% for(let i in data) { %>
+                    <div class="pic"><img class="liveImg" src= "<%=data[i]['picture']%>"></div>
+                    <div class="descript"> <%= data[i]['content'] %> </div>
+                <% } %>
+           </div>
         </main>
         <% include ../layouts/js %>
     </body>
