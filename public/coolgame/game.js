@@ -177,9 +177,8 @@
     harpoon.x += x*v/c;
     harpoon.y += y*v/c;
     for(i=0;i<bubble_list.length;i++){
-      var pt = bubble_list[i].localToLocal(0,0,harpoon); // 传递的是红色小球圆心位置
-			if (harpoon.hitTest(pt.x, pt.y)) {
-        stage.removeChild(bubble_list[i]);
+      var pt =harpoon.localToLocal(harpoon.image.width/2,harpoon.image.height,bubble_list[i]); // 传递的是红色小球圆心位置
+			if (bubble_list[i].hitTest(pt.x, pt.y)) {
         bubble_list = arrayRemove(bubble_list,bubble_list[i]);
         createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},2000);
         clearInterval(timer);
@@ -187,10 +186,10 @@
       }
     }
     for(i=0;i<animal_list.length;i++){
-      var pt = animal_list[i].localToLocal(0,0,harpoon); // 传递的是红色小球圆心位置
-			if (harpoon.hitTest(pt.x, pt.y)) {
-        createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},2000);
-        createjs.Tween.get(animal_list[i]).to({y:canvas_seaheight,rotation:180},2000);
+      var pt =harpoon.localToLocal(harpoon.image.width/2,harpoon.image.height,animal_list[i]); // 传递的是红色小球圆心位置
+			if (animal_list[i].hitTest(pt.x, pt.y)) {
+        createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},animal_list[i].animaltype == 0?500:2000);
+        createjs.Tween.get(animal_list[i]).to({y:canvas_seaheight,rotation:180},animal_list[i].animaltype == 0?500:2000);
         animal_list[i].catch();
         clearInterval(timer);
         return;
@@ -287,7 +286,7 @@
   function openbird(){
     createjs.Ticker.addEventListener("tick",function(event){
       if(!event.paused){
-        if(getrandom(10000)<10){
+        if(getrandom(10000)<50){
           animal_list.push(new bird(0));
         }
       }
