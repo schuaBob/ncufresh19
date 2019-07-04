@@ -6,40 +6,47 @@
         <link rel=stylesheet type="text/css" href="life.css">
     </head>
     <body>
-            <% include ../layouts/header %>
-        <% include navi %>
+            <div class="sideNav" id="navi">
+                    <ul>
+                        <li><a href="/life/study"> <img class="navSubBtn" src="naviAfter0.png"> </a></li><br>
+                        <li><a href="/life/food"> <img class="navSubBtn" src="naviBefore1.png"> </a></li><br>
+                        <li><a href="/life/play"> <img class="navSubBtn" src="naviBefore2.png"> </a></li><br>
+                        <li><a href="/life/live"> <img class="navSubBtn" src="naviBefore3.png"> </a></li>
+                    </ul>
+              </div>
         <h3>STUDY <br> 學習之路</h3>
         <main>
         <!--content-->
         <div class="content">
             <div class="studyPicture">
                 <div>
-                    <a href="/life/study/lit"> <img class="studyImg" src="study.png"></a>
+                    <a href="/life/study/lit"> <img class="studyImg" src="studyT.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/science"> <img class="studyImg" src="study.png"></a>
+                    <a href="/life/study/science"> <img class="studyImg" src="studyT.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/ec"> <img class="studyImg" src="study.png"></a>
+                    <a href="/life/study/ec"> <img class="studyImg" src="studyT.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/mgt"> <img class="studyImg" src="study.png"></a>
+                    <a href="/life/study/mgt"> <img class="studyImg" src="studyT.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/ceecs"> <img class="studyImg" src="study.png"></a>
+                    <a href="/life/study/ceecs"> <img class="studyImg" src="studyT.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/escollege"> <img class="studyImg" src="study.png"></a>
+                    <a href="/life/study/escollege"> <img class="studyImg" src="studyT.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/hakka"> <img class="studyImg" src="study.png"></a>
+                    <a href="/life/study/hakka"> <img class="studyImg" src="studyT.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/chst"> <img class="studyImg" src="study.png"></a>
+                    <a href="/life/study/chst"> <img class="studyImg" src="studyT.png"></a>
                 </div>
             </div>
         </div>
         </main>
+        <% include js %>
     </body>
     <% include ../layouts/js %>
 </html>

@@ -5,7 +5,14 @@
         <% include ../layouts/head %>
         <link rel=stylesheet type="text/css" href="life.css">
     </head>
-    <% include navi %>
+    <div class="sideNav" id="navi">
+            <ul>
+                <li><a href="/life/study"> <img class="navSubBtn" src="naviBefore0.png"> </a></li><br>
+                <li><a href="/life/food"> <img class="navSubBtn" src="naviBefore1.png"> </a></li><br>
+                <li><a href="/life/play"> <img class="navSubBtn" src="naviAfter2.png"> </a></li><br>
+                <li><a href="/life/live"> <img class="navSubBtn" src="naviBefore3.png"> </a></li>
+            </ul>
+    </div>
     <body>
             <% include ../layouts/header %>
         <% if(user && user.role === 'admin') { %>
@@ -17,16 +24,16 @@
             <div class="content">
                 <div class="playPicture">
                     <div>
-                    <img class="playImg" src="play.png">
+                    <img class="playImg" src="playT.png">
                     </div>
                     <div>
-                    <img class="playImg" src="play.png">
+                    <img class="playImg" src="playT.png">
                     </div>
                 </div>
             </div>
            
            
         </main>
-        <% include ../layouts/js %>
+        <% include js %>
     </body>
 </html>

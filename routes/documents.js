@@ -1,4 +1,8 @@
 var express = require('express');
+
+var mongoose = require('mongoose');
+var Document = require('../models/documents/documents');
+
 var router = express.Router();
 
 /* GET home page. */
@@ -36,5 +40,32 @@ router.get('/graduate_fresh', function(req, res, next) {
 router.get('/common', function(req, res, next) {
   res.render('documents/common',{ title: 'common' });
 });
+
+//從資料庫拿資料
+router.post('/edit/:id',function(req, res, next) {
+  Document.updateOne({ count: req.params.id}, {title: req.body.title, content: req.body.add_text},
+    function (err, result){
+        console.log("edit");
+        console.log(req.params.id);
+        console.log(req.body.title);
+        console.log(req.body.add_text);
+        //console.log(result);
+        if(err){
+          console.log(req.user.id+' failed to update article: '+req.body.title);
+          console.log(req.user.id+' update article: '+req.body.title);
+        }
+        return res.redirect('/documents');
+    });
+
+})
+
+router.get('/require_data/:id',function(req, res, next){
+    Document.findone({count: req.params.id}).exec(function(err, data){
+        console.log("require");
+        if(err) return next(err);
+        res.send(data);
+    })
+})
+
 
 module.exports = router;

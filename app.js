@@ -13,6 +13,7 @@ var helmet = require('helmet');
 var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+var passport = require('passport');
 
 // cache views
 app.set('view cache', true);
@@ -49,6 +50,8 @@ app.use(session({
     touchAfter: 24 * 3600   /* 沒動session的話，二十四小時之後再去動它 */
   })
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // strict router  
 var router = express.Router({ strict: true });

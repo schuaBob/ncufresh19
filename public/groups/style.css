@@ -1,28 +1,93 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  
-}
-.seaBlueBg{
-  background-color: #0D4966;
-}
-.yellowBg{
-  background-color:#FFCC00;
-}
-.grayBg{
-  background-color:#D0CECE;
-}
-.navBar{
-  top:0px;
-  left:0px;
-  width:100%;
-  position: absolute;
-  height: 60px;
-  
-  line-height: 60px;
-  color: white;
-}
-
-a {
-  color: #00B7FF;
-}
+    body {
+        padding: 50px;
+        font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    }
+    
+    .seaBlueBg {
+        background-color: #0D4966;
+    }
+    
+    .yellowBg {
+        background-color: #FFCC00;
+    }
+    
+    .grayBg {
+        background-color: #D0CECE;
+    }
+    
+    .astyle {
+        color: white;
+        font-size: 20px;
+        width: 200px;
+    }
+    
+    .navBar {
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        color: white;
+        position: absolute;
+        height: 60px;
+        line-height: 60px;
+        border-bottom: 1px white solid;
+        font-family: 'Courier New', Courier, monospace
+    }
+    
+    .character {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        color: white;
+        text-align: center;
+    }
+    
+    .fa-angle-right {
+        font-size: 1.3em;
+        position: relative;
+        top: 3px;
+        margin-right: 6px;
+        display: none;
+    }
+    
+    .buttonimg {
+        width: 100px;
+        height: 100px;
+        border: #D0CECE 5px;
+    }
+    
+    .title {
+        height: 50px;
+        width: 140px;
+        margin: 5px 10px 30px 10px;
+        float: left;
+    }
+    
+    .line {
+        height: 70px;
+        width: 0px;
+        border-color: #FFCC00;
+        border-style: solid;
+        border-width: 5px;
+        margin-top: 20px;
+        margin-right: 10px;
+        float: left;
+    }
+    
+    div img {
+        cursor: pointer;
+        transition: all 0.6s;
+    }
+    
+    div img:hover {
+        transform: scale(1.4);
+    }
+    
+    .small_title {
+        color: gray;
+    }
+    
+    .title_bar {
+        height: 70px;
+        width: 100%;
+        margin-bottom: 30px;
+    }
