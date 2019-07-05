@@ -41,24 +41,40 @@ router.get('/common', function(req, res, next) {
   res.render('documents/common',{ title: 'common' });
 });
 
-//資料庫
-router.post('/edit/:id',function(req, res, next) {
-  Document.updateOne({ count: req.params.id}, {title: req.body.title, content: req.body.add_text},
+/*---------------------------後台-------------------------------------*/
+
+//新增
+router.post('/edit',function(req, res, next) {
+  var newDocument = new Document({
+      count: req.body.id,
+      title: req.body.title,
+      content: req.body.add_text
+  }).save(function(err) {
+      if(err){
+        return next(err);
+      }
+      else{
+        console.log("success");
+      }
+      res.redirect('back');
+  })
+})
+
+
+//修改
+router.post('/modify/:id',function(req, res, next) {
+  Document.updateOne({ count: req.params.id}, {title: req.body.change_title, content: req.body.change_text},
     function (err, result){
-        console.log("edit");
-        console.log(req.params.id);
-        console.log(req.body.title);
-        console.log(req.body.add_text);
-        //console.log(result);
         if(err){
-          console.log(req.user.id+' failed to update article: '+req.body.title);
-          console.log(req.user.id+' update article: '+req.body.title);
+          console.log(req.user.id+' failed to update article: '+req.body.change_title);
+          console.log(req.user.id+' update article: '+req.body.change_title);
         }
-        return res.redirect('/documents');
+        res.redirect('back');
     });
 
 })
 
+//取資料
 router.get('/require_data/:id',function(req, res, next){
     Document.findone({count: req.params.id}).exec(function(err, data){
         console.log("require");
