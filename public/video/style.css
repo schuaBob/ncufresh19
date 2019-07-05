@@ -17,15 +17,17 @@ a:visited {
 }
 
 .title_bar {
+  margin-top: 100px;
   margin-left: 20%;
   height: 70px;
   width: 80%;
   margin-bottom: 30px; 
+  min-width: 1000px;
 }
 
 .title {
   height: 110px;
-  width: 180px;
+  width: 200px;
   text-align: center;
   padding-bottom: 10px;
   margin: 5px;
@@ -38,12 +40,12 @@ a:visited {
 }
 
 .line {
-  height: 70px;
+  height: 100px;
   width: 0px;
   border-color: #ec6d4f;
   border-style: solid;
   border-width: 2px;
-  margin-top: 25px;
+  margin-top: 7px;
   margin-right: 5px;
   float: left;
 }
@@ -63,6 +65,9 @@ a:visited {
   display: inline-block;
   margin-right: 40px;
   margin-bottom: 50px;
+}
+
+.v_button:hover {
 }
 
 .tri {
@@ -86,13 +91,15 @@ a:visited {
 }
 
 .background {
-  height: 494px;
+  height: 485;
   background-color: #0163b0;
   position: relative;
   top: 70px;
   border-radius: 50px 50px 0px 0px;
+  min-width: 740px;
 }
 
 #player {
   margin-top: 80px;
+  min-width: 64opx;
 }
