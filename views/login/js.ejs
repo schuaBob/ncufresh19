@@ -11,4 +11,9 @@
         return true;
     }
     $("#student_id").focus();
+
+    function login(){
+        var url = new URL(window.location.href);
+        $("input[name=id]").val(url.searchParams.get('id'));
+    }
 </script>

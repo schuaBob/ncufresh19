@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var checkUser = require('./check-user');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', checkUser.isLoggedIn, function(req, res, next) {
   res.render('personal/index', { title: '個人專區' });
 });
 

@@ -68,7 +68,6 @@ var campus = require('./routes/campus');
 var life = require('./routes/life');
 var groups = require('./routes/groups');
 var personal = require('./routes/personal');
-var login = require('./routes/login');
 var link = require('./routes/link');
 
 // 首頁
@@ -91,8 +90,6 @@ app.use('/life', life);
 app.use('/groups', groups);
 // 個人專區
 app.use('/personal', personal);
-// 登入畫面
-app.use('/login', login);
 // 常用連結
 app.use('/link', link);
 //css and js
