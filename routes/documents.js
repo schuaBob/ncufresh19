@@ -41,7 +41,7 @@ router.get('/common', function(req, res, next) {
   res.render('documents/common',{ title: 'common' });
 });
 
-//從資料庫拿資料
+//資料庫
 router.post('/edit/:id',function(req, res, next) {
   Document.updateOne({ count: req.params.id}, {title: req.body.title, content: req.body.add_text},
     function (err, result){
