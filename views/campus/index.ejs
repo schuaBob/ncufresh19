@@ -3,30 +3,26 @@
 
 <head>
   <title><%= title %></title>
+  
+  
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% include ../layouts/head %>
+  <% include ../layouts/script %>
   <link rel='stylesheet' href='/campus/style.css' />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
 
 <body>
+  <% include ../layouts/header %>
+  <div class="main">
   <main id="campusmain">
-    <div class="main_list_detail collapse" data-spy="affix">
-      <li id="listtitle">99</li>
+    <div class="main_list_detail collapse">
+      <li id="listtitle">title</li>
       <div id="closemainlist">
         <img src="/campus/close.png">
       </div>
+      <div id="bar"></div>
       <ul>
         <li class="elelist modalshow" idconnect="5b603117ff44576d27cf6d3b" val="3">
           松苑餐廳
@@ -499,6 +495,13 @@
     </div>
 
     <div class="mapmove">
+      <div class="title_bar">
+        <div class="line"></div>
+        <div class="title">
+          <span class="big_title">MAP</span>
+          <span class="small_title">校園地圖</span>
+        </div>
+      </div>
       <div class="mapshadow">
         <img src="/campus/backgroud.png" id="map">
         <img title="" pictitle="松苑餐廳" val="3" class="indexelepic modalshow" src="/campus/5b61607bbd7e25092ba0224c.png"
@@ -856,32 +859,36 @@
           style="top: 20.9717%; left: 64.3603%; width: 2%; display: none;" data-original-title="停車場">
       </div>
     </div>
-    <ul id="List_index">
-      <li class="Main_listele1" val="1">
-        <img src="1BTN.png" alt="">
-      </li>
-      <li class="Main_listele2" val="2">
-        <img src="2BTN.png" alt="">
-      </li>
-      <li class="Main_listele3" val="3">
-        <img src="3BTN.png" alt="">
-      </li>
-      <li class="Main_listele4" val="4">
-        <img src="4BTN.png" alt="">
-      </li>
-      <li class="Main_listele5" val="5">
-        <img src="5BTN.png" alt="">
-      </li>
-      <li class="Main_listele6" val="6">
-        <img src="6BTN.png" alt="">
-      </li>
-      <li class="Main_listele7" val="7">
-        <img src="7BTN.png" alt="">
-      </li>
-      <li class="Main_listele8" val="8">
-        <img src="8BTN.png" alt="">
-      </li>
-    </ul>
+    <div class="bottom_list">
+      <img class="sailor" src="/campus/SAILOR2.png">
+      <ul id="List_index">
+        <li class="Main_listele1" val="1">
+          <img src="1BTN.png" alt="">
+        </li>
+        <li class="Main_listele2" val="2">
+          <img src="2BTN.png" alt="">
+        </li>
+        <li class="Main_listele3" val="3">
+          <img src="3BTN.png" alt="">
+        </li>
+        <li class="Main_listele4" val="4">
+          <img src="4BTN.png" alt="">
+        </li>
+        <li class="Main_listele5" val="5">
+          <img src="5BTN.png" alt="">
+        </li>
+        <li class="Main_listele6" val="6">
+          <img src="6BTN.png" alt="">
+        </li>
+        <li class="Main_listele7" val="7">
+          <img src="7BTN.png" alt="">
+        </li>
+        <li class="Main_listele8" val="8">
+          <img src="8BTN.png" alt="">
+        </li>
+      </ul>
+    </div>
+
     <div class="modal fade" id="indexmodal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -924,7 +931,9 @@
     </div>
 
   </main>
+  <% include ../layouts/js %>
+  <% include js%>
 </body>
-<% include js%>
+
 
 </html>

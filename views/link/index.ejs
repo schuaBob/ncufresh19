@@ -2,25 +2,122 @@
 <html>
   <head>
     <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
     <link rel='stylesheet' href='/link/style.css' />
   </head>
   <body>
+    <% include ../layouts/header %>
         <div class="vertical-line"></div>
         <div class="eng-title">LINK</div>
         <div class="ch-title">常用連結</div>     
 
         <div class="container">
-          <div class="links" id="portal" onclick="location.href='https://portal.ncu.edu.tw'"><img src="PORTAL_BTN.png"</div>
-          <div class="links" id="UST" onclick="location.href='http://www.ust.edu.tw/'">台聯大系統</div>
-          <div class="links" id="LMS" onclick="location.href='https://lms.ncu.edu.tw'">LMS</div>
-          <div class="links" id="ee-class" onclick="location.href='https://eeclass.ncu.edu.tw/'">EE-Class</div>
-          <div class="links" id="dorm-service" onclick="location.href='https://in.ncu.edu.tw/ncu7221/OSDS/'">宿服中心</div>
-          <div class="links" id="dorm" onclick="location.href='https://cis.ncu.edu.tw/DormSys/main/index.jsp'">宿舍抽籤</div>
-          <div class="links" id="helloNCU" onclick="location.href='https://www.facebook.com/groups/HelloNCU2019/'">Hello, 中央</div>
-          <div class="links" id="NCUtalk" onclick="location.href='https://www.facebook.com/groups/NCUgroup/'">NCU talk</div>
-          <div class="links" id="course" onclick="location.href='https://cis.ncu.edu.tw/Course/main/news/announce'">選課</div>
-          <div class="links" id="service-learning" onclick="location.href='http://service-learning.ncu.edu.tw'">服務學習</div>
+
+          <div class="links" id="portal">
+            <a href="https://portal.ncu.edu.tw">
+              <img src="PORTAL_BTN.png">
+              <div class="captn">
+                <div class="captn-title">中大PORTAL</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="links" id="UST">
+            <a href="http://www.ust.edu.tw/">
+              <img src="TAI_BTN.png">
+              <div class="captn">
+                <div class="captn-title">台聯大系統</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="links" id="LMS">
+            <a href="https://lms.ncu.edu.tw">
+              <img src="LMS_BTN.png">
+              <div class="captn">
+                <div class="captn-title">LMS</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="links" id="ee-class">
+            <a href="https://eeclass.ncu.edu.tw/">
+              <img src="EE_BTN.png">
+              <div class="captn">
+                <div class="captn-title">EE-CLASS</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="links" id="dorm-service">
+            <a href="https://in.ncu.edu.tw/ncu7221/OSDS/">
+              <img src="DORM_BTN.png">
+              <div class="captn">
+                <div class="captn-title">宿舍服務中心</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="links" id="dorm-net">
+            <a href="https://uncia.cc.ncu.edu.tw/dormnet/">
+              <img src="WEB_BTN.png">
+              <div class="captn">
+                <div class="captn-title">宿舍網路系統</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
+          
+          <div class="links" id="helloNCU">
+            <a href="https://www.facebook.com/groups/HelloNCU2019/">
+              <img src="HELLO_BTN.png">
+              <div class="captn">
+                <div class="captn-title">HELLO, 中央</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
+          
+          <div class="links" id="NCUtalk">
+            <a href="https://www.facebook.com/groups/NCUgroup/">
+              <img src="NCUTALK_BTN.png">
+              <div class="captn">
+                <div class="captn-title">NCU TALK</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="links" id="course">
+            <a href="https://cis.ncu.edu.tw/Course/main/news/announce">
+              <img src="CLASS_BTN.png">
+              <div class="captn">
+                <div class="captn-title">中大選課</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="links" id="service-learning">
+            <a href="http://service-learning.ncu.edu.tw">
+              <img src="SERVICE_BTN.png">                
+              <div class="captn">
+                <div class="captn-title">服務學習</div>
+                <div class="captn-body">Caption Here<br>Caption Here<br>Caption Here<br>Caption Here</div>
+              </div>
+            </a>
+          </div>
+
         </div>
   </body>
+  <% include ../layouts/js %>
   <% include js %>
 </html>

@@ -2,10 +2,14 @@
 <html>
   <head>
     <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
     <link rel='stylesheet' href='life/style.css' />
   </head>
   <body>
+      <% include ../layouts/header %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <% include ../layouts/js %>
   </body>
 </html>

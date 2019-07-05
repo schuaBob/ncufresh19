@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
     <link rel='stylesheet' href='/groups/style.css' />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-      <nav class="navBar seaBlueBg">navBar</nav>
-   
-  </body>
+</head>
+
+<body class="seaBlueBg">
+    <% include ../layouts/header %>
+    <nav class="navBar seaBlueBg">新生資訊網</nav>
+    <div class="identity">
+        <div class="character">
+            <a class="astyle" href="/groups/department"><img src="department.PNG" class="buttonimg">系所</a>
+        </div>
+        <div class="character">
+            <a class="astyle" href="http://club.adm.ncu.edu.tw/clubs"><img src="club.PNG" class="buttonimg">社團</a>
+        </div>
+        <div class="character">
+            <a class="astyle" href="/groups/association"><img src="association.PNG" class="buttonimg">學生會</a>
+        </div>
+        <div class="character">
+            <a class="astyle" href="/groups/community"><img src="community.PNG" class="buttonimg">社群</a>
+        </div>
+        <div class="character">
+            <a class="astyle" href="/groups/others"><img src="others.PNG" class="buttonimg">其他學生組織</a>
+        </div>
+    </div>
+    <% include ../layouts/js %>
+</body>
+
 </html>

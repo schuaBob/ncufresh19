@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Play</title>
+        <% include ../layouts/head %>
+        <% include ../layouts/script %>
         <link rel=stylesheet type="text/css" href="life.css">
     </head>
     <div class="sideNav" id="navi">
@@ -13,6 +15,7 @@
             </ul>
     </div>
     <body>
+            <% include ../layouts/header %>
         <% if(user && user.role === 'admin') { %>
             <botton type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</botton>
         <% } %>
@@ -35,6 +38,7 @@
            
            
         </main>
+        <% include ../layouts/js %>
         <% include js %>
     </body>
 </html>

@@ -19,9 +19,33 @@
             });
 
 
-            //大學生
-            $("#1").click(function(){
+            //所有選項
+            $(".option").mousedown(function(){
+
+                //取得選項id
+                let textid = this.id; 
                 $("#edit").modal("show");
-            })
+
+                //將js的變數給html裡的form action
+                $('#add').attr('action', "/documents/edit/" + textid);
+
+                $.ajax({
+                    url: "/documents/require_data/" + textid,
+                    method: 'get',
+                    error: function (err) {
+                        console.log(err);
+                    },
+                    success: function (data) {
+                        
+                        $("#edit_title").val(data.title);
+                        //CKEDITOR.instances.edit_content.setData(data.content);
+                        $("#edit_content").val(data.content);
+                        }
+                });
+
+                $("#save").click(function(){
+                    $("#edit").modal("hide");
+                });
+                })
     })
 </script>
