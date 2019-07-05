@@ -8,7 +8,7 @@ body {
 .vertical-line{
   background-color: #ffd800;
   width: 5px;
-  height:80px;
+  height: 80px;
   position: absolute;
   left: 150px;
   top: 130px;
@@ -43,10 +43,42 @@ body {
 }
 
 .links {
-  background-color: #ffd800;
+  background-color: #0163b0;
   width: 300px;
-  height: 180px;
-  border-radius: 20px;
+  height: 173px;
+  border-radius: 13px;
+}
+
+.links:hover .captn {
+  display: block;
+}
+
+.links .captn {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  background-color: #736f6e;
+  border-radius: 13px;
+}
+
+.captn-title {
+  padding: 15px;
+  padding-top: 25px;
+  font-size: 23px;
+  font-weight: bold;
+  line-height: 25px;
+  text-align: center;
+  color: white;
+}
+
+.captn-body {
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: white;
 }
 
 #portal {
@@ -79,7 +111,7 @@ body {
   left: 450px;
 }
 
-#dorm {
+#dorm-net {
   position: absolute;
   top: 240px;
   left: 850px;

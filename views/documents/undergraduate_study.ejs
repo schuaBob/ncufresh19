@@ -1,46 +1,57 @@
 <!DOCTYPE html>
-<html> 
-    <head>
-            <title><%= title %></title>
-            <link rel='stylesheet' href='style.css' />
-            <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <main>
-                <% /*編輯框*/ %>
-                <% include edit %>
-                
-                <% /*大學生*/ %>
-                <div class="undergraduate" id="undergraduate">
-                    <div class="sidenav">
-                            <a href="/documents/undergraduate_must"><img src="circle.png" class="icon"></a>
-                            <a href="/documents/undergraduate_fresh"><img src="circle.png" class="icon"></a>
-                            <a href="/documents/undergraduate_study"><img src="circle.png" class="icon"></a>
-                            <a href="/documents"><img src="return.png" class="return"></a>
-                    </div>
-      
-                    <div class="must" id="must">
-                            <div class="sidenav2">
-                                <img src="must.jpg" class="sign">
-                                <p id="15">＞ 獎學金</p>
-                                <p id="16">＞ 交換學生</p>
-                                <p id="17">＞ 大一必修</p>
-                                <p id="18">＞ 選課懶人包</p>
-                                <p id="19">＞ 課業輔導管道</p>
-                                <p id="20">＞ NCUx中大磨課師</p>
-                                <p id="21">＞ 學習護照及大一周會</p>
-                            </div>
-                            <div class="content" >
-                                
-                            </div>     
-                        </div>
-      
-                    
-      
-                
-      
+<html>
+
+<head>
+    <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
+    <link rel='stylesheet' href='style.css' />
+</head>
+
+<body>
+    <% include ../layouts/header %>
+    <main>
+        <% /*編輯框*/ %>
+        <% include edit %>
+
+        <% /*大學生*/ %>
+        <div class="undergraduate" id="undergraduate">
+            <div class="sidenav">
+                <a href="/documents/undergraduate_must"><img src="circle.png" class="icon"></a>
+                <a href="/documents/undergraduate_fresh"><img src="circle.png" class="icon"></a>
+                <a href="/documents/undergraduate_study"><img src="circle.png" class="icon"></a>
+                <a href="/documents"><img src="return.png" class="return"></a>
+            </div>
+
+            <div class="must" id="must">
+                <div class="sidenav2">
+                    <img src="must.jpg" class="sign">
+                    <p class="option" id="15">＞ 獎學金</p>
+                    <p class="option" id="16">＞ 交換學生</p>
+                    <p class="option" id="17">＞ 大一必修</p>
+                    <p class="option" id="18">＞ 選課懶人包</p>
+                    <p class="option" id="19">＞ 課業輔導管道</p>
+                    <p class="option" id="20">＞ NCUx中大磨課師</p>
+                    <p class="option" id="21">＞ 學習護照及大一周會</p>
                 </div>
-        </main>
-        <% include js %>
-    </body>
+                <div class="box">
+                    <div class="title" id="show_title">
+
+                    </div>
+                    <div class="content" id="show_content">
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </main>
+    <% include ../layouts/js %>
+    <% include js %>
+</body>
+
 </html>
