@@ -63,6 +63,8 @@ h1 {
 #indexmodal .modal-body {
   max-height: calc(178px + 3658 / 5781 * (100vw - 32px));
   margin-top: auto;
+  margin-bottom: 15px;
+  padding: 0%;
 }
 
 .indexelepic.hide {
@@ -86,12 +88,12 @@ h1 {
 #indexmodal .modal-dialog {
   width: 60%;
   max-width: none;
-  margin-top: 60px;
+  margin-top: 5%;
   min-height: calc(100vh - 56px);
 }
 
 .modal-content {
-  border-radius: 10px;
+  border-radius: 2rem !important;
   min-height: calc(100vh - 56px);
 }
 
@@ -103,8 +105,9 @@ h1 {
 }
 
 .carousel-inner {
+  border-radius: 2rem !important;
   border-style: solid;
-  border-color: #0f0c2e;
+  border-color: #2E627B;
   border-radius: 15px;
   border-width: 2px;
 }
@@ -138,13 +141,13 @@ h1 {
   margin-left: auto;
   margin-bottom: 0;
   display: block;
-  width: 80%;
+  width: 85%;
   padding: 8px;
   word-wrap: break-word;
   border-style: solid;
-  border-color: #1e2533;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-color: #2E627B;
+  border-top-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
 }
 
 #indexmodalp .p {
@@ -187,7 +190,7 @@ body {
 }
 
 #List_index img {
-  width: 70%;
+  width: 80%;
   margin: 0;
   padding: 0;
 }
@@ -203,10 +206,10 @@ body {
   width: 25%;
   z-index: 5;
   border-style: solid;
-  border-color: rgba(255, 252, 240, 1);
+  border-color: #FFC000;
   min-width: 143px;
   border-radius: 15px;
-  background: rgba(0, 0, 0, 0.7);
+  background: #FFC000;
 }
 
 .main_list_detail ul {
@@ -245,6 +248,13 @@ body {
   border-top-right-radius: 15px;
 }
 
+#bar {
+  width: 50%;
+  height: 3px;
+  background-color: #0E4A65;
+  margin: 0px auto;
+}
+
 .elelist {
   position: relative;
   font-size: 100%;
@@ -257,8 +267,8 @@ body {
 
 .mapmove {
   position: relative;
-  margin-right: 15%;
-  margin-left: 16%;
+  margin-right: 11%;
+  margin-left: 20%;
   /* margin-top: calc((100vh - 154px - 69vw*996/2000)/2);
   margin-bottom: calc((100vh - 154px - 69vw*996/2000)/2); */
   margin-bottom: auto;
@@ -402,19 +412,19 @@ li {
 }
 
 .modal-header span {
-  position: fixed;
+  position: absolute;
   display: block;
-  right: 15px;
-  top: 15px;
+  top: 3%;
   margin: 0;
   padding: 0;
+  right: 3%;
 }
 
 #indexmodal .modal-header {
   display: inline-block;
   margin-right: auto;
   margin-left: auto;
-  border-bottom-color: #0f0c2e;
+  border-bottom-width: 0px;
 }
 
 .modal-header span svg {
@@ -453,6 +463,53 @@ li {
 
 #closemainlist img {
   width: 100%;
+}
+
+.title_bar {
+  margin-left: -20%;
+  position: absolute;
+}
+
+.title {
+  height: 50px;
+  width: 140px;
+  margin-left: 10px;
+  float: left;
+  color: #0D4966;
+}
+
+.big_title {
+  display: block;
+  font-size: 200%;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #0D4966;
+}
+
+.line {
+  height: 60px;
+  width: 10px;
+  background-color: #FFCC00;
+  margin-top: 5px;
+  margin-right: 10px;
+  float: left;
+}
+
+.small_title {
+  color: gray;
+  font-size: 100%;
+}
+
+.bottom_list {
+  display: flex;
+  position: absolute;
+}
+
+.sailor {
+  margin-left: -2%;
+  margin-right: -10%;
+  margin-top: -10%;
+  width: 20%;
 }
 
 @media only screen and (max-width: 770px) {
@@ -535,7 +592,7 @@ li {
   }
 
   #List_index img {
-    width: 100%;
+    width: 80%;
     margin: 0;
     padding: 0;
   }
@@ -600,5 +657,19 @@ li {
     padding: 0;
     width: 100%;
     position: relative;
+  }
+
+  .title_bar {
+    margin-left: 5%;
+    position: absolute;
+  }
+
+  .sailor {
+    display: none;
+  }
+
+  .modal-dialog{
+    margin-left:0% !important;
+    margin-right: 0% !important
   }
 }

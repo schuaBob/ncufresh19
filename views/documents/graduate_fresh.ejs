@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html> 
-    <head>
-            <title><%= title %></title>
-            <link rel='stylesheet' href='style.css' />
-            <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
-    </head>
-    <body>
+<html>
+
+<head>
+        <title><%= title %></title>
+
+        <% include ../layouts/head %>
+        <% include ../layouts/script %>
+        <link rel='stylesheet' href='style.css' />
+        <script src="https://code.jquery.com/jquery-3.4.0.js"
+                integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+        <% include ../layouts/header %>
         <main>
                 <% /*編輯框*/ %>
                 <% include edit %>
-                
+
                 <% /*研究生*/%>
                 <div class="graduate" id="graduate">
                         <div class="sidenav">
@@ -17,24 +24,26 @@
                                 <a href="/documents/graduate_fresh"><img src="circle.png" class="icon"></a>
                                 <a href="/documents"><img src="return.png" class="return"></a>
                         </div>
-          
+
                         <div class="must" id="must">
                                 <div class="sidenav2">
-                                    <img src="must.jpg" class="sign">
-                                    <p class="option"  id="29">＞ 社團博覽會</p>
-                                    <p class="option"  id="30">＞ 新生健康檢查</p>
+                                        <img src="must.jpg" class="sign">
+                                        <p class="option" id="29">＞ 社團博覽會</p>
+                                        <p class="option" id="30">＞ 新生健康檢查</p>
                                 </div>
                                 <div class="box">
-                                    <div class="title" id="show_title">
-        
-                                    </div>
-                                    <div class="content" id="show_content">
-        
-                                    </div>
-                                </div>     
+                                        <div class="title" id="show_title">
+
+                                        </div>
+                                        <div class="content" id="show_content">
+
+                                        </div>
+                                </div>
                         </div>
-                </div> 
+                </div>
         </main>
+        <% include ../layouts/js %>
         <% include js %>
-    </body>
+</body>
+
 </html>

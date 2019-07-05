@@ -2,9 +2,12 @@
 <html>
   <head>
     <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script  %>
     <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
+      <% include ../layouts/header %>
     <div class="container">
       
       <!-- 使用者資訊 待補 -->
@@ -12,13 +15,21 @@
       <div class="username">使用者</div>
       <div class="student-number">108XXXXXX</div>
       
-      <!-- 連結待補 -->
-      <div class="link" id="game-score" onclick="location.href='/';">遊戲積分</div>
-      <div class="link" id="game" onclick="location.href='/';">小遊戲</div>
-      <div class="link" id="ask-record" onclick="location.href='/';">發問紀錄</div>
-      <div class="link" id="ask" onclick="location.href='/';">我要發問</div>
+      <div class="link" id="game-score">遊戲積分</div>
+      <div class="link" id="game">小遊戲</div>
+      <div class="link" id="ask-record">發問紀錄</div>
+      <div class="link" id="ask">我要發問</div>
 
+      <!--
+      <div class="modal is-hide">
+        <div class="tabs" id="game-score-tab"></div>
+        <div class="tabs" id="game-tab"></div>
+        <div class="tabs" id="ask-record-tab"></div>
+        <div class="tabs" id="ask-tab"></div>
+      </div>
+      -->
       <!-- 頭貼外框 -->
+      
       <div class="circle">
         <img class="profile-pic" src="default-profile.png">
       </div>
@@ -33,5 +44,6 @@
     
     </div>
   </body>
+  <% include ../layouts/js %>
   <% include js %>
 </html>

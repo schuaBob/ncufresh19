@@ -1,47 +1,55 @@
 <!DOCTYPE html>
-<html> 
-    <head>
-            <title><%= title %></title>
-            <link rel='stylesheet' href='style.css' />
-            <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <main>
-                <% /*編輯框*/ %>
-                <% include edit %>
-                
-                <% /*大學生*/ %>
-                <div class="undergraduate" id="undergraduate">
-                    <div class="sidenav">
-                            <a href="/documents/undergraduate_must"><img src="circle.png" class="icon"></a>
-                            <a href="/documents/undergraduate_fresh"><img src="circle.png" class="icon"></a>
-                            <a href="/documents/undergraduate_study"><img src="circle.png" class="icon"></a>
-                            <a href="/documents"><img src="return.png" class="return"></a>
-                    </div>
-      
-                    <div class="must" id="must">
-                            <div class="sidenav2">
-                                <img src="must.jpg" class="sign">
-                                <p class="option"  id="8">＞ 新生營</p>
-                                <p class="option" id="9">＞ 社團博覽會</p>
-                                <p class="option" id="10">＞ 校園安全宣導</p>
-                                <p class="option" id="11">＞ 新生週日程表</p>
-                                <p class="option" id="12">＞ 新生健康檢查</p>
-                                <p class="option" id="13">＞ 心理適應座談</p>
-                                <p class="option" id="14">＞ UCAN適性測驗</p>
-                            </div>
-                            <div class="box">
-                                <div class="title" id="show_title">
-    
-                                </div>
-                                <div class="content" id="show_content">
-    
-                                </div>
-                            </div>    
-                        </div>
-      
+<html>
+
+<head>
+    <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
+    <link rel='stylesheet' href='style.css' />
+    <script src="https://code.jquery.com/jquery-3.4.0.js"
+        integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <% include ../layouts/header %>
+    <main>
+        <% /*編輯框*/ %>
+        <% include edit %>
+
+        <% /*大學生*/ %>
+        <div class="undergraduate" id="undergraduate">
+            <div class="sidenav">
+                <a href="/documents/undergraduate_must"><img src="circle.png" class="icon"></a>
+                <a href="/documents/undergraduate_fresh"><img src="circle.png" class="icon"></a>
+                <a href="/documents/undergraduate_study"><img src="circle.png" class="icon"></a>
+                <a href="/documents"><img src="return.png" class="return"></a>
+            </div>
+
+            <div class="must" id="must">
+                <div class="sidenav2">
+                    <img src="must.jpg" class="sign">
+                    <p class="option" id="8">＞ 新生營</p>
+                    <p class="option" id="9">＞ 社團博覽會</p>
+                    <p class="option" id="10">＞ 校園安全宣導</p>
+                    <p class="option" id="11">＞ 新生週日程表</p>
+                    <p class="option" id="12">＞ 新生健康檢查</p>
+                    <p class="option" id="13">＞ 心理適應座談</p>
+                    <p class="option" id="14">＞ UCAN適性測驗</p>
                 </div>
-        </main>
-        <% include js %>
-    </body>
+                <div class="box">
+                    <div class="title" id="show_title">
+
+                    </div>
+                    <div class="content" id="show_content">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <% include ../layouts/js %>
+    <% include js %>
+</body>
+
 </html>

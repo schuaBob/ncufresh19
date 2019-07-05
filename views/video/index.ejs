@@ -2,10 +2,12 @@
 <html>
   <head>
     <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script  %>
     <link rel='stylesheet' href='/video/style.css' />
   </head>
   <body>
-
+      <% include ../layouts/header %>
     <%/* 標題 */%>
     <div class="title_bar">
       <%/* 黃線mark */%>
@@ -15,9 +17,12 @@
     </div>
 
     <%/* 縮圖連結 */%>
-    <div class="v_button"><a href="/video/v_nculife">中大生活</a></div>
-    <div class="v_button"><a href="/video/v_interview">學長姐訪談</a></div>
-    <div class="v_button"><a href="/video/v_legend">中大傳說</a></div>
+    <div class="button_area">
+      <div class="v_button"><a href="/video/v_nculife">中大生活</a></div>
+      <div class="v_button"><a href="/video/v_interview">學長姐訪談</a></div>
+      <div class="v_button"><a href="/video/v_legend">中大傳說</a></div>
+    </div>
 
   </body>
+  <% include ../layouts/js %>
 </html>
