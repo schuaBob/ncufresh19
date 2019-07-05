@@ -5,9 +5,9 @@
     <title>
         <%= title %>
     </title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
     <link rel='stylesheet' href='/groups/style.css' />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
             <li><i class="fa-angle-right"></i>其他</li>
         </ul>
     </div>
-
+    <% include ../layouts/js %>
 </body>
 
 </html>

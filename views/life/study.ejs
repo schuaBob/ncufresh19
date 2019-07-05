@@ -3,10 +3,12 @@
     <head>
         <title>Study</title>
         <% include ../layouts/head %>
+        <% include ../layouts/script %>
         <link rel=stylesheet type="text/css" href="life.css">
     </head>
     <body>
-            <div class="sideNav" id="navi">
+        <% include ../layouts/header %>
+        <div class="sideNav" id="navi">
                     <ul>
                         <li><a href="/life/study"> <img class="navSubBtn" src="naviAfter0.png"> </a></li><br>
                         <li><a href="/life/food"> <img class="navSubBtn" src="naviBefore1.png"> </a></li><br>
@@ -15,6 +17,7 @@
                     </ul>
               </div>
         <h3>STUDY <br> 學習之路</h3>
+        
         <main>
         <!--content-->
         <div class="content">
@@ -46,7 +49,8 @@
             </div>
         </div>
         </main>
+        <% include ../layouts/js %>
         <% include js %>
     </body>
-    <% include ../layouts/js %>
+    
 </html>

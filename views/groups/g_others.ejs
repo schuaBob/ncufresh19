@@ -2,11 +2,12 @@
 <html>
   <head>
     <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
     <link rel='stylesheet' href='/groups/style.css' />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
   </head>
   <body>
+    <% include ../layouts/header %>
       <nav class="navBar seaBlueBg">新生資訊網</nav>
       <div class="title_bar">
             
@@ -14,5 +15,6 @@
             <div class="title">
               <h1>OTHERS<br><span class="small_title">其他學生組織</span></h1></div>
           </div>
+    <% include ../layouts/js %>
   </body>
 </html>
