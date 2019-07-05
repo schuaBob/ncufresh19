@@ -3,13 +3,21 @@
 
 <head>
   <% include ../layouts/head %>
+    
+
+    
   <% include ../layouts/script  %>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='style.css' />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
   <style>
+    
+    #main{
+      position: relative;
+      top:4vh;
+    }
     .seaBlue {
       color: #0D4966;
     }
@@ -36,35 +44,39 @@
       /* for Firefox */
       -webkit-user-select: none;
       /* for Chrome */
+      
     }
 
-    .navBar {
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      position: absolute;
-      height: 10vh;
-
-      line-height: 60px;
-      color: white;
-    }
+    
 
     .main {
       position: relative;
-      top: 14vh;
-      height: 65vh;
+      top: 13vh;
+      width: 90vw;
+      margin: auto;
+      height: 73vh;
     }
 
     .titleSpace {
       position: relative;
+      height: 11vh;      
+      margin: auto;
       top: 9vh;
-      width: 90%;
-      /* background-color: beige;  */
+      width: 83%;      
       margin: auto;
       border-left: 6px solid #FFCC00;
-      padding-left: 20px;
+      padding-left: 15px;
     }
-
+    #qatxt{
+      position: absolute;
+      font-size: 5vh;
+      top: -11%;
+    }
+    #qatxt_c{
+      position: absolute;
+      font-size: 4vh;
+      bottom: -6%;
+    }
     .leftSide {
       width: 20%;
       /* background-color: rgb(102, 252, 164);        */
@@ -72,15 +84,22 @@
 
     /* "分類"圖片 */
     .pic_classification {
-      background-color: orange;
-      width: 100%;
-      height: 70px;
-
+      position: relative;          
+      padding-left: 4%;
+      left: 5px;
     }
-
+    #classification{
+      position: absolute;
+      font-size: 4vh;
+    }
+    #classification_c{
+      position: absolute;
+      font-size:3vh;
+      bottom: -5%;
+    }
     .pic_classification img {
-
       height: 10vh;
+      margin-right: 9px;
     }
 
     .option {
@@ -166,16 +185,20 @@
       height: 80%;
     }
 
-    tbody tr {
+    tbody > tr {
       border-bottom: 1px solid #0D4966;
+      height: 6vh;
+      font-size: 2.5vh;
     }
 
     tbody tr:hover {
       cursor: pointer;
     }
 
-    thead>tr {
+    thead > tr {
       border-bottom: 1px dashed #0D4966;
+      height: 6vh;
+      font-size: 3vh;
     }
 
     .filterButton {
@@ -190,6 +213,7 @@
 
     .modal {
       background-color: rgba(0, 0, 0, 0.4);
+      z-index: 6000;
     }
 
     .modal-dialog {
@@ -206,7 +230,7 @@
       height: 50%;
     }
 
-    .form-control {
+    .searchInput {
       border-radius: 30px;
       margin-right: 2px;
     }
@@ -214,7 +238,6 @@
 </head>
 
 <body>
-  <% include ../layouts/header %>
   <!-- questionModal -->
   <div class="modal fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -238,13 +261,17 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="question">
-            Question: <br>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-          </div>
+          <form action="" class="needs-validation">
+            <div class="form-group">
+              <label for="q_title">標題</label>
+              <input type="text" class="form-control" id="q_title" required placeholder="限10字(必填)" pattern="^.{1,10}$">
+              <label for="q_content">內容</label>
+              <textarea type="text" class="form-control" id="q_content" rows="3" placeholder="內容" required></textarea>
+            </div>
+          </form>        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">送出</button>
+          <button type="button" class="btn btn-primary" id="submit">送出</button>
         </div>
       </div>
     </div>
@@ -274,132 +301,137 @@
       </div>
     </div>
   </div>
-  <nav class="navBar seaBlueBg">navBar</nav>
-  <div class="titleSpace">
-    <h2 class="seaBlue font-weight-bold">Q&A</h2>
-    <h3>新生問答</h3>
-  </div>
-  <div class="main d-flex">
-    <div class="leftSide">
-      <div class="pic_classification">
 
-
-
+  <% include ../layouts/header %>
+  <main id="main">
+      
+      <div class="titleSpace">
+        <span class="seaBlue font-weight-bold" id="qatxt">Q&A</span>
+        <span id="qatxt_c">新生問答</span>
       </div>
-      <div class="option">
-        <ul>
-          <li><i class="fas fa-angle-right"></i>全部問題</li>
-          <li><i class="fas fa-angle-right"></i>校園生活</li>
-          <li><i class="fas fa-angle-right"></i>課程相關</li>
-          <li><i class="fas fa-angle-right"></i>學生事務</li>
-          <li><i class="fas fa-angle-right"></i>其他</li>
-        </ul>
-      </div>
-    </div>
-    <div class="rightSide">
-      <!-- 過濾以及搜尋框 -->
-      <div class="filter_SearchBar">
-        <div class="buttonGroup d-inline-flex">
-          <div class="filterButton text-white seaBlueBg">排序</div>
-          <div class="filterButton yellowBg">時間</div>
-          <div class="filterButton grayBg">人氣</div>
+      <div class="main d-flex">
+        <div class="leftSide">
+          <div class="pic_classification">
+            <img src="sieve.png" alt="">
+            <span id="classification">分類</span>
+            <span id="classification_c">Classification</span>
+          </div>
+          <div class="option">
+            <ul>
+              <li><i class="fas fa-angle-right"></i>全部問題</li>
+              <li><i class="fas fa-angle-right"></i>校園生活</li>
+              <li><i class="fas fa-angle-right"></i>課程相關</li>
+              <li><i class="fas fa-angle-right"></i>學生事務</li>
+              <li><i class="fas fa-angle-right"></i>其他</li>
+            </ul>
+          </div>
         </div>
-        <div class="searchBar">
-          <form class="form-inline">
-            <i class="fas fa-search" aria-hidden="true"></i>
-            <input class="form-control form-control-sm ml-2" type="text" placeholder="Search" aria-label="Search">
-          </form>
+        <div class="rightSide">
+          <!-- 過濾以及搜尋框 -->
+          <div class="filter_SearchBar">
+            <div class="buttonGroup d-inline-flex">
+              <div class="filterButton text-white seaBlueBg">排序</div>
+              <div class="filterButton yellowBg">時間</div>
+              <div class="filterButton grayBg">人氣</div>
+            </div>
+            <div class="searchBar">
+              <form class="form-inline">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input class="form-control form-control-sm ml-2 searchInput" type="text" placeholder="Search" aria-label="Search">
+              </form>
+            </div>
+          </div>
+          <!-- top按鍵 -->
+          <i class="far fa-arrow-alt-circle-up fa-2x"></i>
+          <!-- 企鵝 -->
+          <div class="ask">
+            <span class="askTxt">我要發問!</span>
+            <img src="penguin.png" alt="">
+          </div>
+          <!-- 問題列表 -->
+          <div class="content">
+            <div class="contentTable">
+              <table class="table table-hover table-borderless">
+                <thead>
+                  <tr class="head">
+                    <th scope="col">分類</th>
+                    <th scope="col">日期</th>
+                    <th scope="col">標題</th>
+                    <th scope="col">點閱率</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">校園生活</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">校園生活</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">學生事務</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">校園生活</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">學生事務</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">課程相關</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">課程相關</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">校園生活</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">課程相關</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">學生事務</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">課程相關</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">課程相關</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-      </div>
-      <!-- top按鍵 -->
-      <i class="far fa-arrow-alt-circle-up fa-2x"></i>
-      <!-- 企鵝 -->
-      <div class="ask">
-        <span class="askTxt">我要發問!</span>
-        <img src="qna/penguin.png" alt="">
-      </div>
-      <!-- 問題列表 -->
-      <div class="content">
-        <div class="contentTable">
-          <table class="table table-hover table-borderless">
-            <thead>
-              <tr class="head">
-                <th scope="col">分類</th>
-                <th scope="col">日期</th>
-                <th scope="col">標題</th>
-                <th scope="col">點閱率</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">校園生活</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">校園生活</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">學生事務</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">校園生活</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">學生事務</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">課程相關</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">課程相關</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">校園生活</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">課程相關</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">學生事務</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">課程相關</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">課程相關</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
+      </div>    
+  </main>
+  
+  
 </body>
 <% include ../layouts/js %>
 <script>
@@ -443,7 +475,26 @@
     });
 
 
+    
+    //askModal的submit觸發後，檢查字數是否符合規定
+    $("#submit").click(function(){
 
+      var forms = document.getElementsByClassName('needs-validation');
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        
+        if (form.checkValidity() === false) {          
+          event.preventDefault();
+          event.stopPropagation();          
+        }else{
+          $(".needs-validation").submit();
+        }                
+      })
+      
+    });
+
+
+
+    
   });
 
 </script>
