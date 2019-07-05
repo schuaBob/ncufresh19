@@ -19,6 +19,7 @@
         color: white;
         font-size: 20px;
         width: 200px;
+        text-decoration: none;
     }
     
     .navBar {
@@ -36,7 +37,6 @@
     .character {
         width: 100px;
         height: 100px;
-        position: relative;
         color: white;
         text-align: center;
     }
