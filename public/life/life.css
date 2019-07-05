@@ -1,7 +1,9 @@
 body {
-  padding: 100px;
+  padding: 200px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #fff9dc;
+  height: 100vh;
+  width: 100vw;
 }
 
 a {
@@ -14,22 +16,28 @@ ul li {
 
 .mainTitle {
   border-left: 6px solid #ffcc00;
-  position:fixed;
-  padding-left: 20px;
+  position: relative;
+  margin-left: 100px;
 }
 
 .content {
-  position: absolute;
-  width: 950px;
+  margin: 0 auto;
+  padding: 0 auto;
+  position: relative;
+  display: block;
+  width: 900px;
   height: 400px;
   overflow-y: scroll;
+  bottom: 0;
 }
 .content::-webkit-scrollbar {
   -webkit-appearance: none;
 }
 
-main {
+#main {
+  position: relative;
   padding-top: 100px;
+  top: 60px;
 }
 
 .foodList {
@@ -38,10 +46,13 @@ main {
 }
 
 .sideNav {
-  position: fixed;
-  margin-right: -100px;
-  right: 0px;
+  position: relative;
+  float:right;
+  right: 0;
   width: 300px;
+  margin: 0;
+  padding: 0;
+  z-index: 300;
 }
 
 .navSubBtn {
@@ -53,9 +64,8 @@ main {
 }
 
 /*.studyPicture {
-  position: relative;
-}
-*/
+  position: absolute;
+}*/
 .studyPicture div {
   float: left;
   padding: 5px;
