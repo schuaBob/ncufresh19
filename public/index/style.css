@@ -4,6 +4,12 @@
     position: absolute;
     bottom: 60px;
 }
+main {
+    position: relative;
+    top: 60px;
+    width: 100%;
+    height: calc(100% - 60px);
+}
 #toPage2 {
     position: absolute;
     z-index: 4997;
