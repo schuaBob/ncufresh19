@@ -12,8 +12,10 @@ ul li {
   list-style-type:none;
 }
 
-h3 {
+.mainTitle {
+  border-left: 6px solid #ffcc00;
   position:fixed;
+  padding-left: 20px;
 }
 
 .content {
@@ -77,7 +79,7 @@ main {
   margin: auto;
 }
 */
-
+/*---------playContent------------*/
 .playImg {
   max-width: 850px;
   max-height: 400px;
@@ -89,6 +91,7 @@ main {
   padding: 5px;
 }
 
+/*----------liveContent-----------*/
 .liveImg {
   max-width: 850px;
   max-height: 400px;
@@ -101,5 +104,48 @@ main {
   float: left;
   padding: 5px;
 }
+
+
+#pictureArea {
+  position: absolute;
+}
+
+#picture {
+  position: relative;
+  top:0; bottom:0; left:0; right:0; margin:auto;
+  max-width: 850px;
+  max-height: 400px;
+}
+
+#prev, #next{
+  text-decoration: none;
+  cursor: pointer;
+  position: fixed;
+  padding: 16px;
+  margin-top:100px;
+  top: 36%;
+  width: auto;
+  font-size: 40px;
+  font-weight: bold;
+  color: #e0e0e0;
+  transition: 0.6s ease;
+  border-radius: 3px 0 0 3px;
+  z-index: 2;
+}
+#next{
+  margin-right:250px;
+  right:0;
+  border-radius: 3px 0 0 3px;
+}
+#prev:hover, #next:hover {
+  text-decoration: none;
+  background-color: rgba(100,100,100,0.8);
+}
+
+  
+
+
+
+
 
 
