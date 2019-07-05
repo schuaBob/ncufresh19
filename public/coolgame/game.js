@@ -6,11 +6,12 @@
   var b_right = false;
   var fisherman_harpoon; 
   var div;
+  var check=0;
   var harpoon_list = new Array() ;
   var animal_list = new Array() ;
   var bubble_list =new Array();
-  var animalsource=[{type:0,image:["bird_1_1.png","bird_1_2.png"]},{type:1,image:["fish_1_1.png","fish_1_2.png"]},{type:2,image:["fish_2_1.png","fish_2_2.png"]}
-  ,{type:3,image:["fish_3_1.png","fish_3_2.png"]},{type:4,image:["fish_4_1.png","fish_4_2.png"]},{type:5,image:["fish_5_1.png","fish_5_2.png"]},{type:6,image:["special_1_1.png","special_1_2.png"]}];
+  var animalsource=[{type:0,image:["bird_1_1.png","bird_1_2.png"],die:"bird_1_die.png"},{type:1,image:["fish_2_1.png","fish_2_2.png"],special:["special_2_1.png","special_2_2.png"],die:"fish_2_die.png"}
+  ,{type:1,image:["fish_3_1.png","fish_3_2.png"],special:["special_3_1.png","special_3_2.png"],die:"fish_3_die.png"},{type:3,image:["fish_4_1.png","fish_4_2.png"],special:["special_4_1.png","special_4_2.png"],die:"fish_4_die.png"},{type:4,image:["fish_5_1.png","fish_5_2.png"],special:["special_5_1.png","special_5_2.png"],die:"fish_5_die.png"}];
   var canvas_width = 800;
   var canvas_height=500;
   var canvas_seaheight=150;
@@ -21,28 +22,36 @@
     return this.image.height * this.scaleY; 
   }
   class Animal  extends createjs.Bitmap{
-    constructor(type){
-      super("/images/coolgame/"+animalsource[type].image[0]);
-      this.onload = function(){
-        this.regX = this.image.width/2;
-        this.regY = this.image.height/2;
-      };
+    constructor(type,special){
+      if(special)
+        super("/images/coolgame/"+animalsource[type].special[0]);
+      else
+        super("/images/coolgame/"+animalsource[type].image[0]);
+      this.special=special;
       this.animaltype = type;
       this.im_index =0;
       this.t_change = setInterval(()=>{
+        if(this.regX==0){
+          this.regX = this.image.width/2;
+          this.regY = this.image.height/2;
+        }
         if(this.im_index == animalsource[this.animaltype].image.length-1)
           this.im_index=0;
         else this.im_index++;
-        this.image.src = "/images/coolgame/"+animalsource[this.animaltype].image[this.im_index];
         if(getrandom(100)<3){
           this.dic *=-1;
           this.scaleX*=-1;
         };
+        if(this.special)
+           this.image.src = "/images/coolgame/"+animalsource[this.animaltype].special[this.im_index];
+        else
+           this.image.src = "/images/coolgame/"+animalsource[this.animaltype].image[this.im_index];
       },200);
       this.t_move=setInterval(()=> {
         if((this.x>canvas_width+100)||(this.x<-100)){
           clearInterval(this.t_move);
           clearInterval(this.t_changeimage);
+          animal_list = arrayRemove(animal_list,this);
           stage.removeChild(this);
           
         }
@@ -52,12 +61,17 @@
       
         }
       }, 20);
+      this.regX = this.image.width/2;
+      this.regY = this.image.height/2;
       stage.addChild(this);
+
     }
-    catch(){
-      animal_list=arrayRemove(animal_list,this);
-      //clearInterval(this.t_change);
+    catch(a){
+      this.regX = this.image.width/2;
+      this.regY = this.image.height/2;
+      clearInterval(this.t_change);
       clearInterval(this.t_move);
+      this.image.src =  "/images/coolgame/"+animalsource[this.animaltype].die;
     }
     //  static change(){
     //   if(this.im_index == animalsource[this.animaltype].image.length-1)
@@ -85,11 +99,12 @@
     // }
   }
   class fish extends Animal{
-    constructor(type){
-      super(type);
+    constructor(type,special){
+      super(type,special);
       this.scale=0.12;
       this.speed=2;
       this.alpha=0.8;
+      this.dic =1;
       if(getrandom(2) == 1){
         this.x=-this.getwidth()/2;
         this.dic =1;
@@ -105,8 +120,8 @@
     }
   }
   class bird extends Animal{
-    constructor(type){
-      super(type);
+    constructor(type,special){
+      super(type,special);
       this.scale=0.16;
       this.regX = this.image.width/2;
       this.regY = this.image.height/2;
@@ -149,7 +164,7 @@
     var c = Math.pow(x*x+y*y,0.5);
     var r = Math.acos(y/c);
     shoot_harpoon.rotation = r_x*(r*180/Math.PI);
-    t_Harpoonmove = setInterval( ()=> { Harpoonmove(x,y,c,10,shoot_harpoon,t_Harpoonmove); }, 10);
+    t_Harpoonmove = setInterval( ()=> { Harpoonmove(x,y,c,10,shoot_harpoon,t_Harpoonmove); }, 20);
   }
 
   function createharpoon() {
@@ -174,32 +189,44 @@
         v=(500/harpoon.y)*1.4;
       }
     }
+    check++;
+    if(check %5 == 0 && harpoon.x+harpoon.getheight()/2<canvas_width &&  harpoon.x+harpoon.getheight()/2>0){
+      check=0;
+      for(i=0;i<bubble_list.length;i++){
+        var pt =bubble_list[i].localToLocal(bubble_list[i].image.width/2,bubble_list[i].image.height/2,harpoon); // 传递的是红色小球圆心位置
+        if (harpoon.hitTest(pt.x, pt.y)) {
+          stage.removeChild(bubble_list[i]);
+          bubble_list = arrayRemove(bubble_list,bubble_list[i]);  
+          createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},2000);
+          clearInterval(timer);
+          return;
+        }
+      }
+      for(i=0;i<animal_list.length;i++){
+        var pt =harpoon.localToLocal(harpoon.image.width/2,harpoon.image.height,animal_list[i]); // 传递的是红色小球圆心位置
+        if (animal_list[i].hitTest(pt.x, pt.y)) {
+          // harpoon.regX = harpoon.image.width/2;
+          // harpoon.reg = harpoon.image.height;
+          harpoon_list= arrayRemove(harpoon_list,harpoon);
+          stage.removeChild(harpoon);
+          var diefish =   animal_list[i];
+          //createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},animal_list[i].animaltype == 0?500:2000);
+          createjs.Tween.get(diefish).to({y:canvas_seaheight,rotation:diefish.dic==1?180:-180},diefish.animaltype == 0?500:2000);
+          animal_list[i].catch();
+          animal_list = arrayRemove(animal_list,animal_list[i]);  
+          clearInterval(timer);
+          return;
+        }
+      }
+    }
     harpoon.x += x*v/c;
     harpoon.y += y*v/c;
-    for(i=0;i<bubble_list.length;i++){
-      var pt =harpoon.localToLocal(harpoon.image.width/2,harpoon.image.height,bubble_list[i]); // 传递的是红色小球圆心位置
-			if (bubble_list[i].hitTest(pt.x, pt.y)) {
-        bubble_list = arrayRemove(bubble_list,bubble_list[i]);
-        createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},2000);
-        clearInterval(timer);
-        return;
-      }
-    }
-    for(i=0;i<animal_list.length;i++){
-      var pt =harpoon.localToLocal(harpoon.image.width/2,harpoon.image.height,animal_list[i]); // 传递的是红色小球圆心位置
-			if (animal_list[i].hitTest(pt.x, pt.y)) {
-        createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},animal_list[i].animaltype == 0?500:2000);
-        createjs.Tween.get(animal_list[i]).to({y:canvas_seaheight,rotation:180},animal_list[i].animaltype == 0?500:2000);
-        animal_list[i].catch();
-        clearInterval(timer);
-        return;
-      }
-    }
     if (harpoon.y-harpoon.image.height*harpoon.scaleY/2 >= stage.canvas.height || harpoon.y+harpoon.image.height*harpoon.scaleY/2 <= 0 || harpoon.x-harpoon.image.height*harpoon.scaleX/2 >= stage.canvas.width||harpoon.x+harpoon.image.height*harpoon.scaleX/2 <= 0) {
       clearInterval(timer);
       stage.removeChild(harpoon);
       harpoon_list=arrayRemove(harpoon_list,harpoon);
     }
+    
     stage.update();
   }
   function arrayRemove(arr, value) {
@@ -277,8 +304,12 @@
   function openfish(){
     createjs.Ticker.addEventListener("tick",function(event){
       if(!event.paused){
-        if(getrandom(1000)<50){
-          animal_list.push(new fish(getrandom(6)+1));
+        rnd =getrandom(10000);
+        if(rnd<200){
+          if(rnd<50)
+          animal_list.push(new fish(getrandom(4)+1,true));
+          else
+          animal_list.push(new fish(getrandom(4)+1,false));
         }
       }
     })
@@ -286,8 +317,8 @@
   function openbird(){
     createjs.Ticker.addEventListener("tick",function(event){
       if(!event.paused){
-        if(getrandom(10000)<50){
-          animal_list.push(new bird(0));
+        if(getrandom(10000)<5){
+          animal_list.push(new bird(0,false));
         }
       }
     })
