@@ -5,10 +5,19 @@
   <title><%= title %></title>
   <% include ../layouts/head %>
   <% include ../layouts/script %>
-  <% include ../layouts/uploadAdapter %>
   <link rel="stylesheet" href="index/style.css">
   <link rel="stylesheet" href="/css/fullpage.css">
   <script type="text/javascript" src="/js/fullpage.js"></script>
+  <script type="text/javascript" src="/js/ckeditor.js"></script>
+  <style>
+      #ckf-modal {
+        z-index: 10101 !important;
+      }
+    
+      .ckf-file-preview-root {
+        z-index: 10110 !important;
+      }
+    </style>
 </head>
 
 <body>
@@ -39,7 +48,7 @@
 
         <!-- test editor -->
         <textarea name="content" id="editor">
-            &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
+            hello
         </textarea>
 
 
@@ -57,7 +66,9 @@
   </footer>
 
   <% include ../layouts/js %>
+  <% include ck %>
   <script type="text/javascript" src="index/index.js"></script>
+  
 </body>
 
 </html>

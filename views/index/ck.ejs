@@ -1,0 +1,18 @@
+<script>
+    
+    
+
+    $(document).ready(() => {
+        var editor;
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(neweditor => {
+                console.log("Editor catched!")
+                editor = neweditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    })
+
+</script>

@@ -100,7 +100,7 @@ app.use('/js',express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js',express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/js',express.static(__dirname + '/node_modules/fullpage.js/dist'));
 app.use('/js',express.static(__dirname + '/node_modules/popper.js/dist/umd'));
-app.use('/js',express.static(__dirname + '/node_modules/@ckeditor/ckeditor-build-classic/build'))
+app.use('/js',express.static(__dirname + '/node_modules/build'));
 app.use('/css',express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css',express.static(__dirname + '/node_modules/fullpage.js/dist'));
 
