@@ -144,4 +144,12 @@ app.use(function (err, req, res, next) {
   res.render('index/error', {});
 });
 
+//------------------- added by 陳威捷 (用於ejs模板中的函式)
+app.locals.convertDateToString=function(date){
+  var str=date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+  return str;
+}
+//----------------------------------
+
 module.exports = app;
+app.listen(8080);

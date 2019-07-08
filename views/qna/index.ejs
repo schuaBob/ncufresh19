@@ -61,7 +61,7 @@
       position: relative;
       height: 11vh;      
       margin: auto;
-      top: 9vh;
+      top: 7.5vh;
       width: 83%;      
       margin: auto;
       border-left: 6px solid #FFCC00;
@@ -102,11 +102,9 @@
       margin-right: 9px;
     }
 
-    .option {
-      height: 480px;
-      font-size: 3vh;
-      color: #0D4966;
-
+    .option {      
+      font-size: 3vh;      
+      margin-top: 5vh;
     }
 
     .option ul {
@@ -117,14 +115,16 @@
     }
 
     .option li {
-      margin-bottom: 3vh;
+      margin-bottom: 5vh;
       text-align: center;
       border-radius: 2px;
     }
-
-    .option li:hover {
-      cursor: pointer;
+    .option a{
+      text-decoration: none;
+      color: #0D4966;
     }
+    
+
 
     /* 選單箭頭 */
     .fa-angle-right {
@@ -153,6 +153,7 @@
     .fa-arrow-alt-circle-up {
       float: right;
       visibility: hidden;
+      font-size: 4vh;
     }
 
     .ask {
@@ -162,14 +163,14 @@
       padding: 0px;
       position: absolute;
       bottom: 3vh;
-      right: -3vw;
+      right: -3.5vw;
     }
 
     .askTxt {
       position: absolute;
       top: -18%;
       right: 3%;
-      font-size: 20px;
+      font-size: 3vh;
       color: #0D4966;
       font-weight: bold;
     }
@@ -261,12 +262,13 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="" class="needs-validation">
+          <form action="/qna/toPost" class="needs-validation" method="POST">
             <div class="form-group">
+              
               <label for="q_title">標題</label>
-              <input type="text" class="form-control" id="q_title" required placeholder="限10字(必填)" pattern="^.{1,10}$">
+              <input type="text" class="form-control" id="q_title" name="qTitle" placeholder="限10字(必填)" pattern="^.{1,10}$">
               <label for="q_content">內容</label>
-              <textarea type="text" class="form-control" id="q_content" rows="3" placeholder="內容" required></textarea>
+              <textarea type="text" class="form-control" id="q_content" name="qContent" rows="3" placeholder="內容" pattern="^.{1,200}$"></textarea>
             </div>
           </form>        
         </div>
@@ -318,11 +320,11 @@
           </div>
           <div class="option">
             <ul>
-              <li><i class="fas fa-angle-right"></i>全部問題</li>
-              <li><i class="fas fa-angle-right"></i>校園生活</li>
-              <li><i class="fas fa-angle-right"></i>課程相關</li>
-              <li><i class="fas fa-angle-right"></i>學生事務</li>
-              <li><i class="fas fa-angle-right"></i>其他</li>
+              <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
+              <li><a href="/qna/life"><i class="fas fa-angle-right" id="life"></i>校園生活</a></li>
+              <li><a href="/qna/course"><i class="fas fa-angle-right" id="course"></i>課程相關</a></li>
+              <li><a href="/qna/affair"><i class="fas fa-angle-right" id="affair"></i>學生事務</a></li>
+              <li><a href="/qna/other"><i class="fas fa-angle-right" id="other"></i>其他</a></li>
             </ul>
           </div>
         </div>
@@ -342,7 +344,7 @@
             </div>
           </div>
           <!-- top按鍵 -->
-          <i class="far fa-arrow-alt-circle-up fa-2x"></i>
+          <i class="far fa-arrow-alt-circle-up fa-5x"></i>
           <!-- 企鵝 -->
           <div class="ask">
             <span class="askTxt">我要發問!</span>
@@ -355,74 +357,20 @@
                 <thead>
                   <tr class="head">
                     <th scope="col">分類</th>
-                    <th scope="col">日期</th>
                     <th scope="col">標題</th>
+                    <th scope="col">日期</th>                    
                     <th scope="col">點閱率</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">校園生活</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">校園生活</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">學生事務</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">校園生活</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">學生事務</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">課程相關</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">課程相關</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">校園生活</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">課程相關</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">學生事務</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">課程相關</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">課程相關</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
+                  <% for(let index in questions){ %>                    
+                    <tr>
+                      <th scope="row"><%= questions[index].category%></th>
+                      <td><%= questions[index].title %></td>
+                      <td><%= convertDateToString(questions[index]._id.getTimestamp()) %></td>                      
+                      <td><%= questions[index].count  %></td>
+                    </tr>
+                  <% } %>                  
                 </tbody>
               </table>
             </div>
@@ -434,18 +382,27 @@
   
 </body>
 <% include ../layouts/js %>
-<script>
-  $(document).ready(function () {
+<script>  
+  var timer;
 
-    $(".option li").mouseenter(function () {
-      $(this).children("i").css("display", "inline");
-      $(this).css("background-color", "#FFECA1");
-    });
-    $(".option li").mouseout(function () {
-      $(this).children("i").css("display", "none");
-      $(this).css("background-color", "transparent");
-    });
+  //將date格式轉成yyyy/mm/dd
+  function convertDateToString(_date){
+    var date = new Date(_date);
+    var str=date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+    return str;
+  }
+  $(document).ready(function () {    
 
+    var c = location.pathname.split('/')[2];    
+    if(c==""){
+      $("#all").addClass("d-inline");
+      $("#all").parents("li").css("background-color","#FFECA1");
+    }      
+    else{
+      $("#"+c).addClass("d-inline");
+      $("#"+c).parents("li").css("background-color","#FFECA1");
+    }
+      
     //按問題後觸發answermodal
     $("tbody > tr").click(function () {
       $("#answerModal").modal();
@@ -456,24 +413,69 @@
     $(".ask").click(function () {
       $("#askModal").modal();
       $(".classification_btn").text("請選擇分類");
+      $("#q_title").val("");
+      $("#q_content").val("");
     });
     //askmodal的分類鈕
     $(".dropdown-item").click(function () {
       //點選分類後更新分類按鈕
-      $(".classification_btn").text($(this).text());
+      $(".classification_btn").text($(this).text());      
     });
+    
     $(".fa-arrow-alt-circle-up").click(function () {
       $(".content").scrollTop(0);
     });
-    $(".content").scroll(function () {
-      if ($(this).scrollTop() > 10) {
-        $('.fa-arrow-alt-circle-up').css("visibility", "visible");
-      } else {
-        $('.fa-arrow-alt-circle-up').css("visibility", "hidden");
-      }
 
+    
+    $(".content").scroll(function (){  
+      
+      if ($(".content").scrollTop()>10){
+        $('.fa-arrow-alt-circle-up').css("visibility", "visible");               
+      }else{
+        $('.fa-arrow-alt-circle-up').css("visibility", "hidden");        
+      }
+      
+      //讓scroll觸發次數減少
+      window.clearTimeout(timer);
+      timer = window.setTimeout(function() {
+        scrollEnd();        
+      }, 300);      
     });
 
+    function scrollEnd(){        
+
+      //如果"幾乎"到底，加載新的問題
+      if(($(".content").scrollTop()+$(".content").height())>($(".contentTable").height()*0.9)){        
+          console.log("到底了");
+          $.ajax({
+            type:"POST",
+            url:"/qna/getData",
+            dataType:'json',
+            timeout:5000,           
+            data:{
+              category:"all",
+              rowCount:$("tbody > tr").length,              
+            },
+            success:function(data){
+              if(true){                
+                for(let i=0; i<data.length; i++){ 
+                  let item ='<tr><th scope="row">'+data[i].category
+                      +'</th><td>'+data[i].title
+                      +'</td><td>'+convertDateToString(data[i]._id.getTimestamp())
+                      +'</td><td>'+data[i].count
+                      +'</td></tr>';               
+                  $("tbody").append(item);                  
+                }                
+              }else{
+                alert("失敗");
+              }
+            },
+            error:function(err){
+              alert("資料庫出錯!!");
+            }
+          });
+      }
+    }
 
     
     //askModal的submit觸發後，檢查字數是否符合規定
@@ -482,13 +484,35 @@
       var forms = document.getElementsByClassName('needs-validation');
       var validation = Array.prototype.filter.call(forms, function(form) {
         
-        if (form.checkValidity() === false) {          
+        if (form.checkValidity() === false || $(".classification_btn").text()==="請選擇分類") {          
           event.preventDefault();
           event.stopPropagation();          
-        }else{
-          $(".needs-validation").submit();
+        }else{          
+          //送出前將分類放進隱藏的input，使後端可以取得          
+          $.ajax({
+            type:"POST",
+            url:"/qna/toPost",
+            dataType:'json',
+            timeout:5000,           
+            data:{
+              category:$(".classification_btn").text(),
+              title:$("#q_title").val(),
+              question:$("#q_content").val()
+            },
+            success:function(data){
+              if(data[0]==='success'){
+                $("#askModal").modal("hide");
+                alert("成功");                
+              }else{
+                alert("失敗");
+              }
+            },
+            error:function(err){
+              alert("資料庫出錯!!");
+            }
+          });
         }                
-      })
+      });
       
     });
 
