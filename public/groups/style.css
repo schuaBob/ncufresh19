@@ -1,6 +1,11 @@
     body {
-        padding: 50px;
-        font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+        font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+    }
+    
+    * {
+        border: 0px;
+        padding: 0px;
+        box-sizing: border-box;
     }
     
     .seaBlueBg {
@@ -17,8 +22,14 @@
     
     .astyle {
         color: white;
-        font-size: 20px;
-        width: 200px;
+        font-size: 40px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.6s;
+    }
+    
+    .astyle:hover {
+        transform: scale(1.4);
     }
     
     .navBar {
@@ -27,18 +38,37 @@
         width: 100%;
         color: white;
         position: absolute;
-        height: 60px;
+        height: 100px;
         line-height: 60px;
         border-bottom: 1px white solid;
         font-family: 'Courier New', Courier, monospace
     }
     
+    .container {
+        margin-left: 200px;
+        margin-top: 100px;
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        text-align: center;
+    }
+    
+    .container2 {
+        margin-left: 400px;
+        display: grid;
+        grid-template-columns: 30% 30%;
+        text-align: center;
+    }
+    
     .character {
-        width: 100px;
-        height: 100px;
         position: relative;
+        display: inline-block;
+        vertical-align: top;
         color: white;
         text-align: center;
+    }
+    
+    div {
+        display: block;
     }
     
     .fa-angle-right {
@@ -50,14 +80,14 @@
     }
     
     .buttonimg {
-        width: 100px;
-        height: 100px;
+        width: 250px;
+        height: 250px;
         border: #D0CECE 5px;
     }
     
     .title {
         height: 50px;
-        width: 140px;
+        width: 300px;
         margin: 5px 10px 30px 10px;
         float: left;
     }
@@ -84,10 +114,52 @@
     
     .small_title {
         color: gray;
+        font-size: 30px;
     }
     
     .title_bar {
+        margin-left: 25px;
+        margin-top: 75px;
         height: 70px;
         width: 100%;
         margin-bottom: 30px;
+    }
+    
+    .sidebar {
+        margin-left: 50px;
+        position: fixed;
+        height: 600px;
+        width: 300px;
+        font-size: 30px;
+        color: #0D4966;
+        overflow: scroll;
+        font-weight: lighter;
+        /*
+        font-weight: bold;
+        */
+    }
+    
+    ul {
+        display: block;
+        list-style-type: none;
+    }
+    
+    .sideli {
+        line-height: 40px;
+        padding-top: 20px;
+    }
+    
+    .sideli :hover {
+        background-color: #FFCC00;
+    }
+    
+    .sidebar2 {
+        margin-left: 300px;
+        position: fixed;
+        height: 600px;
+        width: 400px;
+        font-size: 30px;
+        color: #0D4966;
+        overflow: scroll;
+        font-weight: lighter;
     }

@@ -6,31 +6,35 @@
         <%= title %>
     </title>
     <% include ../layouts/head %>
-    <% include ../layouts/script %>
-    <link rel='stylesheet' href='/groups/style.css' />
+        <% include ../layouts/script %>
+            <link rel='stylesheet' href='/groups/style.css' />
 </head>
 
 <body class="seaBlueBg">
     <% include ../layouts/header %>
-    <nav class="navBar seaBlueBg">新生資訊網</nav>
-    <div class="identity">
-        <div class="character">
-            <a class="astyle" href="/groups/department"><img src="department.PNG" class="buttonimg">系所</a>
+
+        <div class="container">
+            <div class="character">
+                <a class="astyle" style="text-decoration:none;color :white;" href="/groups/department"><img src="department.PNG" class="buttonimg"><br>系所</a>
+            </div>
+            <div class="character">
+                <a class="astyle" style="text-decoration:none;color :white;" href="http://club.adm.ncu.edu.tw/clubs"><img src="club.PNG" class="buttonimg"><br>社團</a>
+            </div>
+            <div class="character">
+                <a class="astyle" style="text-decoration:none;color :white;" href="/groups/association"><img src="association.PNG" class="buttonimg"><br>學生會</a>
+            </div>
+
+
         </div>
-        <div class="character">
-            <a class="astyle" href="http://club.adm.ncu.edu.tw/clubs"><img src="club.PNG" class="buttonimg">社團</a>
+        <div class="container2">
+            <div class="character">
+                <a class="astyle" style="text-decoration:none;color :white;" href="/groups/community"><img src="community.PNG" class="buttonimg"><br>社群</a>
+            </div>
+            <div class="character">
+                <a class="astyle" style="text-decoration:none;color :white;" href="/groups/others"><img src="others.PNG" class="buttonimg"><br>其他學生組織</a>
+            </div>
         </div>
-        <div class="character">
-            <a class="astyle" href="/groups/association"><img src="association.PNG" class="buttonimg">學生會</a>
-        </div>
-        <div class="character">
-            <a class="astyle" href="/groups/community"><img src="community.PNG" class="buttonimg">社群</a>
-        </div>
-        <div class="character">
-            <a class="astyle" href="/groups/others"><img src="others.PNG" class="buttonimg">其他學生組織</a>
-        </div>
-    </div>
-    <% include ../layouts/js %>
+        <% include ../layouts/js %>
 </body>
 
 </html>

@@ -2,23 +2,58 @@
 <html>
 
 <head>
-  <title><%= title %></title>
-  <% include ../layouts/head %>
-  <% include ../layouts/script %>
-  <link rel='stylesheet' href='/groups/style.css' />
+    <title>
+        <%= title %>
+    </title>
+    <% include ../layouts/head %>
+        <% include ../layouts/script %>
+            <link rel='stylesheet' href='/groups/style.css' />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 </head>
 
 <body>
-  <nav class="navBar seaBlueBg">新生資訊網</nav>
-  <div class="title_bar">
+    <% include ../layouts/header %>
 
-    <div class="line"></div>
-    <div class="title">
-      <h1>COMMUNITY<br><span class="small_title">社群</span></h1>
-    </div>
-  </div>
-  <% include ../layouts/js %>
+        <div class="title_bar">
+
+            <div class="line"></div>
+            <div class="title">
+                <h1>COMMUNITY<br><span class="small_title">社群</span></h1>
+            </div>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>中央創遊
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>好聚好散
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>肆倆重
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>中央資管大數據暨<br>&#160&#160&#160程式開發研究社
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>Nature Fun
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>PRACTICEs
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>耕新報
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>Fun青松
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>DREAMs
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>新興催化劑
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>INNOGRATION
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>中央阿卡貝拉社
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>中央大學英嘴社
+                </li>
+
+            </ul>
+        </div>
+        <% include ../layouts/js %>
 </body>
 
 </html>

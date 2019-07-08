@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
     <% include ../layouts/head %>
-    <% include ../layouts/script %>
-    <link rel='stylesheet' href='/groups/style.css' />
-  </head>
-  <body>
+        <% include ../layouts/script %>
+            <link rel='stylesheet' href='/groups/style.css' />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+
+<body>
     <% include ../layouts/header %>
-      <nav class="navBar seaBlueBg">新生資訊網</nav>
-      <div class="title_bar">
-            
+
+        <div class="title_bar">
+
             <div class="line"></div>
-            <div class="title">
-              <h1>OTHERS<br><span class="small_title">其他學生組織</span></h1></div>
-          </div>
-    <% include ../layouts/js %>
-  </body>
+            <div class="title" id="ass">
+                <h1>OTHERS<br><span class="small_title">其他學生組織</span></h1>
+            </div>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>小中大電視台
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>NCU Green
+                </li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>小松鼠志工隊
+
+                </li>
+
+            </ul>
+        </div>
+        <% include ../layouts/js %>
+</body>
+
 </html>
