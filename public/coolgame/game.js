@@ -1,3 +1,8 @@
+  
+
+
+  
+    //------------game---------------------------------
   var stage;
   var fisherman;
   var t_boatmove_left;
@@ -6,12 +11,16 @@
   var b_right = false;
   var fisherman_harpoon; 
   var div;
-  var check=0;
+  var times=0;
   var harpoon_list = new Array() ;
   var animal_list = new Array() ;
   var bubble_list =new Array();
-  var animalsource=[{type:0,image:["bird_1_1.png","bird_1_2.png"],die:"bird_1_die.png"},{type:1,image:["fish_2_1.png","fish_2_2.png"],special:["special_2_1.png","special_2_2.png"],die:"fish_2_die.png"}
-  ,{type:1,image:["fish_3_1.png","fish_3_2.png"],special:["special_3_1.png","special_3_2.png"],die:"fish_3_die.png"},{type:3,image:["fish_4_1.png","fish_4_2.png"],special:["special_4_1.png","special_4_2.png"],die:"fish_4_die.png"},{type:4,image:["fish_5_1.png","fish_5_2.png"],special:["special_5_1.png","special_5_2.png"],die:"fish_5_die.png"}];
+  var animalsource=[
+    {type:0,image:["bird_1_1.png","bird_1_2.png"],die:"bird_1_die.png"},
+    {type:1,image:["fish_2_1.png","fish_2_2.png"],special:["special_2_1.png","special_2_2.png"],die:"fish_2_die.png"},
+    {type:1,image:["fish_3_1.png","fish_3_2.png"],special:["special_3_1.png","special_3_2.png"],die:"fish_3_die.png"},
+    {type:3,image:["fish_4_1.png","fish_4_2.png"],special:["special_4_1.png","special_4_2.png"],die:"fish_4_die.png"},
+    {type:4,image:["fish_5_1.png","fish_5_2.png"],special:["special_5_1.png","special_5_2.png"],die:"fish_5_die.png"}];
   var canvas_width = 800;
   var canvas_height=500;
   var canvas_seaheight=150;
@@ -21,20 +30,38 @@
   createjs.Bitmap.prototype.getheight = function(){
     return this.image.height * this.scaleY; 
   }
+  function arrayRemove(arr, value) {
+
+    return arr.filter(function(ele){
+        return ele != value;
+    });
+ 
+ }
+ 
+//Labby
+var labby_stage;
+function labby_init(){
+  labby_stage = new createjs.Stage(document.getElementById("game_labby"));
+
+}
+
+
+    //------------game---------------------------------
+    
   class Animal  extends createjs.Bitmap{
     constructor(type,special){
       if(special)
         super("/images/coolgame/"+animalsource[type].special[0]);
       else
         super("/images/coolgame/"+animalsource[type].image[0]);
+        this.regX = this.image.width/2;
+        this.regY = this.image.height/2;
       this.special=special;
       this.animaltype = type;
       this.im_index =0;
       this.t_change = setInterval(()=>{
-        if(this.regX==0){
-          this.regX = this.image.width/2;
-          this.regY = this.image.height/2;
-        }
+        this.regX = this.image.width/2;
+        this.regY = this.image.height/2;
         if(this.im_index == animalsource[this.animaltype].image.length-1)
           this.im_index=0;
         else this.im_index++;
@@ -53,50 +80,73 @@
           clearInterval(this.t_changeimage);
           animal_list = arrayRemove(animal_list,this);
           stage.removeChild(this);
-          
         }
         else{
           if(this.dic ==1)this.x += this.speed;
           else this.x-=this.speed;
-      
         }
       }, 20);
-      this.regX = this.image.width/2;
-      this.regY = this.image.height/2;
       stage.addChild(this);
 
     }
     catch(a){
-      this.regX = this.image.width/2;
-      this.regY = this.image.height/2;
       clearInterval(this.t_change);
       clearInterval(this.t_move);
       this.image.src =  "/images/coolgame/"+animalsource[this.animaltype].die;
     }
-    //  static change(){
-    //   if(this.im_index == animalsource[this.animaltype].image.length-1)
-    //     this.im_index=0;
-    //   else this.im_index++;
-    //   this.image.src = "/images/coolgame/"+animalsource[this.animaltype].image[this.im_index];
-    //   if(getrandom(100)<3){
-    //     this.dic *=-1;
-    //     this.scaleX*=-1;
-    //   };
-    // }
-    // static  move() {
-    //   console.log("in");
-    //   if((this.x>canvas_width+100)||(this.x<-100)){
-    //     clearInterval(this.t_move);
-    //     clearInterval(this.t_changeimage);
-    //     stage.removeChild(this);
-        
-    //   }
-    //   else{
-    //     if(this.dic ==1)this.x += 2;
-    //     else this.x-=2;
-    
-    //   }
-    // }
+  }
+  var check=0;
+  class harpoon extends createjs.Bitmap{
+    constructor(){
+      super("/images/coolgame/harpoon.png");
+      this.moveable=false;
+      this.scaleX = this.scaleY =0.16;
+      this.regX=this.image.width/2 ;// harpoon.image.width*harpoon.scaleX/2;
+      this.regY=this.image.height/2;
+      this.x = fisherman.x+25*(fisherman.scaleX<0?1:-1);//-harpoon.image.width*harpoon.scaleX/2;
+      this.y = fisherman.y;//-harpoon.image.height*harpoon.scaleX/2;
+      stage.addChildAt(this,2);
+      this.image.onload=()=>{
+        stage.update();
+      }
+    }
+    move(x,y,c,v){
+      this.moveable =true;
+      this.mx =x;
+      this.my=y;
+      this.mc=c;
+      this.mv=v;
+    }
+    checkboom(){
+      var i=0;
+      for(i=0;i<bubble_list.length;i++){
+        var pt =bubble_list[i].localToLocal(bubble_list[i].image.width/2,bubble_list[i].image.height/2,this); // 传递的是红色小球圆心位置
+        if (this.hitTest(pt.x, pt.y)) {
+          stage.removeChild(bubble_list[i]);
+          this.moveable=false;
+          bubble_list = arrayRemove(bubble_list,bubble_list[i]);  
+          createjs.Tween.get(this).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},2000);
+          return true;
+        }
+      }
+      for(i=0;i<animal_list.length;i++){
+        var pt =this.localToLocal(this.image.width/2,this.image.height,animal_list[i]); // 传递的是红色小球圆心位置
+        if (animal_list[i].hitTest(pt.x, pt.y)) {
+          // harpoon.regX = harpoon.image.width/2;
+          // harpoon.reg = harpoon.image.height;
+          this.moveable=false;
+          harpoon_list= arrayRemove(harpoon_list,this);
+          stage.removeChild(this);
+          var diefish =   animal_list[i];
+          //createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},animal_list[i].animaltype == 0?500:2000);
+          createjs.Tween.get(diefish).to({y:canvas_seaheight,rotation:diefish.dic==1?180:-180},diefish.animaltype == 0?500:2000);
+          animal_list[i].catch();
+          animal_list = arrayRemove(animal_list,animal_list[i]);  
+          return true;
+        }
+      }
+      return false;
+    }
   }
   class fish extends Animal{
     constructor(type,special){
@@ -104,13 +154,15 @@
       this.scale=0.12;
       this.speed=2;
       this.alpha=0.8;
+      this.regX = this.image.width/2;
+      this.regY = this.image.height/2;
       this.dic =1;
       if(getrandom(2) == 1){
-        this.x=-this.getwidth()/2;
+        this.x=-this.getwidth();
         this.dic =1;
       }
       else{ 
-        this.x=this.getwidth()/2+canvas_width;
+        this.x=this.getwidth()+canvas_width;
         this.dic =-1;
         this.scaleX *=-1;
       }
@@ -152,11 +204,9 @@
     fisherman_harpoon.rotation = r_x*(r*180/Math.PI);
     stage.update();
   }
-
   function mousedown(event) {
-    var t_Harpoonmove;
     if(harpoon_list.length>10)return;
-    var shoot_harpoon = createharpoon();
+    var shoot_harpoon = new harpoon();
     var x = stage.mouseX- (shoot_harpoon.x );
     var y = stage.mouseY - (shoot_harpoon.y );
     var r_x=-1;
@@ -164,79 +214,9 @@
     var c = Math.pow(x*x+y*y,0.5);
     var r = Math.acos(y/c);
     shoot_harpoon.rotation = r_x*(r*180/Math.PI);
-    t_Harpoonmove = setInterval( ()=> { Harpoonmove(x,y,c,10,shoot_harpoon,t_Harpoonmove); }, 20);
+    shoot_harpoon.move(x,y,c,10);
+    harpoon_list.push(shoot_harpoon);
   }
-
-  function createharpoon() {
-    var harpoon = new createjs.Bitmap("/images/coolgame/harpoon.png");
-    harpoon_list.push(harpoon);
-    harpoon.scaleX = harpoon.scaleY =0.16;
-    harpoon.regX=harpoon.image.width/2 ;// harpoon.image.width*harpoon.scaleX/2;
-    harpoon.regY=harpoon.image.height/2;
-    harpoon.x = fisherman.x+25;//-harpoon.image.width*harpoon.scaleX/2;
-    harpoon.y = fisherman.y;//-harpoon.image.height*harpoon.scaleX/2;
-    stage.addChildAt(harpoon,2);
-    harpoon.image.onload=()=>{
-      stage.update();
-    }
-    return harpoon;
-  }
-
-  function Harpoonmove(x,y,c,v,harpoon, timer) {
-    if( harpoon.y>canvas_seaheight){
-      v=(500/harpoon.y)*1.8;
-      if( harpoon.y>400){
-        v=(500/harpoon.y)*1.4;
-      }
-    }
-    check++;
-    if(check %5 == 0 && harpoon.x+harpoon.getheight()/2<canvas_width &&  harpoon.x+harpoon.getheight()/2>0){
-      check=0;
-      for(i=0;i<bubble_list.length;i++){
-        var pt =bubble_list[i].localToLocal(bubble_list[i].image.width/2,bubble_list[i].image.height/2,harpoon); // 传递的是红色小球圆心位置
-        if (harpoon.hitTest(pt.x, pt.y)) {
-          stage.removeChild(bubble_list[i]);
-          bubble_list = arrayRemove(bubble_list,bubble_list[i]);  
-          createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},2000);
-          clearInterval(timer);
-          return;
-        }
-      }
-      for(i=0;i<animal_list.length;i++){
-        var pt =harpoon.localToLocal(harpoon.image.width/2,harpoon.image.height,animal_list[i]); // 传递的是红色小球圆心位置
-        if (animal_list[i].hitTest(pt.x, pt.y)) {
-          // harpoon.regX = harpoon.image.width/2;
-          // harpoon.reg = harpoon.image.height;
-          harpoon_list= arrayRemove(harpoon_list,harpoon);
-          stage.removeChild(harpoon);
-          var diefish =   animal_list[i];
-          //createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},animal_list[i].animaltype == 0?500:2000);
-          createjs.Tween.get(diefish).to({y:canvas_seaheight,rotation:diefish.dic==1?180:-180},diefish.animaltype == 0?500:2000);
-          animal_list[i].catch();
-          animal_list = arrayRemove(animal_list,animal_list[i]);  
-          clearInterval(timer);
-          return;
-        }
-      }
-    }
-    harpoon.x += x*v/c;
-    harpoon.y += y*v/c;
-    if (harpoon.y-harpoon.image.height*harpoon.scaleY/2 >= stage.canvas.height || harpoon.y+harpoon.image.height*harpoon.scaleY/2 <= 0 || harpoon.x-harpoon.image.height*harpoon.scaleX/2 >= stage.canvas.width||harpoon.x+harpoon.image.height*harpoon.scaleX/2 <= 0) {
-      clearInterval(timer);
-      stage.removeChild(harpoon);
-      harpoon_list=arrayRemove(harpoon_list,harpoon);
-    }
-    
-    stage.update();
-  }
-  function arrayRemove(arr, value) {
-
-    return arr.filter(function(ele){
-        return !(ele === value);
-    });
- 
- }
- 
   function boatmove_left() {
     if(fisherman.x-fisherman.getwidth()/2<0)return;
     fisherman.x  -=2;
@@ -301,12 +281,42 @@
       }
     })
   }
+  function update(){
+    times++;
+    i=0;
+    for(i=0;i<harpoon_list.length;i++){
+      if( harpoon_list[i].moveable){
+        if(times %3 == 0  && harpoon_list[i].x+harpoon_list[i].getheight()/2<canvas_width &&  harpoon_list[i].x+harpoon_list[i].getheight()/2>0){
+          if(harpoon_list[i].checkboom()){
+            return;
+          }
+          if( harpoon_list[i].y>canvas_seaheight){
+            harpoon_list[i].mv=(500/harpoon_list[i].y)*1.8;
+            if( harpoon_list[i].y>400){
+              harpoon_list[i].mv=(500/harpoon_list[i].y)*1.4;
+            }
+          }
+        }
+        if (harpoon_list[i].y-harpoon_list[i].image.height*harpoon_list[i].scaleY/2 >= stage.canvas.height || harpoon_list[i].y+harpoon_list[i].image.height*harpoon_list[i].scaleY/2 <= 0 || harpoon_list[i].x-harpoon_list[i].image.height*harpoon_list[i].scaleX/2 >= stage.canvas.width||harpoon_list[i].x+harpoon_list[i].image.height*harpoon_list[i].scaleX/2 <= 0) {
+          this.moveable=false;
+          stage.removeChild(harpoon_list[i]);
+          harpoon_list=arrayRemove(harpoon_list,harpoon_list[i]);
+          return;
+        }
+        harpoon_list[i].x += harpoon_list[i].mx*harpoon_list[i].mv/harpoon_list[i].mc;
+        harpoon_list[i].y += harpoon_list[i].my*harpoon_list[i].mv/harpoon_list[i].mc;
+      }
+      stage.update();
+    }
+  }
   function openfish(){
     createjs.Ticker.addEventListener("tick",function(event){
       if(!event.paused){
+        check++;
+        if(check == 3000000)check=0;
         rnd =getrandom(10000);
         if(rnd<200){
-          if(rnd<50)
+          if(rnd<20)
           animal_list.push(new fish(getrandom(4)+1,true));
           else
           animal_list.push(new fish(getrandom(4)+1,false));
@@ -334,8 +344,9 @@
     }
   }
 
-  function init() {
+  function game_init() {
     var backbround = new createjs.Bitmap("/images/coolgame/background.png");
+   // animalsource[0].image.push(new image(""));
     fisherman = new createjs.Bitmap("/images/coolgame/fisherman.png");
     var sea = new createjs.Bitmap("/images/coolgame/sea.png");
     div = document.getElementById("game");
@@ -351,7 +362,7 @@
     fisherman.y = canvas_seaheight-25;
     fisherman.regX = fisherman.image.width/2;
     fisherman.regY = fisherman.image.height/2;
-    fisherman_harpoon = createharpoon();
+    fisherman_harpoon = new harpoon();
     sea.scaleX=sea.scaleY=0.5;
     sea.alpha=0.4;
     stage.addChild(sea);
@@ -362,6 +373,7 @@
     openbubble();
     openfish();
     openbird();
-    //new fish(1);
-    //stage.update();
+    setInterval(() => {
+      update();
+    }, 20);
   }
