@@ -13,21 +13,27 @@
 
 <body>
         <% include ../layouts/header %>
-        <main>
+        <main id="main">
                 <% /*編輯框*/ %>
                 <% include edit %>
 
                 <% /*研究生*/%>
+                <div class="nav">
+                        <div><a href="/documents"><img src="return.png" class="return"></a></div>
+                        <div class="sign">
+                                <p class="p1">FRESH</p>
+                                <p class="p2">新生週</p>
+                        </div>
+                </div>
                 <div class="graduate" id="graduate">
                         <div class="sidenav">
                                 <a href="/documents/graduate_must"><img src="circle.png" class="icon"></a>
                                 <a href="/documents/graduate_fresh"><img src="circle.png" class="icon"></a>
-                                <a href="/documents"><img src="return.png" class="return"></a>
+                                
                         </div>
 
                         <div class="must" id="must">
                                 <div class="sidenav2">
-                                        <img src="must.jpg" class="sign">
                                         <p class="option" id="29">＞ 社團博覽會</p>
                                         <p class="option" id="30">＞ 新生健康檢查</p>
                                 </div>
