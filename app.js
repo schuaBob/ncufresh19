@@ -16,7 +16,7 @@ var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
 
 // cache views
-app.set('view cache', true);
+app.set('view cache', false);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,10 +36,10 @@ mongoose.connect('mongodb://localhost:27017/ncufresh19', {
 });
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(compression());
-app.use(minify());
-app.use(helmet());
-app.use(flash());
+// app.use(compression());
+// app.use(minify());
+// app.use(helmet());
+// app.use(flash());
 app.use(session({
   secret: 'ThisIsNcuFresh19Speaking.',
   name: 'ncufresh.session.id',
