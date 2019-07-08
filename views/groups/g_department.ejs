@@ -6,22 +6,116 @@
         <%= title %>
     </title>
     <% include ../layouts/head %>
-    <% include ../layouts/script %>
-    <link rel='stylesheet' href='/groups/style.css' />
+        <% include ../layouts/script %>
+            <link rel='stylesheet' href='/groups/style.css' />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
 <body>
-    <nav class="navBar seaBlueBg">新生資訊網</nav>
-    <div class="title_bar">
-        <div class="line"></div>
-        <div class="title">
-            <h1>DEPARTMENT<br><span class="small_title">系所</span></h1>
-        </div>
-    </div>
-    <div>
+    <% include ../layouts/header %>
 
-    </div>
-    <% include ../layouts/js %>
+        <div class="title_bar">
+            <div class="line"></div>
+            <div class="title">
+                <h1>DEPARTMENT<br><span class="small_title">系所</span></h1>
+            </div>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li class="sideli ind"><i class="fas fa-angle-right"></i>工學院</li>
+                <li class="sideli chi"><i class="fas fa-angle-right"></i>文學院</li>
+                <li class="sideli the"><i class="fas fa-angle-right"></i>理學院</li>
+                <li class="sideli dick"><i class="fas fa-angle-right"></i>地科學院</li>
+                <li class="sideli haka"><i class="fas fa-angle-right"></i>客家學院</li>
+                <li class="sideli ie"><i class="fas fa-angle-right"></i>資電學院</li>
+                <li class="sideli man"><i class="fas fa-angle-right"></i>管理學院</li>
+                <li class="sideli hp"><i class="fas fa-angle-right"></i>生醫理工學院</li>
+            </ul>
+        </div>
+        <div class="sidebar2 ind">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>化學工程與材料工程學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>土木工程學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>機械工程學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>工學院學士班</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>能源工程研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>環境工程研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>營建管理研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>材料科學與工程研究所</li>
+            </ul>
+        </div>
+        <div class="sidebar2 chi">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>中國文學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>英美語文學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>法國語文學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>哲學研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>藝術學研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>歷史研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>學習與教學研究所</li>
+            </ul>
+        </div>
+        <div class="sidebar2 the">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>物理學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>數學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>化學學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>光電科學與工程學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>理學院學士班</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>統計研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>天文研究所</li>
+            </ul>
+        </div>
+        <div class="sidebar2 dick">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>地球科學學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>大氣科學學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>地球科學學院學士班</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>太空科學研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>應用地質研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>水文與海洋科學研究所</li>
+
+            </ul>
+        </div>
+        <div class="sidebar2 haka">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>客家語文暨社會科學學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>法律與政府研究所</li>
+            </ul>
+        </div>
+        <div class="sidebar2 ie">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>電機工程學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>資訊工程學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>通訊工程學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>資訊電機學院不分系學士班</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>網路學習科技研究所</li>
+            </ul>
+        </div>
+        <div class="sidebar2 man">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>企業管理學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>資訊管理學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>財務金融學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>經濟學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>會計研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>產業經濟研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>人力資源管理研究所</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>工業管理研究所</li>
+            </ul>
+        </div>
+        <div class="sidebar2 hp">
+            <ul>
+                <li class="sideli"><i class="fas fa-angle-right"></i>生命科學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>生醫科學與工程學系</li>
+                <li class="sideli"><i class="fas fa-angle-right"></i>認知神經科學研究所</li>
+
+            </ul>
+        </div>
+        <script src="/groups/js/department.js"></script>
+
+        <% include ../layouts/js %>
+
 </body>
 
 </html>
