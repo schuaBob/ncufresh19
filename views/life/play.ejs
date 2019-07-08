@@ -19,8 +19,11 @@
         <% if(user && user.role === 'admin') { %>
             <botton type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</botton>
         <% } %>
-        <h3>PLAY <br> 哪裡好玩 </h3>
-        <main>
+        <div class="mainTitle">
+            <h2>PLAY</h2>
+            <h3>哪裡好玩</h3>
+        </div>
+        <main id="main">
              <!--content-->
             <div class="content">
                 <div class="playPicture">
