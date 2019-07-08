@@ -7,10 +7,11 @@
 #inddexPage1,#indexPage2,#indexPage3{
     position: relative;
 }
-.container{
-    position: absolute;
-    top: 0;
-    z-index: 500;
+#indexPage2 {
+    top: -60px;
+    background-image: url("/index/首頁2.png");
+    background-repeat: repeat;
+    background-size: cover; 
 }
 main {
     position: relative;
@@ -34,13 +35,56 @@ main {
 #indexLogo{
     position: absolute;
     z-index: 500;
-    width: 350px;
-    left: calc(50% - 180px);
+    width: 28%;
+    left: 36%;
     top: 20px;
 }
 #fullpage{
     position: absolute;
-
 }
-
-
+#secondSection{
+    position: relative;
+    padding-bottom: 60px;
+    z-index: 500;
+    bottom:0;
+}
+#secondSection .row {
+    height: 100%;
+}
+.card{
+    margin: 0;
+}
+.col-lg{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.card-img{
+    margin-top: 2%;
+    padding:12%;
+}
+.newsTime{
+    position: relative;
+    float: right;
+}
+#news{
+    display: block;
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    max-width: 600px;
+}
+#news-title{
+    position: relative;
+}
+#news-body{
+    position: relative;
+    height: 330px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#carouselExampleIndicators{
+    max-width: 650px;
+    display: block;
+    margin: 0 auto;
+}

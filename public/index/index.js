@@ -1,7 +1,9 @@
 
 $(document).ready(() => {
     $('#fullpage').fullpage({
-        anchors: ['firstPage', 'secondPage', 'thirdPage']
+        anchors: ['firstPage', 'secondPage', 'thirdPage'],
+        slideSelector: '.fpslide',
+        scrollOverflow:true
     });
 
     //methods

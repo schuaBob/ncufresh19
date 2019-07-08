@@ -118,6 +118,7 @@ app.post('/ckUpload', multerUpload.single('upload'),(req, res, next) => {
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/js', express.static(__dirname + '/node_modules/fullpage.js/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/fullpage.js/vendors'));
 app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist/umd'));
 app.use('/js', express.static(__dirname + '/node_modules/build'));
 app.use('/js', express.static(__dirname + '/node_modules/velocity-animate'));
