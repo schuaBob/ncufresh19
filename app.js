@@ -16,7 +16,7 @@ var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
 
 // cache views
-app.set('view cache', true);
+app.set('view cache', false);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,17 +36,17 @@ mongoose.connect('mongodb://localhost:27017/ncufresh19', {
 });
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(compression());
-app.use(minify());
-app.use(helmet());
-app.use(flash());
+// app.use(compression());
+// app.use(minify());
+// app.use(helmet());
+// app.use(flash());
 app.use(session({
   secret: 'ThisIsNcuFresh19Speaking.',
   name: 'ncufresh.session.id',
   resave: false,  /* 不要每次讀取就存回去一次 */
   saveUninitialized: false, /* 除非做儲存的動作，不然不要為每個使用者都存session */
-  store: new MongoStore({ 
-    mongooseConnection: mongoose.connection,  
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
     touchAfter: 24 * 3600   /* 沒動session的話，二十四小時之後再去動它 */
   })
 }));
@@ -68,7 +68,6 @@ var campus = require('./routes/campus');
 var life = require('./routes/life');
 var groups = require('./routes/groups');
 var personal = require('./routes/personal');
-var login = require('./routes/login');
 var link = require('./routes/link');
 
 // 首頁
@@ -91,34 +90,57 @@ app.use('/life', life);
 app.use('/groups', groups);
 // 個人專區
 app.use('/personal', personal);
-// 登入畫面
-app.use('/login', login);
 // 常用連結
 app.use('/link', link);
+
+//multer settings
+var multer = require('multer');
+var multerUpload = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, `${__dirname}/public/imguploads`);
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    }
+  })
+})
+//ckfinder
+app.post('/ckUpload', multerUpload.single('upload'),(req, res, next) => {
+  var imgurl = `/imguploads/${req.file.filename}`;
+  var resJson = {
+    uploaded:true,
+    url : imgurl
+  }
+  res.json(resJson);
+})
 //css and js
-app.use('/js',express.static(__dirname + '/node_modules/bootstrap/dist/js'));
-app.use('/js',express.static(__dirname + '/node_modules/jquery/dist'));
-app.use('/js',express.static(__dirname + '/node_modules/fullpage.js/dist'));
-app.use('/js',express.static(__dirname + '/node_modules/popper.js/dist/umd'));
-app.use('/css',express.static(__dirname + '/node_modules/bootstrap/dist/css'));
-app.use('/css',express.static(__dirname + '/node_modules/fullpage.js/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/fullpage.js/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist/umd'));
+app.use('/js', express.static(__dirname + '/node_modules/build'));
+app.use('/js', express.static(__dirname + '/node_modules/velocity-animate'));
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/css', express.static(__dirname + '/node_modules/fullpage.js/dist'));
+
 
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('index/error', { });
+  res.render('index/error', {});
 });
 
 module.exports = app;

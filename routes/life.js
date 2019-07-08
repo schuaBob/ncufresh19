@@ -85,8 +85,9 @@ router.get('/study/chst', function(req, res, next) {
 
 /* update live page content */
 router.post('/addLiveContent', function(req, res, next) {
-  var cuted = req.file.path.split("/"),
-      pathed = cuted[2] + "/" + cuted[3];
+  /*
+  var cuted = req.file.split('/'),
+      pathed = cuted[2] + "/" + cuted[3];*/
   var newlive = new live({
     mainTitle: req.body.maintitle,
     subTitle: req.body.subtitle,

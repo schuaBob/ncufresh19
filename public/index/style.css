@@ -1,12 +1,19 @@
 .indexPage{
     height: 100vmin;
     width: 100vmax;
-    position: absolute;
+    position: relative;
     bottom: 60px;
+}
+#inddexPage1,#indexPage2,#indexPage3{
+    position: relative;
+}
+.container{
+    position: absolute;
+    top: 0;
+    z-index: 500;
 }
 main {
     position: relative;
-    top: 60px;
     width: 100%;
     height: calc(100% - 60px);
 }
@@ -32,7 +39,8 @@ main {
     top: 20px;
 }
 #fullpage{
-    position: relative;
+    position: absolute;
+
 }
 
 

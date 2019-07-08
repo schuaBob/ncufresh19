@@ -10,23 +10,35 @@ var request = require('request');
 const CLIENT_ID = "Nzc3NzY0MmYtMDM2Ny00MjJhLWIxZTAtYTJmYzFlMDQyYzY4";
 const CLIENT_SECRET = "5e7a8fbddb8f00a3c4c46defd331d412733f08bf893a8194a236fe915c57d11255e1b6c21567fe0c60647e1996a64cf1e6bd302163f18f978c23f0008356c5e7";
 
-// passport.use('login', new LocalStrategy({
-//     usernameField: 'id',
-//     passwordField: 'password',
-//     passReqToCallback: true
-//   }, function(req, id, password, done){
-//     Users.findOne({ id: id }, function(err, user){
-//       if(err) done(err);
-//       if(!user){
-//         console.log(id + "不存在");
-//         //euqual to req.flash('error', "使用者名稱或密碼錯誤");
-//         return done(null, false, {
-//           message: "使用者名稱或密碼錯誤"
-//         });
-//       }
-//     });
-//   }
-// ))
+passport.use(new LocalStrategy({
+    usernameField: 'id',
+    passwordField: 'password',
+    passReqToCallback: true
+  }, function(req, id, password, done){
+    Users.findOne({ id: id }, function(err, user){
+      if(err) done(err);
+      if(!user){
+        console.log(id + "不存在");
+        //euqual to req.flash('error', "使用者名稱或密碼錯誤");
+        return done(null, false, {
+          message: "使用者名稱或密碼錯誤"
+        });
+      }
+      user.comparePassword(password, user.password, function(err, isMatch){
+        if(err) 
+          return done(err);
+        if(isMatch)  
+          return done(null, user, console.log(user.id + " login Successfully"));
+        else{
+          console.log(id + '密碼錯誤');
+          return done(null, false, {
+            message: "使用者名稱或密碼錯誤"
+          });
+        }
+      });
+    });
+  }
+))
 
 passport.serializeUser(function (user, done) {
   done(null, user._id);
@@ -48,7 +60,43 @@ router.get('/comingsoon', function (req, res, next) {
   });
 });
 
+router.get('/login', checkUser.isAllowtoLogin, function(req, res, next) {
+  res.render('login/index', { title: '新生知訊網' });
+});
+
+router.post('/login', checkUser.isAllowtoLogin, function(req, res, next){
+  let grade = req.body.id.substring(0, 3);
+  if(grade !== '108')
+    return res.redirect('auth/provider');
+  Users.findOne({ 'id': req.body.id }, function(err, user){
+    if(err) res.redirect('/login');
+    if(user && user.password)
+      res.redirect('/password?id=' + req.body.id);
+    else
+      res.redirect('/register?id=' + req.body.id);
+  })
+});
+
+router.get('/password', checkUser.isAllowtoLogin, function(req, res, next){
+  res.render('login/password', { title: '新生知訊網' });
+});
+
+router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
+
+router.get('/register', checkUser.isAllowtoLogin, function(req, res, next){
+  res.render('login/register', { title: '新生知訊網' });
+});
+
+router.post('/regiser', checkUser.isAllowtoLogin, function(req, res, next){
+
+})
+
 router.get('/logout', function(req, res, next){
+  req.logout();
   req.session.destroy();
   res.redirect('/');
 });
@@ -104,32 +152,45 @@ router.get('/auth/provider/callback', function(req, res, next){
       if(!personalObj.id){
         console.log(personalObj.id + ' is not allowed to login');
       }
-      Users.findOne({ 'id': personalObj.id }, function(err, obj){
+      Users.findOne({ 'id': personalObj.id }, function(err, user){
         if(err) next(err);
         // If found, login
-        // else, create user
+        if(user){
+          req.login(user, function(err){
+            if(err) return next(err);
+            console.log(user.id + "登入 via Oauth");
+            res.redirect('/');
+          });
+        } else{ // else, create user
+          Users.createUser(new Users({
+            id: personalObj.id,
+            name: personalObj.name,
+            unit: personalObj.unit,
+          }), function(err, user){
+            if (err) return next(err);
+            req.login(user, function (err) {
+              if (err) return next(err);
+              console.log(user.id + " 建立via OAuth");
+              console.log(personalObj.id + ' 登入via OAuth')
+              res.redirect('/');
+            });
+          });
+        }
       });
     });
   });
 });
 
-router.post('/login', function(req, res, next){
-  // let grade = req.body.id.substring(0, 3);
-  // if(grade !== 108)
-  //   return res.redirect('auth/provider');
-  Users.findOne({ "id": req.body.id }, function(err, user){
-    console.log(user);
+router.get('/adduser', function(req, res, next){
+  Users.createUser(new Users({
+    id: "108000001",
+    password: "111",
+    unit: "csie",
+    name: "eugene"
+  }), function(err, user){
     if(err) next(err);
-    if(user && user.password === req.body.password){
-      req.session.regenerate(function(err){
-        if(err) next(err);
-        req.session.id = user.id;
-        res.redirect("/login");
-      });
-    } else {
-      res.redirect("/login");
-    }
+    res.redirect('/login');
   })
-});
+})
 
 module.exports = router;

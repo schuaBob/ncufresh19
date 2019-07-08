@@ -4,11 +4,9 @@
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
                 document.getElementById("mySidenav").style.width = "40%";
-                document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
                 $("#mySidenav").removeClass("closed").addClass("opened");
             } else if ($("#mySidenav").hasClass("opened")) {
                 document.getElementById("mySidenav").style.width = "0";
-                document.body.style.backgroundColor = "white";
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
         })
