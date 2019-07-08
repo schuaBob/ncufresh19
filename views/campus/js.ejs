@@ -235,7 +235,6 @@
                 }
             }
             $('.mapmove').stop().velocity(properties1, 400)
-            if ($(window).width() > 770) $('.title_bar').stop().velocity(properties2, 400)
         })
 
         $('#closemainlist').click(function () {
@@ -265,7 +264,6 @@
             properties2 = {
                 'margin-left': '-20%'
             };
-            if ($(window).width() > 770) $('.title_bar').stop().velocity(properties2, 400)
         })
 
         $('.main_list_detail li').hover(function () {
@@ -317,4 +315,9 @@
 
     })
     $('.indexelepic').tooltip();
+    $('.elelist').hover(function () {
+        $(this)[0].style.color = '#0E4A65';
+    }, function () {
+        $(this)[0].style.color = '#f0f8ff';
+    })
 </script>

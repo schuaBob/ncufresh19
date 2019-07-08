@@ -62,7 +62,7 @@ h1 {
 
 #indexmodal .modal-body {
   max-height: calc(178px + 3658 / 5781 * (100vw - 32px));
-  margin-top: auto;
+  margin-top: 3%;
   margin-bottom: 15px;
   padding: 0%;
 }
@@ -88,7 +88,7 @@ h1 {
 #indexmodal .modal-dialog {
   width: 60%;
   max-width: none;
-  margin-top: 5%;
+  margin-top: 5vh;
   min-height: calc(100vh - 56px);
 }
 
@@ -168,6 +168,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-color: #FFF9DC !important;
 }
 
 #List_index {
@@ -278,7 +279,6 @@ body {
 }
 
 main {
-  padding-top: calc((100vh - 180px - 69vw * 996 / 2000) / 2);
   padding-bottom: calc((100vh - 180px - 69vw * 996 / 2000) / 2);
 }
 
@@ -466,7 +466,9 @@ li {
 }
 
 .title_bar {
-  margin-left: -20%;
+  padding-left: 5%;
+  width: 100%;
+  background-color: white;
   position: absolute;
 }
 
@@ -512,6 +514,20 @@ li {
   width: 20%;
 }
 
+@media only screen and (min-width: 770px) {
+
+  .up {
+    position: relative;
+    top: -5%;
+  }
+
+  .down {
+    position: relative;
+    top: 15%;
+  }
+
+}
+
 @media only screen and (max-width: 770px) {
   .modal {
     z-index: 4001;
@@ -531,6 +547,7 @@ li {
 
   .modal-content {
     min-width: 100vw;
+    height: calc(50vw * 2.5);
   }
 
   .modal-body {
@@ -565,6 +582,8 @@ li {
   }
 
   main {
+    position: relative;
+    top: 60px;
     min-height: calc(100vh - 80px);
     height: calc(69vw * 996 / 2000 + 8vw / 2);
     padding: 0;
@@ -657,11 +676,6 @@ li {
     padding: 0;
     width: 100%;
     position: relative;
-  }
-
-  .title_bar {
-    margin-left: 5%;
-    position: absolute;
   }
 
   .sailor {
