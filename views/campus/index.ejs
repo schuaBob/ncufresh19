@@ -3,8 +3,8 @@
 
 <head>
   <title><%= title %></title>
-  
-  
+
+
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% include ../layouts/head %>
@@ -14,8 +14,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
 
 <body>
+  <style>
+    #header {
+      position: relative;
+    }
+  </style>
   <% include ../layouts/header %>
-  <div class="main">
+  <div class="title_bar">
+    <div class="line"></div>
+    <div class="title">
+      <span class="big_title">MAP</span>
+      <span class="small_title">校園地圖</span>
+    </div>
+  </div>
   <main id="campusmain">
     <div class="main_list_detail collapse">
       <li id="listtitle">title</li>
@@ -493,15 +504,7 @@
 
       </ul>
     </div>
-
     <div class="mapmove">
-      <div class="title_bar">
-        <div class="line"></div>
-        <div class="title">
-          <span class="big_title">MAP</span>
-          <span class="small_title">校園地圖</span>
-        </div>
-      </div>
       <div class="mapshadow">
         <img src="/campus/backgroud.png" id="map">
         <img title="" pictitle="松苑餐廳" val="3" class="indexelepic modalshow" src="/campus/5b61607bbd7e25092ba0224c.png"
@@ -862,34 +865,34 @@
     <div class="bottom_list">
       <img class="sailor" src="/campus/SAILOR2.png">
       <ul id="List_index">
-        <li class="Main_listele1" val="1">
+        <li class="Main_listele1 up" val="1">
           <img src="1BTN.png" alt="">
         </li>
-        <li class="Main_listele2" val="2">
+        <li class="Main_listele2 down" val="2">
           <img src="2BTN.png" alt="">
         </li>
-        <li class="Main_listele3" val="3">
+        <li class="Main_listele3 up" val="3">
           <img src="3BTN.png" alt="">
         </li>
-        <li class="Main_listele4" val="4">
+        <li class="Main_listele4 down" val="4">
           <img src="4BTN.png" alt="">
         </li>
-        <li class="Main_listele5" val="5">
+        <li class="Main_listele5 up" val="5">
           <img src="5BTN.png" alt="">
         </li>
-        <li class="Main_listele6" val="6">
+        <li class="Main_listele6 down" val="6">
           <img src="6BTN.png" alt="">
         </li>
-        <li class="Main_listele7" val="7">
+        <li class="Main_listele7 up" val="7">
           <img src="7BTN.png" alt="">
         </li>
-        <li class="Main_listele8" val="8">
+        <li class="Main_listele8 down" val="8">
           <img src="8BTN.png" alt="">
         </li>
       </ul>
     </div>
 
-    <div class="modal fade" id="indexmodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="indexmodal" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 50px;">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -928,8 +931,6 @@
           </div>
         </div>
       </div>
-    </div>
-
   </main>
   <% include ../layouts/js %>
   <% include js%>
