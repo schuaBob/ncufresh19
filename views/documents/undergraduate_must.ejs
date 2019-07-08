@@ -16,6 +16,7 @@
 
         <% /*大學生*/ %>
         <div class="undergraduate" id="undergraduate">
+                <button type="button" class="btn btn-primary" id=new_data>新增</button>
             <div class="sidenav">
                 <a href="/documents/undergraduate_must"><img src="circle.png" class="icon"></a>
                 <a href="/documents/undergraduate_fresh"><img src="circle.png" class="icon"></a>
@@ -25,7 +26,10 @@
 
             <div class="must" id="must">
                 <div class="sidenav2">
-                    <img src="must.jpg" class="sign">
+                        <div class="sign">
+                                <h2>MUST</h3>
+                                <h3>入學須知</h4>
+                        </div>
                     <p class="option" id="1">＞ 學籍登陸</p>
                     <p class="option" id="2">＞ 住宿注意事項</p>
                     <p class="option" id="3">＞ 兵役注意資料</p>
@@ -34,13 +38,14 @@
                     <p class="option" id="6">＞ 註冊通知、日程表</p>
                     <p class="option" id="7">＞ 學費減免及助學金</p>
                 </div>
+                
                 <div class="box">
-                    <div class="title" id="show_title">
-
-                    </div>
-                    <div class="content" id="show_content">
-
-                    </div>
+                        <div class="title" >
+                            <p id="show_title"></p>
+                        </div>
+                        <div class="content" >
+                            <p id="show_content"></p>
+                        </div>
                 </div>
             </div>
 

@@ -1,4 +1,5 @@
 <script>
+    var textid = 0;
     $(document).ready(function () {
             //身分選擇動畫
             $(".identity").show();
@@ -17,17 +18,60 @@
             },function(){
                 $(this).removeClass("big");
             });
-
-
-            //所有選項
+/*--------------------------------------管理者---------------------------------------------*/
+            
+            
+            //選擇新增或修改
             $(".option").mousedown(function(){
+                $("#edit_modify").modal("show");
+                textid = this.id;
+                $.ajax({
+                    url: "/documents/require_data/" + textid,
+                    method: 'get',
+                    error: function (err) {
+                        console.log("沒拿到");
+                    },
+                    success: function (data) {
+                        console.log("拿到了");
+                        $("#show_title").append(data.title);
+                        //CKEDITOR.instances.edit_content.setData(data.content);
+                        $("#show_content").append("data.content");
+                        }
+                });
+            })
 
-                //取得選項id
-                let textid = this.id; 
+            //新增
+
+            $("#new_data").click(function (){
                 $("#edit").modal("show");
 
+
+                $.ajax({
+                    url: "/documents/require_data/" + textid,
+                    method: 'get',
+                    error: function (err) {
+                        console.log(err);
+                    },
+                    success: function (data) {
+                        console.log("有喔");
+                        $("#edit_title").val(data.title);
+                        //CKEDITOR.instances.edit_content.setData(data.content);
+                        $("#edit_content").val(data.content);
+                        }
+                });
+
+                $("#save").click(function(){
+                    $("#modify").modal("hide");
+                });
+            })
+            
+            //修改
+            $("#modify_data").click(function (){
+                //let textid = this.id; 
+                $("#modify").modal("show");
+
                 //將js的變數給html裡的form action
-                $('#add').attr('action', "/documents/edit/" + textid);
+                $('#change').attr('action', "/documents/modify/" + textid);
 
                 $.ajax({
                     url: "/documents/require_data/" + textid,
@@ -37,15 +81,32 @@
                     },
                     success: function (data) {
                         
-                        $("#edit_title").val(data.title);
+                        $("#modify_title").val(data.title);
                         //CKEDITOR.instances.edit_content.setData(data.content);
-                        $("#edit_content").val(data.content);
+                        $("#modify_content").val(data.content);
                         }
                 });
 
                 $("#save").click(function(){
-                    $("#edit").modal("hide");
+                    $("#modify").modal("hide");
                 });
-                })
+            })
+
+        
+            //調整modal跳出來的位置
+            $('#edit').on('show.bs.modal', function () {
+                $(this).css("top","20%");
+            })
+            $('#modify').on('show.bs.modal', function () {
+                $(this).css("top","20%");
+            })
+            $('#edit_modify').on('show.bs.modal', function () {
+                $(this).css("top","20%");
+            })
+
     })
+    //新增的時候將id傳到modal
+    function getid(){
+        $('input[name=id]').val(textid);
+    }
 </script>
