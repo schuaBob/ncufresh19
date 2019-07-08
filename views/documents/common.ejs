@@ -8,20 +8,33 @@
     </head>
     <body>
         <% include ../layouts/header %>
-        <main>
+        <main id="main">
             <% /*編輯框*/ %>
             <% include edit %>
             
             <% /*共同事項*/ %>
             <div class="common" id="common">
+                <div class="nav">
+                        <div><a href="/documents"><img src="return.png" class="return"></a></div>
+                        <div class="sign">
+                                <p class="p1">OTHER</p>
+                                <p class="p2">其他</p>
+                        </div>
+                </div>
+                <div class="box">
+                        <div class="title" id="show_title">
+
+                        </div>
+                        <div class="content" id="show_content">
+
+                        </div>
+                    </div> 
                 <div class="sidenav">
                         <a href="/documents/common"><img src="circle.png" class="icon"></a>
-                        <a href="/documents"><img src="return.png" class="return"></a>
                 </div>
       
                 <div class="must" id="must">
                     <div class="sidenav2">
-                        <img src="must.jpg" class="sign">
                         <p class="option" id="31">＞ 108校曆</p>
                         <p class="option" id="32">＞ 中大圖書館</p>
                         <p class="option" id="33">＞ 學生掛號郵件</p>
@@ -30,14 +43,7 @@
                         <p class="option" id="36">＞ 智慧財產權宣導</p>
                         <p class="option" id="37">＞ LMS/ee-CLASS</p>
                     </div>
-                    <div class="box">
-                        <div class="title" id="show_title">
-
-                        </div>
-                        <div class="content" id="show_content">
-
-                        </div>
-                    </div>     
+                        
                 </div>
           </div>
         </main>

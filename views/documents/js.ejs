@@ -9,18 +9,24 @@
                 $(this).removeClass("big");
             });
             $(".gra").hover(function(){
-                $(this).addClass("big");
+                $(this).addClass("big link");
             },function(){
                 $(this).removeClass("big");
             });
             $(".com").hover(function(){
-                $(this).addClass("big");
+                $(this).addClass("big link");
             },function(){
                 $(this).removeClass("big");
             });
 /*--------------------------------------管理者---------------------------------------------*/
             
-            
+            /*CKEDITOR.replace('add_text', {           
+                    filebrowserUploadUrl: '/uploader',
+                });
+            CKEDITOR.replace('change_text', {           
+                    filebrowserUploadUrl: '/uploader',
+                });*/
+
             //選擇新增或修改
             $(".option").mousedown(function(){
                 $("#edit_modify").modal("show");
@@ -29,13 +35,14 @@
                     url: "/documents/require_data/" + textid,
                     method: 'get',
                     error: function (err) {
-                        console.log("沒拿到");
+                        console.log(err);
                     },
                     success: function (data) {
-                        console.log("拿到了");
+                        $("#show_title").empty();
+                        $("#show_content").empty();
                         $("#show_title").append(data.title);
                         //CKEDITOR.instances.edit_content.setData(data.content);
-                        $("#show_content").append("data.content");
+                        $("#show_content").append(data.content);
                         }
                 });
             })
@@ -45,20 +52,6 @@
             $("#new_data").click(function (){
                 $("#edit").modal("show");
 
-
-                $.ajax({
-                    url: "/documents/require_data/" + textid,
-                    method: 'get',
-                    error: function (err) {
-                        console.log(err);
-                    },
-                    success: function (data) {
-                        console.log("有喔");
-                        $("#edit_title").val(data.title);
-                        //CKEDITOR.instances.edit_content.setData(data.content);
-                        $("#edit_content").val(data.content);
-                        }
-                });
 
                 $("#save").click(function(){
                     $("#modify").modal("hide");

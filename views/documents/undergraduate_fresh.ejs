@@ -12,22 +12,27 @@
 
 <body>
     <% include ../layouts/header %>
-    <main>
+    <main id="main">
         <% /*編輯框*/ %>
         <% include edit %>
 
         <% /*大學生*/ %>
         <div class="undergraduate" id="undergraduate">
+            <div class="nav">
+                    <div><a href="/documents"><img src="return.png" class="return"></a></div>
+                    <div class="sign">
+                            <p class="p1">STUDY</p>
+                            <p class="p2">學習資訊</p>
+                    </div>
+            </div>
             <div class="sidenav">
                 <a href="/documents/undergraduate_must"><img src="circle.png" class="icon"></a>
                 <a href="/documents/undergraduate_fresh"><img src="circle.png" class="icon"></a>
                 <a href="/documents/undergraduate_study"><img src="circle.png" class="icon"></a>
-                <a href="/documents"><img src="return.png" class="return"></a>
             </div>
 
             <div class="must" id="must">
                 <div class="sidenav2">
-                    <img src="must.jpg" class="sign">
                     <p class="option" id="8">＞ 新生營</p>
                     <p class="option" id="9">＞ 社團博覽會</p>
                     <p class="option" id="10">＞ 校園安全宣導</p>

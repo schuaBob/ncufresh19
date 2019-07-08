@@ -76,8 +76,7 @@ router.post('/modify/:id',function(req, res, next) {
 
 //取資料
 router.get('/require_data/:id',function(req, res, next){
-    Document.findone({count: req.params.id}).exec(function(err, data){
-        console.log("require");
+    Document.findOne({count: req.params.id}).exec(function(err, data){
         if(err) return next(err);
         res.send(data);
     })

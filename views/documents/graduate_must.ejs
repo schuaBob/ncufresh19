@@ -8,21 +8,26 @@
     </head>
     <body>
         <% include ../layouts/header %>
-        <main>
+        <main id="main">
                 <% /*編輯框*/ %>
                 <% include edit %>
                 
                 <% /*研究生*/%>
                 <div class="graduate" id="graduate">
+                    <div class="nav">
+                            <div><a href="/documents"><img src="return.png" class="return"></a></div>
+                            <div class="sign">
+                                    <p class="p1">MUST</p>
+                                    <p class="p2">入學須知</p>
+                            </div>
+                    </div>
                     <div class="sidenav">
                             <a href="/documents/graduate_must"><img src="circle.png" class="icon"></a>
                             <a href="/documents/graduate_fresh"><img src="circle.png" class="icon"></a>
-                            <a href="/documents"><img src="return.png" class="return"></a>
                     </div>
           
                     <div class="must" id="must">
                             <div class="sidenav2">
-                                <img src="must.jpg" class="sign">
                                 <p class="option" id="22">＞ 學籍登陸</p>
                                 <p class="option" id="23">＞ 住宿注意事項</p>
                                 <p class="option" id="24">＞ 兵役注意資料</p>
