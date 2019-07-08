@@ -27,6 +27,7 @@
     "passport-local": "^1.0.0",
     "popper.js": "^1.15.0",
     "request": "^2.88.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "velocity-animate": "^2.0.5"
   }
 }
