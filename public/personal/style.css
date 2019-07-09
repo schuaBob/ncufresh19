@@ -11,7 +11,7 @@ body {
   height:60px;
   position: absolute;
   left: 200px;
-  top: 130px;
+  top: 100px;
 }
 
 .username {
@@ -19,7 +19,7 @@ body {
   color: #0163b0;
   position: absolute;
   left: 250px;
-  top: 120px;
+  top: 90px;
 }
 
 .student-number {
@@ -27,7 +27,7 @@ body {
   color: #ffd800;
   position: absolute;
   left: 255px;
-  top: 195px;
+  top: 165px;
   font-family: Noto Sans TC;
 }
 
@@ -49,41 +49,40 @@ body {
 #game-score {
   position: absolute;
   left: 240px;
-  top: 250px;
+  top: 220px;
 }
 
 #game {
   position: absolute;
   left: 350px;
-  top: 250px;
+  top: 220px;
 }
 
 #ask-record {
   position: absolute;
   left: 460px;
-  top: 250px;
+  top: 220px;
 }
 
 #ask {
   position: absolute;
   left: 570px;
-  top: 250px;
+  top: 220px;
 }
 
 .profile-pic {
-  max-width: 200px;
-  max-height: 200px;
+  width: 200px;
   display: block;
 }
 
 .circle {
   border-radius: 1000px !important;
   overflow: hidden;
-  width: 195px;
-  height: 195px;
+  width: 180px;
+  height: 180px;
   border: 5px solid #0163b0;
   position: absolute;
-  top: 220px;
+  top: 200px;
   right:200px;
 }
 
@@ -94,6 +93,81 @@ img {
 
 .upload-icon {
   position: absolute;
-  top: 370px;
+  width: 40px;
+  top: 330px;
   right: 200px;
+}
+
+.toggle-container {
+  width: 55%;
+  height: 50%;
+  position: absolute;
+  top: 300px;
+  left: 250px;
+}
+
+.score h1 {
+  font-size: 120px;
+  color: #0163b0;
+  position: absolute;
+  top: 25%;
+}
+
+.score p {
+  font-size: 23px;
+  color: #ffd800;
+  position: absolute;
+  top: 50%;
+  left: 17%;
+}
+
+.score-container {
+  width: 75%;
+  height: 100%;
+  position: absolute;
+  left: 25%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.scoreTag {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: #0163b0;
+}
+
+#ranking-box {
+  position: absolute;
+  width: 20%;
+  right: 70%;
+}
+
+#score-box {
+  position: absolute;
+  width: 30%;
+  right: 40%;
+}
+
+#name-box {
+  position: absolute;
+  width: 35%;
+  right: 5%;
+}
+
+.horizontal-bar {
+  position: absolute;
+  width: 90%;
+  height: 1%;
+  left: 5%;
+  background-color: #ffd800;
+  top: 13%;
+}
+
+.lists {
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 30px;
 }

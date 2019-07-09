@@ -3,6 +3,15 @@
 body {
   padding: 50px;
   font-family: Noto Sans TC;
+  background-color: #fff9dc
+}
+
+.title-box {
+  position: absolute;
+  top: 70px;
+  width: 100%;
+  height: 120px;
+  background-color: white;
 }
 
 .vertical-line{
@@ -11,7 +20,7 @@ body {
   height: 80px;
   position: absolute;
   left: 150px;
-  top: 130px;
+  top: 20px;
 }
 
 .eng-title {
@@ -19,7 +28,7 @@ body {
   color: #0163b0;
   position: absolute;
   left: 180px;
-  top: 130px;
+  top: 20px;
   font-weight: bold;
 }
 
@@ -28,18 +37,18 @@ body {
   color: #736f6e;
   position: absolute;
   left: 180px;
-  top: 180px;
+  top: 65px;
 }
 
 .container {
-  background-color: whit;
   position: absolute;
   top: 230px;
   left: 170px;
-  width: 1200px;
+  width: 1250px;
   height: 440px;
   overflow-x: hidden;
   overflow-y: scroll;
+  
 }
 
 .links {
@@ -84,59 +93,72 @@ body {
 #portal {
   position: absolute;
   top: 20px;
-  left: 50px;
+  right: 750px;
 }
 
 #UST {
   position: absolute;
-  top: 20px;
-  left: 450px;
+    top: 20px;
+    right: 400px;
 }
 
 #LMS {
   position: absolute;
   top: 20px;
-  left: 850px;
+  right: 50px;
 }
 
 #ee-class {
   position: absolute;
   top: 240px;
-  left: 50px;
+  right: 750px;
 }
 
 #dorm-service {
   position: absolute;
   top: 240px;
-  left: 450px;
+  right: 400px;
 }
 
 #dorm-net {
   position: absolute;
   top: 240px;
-  left: 850px;
+  right: 50px;
 }
 
 #helloNCU {
   position: absolute;
   top: 460px;
-  left: 50px;
+  right: 750px;
 }
 
 #NCUtalk {
   position: absolute;
   top: 460px;
-  left: 450px;
+  right: 400px;
 }
 
 #course {
   position: absolute;
   top: 460px;
-  left: 850px;
+  right: 50px;
 }
 
 #service-learning {
   position: absolute;
   top: 680px;
-  left: 50px;
+  right: 750px;
+}
+
+.P-CIR{
+  position: absolute;
+  left: -150px;
+  top: 330px;
+  width: 550px;
+  height: 424px;
+  overflow: hidden;
+}
+
+#CIR {
+  width: 100%;
 }
