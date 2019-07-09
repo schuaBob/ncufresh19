@@ -14,6 +14,7 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
+var cron = require('cron');
 
 // cache views
 app.set('view cache', false);
@@ -35,11 +36,11 @@ mongoose.connect('mongodb://localhost:27017/ncufresh19', {
   useNewUrlParser: true
 });
 
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-// app.use(compression());
-// app.use(minify());
-// app.use(helmet());
-// app.use(flash());
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(compression());
+app.use(minify());
+app.use(helmet());
+app.use(flash());
 app.use(session({
   secret: 'ThisIsNcuFresh19Speaking.',
   name: 'ncufresh.session.id',

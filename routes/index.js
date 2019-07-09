@@ -50,9 +50,12 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-router.get('/',(req,res,next)=> {
+router.get('/',(req,res,next)=> {  
   res.render('index/index',{title:"新生知訊網"})
 });
+router.get('/index-edit',(req,res,next)=>{
+  res.render('index/edit',{title:'編輯首頁'})
+})
 
 router.get('/comingsoon', function (req, res, next) {
   res.render('comingsoon/index', {
