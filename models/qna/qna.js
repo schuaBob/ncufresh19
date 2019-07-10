@@ -11,4 +11,6 @@ var qna = mongoose.Schema({
     count: { type: Number, default: 0 }, //點擊次數    
     reviewed: { type: Boolean, default: false }, //審核與否
 });
+
+
 module.exports = mongoose.model('qna',qna);
