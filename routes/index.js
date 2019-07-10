@@ -154,33 +154,50 @@ router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   res.render('login/register', { title: '新生知訊網' });
 });
 
-router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
+router.post('/regiser', checkUser.isAllowtoLogin, function(req, res, next){
   let id = req.body.id;
-  let password = req.body.password;
   let name = req.body.name;
+  let password = req.body.password;
+  let checkpassword = req.body.checkpassword;
 
-  Users.findOne({ "id": id }, function (err, user) {
-    if (err) return res.redirect('/');
-    if (!user) {
-      console.log(id + ": 不存在於新生列表");
-      return res.redirect('login');
-    }
-    if (user.name !== name) {
-      console.log(id + ": 與真實姓名不符");
-      return res.redirect('login');
-    } else {
-      user.password = password;
-      Users.createUser(user, function (err, user, next) {
-        if (err) next(err);
-        else console.log(id + "建立");
-        req.login(user, function (err) {
-          if (err) next(err);
-          console.log(user.id + "登入");
-          res.redirect('/');
+  if((id && name && password && checkpassword) && (password == checkpassword)) {
+    Users.findOne({
+      'id': id
+    }, function(err, obj) {
+      if(err) {
+        res.redirect('/');
+      }
+      if(!obj) {
+        console.log(id + ': 不存在於新生列表');
+        req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
+        res.redirect('/login');
+      }
+
+      if(obj.name !== name) {
+        console.log(id + ': 真實姓名不合');
+        req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
+        res.redirect('/login');
+      } else {
+        obj.password = password;
+        Users.createUser(obj, function(err, user, next) {
+          if(err) {
+            return next(err);
+          } else {
+            console.log(id + ': 建立');
+            req.login(user, function(err) {
+              if(err) {
+                return next(err);
+              }
+              console.log(obj.id + ': 登入')
+              res.redirect('/');
+            });
+          }
         });
-      });
-    }
-  });
+      }
+    });
+  } else {
+    res.redirect('/register');
+  }
 });
 
 router.get('/logout', function (req, res, next) {

@@ -14,7 +14,7 @@
       
       <% /* 使用者資訊 待補 */ %>
       <div class="vertical-line"></div>
-      <div class="username">使用者</div>
+      <div class="username">User</div>
       <div class="student-number">108XXXXXX</div>
       
       <% /* BTNs */ %>
@@ -109,13 +109,17 @@
 
         <% /* 發問紀錄 */ %>
         <div class="toggles" id="ask-record-toggle">
-          <p>發問紀錄</p>
+          <div class="ask-record-container">
+            <p class="qnaTag" id="qnaTime">時間</p>
+            <p class="qnaTag" id="qnaQuestion">問題</p>
+          </div>
         </div>
 
         <% /* 我要發問 */ %>
         <div class="toggles" id="ask-toggle">
           <div class="ask-link">
-            <!-- <img src=""> -->
+            <a href="/qna">
+            <img src="提問.png">
             <p>新增問題</p>
           </div>
         </div>
