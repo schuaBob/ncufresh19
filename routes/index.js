@@ -107,20 +107,44 @@ router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
 router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
-  failureFlash: true
-}))
+  failureFlash: false
+}));
 
 router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   res.render('login/register', { title: '新生知訊網' });
 });
 
-router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
+router.post('/register', checkUser.isAllowtoLogin, function(req, res, next){
+  let id = req.body.id;
+  let password = req.body.password;
+  let name = req.body.name;
 
-})
+  Users.findOne({ "id": id }, function(err, user){
+    if(err) return res.redirect('/');
+    if(!user){
+      console.log( id + ": 不存在於新生列表" );
+      return res.redirect('login');
+    }
+    if(user.name !== name){
+      console.log( id + ": 與真實姓名不符" );
+      return res.redirect('login');
+    } else {
+      user.password = password;
+      Users.createUser(user, function(err, user, next){
+        if(err) next(err);
+        else console.log( id + "建立" );
+        req.login(user, function(err){
+          if(err) next(err);
+          console.log( user.id + "登入" );
+          res.redirect('/');
+        });
+      });
+    }
+  });
+});
 
 router.get('/logout', function (req, res, next) {
   req.logout();
-  req.session.destroy();
   res.redirect('/');
 });
 
@@ -194,7 +218,7 @@ router.get('/auth/provider/callback', function (req, res, next) {
             req.login(user, function (err) {
               if (err) return next(err);
               console.log(user.id + " 建立via OAuth");
-              console.log(personalObj.id + ' 登入via OAuth')
+              console.log(personalObj.id + " 登入via OAuth");
               res.redirect('/');
             });
           });
@@ -206,14 +230,13 @@ router.get('/auth/provider/callback', function (req, res, next) {
 
 router.get('/adduser', function (req, res, next) {
   Users.createUser(new Users({
-    id: "108000001",
-    password: "111",
+    id: "108000004",
     unit: "csie",
     name: "eugene"
   }), function (err, user) {
     if (err) next(err);
     res.redirect('/login');
-  })
-})
+  });
+});
 
 module.exports = router;

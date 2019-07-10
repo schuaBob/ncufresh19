@@ -10,8 +10,11 @@
 <body>
   <% include ../layouts/header%>
   <main style="position: relative; top: 80px;">
-    <form method="post" action="/register">
-      <input type="text" name="register" required />
+    <form method="post" action="/register" onsubmit="login()">
+      name: <input type="text" name="name" required />
+      password: <input type="password" name="password" required />
+      <input type="hidden" name="id" />
+      <input type="submit" value="submit">
     </form>
   </main>
   <% include ../layouts/js %>
