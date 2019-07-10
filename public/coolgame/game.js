@@ -56,7 +56,7 @@
         super(animalsource[type].spritesheet,"normal");
       this.special=special;
       this.animaltype = type;
-      stage.addChildAt(this,4);
+      stage.addChildAt(this,stage.numChildren-2);
     }
     move(){
       if(getrandom(1000)<5){
@@ -231,7 +231,7 @@
     bubble.scaleX=bubble.scaleY=0.1;
     bubble.y=500;
     bubble.x =now_x= getrandom(750)+25;
-    stage.addChild(bubble);
+    stage.addChildAt(bubble,stage.numChildren-2);
     bubble.onload=()=>{
       stage.update();
     }
@@ -498,27 +498,29 @@
     document.onkeyup = keyUp;
   }
   function game_init() {
+    clese_bird();
+    clese_fish();
+    clese_bubble();
+    close_fish_ad();
+    close_fishmanwalk();
+    labbybutton_container.visible=false;
     backbround.scaleX=backbround.scaleY=0.5;
     fisherman.scaleX = fisherman.scaleY=0.16;
     fisherman.scaleX*=-1;
-    fisherman.x += 75;
+    //fisherman.x = 75;
     fisherman.y = canvas_seaheight-25;
     fisherman.regX = fisherman.image.width/2;
     fisherman.regY = fisherman.image.height/2;
     sea.scaleX=sea.scaleY=0.5;
     sea.alpha=0.4;
     gamestart=true;
-    clearInterval(fishman_walk);
     game_event();
     open_bubble();
     open_fish();
     open_bird();
-    setInterval(() => {
-      update();
-    }, 20);
-  }
-  function create_labbybutton(){
-
+    // setInterval(() => {
+    //   update();
+    // }, 20);
   }
   function close_fishmanwalk(){
     clearInterval(fishman_walk);
@@ -546,6 +548,7 @@
     document.onkeyup = null;
   }
   function open_fish_ad(){
+    fish_ad.visible =true;
     fish_ad.y=400;
     fish_ad.x=canvas_width+500;
     fish_ad.scale = 0.5;
@@ -553,6 +556,10 @@
       fish_ad.x -= 2;
       if(fish_ad.x<= -500)fish_ad.x = canvas_width+250;
     },20);
+  }
+  function close_fish_ad(){
+    fish_ad.visible =false;
+    clearInterval(generate_fish_ad);
   }
   function clese_bubble(){
     clearInterval(generate_bubble);
@@ -573,7 +580,7 @@
     labbybutton_source[index].underline.visible=false;
     console.log("out");
   }
-  var labbybutton_source = new Array();;
+  var labbybutton_source = new Array();
   function create_labbybutton(){
     labbybutton_container = new createjs.Container();//34AEC7
     var start_shape =  new createjs.Shape();
@@ -624,6 +631,10 @@
       labbybutton_source[i].haver.visible=false;
       labbybutton_source[i].underline.visible=false;
     }
+    start_shape.addEventListener("click",function(){
+      
+      game_init();
+    });
     start_shape.addEventListener("mouseover",function(){
       start_shape.cursor = "pointer";
       labbybutton_source[0].haver.visible=true;
