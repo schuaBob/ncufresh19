@@ -82,8 +82,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" id="SaveNewsbtn" class="btn btn-primary"
-                            data-dismiss="modal">Save</button>
+                        <button type="button" id="SaveNewsbtn" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -105,16 +104,16 @@
                     </div>
                 </div>
                 <div id="news-body">
-                    <% for(let i in data){ %>
-                    <div class="card" data-toggle="modal" data-target="#ScheduleNewsModal">
+                    <% for(let i in news){ %>
+                    <div class="card" data-toggle="modal" data-target="#ScheduleNewsModal" pk="<%=news[i]['pk']%>">
                         <div class="row align-items-center">
                             <div class="col-sm-2">
-                                <img src="index/icon-課業相關.png" class="card-img">
+                                <img src="index/icon-<%=icon[news[i]['category']-1]%>.png" class="card-img">
                             </div>
                             <div class="col-sm-10">
                                 <div class="card-body">
-                                    <h5><%=data['title']%></h5>
-                                    <span class="newsTime"><small>3 days ago</small></span>
+                                    <h5><%=news[i]['title']%></h5>
+                                    <span class="newsTime"><small><%=news[i].screenTime%></small></span>
                                 </div>
                             </div>
                         </div>
@@ -128,11 +127,24 @@
     <script>
         $(document).ready(() => {
             var newseditor = undefined;
-
+            $('.card').click((e) => {
+                $.ajax({
+                    url: `/schedule/read?pk=${e.currentTarget.attributes.pk.value}`,
+                    method: 'GET',
+                    dataType: 'JSON',
+                    error: (err) => { console.log(err) },
+                    success: (res) => {
+                        $("#newsTitle").val(res.title);
+                        $("#newsCategory").val(res.category)
+                        $("#timePicker").val(res.time)
+                        newseditor.setData(res.content)
+                    }
+                })
+            })
             $('#ScheduleNewsModal').on('show.bs.modal', function (e) {
                 $('#timePicker').flatpickr({
                     enableTime: true,
-                    dateFormat: "Y-m-d H:S",
+                    dateFormat: "Y-m-d H:i",
                     static: true,
                     onChange: (selectedDates, dateStr, instance) => {
                         console.log(dateStr)
@@ -149,29 +161,45 @@
                     });
 
                 $('#SaveNewsbtn').click(() => {
-                    $.ajax({
-                        url: '/scheduleNews',
-                        method: 'POST',
-                        dataType: 'JSON',
-                        data: {
-                            title: $("#newsTitle").val(),
-                            category: $("#newsCategory").val(),
-                            time: $("#timePicker").val(),
-                            content: newseditor.getData()
-                        },
-                        error: (err) => {
-                            console.error(err.responseJSON);
-                        },
-                        success: (res) => {
-                            alert(res.message)
+                    if (($("#newsTitle").val() !== "") && ($("#newsCategory").val() !== 0)) {
+                        if ($("#timePicker").val() !== "") {
+                            $.ajax({
+                                url: '/schedule/create',
+                                method: 'POST',
+                                dataType: 'JSON',
+                                data: {
+                                    title: $("#newsTitle").val(),
+                                    category: $("#newsCategory").val(),
+                                    time: $("#timePicker").val(),
+                                    content: newseditor.getData()
+                                },
+                                error: (err) => {
+                                    console.log(err.responseJSON);
+                                },
+                                success: (res) => {
+                                    alert(res.message)
+                                }
+                            }).always(() => {
+                                // console.log(`
+                                //     title: ${$("#newsTitle").val()}
+                                //     category: ${$("#newsCategory").val()}
+                                //     time: ${$("#timePicker").val()}
+                                //     content: ${newseditor.getData()}`)
+                                $('#ScheduleNewsModal').modal('hide');
+                                location.reload();
+                            })
+                        } else {
+                            alert("No time!")
                         }
-                    })
+                    } else {
+                        alert("No title or category!")
+                    }
                 })
-
             })
             $('#ScheduleNewsModal').on('hide.bs.modal', function (e) {
                 $('#timePicker').flatpickr().destroy();
-                newseditor.setData("");
+                $("#newsTitle").val("");
+                $("#newsCategory").val(0);
                 newseditor.destroy()
                     .catch(error => {
                         console.log(error);
