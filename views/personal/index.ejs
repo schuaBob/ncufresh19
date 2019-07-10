@@ -5,43 +5,123 @@
     <% include ../layouts/head %>
     <% include ../layouts/script  %>
     <link rel='stylesheet' href='/personal/style.css' />
+
   </head>
   <body>
       <% include ../layouts/header %>
+
     <div class="container">
       
-      <!-- 使用者資訊 待補 -->
+      <% /* 使用者資訊 待補 */ %>
       <div class="vertical-line"></div>
       <div class="username">使用者</div>
       <div class="student-number">108XXXXXX</div>
       
+      <% /* BTNs */ %>
       <div class="link" id="game-score">遊戲積分</div>
       <div class="link" id="game">小遊戲</div>
       <div class="link" id="ask-record">發問紀錄</div>
       <div class="link" id="ask">我要發問</div>
 
-      <!--
-      <div class="modal is-hide">
-        <div class="tabs" id="game-score-tab"></div>
-        <div class="tabs" id="game-tab"></div>
-        <div class="tabs" id="ask-record-tab"></div>
-        <div class="tabs" id="ask-tab"></div>
-      </div>
-      -->
-      <!-- 頭貼外框 -->
-      
+      <% /* 頭貼外框 */ %>
       <div class="circle">
         <img class="profile-pic" src="default-profile.png">
       </div>
-
+      <% /* 上傳按鈕 */ %>
       <div class="upload-icon">
-        <!-- 放相機圖示當按鈕 -->
         <label for="upload">
           <img id="btn" src="camera.png"`>
           <input class="file-upload" id="upload" type="file" accept="image/*" style="display: none"/>
         </label>
       </div>
-    
+
+      <% /* Toggle */ %>
+      <div class="toggle-container">
+        
+        <% /* 遊戲積分 */ %>
+        <div class="toggles showToggle" id="game-score-toggle">
+          <div class="score">
+            <h1 id="sum-point">20</h1>
+            <p>分</p>
+          </div>
+          <div class="score-container">
+
+            <div class="horizontal-bar"></div>
+            
+            <div class="box" id="ranking-box">
+              <p class="scoreTag" id="rank">即時排名</p>
+              <div class="lists" id="ranking-list">
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+              </div>
+            </div>
+
+            <div class="box" id="score-box">
+              <p class="scoreTag" id="playerScore">分數</p>
+              <div class="lists" id="score-list">
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+              </div>
+            </div>
+
+            <div class="box" id="name-box">
+              <p class="scoreTag" id="playerName">姓名</p>
+              <div class="lists" id="name-list">
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+                <p>1</p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        <% /* 小遊戲 */ %>
+        <div class="toggles" id="game-toggle">
+          <div class="game-link">
+            <!-- <img src=""> -->
+            <p>進入小遊戲</p>
+          </div>
+        </div>
+
+        <% /* 發問紀錄 */ %>
+        <div class="toggles" id="ask-record-toggle">
+          <p>發問紀錄</p>
+        </div>
+
+        <% /* 我要發問 */ %>
+        <div class="toggles" id="ask-toggle">
+          <div class="ask-link">
+            <!-- <img src=""> -->
+            <p>新增問題</p>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </body>
   <% include ../layouts/js %>

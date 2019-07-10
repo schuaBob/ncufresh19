@@ -20,7 +20,7 @@
   var animal_list = new Array() ;
   var bubble_list =new Array();
   var loader ;
-  var animalsource;
+  var animalsource = new Array();
   var canvas_width = 800;
   var canvas_height=500;
   var canvas_seaheight=150;
@@ -44,66 +44,46 @@
 
     //------------game---------------------------------
     
-  class Animal  extends createjs.Bitmap{
+  class Animal  extends createjs.Sprite{
     constructor(type,special){
       if(special)
-        super("/images/coolgame/"+animalsource[type].special[0]);
+        super(animalsource[type].spritesheet,"special");
       else
-        super("/images/coolgame/"+animalsource[type].image[0]);
-        this.regX = this.image.width/2;
-        this.regY = this.image.height/2;
+        super(animalsource[type].spritesheet,"normal");
       this.special=special;
       this.animaltype = type;
-      this.im_index =0;
-      this.t_change = setInterval(()=>{
-        this.regX = this.image.width/2;
-        this.regY = this.image.height/2;
-        if(this.im_index == animalsource[this.animaltype].image.length-1)
-          this.im_index=0;
-        else this.im_index++;
-        if(getrandom(100)<3){
-          this.dic *=-1;
-          this.scaleX*=-1;
-        };
-        if(this.special)
-           this.image.src = "/images/coolgame/"+animalsource[this.animaltype].special[this.im_index];
-        else
-           this.image.src = "/images/coolgame/"+animalsource[this.animaltype].image[this.im_index];
-      },200);
       this.t_move=setInterval(()=> {
-        if((this.x>canvas_width+100)||(this.x<-100)){
+        if(this.x>(canvas_width+100)||(this.x<-100)){
           clearInterval(this.t_move);
-          clearInterval(this.t_changeimage);
           animal_list = arrayRemove(animal_list,this);
           stage.removeChild(this);
         }
         else{
+          if(getrandom(1000)<5){
+            this.dic *=-1;
+            this.scaleX*=-1;
+          };
           if(this.dic ==1)this.x += this.speed;
           else this.x-=this.speed;
         }
       }, 20);
       stage.addChild(this);
-
     }
-    catch(a){
-      clearInterval(this.t_change);
+    catch(){
       clearInterval(this.t_move);
-      this.image.src =  "/images/coolgame/"+animalsource[this.animaltype].die;
+      this.gotoAndStop(this.special == true?"special_die":"normal_die");
     }
   }
   class harpoon extends createjs.Bitmap{
     constructor(){
       super(loader.getResult("harpoon"));
       this.moveable=false;
+      this.regX = this.getwidth()/2;
+      this.regY = this.getheight()/2;
       this.scaleX = this.scaleY =0.16;
-      this.regX=this.image.width/2 ;// harpoon.image.width*harpoon.scaleX/2;
-      this.regY=this.image.height/2;
-      this.x = fisherman.x+25*(fisherman.scaleX<0?1:-1);//-harpoon.image.width*harpoon.scaleX/2;
-      this.y = fisherman.y;//-harpoon.image.height*harpoon.scaleX/2;
+      this.x = fisherman.x+25*(fisherman.scaleX<0?1:-1);
+      this.y = fisherman.y-5;
       stage.addChildAt(this,2);
-      this.image.onload=()=>{
-        stage.update();
-      }
     }
     move(x,y,c,v){
       this.moveable =true;
@@ -149,43 +129,38 @@
       this.scale=0.12;
       this.speed=2;
       this.alpha=0.8;
-      this.regX = this.image.width/2;
-      this.regY = this.image.height/2;
       this.dic =1;
       if(getrandom(2) == 1){
-        this.x=-this.getwidth();
+        this.x = -100;
         this.dic =1;
       }
       else{ 
-        this.x=this.getwidth()+canvas_width;
+        this.x =canvas_width+100;
         this.dic =-1;
         this.scaleX *=-1;
       }
-      this.y=getrandom(300-this.getheight()/2)+200;
-      this.regX = this.image.width/2;
-      this.regY = this.image.height/2;
+      //this.y =200;
+        this.width = animalsource[type].spritesheet.getFrame(animalsource[type].spritesheet.getAnimation(special==true?"special":"normal").frames[0]).rect.width;
+        this.height = animalsource[type].spritesheet.getFrame(animalsource[type].spritesheet.getAnimation(special==true?"special":"normal").frames[0]).rect.height;
+        this.y=getrandom(500-(200+this.height*this.scale)*2)+200+this.height*this.scale;
     }
   }
   class bird extends Animal{
     constructor(type,special){
       super(type,special);
       this.scale=0.16;
-      this.regX = this.image.width/2;
-      this.regY = this.image.height/2;
       this.speed=4;
       this.alpha=0.85;
       if(getrandom(2) == 1){
-        this.x=-this.getwidth()/2;
+        this.x=-90;
         this.dic =1;
       }
       else{ 
-        this.x=this.getwidth()/2+canvas_width;
+        this.x=90;
         this.dic =-1;
         this.scaleX *=-1;
       }
       this.y=getrandom(50)+50;
-      this.regX = this.image.width/2;
-      this.regY = this.image.height/2;
     }
   }
   function mousemove(event) {
@@ -296,7 +271,7 @@
             }
           }
         }
-        if (harpoon_list[i].y-harpoon_list[i].image.height*harpoon_list[i].scaleY/2 >= stage.canvas.height || harpoon_list[i].y+harpoon_list[i].image.height*harpoon_list[i].scaleY/2 <= 0 || harpoon_list[i].x-harpoon_list[i].image.height*harpoon_list[i].scaleX/2 >= stage.canvas.width||harpoon_list[i].x+harpoon_list[i].image.height*harpoon_list[i].scaleX/2 <= 0) {
+        if (harpoon_list[i].y-harpoon_list[i].image.height*harpoon_list[i].scaleY/2 >= canvas_height || harpoon_list[i].y+harpoon_list[i].image.height*harpoon_list[i].scaleY/2 <= 0 || harpoon_list[i].x-harpoon_list[i].image.height*harpoon_list[i].scaleX/2 >= canvas_width||harpoon_list[i].x+harpoon_list[i].image.height*harpoon_list[i].scaleX/2 <= 0) {
           this.moveable=false;
           stage.removeChild(harpoon_list[i]);
           harpoon_list=arrayRemove(harpoon_list,harpoon_list[i]);
@@ -317,10 +292,11 @@
     generate_fish = setInterval(()=>{
       rnd =getrandom(120);
       if(rnd<24){
+        console.log("fish");
         if(rnd<2)
-        animal_list.push(new fish(getrandom(4)+1,true));
+        animal_list.push(new fish(0,true));
         else
-        animal_list.push(new fish(getrandom(4)+1,false));
+        animal_list.push(new fish(0,false));
       }
    },200);
   }
@@ -350,23 +326,15 @@
       {src: "/images/coolgame/fish2.png", id: "fish2"},
       {src: "/images/coolgame/fish3.png", id: "fish3"},
       {src: "/images/coolgame/fish4.png", id: "fish4"},
-      {src: "/images/coolgame/bird.png", id: "bird"}
+      {src: "/images/coolgame/bird.png", id: "bird"},
+      {src: "/images/coolgame/harpoon.png", id: "harpoon"}
     ];
     loader = new createjs.LoadQueue(true);
     loader.on("fileload", handleFileLoad);
     loader.on("complete", handleComplete);
     loader.on("error", handleError);
     loader.loadManifest(manifest);
-    var fish_spriteSheet = new createjs.SpriteSheet({
-      framerate: 30,
-  	"images": [loader.getResult("fish1")],
-  	"frames": [[0,0,291,233]],
-  	"animations": {
-		"run": [0, 25, "run", 1.5],
-		"jump": [26, 63, "run"]
-	}
-    });
-    animalsource.push({type:0,});
+  
   }
   function handleFileLoad(e){
     console.log("complete1");
@@ -378,8 +346,30 @@
   function handleError(){
     console.log("erreo");
   }
+  var fish1_spriteSheet ;
+  var fishh;
   function init(){
+    var data ={
+      images: [loader.getResult("fish1")],
+      frames: {width:461,height:368,regX:230,regY:189},
+      animations: {
+      normal:{
+        frames:[0,1],speed:0.1
+      },
+      special: {
+        frames:[3,4],speed:0.1
+      },
+      special_die:{
+        frames:[5],speed:0.1
+      },
+      normal_die:{
+        frames:[2],speed:0.01
+      }
+    }
+      };
+    fish1_spriteSheet = new createjs.SpriteSheet(data);
     stage = new createjs.Stage(document.getElementById("gameStage"));
+    animalsource.push({type:0,spritesheet:fish1_spriteSheet});
     backbround = new createjs.Bitmap(loader.getResult("game_background"));
     fisherman = new createjs.Bitmap(loader.getResult("fisherman"));
     sea = new createjs.Bitmap(loader.getResult("sea"));
@@ -407,7 +397,7 @@
     document.onkeyup = keyUp;
     openbubble();
     openfish();
-    openbird();
+    //openbird();
     setInterval(() => {
       update();
     }, 20);
