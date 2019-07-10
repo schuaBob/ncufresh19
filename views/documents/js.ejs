@@ -19,24 +19,67 @@
                 $(this).removeClass("big");
             });
 
+            /*選單*/
+            $(".icon1").hover(function(){
+                $(this).attr('src','入學須知.png');
+            },function(){
+                $(this).attr('src','入學須知_原.png');
+            });
+
+            $(".icon2").hover(function(){
+                $(this).attr('src','新生週.png');
+            },function(){
+                $(this).attr('src','新生週_原.png');
+            });
+
+            $(".icon3").hover(function(){
+                $(this).attr('src','學習資訊.png');
+            },function(){
+                $(this).attr('src','學習資訊_原.png');
+            });
+
 
 
 /*--------------------------------------管理者---------------------------------------------*/
-            
-            /*ClassicEditor
+        
+           ClassicEditor
             .create( document.querySelector( '#edit_content' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+var outeditor = undefined;
+            ClassicEditor
+            .create( document.querySelector( '#modify_content' ) )
             .then( neweditor => {
                 console.log( neweditor );
+                outeditor = neweditor;
             } )
             .catch( error => {
                 console.error( error );
-            } );*/
+            } );
+
 
             //選擇新增或修改
             $(".option").mousedown(function(){
                 $("#edit_modify").modal("show");
                 textid = this.id;
-                showdata();
+                //當下頁面變色
+                $(".option").removeClass("page_now");
+                $(this).addClass("page_now")
+
+                $.ajax({
+                url: "/documents/require_data/" + textid,
+                method: 'get',
+                error: function (err) {
+                    console.log(err);
+                },
+                success: function (data) {
+                    $("#show_title").empty();
+                    $("#show_content").empty();
+                    $("#show_title").html(data.title);  
+                    $("#show_content").html(data.content);
+                    }
+            });
             })
 
             //新增
@@ -58,7 +101,17 @@
                 //將js的變數給html裡的form action
                 $('#change').attr('action', "/documents/modify/" + textid);
 
-                showdata();
+                $.ajax({
+                url: "/documents/require_data/" + textid,
+                method: 'get',
+                error: function (err) {
+                    console.log(err);
+                },
+                success: function (data) {
+                    $("#modify_title").val(data.title);
+                    outeditor.setData(data.content);
+                    }
+            });
 
                 $("#save").click(function(){
                     $("#modify").modal("hide");
@@ -93,9 +146,10 @@
                 success: function (data) {
                     $("#show_title").empty();
                     $("#show_content").empty();
-                    $("#show_title").append(data.title);
+                    $("#show_title").html(data.title);
                     //CKEDITOR.instances.edit_content.setData(data.content);
-                    $("#show_content").append(data.content);
+                    
+                    $("#show_content").html(data.content);
                     }
             });
     }

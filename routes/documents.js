@@ -33,7 +33,7 @@ router.get('/undergraduate_fresh', function(req, res, next) {
 router.get('/undergraduate_study', function(req, res, next) {
   Document.findOne({count: 15}).exec(function(err, data){
     if(err) return next(err);
-    res.render('documents/undergraduate_study',{ title: 'undergraduate',data: data });
+      res.render('documents/undergraduate_study',{ title: 'undergraduate',data: data });
   });
 });
 
@@ -48,6 +48,7 @@ router.get('/graduate_must', function(req, res, next) {
 router.get('/graduate_fresh', function(req, res, next) {
   Document.findOne({count: 29}).exec(function(err, data){
     if(err) return next(err);
+    
     res.render('documents/graduate_fresh',{ title: 'graduate',data: data });
   });
 });
