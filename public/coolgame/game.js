@@ -52,25 +52,19 @@
         super(animalsource[type].spritesheet,"normal");
       this.special=special;
       this.animaltype = type;
-      this.t_move=setInterval(()=> {
-        if(this.x>(canvas_width+100)||(this.x<-100)){
-          clearInterval(this.t_move);
-          animal_list = arrayRemove(animal_list,this);
-          stage.removeChild(this);
-        }
-        else{
-          if(getrandom(1000)<5){
-            this.dic *=-1;
-            this.scaleX*=-1;
-          };
-          if(this.dic ==1)this.x += this.speed;
-          else this.x-=this.speed;
-        }
-      }, 20);
       stage.addChild(this);
+    }
+    move(){
+      if(getrandom(1000)<5){
+        this.dic *=-1;
+        this.scaleX*=-1;
+      };
+      if(this.dic ==1)this.x += this.speed;
+      else this.x-=this.speed;
     }
     catch(){
       clearInterval(this.t_move);
+      animal_list = arrayRemove(animal_list,this);  
       this.gotoAndStop(this.special == true?"special_die":"normal_die");
     }
   }
@@ -116,7 +110,6 @@
           //createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},animal_list[i].animaltype == 0?500:2000);
           createjs.Tween.get(diefish).to({y:canvas_seaheight,rotation:diefish.dic==1?180:-180},diefish.animaltype == 0?500:2000);
           animal_list[i].catch();
-          animal_list = arrayRemove(animal_list,animal_list[i]);  
           return true;
         }
       }
@@ -139,10 +132,12 @@
         this.dic =-1;
         this.scaleX *=-1;
       }
-      //this.y =200;
         this.width = animalsource[type].spritesheet.getFrame(animalsource[type].spritesheet.getAnimation(special==true?"special":"normal").frames[0]).rect.width;
         this.height = animalsource[type].spritesheet.getFrame(animalsource[type].spritesheet.getAnimation(special==true?"special":"normal").frames[0]).rect.height;
-        this.y=getrandom(500-(200+this.height*this.scale)*2)+200+this.height*this.scale;
+       // this.y=getrandom(300-(this.height*this.scale*2))+200+this.height*this.scale;
+       //this.y=150-(this.height*this.scale*2)+200+this.height*this.scale;
+      //  console.log(this.y);
+      this.y=getrandom(275)+canvas_seaheight+50;
     }
   }
   class bird extends Animal{
@@ -154,13 +149,13 @@
       if(getrandom(2) == 1){
         this.x=-90;
         this.dic =1;
-      }
-      else{ 
-        this.x=90;
-        this.dic =-1;
         this.scaleX *=-1;
       }
-      this.y=getrandom(50)+50;
+      else{ 
+        this.x=canvas_width+ 90;
+        this.dic =-1;
+      }
+      this.y=getrandom(50)+25;
     }
   }
   function mousemove(event) {
@@ -254,6 +249,20 @@
   function update(){
     harpoon_move();
     harpoon_check();
+    fish_move();
+  }
+  function fish_move(){
+    i=0
+    for(i=0;i<animal_list.length;i++){
+      if(animal_list[i].x>(canvas_width+100)||(animal_list[i].x<-100)){
+        stage.removeChild(animal_list[i]);
+        animal_list = arrayRemove(animal_list,animal_list[i]);
+        return;
+      }
+      else{
+        animal_list[i].move();
+      }
+    }
   }
   function harpoon_check(){
     times++;
@@ -275,7 +284,7 @@
           this.moveable=false;
           stage.removeChild(harpoon_list[i]);
           harpoon_list=arrayRemove(harpoon_list,harpoon_list[i]);
-          return;
+          i--;
         }
       }
     }
@@ -287,6 +296,7 @@
         harpoon_list[i].y += harpoon_list[i].my*harpoon_list[i].mv/harpoon_list[i].mc;
       }
     }
+    stage.update();
   }
   function openfish(){
     generate_fish = setInterval(()=>{
@@ -294,15 +304,15 @@
       if(rnd<24){
         console.log("fish");
         if(rnd<2)
-        animal_list.push(new fish(0,true));
+        animal_list.push(new fish(getrandom(4)+1,true));
         else
-        animal_list.push(new fish(0,false));
+        animal_list.push(new fish(getrandom(4)+1,false));
       }
    },200);
   }
   function openbird(){
     generate_bird = setInterval(()=>{
-      if(getrandom(2500)<2){
+      if(getrandom(100)<20){
         animal_list.push(new bird(0,false));
       }
    },1000);
@@ -326,7 +336,8 @@
       {src: "/images/coolgame/fish2.png", id: "fish2"},
       {src: "/images/coolgame/fish3.png", id: "fish3"},
       {src: "/images/coolgame/fish4.png", id: "fish4"},
-      {src: "/images/coolgame/bird.png", id: "bird"},
+      {src: "/images/coolgame/bird1.png", id: "bird1"},
+      {src: "/images/coolgame/fish_ad.png", id: "fish_ad"},
       {src: "/images/coolgame/harpoon.png", id: "harpoon"}
     ];
     loader = new createjs.LoadQueue(true);
@@ -348,8 +359,8 @@
   }
   var fish1_spriteSheet ;
   var fishh;
-  function init(){
-    var data ={
+  function animalsource_init(){
+    var fish1 ={
       images: [loader.getResult("fish1")],
       frames: {width:461,height:368,regX:230,regY:189},
       animations: {
@@ -360,16 +371,118 @@
         frames:[3,4],speed:0.1
       },
       special_die:{
-        frames:[5],speed:0.1
+        frames:[5],speed:0
       },
       normal_die:{
-        frames:[2],speed:0.01
+        frames:[2],speed:0
       }
     }
       };
-    fish1_spriteSheet = new createjs.SpriteSheet(data);
+      var fish2 ={
+        images: [loader.getResult("fish2")],
+        frames: {width:500,height:433,regX:250,regY:216},
+        animations: {
+        normal:{
+          frames:[0,1],speed:0.1
+        },
+        special: {
+          frames:[3,4],speed:0.1
+        },
+        special_die:{
+          frames:[5],speed:0
+        },
+        normal_die:{
+          frames:[2],speed:0
+        }
+      }
+      };
+      var fish3 ={
+        images: [loader.getResult("fish3")],
+        frames: {width:547,height:357,regX:273,regY:178},
+        animations: {
+        normal:{
+          frames:[0,1],speed:0.1
+        },
+        special: {
+          frames:[3,4],speed:0.1
+        },
+        special_die:{
+          frames:[5],speed:0
+        },
+        normal_die:{
+          frames:[2],speed:0
+        }
+      }
+      };
+      var fish4 ={
+        images: [loader.getResult("fish4")],
+        frames: {width:550,height:400,regX:275,regY:200},
+        animations: {
+        normal:{
+          frames:[0,1],speed:0.1
+        },
+        special: {
+          frames:[3,4],speed:0.1
+        },
+        special_die:{
+          frames:[5],speed:0
+        },
+        normal_die:{
+          frames:[2],speed:0
+        }
+      }
+      };
+      var bird1 ={
+        images: [loader.getResult("bird1")],
+        frames: {width:318,height:273,regX:159,regY:136},
+        animations: {
+        normal:{
+          frames:[0,1],speed:0.1
+        },
+        normal_die:{
+          frames:[2],speed:0
+        }
+      }
+      };
+      var fish1 ={
+        images: [loader.getResult("fish1")],
+        frames: {width:461,height:368,regX:230,regY:189},
+        animations: {
+        normal:{
+          frames:[0,1],speed:0.1
+        },
+        special: {
+          frames:[3,4],speed:0.1
+        },
+        special_die:{
+          frames:[5],speed:0.1
+        },
+        normal_die:{
+          frames:[2],speed:0.01
+        }
+      }
+      };
+      var fish_ad ={
+        images: [loader.getResult("fish_ad")],
+        frames: {width:798,height:190,regX:399,regY:95},
+        animations: {
+        normal:{
+          frames:[0,1],speed:0.1
+        }
+        }
+      };
+      animalsource.push({type:0,spritesheet:new createjs.SpriteSheet(bird1)});
+      animalsource.push({type:1,spritesheet:new createjs.SpriteSheet(fish1)});
+      animalsource.push({type:2,spritesheet:new createjs.SpriteSheet(fish2)});
+      animalsource.push({type:3,spritesheet:new createjs.SpriteSheet(fish3)});
+      animalsource.push({type:4,spritesheet:new createjs.SpriteSheet(fish4)});
+      animalsource.push({type:5,spritesheet:new createjs.SpriteSheet(fish_ad)});  
+
+  }
+  function init(){
+   
+    animalsource_init();
     stage = new createjs.Stage(document.getElementById("gameStage"));
-    animalsource.push({type:0,spritesheet:fish1_spriteSheet});
     backbround = new createjs.Bitmap(loader.getResult("game_background"));
     fisherman = new createjs.Bitmap(loader.getResult("fisherman"));
     sea = new createjs.Bitmap(loader.getResult("sea"));
@@ -397,7 +510,7 @@
     document.onkeyup = keyUp;
     openbubble();
     openfish();
-    //openbird();
+    openbird();
     setInterval(() => {
       update();
     }, 20);
