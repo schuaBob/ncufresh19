@@ -52,33 +52,69 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.get('/', (req, res, next) => {
+  
   res.render('index/index', { title: "新生知訊網" })
 });
 router.get('/index-edit', (req, res, next) => {
   docNews.find().exec((err, doc) => {
     if (err) { return next(err) };
-    console.log(doc)
-    var catePicArr = ["重要通知","學校活動","課業相關","生活日常","網站問題","學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: doc, icon:catePicArr });
+    var TimeNow = new Date().getTime() + 28800000;
+    for (let i in doc) {
+      var pass = (TimeNow - new Date(doc[i].date).getTime()) / (1000 * 60 * 60 * 24)
+
+      if (pass > 0) {
+        doc[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天前`;
+      } else {
+        doc[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天後`;
+      }
+    }
+    var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
+    res.render('index/edit', { title: '編輯首頁', news: doc, icon: catePicArr });
   })
 
 })
-router.post('/scheduleNews', (req, res, next) => {
+router.get('schedule/:method', (req, res, next) => {
+  switch (req.params.method) {
+    case "read":
+      docNews.find({ pk: req.query.pk }).exec((err, doc) => {
+        if (err) { return next(err) }
+        res.json(doc)
+      })
+      break;
 
-  new docNews({
-    title: req.body.title,
-    date: new Date(`${req.body.time} GMT`),
-    category: req.body.category,
-    content: req.body.content
-  }).save((err, doc) => {
-    if (err) { return next(err) };
-    console.log(doc)
-    var resMes = {
-      message: "Data saved successfully!"
-    }
-    res.json(resMes)
-    res.end();
-  })
+    default:
+
+      break;
+  }
+  res.end()
+})
+router.post('/schedule/:method', (req, res, next) => {
+  switch (req.params.method) {
+    case "create":
+      var temp = new docNews({
+        title: req.body.title,
+        date: new Date(`${req.body.time} GMT`),
+        category: req.body.category,
+        content: req.body.content
+      })
+      if(docNews.find().count()>0) {
+        docNews.find().sort({pk:-1}).limit(1).exec((err,doc)=>{
+          temp.pk = doc[0].pk+1;
+        })
+      }
+      temp.save((err, doc) => {
+        if (err) { res.json(err); return next(err) };
+        console.log(doc)
+        var resMes = {
+          message: "Data saved successfully!"
+        }
+        res.json(resMes)
+      })
+        break;
+    default:
+      break;
+  }
+
 })
 
 router.get('/comingsoon', function (req, res, next) {
