@@ -4,7 +4,7 @@ var Users = require("../models/index/user");
 var checkUser = require('./check-user');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
-var docNews = require('../models/index/user');
+var docNews = require('../models/index/news');
 // for oauth
 var url = require('url');
 var request = require('request');
@@ -55,25 +55,29 @@ router.get('/', (req, res, next) => {
   res.render('index/index', { title: "新生知訊網" })
 });
 router.get('/index-edit', (req, res, next) => {
-  docNews.find().exec((err,res)=>{
-    if(err){return next(err)};
-    res.render('index/edit', { title: '編輯首頁',news:res })
+  docNews.find().exec((err, doc) => {
+    if (err) { return next(err) };
+    console.log(doc)
+    var catePicArr = ["重要通知","學校活動","課業相關","生活日常","網站問題","學生組織"];
+    res.render('index/edit', { title: '編輯首頁', news: doc, icon:catePicArr });
   })
-  
+
 })
 router.post('/scheduleNews', (req, res, next) => {
+
   new docNews({
-    title : req.body.title,
-    date : new Date(req.body.time),
-    category : req.body.category,
-    content : req.body.content
-  }).save((err,doc)=>{
-    if(err){return next(err)};
+    title: req.body.title,
+    date: new Date(`${req.body.time} GMT`),
+    category: req.body.category,
+    content: req.body.content
+  }).save((err, doc) => {
+    if (err) { return next(err) };
+    console.log(doc)
     var resMes = {
-      message : "Data saved successfully!"
+      message: "Data saved successfully!"
     }
     res.json(resMes)
-    res.redirect('/index-edit');
+    res.end();
   })
 })
 
@@ -114,28 +118,28 @@ router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   res.render('login/register', { title: '新生知訊網' });
 });
 
-router.post('/register', checkUser.isAllowtoLogin, function(req, res, next){
+router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   let id = req.body.id;
   let password = req.body.password;
   let name = req.body.name;
 
-  Users.findOne({ "id": id }, function(err, user){
-    if(err) return res.redirect('/');
-    if(!user){
-      console.log( id + ": 不存在於新生列表" );
+  Users.findOne({ "id": id }, function (err, user) {
+    if (err) return res.redirect('/');
+    if (!user) {
+      console.log(id + ": 不存在於新生列表");
       return res.redirect('login');
     }
-    if(user.name !== name){
-      console.log( id + ": 與真實姓名不符" );
+    if (user.name !== name) {
+      console.log(id + ": 與真實姓名不符");
       return res.redirect('login');
     } else {
       user.password = password;
-      Users.createUser(user, function(err, user, next){
-        if(err) next(err);
-        else console.log( id + "建立" );
-        req.login(user, function(err){
-          if(err) next(err);
-          console.log( user.id + "登入" );
+      Users.createUser(user, function (err, user, next) {
+        if (err) next(err);
+        else console.log(id + "建立");
+        req.login(user, function (err) {
+          if (err) next(err);
+          console.log(user.id + "登入");
           res.redirect('/');
         });
       });
