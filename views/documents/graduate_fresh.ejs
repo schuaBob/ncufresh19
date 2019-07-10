@@ -19,7 +19,7 @@
 
                 <% /*研究生*/%>
                 <div class="nav">
-                        <div><a href="/documents"><img src="return.png" class="return"></a></div>
+                        <div class="return_space"><a href="/documents"><img src="return.png" class="return"></a></div>
                         <div class="sign">
                                 <p class="p1">FRESH</p>
                                 <p class="p2">新生週</p>
@@ -27,22 +27,22 @@
                 </div>
                 <div class="graduate" id="graduate">
                         <div class="sidenav">
-                                <a href="/documents/graduate_must"><img src="circle.png" class="icon"></a>
-                                <a href="/documents/graduate_fresh"><img src="circle.png" class="icon"></a>
+                                <a href="/documents/graduate_must"><img src="入學須知_原.png" class="icon icon1"></a>
+                                <a href="/documents/graduate_fresh"><img src="新生週.png" class="icon"></a>
                                 
                         </div>
 
                         <div class="must" id="must">
                                 <div class="sidenav2">
-                                        <p class="option" id="29">＞ 社團博覽會</p>
-                                        <p class="option" id="30">＞ 新生健康檢查</p>
+                                        <p class="option page_now" id="29">＞&emsp;社團博覽會</p>
+                                        <p class="option" id="30">＞&emsp;新生健康檢查</p>
                                 </div>
                                 <div class="box">
                                         <div class="title" >
-                                                <p id="show_title"><%= data.title %></p>
+                                                <p id="show_title"><% /*= data.title*/ %></p>
                                         </div>
                                         <div class="content" >
-                                                <p id="show_content"><%= data.content %></p>
+                                                <p id="show_content"><% /*= data.content*/ %></p>
                                         </div>
                                 </div>
                         </div>
