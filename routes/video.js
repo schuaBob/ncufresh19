@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('video/index', { title: '影音專區 | 新生知訊網' });
+  var nameArray = [1,2,3,4,5,6,7];
+  res.render('video/index', { title: '影音專區 | 新生知訊網'});
 });
 
 /** 中大生活 */
