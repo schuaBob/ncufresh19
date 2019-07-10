@@ -1,3 +1,34 @@
 <script>
+    
+    $(".toggles").hide();
+    $(".showToggle").show();
+
+    /* 遊戲積分toggle */
+    $("#game-score").click(function() {
+        $(".showToggle").hide().removeClass("showToggle");
+        $("#game-score-toggle").addClass("showToggle");
+        $(".showToggle").show();
+    });
+
+    /* 小遊戲toggle */
+    $("#game").click(function() {
+        $(".showToggle").hide().removeClass("showToggle");
+        $("#game-toggle").addClass("showToggle");
+        $(".showToggle").show();
+    });
+
+    /* 發問紀錄toggle */
+    $("#ask-record").click(function() {
+        $(".showToggle").hide().removeClass("showToggle");
+        $("#ask-record-toggle").addClass("showToggle");
+        $(".showToggle").show();
+    });
+
+    /* 我要發問toggle */
+    $("#ask").click(function() {
+        $(".showToggle").hide().removeClass("showToggle");
+        $("#ask-toggle").addClass("showToggle");
+        $(".showToggle").show();
+    });
 
 </script>
