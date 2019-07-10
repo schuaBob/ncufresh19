@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
+    <script type="text/javascript" src="/js/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+        .modal {
+            z-index: 5010;
+        }
+
+        .modal-dialog {
+            max-width: 710px;
+        }
+
+        .modal-backdrop {
+            z-index: 5000;
+        }
+
+        #timePicker {
+            position: relative;
+        }
+
+        .card-img {
+            padding: 8%;
+            margin-top: 1%;
+        }
+    </style>
+</head>
+
+<body>
+    <modal>
+        <div class="modal fade" id="ScheduleNewsModal" tabindex="-1" role="dialog" aria-labelledby="ScheduleNewsTitle"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ScheduleNewsTitle">
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <img src="index/icon-課業相關.png" class="card-img">
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control form-control-lg" id="newsCategory">
+                                        <option default value="0">請選擇</option>
+                                        <option value="1">重要通知</option>
+                                        <option value="2">學校活動</option>
+                                        <option value="3">課業相關</option>
+                                        <option value="4">生活日常</option>
+                                        <option value="5">網站問題</option>
+                                        <option value="6">學生組織</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="article-title" style="margin-top: 30px;">
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">標題</span>
+                            </div>
+                            <input type="text" class="form-control" id="newsTitle" placeholder="Enter Title"
+                                aria-describedby="basic-addon1">
+                        </div>
+                        <p>
+                            <input type="text" class="form-control" id="timePicker" placeholder="Select Date...">
+                        </p>
+                    </div>
+                    <div class="modal-body">
+                        <textarea name="NewsBody" id="editor"></textarea>
+
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="SaveNewsbtn" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </modal>
+    <% include ../layouts/header%>
+    <main>
+        <div class="container" style="max-width: 700px">
+            <div id="news">
+                <div id="news-title">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                News
+                                <span><button type="button" class="btn btn-light" style="float: right"
+                                        data-toggle="modal" data-target="#ScheduleNewsModal">Add</button></span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="news-body">
+                    <% for(let i in news){ %>
+                    <div class="card" data-toggle="modal" data-target="#ScheduleNewsModal" pk="<%=news[i]['pk']%>">
+                        <div class="row align-items-center">
+                            <div class="col-sm-2">
+                                <img src="index/icon-<%=icon[news[i]['category']-1]%>.png" class="card-img">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="card-body">
+                                    <h5><%=news[i]['title']%></h5>
+                                    <span class="newsTime"><small><%=news[i].screenTime%></small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+    <% include ../layouts/js %>
+    <script>
+        $(document).ready(() => {
+            var newseditor = undefined;
+            $('.card').click((e) => {
+                $.ajax({
+                    url: `/schedule/read?pk=${e.currentTarget.attributes.pk.value}`,
+                    method: 'GET',
+                    dataType: 'JSON',
+                    error: (err) => { console.log(err) },
+                    success: (res) => {
+                        $("#newsTitle").val(res.title);
+                        $("#newsCategory").val(res.category)
+                        $("#timePicker").val(res.time)
+                        newseditor.setData(res.content)
+                    }
+                })
+            })
+            $('#ScheduleNewsModal').on('show.bs.modal', function (e) {
+                $('#timePicker').flatpickr({
+                    enableTime: true,
+                    dateFormat: "Y-m-d H:i",
+                    static: true,
+                    onChange: (selectedDates, dateStr, instance) => {
+                        console.log(dateStr)
+                    }
+                });
+                ClassicEditor
+                    .create(document.querySelector('#editor'))
+                    .then(editor => {
+                        console.log(editor);
+                        newseditor = editor;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                $('#SaveNewsbtn').click(() => {
+                    if (($("#newsTitle").val() !== "") && ($("#newsCategory").val() !== 0)) {
+                        if ($("#timePicker").val() !== "") {
+                            $.ajax({
+                                url: '/schedule/create',
+                                method: 'POST',
+                                dataType: 'JSON',
+                                data: {
+                                    title: $("#newsTitle").val(),
+                                    category: $("#newsCategory").val(),
+                                    time: $("#timePicker").val(),
+                                    content: newseditor.getData()
+                                },
+                                error: (err) => {
+                                    console.log(err.responseJSON);
+                                },
+                                success: (res) => {
+                                    alert(res.message)
+                                }
+                            }).always(() => {
+                                // console.log(`
+                                //     title: ${$("#newsTitle").val()}
+                                //     category: ${$("#newsCategory").val()}
+                                //     time: ${$("#timePicker").val()}
+                                //     content: ${newseditor.getData()}`)
+                                $('#ScheduleNewsModal').modal('hide');
+                                location.reload();
+                            })
+                        } else {
+                            alert("No time!")
+                        }
+                    } else {
+                        alert("No title or category!")
+                    }
+                })
+            })
+            $('#ScheduleNewsModal').on('hide.bs.modal', function (e) {
+                $('#timePicker').flatpickr().destroy();
+                $("#newsTitle").val("");
+                $("#newsCategory").val(0);
+                newseditor.destroy()
+                    .catch(error => {
+                        console.log(error);
+                    });
+            })
+
+
+
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>

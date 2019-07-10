@@ -11,14 +11,39 @@
   <script type="text/javascript" src="/js/fullpage.js"></script>
 </head>
 
+
+
 <body>
+  <modal>
+    <div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="newsModalTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newsModalTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <textarea name="content" id="editor" class="modal-body">
+
+          </textarea>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </modal>
   <% include ../layouts/header%>
+
   <main>
     <div id="fullpage">
       <div class="section" id="indexPage1">
         <img id="indexLogo" src="/layouts/logo.png">
         <div id="toPage2">
-          <a href="#secondPage">
+          <a href="#newsPage">
             <svg id="triangle" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down"
               class="svg-inline--fa fa-caret-down fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 320 512">
@@ -40,82 +65,19 @@
                 <div id="news-title">
                   <div class="card text-center">
                     <div class="card-body">
-                      <h2 class="card-title">News</h5>
+                      <h2 class="card-title">
+                        News
+                      </h2>
                     </div>
                   </div>
                 </div>
                 <div id="news-body">
-                  <div class="card">
+                  <div class="card" data-toggle="modal" data-target="#newsModal">
                     <div class="row align-items-center">
-                      <div class="col-md-3">
+                      <div class="col-sm-3">
                         <img src="index/icon-課業相關.png" class="card-img">
                       </div>
-                      <div class="col-md-9">
-                        <div class="card-body">
-                          <h5>card title fjsdlj lsfwop jfojdsl </h5>
-                          <span class="newsTime"><small>3 days ago</small></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="row align-items-center">
-                      <div class="col-md-3">
-                        <img src="index/icon-課業相關.png" class="card-img">
-                      </div>
-                      <div class="col-md-9">
-                        <div class="card-body">
-                          <h5>card title fjsdlj lsfwop jfojdsl </h5>
-                          <span class="newsTime"><small>3 days ago</small></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="row align-items-center">
-                      <div class="col-md-3">
-                        <img src="index/icon-課業相關.png" class="card-img">
-                      </div>
-                      <div class="col-md-9">
-                        <div class="card-body">
-                          <h5>card title fjsdlj lsfwop jfojdsl </h5>
-                          <span class="newsTime"><small>3 days ago</small></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="row align-items-center">
-                      <div class="col-md-3">
-                        <img src="index/icon-課業相關.png" class="card-img">
-                      </div>
-                      <div class="col-md-9">
-                        <div class="card-body">
-                          <h5>card title fjsdlj lsfwop jfojdsl </h5>
-                          <span class="newsTime"><small>3 days ago</small></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="row align-items-center">
-                      <div class="col-md-3">
-                        <img src="index/icon-課業相關.png" class="card-img">
-                      </div>
-                      <div class="col-md-9">
-                        <div class="card-body">
-                          <h5>card title fjsdlj lsfwop jfojdsl </h5>
-                          <span class="newsTime"><small>3 days ago</small></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="row align-items-center">
-                      <div class="col-md-3">
-                        <img src="index/icon-課業相關.png" class="card-img">
-                      </div>
-                      <div class="col-md-9">
+                      <div class="col-sm-9">
                         <div class="card-body">
                           <h5>card title fjsdlj lsfwop jfojdsl </h5>
                           <span class="newsTime"><small>3 days ago</small></span>
@@ -164,10 +126,6 @@
 
     </div>
   </main>
-
-  <footer>
-
-  </footer>
 
   <% include ../layouts/js %>
   <script type="text/javascript" src="index/index.js"></script>

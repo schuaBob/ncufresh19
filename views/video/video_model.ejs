@@ -32,7 +32,7 @@
         <div class="tri"></div>
         <div class="title">
           <h1>
-            <font color="#ec6d4f">英文標題</font><br><span class="small_title">中文標題</span>
+            <font color="#ec6d4f"><%= engtitle %></font><br><span class="small_title"><%= smalltitle %></span>
           </h1>
         </div>
       </div>
@@ -40,12 +40,14 @@
       <%/* 影片區 */%>
       <div class="video_area">
         <div class="background">
-          <h1>這是放影片的地方</h1>
+            <div id="player"></div>
         </div>
       </div>
-      <% include ../layouts/js %>
+
+      <%/* 引入Youtube API */%>
+      <script src="/video/javascripts/video.js"></script>
 
   </main>
 </body>
-
+<% include ../layouts/js %>
 </html>

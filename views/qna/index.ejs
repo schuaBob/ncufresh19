@@ -3,9 +3,9 @@
 
 <head>
   <% include ../layouts/head %>
-    
 
-    
+
+
   <% include ../layouts/script  %>
   <link rel='stylesheet' href='style.css' />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -13,11 +13,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
   <style>
-    
-    #main{
+    #main {
       position: relative;
-      top:4vh;
+      top: 4vh;
     }
+
     .seaBlue {
       color: #0D4966;
     }
@@ -44,10 +44,10 @@
       /* for Firefox */
       -webkit-user-select: none;
       /* for Chrome */
-      
+
     }
 
-    
+
 
     .main {
       position: relative;
@@ -59,24 +59,27 @@
 
     .titleSpace {
       position: relative;
-      height: 11vh;      
+      height: 11vh;
       margin: auto;
       top: 7.5vh;
-      width: 83%;      
+      width: 83%;
       margin: auto;
       border-left: 6px solid #FFCC00;
       padding-left: 15px;
     }
-    #qatxt{
+
+    #qatxt {
       position: absolute;
       font-size: 5vh;
       top: -11%;
     }
-    #qatxt_c{
+
+    #qatxt_c {
       position: absolute;
       font-size: 4vh;
       bottom: -6%;
     }
+
     .leftSide {
       width: 20%;
       /* background-color: rgb(102, 252, 164);        */
@@ -84,26 +87,29 @@
 
     /* "分類"圖片 */
     .pic_classification {
-      position: relative;          
+      position: relative;
       padding-left: 4%;
       left: 5px;
     }
-    #classification{
+
+    #classification {
       position: absolute;
       font-size: 4vh;
     }
-    #classification_c{
+
+    #classification_c {
       position: absolute;
-      font-size:3vh;
+      font-size: 3vh;
       bottom: -5%;
     }
+
     .pic_classification img {
       height: 10vh;
       margin-right: 9px;
     }
 
-    .option {      
-      font-size: 3vh;      
+    .option {
+      font-size: 3vh;
       margin-top: 5vh;
     }
 
@@ -119,18 +125,19 @@
       text-align: center;
       border-radius: 2px;
     }
-    .option a{
+
+    .option a {
       text-decoration: none;
       color: #0D4966;
     }
-    
+
 
 
     /* 選單箭頭 */
     .fa-angle-right {
       font-size: 1.3em;
       position: relative;
-      top: 3px;
+      top: 2px;
       margin-right: 6px;
       display: none;
     }
@@ -144,7 +151,7 @@
     }
 
     /* 過濾器以及搜尋框 */
-    .filter_SearchBar {
+    .sort_SearchBar {
       /* background-color: bisque; */
       width: 100%;
       padding: 10px 80px;
@@ -186,7 +193,7 @@
       height: 80%;
     }
 
-    tbody > tr {
+    tbody>tr {
       border-bottom: 1px solid #0D4966;
       height: 6vh;
       font-size: 2.5vh;
@@ -196,13 +203,13 @@
       cursor: pointer;
     }
 
-    thead > tr {
+    thead>tr {
       border-bottom: 1px dashed #0D4966;
       height: 6vh;
       font-size: 3vh;
     }
 
-    .filterButton {
+    .sortButton {
       border-radius: 5px;
       padding: 2px 10px;
     }
@@ -264,13 +271,15 @@
         <div class="modal-body">
           <form action="/qna/toPost" class="needs-validation" method="POST">
             <div class="form-group">
-              
+
               <label for="q_title">標題</label>
-              <input type="text" class="form-control" id="q_title" name="qTitle" placeholder="限10字(必填)" pattern="^.{1,10}$">
+              <input type="text" class="form-control" id="q_title" name="qTitle" placeholder="限10字(必填)"
+                pattern="^.{1,10}$">
               <label for="q_content">內容</label>
-              <textarea type="text" class="form-control" id="q_content" name="qContent" rows="3" placeholder="內容" pattern="^.{1,200}$"></textarea>
+              <textarea type="text" class="form-control" id="q_content" name="qContent" rows="3" placeholder="內容"
+                pattern="^.{1,200}$"></textarea>
             </div>
-          </form>        
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="submit">送出</button>
@@ -306,108 +315,139 @@
 
   <% include ../layouts/header %>
   <main id="main">
-      
-      <div class="titleSpace">
-        <span class="seaBlue font-weight-bold" id="qatxt">Q&A</span>
-        <span id="qatxt_c">新生問答</span>
+
+    <div class="titleSpace">
+      <span class="seaBlue font-weight-bold" id="qatxt">Q&A</span>
+      <span id="qatxt_c">新生問答</span>
+    </div>
+    <div class="main d-flex">
+      <div class="leftSide">
+        <div class="pic_classification">
+          <img src="sieve.png" alt="">
+          <span id="classification">分類</span>
+          <span id="classification_c">Classification</span>
+        </div>
+        <div class="option">
+          <ul>
+            <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
+            <li><a href="/qna/life"><i class="fas fa-angle-right" id="life"></i>校園生活</a></li>
+            <li><a href="/qna/course"><i class="fas fa-angle-right" id="course"></i>課程相關</a></li>
+            <li><a href="/qna/affair"><i class="fas fa-angle-right" id="affair"></i>學生事務</a></li>
+            <li><a href="/qna/other"><i class="fas fa-angle-right" id="other"></i>其他</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="main d-flex">
-        <div class="leftSide">
-          <div class="pic_classification">
-            <img src="sieve.png" alt="">
-            <span id="classification">分類</span>
-            <span id="classification_c">Classification</span>
+      <div class="rightSide">
+        <!-- 過濾以及搜尋框 -->
+        <div class="sort_SearchBar">
+          <div class="buttonGroup d-inline-flex">
+            <div class="sortButton text-white seaBlueBg">排序</div>
+            <div class="sortButton yellowBg" sort="time">時間</div>
+            <div class="sortButton grayBg" sort="count">人氣</div>
           </div>
-          <div class="option">
-            <ul>
-              <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
-              <li><a href="/qna/life"><i class="fas fa-angle-right" id="life"></i>校園生活</a></li>
-              <li><a href="/qna/course"><i class="fas fa-angle-right" id="course"></i>課程相關</a></li>
-              <li><a href="/qna/affair"><i class="fas fa-angle-right" id="affair"></i>學生事務</a></li>
-              <li><a href="/qna/other"><i class="fas fa-angle-right" id="other"></i>其他</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="rightSide">
-          <!-- 過濾以及搜尋框 -->
-          <div class="filter_SearchBar">
-            <div class="buttonGroup d-inline-flex">
-              <div class="filterButton text-white seaBlueBg">排序</div>
-              <div class="filterButton yellowBg">時間</div>
-              <div class="filterButton grayBg">人氣</div>
-            </div>
-            <div class="searchBar">
-              <form class="form-inline">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input class="form-control form-control-sm ml-2 searchInput" type="text" placeholder="Search" aria-label="Search">
-              </form>
-            </div>
-          </div>
-          <!-- top按鍵 -->
-          <i class="far fa-arrow-alt-circle-up fa-5x"></i>
-          <!-- 企鵝 -->
-          <div class="ask">
-            <span class="askTxt">我要發問!</span>
-            <img src="penguin.png" alt="">
-          </div>
-          <!-- 問題列表 -->
-          <div class="content">
-            <div class="contentTable">
-              <table class="table table-hover table-borderless">
-                <thead>
-                  <tr class="head">
-                    <th scope="col">分類</th>
-                    <th scope="col">標題</th>
-                    <th scope="col">日期</th>                    
-                    <th scope="col">點閱率</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% for(let index in questions){ %>                    
-                    <tr>
-                      <th scope="row"><%= questions[index].category%></th>
-                      <td><%= questions[index].title %></td>
-                      <td><%= convertDateToString(questions[index]._id.getTimestamp()) %></td>                      
-                      <td><%= questions[index].count  %></td>
-                    </tr>
-                  <% } %>                  
-                </tbody>
-              </table>
-            </div>
+          <div class="searchBar">
+            <form class="form-inline">
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <input class="form-control form-control-sm ml-2 searchInput" type="text" placeholder="Search"
+                aria-label="Search">
+            </form>
           </div>
         </div>
-      </div>    
+        <!-- top按鍵 -->
+        <i class="far fa-arrow-alt-circle-up fa-5x"></i>
+        <!-- 企鵝 -->
+        <div class="ask">
+          <span class="askTxt">我要發問!</span>
+          <img src="penguin.png" alt="">
+        </div>
+        <!-- 問題列表 -->
+        <div class="content">
+          <div class="contentTable">
+            <table class="table table-hover table-borderless">
+              <thead>
+                <tr class="head">
+                  <th scope="col">分類</th>
+                  <th scope="col">標題</th>
+                  <th scope="col">日期</th>
+                  <th scope="col">點閱率</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(let index in questions){ %>
+                <tr postID="<%= questions[index].postID%>">
+                  <th scope="row"><%= questions[index].category%></th>
+                  <td><%= questions[index].title %></td>
+                  <td><%= convertDateToString(questions[index]._id.getTimestamp()) %></td>
+                  <td class="count"><%= questions[index].count  %></td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
-  
-  
+
+
 </body>
 <% include ../layouts/js %>
-<script>  
-  var timer;
-
-  //將date格式轉成yyyy/mm/dd
-  function convertDateToString(_date){
-    var date = new Date(_date);
+<script>
+  
+  
+  function convertDateToString(_id){
+    let timestamp = _id.toString().substring(0,8);
+    let date = new Date( parseInt( timestamp, 16 ) * 1000 )
     var str=date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
     return str;
   }
-  $(document).ready(function () {    
 
-    var c = location.pathname.split('/')[2];    
-    if(c==""){
+  $(document).ready(function () {
+
+    var timer;
+    var sort = "time"; //紀錄時間、人氣的按鈕值
+
+    var c = location.pathname.split('/')[2]; //分類的值
+    if (c == "") {
       $("#all").addClass("d-inline");
-      $("#all").parents("li").css("background-color","#FFECA1");
-    }      
-    else{
-      $("#"+c).addClass("d-inline");
-      $("#"+c).parents("li").css("background-color","#FFECA1");
+      $("#all").parents("li").css("background-color", "#FFECA1");
     }
-      
+    else {
+      $("#" + c).addClass("d-inline");
+      $("#" + c).parents("li").css("background-color", "#FFECA1");
+    }
+
+    $(".sortButton").click(function () {
+      alert("分類:" + c + ",過濾:" + $(this).attr("sort"));
+    });
+
     //按問題後觸發answermodal
-    $("tbody > tr").click(function () {
+    $("tbody tr").click("tr",function(){
+      // var currentCount = this.children(".count").text();
+      var $node = $(this);
+      $.ajax({
+          type: "POST",
+          url: "/qna/getQuestion", 
+          dataType:'json',         
+          timeout: 5000,
+          data: {
+            postID:$node.attr("postid")
+          },
+          success:function(data){
+            $node.children(".count").text(parseInt($node.children(".count").text())+1);
+            
+          },
+          error:function(err){
+            alert("資料庫出錯!!");
+          }
+        });
+
+
+      
       $("#answerModal").modal();
       //assign分類到Modal標題
       $("#answerModalLabel").text($(this).children('th').text());
+      
     });
     //按"我要發問"觸發askmodal
     $(".ask").click(function () {
@@ -419,106 +459,111 @@
     //askmodal的分類鈕
     $(".dropdown-item").click(function () {
       //點選分類後更新分類按鈕
-      $(".classification_btn").text($(this).text());      
+      $(".classification_btn").text($(this).text());
     });
-    
+
     $(".fa-arrow-alt-circle-up").click(function () {
       $(".content").scrollTop(0);
     });
 
-    
-    $(".content").scroll(function (){  
-      
-      if ($(".content").scrollTop()>10){
-        $('.fa-arrow-alt-circle-up').css("visibility", "visible");               
-      }else{
-        $('.fa-arrow-alt-circle-up').css("visibility", "hidden");        
+
+    $(".content").scroll(function () {
+
+      if ($(".content").scrollTop() > 10) {
+        $('.fa-arrow-alt-circle-up').css("visibility", "visible");
+      } else {
+        $('.fa-arrow-alt-circle-up').css("visibility", "hidden");
       }
-      
+
       //讓scroll觸發次數減少
       window.clearTimeout(timer);
-      timer = window.setTimeout(function() {
-        scrollEnd();        
-      }, 300);      
+      timer = window.setTimeout(function () {
+        scrollEnd();
+      }, 700);
     });
 
-    function scrollEnd(){        
+    function scrollEnd() {
 
       //如果"幾乎"到底，加載新的問題
-      if(($(".content").scrollTop()+$(".content").height())>($(".contentTable").height()*0.9)){        
-          console.log("到底了");
-          $.ajax({
-            type:"POST",
-            url:"/qna/getData",
-            dataType:'json',
-            timeout:5000,           
-            data:{
-              category:"all",
-              rowCount:$("tbody > tr").length,              
-            },
-            success:function(data){
-              if(true){                
-                for(let i=0; i<data.length; i++){ 
-                  let item ='<tr><th scope="row">'+data[i].category
-                      +'</th><td>'+data[i].title
-                      +'</td><td>'+convertDateToString(data[i]._id.getTimestamp())
-                      +'</td><td>'+data[i].count
-                      +'</td></tr>';               
-                  $("tbody").append(item);                  
-                }                
-              }else{
-                alert("失敗");
-              }
-            },
-            error:function(err){
-              alert("資料庫出錯!!");
-            }
-          });
+      if (($(".content").scrollTop() + $(".content").height()) > ($(".contentTable").height() * 0.9)) {
+        console.log("到底了");
+        getData(c,sort);
       }
     }
+    function getData(category,sort) {      
+      $.ajax({
+        type: "POST",
+        url: "/qna/getData",
+        dataType: 'json',
+        timeout: 5000,
+        data: {
+          category: (category=="" ? "":category),
+          sort: (sort=="time" ? "time":"count"),
+          rowCount: $("tbody > tr").length,
+        },
+        success: function (data) {
+          if (true) {
+            for (let i = 0; i < data.length; i++) {
+              let item = '<tr postID="'+data[i].postID+'"><th scope="row">' + data[i].category
+                + '</th><td>' + data[i].title
+                + '</td><td>' + convertDateToString(data[i]._id)
+                + '</td><td class="count">' + data[i].count
+                + '</td></tr>';
+              $("tbody").append(item);
+            }
+          } else {
+            alert("失敗");
+          }
+        },
+        error: function (err) {
+          alert("資料庫出錯!!");
+        }
 
-    
+      });
+      
+    }
+
     //askModal的submit觸發後，檢查字數是否符合規定
-    $("#submit").click(function(){
+    $("#submit").click(function () {
 
       var forms = document.getElementsByClassName('needs-validation');
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        
-        if (form.checkValidity() === false || $(".classification_btn").text()==="請選擇分類") {          
+      var validation = Array.prototype.filter.call(forms, function (form) {
+
+        if (form.checkValidity() === false || $(".classification_btn").text() === "請選擇分類") {
           event.preventDefault();
-          event.stopPropagation();          
-        }else{          
+          event.stopPropagation();
+        } else {
           //送出前將分類放進隱藏的input，使後端可以取得          
           $.ajax({
-            type:"POST",
-            url:"/qna/toPost",
-            dataType:'json',
-            timeout:5000,           
-            data:{
-              category:$(".classification_btn").text(),
-              title:$("#q_title").val(),
-              question:$("#q_content").val()
+            type: "POST",
+            url: "/qna/toPost",
+            dataType: 'json',
+            timeout: 5000,
+            data: {
+              category: $(".classification_btn").text(),
+              title: $("#q_title").val(),
+              question: $("#q_content").val()
             },
-            success:function(data){
-              if(data[0]==='success'){
+            success: function (data) {
+              if (data[0] === 'success') {
                 $("#askModal").modal("hide");
-                alert("成功");                
-              }else{
+                alert("成功");
+              } else {
                 alert("失敗");
               }
             },
-            error:function(err){
+            error: function (err) {
               alert("資料庫出錯!!");
             }
           });
-        }                
+        }
       });
-      
+
     });
 
 
 
-    
+
   });
 
 </script>

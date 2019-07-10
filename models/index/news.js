@@ -1,9 +1,12 @@
 var mongoose = require('mongoose');
 var docNews = mongoose.Schema({
-    title : String,
-    date : Date,
-    category : Number,
-    content : String
+    pk: { type: Number, default: 0 },
+    title: String,
+    date: Date,
+    category: Number,
+    content: String
 })
 
-module.exports = mongoose.model('docNews',docNews);
+
+
+module.exports = mongoose.model('docNews', docNews);

@@ -6,10 +6,8 @@ var documents = mongoose.Schema({
     college: String,
     name: String,
     name_en: String,
-    introduction: String, //系所介紹
-    intro_pic: [String],
-    organization: String, //系學會
-    organ_pic: [String],
+    de_link: String,
+    stu_link: String,
 
 
 });

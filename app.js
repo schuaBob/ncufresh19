@@ -14,6 +14,7 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
+// var cronJob = require('cron').CronJob;
 
 // cache views
 app.set('view cache', false);
@@ -35,11 +36,11 @@ mongoose.connect('mongodb://localhost:27017/ncufresh19', {
   useNewUrlParser: true
 });
 
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-// app.use(compression());
-// app.use(minify());
-// app.use(helmet());
-// app.use(flash());
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(compression());
+app.use(minify());
+app.use(helmet());
+app.use(flash());
 app.use(session({
   secret: 'ThisIsNcuFresh19Speaking.',
   name: 'ncufresh.session.id',
@@ -93,6 +94,15 @@ app.use('/personal', personal);
 // 常用連結
 app.use('/link', link);
 
+//auto update at 00:00 & 12:00
+// console.log("Initiallize auto schedule news 1...");
+// const cronNews1 = new cronJob(
+//     '00 00 00 * * *',
+//     ()=>{
+
+//     }
+// )
+
 //multer settings
 var multer = require('multer');
 var multerUpload = multer({
@@ -105,15 +115,17 @@ var multerUpload = multer({
     }
   })
 })
+
 //ckfinder
-app.post('/ckUpload', multerUpload.single('upload'),(req, res, next) => {
+app.post('/ckUpload', multerUpload.single('upload'), (req, res, next) => {
   var imgurl = `/imguploads/${req.file.filename}`;
   var resJson = {
-    uploaded:true,
-    url : imgurl
+    uploaded: true,
+    url: imgurl
   }
   res.json(resJson);
 })
+
 //css and js
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
@@ -124,9 +136,6 @@ app.use('/js', express.static(__dirname + '/node_modules/build'));
 app.use('/js', express.static(__dirname + '/node_modules/velocity-animate'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css', express.static(__dirname + '/node_modules/fullpage.js/dist'));
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -145,8 +154,8 @@ app.use(function (err, req, res, next) {
 });
 
 //------------------- added by 陳威捷 (用於ejs模板中的函式)
-app.locals.convertDateToString=function(date){
-  var str=date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+app.locals.convertDateToString = function (date) {
+  var str = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
   return str;
 }
 //----------------------------------

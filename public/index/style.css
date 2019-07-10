@@ -1,23 +1,29 @@
-.indexPage{
+.indexPage {
     height: 100vmin;
     width: 100vmax;
     position: relative;
     bottom: 60px;
 }
-#inddexPage1,#indexPage2,#indexPage3{
+
+#inddexPage1,
+#indexPage2,
+#indexPage3 {
     position: relative;
 }
+
 #indexPage2 {
     top: -60px;
     background-image: url("/index/首頁2.png");
     background-repeat: repeat;
-    background-size: cover; 
+    background-size: cover;
 }
+
 main {
     position: relative;
     width: 100%;
     height: calc(100% - 60px);
 }
+
 #toPage2 {
     position: absolute;
     z-index: 4997;
@@ -26,47 +32,57 @@ main {
     bottom: 60px;
     left: calc(50% - 35px);
 }
-#triangle{
+
+#triangle {
     z-index: 4999;
     position: absolute;
     height: 100px;
-    width: 100px;  
+    width: 100px;
 }
-#indexLogo{
+
+#indexLogo {
     position: absolute;
     z-index: 500;
     width: 28%;
     left: 36%;
     top: 20px;
 }
-#fullpage{
+
+#fullpage {
     position: absolute;
 }
-#secondSection{
+
+#secondSection {
     position: relative;
     padding-bottom: 60px;
     z-index: 500;
-    bottom:0;
+    bottom: 0;
 }
+
 #secondSection .row {
     height: 100%;
 }
-.card{
+
+.card {
     margin: 0;
 }
-.col-lg{
+
+.col-lg {
     padding-top: 30px;
     padding-bottom: 30px;
 }
-.card-img{
+
+.card-img {
     margin-top: 2%;
-    padding:12%;
+    padding: 12%;
 }
-.newsTime{
+
+.newsTime {
     position: relative;
     float: right;
 }
-#news{
+
+#news {
     display: block;
     position: relative;
     width: 80%;
@@ -74,17 +90,32 @@ main {
     height: 100%;
     max-width: 600px;
 }
-#news-title{
+
+#news-title {
     position: relative;
 }
-#news-body{
+
+#news-body {
     position: relative;
     height: 330px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
-#carouselExampleIndicators{
+
+#carouselExampleIndicators {
     max-width: 650px;
     display: block;
     margin: 0 auto;
+}
+
+.modal {
+    z-index: 5010;
+}
+
+.modal-dialog {
+    max-width: 710px;
+}
+
+.modal-backdrop {
+    z-index: 5000;
 }
