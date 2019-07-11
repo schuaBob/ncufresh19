@@ -1,18 +1,19 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.index_bg {
   background-color: rgb(13, 73, 102);
 }
 
-/*背景*/
-#main {
-  height: 91vh;
-  width: 100%;
+.other_bg {
   background-color: #fff9dc;
 }
 
 /*show文字自動縮排*/
 #show_content{
+  overflow-y: auto;
+  overflow-x: hidden;
   word-wrap:break-word;
 }
 
@@ -138,8 +139,8 @@ a{
 }
 
 
-.sidenav2 p {
-  color: rgb(31, 31, 94);
+.sidenav2 P {
+  color: rgb(13, 73, 102);
   text-decoration: none;
   display: block;
   font-size: 20px;
@@ -172,22 +173,35 @@ a{
 
  
 .box {
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: white;
     position: fixed;
     width: 70vw;
     height: 73vh;
     right: 0vw;
     top: 186px;
-    padding-left: 5vw;
-    padding-top: 3vh;
+    /*padding-left: 5vw;
+    padding-top: 4vh;*/
+    padding: 4vh 5vw;
 }
 
 .title {
-  font-size: 25px;
-  color: rgb(0, 162, 255);
+  font-size: 26px;
+  font-weight: bold;
+  color: rgb(58, 154, 216);
 }
 
 
 .content {
   padding-top: 2vh;
+}
+
+.modal-dialog{
+  overflow-y: initial !important
+}
+.modal-body{
+  height: 50vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
