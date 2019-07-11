@@ -10,6 +10,10 @@
   var stage;
   var backbround;
   var sea ;
+  var game_time=60;
+  var harpoon_text;
+  var player_control=false;
+  var start_time_text;
   var countdown_time;
   var countdown_text;
   var countdown_timer;
@@ -119,6 +123,7 @@
           // harpoon.reg = harpoon.image.height;
           this.moveable=false;
           harpoon_list= arrayRemove(harpoon_list,this);
+          harpoon_update();
           stage.removeChild(this);
           var diefish =   animal_list[i];
           //createjs.Tween.get(harpoon).to({y:canvas_seaheight,rotation:(getrandom(2)==0?90:-90)},animal_list[i].animaltype == 0?500:2000);
@@ -184,7 +189,7 @@
     stage.update();
   }
   function mousedown(event) {
-    if(harpoon_list.length>10)return;
+    if(harpoon_list.length>=10)return;
     var shoot_harpoon = new harpoon();
     var x = stage.mouseX- (shoot_harpoon.x );
     var y = stage.mouseY - (shoot_harpoon.y );
@@ -195,6 +200,10 @@
     shoot_harpoon.rotation = r_x*(r*180/Math.PI);
     shoot_harpoon.move(x,y,c,10);
     harpoon_list.push(shoot_harpoon);
+    harpoon_update();
+  }
+  function harpoon_update(){
+    harpoon_text.text = "Harpoon:"+(10-harpoon_list.length)+"";
   }
   function boatmove_left() {
     if(fisherman.x-fisherman.getwidth()/2<0)return;
@@ -213,6 +222,7 @@
     mousemove();
   }
   function keyDown(event) {
+    if(player_control)
     if (event.keyCode == 37 || event.keyCode == 65 ) {
       if (!b_left) {
         t_boatmove_left = setInterval(boatmove_left, 20);
@@ -225,7 +235,7 @@
         b_right = true;
       }
     }
-    else if(event.keyCode == 32){
+    if(event.keyCode == 32){
       mousedown();
     }
   }
@@ -298,6 +308,7 @@
           this.moveable=false;
           stage.removeChild(harpoon_list[i]);
           harpoon_list=arrayRemove(harpoon_list,harpoon_list[i]);
+          harpoon_update();
           i--;
         }
       }
@@ -332,6 +343,7 @@
    },1000);
   }  
   function keyUp(event) {
+    if(player_control)
     if (event.keyCode == 37|| event.keyCode == 65) {
       b_left = false;
       clearInterval(t_boatmove_left);
@@ -537,9 +549,28 @@
     countdown_text.text = ""+countdown_time;
     if(countdown_time == 0){
       gamestart=false;
+      clese_bird();
+      clese_fish();
+      clese_bubble();
+      clear_animal();
+      clear_stage();
+      close_game_event();
+      close_fishmanwalk();
+      start_time_text.text = "Time's up！";
+      start_time_text.x -= 40;
+      stage.addChild(start_time_text);
+      stage.removeChild(harpoon_text);
       stage.removeChild(countdown_text);
       clearInterval(countdown_timer)
-      score_init();
+      fisherman_harpoon.scaleX *= fisherman_harpoon.scaleX<0?-1:1;
+      fisherman_harpoon.rotation=35;
+      fisherman.scaleX *= fisherman.scaleX<0?-1:1;
+      fisherman_harpoon.revise_position();
+      createjs.Tween.get(fisherman_harpoon).wait(2000).to({x:-Math.abs(fisherman.getwidth())+25*(fisherman.scaleX<0?1:-1)},4000);
+      createjs.Tween.get(fisherman).wait(2000).to({x:-Math.abs(fisherman.getwidth())},4000).call(()=>{
+        stage.removeChild(start_time_text);
+        score_init();
+      });
     }
   }
   function clear_stage(){
@@ -551,33 +582,19 @@
     }
   }
   function score_init(){
-    clese_bird();
-    clese_fish();
-    clese_bubble();
-    clear_animal();
-    clear_stage();
-    close_game_event();
-    fisherman_harpoon.scaleX *= fisherman_harpoon.scaleX<0?-1:1;
-    fisherman_harpoon.rotation=35;
-    fisherman.scaleX *= fisherman.scaleX<0?-1:1;
+    backbround.image = loader.getResult("score_background");
+    sea.y = 270;
+    fisherman.y=380
+    fisherman.scale=fisherman_harpoon.scale=0.25;
+    fisherman.x=canvas_width+fisherman.getwidth();
+    fisherman_harpoon.rotation = 35;
     fisherman_harpoon.revise_position();
-    console.log(fisherman.getwidth());
-    createjs.Tween.get(fisherman_harpoon).to({x:-Math.abs(fisherman.getwidth())+25*(fisherman.scaleX<0?1:-1)},3000);
-    createjs.Tween.get(fisherman).to({x:-Math.abs(fisherman.getwidth())},3000).call(()=>{
-      backbround.image = loader.getResult("score_background");
-      sea.y = 270;
-      fisherman.y=380
-      fisherman.x=canvas_width-fisherman.getwidth();
-      fisherman.scale=fisherman_harpoon.scale=0.25;
-      fisherman_harpoon.rotation = 35;
-      fisherman_harpoon.revise_position();
-      createjs.Tween.get(fisherman).to({x:255},5000);
-      createjs.Tween.get(fisherman_harpoon).to({x:255+40*(fisherman.scaleX<0?1:-1)},5000);
-    });
+    createjs.Tween.get(fisherman).to({x:255},5000);
+    createjs.Tween.get(fisherman_harpoon).to({x:255+40*(fisherman.scaleX<0?1:-1)},5000);
   }
   function create_game_timer(){
-    countdown_time=60;
-    countdown_text = new createjs.Text("60","20px "+font_family,"#000000");
+    countdown_time=game_time;
+    countdown_text = new createjs.Text(game_time+"","30px "+font_family,"#000000");
     countdown_text.x = 400;
     countdown_text.y=20;
     countdown_timer=setInterval(countdown,1000)
@@ -585,28 +602,33 @@
   }
   function game_start(){
     gamestart=true;
-    var start_timer = new createjs.Text("5","40px "+font_family,"#000000");
-    start_timer.x=400;
-    start_timer.y = 200;
-    start_timer.alpha =0;
-    stage.addChild(start_timer);
-    createjs.Tween.get(start_timer).wait(1000).to({alpha:1},1000).to({text:"4"}).to({alpha:0}).to({alpha:1},1000).to({text:"3"}).to({alpha:0}).to({alpha:1},1000).to({text:"2"}).to({alpha:0}).to({alpha:1},1000).to({text:"1"}).to({alpha:0}).to({alpha:1},1000).to({x:380,text:"start"}).wait(1000).call(()=>{
-      stage.removeChild(start_timer);
-      game_event();
-      open_bubble();
-      open_fish();  
-      open_bird();
-      create_game_timer();
-    });
+    harpoon_text = new createjs.Text("Harpoon：10","18px "+font_family,"#000000");
+    harpoon_text.x  = 650;
+    harpoon_text.y = 20;
+    stage.addChild(harpoon_text);
+    game_event();
+    open_bubble();
+    open_fish();  
+    open_bird();
+    create_game_timer();
   }
   function game_init() {
     clese_bird();
     clese_fish();
     clear_animal();
     clese_bubble();
-    close_fishmanwalk();
-    score_init();
-    //game_start();
+    //close_fishmanwalk();
+    //score_init();
+
+    start_time_text = new createjs.Text("5","40px "+font_family,"#000000");
+    start_time_text.x=400;
+    start_time_text.y = 200;
+    start_time_text.alpha =0;
+    stage.addChild(start_time_text);
+    createjs.Tween.get(start_time_text).wait(1000).to({alpha:1},1000).to({text:"4"}).to({alpha:0}).to({alpha:1},1000).to({text:"3"}).to({alpha:0}).to({alpha:1},1000).to({text:"2"}).to({alpha:0}).to({alpha:1},1000).to({text:"1"}).to({alpha:0}).to({alpha:1},1000).to({x:360,text:"Start!"}).wait(1000).call(()=>{
+      stage.removeChild(start_time_text);
+      game_start();
+    });
   }
   function close_fishmanwalk(){
     clearInterval(fishman_walk);
@@ -641,7 +663,7 @@
     //stage.addChild(fish_ad);
     generate_fish_ad = setInterval(function(){
       fish_ad.x -= 2;
-      if(fish_ad.x<= -500)fish_ad.x = canvas_width+250;
+      if(fish_ad.x<= -300)fish_ad.x = canvas_width+250;
     },20);
   }
   function close_fish_ad(){
