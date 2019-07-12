@@ -47,7 +47,7 @@
             .catch( error => {
                 console.error( error );
             } );
-var outeditor = undefined;
+            var outeditor = undefined;
             ClassicEditor
             .create( document.querySelector( '#modify_content' ) )
             .then( neweditor => {
@@ -63,10 +63,11 @@ var outeditor = undefined;
             $(".option").mousedown(function(){
                 $("#edit_modify").modal("show");
                 textid = this.id;
+                //$(this).attr('href',"/documents/undergraduate_must/"+textid)
                 //當下頁面變色
                 $(".option").removeClass("page_now");
                 $(this).addClass("page_now")
-
+                
                 $.ajax({
                 url: "/documents/require_data/" + textid,
                 method: 'get',
@@ -74,6 +75,8 @@ var outeditor = undefined;
                     console.log(err);
                 },
                 success: function (data) {
+                    console.log(data.title);
+                    console.log(data.content);
                     $("#show_title").empty();
                     $("#show_content").empty();
                     $("#show_title").html(data.title);  
@@ -130,14 +133,14 @@ var outeditor = undefined;
                 $(this).css("top","20%");
             })
 
-    })
-    //新增的時候將id傳到modal
-    function getid(){
-        $('input[name=id]').val(textid);
-    }
+/*--------------------------------------使用者---------------------------------------------*/
+         /*   $(".option").mousedown(function(){
+                textid = this.id;
+                //當下頁面變色
+                $(".option").removeClass("page_now");
+                $(this).addClass("page_now")
 
-    function showdata(){
-        $.ajax({
+                $.ajax({
                 url: "/documents/require_data/" + textid,
                 method: 'get',
                 error: function (err) {
@@ -146,12 +149,16 @@ var outeditor = undefined;
                 success: function (data) {
                     $("#show_title").empty();
                     $("#show_content").empty();
-                    $("#show_title").html(data.title);
-                    //CKEDITOR.instances.edit_content.setData(data.content);
-                    
+                    $("#show_title").html(data.title);  
                     $("#show_content").html(data.content);
                     }
             });
+            })*/
+
+    })
+    //新增的時候將id傳到modal
+    function getid(){
+        $('input[name=id]').val(textid);
     }
 
 </script>
