@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
+    <link rel='stylesheet' href='style.css' />
+</head>
+
+<body class="other_bg">
+    <% include ../layouts/header %>
+    <main id="main">
+        <% /*編輯框*/ %>
+        <% include edit %>
+        <% include undergraduate_must %>
+        <% /*大學生*/ %>
+                <div class="box">
+                        <div class="title" >
+                            <p id="show_title"><script>$("#show_title").html(data.title);</script></p>
+                        </div>
+                        <div class="content" >
+                            <p id="show_content"><script>$("#show_content").html(data.content);</script></p>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <% include ../layouts/js %>
+    <% include js %>
+</body>
+
+</html>

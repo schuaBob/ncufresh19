@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-//var department = require('../models/groups/department');
+var department = require('../models/groups/deparment');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('groups/index', { title: 'Express' });
