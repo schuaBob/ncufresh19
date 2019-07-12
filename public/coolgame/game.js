@@ -11,7 +11,10 @@
   var backbround;
   var sea ;
   var game_time=60;
+  var catch_animal_container;
   var harpoon_text;
+  var catch_animal_text;
+  var catch_animal_num = [0,0,0,0,0];
   var player_control=false;
   var start_time_text;
   var countdown_time;
@@ -81,6 +84,9 @@
       catch_fish.push(this);
       animal_list = arrayRemove(animal_list,this);  
       this.gotoAndStop(this.special == true?"special_die":"normal_die");
+      console.log(this.animaltype);
+      catch_animal_num[this.animaltype]+=1;
+      catech_animal_update();
     }
   }
   class harpoon extends createjs.Bitmap{
@@ -544,6 +550,18 @@
       close_fish_ad();
     });
   }
+  function fush_jump(){
+    stage.setChildIndex(fisherman,stage.numChildren-1);
+    stage.setChildIndex(fisherman_harpoon,stage.numChildren-1);
+    for(i=0;i<catch_fish.length-1;i++){
+      createjs.Tween.get(catch_fish[i]).wait(1400).to({y:(fisherman.y-getrandom(50)+20),x:(fisherman.x+50-getrandom(50))},600)
+    }
+    createjs.Tween.get(catch_fish[catch_fish.length-1]).wait(1400).to({y:(fisherman.y-getrandom(50)+20),x:(fisherman.x+35-getrandom(50))},600).call(()=>{
+      for(i=0;i<catch_fish.length;i++){
+        createjs.Tween.get(catch_fish[i]).wait(500).to({x:-Math.abs(fisherman.getwidth())+30-getrandom(50)},4000);
+      }
+    });
+  }
   function countdown(){
     countdown_time--;
     countdown_text.text = ""+countdown_time;
@@ -553,30 +571,29 @@
       clese_fish();
       clese_bubble();
       clear_animal();
-      clear_stage();
       close_game_event();
       close_fishmanwalk();
+      fush_jump();
       start_time_text.text = "Time's up！";
       start_time_text.x -= 40;
       stage.addChild(start_time_text);
       stage.removeChild(harpoon_text);
       stage.removeChild(countdown_text);
+      stage.removeChild(catch_animal_container);
       clearInterval(countdown_timer)
       fisherman_harpoon.scaleX *= fisherman_harpoon.scaleX<0?-1:1;
       fisherman_harpoon.rotation=35;
       fisherman.scaleX *= fisherman.scaleX<0?-1:1;
       fisherman_harpoon.revise_position();
-      createjs.Tween.get(fisherman_harpoon).wait(2000).to({x:-Math.abs(fisherman.getwidth())+25*(fisherman.scaleX<0?1:-1)},4000);
-      createjs.Tween.get(fisherman).wait(2000).to({x:-Math.abs(fisherman.getwidth())},4000).call(()=>{
+      createjs.Tween.get(fisherman_harpoon).wait(2500).to({x:-Math.abs(fisherman.getwidth())+25*(fisherman.scaleX<0?1:-1)},4000);
+      createjs.Tween.get(fisherman).wait(2500).to({x:-Math.abs(fisherman.getwidth())},4000).call(()=>{
         stage.removeChild(start_time_text);
+        clear_harpoon();
         score_init();
       });
     }
   }
-  function clear_stage(){
-    for(i = 0;i<catch_fish.length;i++){
-      stage.removeChild(catch_fish[i]);
-    }
+  function clear_harpoon(){
     for(i = 0;i<harpoon_list.length;i++){
       stage.removeChild(harpoon_list[i]);
     }
@@ -585,10 +602,16 @@
     backbround.image = loader.getResult("score_background");
     sea.y = 270;
     fisherman.y=380
-    fisherman.scale=fisherman_harpoon.scale=0.25;
+    fisherman.scale=fisherman_harpoon.scale*=1.56;
     fisherman.x=canvas_width+fisherman.getwidth();
     fisherman_harpoon.rotation = 35;
     fisherman_harpoon.revise_position();
+    for(i=0;i<catch_fish.length-1;i++){
+      catch_fish[i].scale *= 1.56;
+      catch_fish[i].y = (fisherman.y-(getrandom(50))*1.56+20*1.56);
+      catch_fish[i].x = (fisherman.x+(35-getrandom(50))*1.56)
+      createjs.Tween.get(catch_fish[i]).to({x:255+(50-getrandom(50))*1.56},5000);
+    }
     createjs.Tween.get(fisherman).to({x:255},5000);
     createjs.Tween.get(fisherman_harpoon).to({x:255+40*(fisherman.scaleX<0?1:-1)},5000);
   }
@@ -600,17 +623,50 @@
     countdown_timer=setInterval(countdown,1000)
     stage.addChild(countdown_text);
   }
-  function game_start(){
-    gamestart=true;
+  function catech_animal_update(){
+    catch_animal_text.text = " X  "+catch_animal_num[1]+"\n\n X  "+catch_animal_num[2]+"\n\n X  "+catch_animal_num[3]+"\n\n X  "+catch_animal_num[4];
+  }
+  function create_catch_animal_container(){
+    catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0","12px "+font_family,"#000000");
+    catch_animal_text.x  = 25;
+    catch_animal_text.y  = -5;
+    catch_animal_num = [0,0,0,0,0];
+    catch_animal_container = new createjs.Container();
+    var die_fish1 = new createjs.Sprite(animalsource[1].spritesheet,"normal_die");
+    var die_fish2 = new createjs.Sprite(animalsource[2].spritesheet,"normal_die");
+    var die_fish3 = new createjs.Sprite(animalsource[3].spritesheet,"normal_die");
+    var die_fish4 = new createjs.Sprite(animalsource[4].spritesheet,"normal_die");
+    die_fish1.scale = 0.08;
+    die_fish2.scale=0.08;
+    die_fish3.scale= 0.08;
+    die_fish4.scale = 0.08;
+    catch_animal_container.addChild(die_fish1);
+    catch_animal_container.addChild(die_fish2);
+    catch_animal_container.addChild(die_fish3);
+    catch_animal_container.addChild(die_fish4);
+    catch_animal_container.addChild(catch_animal_text);
+    stage.addChildAt(catch_animal_container,1);
+    die_fish2.y=die_fish1.y+23;
+    die_fish3.y=die_fish2.y+23;
+    die_fish4.y=die_fish3.y+23;
+    catch_animal_container.x =canvas_width-70;
+    catch_animal_container.y=50;
+  }
+  function create_harpoon_text(){
     harpoon_text = new createjs.Text("Harpoon：10","18px "+font_family,"#000000");
-    harpoon_text.x  = 650;
+    harpoon_text.x  =canvas_width-120;
     harpoon_text.y = 20;
     stage.addChild(harpoon_text);
+  }
+  function game_start(){
+    gamestart=true;
+    create_harpoon_text();
+    create_catch_animal_container();
+    create_game_timer();
     game_event();
     open_bubble();
     open_fish();  
     open_bird();
-    create_game_timer();
   }
   function game_init() {
     clese_bird();
@@ -621,7 +677,7 @@
     //score_init();
 
     start_time_text = new createjs.Text("5","40px "+font_family,"#000000");
-    start_time_text.x=400;
+    start_time_text.x=canvas_width/2-10;
     start_time_text.y = 200;
     start_time_text.alpha =0;
     stage.addChild(start_time_text);
