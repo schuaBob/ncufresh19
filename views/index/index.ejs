@@ -72,19 +72,21 @@
                   </div>
                 </div>
                 <div id="news-body">
+                  <% for(let i in News){ %>
                   <div class="card" data-toggle="modal" data-target="#newsModal">
                     <div class="row align-items-center">
                       <div class="col-sm-3">
-                        <img src="index/icon-課業相關.png" class="card-img">
+                        <img src="index/icon-<%= icon[News[i]['category']-1]%>.png" class="card-img">
                       </div>
                       <div class="col-sm-9">
                         <div class="card-body">
-                          <h5>card title fjsdlj lsfwop jfojdsl </h5>
-                          <span class="newsTime"><small>3 days ago</small></span>
+                          <h5><%= News[i]['title']%></h5>
+                          <span class="newsTime"><small><%= News[i]['screenTime']%></small></span>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <% } %>
                 </div>
               </div>
             </div>
@@ -128,7 +130,7 @@
   </main>
 
   <% include ../layouts/js %>
-  <script type="text/javascript" src="index/index.js"></script>
+                  <script type="text/javascript" src="index/index.js"></script>
 
 </body>
 

@@ -52,16 +52,28 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.get('/', (req, res, next) => {
-  
-  res.render('index/index', { title: "新生知訊網" })
+  docNews.find().exec((err, doc) => {
+    if (err) { return next(err) };
+    var newsDocs = doc.filter((item, index, array) => {
+      var TimeNow = new Date().getTime() + 28800000;
+      var pass = (TimeNow - new Date(item.date).getTime()) / (1000 * 60 * 60 * 24)
+      if (pass > 0) {
+        item.screenTime = `${Math.abs(pass.toFixed(0))}天前`;
+      }
+      return pass > 0
+    })
+    var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
+    console.log(newsDocs)
+    res.render('index/index', { title: "新生知訊網", News: newsDocs, icon: catePicArr })
+  })
+
 });
 router.get('/index-edit', (req, res, next) => {
   docNews.find().exec((err, doc) => {
     if (err) { return next(err) };
-    var TimeNow = new Date().getTime() + 28800000;
     for (let i in doc) {
+      var TimeNow = new Date().getTime() + 28800000;
       var pass = (TimeNow - new Date(doc[i].date).getTime()) / (1000 * 60 * 60 * 24)
-
       if (pass > 0) {
         doc[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天前`;
       } else {
@@ -73,20 +85,29 @@ router.get('/index-edit', (req, res, next) => {
   })
 
 })
-router.get('schedule/:method', (req, res, next) => {
+router.get('/schedule/:method?', (req, res, next) => {
   switch (req.params.method) {
     case "read":
-      docNews.find({ pk: req.query.pk }).exec((err, doc) => {
+      docNews.findOne({ pk: req.query.pk }).exec((err, doc) => {
+        console.log(doc)
         if (err) { return next(err) }
         res.json(doc)
       })
       break;
-
-    default:
+    case "delete":
+      docNews.findOneAndDelete({ pk: req.query.pk }, (err) => {
+        if (err) { return next(err) }
+        var resMes = {
+          message: "Data deleted successfully!"
+        }
+        res.json(resMes)
+      })
 
       break;
+    default:
+      res.status(404).send('Wrong Page');
+      break;
   }
-  res.end()
 })
 router.post('/schedule/:method', (req, res, next) => {
   switch (req.params.method) {
@@ -97,21 +118,41 @@ router.post('/schedule/:method', (req, res, next) => {
         category: req.body.category,
         content: req.body.content
       })
-      if(docNews.find().count()>0) {
-        docNews.find().sort({pk:-1}).limit(1).exec((err,doc)=>{
-          temp.pk = doc[0].pk+1;
-        })
-      }
-      temp.save((err, doc) => {
-        if (err) { res.json(err); return next(err) };
+      docNews.countDocuments((err, number) => {
+        if (err) { return next(err) }
+        if (number > 0) {
+          docNews.find().sort({ pk: -1 }).limit(1).exec((err, doc) => {
+            if (err) { return next(err) }
+            temp.pk = doc[0].pk + 1;
+            temp.save((err, doc) => {
+              if (err) { return next(err) };
+              var resMes = {
+                message: "Data saved successfully!"
+              }
+              res.json(resMes)
+            })
+          })
+        }
+      })
+
+      break;
+    case "update":
+      docNews.findOneAndUpdate({ pk: req.body.pk }, {
+        title: req.body.title,
+        date: new Date(`${req.body.time} GMT`),
+        category: req.body.category,
+        content: req.body.content
+      }).exec((err, doc) => {
         console.log(doc)
+        if (err) { return next(err) }
         var resMes = {
-          message: "Data saved successfully!"
+          message: "Data changed successfully!"
         }
         res.json(resMes)
       })
-        break;
+      break;
     default:
+      res.status(404).send('Wrong Page');
       break;
   }
 
@@ -154,38 +195,38 @@ router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   res.render('login/register', { title: '新生知訊網' });
 });
 
-router.post('/regiser', checkUser.isAllowtoLogin, function(req, res, next){
+router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
   let id = req.body.id;
   let name = req.body.name;
   let password = req.body.password;
   let checkpassword = req.body.checkpassword;
 
-  if((id && name && password && checkpassword) && (password == checkpassword)) {
+  if ((id && name && password && checkpassword) && (password == checkpassword)) {
     Users.findOne({
       'id': id
-    }, function(err, obj) {
-      if(err) {
+    }, function (err, obj) {
+      if (err) {
         res.redirect('/');
       }
-      if(!obj) {
+      if (!obj) {
         console.log(id + ': 不存在於新生列表');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
       }
 
-      if(obj.name !== name) {
+      if (obj.name !== name) {
         console.log(id + ': 真實姓名不合');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
       } else {
         obj.password = password;
-        Users.createUser(obj, function(err, user, next) {
-          if(err) {
+        Users.createUser(obj, function (err, user, next) {
+          if (err) {
             return next(err);
           } else {
             console.log(id + ': 建立');
-            req.login(user, function(err) {
-              if(err) {
+            req.login(user, function (err) {
+              if (err) {
                 return next(err);
               }
               console.log(obj.id + ': 登入')
