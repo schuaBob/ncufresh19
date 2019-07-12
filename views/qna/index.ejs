@@ -44,24 +44,29 @@
       /* for Firefox */
       -webkit-user-select: none;
       /* for Chrome */
-
+      background-image: url("background.png");
+      background-repeat:no-repeat;
+      background-position-y: 38vh;
+      /* background-position-x: 55%; */
+      /* background-color:#FFF9DC; */ 
+      background-size: 100%;
     }
 
 
 
     .main {
       position: relative;
-      top: 13vh;
+      top: 5vh;
       width: 90vw;
       margin: auto;
-      height: 73vh;
+      height: 73vh;      
     }
 
     .titleSpace {
       position: relative;
       height: 11vh;
       margin: auto;
-      top: 7.5vh;
+      top: 1vh;
       width: 83%;
       margin: auto;
       border-left: 6px solid #FFCC00;
@@ -95,16 +100,17 @@
     #classification {
       position: absolute;
       font-size: 4vh;
+      top: -10%;
     }
 
     #classification_c {
       position: absolute;
-      font-size: 3vh;
-      bottom: -5%;
+      font-size: 3.5vh;
+      bottom: -7%;
     }
 
     .pic_classification img {
-      height: 10vh;
+      height: 9vh;
       margin-right: 9px;
     }
 
@@ -148,15 +154,26 @@
       /* background-color:rgb(67, 238, 238); */
       position: relative;
       width: 78%;
+      padding-left: 2%;
     }
-
+    .buttonGroup{
+      font-size: 2vh;
+    }
+    .button {
+      border-radius: 5px;
+      padding: 2% 10%;
+      white-space: nowrap;
+    }
     /* 過濾器以及搜尋框 */
     .sort_SearchBar {
       /* background-color: bisque; */
       width: 100%;
       padding: 10px 80px;
     }
-
+    .searchBar {
+      min-width: 187px;
+      float: right;
+    }
     .fa-arrow-alt-circle-up {
       float: right;
       visibility: hidden;
@@ -165,24 +182,22 @@
 
     .ask {
       display: inline-block;
-      width: 12vw;
+      width: 10vw;
       height: auto;
       padding: 0px;
       position: absolute;
       bottom: 3vh;
-      right: -3.5vw;
+      left: -5.5vw;
     }
 
-    .askTxt {
-      position: absolute;
-      top: -18%;
-      right: 3%;
-      font-size: 3vh;
-      color: #0D4966;
-      font-weight: bold;
+    
+    #img1{
+      max-width: 50%;
+      position: relative;
+      top: -1%;
+      right: -59%;
     }
-
-    .ask>img {
+    #img2 {
       max-width: 100%;
     }
 
@@ -209,15 +224,9 @@
       font-size: 3vh;
     }
 
-    .sortButton {
-      border-radius: 5px;
-      padding: 2px 10px;
-    }
+    
 
-    .searchBar {
-      min-width: 187px;
-      float: right;
-    }
+    
 
     .modal {
       background-color: rgba(0, 0, 0, 0.4);
@@ -341,24 +350,24 @@
         <!-- 過濾以及搜尋框 -->
         <div class="sort_SearchBar">
           <div class="buttonGroup d-inline-flex">
-            <div class="sortButton text-white seaBlueBg">排序</div>
-            <div class="sortButton yellowBg" sort="time">時間</div>
-            <div class="sortButton grayBg" sort="count">人氣</div>
+            <div class="button text-white seaBlueBg">排序</div>
+            <div class="button sortButton yellowBg" sort="time">時間</div>
+            <div class="button sortButton grayBg" sort="count">人氣</div>
           </div>
           <div class="searchBar">
-            <form class="form-inline">
+            <form class="form-inline" id="searchForm">
               <i class="fas fa-search" aria-hidden="true"></i>
               <input class="form-control form-control-sm ml-2 searchInput" type="text" placeholder="Search"
-                aria-label="Search">
-            </form>
+                aria-label="Search" onkeydown="if(event.keyCode==13){return false;}" id="search">              
+            </form>            
           </div>
         </div>
         <!-- top按鍵 -->
         <i class="far fa-arrow-alt-circle-up fa-5x"></i>
         <!-- 企鵝 -->
         <div class="ask">
-          <span class="askTxt">我要發問!</span>
-          <img src="penguin.png" alt="">
+          <img src="qtext.png" alt="" id="img1">
+          <img src="penguin.png" alt="" id="img2">
         </div>
         <!-- 問題列表 -->
         <div class="content">
@@ -405,9 +414,47 @@
   $(document).ready(function () {
 
     var timer;
-    var sort = "time"; //紀錄時間、人氣的按鈕值
-
+    var sort=""; //紀錄時間、人氣的按鈕值
     var c = location.pathname.split('/')[2]; //分類的值
+
+    
+    $(".searchInput").on("keyup",function(e){
+      
+      if(e.keyCode=="13"){
+        $.ajax({
+          type:"POST",
+          url:"/qna/search",
+          dataType:"json",
+          timeout:5000,
+          data:{
+            searchText:$("#search").val()
+          },
+          success:function(data){
+            //暫存tbody原本的內容，為了顯示搜尋的結果
+            var temp = $("tbody").html();
+            $("tbody").empty();
+            for(let i=0;i<data.length;i++){
+              let item = '<tr postID="'+data[i].postID+'"><th scope="row">' + data[i].category
+                + '</th><td>' + data[i].title
+                + '</td><td>' + convertDateToString(data[i]._id)
+                + '</td><td class="count">' + data[i].count
+                + '</td></tr>';
+              $("tbody").append(item);
+              
+            }
+          },
+          error:function(err){
+            alert("資料庫出錯");
+          }
+        });      
+      }
+    })
+
+
+
+
+
+
     if (c == "") {
       $("#all").addClass("d-inline");
       $("#all").parents("li").css("background-color", "#FFECA1");
@@ -418,11 +465,13 @@
     }
 
     $(".sortButton").click(function () {
-      alert("分類:" + c + ",過濾:" + $(this).attr("sort"));
+      $("tbody").empty();     
+      sort=$(this).attr("sort");
+      getData(c,$(this).attr("sort"));
     });
 
     //按問題後觸發answermodal
-    $("tbody tr").click("tr",function(){
+    $("tbody").on("click","tr",function(){
       // var currentCount = this.children(".count").text();
       var $node = $(this);
       $.ajax({
@@ -456,6 +505,15 @@
       $("#q_title").val("");
       $("#q_content").val("");
     });
+    //指標進入"我要發問"的div時
+    $(".ask").mouseenter(function () {
+      $("#img1").attr("src","qtextactive.png");
+    });
+    $(".ask").mouseleave(function () {
+      $("#img1").attr("src","qtext.png");
+    });
+
+
     //askmodal的分類鈕
     $(".dropdown-item").click(function () {
       //點選分類後更新分類按鈕
@@ -498,21 +556,17 @@
         timeout: 5000,
         data: {
           category: (category=="" ? "":category),
-          sort: (sort=="time" ? "time":"count"),
+          sort: (sort=="count" ? "count":"_id"), //默認為"依時間排序"
           rowCount: $("tbody > tr").length,
         },
         success: function (data) {
-          if (true) {
-            for (let i = 0; i < data.length; i++) {
+          for(let i = 0; i < data.length; i++){
               let item = '<tr postID="'+data[i].postID+'"><th scope="row">' + data[i].category
                 + '</th><td>' + data[i].title
                 + '</td><td>' + convertDateToString(data[i]._id)
                 + '</td><td class="count">' + data[i].count
                 + '</td></tr>';
               $("tbody").append(item);
-            }
-          } else {
-            alert("失敗");
           }
         },
         error: function (err) {
@@ -545,12 +599,10 @@
               question: $("#q_content").val()
             },
             success: function (data) {
-              if (data[0] === 'success') {
+              if(data[0]==='success'){
                 $("#askModal").modal("hide");
                 alert("成功");
-              } else {
-                alert("失敗");
-              }
+              }              
             },
             error: function (err) {
               alert("資料庫出錯!!");
