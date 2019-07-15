@@ -8,12 +8,20 @@
         box-sizing: border-box;
     }
     
+    .myMOUSE {
+        cursor: pointer;
+    }
+    
+    h1 {
+        color: #0D4966;
+    }
+    
     .seaBlueBg {
         background-color: #0D4966;
     }
     
     .yellowBg {
-        background-color: #FFCC00;
+        background-color: #FFFDF1;
     }
     
     .grayBg {
@@ -95,7 +103,7 @@
     .line {
         height: 70px;
         width: 0px;
-        border-color: #FFCC00;
+        border-color: #ec6d4f;
         border-style: solid;
         border-width: 5px;
         margin-top: 20px;
@@ -113,7 +121,7 @@
     }
     
     .small_title {
-        color: gray;
+        color: #736f6e;
         font-size: 30px;
     }
     
@@ -129,7 +137,7 @@
         margin-left: 50px;
         position: fixed;
         height: 600px;
-        width: 300px;
+        width: 210px;
         font-size: 30px;
         color: #0D4966;
         overflow: scroll;
@@ -146,20 +154,46 @@
     
     .sideli {
         line-height: 40px;
-        padding-top: 20px;
+        margin-top: 20px;
     }
     
-    .sideli :hover {
+    .sideli2 {
+        line-height: 40px;
+        margin-top: 20px;
+        font-weight: lighter;
+    }
+    
+    .sideli:hover {
         background-color: #FFCC00;
+        cursor: pointer;
+    }
+    
+    .sideli2:hover {
+        background-color: #FFCC00;
+        cursor: pointer;
     }
     
     .sidebar2 {
         margin-left: 300px;
         position: fixed;
         height: 600px;
-        width: 400px;
+        width: 250px;
         font-size: 30px;
         color: #0D4966;
         overflow: scroll;
         font-weight: lighter;
+    }
+    
+    .buttons {
+        position: fixed;
+        top: 120px;
+        left: 350px;
+    }
+    
+    .de-info {
+        font-size: 40px;
+        position: fixed;
+        top: 350px;
+        right: 50px;
+        text-align: center
     }
