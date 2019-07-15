@@ -1,0 +1,40 @@
+#footer {
+
+}
+
+#loginHref {
+    position: absolute;
+    right: 120px;
+    bottom: 25px;
+    width: 140px;
+    height: 50px;
+    text-decoration: none;
+}
+
+#loginHref:hover {
+    animation-name: loginAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes loginAnimation{
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+#loginBtn {
+    position: relative;
+    width: 140px;
+    height: 50px;
+}
+
+#loginWord {
+    position: relative;
+    left: 55px;
+    bottom: 38px;
+    color: wheat;
+}
