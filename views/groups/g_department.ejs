@@ -11,7 +11,7 @@
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="yellowBg">
     <% include ../layouts/header %>
 
         <div class="title_bar">
@@ -22,50 +22,205 @@
         </div>
         <div class="sidebar">
             <ul>
-                <li class="sideli ind"><i class="fas fa-angle-right"></i>工學院</li>
-                <li class="sideli chi"><i class="fas fa-angle-right"></i>文學院</li>
-                <li class="sideli the"><i class="fas fa-angle-right"></i>理學院</li>
-                <li class="sideli dick"><i class="fas fa-angle-right"></i>地球科學學院</li>
-                <li class="sideli haka"><i class="fas fa-angle-right"></i>客家學院</li>
-                <li class="sideli ie"><i class="fas fa-angle-right"></i>資訊電機學院</li>
-                <li class="sideli man"><i class="fas fa-angle-right"></i>管理學院</li>
-                <li class="sideli hp"><i class="fas fa-angle-right"></i>生醫理工學院</li>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/1">
+                    <li class="sideli 1"><i class="fas fa-angle-right"></i>文學院</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/2">
+                    <li class="sideli 2"><i class="fas fa-angle-right"></i>理學院</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/3">
+                    <li class="sideli 3"><i class="fas fa-angle-right"></i>管理學院</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/4">
+                    <li class="sideli 4"><i class="fas fa-angle-right"></i>工學院</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/5">
+                    <li class="sideli 5"><i class="fas fa-angle-right"></i>資訊電機學院</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/6">
+                    <li class="sideli 6"><i class="fas fa-angle-right"></i>地球科學學院</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/7">
+                    <li class="sideli 7"><i class="fas fa-angle-right"></i>客家學院</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/8">
+                    <li class="sideli 8"><i class="fas fa-angle-right"></i>生醫理工學院</li>
+                </a>
+
             </ul>
         </div>
 
+        <div class="buttons">
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
+            新增系所
+        </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_delete">
+            編輯/刪除系所
+        </button>
+        </div>
 
-        <%for (let q = 1 ;q<=8;q++){%>
+        <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/groups/add_department" method="post">
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">系所名稱</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <!-- 選擇類別 -->
+                                <label for="type" class="form-control">系所學院</label>
+                                <select name="type" id="type" class="form-control">
+                                <option value="1文學院">文學院</option>
+                                <option value="2理學院">理學院</option>
+                                <option value="3管理學院">管理學院</option>
+                                <option value="4工學院">工學院</option>
+                                <option value="5資訊電機學院">資訊電機學院</option>
+                                <option value="6地球科學學院">地球科學學院</option>
+                                <option value="7客家學院">客家學院</option>
+                                <option value="8生醫理工學院">生醫理工學院</option>
+                            </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="en_name" class="col-form-label">系所英文名稱</label>
+                                <input type="text" class="form-control" id="en_name" name="en_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="de_link" class="col-form-label">系所網站連結</label>
+                                <input type="text" class="form-control" id="de_link" name="de_link">
+                            </div>
+                            <div class="form-group">
+                                <label for="stu_link" class="col-form-label">系學會連結</label>
+                                <input type="text" class="form-control" id="stu_link" name="stu_link">
+                            </div>
+                            <div class="form-group">
+                                <label for="qna_link" class="col-form-label">系上問答連結</label>
+                                <input type="text" class="form-control" id="qna_link" name="qna_link">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="edit_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">edit&delete dedartment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">系所名稱</label>
+                                <select name="name" id="type" class="form-control">
+                                <% for(var i in department) {%>
+                                <option value="<%= department[i].name%>">department[i].name</option>
+                                <%}%>
+                                        </select>
+                            </div>
+                            <div class="form-group">
+
+                                <label for="type" class="form-control">系所學院</label>
+                                <select name="type" id="type" class="form-control">
+                                        <option value="1文學院">文學院</option>
+                                        <option value="2理學院">理學院</option>
+                                        <option value="3管理學院">管理學院</option>
+                                        <option value="4工學院">工學院</option>
+                                        <option value="5資訊電機學院">資訊電機學院</option>
+                                        <option value="6地球科學學院">地球科學學院</option>
+                                        <option value="7客家學院">客家學院</option>
+                                        <option value="8生醫理工學院">生醫理工學院</option>
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="en_name" class="col-form-label">系所英文名稱</label>
+                                <input type="text" class="form-control" id="en_name" name="en_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="de_link" class="col-form-label">系所網站連結</label>
+                                <input type="text" class="form-control" id="de_link" name="de_link">
+                            </div>
+                            <div class="form-group">
+                                <label for="stu_link" class="col-form-label">系學會連結</label>
+                                <input type="text" class="form-control" id="stu_link" name="stu_link">
+                            </div>
+                            <div class="form-group">
+                                <label for="qna_link" class="col-form-label">系上問答連結</label>
+                                <input type="text" class="form-control" id="qna_link" name="qna_link">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <%_ if(department_type!==null){ -%>
             <div class="sidebar2">
                 <ul>
 
                     <% for(var i in department) {%>
-                        <!-- 跑過所有系所-->
-                        <% if(department[i].type == q) {%>
-                            <!-- 只秀出正確系所的a名稱-->
-                            <li class="sideli"><i class="fas fa-angle-right">department[i].name</i></li>
+                        <%_ if(department[i].type===department_type){ -%>
+                            <a style="text-decoration:none; color: #0D4966;" href="/groups/department/<%=department[i].type%>/<%=department[i].name%>">
+                                            <li class="sideli2 <%=department[i].type%>"><i
+                                                    class="fas fa-angle-right"></i>
+                                                <%=department[i].name%>
+                                            </li>
+                                        </a>
+
                             <%}%>
                                 <%}%>
 
                 </ul>
             </div>
+
             <%}%>
-                <% for(var i in department) {%>
+                <%_ if(department_this!==null){ -%>
                     <div class="de-info">
-                        <div class="department">department[i].name</div>>
-                        <div class="de-en">department[i].name_en</div>>
+                        <div class="department">
+                            <%=department_this.name%>
+                        </div>
+                        <div class="de-en">
+                            <%=department_this.en_name%>
+                        </div>
                         <div class="linkbuttons">
-                            <div>
-                                <a href="<%= department[i].de_link%>">系所</a>
+                            <div class="character">
+                                <a style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>">系所</a>
                             </div>
-                            <div>
-                                <a href="<%= department[i].stu_link%>">系學會</a>
+                            <div class="character">
+                                <a style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>">系學會</a>
                             </div>
-                            <div>
-                                <a>系上問答</a>
+                            <div class="character">
+                                <a style="text-decoration:none;" target="_blank" href="<%= department_this.qna_link%>">系上問答</a>
                             </div>
                         </div>
                     </div>
-                    <%}%>
+
+
+                    <%_ } -%>
+
 
 
 
