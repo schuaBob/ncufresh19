@@ -9,25 +9,40 @@
 </head>
 
 <body>
-        <div class="sideNav" id="navi">
-                <ul>
-                    <li><a href="/life/study"> <img class="navSubBtn" src="naviBefore0.png"> </a></li><br>
-                    <li><a href="/life/food"> <img class="navSubBtn" src="naviAfter1.png"> </a></li><br>
-                    <li><a href="/life/play"> <img class="navSubBtn" src="naviBefore2.png"> </a></li><br>
-                    <li><a href="/life/live"> <img class="navSubBtn" src="naviBefore3.png"> </a></li>
-                </ul>
-            </div>
     <% include ../layouts/header %>
-    <h3>FOOD <br> 中央吃什麼 </h3>
+    <div class="sideNav" id="navi">
+            <ul>
+                <li><a href="/life/study"> <img class="navSubBtn" src="naviBefore0.png"> </a></li>
+                <li><a href="/life/food"> <img class="navSubBtn" src="naviAfter1.png"> </a></li>
+                <li><a href="/life/play"> <img class="navSubBtn" src="naviBefore2.png"> </a></li>
+                <li><a href="/life/live"> <img class="navSubBtn" src="naviBefore3.png"> </a></li>
+            </ul>
+        </div>
+        <div class="mainTitle">
+                <div class="titleText">
+                    <h2>FOOD</h2>
+                    <h3>該吃什麼</h3>
+                </div>
+            </div>
     <main id="main">
         <!--content-->
-        <div class="foodList">
-            <ul>
-                <li>>宵夜街</li><br>
-                <li>>奢侈街</li><br>
-                <li>>後門</li><br>
-                <li>>中央校園</li><br>
-            </ul>
+        <div class="Fcontent">
+            <div class="foodList">
+                <ul>
+                    <li>>宵夜街</li><br>
+                    <li>>奢侈街</li><br>
+                    <li>>後門</li><br>
+                    <li>>中央校園</li><br>
+                </ul>
+            </div>
+            <div id="FpictureArea">
+                <img id="picture" src="live1.png">
+                <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+            </div>
+            <div class="arrows">
+                <a href="#" id="prev">&lt;</a>
+                <a href="#" id="next">&gt;</a>
+            </div>
         </div>
     </main>
     <% include ../layouts/js %>

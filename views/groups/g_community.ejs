@@ -22,6 +22,76 @@
                 <h1>COMMUNITY<br><span class="small_title">社群</span></h1>
             </div>
         </div>
+        <div class="buttons">
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
+                新增社群
+            </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="＃edit_delete">
+                編輯/刪除社群
+            </button>
+        </div>
+
+        <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Community</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/groups/add_department" method="post">
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">社群名稱</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="intro" class="col-form-label">社群介紹</label>
+                                <textarea class="form-control" id="intro" name="intro" rows="8"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="edit_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">edit&delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/groups/add_department" method="post">
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">社群名稱</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="intro" class="col-form-label">社群介紹</label>
+                                <textarea class="form-control" id="intro" name="intro" rows="8"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">delete</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         <div class="sidebar">
             <ul>
                 <li class="sideli"><i class="fas fa-angle-right"></i>中央創遊

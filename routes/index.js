@@ -135,7 +135,6 @@ router.post('/schedule/:method', (req, res, next) => {
           })
         }
       })
-
       break;
     case "update":
       docNews.findOneAndUpdate({ pk: req.body.pk }, {
@@ -156,8 +155,8 @@ router.post('/schedule/:method', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-
 })
+
 
 router.get('/comingsoon', function (req, res, next) {
   res.render('comingsoon/index', {

@@ -1,26 +1,49 @@
-@font-face{
+@font-face {
     font-family: Noto Sans JP;
     src: url("/layouts/font/NotoSansJP-Regular.otf") format("opentype");
 }
-@font-face{
+
+@font-face {
     font-family: Noto Sans JP;
     font-weight: 500;
     src: url("/layouts/font/NotoSansJP-Medium.otf") format("opentype");
 }
-@font-face{
+
+@font-face {
     font-family: Noto Sans JP;
     font-weight: bold;
     src: url("/layouts/font/NotoSansJP-Bold.otf") format("opentype");
 }
-@font-face{
+
+@font-face {
     font-family: Noto Sans JP;
     font-weight: 300;
     src: url("/layouts/font/NotoSansJP-Light.otf") format("opentype");
 }
+
 * {
     font-family: Noto Sans JP;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fff9dc;
+    /*背景顏色*/
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #736f6e;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
 body {
     width: 100% !important;

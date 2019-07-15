@@ -1,55 +1,26 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-        <title><%= title %></title>
-
-        <% include ../layouts/head %>
-        <% include ../layouts/script %>
-        <link rel='stylesheet' href='style.css' />
-        <script src="https://code.jquery.com/jquery-3.4.0.js"
-                integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
-</head>
-
-<body class="other_bg">
-        <% include ../layouts/header %>
-        <main id="main">
-                <% /*編輯框*/ %>
-                <% include edit %>
-
-                <% /*研究生*/%>
-                <div class="nav">
-                        <div class="return_space"><a href="/documents"><img src="return.png" class="return"></a></div>
-                        <div class="sign">
-                                <p class="p1">FRESH</p>
-                                <p class="p2">新生週</p>
-                        </div>
+<main id="main">
+        <% /*研究生*/%>
+        <div class="nav">
+                <div class="return_space"><a href="/documents"><img src="/documents/return.png" class="return"></a></div>
+                <div class="sign">
+                        <p class="p1">FRESH</p>
+                        <p class="p2">新生週</p>
                 </div>
-                <div class="graduate" id="graduate">
-                        <div class="sidenav">
-                                <a href="/documents/graduate_must"><img src="入學須知_原.png" class="icon icon1"></a>
-                                <a href="/documents/graduate_fresh"><img src="新生週.png" class="icon"></a>
-                                
-                        </div>
-
-                        <div class="must" id="must">
-                                <div class="sidenav2">
-                                        <p class="option page_now" id="29">＞&emsp;社團博覽會</p>
-                                        <p class="option" id="30">＞&emsp;新生健康檢查</p>
-                                </div>
-                                <div class="box">
-                                        <div class="title" >
-                                                <p id="show_title"><% /*= data.title*/ %></p>
-                                        </div>
-                                        <div class="content" >
-                                                <p id="show_content"><% /*= data.content*/ %></p>
-                                        </div>
-                                </div>
-                        </div>
+        </div>
+        <div class="graduate" id="graduate">
+        <div class="gra_bg">
+                <div class="sidenav">
+                        <a href="/documents/graduate_must/22"><img src="/documents/入學須知_原.png" class="icon icon1"></a>
+                        <a href="/documents/graduate_fresh/29"><img src="/documents/新生週.png" class="icon"></a>
+                                        
                 </div>
-        </main>
-        <% include ../layouts/js %>
-        <% include js %>
-</body>
 
-</html>
+                <div class="must" id="must">
+                        <div class="sidenav2">
+                                <a class="option" id="29">＞&emsp;社團博覽會</p>
+                                <a class="option" id="30">＞&emsp;新生健康檢查</p>
+                        </div>
+                </div>  
+        </div>
+        </div>
+</main>
