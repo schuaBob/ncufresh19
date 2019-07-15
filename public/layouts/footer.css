@@ -1,0 +1,25 @@
+#footer {
+
+}
+
+#loginHref {
+    position: absolute;
+    right: 120px;
+    bottom: 25px;
+    width: 120px;
+    height: 50px;
+    text-decoration: none;
+}
+
+#loginBtn {
+    position: relative;
+    width: 120px;
+    height: 50px;
+}
+
+#loginWord {
+    position: relative;
+    left: 55px;
+    bottom: 38px;
+    color: wheat;
+}

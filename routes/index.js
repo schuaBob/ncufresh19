@@ -64,7 +64,8 @@ router.get('/', (req, res, next) => {
     })
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
     console.log(newsDocs)
-    res.render('index/index', { title: "新生知訊網", News: newsDocs, icon: catePicArr })
+    console.log(req.user)
+    res.render('index/index', { title: "新生知訊網", News: newsDocs, icon: catePicArr, user: req.user })
   })
 
 });
