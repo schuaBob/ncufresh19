@@ -4,9 +4,19 @@ var study = require('../models/life/study');
 var live = require('../models/life/live');
 var play = require('../models/life/play');
 var food = require('../models/life/food');
+var multer = require('multer');
 
+var storage = multer.diskStorage({
+  destination: "public/life/subPicture/",
+  filename   : function(req, file, cb){
+    var rdm = '';
+    for(var i=0 ; i<10 ; i++) rdm += Math.floor((Math.random() * 10));
+    var fileName = req.body.mainTitle + "_" + req.body.subTitle + "_" + rdm + ".png";
+    cb(null, fileName);
+  }
+})
 
-
+var upload = multer({ storage: storage });
 
 
 var match_num = {
@@ -14,7 +24,7 @@ var match_num = {
   'food'          : 1,
   'play'          : 2,
   'live'          : 3,
-}
+};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -52,7 +62,7 @@ router.get('/live', function(req, res, next) {
   type = type.substr(1);
   live.find({}, function(err, data) {
     res.render('life/live', { data: data, page: type, num: match_num[type], user: req.user});
-  })
+  });
   
 });
 
@@ -84,13 +94,14 @@ router.get('/study/chst', function(req, res, next) {
 /*-----------------------------後台------------------------------*/
 
 /* update live page content */
-router.post('/addLiveContent', function(req, res, next) {
-  /*
-  var cuted = req.file.split('/'),
-      pathed = cuted[2] + "/" + cuted[3];*/
-  var newlive = new live({
-    mainTitle: req.body.maintitle,
-    subTitle: req.body.subtitle,
+router.post('/addLiveContent', upload.single('picture'), function(req, res, next) {
+  if (req.file) {
+    var cuted = req.file.path.split('/');
+    var pathed = cuted[2] + "/" + cuted[3];
+  }
+  new live({
+    mainTitle: req.body.mainTitle,
+    subTitle: req.body.subTitle,
     picture: pathed,
     content: req.body.content
   }).save(function(err) {
@@ -100,7 +111,7 @@ router.post('/addLiveContent', function(req, res, next) {
     }
     console.log('SUCCESS');
   });
-  res.redirect('/live');
+  res.redirect('back');
 });
 
 
