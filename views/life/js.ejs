@@ -1,11 +1,5 @@
-<script src="https://code.jquery.com/jquery-3.4.0.min.js"
-    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/ckeditor.js"></script>
 <script>
-
-
-
-
-
 
 /*----------------navi-----------------*/
 var match_num = {
@@ -54,9 +48,37 @@ $(document).ready(function() {
            $('#picture').attr("src", "live" + num + ".png");
        }
    )
+   
 });
 
+/*---------------------------後台------------------------*/
 
+        ClassicEditor
+            .create( document.querySelector( '#editor1' ) )
+            .then( editor1 => {
+                console.log( editor1 );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+
+        ClassicEditor
+            .create( document.querySelector( '#editor2' ) )
+            .then( editor2 => {
+                console.log( editor2 );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+
+        ClassicEditor
+            .create( document.querySelector( '#editor3' ) )
+            .then( editor3 => {
+                console.log( editor3 );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
 
 
 
