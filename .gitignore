@@ -26,3 +26,5 @@ pids
 #vscode configures
 .vscode/
 
+#stackdump
+*.stackdump
