@@ -5,7 +5,7 @@
     <title><%= title %></title>
     <% include ../layouts/head %>
     <% include ../layouts/script %>
-    <link rel='stylesheet' href='style.css' />
+    <link rel='stylesheet' href='/documents/style.css' />
 </head>
 
 <body class="other_bg">
@@ -13,14 +13,14 @@
     <main id="main">
         <% /*編輯框*/ %>
         <% include edit %>
-        <% include undergraduate_must %>
+        <% include graduate_must %>
         <% /*大學生*/ %>
                 <div class="box">
                         <div class="title" >
-                            <p id="show_title"><script>$("#show_title").html(data.title);</script></p>
+                            <p id="show_title"><%/*= data.title */%></p>
                         </div>
                         <div class="content" >
-                            <p id="show_content"><script>$("#show_content").html(data.content);</script></p>
+                            <%/*- data.content */%>
                         </div>
                 </div>
             </div>
