@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var docNews = mongoose.Schema({
-    pk: { type: Number, default: 0 },
+    pk: { type: Number, default: 0, unique: true },
     title: String,
     date: Date,
     category: Number,

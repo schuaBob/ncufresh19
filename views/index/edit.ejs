@@ -42,7 +42,7 @@
                         <h5 class="modal-title" id="ScheduleNewsTitle">
                             <div class="row align-items-center">
                                 <div class="col-3">
-                                    <img src="index/icon-課業相關.png" class="card-img">
+                                    <h3>??</h3>
                                 </div>
                                 <div class="col-9">
                                     <select class="form-control form-control-lg" id="newsCategory">
@@ -76,12 +76,9 @@
                     </div>
                     <div class="modal-body">
                         <textarea name="NewsBody" id="editor"></textarea>
-
                     </div>
-
-
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="Subbtn" class="btn btn-secondary" data-dismiss="modal">Delete</button>
                         <button type="button" id="SaveNewsbtn" class="btn btn-primary">Save</button>
                     </div>
                 </div>
@@ -93,7 +90,7 @@
         <div class="container" style="max-width: 700px">
             <div id="news">
                 <div id="news-title">
-                    <div class="card text-center">
+                    <div class="text-center">
                         <div class="card-body">
                             <h2 class="card-title">
                                 News
@@ -127,7 +124,12 @@
     <script>
         $(document).ready(() => {
             var newseditor = undefined;
+            $('#news span').click(() => {
+                $('#Subbtn').hide();
+            })
             $('.card').click((e) => {
+                $('#Subbtn').show();
+                $('#SaveNewsbtn').text("修改");
                 $.ajax({
                     url: `/schedule/read?pk=${e.currentTarget.attributes.pk.value}`,
                     method: 'GET',
@@ -136,35 +138,59 @@
                     success: (res) => {
                         $("#newsTitle").val(res.title);
                         $("#newsCategory").val(res.category)
-                        $("#timePicker").val(res.time)
+                        $("#timePicker").flatpickr({
+                            enableTime: true,
+                            dateFormat: "Y-m-d H:i",
+                            static: true,
+                            defaultDate: new Date(new Date(res.date).getTime() - 28800000)
+                        })
                         newseditor.setData(res.content)
                     }
+                }).then(() => {
+                    $('#SaveNewbtn').addClass('editbtn');
+                    $('#Subbtn').click(() => {
+                        $.ajax({
+                            url: `/schedule/delete?pk=${e.currentTarget.attributes.pk.value}`,
+                            method: 'GET',
+                            error: (err) => { console.log(err) },
+                            success: (res) => { alert(res.message)}
+                        }).always(()=>{
+                            $('#ScheduleNewsModal').modal('hide');
+                            location.reload();
+                        })
+                    })
+                    $('.editbtn').click(() => {
+                        $.ajax({
+                            url: `/schedule/update`,
+                            method: 'POST',
+                            dataType: 'JSON',
+                            data: {
+                                title: $("#newsTitle").val(),
+                                category: $("#newsCategory").val(),
+                                time: $("#timePicker").val(),
+                                content: newseditor.getData(),
+                                pk: e.currentTarget.attributes.pk.value
+                            },
+                            error: (err) => {
+                                console.log(err.responseJSON);
+                            },
+                            success: (res) => {
+                                alert(res.message)
+                            }
+                        }).always(() => {
+                            $('#ScheduleNewsModal').modal('hide');
+                            location.reload();
+                        })
+                    })
                 })
             })
-            $('#ScheduleNewsModal').on('show.bs.modal', function (e) {
-                $('#timePicker').flatpickr({
-                    enableTime: true,
-                    dateFormat: "Y-m-d H:i",
-                    static: true,
-                    onChange: (selectedDates, dateStr, instance) => {
-                        console.log(dateStr)
-                    }
-                });
-                ClassicEditor
-                    .create(document.querySelector('#editor'))
-                    .then(editor => {
-                        console.log(editor);
-                        newseditor = editor;
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-
-                $('#SaveNewsbtn').click(() => {
-                    if (($("#newsTitle").val() !== "") && ($("#newsCategory").val() !== 0)) {
-                        if ($("#timePicker").val() !== "") {
+            $('#SaveNewsbtn').click(() => {
+                if (($("#newsTitle").val() !== "") && ($("#newsCategory").val() !== 0)) {
+                    if ($("#timePicker").val() !== "") {
+                        var verb;
+                        if (!$(this).hasClass("editbtn")) {
                             $.ajax({
-                                url: '/schedule/create',
+                                url: `/schedule/create`,
                                 method: 'POST',
                                 dataType: 'JSON',
                                 data: {
@@ -180,40 +206,46 @@
                                     alert(res.message)
                                 }
                             }).always(() => {
-                                // console.log(`
-                                //     title: ${$("#newsTitle").val()}
-                                //     category: ${$("#newsCategory").val()}
-                                //     time: ${$("#timePicker").val()}
-                                //     content: ${newseditor.getData()}`)
                                 $('#ScheduleNewsModal').modal('hide');
                                 location.reload();
                             })
-                        } else {
-                            alert("No time!")
                         }
                     } else {
-                        alert("No title or category!")
+                        alert("No time!")
                     }
-                })
+                } else {
+                    alert("No title or category!")
+                }
+            })
+            $('#ScheduleNewsModal').on('show.bs.modal', function (e) {
+                $('#timePicker').flatpickr({
+                    enableTime: true,
+                    dateFormat: "Y-m-d H:i",
+                    static: true
+                });
+                ClassicEditor
+                    .create(document.querySelector('#editor'))
+                    .then(editor => {
+                        console.log(editor);
+                        newseditor = editor;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
             })
             $('#ScheduleNewsModal').on('hide.bs.modal', function (e) {
                 $('#timePicker').flatpickr().destroy();
                 $("#newsTitle").val("");
                 $("#newsCategory").val(0);
+                newseditor.setData("");
                 newseditor.destroy()
                     .catch(error => {
                         console.log(error);
                     });
+                $('#SaveNewbtn').removeClass('editbtn');
             })
-
-
-
         })
-
-
-
     </script>
-
 </body>
 
 </html>

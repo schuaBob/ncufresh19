@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
 var departments = mongoose.Schema({
     type: String,
     college: String,
