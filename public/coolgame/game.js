@@ -1,20 +1,31 @@
 // import { create } from "domain";
 
   
-
-
-  
+//沒抓到魚會有bug
+//增加魚叉碰撞點
+  //兩層海
+  //緩衝
+  //選項高度跟著問題亦啟動
+  //不再畫面會讓時間變負數
+  //questionhaver 長度太長☆
     //------------game---------------------------------
   var labbybutton_container;
+  var question_container;
   var generate_bird;
+  var option =new Array();
+  var question;
+  var question_text;
   var generate_fish;
   var generate_bubble;
   var stage;
+  var questionboard;
   var backbround;
+  var board_index;
   var sea ;
-  var game_time=60;
+  var game_time=10;
   var catch_animal_container;
   var harpoon_text;
+  var question_list = new Array();
   var catch_animal_text;
   var score_catch_animal_container;
   var score_catch_animal_text;
@@ -33,7 +44,7 @@
   var fisherman_harpoon; 
   var times=0;
   var catch_fish= new Array();
-  var font_family ="Arial";
+  var font_family ="微軟正黑體";
   var harpoon_list = new Array() ;
   var animal_list = new Array() ;
   var bubble_list =new Array();
@@ -65,7 +76,66 @@
 
 
     //------------game---------------------------------
-    
+    class Question{
+      constructor(q,a,o){
+        this.question=q;
+        this.answer=a;
+        this.option=o;
+      }
+    }
+    class Option extends createjs.Container{
+      constructor(){
+        super();
+        console.log(this);
+        this.x=220;
+        this.y=220;
+        this.backbround = new createjs.Shape();
+        this.havermask = new createjs.Shape();
+        this.text = new createjs.Text("","Bold 17px "+font_family,"#000000");
+        this.addChild(this.backbround);
+        this.addChild(this.text);
+        this.addChild(this.havermask);
+        this.text.y=8;
+        this.text.x=10;
+        this.havermask.graphics.beginFill("#696969").drawRoundRect(0,0,80,33,5);
+        this.backbround.graphics.beginFill("#696969").drawRoundRect(0,0,80,33,5);
+        this.backbround.visible = false;
+        this.backbround.alpha=0.4;
+        this.done =false;
+        this.havermask.alpha=0.01;
+        this.ans =false;
+        this.havermask.addEventListener("click",function(event){  
+          if(event.target.parent.ans){
+            event.target.parent.correct();
+          }
+          else event.target.parent.wrong();
+        });
+        this.havermask.addEventListener("mouseover",function(event){
+          event.target.parent.backbround.visible =true;
+
+        });
+        this.havermask.addEventListener("mouseout",function(event){
+          event.target.parent.backbround.visible =false;
+        });
+      }
+      correct(){
+        questionboard.gotoAndStop("correct");
+        this.backbround.visible =true;
+        this.backbround.graphics.clear().beginFill("green").drawRoundRect(0,0,this.text.text.length*19,33,10);
+      }
+      wrong(){
+        this.backbround.visible = true;
+        this.backbround.graphics.f("red");
+      }
+      setText(t,ans){
+        this.text.text = t;
+        this.backbround.graphics.clear();
+        this.havermask.graphics.clear();
+        this.havermask.graphics.beginFill("#696969").drawRoundRect(0,0,t.length*19,33,10);
+        this.backbround.graphics.beginFill("#696969").drawRoundRect(0,0,t.length*19,33,10);
+        this.ans =ans;
+      }
+    }
   class Animal  extends createjs.Sprite{
     constructor(type,special){
       if(special)
@@ -386,6 +456,10 @@
       {src: "/images/coolgame/score_background.png", id: "score_background"},
       {src: "/images/coolgame/sea.png", id: "score_sea"},
       {src: "/images/coolgame/haver.png", id: "haver"},
+      {src: "/images/coolgame/questionboard1.png", id: "questionboard1"},
+      {src: "/images/coolgame/questionboard2.png", id: "questionboard2"},
+      {src: "/images/coolgame/questionboard3.png", id: "questionboard3"},
+      {src: "/images/coolgame/questionboard4.png", id: "questionboard4"},
     ];
     loader = new createjs.LoadQueue(true);
     loader.on("fileload", handleFileLoad);
@@ -544,9 +618,10 @@
       close_fish_ad();
     });
   }
-  function fush_jump(){
+  function fish_jump(){
     stage.setChildIndex(fisherman,stage.numChildren-1);
     stage.setChildIndex(fisherman_harpoon,stage.numChildren-1);
+    stage.setChildIndex(sea,stage.numChildren-1);
     for(i=0;i<catch_fish.length-1;i++){
       createjs.Tween.get(catch_fish[i]).wait(2000).to({y:(fisherman.y-getrandom(50)+20),x:(fisherman.x+50-getrandom(50))},600)
     }
@@ -556,6 +631,101 @@
       }
     });
   }
+  function create_questionboard(){
+    board_index =0;
+    if(catch_animal_num[1]>0)board_index=1;
+    else  if(catch_animal_num[2]>0)board_index=2;
+    else  if(catch_animal_num[3]>0)board_index=3;
+    else  if(catch_animal_num[4]>0)board_index=4;
+    else {
+      con4ole.log("game over");
+      return;
+    }
+    var questionboard_sheet=new createjs.SpriteSheet({
+      images: [loader.getResult("questionboard"+board_index+"")],
+      frames: {width:1600,height:1000,regX:0,regY:0},
+      animations: {
+      normal:{
+        frames:[0],speed:0
+      },
+      correct: {
+        frames:[1],speed:0
+      }
+    }
+    });
+    question_container.removeChild(questionboard);
+    questionboard = new createjs.Sprite(questionboard_sheet,"normal");
+    questionboard.scale=0;
+    questionboard.x = score_catch_animal_container.children[board_index].x;
+    questionboard.y = score_catch_animal_container.children[board_index].y;
+    question_container.addChildAt(questionboard,1);
+    createjs.Tween.get(questionboard).to({scale:0.5,x:0,y:0},1000);
+  }
+  function question_show(){
+    var a = new Array();
+    var q = question.question.split("");
+    question_text.text="Q：";
+    for(i=0;i<q.length;i++){
+      if((i+1) % 16 == 0 ){
+        question_text.text+=q[i-1]+"\n       ";
+      }
+      else{
+        question_text.text+=q[i];
+      }
+    }
+    for(i=0;i<question.answer.length+question.option.length;i++){
+      a.push(i);
+    }
+    for(i=4;i>a.length-1;i--){
+      option[i].visible = false;
+    }
+    for(i=0;i<question.answer.length;i++){
+      var index =getrandom(a.length);
+      option[a[index]].setText(String.fromCharCode(65+a[index])+" "+question.answer[i],true);
+      a = arrayRemove(a,a[index]);
+    }
+    for(i=0;i<question.option.length;i++){
+      var index =getrandom(a.length);
+      option[a[index]].setText(String.fromCharCode(65+a[index])+" "+question.option[i],false);
+      a = arrayRemove(a,a[index]);
+    }
+  }
+  function select_question(){
+    question = question_list[0];
+  }
+  function loading_question(){
+    question_list.push(new Question("請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機掰掰","超級無敵機掰掰"],["小機掰超機掰掰","中機掰超機掰掰","大機掰超機掰掰"]))
+  }
+  function question_init(){
+    question_container= new createjs.Container();
+    var question_background = new createjs.Shape();
+    question_text = new createjs.Text("","Bold 20px "+font_family,"#000000");
+    question_text.x = 220;
+    question_text.y=120;
+    question_background.graphics.beginFill("#000000").drawRoundRect(0,0,800,500,45);
+    question_background.alpha = 0.4;
+    question_container.addChild(question_background);
+    question_container.addChild(question_text);
+    create_questionboard();
+    option = new Array();
+    for(i=0;i<5;i++){
+      option.push(new Option());
+      question_container.addChild(option[i]);
+    }
+    option[1].x = option[0].x + 220;
+    option[2].y = option[0].y +40;
+    option[3].x =  option[0].x+220;
+    option[3].y =  option[0].y+40;
+    option[4].y = option[0].y+80;
+    loading_question();
+    stage.addChild(question_container);
+    question_start();
+  }
+  function question_start(){
+    select_question();
+    question_show();
+   
+  }
   function game_end(){
     gamestart=false;
     clese_bird();
@@ -564,7 +734,7 @@
     clear_animal();
     close_game_event();
     close_fishmanwalk();
-    fush_jump();
+    fish_jump();
     clearInterval(countdown_timer);
     start_time_text.text = "Time's up！";
     start_time_text.x -= 40;
@@ -605,26 +775,39 @@
     fisherman.x=canvas_width+fisherman.getwidth();
     fisherman_harpoon.rotation = 35;
     fisherman_harpoon.revise_position();
+    stage.setChildIndex(fisherman,1);
+    stage.setChildIndex(fisherman_harpoon,2);
     for(i=0;i<catch_fish.length;i++){
       catch_fish[i].scale *= 1.56;
       catch_fish[i].alpha=1;
+      stage.setChildIndex(catch_fish[i],1);
       catch_fish[i].y = (fisherman.y-(getrandom(50))*1.56+20*1.56);
       catch_fish[i].x = (fisherman.x+(35-getrandom(50))*1.56)
       createjs.Tween.get(catch_fish[i]).to({x:255+(50-getrandom(50))*1.56},5000);
     }
+    var brid_num=0;
     createjs.Tween.get(fisherman).to({x:255},5000);
     createjs.Tween.get(fisherman_harpoon).to({x:255+40*(fisherman.scaleX<0?1:-1)},5000).call(()=>{
       create_score_catch_animal_container();
       createjs.Tween.get(fisherman).wait(1000).call(()=>{
         for(i=0;i<catch_fish.length;i++){
-          if(catch_fish[i].animaltype == 0)continue;//bug 鳥會讓num_score_fish抓到的魚陣列錯誤 看score_catch_animal_num就知道，因為裡面有鳥
-          createjs.Tween.get(catch_fish[i]).wait(200*i).to({visible:false,x:score_catch_animal_container.children[catch_fish[i].animaltype-1].x+score_catch_animal_container.x,y:score_catch_animal_container.children[catch_fish[i].animaltype-1].y+score_catch_animal_container.y},599).call(()=>{
+          if(catch_fish[i].animaltype  ==0){
+            brid_num++;
+            createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},1000).wait(600).to({x:70,y:150},1000);
+          }
+        }
+        for(i=0;i<catch_fish.length;i++){
+          if(catch_fish[i].animaltype == 0){
+            catch_fish = arrayRemove(catch_fish,catch_fish[i]);
+            i--;
+            continue;
+          }
+          createjs.Tween.get(catch_fish[i]).wait(200*i+brid_num*200+(brid_num==0?0:2600)).to({visible:false,x:score_catch_animal_container.children[catch_fish[i].animaltype-1].x+score_catch_animal_container.x,y:score_catch_animal_container.children[catch_fish[i].animaltype-1].y+score_catch_animal_container.y},599).call(()=>{
             score_catch_animal_num[catch_fish[num_score_fish++].animaltype]++;
             score_catch_animal_text_update();
           })
         }
       });
-      
     });
   }
   function create_game_timer(){
@@ -665,8 +848,10 @@
     catch_animal_container.y=50;
   }
   function score_catch_animal_text_update(){
-    console.log(score_catch_animal_num);
     score_catch_animal_text.text =("  X  "+(score_catch_animal_num[1]>=10?(score_catch_animal_num[1]+""):(score_catch_animal_num[1]+"  "))+"                       X  "+(score_catch_animal_num[2]>=10?(score_catch_animal_num[2]+""):(score_catch_animal_num[2]+"  "))+"                           X  "+(score_catch_animal_num[3]>=10?(score_catch_animal_num[3]+""):(score_catch_animal_num[3]+"  "))+"                        X  "+score_catch_animal_num[4]+"");
+    if(num_score_fish == catch_fish.length){
+      question_init();
+    }
   }
   function create_score_catch_animal_container(){
     score_catch_animal_text = new createjs.Text("  X  0                         X  0                             X  0                          X  0","18px "+font_family,"#000000");
@@ -730,6 +915,7 @@
     createjs.Tween.get(start_time_text).wait(1000).to({alpha:1},1000).to({text:"4"}).to({alpha:0}).to({alpha:1},1000).to({text:"3"}).to({alpha:0}).to({alpha:1},1000).to({text:"2"}).to({alpha:0}).to({alpha:1},1000).to({text:"1"}).to({alpha:0}).to({alpha:1},1000).to({x:360,text:"Start!"}).wait(1000).call(()=>{
       stage.removeChild(start_time_text);
       game_start();
+     //score_init();
     });
   }
   function close_fishmanwalk(){
