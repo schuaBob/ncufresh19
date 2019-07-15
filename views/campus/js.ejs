@@ -3,7 +3,6 @@
 
         var temp;
         var properties1 = null
-        var properties2 = null
         var array1 = []
 
         $('.indexelepic[pictitle="排球場"]').css({
@@ -143,13 +142,26 @@
                                 'margin-right': '11%',
                                 'margin-left': '20%'
                             };
-                            properties2 = {
-                                'margin-left': '-20%'
-                            };
 
                             $('.mapmove').removeClass('clicked')
                             if ($(window).width() > 770) {
-                                $('.sailor').stop().velocity({
+                                $('.sailor1').stop().velocity({
+                                    opacity: 1,
+                                    translateX: '1rem'
+                                }, {
+                                    display: 'block'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
+                                $('.sailor2').stop().velocity({
+                                    opacity: 0,
+                                    translateX: '-1rem'
+                                }, {
+                                    display: 'block'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
+                                $('.show2D').stop().velocity({
                                     opacity: 1,
                                     translateX: '1rem'
                                 }, {
@@ -160,15 +172,28 @@
                             }
                         } else {
                             properties1 = {
-                                'margin-left': '2%',
-                                'margin-right': '29%'
-                            };
-                            properties2 = {
-                                'margin-left': '10%'
+                                'margin-left': '4.5%',
+                                'margin-right': '26.5%'
                             };
                             $('.mapmove').addClass('clicked')
                             if ($(window).width() > 770) {
-                                $('.sailor').stop().velocity({
+                                $('.sailor1').stop().velocity({
+                                    opacity: 0,
+                                    translateX: '-1rem'
+                                }, {
+                                    display: 'none'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
+                                $('.sailor2').stop().velocity({
+                                    opacity: 1,
+                                    translateX: '1rem'
+                                }, {
+                                    display: 'block'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
+                                $('.show2D').stop().velocity({
                                     opacity: 0,
                                     translateX: '-1rem'
                                 }, {
@@ -181,14 +206,27 @@
                     } else {
                         temp = $(this)[0]
                         properties1 = {
-                            'margin-left': '2%',
-                            'margin-right': '29%'
-                        };
-                        properties2 = {
-                            'margin-left': '10%'
+                            'margin-left': '4.5%',
+                            'margin-right': '26.5%'
                         };
                         if ($(window).width() > 770) {
-                            $('.sailor').stop().velocity({
+                            $('.sailor1').stop().velocity({
+                                opacity: 0,
+                                translateX: '-1rem'
+                            }, {
+                                display: 'none'
+                            }, {
+                                duration: 200
+                            }, 'easeInOutSine');
+                            $('.sailor2').stop().velocity({
+                                opacity: 1,
+                                translateX: '1rem'
+                            }, {
+                                display: 'block'
+                            }, {
+                                duration: 200
+                            }, 'easeInOutSine');
+                            $('.show2D').stop().velocity({
                                 opacity: 0,
                                 translateX: '-1rem'
                             }, {
@@ -246,7 +284,23 @@
             $('.mapmove').removeClass('clicked')
 
             if ($(window).width() > 770) {
-                $('.sailor').stop().velocity({
+                $('.sailor1').stop().velocity({
+                    opacity: 1,
+                    translateX: '1rem'
+                }, {
+                    display: 'block'
+                }, {
+                    duration: 200
+                }, 'easeInOutSine');
+                $('.sailor2').stop().velocity({
+                    opacity: 0,
+                    translateX: '-1rem'
+                }, {
+                    display: 'none'
+                }, {
+                    duration: 200
+                }, 'easeInOutSine');
+                $('.show2D').stop().velocity({
                     opacity: 1,
                     translateX: '1rem'
                 }, {
@@ -261,9 +315,6 @@
                 'margin-left': '20%'
             };
             $('.mapmove').stop().velocity(properties1, 400)
-            properties2 = {
-                'margin-left': '-20%'
-            };
         })
 
         $('.main_list_detail li').hover(function () {
@@ -320,4 +371,48 @@
     }, function () {
         $(this)[0].style.color = '#f0f8ff';
     })
+
+    $("#wheel").hover(
+        function () {
+            if ($('.animating#wheel').length) console.log(null)
+            else {
+                $('#wheel').addClass("animating");
+                $('#wheel').animate({
+                    deg: 360
+                }, {
+                    duration: 500,
+                    step: function (now) {
+                        console.log(now);
+                        $(this).css({
+                            '-webkit-transform': 'rotate(' + now + 'deg)',
+                            '-moz-transform': 'rotate(' + now + 'deg)',
+                            'transform': 'rotate(' + now + 'deg)'
+                        });
+                        if (now % 360 == 0) $('#wheel').removeClass("animating");
+                    }
+                });
+            }
+        },
+        function () {
+            if ($('.animating#wheel').length) console.log(null)
+            else {
+                $('#wheel').addClass("animating");
+                $('#wheel').animate({
+                    deg: -360
+                }, {
+                    duration: 500,
+                    step: function (now) {
+                        console.log(now);
+                        $(this).css({
+                            '-webkit-transform': 'rotate(' + now + 'deg)',
+                            '-moz-transform': 'rotate(' + now + 'deg)',
+                            'transform': 'rotate(' + now + 'deg)'
+                        });
+                        if (now % 360 == 0) $('#wheel').removeClass("animating");
+                    }
+                });
+            }
+        }
+    );
 </script>
+<!-- https://www.elevateweb.co.uk/image-zoom/examples/ -->
