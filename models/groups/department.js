@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
+
 var Schema = mongoose.Schema;
 
-var department = mongoose.Schema({
+
+
+var departments = mongoose.Schema({
+
     type: String,
     name: String,
     en_name: String,

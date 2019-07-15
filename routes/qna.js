@@ -6,7 +6,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  qnaDB.find().limit(12).skip(0).exec(function(err,result){
+  qnaDB.find().sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
   if(err){
      res.render('qna/index', { title: 'Express' });
      return err;
@@ -37,7 +37,7 @@ router.get('/:category', function(req, res, next) {
   }
   
   if(category1==""){
-    qnaDB.find({}).limit(12).skip(0).exec(function(err,result){
+    qnaDB.find().sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
       if(err){
         res.render('qna/index', { title: 'Express' });
         return err;
@@ -45,7 +45,7 @@ router.get('/:category', function(req, res, next) {
       res.render('qna/index', { questions: result });          
     });
   }else{
-    qnaDB.find({category:category1}).limit(12).skip(0).exec(function(err,result){
+    qnaDB.find({category:category1}).sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
       if(err){
         res.render('qna/index', { title: 'Express' });
         return err;
@@ -61,13 +61,7 @@ router.get('/:category', function(req, res, next) {
 
 
 router.post('/toPost',function(req,res){ 
-  
-  var count;
-  //先db有多少個問題，以製造流水號
-  qnaDB.find().exec(function(err,result){
-    count=result.length;
-  });
-  console.log(count);
+   
   //判斷是否登入  
   new qnaDB({
     postID:getPostID(),
@@ -76,13 +70,23 @@ router.post('/toPost',function(req,res){
     qContent:req.body.question,     
   }).save(function(err){
     if(err){
-      return console.log(err);
+      return err;
     }           
-    res.json(['success', req.body.category]);
+    res.send(['success']);
   });
   
 });
-
+router.post('/search',function(req,res){
+  var rgx = new RegExp(".*"+ req.body.searchText +".*", "i");
+  qnaDB.find({$or:[{title:{$regex:rgx}},{qContent:{$regex:rgx}},{aContent:{$regex:rgx}}]}).exec(function(err,result){
+    if(err){
+      return err;
+    }
+    console.log(result);
+    res.send(result);    
+  });  
+  
+});
 router.post('/getData',function(req,res){
   var category1;
   switch(req.body.category){
@@ -102,10 +106,17 @@ router.post('/getData',function(req,res){
       category1="";
   }
   var rowCount = parseInt(req.body.rowCount); 
-
+  var sorter;
+  if(req.body.sort == "count"){
+    sorter={"count":-1,"_id":-1};
+  }else{
+    sorter={"_id":-1,"count":-1};
+  }
+  
+  console.log(sorter);
   if(category1==""){
     //從第幾列開始之後加載10個問題
-    qnaDB.find().limit(12).skip(rowCount).exec(function(err,result){
+    qnaDB.find().sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
       if(err){
         return err;
       }
@@ -113,7 +124,7 @@ router.post('/getData',function(req,res){
       res.send(result);
     });
   }else{
-    qnaDB.find({category:category1}).limit(12).skip(rowCount).exec(function(err,result){
+    qnaDB.find({category:category1}).sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
       if(err){
         return err;
       }
@@ -128,10 +139,9 @@ router.post("/getQuestion",function(req,res){
     if(err){
       return err;
     }    
-    qnaDB.update({postID:req.body.postID},{$inc:{count:1}},function(err,result){
-      
-    });    
-    res.send(result);
+    qnaDB.updateOne({postID:req.body.postID},{$inc:{count:1}},function(err,result){
+      res.send(result);
+    });        
   });  
   
 });

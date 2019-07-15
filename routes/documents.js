@@ -15,10 +15,19 @@ router.get('/documents', function(req, res, next) {
 });
 
 //大學生
+router.get('/undergraduate_must/:id', function(req, res, next) {
+  /*Document.findOne({count: 1}).exec(function(err, data){
+    if(err) return next(err);
+    res.render('documents/1',{ title: 'undergraduate',data: data });
+  });*/
+  res.render('documents/1',{ title: 'undergraduate' });
+  
+});
+
 router.get('/undergraduate_must', function(req, res, next) {
   Document.findOne({count: 1}).exec(function(err, data){
     if(err) return next(err);
-    res.render('documents/undergraduate_must',{ title: 'undergraduate',data: data });
+    res.render('documents/1',{ title: 'undergraduate',data: data });
   });
   
 });
