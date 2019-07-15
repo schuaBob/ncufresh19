@@ -114,6 +114,26 @@ router.post('/addLiveContent', upload.single('picture'), function(req, res, next
   res.redirect('back');
 });
 
+router.post('/addPlayContent', upload.single('picture'), function(req, res, next) {
+  if (req.file) {
+    var cuted = req.file.path.split('/');
+    var pathed = cuted[2] + "/" + cuted[3];
+  }
+  new play({
+    mainTitle: req.body.mainTitle,
+    subTitle: req.body.subTitle,
+    picture: pathed,
+    content: req.body.content
+  }).save(function(err) {
+    if (err) {
+      console.log('FAIL');
+      return;
+    }
+    console.log('SUCCESS');
+  });
+  res.redirect('back');
+});
+
 
 
 
