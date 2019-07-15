@@ -1,3 +1,5 @@
+// import { create } from "domain";
+
   
 
 
@@ -11,7 +13,13 @@
   var backbround;
   var sea ;
   var game_time=60;
+  var catch_animal_container;
   var harpoon_text;
+  var catch_animal_text;
+  var score_catch_animal_container;
+  var score_catch_animal_text;
+  var catch_animal_num = [0,0,0,0,0];
+  var score_catch_animal_num = [0,0,0,0,0];
   var player_control=false;
   var start_time_text;
   var countdown_time;
@@ -81,6 +89,9 @@
       catch_fish.push(this);
       animal_list = arrayRemove(animal_list,this);  
       this.gotoAndStop(this.special == true?"special_die":"normal_die");
+      console.log(this.animaltype);
+      catch_animal_num[this.animaltype]+=1;
+      catech_animal_update();
     }
   }
   class harpoon extends createjs.Bitmap{
@@ -118,7 +129,7 @@
       }
       for(i=0;i<animal_list.length;i++){
         var pt =this.localToLocal(this.image.width/2,this.image.height,animal_list[i]); // 传递的是红色小球圆心位置
-        if (animal_list[i].hitTest(pt.x, pt.y)) {
+        if (gamestart && animal_list[i].hitTest(pt.x, pt.y)) {
           // harpoon.regX = harpoon.image.width/2;
           // harpoon.reg = harpoon.image.height;
           this.moveable=false;
@@ -488,23 +499,12 @@
         }
         }
       };
-      animalsource.push({type:0,spritesheet:new createjs.SpriteSheet(bird1)});
-      animalsource.push({type:1,spritesheet:new createjs.SpriteSheet(fish1)});
-      animalsource.push({type:2,spritesheet:new createjs.SpriteSheet(fish2)});
-      animalsource.push({type:3,spritesheet:new createjs.SpriteSheet(fish3)});
-      animalsource.push({type:4,spritesheet:new createjs.SpriteSheet(fish4)});
+      animalsource.push({type:0,scroe:200,spritesheet:new createjs.SpriteSheet(bird1)});
+      animalsource.push({type:1,score:150,spritesheet:new createjs.SpriteSheet(fish1)});
+      animalsource.push({type:2,score:100,spritesheet:new createjs.SpriteSheet(fish2)});
+      animalsource.push({type:3,score:100,spritesheet:new createjs.SpriteSheet(fish3)});
+      animalsource.push({type:4,score:100,spritesheet:new createjs.SpriteSheet(fish4)});
       animalsource.push({type:5,spritesheet:new createjs.SpriteSheet(fish_ad_data)});  
-      // var score_sea = {
-      //   images: [loader.getResult("sea")],
-      //   frames: {width:1600,height:200,regX:399,regY:95},
-      //   animations: {
-      //   normal:{
-      //     frames:[0,1],speed:0.1
-      //   }
-      //   }
-      // };
-      //background_source["scoure_sea"] = new createjs.SpriteSheet(fish_ad_data);
-
   }
   function create_stage_element(){
     stage = new createjs.Stage(document.getElementById("gameStage"));
@@ -544,53 +544,88 @@
       close_fish_ad();
     });
   }
+  function fush_jump(){
+    stage.setChildIndex(fisherman,stage.numChildren-1);
+    stage.setChildIndex(fisherman_harpoon,stage.numChildren-1);
+    for(i=0;i<catch_fish.length-1;i++){
+      createjs.Tween.get(catch_fish[i]).wait(2000).to({y:(fisherman.y-getrandom(50)+20),x:(fisherman.x+50-getrandom(50))},600)
+    }
+    createjs.Tween.get(catch_fish[catch_fish.length-1]).wait(2000).to({y:(fisherman.y-getrandom(50)+20),x:(fisherman.x+35-getrandom(50))},600).call(()=>{
+      for(i=0;i<catch_fish.length;i++){
+        createjs.Tween.get(catch_fish[i]).wait(500).to({x:-Math.abs(fisherman.getwidth())+30-getrandom(50)},4000);
+      }
+    });
+  }
+  function game_end(){
+    gamestart=false;
+    clese_bird();
+    clese_fish();
+    clese_bubble();
+    clear_animal();
+    close_game_event();
+    close_fishmanwalk();
+    fush_jump();
+    clearInterval(countdown_timer);
+    start_time_text.text = "Time's up！";
+    start_time_text.x -= 40;
+    stage.addChild(start_time_text);
+    fisherman_harpoon.scaleX *= fisherman_harpoon.scaleX<0?-1:1;
+    fisherman_harpoon.rotation=35;
+    fisherman.scaleX *= fisherman.scaleX<0?-1:1;
+    fisherman_harpoon.revise_position();
+    createjs.Tween.get(fisherman_harpoon).wait(3100).to({x:-Math.abs(fisherman.getwidth())+25*(fisherman.scaleX<0?1:-1)},4000);
+    createjs.Tween.get(fisherman).wait(3100).to({x:-Math.abs(fisherman.getwidth())},4000).call(()=>{
+      stage.removeChild(start_time_text);
+      stage.removeChild(harpoon_text);
+      stage.removeChild(countdown_text);
+      stage.removeChild(catch_animal_container);
+      clear_harpoon();
+      score_init();
+    });
+  }
   function countdown(){
     countdown_time--;
     countdown_text.text = ""+countdown_time;
     if(countdown_time == 0){
-      gamestart=false;
-      clese_bird();
-      clese_fish();
-      clese_bubble();
-      clear_animal();
-      clear_stage();
-      close_game_event();
-      close_fishmanwalk();
-      start_time_text.text = "Time's up！";
-      start_time_text.x -= 40;
-      stage.addChild(start_time_text);
-      stage.removeChild(harpoon_text);
-      stage.removeChild(countdown_text);
-      clearInterval(countdown_timer)
-      fisherman_harpoon.scaleX *= fisherman_harpoon.scaleX<0?-1:1;
-      fisherman_harpoon.rotation=35;
-      fisherman.scaleX *= fisherman.scaleX<0?-1:1;
-      fisherman_harpoon.revise_position();
-      createjs.Tween.get(fisherman_harpoon).wait(2000).to({x:-Math.abs(fisherman.getwidth())+25*(fisherman.scaleX<0?1:-1)},4000);
-      createjs.Tween.get(fisherman).wait(2000).to({x:-Math.abs(fisherman.getwidth())},4000).call(()=>{
-        stage.removeChild(start_time_text);
-        score_init();
-      });
+      game_end();
     }
   }
-  function clear_stage(){
-    for(i = 0;i<catch_fish.length;i++){
-      stage.removeChild(catch_fish[i]);
-    }
+  function clear_harpoon(){
     for(i = 0;i<harpoon_list.length;i++){
       stage.removeChild(harpoon_list[i]);
     }
   }
+  var num_score_fish=0;
   function score_init(){
     backbround.image = loader.getResult("score_background");
+    num_score_fish=0;
     sea.y = 270;
     fisherman.y=380
-    fisherman.scale=fisherman_harpoon.scale=0.25;
+    fisherman.scale=fisherman_harpoon.scale*=1.56;
     fisherman.x=canvas_width+fisherman.getwidth();
     fisherman_harpoon.rotation = 35;
     fisherman_harpoon.revise_position();
+    for(i=0;i<catch_fish.length;i++){
+      catch_fish[i].scale *= 1.56;
+      catch_fish[i].alpha=1;
+      catch_fish[i].y = (fisherman.y-(getrandom(50))*1.56+20*1.56);
+      catch_fish[i].x = (fisherman.x+(35-getrandom(50))*1.56)
+      createjs.Tween.get(catch_fish[i]).to({x:255+(50-getrandom(50))*1.56},5000);
+    }
     createjs.Tween.get(fisherman).to({x:255},5000);
-    createjs.Tween.get(fisherman_harpoon).to({x:255+40*(fisherman.scaleX<0?1:-1)},5000);
+    createjs.Tween.get(fisherman_harpoon).to({x:255+40*(fisherman.scaleX<0?1:-1)},5000).call(()=>{
+      create_score_catch_animal_container();
+      createjs.Tween.get(fisherman).wait(1000).call(()=>{
+        for(i=0;i<catch_fish.length;i++){
+          if(catch_fish[i].animaltype == 0)continue;//bug 鳥會讓num_score_fish抓到的魚陣列錯誤 看score_catch_animal_num就知道，因為裡面有鳥
+          createjs.Tween.get(catch_fish[i]).wait(200*i).to({visible:false,x:score_catch_animal_container.children[catch_fish[i].animaltype-1].x+score_catch_animal_container.x,y:score_catch_animal_container.children[catch_fish[i].animaltype-1].y+score_catch_animal_container.y},599).call(()=>{
+            score_catch_animal_num[catch_fish[num_score_fish++].animaltype]++;
+            score_catch_animal_text_update();
+          })
+        }
+      });
+      
+    });
   }
   function create_game_timer(){
     countdown_time=game_time;
@@ -600,28 +635,95 @@
     countdown_timer=setInterval(countdown,1000)
     stage.addChild(countdown_text);
   }
-  function game_start(){
-    gamestart=true;
+  function catech_animal_update(){
+    catch_animal_text.text = " X  "+catch_animal_num[1]+"\n\n X  "+catch_animal_num[2]+"\n\n X  "+catch_animal_num[3]+"\n\n X  "+catch_animal_num[4];
+  }
+  function create_catch_animal_container(){
+    catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0","12px "+font_family,"#000000");
+    catch_animal_text.x  = 25;
+    catch_animal_text.y  = -5;
+    catch_animal_num = [0,0,0,0,0];
+    catch_animal_container = new createjs.Container();
+    var die_fish1 = new createjs.Sprite(animalsource[1].spritesheet,"normal_die");
+    var die_fish2 = new createjs.Sprite(animalsource[2].spritesheet,"normal_die");
+    var die_fish3 = new createjs.Sprite(animalsource[3].spritesheet,"normal_die");
+    var die_fish4 = new createjs.Sprite(animalsource[4].spritesheet,"normal_die");
+    die_fish1.scale = 0.08;
+    die_fish2.scale=0.08;
+    die_fish3.scale= 0.08;
+    die_fish4.scale = 0.08;
+    catch_animal_container.addChild(die_fish1);
+    catch_animal_container.addChild(die_fish2);
+    catch_animal_container.addChild(die_fish3);
+    catch_animal_container.addChild(die_fish4);
+    catch_animal_container.addChild(catch_animal_text);
+    stage.addChildAt(catch_animal_container,1);
+    die_fish2.y=die_fish1.y+23;
+    die_fish3.y=die_fish2.y+23;
+    die_fish4.y=die_fish3.y+23;
+    catch_animal_container.x =canvas_width-70;
+    catch_animal_container.y=50;
+  }
+  function score_catch_animal_text_update(){
+    console.log(score_catch_animal_num);
+    score_catch_animal_text.text =("  X  "+(score_catch_animal_num[1]>=10?(score_catch_animal_num[1]+""):(score_catch_animal_num[1]+"  "))+"                       X  "+(score_catch_animal_num[2]>=10?(score_catch_animal_num[2]+""):(score_catch_animal_num[2]+"  "))+"                           X  "+(score_catch_animal_num[3]>=10?(score_catch_animal_num[3]+""):(score_catch_animal_num[3]+"  "))+"                        X  "+score_catch_animal_num[4]+"");
+  }
+  function create_score_catch_animal_container(){
+    score_catch_animal_text = new createjs.Text("  X  0                         X  0                             X  0                          X  0","18px "+font_family,"#000000");
+    score_catch_animal_text.x  = 25;
+    score_catch_animal_text.y  = -5;
+    score_catch_animal_container = new createjs.Container();
+    var die_fish1 = new createjs.Sprite(animalsource[1].spritesheet,"normal_die");
+    var die_fish2 = new createjs.Sprite(animalsource[2].spritesheet,"normal_die");
+    var die_fish3 = new createjs.Sprite(animalsource[3].spritesheet,"normal_die");
+    var die_fish4 = new createjs.Sprite(animalsource[4].spritesheet,"normal_die");
+    die_fish1.scale =0.1872;
+    die_fish2.scale = 0.1872;
+    die_fish3.scale =0.1872;
+    die_fish4.scale  =0.1872;
+    score_catch_animal_container.addChild(die_fish1);
+    score_catch_animal_container.addChild(die_fish2);
+    score_catch_animal_container.addChild(die_fish3);
+    score_catch_animal_container.addChild(die_fish4);
+    score_catch_animal_container.addChild(score_catch_animal_text);
+    stage.addChild(score_catch_animal_container);
+    die_fish2.x=die_fish1.x+150;
+    die_fish3.x=die_fish2.x+170;
+    die_fish4.x=die_fish3.x+165;
+    score_catch_animal_container.x =120;
+    score_catch_animal_container.y=130;
+  }
+  function create_harpoon_text(){
     harpoon_text = new createjs.Text("Harpoon：10","18px "+font_family,"#000000");
-    harpoon_text.x  = 650;
+    harpoon_text.x  =canvas_width-120;
     harpoon_text.y = 20;
     stage.addChild(harpoon_text);
+  }
+  function game_start(){
+    gamestart=true;
+    create_harpoon_text();
+    create_catch_animal_container();
+    create_game_timer();
     game_event();
     open_bubble();
     open_fish();  
     open_bird();
-    create_game_timer();
   }
   function game_init() {
     clese_bird();
     clese_fish();
     clear_animal();
     clese_bubble();
+    show_catch_animal_num = [0,0,0,0,0];
+    catch_animal_num=[0,0,0,0,0];
+    harpoon_list=new Array();
+    animal_list =new Array();
+    catch_fish = new Array();
     //close_fishmanwalk();
     //score_init();
 
     start_time_text = new createjs.Text("5","40px "+font_family,"#000000");
-    start_time_text.x=400;
+    start_time_text.x=canvas_width/2-10;
     start_time_text.y = 200;
     start_time_text.alpha =0;
     stage.addChild(start_time_text);
