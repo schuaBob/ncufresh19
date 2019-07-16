@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 
 
-var departments = mongoose.Schema({
+var department = mongoose.Schema({
 
     type: String,
     name: String,
