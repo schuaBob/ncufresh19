@@ -129,6 +129,7 @@ a{
   left: 0;
   overflow-x: hidden;
   padding-left: 3.5vw;
+  z-index: 3;
 }
 .sidenav2 {
   padding-top: 2vh;
@@ -136,10 +137,11 @@ a{
   width: 15vw;
   position: absolute;
   left: 14vw;
+  color: rgb(13, 73, 102);
 }
 
 
-.sidenav2 P {
+.sidenav2 a {
   color: rgb(13, 73, 102);
   text-decoration: none;
   display: block;
@@ -149,9 +151,10 @@ a{
   padding-bottom: 2vh;
 }
 
-.sidenav2 p:hover {
+.sidenav2 a:hover {
   background-color: rgb(251,217,185);
-  color: black;
+  color:  rgb(13, 73, 102);
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -175,19 +178,19 @@ a{
 .box {
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: white;
-    position: fixed;
-    width: 70vw;
-    height: 73vh;
-    right: 0vw;
-    top: 186px;
-    /*padding-left: 5vw;
-    padding-top: 4vh;*/
-    padding: 4vh 5vw;
+  background-color: #FFFDF1;
+  position: absolute;
+  width: 70vw;
+  height: 73vh;
+  right: 0vw;
+  top: 186px;
+  /*padding-left: 5vw;
+  padding-top: 4vh;*/
+  padding: 4vh 5vw;
 }
 
 .title {
-  font-size: 26px;
+  font-size: 32px;
   font-weight: bold;
   color: rgb(58, 154, 216);
 }
@@ -205,3 +208,13 @@ a{
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+/*.gra_bg {
+  width: 30vw;
+  height: 73vh;
+  background-size: 50%;
+  background-image:url("草.png"),url("魚.png"),url("人魚.png");
+  background-repeat: no-repeat, no-repeat, no-repeat;  
+  background-position: 0 bottom, 20px 20px, 400px bottom; 
+  z-index: 1;
+}*/

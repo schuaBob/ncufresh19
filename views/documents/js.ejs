@@ -1,6 +1,9 @@
 <script>
     var textid = 0;
     $(document).ready(function () {
+
+/*-----------------------------index------------------------------------------*/   
+
             //身分選擇動畫
             $(".identity").show();
             $(".under").hover(function(){
@@ -19,29 +22,29 @@
                 $(this).removeClass("big");
             });
 
+/*-------------------------------其他頁面--------------------------------------*/            
             /*選單*/
             $(".icon1").hover(function(){
-                $(this).attr('src','入學須知.png');
+                $(this).attr('src','/documents/入學須知.png');
             },function(){
-                $(this).attr('src','入學須知_原.png');
+                $(this).attr('src','/documents/入學須知_原.png');
             });
 
             $(".icon2").hover(function(){
-                $(this).attr('src','新生週.png');
+                $(this).attr('src','/documents/新生週.png');
             },function(){
-                $(this).attr('src','新生週_原.png');
+                $(this).attr('src','/documents/新生週_原.png');
             });
 
             $(".icon3").hover(function(){
-                $(this).attr('src','學習資訊.png');
+                $(this).attr('src','/documents/學習資訊.png');
             },function(){
-                $(this).attr('src','學習資訊_原.png');
+                $(this).attr('src','/documents/學習資訊_原.png');
             });
 
 
-
 /*--------------------------------------管理者---------------------------------------------*/
-        
+
            ClassicEditor
             .create( document.querySelector( '#edit_content' ) )
             .catch( error => {
@@ -59,11 +62,12 @@
             } );
 
 
+            
+
             //選擇新增或修改
             $(".option").mousedown(function(){
                 $("#edit_modify").modal("show");
                 textid = this.id;
-                //$(this).attr('href',"/documents/undergraduate_must/"+textid)
                 //當下頁面變色
                 $(".option").removeClass("page_now");
                 $(this).addClass("page_now")
@@ -75,18 +79,15 @@
                     console.log(err);
                 },
                 success: function (data) {
-                    console.log(data.title);
-                    console.log(data.content);
                     $("#show_title").empty();
-                    $("#show_content").empty();
+                    $(".content").empty();
                     $("#show_title").html(data.title);  
-                    $("#show_content").html(data.content);
+                    $(".content").html(data.content);
                     }
             });
             })
 
             //新增
-
             $("#new_data").click(function (){
                 $("#edit").modal("show");
 
@@ -132,30 +133,46 @@
             $('#edit_modify').on('show.bs.modal', function () {
                 $(this).css("top","20%");
             })
-
+            
 /*--------------------------------------使用者---------------------------------------------*/
-         /*   $(".option").mousedown(function(){
-                textid = this.id;
-                //當下頁面變色
-                $(".option").removeClass("page_now");
-                $(this).addClass("page_now")
+//當下頁面變色
 
-                $.ajax({
-                url: "/documents/require_data/" + textid,
-                method: 'get',
-                error: function (err) {
-                    console.log(err);
-                },
-                success: function (data) {
-                    $("#show_title").empty();
-                    $("#show_content").empty();
-                    $("#show_title").html(data.title);  
-                    $("#show_content").html(data.content);
-                    }
-            });
-            })*/
+var url = new URL(window.location.href);
+var option = 0;
+            url = url.href.split('/');
+            option = document.getElementById(url[5]);
+            $(option).addClass("page_now");
+           
+
+            
+            //判斷套用哪個layout
+            $(".option").mousedown(function(){
+                textid = this.id;
+                if(url[4]=='undergraduate_must'){
+                    $(this).attr('href',"/documents/undergraduate_must/"+textid);
+                }
+                if(url[4]=='undergraduate_fresh'){
+                    $(this).attr('href',"/documents/undergraduate_fresh/"+textid);
+                }
+                if(url[4]=='undergraduate_study'){
+                    $(this).attr('href',"/documents/undergraduate_study/"+textid);
+                }
+                if(url[4]=='graduate_must'){
+                    $(this).attr('href',"/documents/graduate_must/"+textid);
+                }
+                if(url[4]=='graduate_fresh'){
+                    $(this).attr('href',"/documents/graduate_fresh/"+textid);
+                }
+                if(url[4]=='common'){
+                    $(this).attr('href',"/documents/common/"+textid);
+                }
+
+            })        
+         
 
     })
+
+
     //新增的時候將id傳到modal
     function getid(){
         $('input[name=id]').val(textid);

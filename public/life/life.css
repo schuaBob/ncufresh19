@@ -15,29 +15,50 @@ ul li {
 }
 
 .mainTitle {
-  border-left: 6px solid #ffcc00;
   position: relative;
-  margin-left: 100px;
+  background-color:white;
+  height: 180px;
+}
+
+.titleText {
+  position: absolute;
+  border-left: 6px solid #ffcc00;
+  margin: 50px;
+  left: 150px;
 }
 
 .content {
   margin: 0 auto;
   padding: 0 auto;
   position: relative;
+  left: 55px;
   display: block;
   width: 900px;
   height: 400px;
   overflow-y: scroll;
+  overflow-x: hidden; 
   bottom: 0;
 }
+.Fcontent {
+  margin: 0 auto;
+  padding: 0 auto;
+  position: relative;
+  left: 55px;
+  display: block;
+  width: 900px;
+  height: 400px;
+  overflow: hidden; 
+  bottom: 0;
+}
+
 .content::-webkit-scrollbar {
   -webkit-appearance: none;
 }
 
 #main {
   position: relative;
-  padding-top: 100px;
-  top: 60px;
+  top: 20px;
+  left: 100px;
 }
 
 .foodList {
@@ -52,20 +73,26 @@ ul li {
   width: 300px;
   margin: 0;
   padding: 0;
+  left: 100px;
+  top: 50px;
   z-index: 300;
 }
 
 .navSubBtn {
   position: relative;
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 75%;
+  max-height: 75%;
   right: 20px;
   /*width: 100px;*/
 }
 
-/*.studyPicture {
-  position: absolute;
-}*/
+.sideNav li {
+  height: 22vh;
+}
+
+.studyPicture {
+  position: relative;
+}
 .studyPicture div {
   float: left;
   padding: 5px;
@@ -80,44 +107,14 @@ ul li {
   padding: 10px;
 }
 .studyTitle {
-  padding: -100px;
+  background-color: gray;
 }
 
-/*
-.playPicture {
+
+
+#FpictureArea {
   position: relative;
-  margin: auto;
-}
-*/
-/*---------playContent------------*/
-.playImg {
-  max-width: 850px;
-  max-height: 400px;
-}
-.playPicture div {
-  display: block;
-  margin: auto;
-  float: left;
-  padding: 5px;
-}
-
-/*----------liveContent-----------*/
-.liveImg {
-  max-width: 850px;
-  max-height: 400px;
-}
-.livePicture {
-  display:block;
-  margin:0 auto;
-}
-.pic {
-  float: left;
-  padding: 5px;
-}
-
-
-#pictureArea {
-  position: absolute;
+  left: 150px;
 }
 
 #picture {
@@ -125,6 +122,10 @@ ul li {
   top:0; bottom:0; left:0; right:0; margin:auto;
   max-width: 850px;
   max-height: 400px;
+}
+
+.arrows {
+  position: absolute;
 }
 
 #prev, #next{
@@ -144,13 +145,53 @@ ul li {
 }
 #next{
   margin-right:250px;
-  right:0;
+  right: 0;
   border-radius: 3px 0 0 3px;
 }
 #prev:hover, #next:hover {
   text-decoration: none;
   background-color: rgba(100,100,100,0.8);
 }
+
+
+
+
+
+
+/*---------playContent------------*/
+.picture {
+  max-width: 850px;
+  max-height: 400px;
+  top:0; bottom:0; left:0; right:0; margin:auto;
+}
+
+/*----------liveContent-----------*/
+.liveImg {
+  max-width: 850px;
+  max-height: 400px;
+}
+.livePicture {
+  display:block;
+  margin:0 auto;
+}
+.pic {
+  float: left;
+  padding: 5px;
+}
+
+
+.pictureArea div {
+  display: block;
+  float: left;
+  padding: 5px;
+}
+
+.pictureArea {
+  position: relative;
+  left: 150px;
+}
+
+
 
   
 
