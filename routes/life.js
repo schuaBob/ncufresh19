@@ -99,48 +99,99 @@ router.post('/addLiveContent', upload.single('picture'), function(req, res, next
     var cuted = req.file.path.split('/');
     var pathed = cuted[2] + "/" + cuted[3];
   }
-  new live({
-    mainTitle: req.body.mainTitle,
-    subTitle: req.body.subTitle,
-    picture: pathed,
-    content: req.body.content
-  }).save(function(err) {
-    if (err) {
-      console.log('FAIL');
-      return;
-    }
-    console.log('SUCCESS');
-  });
+  live.findOne({mainTitle: req.body.modifyMainTitle}).exec(function(err, result) {
+    if (result !== null) {
+      if (req.body.mainTitle) {
+        live.updateOne({ mainTitle: req.body.modifyMainTitle }, {mainTitle: req.body.mainTitle}, function(err) {
+            if (err) console.log("Fail to update");
+            else console.log("success to update mainTitle");
+        });
+      };
+      if (req.body.subTitle) {
+        live.updateOne({ mainTitle: req.body.modifyMainTitle }, {subTitle: req.body.subTitle}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update subTitle");
+      });
+      };
+      if (req.body.content) {
+        live.updateOne({ mainTitle: req.body.modifyMainTitle }, {content: req.body.content}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update content");
+      });
+      };
+      if (req.file) {
+        live.updateOne({ mainTitle: req.body.modifyMainTitle }, {picture: pathed}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update picture");
+      });
+      };
+    } else {
+      new live({
+        mainTitle: req.body.mainTitle,
+        subTitle: req.body.subTitle,
+        picture: pathed,
+        content: req.body.content
+      }).save(function(err) {
+        if (err) {
+          console.log('FAIL');
+          return;
+        }
+        console.log('SUCCESS');
+      });
+    };
   res.redirect('back');
+  });
 });
+
+  
 
 router.post('/addPlayContent', upload.single('picture'), function(req, res, next) {
   if (req.file) {
     var cuted = req.file.path.split('/');
     var pathed = cuted[2] + "/" + cuted[3];
   }
-  new play({
-    mainTitle: req.body.mainTitle,
-    subTitle: req.body.subTitle,
-    picture: pathed,
-    content: req.body.content
-  }).save(function(err) {
-    if (err) {
-      console.log('FAIL');
-      return;
-    }
-    console.log('SUCCESS');
-  });
+  play.findOne({mainTitle: req.body.modifyMainTitle}).exec(function(err, result) {
+    if (result !== null) {
+      if (req.body.mainTitle) {
+        play.updateOne({ mainTitle: req.body.modifyMainTitle }, {mainTitle: req.body.mainTitle}, function(err) {
+            if (err) console.log("Fail to update");
+            else console.log("success to update mainTitle");
+        });
+      };
+      if (req.body.subTitle) {
+        play.updateOne({ mainTitle: req.body.modifyMainTitle }, {subTitle: req.body.subTitle}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update subTitle");
+      });
+      };
+      if (req.body.content) {
+        play.updateOne({ mainTitle: req.body.modifyMainTitle }, {content: req.body.content}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update content");
+      });
+      };
+      if (req.file) {
+        play.updateOne({ mainTitle: req.body.modifyMainTitle }, {picture: pathed}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update picture");
+      });
+      };
+    } else {
+      new play({
+        mainTitle: req.body.mainTitle,
+        subTitle: req.body.subTitle,
+        picture: pathed,
+        content: req.body.content
+      }).save(function(err) {
+        if (err) console.log('FAIL');
+        else console.log('SUCCESS');
+      });
+    };
   res.redirect('back');
+  });
 });
 
 router.post('/deleteLiveContent', function(req, res, next) {
-  console.log('Enter delete');
-  /*var title = live.findOne({mainTitle: req.body.mainTitle}).exec(function(err, result) {
-    console.log('mainTitle is ' + title);
-  });
-  */
-  console.log(req.body);
   live.deleteOne({ mainTitle: req.body.mainTitle }, function(err) {
     if(err) console.log('Fail');
     else console.log('success to delete');
@@ -149,12 +200,6 @@ router.post('/deleteLiveContent', function(req, res, next) {
 });
 
 router.post('/deletePlayContent', function(req, res, next) {
-  console.log('Enter delete');
-  /*var title = live.findOne({mainTitle: req.body.mainTitle}).exec(function(err, result) {
-    console.log('mainTitle is ' + title);
-  });
-  */
-  console.log(req.body);
   play.deleteOne({ mainTitle: req.body.mainTitle }, function(err) {
     if(err) console.log('Fail');
     else console.log('success to delete');

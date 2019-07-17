@@ -26,9 +26,79 @@ var match_num = {
      }
  });
 
+ /*----------food---------*/
+
+ var draggingStarted = 0;
+ var lastMousePosition = {x: null, y: null};
+ var areaOffset = $('#FpictureArea').offset();
+ var containerHeight = $("#FpictureArea").outerHeight;
+ var containerWidth = $("#FpictuerArea").outerWidth;
+ var imageWidth;
+ var imageHeight;
+ var imageLoaded = 0;
+
+ if($('#foodImg').get(0).complete) {
+     ImageLoaded();
+ } else {
+     $('#foodImg').on('load', function() {
+         ImageLoaded();
+     })
+ }
+
+ function ImageLoaded() {
+     imageWidth = $("#foodImg").width();
+     imageHeight = $("#foodImg").height();
+     imageLoaded = 1;
+ }
+
+ $('#FpictureArea').on('mousedown', function(event) {
+     if(imageLoaded == 1) {
+         draggingStarted = 1;
+
+         lastMousePosition = {
+             x: event.pageX - areaOffset.left,
+             y: event.pageY - areaOffset.top
+        };
+     }
+ });
+
+ $('#FpictureArea').on('mouseup', function() {
+     draggingStarted = 0;
+ });
+
+ $('#FpictureArea').on('mousemove', function(event) {
+    if (draggingStarted == 1) {
+        var currentMousePostition = {
+            x: event.pageX - areaOffset.left,
+            y: event.pageY - areaOffset.top
+        };
+        var changeX = currentMousePostition.x - lastMousePosition.x;
+        var changeY = currentMousePostition.y - lastMousePosition.y;
+
+        lastMousePosition = currentMousePostition;
+
+        var imgTop = parseInt($("#foodImg").css('top'), 10);
+        var imgLeft = parseInt($("#foogImg").css('left'), 10);
+
+        var imgLeftNew = imgLeft + changeX;
+        var imgTopNew = imgTop + changeY;
+
+          
+        if (imgLeftNew > 0) imgLeftNew = 0;
+        if (imgLeftNew < (containerWidth - imageWidth))
+          imgLeftNew = containerWidth - imageWidth;
+
+        if (imgTopNew > 0) imgTopNew = 0;
+        if (imgTopNew < -869) imgTopNew = -869;
+        //if (imgTopNew < (containerHeight - imageHeight))
+          //imgTopNew = containerHeight - imageHeight;
+      
+        $("#foodImg").css({top: imgTopNew + 'px', left: imgLeftNew + 'px'});
+     }
+ });
 
 
-/*---------liveContent-------*/
+/*---------liveContent-------
 
 $(document).ready(function() {
     var num = 1;
@@ -49,7 +119,9 @@ $(document).ready(function() {
        }
    )
    
-});
+});*/
+
+
 
 /*---------------------------後台------------------------
 
@@ -79,6 +151,8 @@ $(document).ready(function() {
             .catch( error => {
                 console.error( error );
             } );
+
+
 
 
 

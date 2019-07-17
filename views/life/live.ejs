@@ -46,19 +46,25 @@
                 </div>
                 <% } %>
             </div>
-       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增內容</button>
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
         <!--Modal-->
             <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">新增內容</h4>
+                            <h4 class="modal-title" id="exampleModalLabel">新增/修改內容</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"> &times;</span>
                             </button> 
                         </div>
                         <div class="modal-body">
                             <form action="addLiveContent" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="elecategory">請輸入要修改的篇章大標題</label>
+                                    <div class="col-md-16">
+                                        <textarea class="form-control input-md" name="modifyMainTitle" id="editor2"></textarea>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="elecategory">主要標題</label>
                                     <div class="col-md-16">
@@ -91,12 +97,12 @@
                     </div> <!--/.modal-content-->
                 </div> <!--/.modal -->
             </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal" style="position: absolute; z-index: 1; left: 10vw;" id="delete_picture">刪除/修改</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal" style="position: absolute; z-index: 1; left: 15vw;" id="delete_picture">刪除內容</button>
             <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel"> 刪除/修改</h4>
+                            <h4 class="modal-title" id="exampleModalLabel">刪除</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"> &times; </span>
                             </button>

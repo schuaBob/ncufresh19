@@ -40,17 +40,6 @@ ul {
   overflow-x: hidden; 
   bottom: 0;
 }
-.Fcontent {
-  margin: 0 auto;
-  padding: 0 auto;
-  position: relative;
-  left: 55px;
-  display: block;
-  width: 900px;
-  height: 400px;
-  overflow: hidden; 
-  bottom: 0;
-}
 
 .content::-webkit-scrollbar {
   -webkit-appearance: none;
@@ -107,48 +96,25 @@ ul {
   background-color: gray;
 }
 
-
-
+/*---------- food -----------*/
 #FpictureArea {
   position: relative;
+  display: block;
+  overflow: hidden;
+  cursor: -webkit-grab;
+  height:400px;
+  width: 800px;
   left: 150px;
 }
-
-#picture {
+#foodImg {
   position: relative;
-  top:0; bottom:0; left:0; right:0; margin:auto;
-  max-width: 850px;
-  max-height: 400px;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  -moz-user-select: none;
 }
 
-.arrows {
-  position: absolute;
-}
 
-#prev, #next{
-  text-decoration: none;
-  cursor: pointer;
-  position: fixed;
-  padding: 16px;
-  margin-top:100px;
-  top: 36%;
-  width: auto;
-  font-size: 40px;
-  font-weight: bold;
-  color: #e0e0e0;
-  transition: 0.6s ease;
-  border-radius: 3px 0 0 3px;
-  z-index: 2;
-}
-#next{
-  margin-right:250px;
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-#prev:hover, #next:hover {
-  text-decoration: none;
-  background-color: rgba(100,100,100,0.8);
-}
 
 
 
