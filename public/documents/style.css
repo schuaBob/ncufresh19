@@ -1,4 +1,5 @@
 body {
+  overflow-y: hidden;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -30,10 +31,9 @@ body {
   position: relative;
 }
 
-.identity div {
+/*.identity div {
   float: left;
-  text-align: center;
-}
+}*/
 
 .character {
   width: 25vw;
@@ -63,15 +63,15 @@ body {
   position: relative;
   background-color: white;
   width: 100%;
-  height: 12vh;;
+  height: 85px;
   box-shadow:2px 2px 2px rgba(20%,20%,40%,0.3),4px 4px 6px rgba(20%,20%,40%,0.1),6px 6px 12px rgba(20%,20%,40%,0.1);
 }
 
 .return_space {
   position: absolute;
-  width: 8vw;
-  height: 80%;
-  margin: 2vh 0 2vh 3vw;
+  width: 14vw;
+  height: 11vh;
+  padding: 0.5vh 0 0.5vh 3vw;
 }
 
 .return {
@@ -81,8 +81,8 @@ body {
   height: 80px;*/
   width: auto;
   height: auto;
-  max-width: 110%;
-  max-height: 111%;
+  max-width: 100%;
+  max-height: 100%;
   top: 0;
   bottom: 0;
   left: 0;
@@ -94,8 +94,8 @@ body {
   position: absolute;
   border-left: 6px solid #ffcc00;
   padding-left: 20px;
-  left: 8vw;
-  margin: 1vh 0 1vh 6vw;
+  left: 14vw;
+  margin: 1vh 0;
   height: 80%;
 }
 
@@ -105,13 +105,13 @@ body {
 
 .p1 {
   color: rgb(20, 20, 102);
-  font-size: 4vh;
+  font-size: 28px;
   font-weight: bold;
 }
 
 .p2 {
   color: gray;
-  font-size: 2.5vh;
+  font-size: 17px;
 }
 
 
@@ -119,19 +119,21 @@ body {
 
 /*選單*/
 .sidenav {
-  height: 73vh;
+  height: 79vh;
   width: 14vw;
   position: absolute;
   z-index: 1;
   padding-top: 2vh;
   left: 0;
   overflow-x: hidden;
+  overflow-y: hidden;
   padding-left: 3.5vw;
   z-index: 3;
 }
 .sidenav2 {
+  overflow-y: hidden;
   padding-top: 2vh;
-  height: 73vh;
+  height: 79vh;
   width: 15vw;
   position: absolute;
   left: 14vw;
@@ -143,7 +145,7 @@ body {
   color: rgb(13, 73, 102);
   text-decoration: none;
   display: block;
-  font-size: 3vh;
+  font-size: 1.4vw;
   font-weight: bold;
   padding-top: 2vh;
   padding-bottom: 2vh;
@@ -158,6 +160,7 @@ body {
 
 .page_now {
   background-color: rgb(251,217,185);
+  /*color: #ffcc00 !important;*/
 }
 
 .icon {
@@ -174,27 +177,27 @@ body {
 
  
 .box {
-  overflow-y: auto;
   overflow-x: hidden;
   background-color: #FFFDF1;
   position: absolute;
   width: 70vw;
-  height: 73vh;
+  height: 74vh;
   right: 0vw;
-  top: 186px;
-  /*padding-left: 5vw;
-  padding-top: 4vh;*/
+  top: 24vh;
+  margin-left: 1vw;
   padding: 4vh 5vw;
 }
 
 .title {
-  font-size: 32px;
+  font-size: 1.8vw;
   font-weight: bold;
   color: rgb(58, 154, 216);
 }
 
 
 .content {
+  overflow-y: hidden;
+  font-size: 1.2vw;
   padding-top: 2vh;
 }
 
@@ -218,16 +221,104 @@ body {
 }*/
 
 /*------------------------------RWD-------------------------------*/
+/*index*/
 @media only screen and (min-width: 1400px) {
-
-}
-
-@media only screen and (min-width: 768px) and (max-width: 993px)  {}
   .fish_size {
     width: auto;
     height: auto;
     max-width: 100%;
     max-height: 100%;
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    position: absolute;
+  }
+
+  .identity div {
+    float: left;
+  }
+
+}
+
+@media only screen and (min-width: 980px) and (max-width: 1400px)  {
+  
+  .identity div {
+    float: left;
+  }
+  
+  .fish_size {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    position: absolute;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 980px)  {
+  
+  .identity div {
+    float: left;
+  }
+  
+  .fish_size {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 80%;
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    position: absolute;
+  }
+}
+
+/*@media only screen and (min-width: 480px) and (max-width: 768px)  {
+  .fish_size {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 55%;
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    position: absolute;
+  }
+}*/
+
+@media only screen and  (max-width: 768px)  {
+  .fish_size {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 55%;
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    position: absolute;
+  }
+}
+
+/*other手機板*/
+@media only screen and (max-width: 768px)  {
+  .fish_size {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 55%;
     top: 0;  
     bottom: 0;  
     left: 0;  
