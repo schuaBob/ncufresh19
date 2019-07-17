@@ -130,9 +130,9 @@
                         <form>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">系所名稱</label>
-                                <select name="name" id="type" class="form-control">
+                                <select name="name" id="edit_name" class="form-control">
                                 <% for(var i in department) {%>
-                                <option value="<%= department[i].name%>">department[i].name</option>
+                                <option value="<%= department[i].name%>"><%=department[i].name%></option>
                                 <%}%>
                                         </select>
                             </div>
@@ -184,7 +184,7 @@
                     <% for(var i in department) {%>
                         <%_ if(department[i].type===department_type){ -%>
                             <a style="text-decoration:none; color: #0D4966;" href="/groups/department/<%=department[i].type%>/<%=department[i].name%>">
-                                            <li class="sideli2 <%=department[i].type%>"><i
+                                            <li class="sideli2 <%=department[i].type%>" id="<%=department[i].name%>"><i
                                                     class="fas fa-angle-right"></i>
                                                 <%=department[i].name%>
                                             </li>

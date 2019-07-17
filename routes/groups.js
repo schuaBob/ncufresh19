@@ -1,10 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var department_data = require('../models/groups/department');
+var community_data = require('../models/groups/community');
+var others_data = require('../models/groups/others');
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('groups/index', { title: 'Express' });
 });
+/////////----------------------department
 router.get('/department', function(req, res, next) {
     department_data.find({}).exec(function(err, department) {
         if (err) return next(err);
@@ -52,17 +57,6 @@ router.get('/department/:college/:department', function(req, res, next) {
 
 
 })
-router.get('/association', function(req, res, next) {
-    res.render('groups/g_association', { title: 'association' });
-});
-router.get('/community', function(req, res, next) {
-    res.render('groups/g_community', { title: 'community' });
-});
-router.get('/others', function(req, res, next) {
-    res.render('groups/g_others', { title: 'others' });
-});
-
-
 router.post('/add_department', function(req, res, next) {
     console.log("add department")
     if (req.body.name !== null) {
@@ -78,27 +72,129 @@ router.post('/add_department', function(req, res, next) {
         console.log("added" + req.body.name);
         department_data.find({}).exec(function(err, department) {
             if (err) return next(err);
-            res.render('groups/g_department', {
-                title: 'department',
-                department: department,
-                department_this: null,
-                department_type: null
-            })
+            res.redirect('department')
         })
     } else {
         console.log("empty department");
         department_data.find({}).exec(function(err, department) {
             if (err) return next(err);
-            res.render('groups/g_department', {
-                title: 'department',
-                department: department,
-                department_this: null,
-                department_type: null
-            })
+            res.redirect('department')
         })
     }
 
 });
+//////----------------------------------community
+
+router.get('/community', function(req, res, next) {
+    community_data.find({}).exec(function(err, community) {
+        if (err) return next(err);
+        res.render('groups/g_community', {
+            title: 'community',
+            community: community,
+            community_this: null,
+
+        })
+    })
+});
+
+router.get('/community/:community', function(req, res, next) {
+    community_data.find({}).exec(function(err, community) {
+        if (err) return next(err);
+        community_data.findOne({ name: req.params.community }).exec(function(err, community_this) {
+            if (err) return next(err);
+            res.render('groups/g_community', {
+                title: 'community',
+                community: community,
+                community_this: community_this,
+
+            })
+        })
+
+    })
+
+
+})
+router.post('/add_community', function(req, res, next) {
+    console.log("add community")
+    if (req.body.name !== null) {
+
+        new community_data({
+            name: req.body.name,
+            intro: req.body.intro
+        }).save();
+        console.log("added" + req.body.name);
+        community_data.find({}).exec(function(err, community) {
+            if (err) return next(err);
+            res.redirect('/community')
+        })
+    } else {
+        console.log("empty community");
+        community_data.find({}).exec(function(err, community) {
+            if (err) return next(err);
+            res.redirect('/community')
+        })
+    }
+
+});
+//////----------------------others
+
+
+router.get('/others', function(req, res, next) {
+    others_data.find({}).exec(function(err, others) {
+        if (err) return next(err);
+        res.render('groups/g_others', {
+            title: 'others',
+            others: others,
+            others_this: null,
+
+        })
+    })
+});
+router.get('/others/:others', function(req, res, next) {
+    others_data.find({}).exec(function(err, others) {
+        if (err) return next(err);
+        others_data.findOne({ name: req.params.others }).exec(function(err, others_this) {
+            if (err) return next(err);
+            res.render('groups/g_others', {
+                title: 'others',
+                others: others,
+                others_this: others_this,
+
+            })
+        })
+
+    })
+
+
+})
+
+router.post('/add_others', function(req, res, next) {
+    console.log("add others")
+    if (req.body.name !== null) {
+
+        new others_data({
+            name: req.body.name,
+            intro: req.body.intro
+        }).save();
+        console.log("added" + req.body.name);
+        others_data.find({}).exec(function(err, others) {
+            if (err) return next(err);
+
+            res.redirect('/others')
+        })
+    } else {
+        console.log("empty others");
+        others_data.find({}).exec(function(err, others) {
+            if (err) return next(err);
+            res.redirect('/others')
+        })
+    }
+
+});
+
+
+
+
 
 router.post('/edit_department', function(req, res, next) {
     console.log("edit department")
@@ -128,7 +224,9 @@ router.post('/delete_department', function(req, res, next) {
 
 })
 
-
+router.get('/association', function(req, res, next) {
+    res.render('groups/g_association', { title: 'association' });
+});
 
 
 

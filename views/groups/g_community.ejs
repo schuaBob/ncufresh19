@@ -9,7 +9,6 @@
         <% include ../layouts/script %>
             <link rel='stylesheet' href='/groups/style.css' />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
 </head>
 
 <body>
@@ -24,11 +23,11 @@
         </div>
         <div class="buttons">
             <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
-                新增社群
-            </button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="＃edit_delete">
-                編輯/刪除社群
-            </button>
+            新增社群
+        </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_delete">
+            編輯/刪除社群
+        </button>
         </div>
 
         <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -37,11 +36,11 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add Community</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     </div>
                     <div class="modal-body">
-                        <form action="/groups/add_department" method="post">
+                        <form action="/groups/add_community" method="post">
                             <div class="form-group">
                                 <label for="name" class="col-form-label">社群名稱</label>
                                 <input type="text" class="form-control" id="name" name="name">
@@ -67,11 +66,11 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">edit&delete</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     </div>
                     <div class="modal-body">
-                        <form action="/groups/add_department" method="post">
+                        <form action="/groups/edit_delete_department" method="post">
                             <div class="form-group">
                                 <label for="name" class="col-form-label">社群名稱</label>
                                 <input type="text" class="form-control" id="name" name="name">
@@ -84,48 +83,45 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
-                                <button type="submit" class="btn btn-primary">delete</button>
+                                <button type="submit" class="btn btn-danger">delete</button>
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
+
         <div class="sidebar">
             <ul>
-                <li class="sideli"><i class="fas fa-angle-right"></i>中央創遊
+                <% for(var i in community) {%>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/community/<%=community[i].name%>">
+                <li class="sideli" id="<%=community[i].name%>"><i class="fas fa-angle-right"></i>
+                    <%=community[i].name%>
                 </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>好聚好散
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>肆倆重
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>中央資管大數據暨<br>&#160&#160&#160程式開發研究社
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>Nature Fun
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>PRACTICEs
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>耕新報
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>Fun青松
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>DREAMs
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>新興催化劑
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>INNOGRATION
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>中央阿卡貝拉社
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>中央大學英嘴社
-                </li>
-
+            </a>
+                    <%}%>
             </ul>
         </div>
-        <script src="/groups/js/groups.js"></script>
 
-        <% include ../layouts/js %>
+        <%_ if(community_this!==null){ -%>
+            <div class="info">
+                <div class="community">
+                    <%=community_this.name%>
+                </div>
+                <div class="content">
+                    <%=community_this.intro%>
+                </div>
+
+
+            </div>
+
+
+            <%_ } -%>
+
+
+                <script src="/groups/js/groups.js"></script>
+
+                <% include ../layouts/js %>
 </body>
 
 </html>
