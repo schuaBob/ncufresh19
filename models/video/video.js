@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var video = mongoose.Schema({
+    title: String,
     ytID: String
 });
 

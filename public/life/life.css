@@ -1,18 +1,19 @@
 body {
   padding: 200px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #fff9dc;
-  height: 100vh;
-  width: 100vw;
+
 }
 
 a {
   color: #00B7FF;
 }
 
-ul li {
+ul {
   list-style-type:none;
+  padding: 0;
 }
+
+
 
 .mainTitle {
   position: relative;
@@ -58,22 +59,19 @@ ul li {
 #main {
   position: relative;
   top: 20px;
-  left: 100px;
 }
 
 .foodList {
   position: absolute;
-  margin-left: -40px;
 }
 
 .sideNav {
   position: relative;
   float:right;
   right: 0;
-  width: 300px;
+  width: 20%;
   margin: 0;
   padding: 0;
-  left: 100px;
   top: 50px;
   z-index: 300;
 }
@@ -82,7 +80,6 @@ ul li {
   position: relative;
   max-width: 75%;
   max-height: 75%;
-  right: 20px;
   /*width: 100px;*/
 }
 
@@ -158,37 +155,27 @@ ul li {
 
 
 
-/*---------playContent------------*/
+/*---------liveContent playContent------------*/
 .picture {
   max-width: 850px;
   max-height: 400px;
-  top:0; bottom:0; left:0; right:0; margin:auto;
 }
 
-/*----------liveContent-----------*/
-.liveImg {
-  max-width: 850px;
-  max-height: 400px;
-}
-.livePicture {
-  display:block;
-  margin:0 auto;
-}
 .pic {
   float: left;
-  padding: 5px;
-}
-
-
-.pictureArea div {
-  display: block;
-  float: left;
-  padding: 5px;
+  top:0; bottom:0; left:0; right:0; margin:auto;
 }
 
 .pictureArea {
   position: relative;
   left: 150px;
+}
+
+.textArea {
+  position: relative;
+  width: 50vw;
+  text-align: center;
+  float: left;
 }
 
 

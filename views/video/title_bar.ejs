@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <% include ../layouts/head %>
-    <% include ../layouts/script  %>
-    <link rel='stylesheet' href='/video/style.css' />
-  </head>
-  <body>
+    <head>
+        <title><%= title %></title>
+        <% include ../layouts/head %>
+        <% include ../layouts/script  %>
+        <link rel='stylesheet' href='/video/style.css' />
+    </head>
+    <body>
+        <main>
+          <%/* 標題 */%>
+          <div class="bar_background">
+            <div class="title_bar">
+                <%/* 黃線mark */%>
+                <div class="line"></div>
+                <a href="/video/">
+                    <div class="title">
+                        <h1>VIDEO<br><span class="small_title">影音專區</span></h1>
+                    </div>
+                </a>
+                <%/* 三角形*/%>
+                <div class="tri"></div>
+                <div class="title">
+                    <h1><font color="#ec6d4f"><%= title_bar[0] %></font><br><span class="small_title"><%= title_bar[1] %></span></h1>
+                </div>
+                <% if(title_bar[2] != null) { %>
+                    <div class="tri"></div>
+                    <div class="title">
+                        <h1><font color="#ec6d4f"><%= title_bar[2] %></font><br><span class="small_title"><%= title_bar[3] %></span></h1>
+                    </div>
+                <% } %>
+            </div>
+          </div>
+        </main>
+    </body>
+    <% include ../layouts/js %>
     
-    <% include ../layouts/header %>
-    <main>
-      <%/* 標題 */%>
-      <div class="title_bar">
-        <%/* 黃線mark */%>
-        <div class="line"></div>
-        <div class="title">
-          <h1>VIDEO<br><span class="small_title">影音專區</span></h1></div>
-      </div>
-
-  </body>
-  <% include ../layouts/js %>
 </html>

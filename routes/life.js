@@ -134,6 +134,33 @@ router.post('/addPlayContent', upload.single('picture'), function(req, res, next
   res.redirect('back');
 });
 
+router.post('/deleteLiveContent', function(req, res, next) {
+  console.log('Enter delete');
+  /*var title = live.findOne({mainTitle: req.body.mainTitle}).exec(function(err, result) {
+    console.log('mainTitle is ' + title);
+  });
+  */
+  console.log(req.body);
+  live.deleteOne({ mainTitle: req.body.mainTitle }, function(err) {
+    if(err) console.log('Fail');
+    else console.log('success to delete');
+  });
+  res.redirect('back');
+});
+
+router.post('/deletePlayContent', function(req, res, next) {
+  console.log('Enter delete');
+  /*var title = live.findOne({mainTitle: req.body.mainTitle}).exec(function(err, result) {
+    console.log('mainTitle is ' + title);
+  });
+  */
+  console.log(req.body);
+  play.deleteOne({ mainTitle: req.body.mainTitle }, function(err) {
+    if(err) console.log('Fail');
+    else console.log('success to delete');
+  });
+  res.redirect('back');
+});
 
 
 

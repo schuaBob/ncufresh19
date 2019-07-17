@@ -1,18 +1,16 @@
-// import { create } from "domain";
-
-  
 //沒抓到魚會有bug
 //增加魚叉碰撞點
   //兩層海
   //緩衝
   //選項高度跟著問題亦啟動
-  //不再畫面會讓時間變負數
-  //questionhaver 長度太長☆
+  //什麼都沒抓到會有BUG
     //------------game---------------------------------
   var labbybutton_container;
   var question_container;
+  var question_num=[0,0,0];
   var generate_bird;
   var option =new Array();
+  var question_index_list=new Array();
   var question;
   var question_text;
   var generate_fish;
@@ -22,7 +20,7 @@
   var backbround;
   var board_index;
   var sea ;
-  var game_time=10;
+  var game_time=60;
   var catch_animal_container;
   var harpoon_text;
   var question_list = new Array();
@@ -77,18 +75,19 @@
 
     //------------game---------------------------------
     class Question{
-      constructor(q,a,o){
+      constructor(t,q,a,o){
         this.question=q;
         this.answer=a;
         this.option=o;
+        this.type =t;
       }
     }
     class Option extends createjs.Container{
       constructor(){
         super();
         console.log(this);
-        this.x=220;
-        this.y=220;
+        this.x=210;
+        this.y=250;
         this.backbround = new createjs.Shape();
         this.havermask = new createjs.Shape();
         this.text = new createjs.Text("","Bold 17px "+font_family,"#000000");
@@ -96,46 +95,62 @@
         this.addChild(this.text);
         this.addChild(this.havermask);
         this.text.y=8;
-        this.text.x=10;
-        this.havermask.graphics.beginFill("#696969").drawRoundRect(0,0,80,33,5);
-        this.backbround.graphics.beginFill("#696969").drawRoundRect(0,0,80,33,5);
+        this.text.x=12.5;
         this.backbround.visible = false;
         this.backbround.alpha=0.4;
         this.done =false;
         this.havermask.alpha=0.01;
         this.ans =false;
         this.havermask.addEventListener("click",function(event){  
+          if(!event.target.parent.done);
           if(event.target.parent.ans){
             event.target.parent.correct();
           }
           else event.target.parent.wrong();
         });
         this.havermask.addEventListener("mouseover",function(event){
+          event.target.parent.havermask.cursor = "pointer";
+          if(!event.target.parent.done)
           event.target.parent.backbround.visible =true;
 
         });
         this.havermask.addEventListener("mouseout",function(event){
+          if(!event.target.parent.done)
           event.target.parent.backbround.visible =false;
         });
       }
       correct(){
-        questionboard.gotoAndStop("correct");
         this.backbround.visible =true;
-        this.backbround.graphics.clear().beginFill("green").drawRoundRect(0,0,this.text.text.length*19,33,10);
+        this.done=true;
+        this.backbround.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
+        ans_num--;
+        if(ans_num ==0){
+          questionboard.gotoAndStop("correct");
+          createjs.Tween.get(questionboard).wait(1000).call(()=>{
+            questionboard.gotoAndStop("normal");
+            next_question();
+          })
+        }
       }
       wrong(){
         this.backbround.visible = true;
-        this.backbround.graphics.f("red");
+        this.done=true;
+        this.backbround.graphics.clear().beginFill("red").drawRoundRect(0,0,9*18,33,10);
+        show_correct();
       }
       setText(t,ans){
         this.text.text = t;
+        this.done=false;
+        this.visible=true;
+        this.backbround.visible=false;
         this.backbround.graphics.clear();
         this.havermask.graphics.clear();
-        this.havermask.graphics.beginFill("#696969").drawRoundRect(0,0,t.length*19,33,10);
-        this.backbround.graphics.beginFill("#696969").drawRoundRect(0,0,t.length*19,33,10);
+        this.havermask.graphics.beginFill("#696969").drawRoundRect(0,0,9*18,33,10);
+        this.backbround.graphics.beginFill("#696969").drawRoundRect(0,0,9*18,33,10);
         this.ans =ans;
       }
     }
+    
   class Animal  extends createjs.Sprite{
     constructor(type,special){
       if(special)
@@ -163,6 +178,18 @@
       catch_animal_num[this.animaltype]+=1;
       catech_animal_update();
     }
+  }
+  function show_correct(){
+    for(i=0;i<5;i++){
+      if(option[i].ans &&  !option[i].done){
+        option[i].backbround.visible =true;
+        option[i].done=true;
+        option[i].backbround.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
+      }
+    }
+    createjs.Tween.get(questionboard).wait(1000).call(()=>{
+      next_question();
+    })
   }
   class harpoon extends createjs.Bitmap{
     constructor(){
@@ -361,6 +388,14 @@
     for(i=0;i<animal_list.length;i++){
       if(animal_list[i].x>(canvas_width+100)||(animal_list[i].x<-100)){
         stage.removeChild(animal_list[i]);
+        if(animal_list[i].animaltype!=0){
+          if(animal_list[i].animaltype>2){
+            question_num[2]++;
+          }
+          else{
+            question_num[animal_list[i].animaltype-1]++;
+          }
+        }
         animal_list = arrayRemove(animal_list,animal_list[i]);
         return;
       }
@@ -406,13 +441,19 @@
   }
   function open_fish(){
     generate_fish = setInterval(()=>{
-      rnd =getrandom(120);
-      if(rnd<24){
-        console.log("fish");
-        if(rnd<2)
-        animal_list.push(new fish(getrandom(4)+1,true));
-        else
-        animal_list.push(new fish(getrandom(4)+1,false));
+      if(question_num[0] +question_num[1]+question_num[2]>0 ){
+        rnd =getrandom(120);
+        if(rnd<24){
+           var fishtype ;
+           do{
+            fishtype =getrandom(3);
+           }while(question_num[fishtype]<=0);
+           question_num[fishtype]--;
+          if(rnd<2)
+          animal_list.push(new fish(fishtype ==2?((fishtype+1)+getrandom(2)):(fishtype)+1,true));
+          else
+          animal_list.push(new fish(fishtype ==2?((fishtype+1)+getrandom(2)):(fishtype)+1,false));
+        }
       }
    },200);
   }
@@ -466,6 +507,7 @@
     loader.on("complete", handleComplete);
     loader.on("error", handleError);
     loader.loadManifest(manifest);
+    loading_question();
   }
   function handleFileLoad(e){
     console.log("complete1");
@@ -638,9 +680,17 @@
     else  if(catch_animal_num[3]>0)board_index=3;
     else  if(catch_animal_num[4]>0)board_index=4;
     else {
-      con4ole.log("game over");
+      console.log("game over");
       return;
     }
+    question_index_list = new Array();
+    for(i=0;i<question_list[board_index >=3?2:(board_index-1)].length;i++){
+      question_index_list.push(i);
+    }
+    for(i=0;i<5;i++){
+      option[i].visible=false;
+    }
+    question_text.visible=false;
     var questionboard_sheet=new createjs.SpriteSheet({
       images: [loader.getResult("questionboard"+board_index+"")],
       frames: {width:1600,height:1000,regX:0,regY:0},
@@ -656,17 +706,24 @@
     question_container.removeChild(questionboard);
     questionboard = new createjs.Sprite(questionboard_sheet,"normal");
     questionboard.scale=0;
-    questionboard.x = score_catch_animal_container.children[board_index].x;
-    questionboard.y = score_catch_animal_container.children[board_index].y;
+    console.log(score_catch_animal_container.children[board_index].x);
+    questionboard.x = score_catch_animal_container.children[board_index].x+score_catch_animal_container.x;
+    questionboard.y = 130;
     question_container.addChildAt(questionboard,1);
-    createjs.Tween.get(questionboard).to({scale:0.5,x:0,y:0},1000);
+    createjs.Tween.get(questionboard).to({scale:0.5,x:0,y:0},1000).call(()=>{
+      for(i=0;i<5;i++){
+        option[i].visible=true;
+      }
+      question_text.visible=true;
+      next_question();
+    });
   }
   function question_show(){
     var a = new Array();
     var q = question.question.split("");
     question_text.text="Q：";
     for(i=0;i<q.length;i++){
-      if((i+1) % 16 == 0 ){
+      if((i+1) % 18 == 0 ){
         question_text.text+=q[i-1]+"\n       ";
       }
       else{
@@ -678,6 +735,7 @@
     }
     for(i=4;i>a.length-1;i--){
       option[i].visible = false;
+      option[i].ans =false;
     }
     for(i=0;i<question.answer.length;i++){
       var index =getrandom(a.length);
@@ -690,41 +748,83 @@
       a = arrayRemove(a,a[index]);
     }
   }
-  function select_question(){
-    question = question_list[0];
+  function next_question(){
+    if(catch_animal_num[board_index] == 0){
+      for(var j=0;j<5;j++){
+        option[j].visible=false;
+      }
+      question_text.visible=false;
+      console.log(score_catch_animal_container.children[board_index].x);
+      createjs.Tween.get(questionboard).to({scale:0,x:score_catch_animal_container.children[board_index].x+score_catch_animal_container.x,y:130},1000).call(()=>{
+        create_questionboard();
+      });
+    }
+    else{
+      catch_animal_num[board_index]--;
+      var rnd = getrandom(question_index_list.length);
+      question = question_list[board_index >=3?2:(board_index-1)][rnd];
+      question_index_list = arrayRemove(question_index_list,question_index_list[rnd]);
+      ans_num=question.answer.length;
+      question_show();
+    }
   }
+
   function loading_question(){
-    question_list.push(new Question("請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機掰掰","超級無敵機掰掰"],["小機掰超機掰掰","中機掰超機掰掰","大機掰超機掰掰"]))
+    question_list.push(new Array());
+    question_list.push(new Array());
+    question_list.push(new Array());
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的","~~sf.dm"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_num=[0,0,0];
+    question_index_list=new Array();
+    for(var j =0;j<3;j++){
+      question_num[j] = question_list[j].length;
+    }
   }
   function question_init(){
     question_container= new createjs.Container();
     var question_background = new createjs.Shape();
     question_text = new createjs.Text("","Bold 20px "+font_family,"#000000");
-    question_text.x = 220;
-    question_text.y=120;
+    question_text.x = 190;
+    question_text.y=140;
     question_background.graphics.beginFill("#000000").drawRoundRect(0,0,800,500,45);
     question_background.alpha = 0.4;
     question_container.addChild(question_background);
     question_container.addChild(question_text);
-    create_questionboard();
     option = new Array();
+    question_num=[0,0,0];
+    question_index_list=new Array();
+    for(var j =0;j<3;j++){
+      for(i=0;i<question_list[j].length;i++){
+        question_index_list.push(i);
+      }
+      question_num[j] = question_list[j].length;
+    }
+
     for(i=0;i<5;i++){
       option.push(new Option());
       question_container.addChild(option[i]);
     }
-    option[1].x = option[0].x + 220;
+    option[1].x = option[0].x + 185;
     option[2].y = option[0].y +40;
-    option[3].x =  option[0].x+220;
+    option[3].x =  option[0].x+185;
     option[3].y =  option[0].y+40;
     option[4].y = option[0].y+80;
-    loading_question();
+    create_questionboard();
     stage.addChild(question_container);
-    question_start();
-  }
-  function question_start(){
-    select_question();
-    question_show();
-   
   }
   function game_end(){
     gamestart=false;
@@ -735,7 +835,6 @@
     close_game_event();
     close_fishmanwalk();
     fish_jump();
-    clearInterval(countdown_timer);
     start_time_text.text = "Time's up！";
     start_time_text.x -= 40;
     stage.addChild(start_time_text);
@@ -757,6 +856,7 @@
     countdown_time--;
     countdown_text.text = ""+countdown_time;
     if(countdown_time == 0){
+      clearInterval(countdown_timer);
       game_end();
     }
   }
@@ -802,7 +902,7 @@
             i--;
             continue;
           }
-          createjs.Tween.get(catch_fish[i]).wait(200*i+brid_num*200+(brid_num==0?0:2600)).to({visible:false,x:score_catch_animal_container.children[catch_fish[i].animaltype-1].x+score_catch_animal_container.x,y:score_catch_animal_container.children[catch_fish[i].animaltype-1].y+score_catch_animal_container.y},599).call(()=>{
+          createjs.Tween.get(catch_fish[i]).wait(200*i+brid_num*200+(brid_num==0?0:2600)).to({visible:false,x:score_catch_animal_container.children[catch_fish[i].animaltype].x+score_catch_animal_container.x,y:score_catch_animal_container.children[catch_fish[i].animaltype].y+score_catch_animal_container.y},599).call(()=>{
             score_catch_animal_num[catch_fish[num_score_fish++].animaltype]++;
             score_catch_animal_text_update();
           })
@@ -812,7 +912,7 @@
   }
   function create_game_timer(){
     countdown_time=game_time;
-    countdown_text = new createjs.Text(game_time+"","30px "+font_family,"#000000");
+    countdown_text = new createjs.Text(game_time+"","30px Arial","#000000");
     countdown_text.x = 400;
     countdown_text.y=20;
     countdown_timer=setInterval(countdown,1000)
@@ -822,7 +922,7 @@
     catch_animal_text.text = " X  "+catch_animal_num[1]+"\n\n X  "+catch_animal_num[2]+"\n\n X  "+catch_animal_num[3]+"\n\n X  "+catch_animal_num[4];
   }
   function create_catch_animal_container(){
-    catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0","12px "+font_family,"#000000");
+    catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0","12px Arial","#000000");
     catch_animal_text.x  = 25;
     catch_animal_text.y  = -5;
     catch_animal_num = [0,0,0,0,0];
@@ -854,7 +954,7 @@
     }
   }
   function create_score_catch_animal_container(){
-    score_catch_animal_text = new createjs.Text("  X  0                         X  0                             X  0                          X  0","18px "+font_family,"#000000");
+    score_catch_animal_text = new createjs.Text("  X  0                         X  0                             X  0                          X  0","18px Arial","#000000");
     score_catch_animal_text.x  = 25;
     score_catch_animal_text.y  = -5;
     score_catch_animal_container = new createjs.Container();
@@ -866,11 +966,11 @@
     die_fish2.scale = 0.1872;
     die_fish3.scale =0.1872;
     die_fish4.scale  =0.1872;
+    score_catch_animal_container.addChild(score_catch_animal_text);
     score_catch_animal_container.addChild(die_fish1);
     score_catch_animal_container.addChild(die_fish2);
     score_catch_animal_container.addChild(die_fish3);
     score_catch_animal_container.addChild(die_fish4);
-    score_catch_animal_container.addChild(score_catch_animal_text);
     stage.addChild(score_catch_animal_container);
     die_fish2.x=die_fish1.x+150;
     die_fish3.x=die_fish2.x+170;
@@ -879,8 +979,8 @@
     score_catch_animal_container.y=130;
   }
   function create_harpoon_text(){
-    harpoon_text = new createjs.Text("Harpoon：10","18px "+font_family,"#000000");
-    harpoon_text.x  =canvas_width-120;
+    harpoon_text = new createjs.Text("Harpoon:10","18px Arial","#000000");
+    harpoon_text.x  =canvas_width-110;
     harpoon_text.y = 20;
     stage.addChild(harpoon_text);
   }
@@ -907,7 +1007,7 @@
     //close_fishmanwalk();
     //score_init();
 
-    start_time_text = new createjs.Text("5","40px "+font_family,"#000000");
+    start_time_text = new createjs.Text("5","40px Arial","#000000");
     start_time_text.x=canvas_width/2-10;
     start_time_text.y = 200;
     start_time_text.alpha =0;

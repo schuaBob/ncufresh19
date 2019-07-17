@@ -41,6 +41,14 @@ router.get('/v_interview', function(req, res, next) {
   res.render('video/v_interview', { title: '影音專區 | 新生知訊網' });
 });
 
+/** 學長姐訪談底下 */
+router.get('/v_interview/:id', function(req, res, next) {
+  var title_bar = [];
+  if(req.params.id === "v_engineering") {
+    res.render('video/v_college', { title: '工學院 | 新生知訊網', title_bar: ['INTERVIEW','學長姐訪談','ENGINEERING', '工學院']})
+  }
+})
+
 /** 中大傳說 */
 router.get('/v_legend', function(req, res, next) {
   res.render('video/v_legend', { title: '影音專區 | 新生知訊網' });
