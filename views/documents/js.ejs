@@ -1,7 +1,6 @@
 <script>
     var textid = 0;
     $(document).ready(function () {
-
 /*-----------------------------index------------------------------------------*/   
 
             //身分選擇動畫
@@ -65,7 +64,7 @@
             
 
             //選擇新增或修改
- /*           $(".option").mousedown(function(){
+           $(".option").mousedown(function(){
                 $("#edit_modify").modal("show");
                 textid = this.id;
                 //當下頁面變色
@@ -85,7 +84,7 @@
                     $(".content").html(data.content);
                     }
             });
-            })*/
+            })
 
             //新增
             $("#new_data").click(function (){
@@ -136,38 +135,35 @@
             
 /*--------------------------------------使用者---------------------------------------------*/
 //當下頁面變色
-
-var url = new URL(window.location.href);
-var option = 0;
-            url = url.href.split('/');
-            option = document.getElementById(url[5]);
-            $(option).addClass("page_now");
-           
-
+/*var url = window.location.href;
+        var option = 0;
+           var arr = url.split('/');
+            option=arr[5];
+            $("#"+option).css("background-color","rgb(251,217,185)");
             
             //判斷套用哪個layout
-            $(".option").mousedown(function(){
+           $(".option").mousedown(function(){
                 textid = this.id;
-                if(url[4]=='undergraduate_must'){
+                if(arr[4]=='undergraduate_must'){
                     $(this).attr('href',"/documents/undergraduate_must/"+textid);
                 }
-                if(url[4]=='undergraduate_fresh'){
+                if(arr[4]=='undergraduate_fresh'){
                     $(this).attr('href',"/documents/undergraduate_fresh/"+textid);
                 }
-                if(url[4]=='undergraduate_study'){
+                if(arr[4]=='undergraduate_study'){
                     $(this).attr('href',"/documents/undergraduate_study/"+textid);
                 }
-                if(url[4]=='graduate_must'){
+                if(arr[4]=='graduate_must'){
                     $(this).attr('href',"/documents/graduate_must/"+textid);
                 }
-                if(url[4]=='graduate_fresh'){
+                if(arr[4]=='graduate_fresh'){
                     $(this).attr('href',"/documents/graduate_fresh/"+textid);
                 }
-                if(url[4]=='common'){
+                if(arr[4]=='common'){
                     $(this).attr('href',"/documents/common/"+textid);
                 }
 
-            })        
+            })       */ 
          
 
     })
