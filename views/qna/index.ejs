@@ -3,324 +3,129 @@
 
 <head>
   <% include ../layouts/head %>
-
-
-
   <% include ../layouts/script  %>
   <link rel='stylesheet' href='style.css' />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <link rel='stylesheet' href='/qna/style.css' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-  <style>
-    #main {
-      position: relative;
-      top: 4vh;
+  <style>   
+    ._modal{
+        display: none;
+        position: fixed;
+        padding: 0px;
+        width: 50vw;            
+        /* border:1px solid red; */
+        z-index: 20;
+        top: 9vh;
+        left: 29vw;
+    }    
+    
+    ._modal-content{
+        height: 100%;            
+        background-size:200px auto;
+        background-repeat: no-repeat; 
+        position: relative;
     }
-
-    .seaBlue {
-      color: #0D4966;
-    }
-
-    .yellow {
-      color: #FFCC00;
-    }
-
-    .seaBlueBg {
-      background-color: #0D4966;
-    }
-
-    .yellowBg {
-      background-color: #FFCC00;
-    }
-
-    .grayBg {
-      background-color: #D0CECE;
-    }
-
-    body {
-      overflow: hidden;
-      moz-user-select: none;
-      /* for Firefox */
-      -webkit-user-select: none;
-      /* for Chrome */
-      background-image: url("background.png");
-      background-repeat:no-repeat;
-      background-position-y: 38vh;
-      /* background-position-x: 55%; */
-      /* background-color:#FFF9DC; */ 
-      background-size: 100%;
-    }
-
-
-
-    .main {
-      position: relative;
-      top: 5vh;
-      width: 90vw;
-      margin: auto;
-      height: 73vh;      
-    }
-
-    .titleSpace {
-      position: relative;
-      height: 11vh;
-      margin: auto;
-      top: 1vh;
-      width: 83%;
-      margin: auto;
-      border-left: 6px solid #FFCC00;
-      padding-left: 15px;
-    }
-
-    #qatxt {
+    ._modal-content > img{
+        max-width: 100%;
+    }     
+    .cross{
       position: absolute;
-      font-size: 5vh;
-      top: -11%;
+      top: 2%;
+      right: 1%;
+      font-size: 100%;
+      z-index: 21;
+    } 
+    
+    .cross:hover{
+      cursor:pointer;
     }
-
-    #qatxt_c {
+    .question{
+      width: 63%;
       position: absolute;
-      font-size: 4vh;
-      bottom: -6%;
+      top: 22%;
+      left: 19%;
+      height: 47vh;
+      font-size: 1.5rem;
     }
-
-    .leftSide {
-      width: 20%;
-      /* background-color: rgb(102, 252, 164);        */
-    }
-
-    /* "分類"圖片 */
-    .pic_classification {
-      position: relative;
-      padding-left: 4%;
-      left: 5px;
-    }
-
-    #classification {
+    .answer{
+      width: 63%;
       position: absolute;
-      font-size: 4vh;
-      top: -10%;
+      top: 22%;
+      left: 19%;
+      height: 47vh;
+      font-size: 1.5rem;
+    }    
+    .modalTitle{
+      border-bottom: 1px solid black;
     }
-
-    #classification_c {
-      position: absolute;
-      font-size: 3.5vh;
-      bottom: -7%;
+    .modalContent{
+      height: 100%;  
+      margin-top: 1%;   
     }
-
-    .pic_classification img {
-      height: 9vh;
-      margin-right: 9px;
-    }
-
-    .option {
-      font-size: 3vh;
-      margin-top: 5vh;
-    }
-
-    .option ul {
-      margin: 20px auto;
-      padding: 0px;
-      list-style-type: none;
-      width: 50%;
-    }
-
-    .option li {
-      margin-bottom: 5vh;
-      text-align: center;
-      border-radius: 2px;
-    }
-
-    .option a {
-      text-decoration: none;
-      color: #0D4966;
-    }
-
-
-
-    /* 選單箭頭 */
-    .fa-angle-right {
-      font-size: 1.3em;
-      position: relative;
-      top: 2px;
-      margin-right: 6px;
-      display: none;
-    }
-
-
-
-    .rightSide {
-      /* background-color:rgb(67, 238, 238); */
-      position: relative;
-      width: 78%;
-      padding-left: 2%;
-    }
-    .buttonGroup{
-      font-size: 2vh;
-    }
-    .button {
-      border-radius: 5px;
-      padding: 2% 10%;
-      white-space: nowrap;
-    }
-    /* 過濾器以及搜尋框 */
-    .sort_SearchBar {
-      /* background-color: bisque; */
+    .formElement{
       width: 100%;
-      padding: 10px 80px;
     }
-    .searchBar {
-      min-width: 187px;
-      float: right;
+    .answerModelQ{
+      max-height: 40%;
     }
-    .fa-arrow-alt-circle-up {
-      float: right;
-      visibility: hidden;
-      font-size: 4vh;
+    .answerModelA{
+      max-height: 60%;
     }
-
-    .ask {
-      display: inline-block;
-      width: 10vw;
-      height: auto;
-      padding: 0px;
-      position: absolute;
-      bottom: 3vh;
-      left: -5.5vw;
-    }
-
-    
-    #img1{
-      max-width: 50%;
-      position: relative;
-      top: -1%;
-      right: -59%;
-    }
-    #img2 {
-      max-width: 100%;
-    }
-
-    .content {
-      overflow-x: hidden;
-      overflow-y: auto;
-      margin: 20px 60px;
+    .contentPart{          
+      overflow-y:auto;
+      overflow-x:hidden;
+    }    
+    .contentPart > p{
+      background-color: #EAEAEA;
       height: 80%;
-    }
-
-    tbody>tr {
-      border-bottom: 1px solid #0D4966;
-      height: 6vh;
-      font-size: 2.5vh;
-    }
-
-    tbody tr:hover {
-      cursor: pointer;
-    }
-
-    thead>tr {
-      border-bottom: 1px dashed #0D4966;
-      height: 6vh;
-      font-size: 3vh;
-    }
-
-    
-
-    
-
-    .modal {
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 6000;
-    }
-
-    .modal-dialog {
-      max-width: 60vw;
-      margin: 7vh auto;
-    }
-
-    .modal-content {
-      height: 85vh;
-    }
-
-    .question,
-    .answer {
-      height: 50%;
-    }
-
-    .searchInput {
-      border-radius: 30px;
-      margin-right: 2px;
+      border-radius: 4px;  
+      /* border: #e5e5e5 1px solid;     */
     }
   </style>
 </head>
 
-<body>
-  <!-- questionModal -->
-  <div class="modal fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="btn-group">
-            <button type="button" class="btn btn-info dropdown-toggle classification_btn" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
+<body>  
 
-            </button>
-            <div class="dropdown-menu">
-              <li class="dropdown-item">校園生活</li>
-              <li class="dropdown-item">課程相關</li>
-              <li class="dropdown-item">學生事務</li>
-              <li class="dropdown-item">其他</li>
-            </div>
-          </div>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/qna/toPost" class="needs-validation" method="POST">
-            <div class="form-group">
-
-              <label for="q_title">標題</label>
-              <input type="text" class="form-control" id="q_title" name="qTitle" placeholder="限10字(必填)"
-                pattern="^.{1,10}$">
-              <label for="q_content">內容</label>
-              <textarea type="text" class="form-control" id="q_content" name="qContent" rows="3" placeholder="內容"
-                pattern="^.{1,200}$"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="submit">送出</button>
-        </div>
+  <!-- askModal -->
+  <div class="_modal askmodal">
+      <div class="_modal-content">   
+          <img src="dialog.png" alt="">         
+          <div class="question">            
+            <div class="modalTitle"><span>我要發問</span><i class="fas fa-times cross"></i></div>
+            <div class="modalContent">
+              <form action="/qna/toPost" class="needs-validation" method="POST">
+                <h4>標題</h4>
+                <input type="text" class="formElement" id="q_title" placeholder="限10字(必填)" pattern="^.{1,10}$">
+                <h4>內容</h4>
+                <textarea id="q_content" cols="30" rows="7" class="formElement" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
+              </form>
+              <input type="submit" value="提交" id="submit" style="float:right;font-size:0.8em;margin-top:5px;">                
+            </div> 
+          </div>                                     
       </div>
-    </div>
-  </div>
+  </div> 
+  
   <!-- answerModal -->
-  <div class="modal fade" id="answerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="answerModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="question">
-            Question:
-          </div>
-          <div class="Answer">
-            Answer:
-          </div>
-        </div>
-        <div class="modal-footer">
-
-        </div>
+   <div class="_modal answermodal">
+      <div class="_modal-content">   
+          <img src="dialog.png" alt="">         
+          <div class="answer">            
+            <div class="modalTitle"><span class="answerTitleText">標題</span><i class="fas fa-times cross"></i></div>
+            <div class="modalContent">
+                <div class="contentPart answerModelQ">Question:
+                  <p></p>
+                </div>
+                <div class="contentPart answerModelA">Answer:
+                  <p></p>
+                </div>
+            </div> 
+          </div>                                     
       </div>
-    </div>
-  </div>
+  </div> 
 
   <% include ../layouts/header %>
   <main id="main">
@@ -381,7 +186,7 @@
                   <th scope="col">點閱率</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody search="false" >
                 <% for(let index in questions){ %>
                 <tr postID="<%= questions[index].postID%>">
                   <th scope="row"><%= questions[index].category%></th>
@@ -401,223 +206,8 @@
 
 </body>
 <% include ../layouts/js %>
+<% include js %>
 <script>
   
-  
-  function convertDateToString(_id){
-    let timestamp = _id.toString().substring(0,8);
-    let date = new Date( parseInt( timestamp, 16 ) * 1000 )
-    var str=date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
-    return str;
-  }
-
-  $(document).ready(function () {
-
-    var timer;
-    var sort=""; //紀錄時間、人氣的按鈕值
-    var c = location.pathname.split('/')[2]; //分類的值
-
-    
-    $(".searchInput").on("keyup",function(e){
-      
-      if(e.keyCode=="13"){
-        $.ajax({
-          type:"POST",
-          url:"/qna/search",
-          dataType:"json",
-          timeout:5000,
-          data:{
-            searchText:$("#search").val()
-          },
-          success:function(data){
-            //暫存tbody原本的內容，為了顯示搜尋的結果
-            var temp = $("tbody").html();
-            $("tbody").empty();
-            for(let i=0;i<data.length;i++){
-              let item = '<tr postID="'+data[i].postID+'"><th scope="row">' + data[i].category
-                + '</th><td>' + data[i].title
-                + '</td><td>' + convertDateToString(data[i]._id)
-                + '</td><td class="count">' + data[i].count
-                + '</td></tr>';
-              $("tbody").append(item);
-              
-            }
-          },
-          error:function(err){
-            alert("資料庫出錯");
-          }
-        });      
-      }
-    })
-
-
-
-
-
-
-    if (c == "") {
-      $("#all").addClass("d-inline");
-      $("#all").parents("li").css("background-color", "#FFECA1");
-    }
-    else {
-      $("#" + c).addClass("d-inline");
-      $("#" + c).parents("li").css("background-color", "#FFECA1");
-    }
-
-    $(".sortButton").click(function () {
-      $("tbody").empty();     
-      sort=$(this).attr("sort");
-      getData(c,$(this).attr("sort"));
-    });
-
-    //按問題後觸發answermodal
-    $("tbody").on("click","tr",function(){
-      // var currentCount = this.children(".count").text();
-      var $node = $(this);
-      $.ajax({
-          type: "POST",
-          url: "/qna/getQuestion", 
-          dataType:'json',         
-          timeout: 5000,
-          data: {
-            postID:$node.attr("postid")
-          },
-          success:function(data){
-            $node.children(".count").text(parseInt($node.children(".count").text())+1);
-            
-          },
-          error:function(err){
-            alert("資料庫出錯!!");
-          }
-        });
-
-
-      
-      $("#answerModal").modal();
-      //assign分類到Modal標題
-      $("#answerModalLabel").text($(this).children('th').text());
-      
-    });
-    //按"我要發問"觸發askmodal
-    $(".ask").click(function () {
-      $("#askModal").modal();
-      $(".classification_btn").text("請選擇分類");
-      $("#q_title").val("");
-      $("#q_content").val("");
-    });
-    //指標進入"我要發問"的div時
-    $(".ask").mouseenter(function () {
-      $("#img1").attr("src","qtextactive.png");
-    });
-    $(".ask").mouseleave(function () {
-      $("#img1").attr("src","qtext.png");
-    });
-
-
-    //askmodal的分類鈕
-    $(".dropdown-item").click(function () {
-      //點選分類後更新分類按鈕
-      $(".classification_btn").text($(this).text());
-    });
-
-    $(".fa-arrow-alt-circle-up").click(function () {
-      $(".content").scrollTop(0);
-    });
-
-
-    $(".content").scroll(function () {
-
-      if ($(".content").scrollTop() > 10) {
-        $('.fa-arrow-alt-circle-up').css("visibility", "visible");
-      } else {
-        $('.fa-arrow-alt-circle-up').css("visibility", "hidden");
-      }
-
-      //讓scroll觸發次數減少
-      window.clearTimeout(timer);
-      timer = window.setTimeout(function () {
-        scrollEnd();
-      }, 700);
-    });
-
-    function scrollEnd() {
-
-      //如果"幾乎"到底，加載新的問題
-      if (($(".content").scrollTop() + $(".content").height()) > ($(".contentTable").height() * 0.9)) {
-        console.log("到底了");
-        getData(c,sort);
-      }
-    }
-    function getData(category,sort) {      
-      $.ajax({
-        type: "POST",
-        url: "/qna/getData",
-        dataType: 'json',
-        timeout: 5000,
-        data: {
-          category: (category=="" ? "":category),
-          sort: (sort=="count" ? "count":"_id"), //默認為"依時間排序"
-          rowCount: $("tbody > tr").length,
-        },
-        success: function (data) {
-          for(let i = 0; i < data.length; i++){
-              let item = '<tr postID="'+data[i].postID+'"><th scope="row">' + data[i].category
-                + '</th><td>' + data[i].title
-                + '</td><td>' + convertDateToString(data[i]._id)
-                + '</td><td class="count">' + data[i].count
-                + '</td></tr>';
-              $("tbody").append(item);
-          }
-        },
-        error: function (err) {
-          alert("資料庫出錯!!");
-        }
-
-      });
-      
-    }
-
-    //askModal的submit觸發後，檢查字數是否符合規定
-    $("#submit").click(function () {
-
-      var forms = document.getElementsByClassName('needs-validation');
-      var validation = Array.prototype.filter.call(forms, function (form) {
-
-        if (form.checkValidity() === false || $(".classification_btn").text() === "請選擇分類") {
-          event.preventDefault();
-          event.stopPropagation();
-        } else {
-          //送出前將分類放進隱藏的input，使後端可以取得          
-          $.ajax({
-            type: "POST",
-            url: "/qna/toPost",
-            dataType: 'json',
-            timeout: 5000,
-            data: {
-              category: $(".classification_btn").text(),
-              title: $("#q_title").val(),
-              question: $("#q_content").val()
-            },
-            success: function (data) {
-              if(data[0]==='success'){
-                $("#askModal").modal("hide");
-                alert("成功");
-              }              
-            },
-            error: function (err) {
-              alert("資料庫出錯!!");
-            }
-          });
-        }
-      });
-
-    });
-
-
-
-
-  });
-
 </script>
-
 </html>
