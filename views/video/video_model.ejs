@@ -13,29 +13,7 @@
   <% include ../layouts/header %>
   <main>
       <%/* 標題 */%>
-      <div class="title_bar">
-        <%/* 黃線mark */%>
-        <div class="line"></div>
-        <div class="title">
-          <a href="/video/">
-            <h1>VIDEO<br><span class="small_title">影音專區</span></h1>
-          </a>
-        </div>
-        <%/* 三角形*/%>
-        <div class="tri"></div>
-        <div class="title">
-          <a href="/video/v_nculife">
-            <h1>LIFE<br><span class="small_title">中大生活</span></h1>
-          </a>
-        </div>
-        <%/* 三角形*/%>
-        <div class="tri"></div>
-        <div class="title">
-          <h1>
-            <font color="#ec6d4f"><%= engtitle %></font><br><span class="small_title"><%= smalltitle %></span>
-          </h1>
-        </div>
-      </div>
+      <% include ./title_bar %>
     
       <%/* 影片區 */%>
       <div class="video_area">
@@ -45,7 +23,31 @@
       </div>
 
       <%/* 引入Youtube API */%>
-      <script src="/video/javascripts/video.js"></script>
+      <script>
+        /* Youtube api */
+    
+        // This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+    
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        
+        // This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+            height: '360',
+            width: '640',
+            videoId: '<%= ytID %>',
+            events: {
+              'onReady': yt.onPlayerReady,
+              'onStateChange': yt.onPlayerStateChange
+            }
+          });
+        }
+      </script>
 
   </main>
 </body>

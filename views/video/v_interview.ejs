@@ -10,32 +10,18 @@
         <% include ../layouts/header %>
         <main>
             <%/* 標題 */%>
-            <div class="bar_background">
-            <div class="title_bar">
-                <%/* 黃線mark */%>
-                <div class="line"></div>
-                <a href="/video/">
-                    <div class="title">
-                        <h1>VIDEO<br><span class="small_title">影音專區</span></h1>
-                    </div>
-                </a>
-                <%/* 三角形*/%>
-                <div class="tri"></div>
-                <div class="title">
-                    <h1><font color="#ec6d4f">INTERVIEW</font><br><span class="small_title">學長姐訪談</span></h1></div>
-            </div>
-            </div>
+            <% include ./title_bar %>
 
             <%/* 各學院縮圖連結 */%>
             <div class="button_area">
                 <a href="/video/v_interview/v_engineering"><img src="/video/工院.jpg" class="v_button"></a>
-                <a href="/video/v_nculife/v_eating"><img src="/video/文院.jpg" class="v_button"></a>
-                <a href="/video/v_nculife/v_eating"><img src="/video/生醫.jpg" class="v_button"></a>
-                <a href="/video/v_nculife/v_eating"><img src="/video/地科院.jpg" class="v_button"></a>
-                <a href="/video/v_nculife/v_eating"><img src="/video/客院.jpg" class="v_button"></a>
-                <a href="/video/v_nculife/v_eating"><img src="/video/理院.jpg" class="v_button"></a>
-                <a href="/video/v_nculife/v_eating"><img src="/video/資電.jpg" class="v_button"></a>
-                <a href="/video/v_nculife/v_eating"><img src="/video/管院.jpg" class="v_button"></a>
+                <a href="/video/v_interview/v_liberal"><img src="/video/文院.jpg" class="v_button"></a>
+                <a href="/video/v_interview/v_health"><img src="/video/生醫.jpg" class="v_button"></a>
+                <a href="/video/v_interview/v_earth"><img src="/video/地科院.jpg" class="v_button"></a>
+                <a href="/video/v_interview/v_hakka"><img src="/video/客院.jpg" class="v_button"></a>
+                <a href="/video/v_interview/v_science"><img src="/video/理院.jpg" class="v_button"></a>
+                <a href="/video/v_interview/v_computer"><img src="/video/資電.jpg" class="v_button"></a>
+                <a href="/video/v_interview/v_management"><img src="/video/管院.jpg" class="v_button"></a>
                 </div>
         </main>
 
