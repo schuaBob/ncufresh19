@@ -25,7 +25,7 @@
             <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
                     新增
                 </button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="＃edit_delete">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_delete">
                     編輯/刪除
                 </button>
         </div>
@@ -40,7 +40,7 @@
                             </button>
                     </div>
                     <div class="modal-body">
-                        <form action="/groups/add_department" method="post">
+                        <form action="/groups/add_others" method="post">
                             <div class="form-group">
                                 <label for="name" class="col-form-label">名稱</label>
                                 <input type="text" class="form-control" id="name" name="name">
@@ -93,19 +93,31 @@
         </div>
         <div class="sidebar">
             <ul>
-                <li class="sideli"><i class="fas fa-angle-right"></i>小中大電視台
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>NCU Green
-                </li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>小松鼠志工隊
-
-                </li>
-
+                <% for(var i in others) {%>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/others/<%=others[i].name%>">
+                    <li class="sideli" id="<%=others[i].name%>"><i class="fas fa-angle-right"></i>
+                        <%=others[i].name%>
+                    </li>
+                </a>
+                    <%}%>
             </ul>
         </div>
-        <script src="/groups/js/groups.js"></script>
+        <%_ if(others_this!==null){ -%>
+            <div class="info">
+                <div class="others">
+                    <%=others_this.name%>
+                </div>
+                <div class="content">
+                    <%=others_this.intro%>
+                </div>
 
-        <% include ../layouts/js %>
+            </div>
+
+
+            <%_ } -%>
+                <script src="/groups/js/groups.js"></script>
+
+                <% include ../layouts/js %>
 </body>
 
 </html>
