@@ -34,7 +34,46 @@
 
 #loginWord {
     position: relative;
-    left: 55px;
+    left: 40%;
     bottom: 38px;
+    width: 85px;
+    color: wheat;
+}
+
+#topHref {
+    position: absolute;
+    right: 40px;
+    bottom: 25px;
+    width: 50px;
+    height: 50px;
+}
+
+#topHref:hover {
+    cursor: pointer;
+    animation-name: topAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes topAnimation{
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+#topBtn {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+#topWord {
+    position: relative;
+    left: 20%;
+    bottom: 38px;
+    width: 85px;
     color: wheat;
 }

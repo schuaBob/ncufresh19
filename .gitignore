@@ -23,8 +23,8 @@ pids
 *.pid
 *.seed
 
-#vscode configures
+# vscode configures
 .vscode/
 
-#stackdump
+# stackdump
 *.stackdump

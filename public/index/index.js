@@ -1,4 +1,3 @@
-
 $(document).ready(() => {
     var editor;
     $('#fullpage').fullpage({
@@ -13,8 +12,5 @@ $(document).ready(() => {
     })
     $('#newsModal').on('hide.bs.modal', () => {
         $.fn.fullpage.setMouseWheelScrolling(true)
-
     })
-
-
 })
