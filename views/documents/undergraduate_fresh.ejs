@@ -1,32 +1,70 @@
+<!DOCTYPE html>
+<html>
 
-<main id="main">
+<head>
+    <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
+    <link rel='stylesheet' href='/documents/style.css' />
+</head>
+
+<body class="other_bg">
+    <% include ../layouts/header %>
+    <main id="main">
+        <% /*編輯框*/ %>
+        <% include edit %>
         <% /*大學生*/ %>
-        <div class="undergraduate" id="undergraduate">
+        <div class="undergraduate">
             <div class="nav">
-                    <div class="return_space"><a href="/documents"><img src="/documents/return.png" class="return"></a></div>
-                    <div class="sign">
-                            <p class="p1">STUDY</p>
-                            <p class="p2">學習資訊</p>
-                    </div>
+                <div class="return_space"><a href="/documents"><img src="/documents/return.png" class="return"></a></div>
+                 <div class="sign">
+                    <p class="p1">STUDY</p>
+                    <p class="p2">學習資訊</p>
+                 </div>
             </div>
+
             <div class="sidenav">
-                <a href="/documents/undergraduate_must/1"><img src="/documents/入學須知_原.png" class="icon icon1"></a>
-                <a href="/documents/undergraduate_fresh/8"><img src="/documents/新生週.png" class="icon"></a>
-                <a href="/documents/undergraduate_study/15"><img src="/documents/學習資訊_原.png" class="icon icon3"></a>
+                <a href="/documents/undergraduate_must"><img src="/documents/入學須知_原.png" class="icon icon1"></a>
+                <a href="/documents/undergraduate_fresh"><img src="/documents/新生週.png" class="icon"></a>
+                <a href="/documents/undergraduate_study"><img src="/documents/學習資訊_原.png" class="icon icon3"></a>
             </div>
 
             <div class="must" id="must">
                 <div class="sidenav2">
-                    <a class="option" id="8">＞&emsp;新生營</p>
-                    <a class="option" id="9">＞&emsp;社團博覽會</p>
-                    <a class="option" id="10">＞&emsp;校園安全宣導</p>
-                    <a class="option" id="11">＞&emsp;新生週日程表</p>
-                    <a class="option" id="12">＞&emsp;新生健康檢查</p>
-                    <a class="option" id="13">＞&emsp;心理適應座談</p>
-                    <a class="option" id="14">＞&emsp;UCAN適性測驗</p>
+                    <p class="option page_now" id="8">＞&emsp;新生營</p>
+                    <p class="option" id="9">＞&emsp;社團博覽會</p>
+                    <p class="option" id="10">＞&emsp;校園安全宣導</p>
+                    <p class="option" id="11">＞&emsp;新生週日程表</p>
+                    <p class="option" id="12">＞&emsp;新生健康檢查</p>
+                    <p class="option" id="13">＞&emsp;心理適應座談</p>
+                    <p class="option" id="14">＞&emsp;UCAN適性測驗</p>
                 </div>
-                
             </div>
 
+            <% if (data === null){ %>
+                <div class="box">
+                    <div class="title" >
+                        <p id="show_title"></p>
+                    </div>
+                    <div class="content" >
+                        
+                    </div>
+                </div>
+            <% }else{ %>
+                <div class="box">
+                    <div class="title" >
+                        <p id="show_title"><%= data.title %></p>
+                    </div>
+                    <div class="content" >
+                        <%- data.content %>
+                    </div>
+                </div>
+            <% } %>
+            
         </div>
     </main>
+    <% include ../layouts/js %>
+    <% include js %>
+</body>
+
+</html>
