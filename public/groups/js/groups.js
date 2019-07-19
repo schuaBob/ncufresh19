@@ -58,15 +58,31 @@ $(document).ready(function() { //顯示或更換顯示學院
 
     }
 
-    $('#edit_department_name').on('change', function() {
-        $.ajax({
-            url: `/documents/require_data/?id=${id}`,
-            method: 'GET',
-            dataType: 'JSON',
-            error: function(err) {
+    $('#select_department_name').on('change', function() {
 
+        $.ajax({
+            url: `/groups/get_department`,
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                department_name: $('#select_department_name').val()
+            },
+            error: function(err) {
+                console.log("failed")
             },
             success: function(data) {
+                console.log(data.name)
+                console.log(data.type)
+                console.log($("#edit_type").val())
+                $("#edit_type").val(data.type) //////selection 比較特別需要用.val()來改
+                console.log($("#edit_type").val())
+                $("#edit_en_name").attr("value", data.en_name);
+                $('#edit_de_link').attr("value", data.de_link);
+                $('#edit_stu_link').attr("value", data.stu_link);
+                $('#edit_qna_link').attr("value", data.qna_link);
+
+
+
 
             }
 

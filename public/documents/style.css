@@ -82,7 +82,7 @@ body {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 110%;
   top: 0;
   bottom: 0;
   left: 0;
@@ -141,20 +141,17 @@ body {
 }
 
 
-.sidenav2 a {
+.sidenav2 p {
   color: rgb(13, 73, 102);
-  text-decoration: none;
   display: block;
-  font-size: 1.4vw;
+  font-size: 1.3vw;
   font-weight: bold;
   padding-top: 2vh;
   padding-bottom: 2vh;
 }
 
-.sidenav2 a:hover {
+.sidenav2 p:hover {
   background-color: rgb(251,217,185);
-  color:  rgb(13, 73, 102);
-  text-decoration: none;
   cursor: pointer;
 }
 

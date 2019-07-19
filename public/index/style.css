@@ -181,4 +181,9 @@ main {
 
 .day{
     display: inline-block;
+    top: 10%;
+    position: absolute;
 }
+
+
+
