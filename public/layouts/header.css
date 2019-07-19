@@ -22,7 +22,7 @@
 }
 
 * {
-    font-family: Noto Sans JP;
+    font-family: Noto Sans JP !important;
 }
 
 ::-webkit-scrollbar {

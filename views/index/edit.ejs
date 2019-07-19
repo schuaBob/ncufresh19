@@ -74,7 +74,7 @@
                             <input type="text" class="form-control" id="timePicker" placeholder="Select Date...">
                         </p>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="padding: 0;">
                         <textarea name="NewsBody" id="editor"></textarea>
                     </div>
                     <div class="modal-footer">
@@ -84,38 +84,99 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="CalenderModal" tabindex="-1" role="dialog" aria-labelledby="CalenderModalLongTitle"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="CalenderModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="month">Month</label>
+                                    <input type="text" class="form-control" id="month" placeholder="Enter month">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="date">Date</label>
+                                    <input type="text" class="form-control" id="date" placeholder="Enter Date">
+                                </div>
+                            </div>
+                            <textarea name="boardContent" id="boardContent"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveCalender">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </modal>
     <% include ../layouts/header%>
     <main>
-        <div class="container" style="max-width: 700px">
-            <div id="news">
-                <div id="news-title">
-                    <div class="text-center">
-                        <div class="card-body">
-                            <h2 class="card-title">
-                                News
-                                <span><button type="button" class="btn btn-light" style="float: right"
-                                        data-toggle="modal" data-target="#ScheduleNewsModal">Add</button></span>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-                <div id="news-body">
-                    <% for(let i in news){ %>
-                    <div class="card" data-toggle="modal" data-target="#ScheduleNewsModal" pk="<%=news[i]['pk']%>">
-                        <div class="row align-items-center">
-                            <div class="col-sm-2">
-                                <img src="index/icon-<%=icon[news[i]['category']-1]%>.png" class="card-img">
-                            </div>
-                            <div class="col-sm-10">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="news">
+                        <div id="news-title">
+                            <div class="text-center">
                                 <div class="card-body">
-                                    <h5><%=news[i]['title']%></h5>
-                                    <span class="newsTime"><small><%=news[i].screenTime%></small></span>
+                                    <h2 class="card-title">
+                                        News
+                                        <span><button type="button" class="btn btn-light" style="float: right"
+                                                data-toggle="modal" data-target="#ScheduleNewsModal">Add</button></span>
+                                    </h2>
                                 </div>
                             </div>
                         </div>
+                        <div id="news-body">
+                            <% for(let i in news){ %>
+                            <div class="card" data-toggle="modal" data-target="#ScheduleNewsModal"
+                                pk="<%=news[i]['pk']%>">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-2">
+                                        <img src="index/icon-<%=icon[news[i]['category']-1]%>.png" class="card-img">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="card-body">
+                                            <h5><%=news[i]['title']%></h5>
+                                            <span class="newsTime"><small><%=news[i].screenTime%></small></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
                     </div>
-                    <% } %>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <div>
+                            <div class="text-center">
+                                <div class="card-body">
+                                    <h2 class="card-title">
+                                        Calender
+                                        <span><button type="button" class="btn btn-light" style="float: right"
+                                                data-toggle="modal" data-target="#CalenderModal">Add</button></span>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <select class="form-control" id="calender">
+                            <option selected disabled hidden>Inside are added date</option>
+                            <% for (let i in calender) { %>
+                            <option value="<%= calender[i]['pk'] %>">
+                                <%= calender[i]['month'] %>/<%= calender[i]['date'] %></option>>
+                            <% } %>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,9 +184,10 @@
     <% include ../layouts/js %>
     <script>
         $(document).ready(() => {
-            var newseditor = undefined;
+            var newseditor = undefined, Calendereditor = undefined;
             $('#news span').click(() => {
                 $('#Subbtn').hide();
+                $('#SaveNewsbtn').text("新增");
             })
             $('.card').click((e) => {
                 $('#Subbtn').show();
@@ -153,8 +215,8 @@
                             url: `/schedule/delete?pk=${e.currentTarget.attributes.pk.value}`,
                             method: 'GET',
                             error: (err) => { console.log(err) },
-                            success: (res) => { alert(res.message)}
-                        }).always(()=>{
+                            success: (res) => { alert(res.message) }
+                        }).always(() => {
                             $('#ScheduleNewsModal').modal('hide');
                             location.reload();
                         })
@@ -217,7 +279,8 @@
                     alert("No title or category!")
                 }
             })
-            $('#ScheduleNewsModal').on('show.bs.modal', function (e) {
+
+            $('#ScheduleNewsModal').on('show.bs.modal', (e) => {
                 $('#timePicker').flatpickr({
                     enableTime: true,
                     dateFormat: "Y-m-d H:i",
@@ -233,7 +296,7 @@
                         console.error(error);
                     });
             })
-            $('#ScheduleNewsModal').on('hide.bs.modal', function (e) {
+            $('#ScheduleNewsModal').on('hide.bs.modal', (e) => {
                 $('#timePicker').flatpickr().destroy();
                 $("#newsTitle").val("");
                 $("#newsCategory").val(0);
@@ -243,6 +306,52 @@
                         console.log(error);
                     });
                 $('#SaveNewbtn').removeClass('editbtn');
+            })
+            $('#saveCalender').click(() => {
+                if ($('#month').val() !== "" && $('#date').val() !== "") {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/calender/create',
+                        dataType: 'JSON',
+                        data: {
+                            month: $('#month').val(),
+                            date: $('#date').val(),
+                            boardContent: Calendereditor.getData()
+                        },
+                        error: (err) => { console.error(err) },
+                        success: (res) => {
+                            alert(res.message)
+                        }
+                    }).always(() => {
+                        $('#CalenderModal').modal('hide');
+                        location.reload();
+                    })
+                } else {
+                    alert("Something is empty.");
+                }
+            })
+            $('#calender').on('change', () => {
+                console.log($('#calender').val());
+            })
+            $('#CalenderModal').on('show.bs.modal', (e) => {
+                ClassicEditor
+                    .create(document.querySelector('#boardContent'))
+                    .then(editor => {
+                        console.log(editor);
+                        Calendereditor = editor;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            })
+            $('#CalenderModal').on('hide.bs.modal', (e) => {
+                $('#month').val("");
+                $('#date').val("");
+                Calendereditor.setData("");
+                Calendereditor.destroy()
+                    .catch(error => {
+                        console.log(error);
+                    })
             })
         })
     </script>
