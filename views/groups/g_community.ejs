@@ -70,7 +70,7 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        <form action="/groups/edit_delete_department" method="post">
+                        <form>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">社群名稱</label>
                                 <input type="text" class="form-control" id="name" name="name">
@@ -80,12 +80,13 @@
                                 <label for="intro" class="col-form-label">社群介紹</label>
                                 <textarea class="form-control" id="intro" name="intro" rows="8"></textarea>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                <button type="submit" class="btn btn-danger">delete</button>
-                            </div>
+
                         </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary">Save changes</button>
+                        <button class="btn btn-danger">delete</button>
                     </div>
                 </div>
             </div>
