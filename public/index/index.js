@@ -12,5 +12,5 @@ $(document).ready(() => {
     })
     $('#newsModal').on('hide.bs.modal', () => {
         $.fn.fullpage.setMouseWheelScrolling(true)
-    })
+    });
 })

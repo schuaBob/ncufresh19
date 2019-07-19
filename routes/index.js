@@ -39,7 +39,7 @@ passport.use(new LocalStrategy({
     });
   });
 }
-))
+));
 
 passport.serializeUser(function (user, done) {
   done(null, user._id);
@@ -66,9 +66,9 @@ router.get('/', (req, res, next) => {
     console.log(newsDocs)
     console.log(req.user)
     res.render('index/index', { title: "新生知訊網", News: newsDocs, icon: catePicArr, user: req.user })
-  })
-
+  });
 });
+
 router.get('/index-edit', (req, res, next) => {
   docNews.find().exec((err, doc) => {
     if (err) { return next(err) };
@@ -82,10 +82,10 @@ router.get('/index-edit', (req, res, next) => {
       }
     }
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: doc, icon: catePicArr });
-  })
+    res.render('index/edit', { title: '編輯首頁', news: doc, icon: catePicArr, user: req.userz});
+  });
+});
 
-})
 router.get('/schedule/:method?', (req, res, next) => {
   switch (req.params.method) {
     case "read":
@@ -109,7 +109,8 @@ router.get('/schedule/:method?', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-})
+});
+
 router.post('/schedule/:method', (req, res, next) => {
   switch (req.params.method) {
     case "create":
@@ -155,8 +156,7 @@ router.post('/schedule/:method', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-})
-
+});
 
 router.get('/comingsoon', function (req, res, next) {
   res.render('comingsoon/index', {
@@ -165,7 +165,7 @@ router.get('/comingsoon', function (req, res, next) {
 });
 
 router.get('/login', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/index', { title: '新生知訊網' });
+  res.render('login/index', { title: '新生知訊網', user: req.user });
 });
 
 router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
@@ -175,14 +175,14 @@ router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
   Users.findOne({ 'id': req.body.id }, function (err, user) {
     if (err) res.redirect('/login');
     if (user && user.password)
-      res.redirect('/password?id=' + req.body.id);
+      res.redirect('/password?id=' + req.body.id, {user: req.user });
     else
-      res.redirect('/register?id=' + req.body.id);
+      res.redirect('/register?id=' + req.body.id, {user: req.user });
   })
 });
 
 router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/password', { title: '新生知訊網' });
+  res.render('login/password', { title: '新生知訊網', user: req.user });
 });
 
 router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
@@ -192,7 +192,7 @@ router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local'
 }));
 
 router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/register', { title: '新生知訊網' });
+  res.render('login/register', { title: '新生知訊網', user: req.user });
 });
 
 router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
