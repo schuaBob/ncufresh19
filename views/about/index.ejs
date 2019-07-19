@@ -8,7 +8,6 @@
   <link rel='stylesheet' href='about/style.css' />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <style>
     body {
   padding: 50px;
@@ -71,23 +70,16 @@ body {
   background-color: rgba(0,0,0,0.9);
   padding: 0;
 }
-.cross{
-  font-size: 2em;
-  color:white;
+#modalcontent{
   position: absolute;
-  top: 4%;
-  right: 2%;
-}
-.cross:hover{
-  cursor: pointer;
-}
-
-#modalImg{  
-  margin: 6% auto 2%;
-  height: 70%;
+  top:20%;
+  background-color: #D0CECE;
+  margin: auto;
+  height: 30%;
   width: auto;
-  display: block;
-  
+}
+#modalcontent > img{
+  height: 100%;
 }
 .main {
   position: relative;
@@ -192,8 +184,9 @@ body {
   <% include ../layouts/header %>
   <!-- The Modal -->
   <div id="myModal">
-      <i class="fas fa-times cross"></i>
-    <img src="程設組.jpg" alt="" id="modalImg">    
+    <div id="modalcontent">
+        <img src="程設組.jpg" alt="">
+    </div>
   </div>
   <div id="main">
     <div class="titleSpace">
@@ -248,7 +241,7 @@ body {
     $(document).ready(function(){
       // $('a[href^="#"]').click(function(){
       //   $('.rightSide').animate({
-      //         scrollTop: $( $.attr(this, 'href') ).offset().top
+      //         scrollTop: $( $.attr(this, 'href') ).offset().top-30
       //     }, 1000);          
       // });     
       if(location.href.split("#")[1] === ""){
@@ -262,14 +255,7 @@ body {
         $(".option li").css("background-color", "transparent");
         $(this).css("background-color", "#FFECA1");
       });
-      $(".photo").click(function(){
-        $("#modalImg").attr("src",$(this).attr("src"));
-        $("#myModal").css("display","block");
-        $("#modalImg").addClass("animated bounceIn faster");
-      });
-      $(document).on("click",".cross",function(){
-        $("#myModal").css("display","none");
-      });
+      
     });
 
   </script>
