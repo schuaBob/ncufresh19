@@ -201,10 +201,8 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
   let password = req.body.password;
   let checkpassword = req.body.checkpassword;
 
-  if ((id && name && password && checkpassword) && (password == checkpassword)) {
-    Users.findOne({
-      'id': id
-    }, function (err, obj) {
+  //if ((id && name && password && checkpassword) && (password == checkpassword)) {
+    Users.findOne({'id': id}, function (err, obj) {
       if (err) {
         res.redirect('/');
       }
@@ -220,14 +218,15 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
         res.redirect('/login');
       } else {
         obj.password = password;
+        obj.name = name;
         Users.createUser(obj, function (err, user, next) {
           if (err) {
-            return next(err);
+            retun next(err);
           } else {
             console.log(id + ': 建立');
             req.login(user, function (err) {
               if (err) {
-                return next(err);
+                retun next(err);
               }
               console.log(obj.id + ': 登入')
               res.redirect('/');
@@ -238,7 +237,21 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
     });
   } else {
     res.redirect('/register');
-  }
+  //}
+
+  /*var _user = new User({
+    id: req.body.id,
+    password: req.body.password,
+    name: req.body.name
+  }).save(function(err) {
+    if(err) {
+      return next(err);
+    }
+    req.session.user = req.body.user;
+
+    res.redirect('/');
+  });*/
+
 });
 
 router.get('/logout', function (req, res, next) {
