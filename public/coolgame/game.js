@@ -29,6 +29,8 @@
   var background;
   var board_index;
   var sea ;
+  var bucket;
+  var score_board;
   var game_time=15;
   var catch_animal_container;
   var harpoon_text;
@@ -531,6 +533,8 @@
       {src: "/images/coolgame/rank_single.png", id: "rank_single"},
       {src: "/images/coolgame/rank_total.png", id: "rank_total"},
       {src: "/images/coolgame/leave.png", id: "leave"},
+      {src: "/images/coolgame/bucket.png", id: "bucket"},
+      {src: "/images/coolgame/score_board.png", id: "score_board"},
     ];
     loader = new createjs.LoadQueue(true);
     loader.on("fileload", handleFileLoad);
@@ -783,6 +787,8 @@
     background = new createjs.Bitmap(loader.getResult("game_background"));
     fisherman = new createjs.Bitmap(loader.getResult("fisherman"));
     sea = new createjs.Bitmap(loader.getResult("sea"));
+    score_board = new createjs.Bitmap(loader.getResult("score_board"));
+    bucket = new createjs.Bitmap(loader.getResult("bucket"));
     harpoon_text = new createjs.Text("Harpoon:10","18px Arial","#000000");
     fish_ad = new createjs.Sprite(animalsource[5].spritesheet,"normal");
     game_time_image = new createjs.Bitmap(loader.getResult("time"));
@@ -795,6 +801,15 @@
     soundbutton.x = canvas_width-soundbutton.getwidth();
     soundbutton.y = canvas_height - soundbutton.getheight();
     sound=true;
+    bucket.scale = 0.6;
+    bucket.scaleX = 0.67;
+    bucket.y=235;
+    bucket.x=-6;
+    score_board.scale =0.5;
+    score_board.scaleY =0.6;
+    score_board.y=110;
+    bucket.visible=false;
+    score_board.visible =false;
     sound_shape.graphics.beginFill("#FFFFFF").drawRect(canvas_width-soundbutton.getwidth(),canvas_height - soundbutton.getheight(),soundbutton.getwidth(),soundbutton.getheight());
     sound_shape.alpha=0.01;
     sound_shape.addEventListener("mousedown",function(event){
@@ -815,6 +830,8 @@
     stage.addChild(soundbutton);
     stage.addChild(sound_shape);
     stage.addChild(fish_ad);
+    stage.addChild(score_board);
+    stage.addChild(bucket);
     create_back_container();
     create_leave_container();
     create_labbybutton();
@@ -1134,10 +1151,15 @@
     fisherman_harpoon.revise_position();
     stage.setChildIndex(fisherman,1);
     stage.setChildIndex(fisherman_harpoon,2);
+    stage.setChildIndex(bucket,1);
+    stage.setChildIndex(score_board,1);
+    bucket.visible = true;
+    score_board.visible =true;
+
     for(i=0;i<catch_fish.length;i++){
       catch_fish[i].scale *= 1.56;
       catch_fish[i].alpha=1;
-      stage.setChildIndex(catch_fish[i],1);
+      stage.setChildIndex(catch_fish[i],3);
       catch_fish[i].y = (fisherman.y-(getrandom(50))*1.56+20*1.56);
       catch_fish[i].x = (fisherman.x+(35-getrandom(50))*1.56)
       createjs.Tween.get(catch_fish[i]).to({x:255+(50-getrandom(50))*1.56},5000);
@@ -1150,7 +1172,7 @@
         for(i=0;i<catch_fish.length;i++){
           if(catch_fish[i].animaltype  ==0){
             brid_num++;
-            createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},600).wait(600).to({x:70,y:150},600).to({visible:false});
+            createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},600).wait(600).to({y:bucket.y+10,x:bucket.x+bucket.getwidth()/2},600).to({visible:false});
           }
         }
         if(catch_fish.length!=0)
@@ -1233,7 +1255,7 @@
     die_fish2.x=die_fish1.x+150;
     die_fish3.x=die_fish2.x+170;
     die_fish4.x=die_fish3.x+165;
-    score_catch_animal_container.x =120;
+    score_catch_animal_container.x =140;
     score_catch_animal_container.y=130;
   }
   function create_harpoon_text(){
