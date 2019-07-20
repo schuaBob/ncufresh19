@@ -317,6 +317,12 @@
             $('.mapmove').stop().velocity(properties1, 400)
         })
 
+        $('#List_index li').hover(function () {
+            $(this)[0].style.top = '-10%';
+        }, function () {
+            $(this)[0].style.top = '0%';
+        })
+
         $('.main_list_detail li').hover(function () {
             $('.indexelepic[pictitle="' + $(this).text().trim() + '"]').velocity({
                 scale: 1.1
@@ -374,45 +380,51 @@
 
     $("#wheel").hover(
         function () {
-            if ($('.animating#wheel').length) console.log(null)
-            else {
-                $('#wheel').addClass("animating");
-                $('#wheel').animate({
-                    deg: 360
-                }, {
-                    duration: 500,
-                    step: function (now) {
-                        console.log(now);
-                        $(this).css({
-                            '-webkit-transform': 'rotate(' + now + 'deg)',
-                            '-moz-transform': 'rotate(' + now + 'deg)',
-                            'transform': 'rotate(' + now + 'deg)'
-                        });
-                        if (now % 360 == 0) $('#wheel').removeClass("animating");
-                    }
-                });
-            }
+            $('#wheel').animate({
+                deg: 360
+            }, {
+                duration: 500,
+                step: function (now) {
+                    console.log(now);
+                    $(this).css({
+                        '-webkit-transform': 'rotate(' + now + 'deg)',
+                        '-moz-transform': 'rotate(' + now + 'deg)',
+                        'transform': 'rotate(' + now + 'deg)'
+                    });
+                    if (now % 360 == 0) $('#wheel').removeClass("animating");
+                }
+            });
         },
         function () {
-            if ($('.animating#wheel').length) console.log(null)
-            else {
-                $('#wheel').addClass("animating");
-                $('#wheel').animate({
-                    deg: -360
-                }, {
-                    duration: 500,
-                    step: function (now) {
-                        console.log(now);
-                        $(this).css({
-                            '-webkit-transform': 'rotate(' + now + 'deg)',
-                            '-moz-transform': 'rotate(' + now + 'deg)',
-                            'transform': 'rotate(' + now + 'deg)'
-                        });
-                        if (now % 360 == 0) $('#wheel').removeClass("animating");
-                    }
-                });
-            }
+            $('#wheel').animate({
+                deg: -360
+            }, {
+                duration: 500,
+                step: function (now) {
+                    console.log(now);
+                    $(this).css({
+                        '-webkit-transform': 'rotate(' + now + 'deg)',
+                        '-moz-transform': 'rotate(' + now + 'deg)',
+                        'transform': 'rotate(' + now + 'deg)'
+                    });
+                    if (now % 360 == 0) $('#wheel').removeClass("animating");
+                }
+            });
         }
     );
+
+    $(".zoomContainer").hover(
+        function () {
+            $(".zoomWindow").css("background-color", "white");
+        },
+        function () {
+            $(".zoomWindow").css("background-color", "");
+        }
+    );
+
+    $(".zoom").elevateZoom({
+        zoomType: "lens",
+        lensShape: "round",
+        lensSize: 200
+    });
 </script>
-<!-- https://www.elevateweb.co.uk/image-zoom/examples/ -->

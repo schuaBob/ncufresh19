@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+
+
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% include ../layouts/head %>
+  <% include ../layouts/script %>
+  <link rel='stylesheet' href='/campus/style.css' />
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+<body>
+  <style>
+    #header {
+      position: relative;
+    }
+  </style>
+  <% include ../layouts/header %>
+  <div class="title_bar">
+    <div class="line"></div>
+    <div class="title">
+      <span class="big_title">MAP</span>
+      <span class="small_title">校園地圖</span>
+    </div>
+  </div>
+  <main id="campusmain">
+      <div class="map">
+        <img class="MAP2D zoom" src="MAP_2D8.png">
+        <img class="SAM" src="SAM.png" alt="">
+      </div>
+      <div class="show3D">
+        <a href="/campus/3D">        
+          <img src="3D.png">
+        </a>
+        <img id="wheel" src="WHEEL.png">
+      </div>
+      <div class="bottom">
+        <img class="sailor" src="SAILOR_2D2.png">
+        <img class="tur" src="TUR22.png">
+      </div>
+  </main>
+  <% include ../layouts/js %>
+  <% include js%>
+</body>
+
+
+</html>

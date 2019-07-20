@@ -78,14 +78,14 @@
                                 <!-- 選擇類別 -->
                                 <label for="type" class="form-control">系所學院</label>
                                 <select name="type" id="type" class="form-control">
-                                <option value="1文學院">文學院</option>
-                                <option value="2理學院">理學院</option>
-                                <option value="3管理學院">管理學院</option>
-                                <option value="4工學院">工學院</option>
-                                <option value="5資訊電機學院">資訊電機學院</option>
-                                <option value="6地球科學學院">地球科學學院</option>
-                                <option value="7客家學院">客家學院</option>
-                                <option value="8生醫理工學院">生醫理工學院</option>
+                                <option value="1">文學院</option>
+                                <option value="2">理學院</option>
+                                <option value="3">管理學院</option>
+                                <option value="4">工學院</option>
+                                <option value="5">資訊電機學院</option>
+                                <option value="6">地球科學學院</option>
+                                <option value="7">客家學院</option>
+                                <option value="8">生醫理工學院</option>
                             </select>
                             </div>
                             <div class="form-group">
@@ -129,8 +129,8 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="name" class="col-form-label">系所名稱</label>
-                                <select name="name" id="edit_name" class="form-control">
+                                <label for="select_department_name" class="col-form-label">系所名稱</label>
+                                <select name="name" id="select_department_name" class="form-control">
                                 <% for(var i in department) {%>
                                 <option value="<%= department[i].name%>"><%=department[i].name%></option>
                                 <%}%>
@@ -138,41 +138,42 @@
                             </div>
                             <div class="form-group">
 
-                                <label for="type" class="form-control">系所學院</label>
-                                <select name="type" id="type" class="form-control">
-                                        <option value="1文學院">文學院</option>
-                                        <option value="2理學院">理學院</option>
-                                        <option value="3管理學院">管理學院</option>
-                                        <option value="4工學院">工學院</option>
-                                        <option value="5資訊電機學院">資訊電機學院</option>
-                                        <option value="6地球科學學院">地球科學學院</option>
-                                        <option value="7客家學院">客家學院</option>
-                                        <option value="8生醫理工學院">生醫理工學院</option>
+                                <label for="edit_type" class="form-control">系所學院</label>
+                                <select name="type" id="edit_type" class="form-control">
+                                        <option value="1">文學院</option>
+                                        <option value="2">理學院</option>
+                                        <option value="3">管理學院</option>
+                                        <option value="4">工學院</option>
+                                        <option value="5">資訊電機學院</option>
+                                        <option value="6">地球科學學院</option>
+                                        <option value="7">客家學院</option>
+                                        <option value="8">生醫理工學院</option>
                                     </select>
                             </div>
                             <div class="form-group">
-                                <label for="en_name" class="col-form-label">系所英文名稱</label>
-                                <input type="text" class="form-control" id="en_name" name="en_name">
+                                <label for="edit_en_name" class="col-form-label">系所英文名稱</label>
+                                <input type="text" class="form-control" id="edit_en_name" name="en_name">
                             </div>
                             <div class="form-group">
-                                <label for="de_link" class="col-form-label">系所網站連結</label>
-                                <input type="text" class="form-control" id="de_link" name="de_link">
+                                <label for="edit_de_link" class="col-form-label">系所網站連結</label>
+                                <input type="text" class="form-control" id="edit_de_link" name="de_link">
                             </div>
                             <div class="form-group">
-                                <label for="stu_link" class="col-form-label">系學會連結</label>
-                                <input type="text" class="form-control" id="stu_link" name="stu_link">
+                                <label for="edit_stu_link" class="col-form-label">系學會連結</label>
+                                <input type="text" class="form-control" id="edit_stu_link" name="stu_link">
                             </div>
                             <div class="form-group">
-                                <label for="qna_link" class="col-form-label">系上問答連結</label>
-                                <input type="text" class="form-control" id="qna_link" name="qna_link">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <label for="edit_qna_link" class="col-form-label">系上問答連結</label>
+                                <input type="text" class="form-control" id="edit_qna_link" name="qna_link">
                             </div>
                         </form>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="edit_submit" class="btn btn-primary">Save changes</button>
+                        <button id="delete_submit" class="btn btn-danger">Delete</button>
+                    </div>
+
 
                 </div>
             </div>

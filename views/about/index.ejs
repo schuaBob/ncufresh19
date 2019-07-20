@@ -6,13 +6,273 @@
   <% include ../layouts/head %>
   <% include ../layouts/script %>
   <link rel='stylesheet' href='about/style.css' />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <style>
+    body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+
+
+
+
+
+#main {
+  position: relative;
+  top: 4vh;
+}
+
+.seaBlue {
+  color: #0D4966;
+}
+
+.yellow {
+  color: #FFCC00;
+}
+
+.seaBlueBg {
+  background-color: #0D4966;
+}
+
+.yellowBg {
+  background-color: #FFCC00;
+}
+
+.grayBg {
+  background-color: #D0CECE;
+}
+
+body {
+  overflow: hidden;
+  moz-user-select: none;
+  /* for Firefox */
+  -webkit-user-select: none;
+  /* for Chrome */
+  background-color:#FFF9DC;
+}
+
+#myModal{
+  display: none;
+  position: absolute;
+  z-index: 7000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+  padding: 0;
+}
+.cross{
+  font-size: 2em;
+  color:white;
+  position: absolute;
+  top: 4%;
+  right: 2%;
+}
+.cross:hover{
+  cursor: pointer;
+}
+
+#modalImg{  
+  margin: 6% auto 2%;
+  height: 70%;
+  width: auto;
+  display: block;
+  
+}
+.main {
+  position: relative;
+  top: 5vh;
+  width: 90vw;
+  margin: auto;
+  height: 69vh;      
+}
+
+.titleSpace {
+  position: relative;
+  height: 11vh;
+  margin: auto;
+  top: 1vh;
+  width: 83%;
+  margin: auto;
+  border-left: 6px solid #FFCC00;
+  padding-left: 15px;
+}
+
+#qatxt {
+  position: absolute;
+  font-size: 5vh;
+  top: -11%;
+}
+
+#qatxt_c {
+  position: absolute;
+  font-size: 4vh;
+  bottom: -6%;
+}
+.leftSide {
+  width: 20%;
+  /* background-color: rgb(102, 252, 164);        */
+}
+.option {
+  font-size: 3vh;
+  margin-top: 24%;
+
+}
+
+.option ul {
+  margin: 20px auto;
+  padding: 0px;
+  list-style-type: none;
+  width: 50%;
+}
+.option li {
+  margin-bottom: 5vh;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.option a {
+  text-decoration: none;  
+}
+/* 選單箭頭 */
+.fa-angle-right {
+  font-size: 1.3em;
+  position: relative;
+  top: 2px;
+  margin-right: 6px;
+  /* display: none; */
+}
+.rightSide {
+  /* background-color:rgb(67, 238, 238); */
+  position: relative;
+  width: 80%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+._card{
+  height: 100%;
+  /* background: #00B7FF; */
+  padding-top: 3%;
+  /* border-top:1px solid black; */
+  text-align: center;
+}
+.title{
+  display: block;  
+  font-size: 2em;  
+}
+.intro{
+  display: block;  
+  width: 80%;
+  margin-top: 1%;
+  margin: 1% auto 0;
+  text-align:left;
+}
+
+.photo{
+  position: relative;
+  top:4%;
+  
+  height: 70%;
+  width: auto;  
+}
+  </style>
 </head>
 
 <body>
   <% include ../layouts/header %>
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
+  <!-- The Modal -->
+  <div id="myModal">
+      <i class="fas fa-times cross"></i>
+    <img src="程設組.jpg" alt="" id="modalImg">    
+  </div>
+  <div id="main">
+    <div class="titleSpace">
+      <span class="seaBlue font-weight-bold" id="qatxt">About us</span>
+      <span id="qatxt_c">關於我們</span>
+    </div>
+    <div class="main d-flex">
+      <div class="leftSide">
+          <div class="option">
+            <ul>
+              <li><a href="#all"><i class="fas fa-angle-right"></i>全體工人</a></li>
+              <li><a href="#execute"><i class="fas fa-angle-right"></i>執行組</a></li>
+              <li><a href="#planning"><i class="fas fa-angle-right"></i>企劃組</a></li>
+              <li><a href="#programming"><i class="fas fa-angle-right"></i>程設組</a></li>
+              <li><a href="#video"><i class="fas fa-angle-right"></i>影音組</a></li>
+              <li><a href="#art"><i class="fas fa-angle-right"></i>美工組</a></li>
+            </ul>
+          </div>
+      </div>
+      <div class="rightSide">
+        <div class="_card" id="all">          
+          <span class="title">全體工人</span>
+          <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
+        </div>
+        <div class="_card" id="execute">
+            <span class="title">執行組</span>
+            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
+        </div>
+        <div class="_card" id="planning">
+            <span class="title">企劃組</span>
+            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
+        </div>
+        <div class="_card" id="programming">
+            <span class="title">程設組</span>
+            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
+            <img src="程設組.jpg" alt="" class="photo">
+            
+        </div>
+        <div class="_card" id="video">
+            <span class="title">影音組</span>
+            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
+        </div>
+        <div class="_card" id="art">
+            <span class="title">美工組</span>
+            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
+        </div>
+      </div>
+    </div>
+  </div>
   <% include ../layouts/js %>
+  <script>
+    $(document).ready(function(){
+      // $('a[href^="#"]').click(function(){
+      //   $('.rightSide').animate({
+      //         scrollTop: $( $.attr(this, 'href') ).offset().top
+      //     }, 1000);          
+      // });     
+      if(location.href.split("#")[1] === ""){
+        $(".option li").css("background-color", "transparent");
+        $("a[href='#all']").parent("li").css("background-color", "#FFECA1");
+      }else{
+        $(".option li").css("background-color", "transparent");
+        $("a[href='#"+location.href.split("#")[1]+"']").parent("li").css("background-color", "#FFECA1");
+      }
+      $(".option li").click(function(){
+        $(".option li").css("background-color", "transparent");
+        $(this).css("background-color", "#FFECA1");
+      });
+      $(".photo").click(function(){
+        $("#modalImg").attr("src",$(this).attr("src"));
+        $("#myModal").css("display","block");
+        $("#modalImg").addClass("animated bounceIn faster");
+      });
+      $(document).on("click",".cross",function(){
+        $("#myModal").css("display","none");
+      });
+    });
+
+  </script>
 </body>
 
 

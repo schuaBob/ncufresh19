@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 });
 /////////----------------------department
 router.get('/department', function(req, res, next) {
+
     department_data.find({}).exec(function(err, department) {
         if (err) return next(err);
         res.render('groups/g_department', {
@@ -58,11 +59,12 @@ router.get('/department/:college/:department', function(req, res, next) {
 
 })
 router.post('/add_department', function(req, res, next) {
+
     console.log("add department")
     if (req.body.name !== null) {
-        let typenum = req.body.type[0];
+
         new department_data({
-            type: typenum,
+            type: req.body.type,
             name: req.body.name,
             en_name: req.body.en_name,
             de_link: req.body.de_link,
@@ -83,6 +85,19 @@ router.post('/add_department', function(req, res, next) {
     }
 
 });
+router.post("/get_department", function(req, res, next) {
+    console.log("give me the god damn department")
+    console.log(req.body.department_name)
+    department_data.findOne({ name: req.body.department_name }).exec(function(err, data) {
+        if (err) {
+            return err;
+        }
+        console.log(data)
+        res.send(data);
+    });
+
+});
+
 //////----------------------------------community
 
 router.get('/community', function(req, res, next) {

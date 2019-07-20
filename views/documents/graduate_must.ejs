@@ -1,32 +1,69 @@
-        
-        <main id="main">
-               
-                <% /*研究生*/%>
-                <div class="graduate" id="graduate">
-                    <div class="nav">
-                            <div class="return_space"><a href="/documents"><img src="/documents/return.png" class="return"></a></div>
-                            <div class="sign">
-                                    <p class="p1">MUST</p>
-                                    <p class="p2">入學須知</p>
-                            </div>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script %>
+    <link rel='stylesheet' href='/documents/style.css' />
+</head>
+
+<body class="other_bg">
+    <% include ../layouts/header %>
+    <main id="main">
+        <% /*編輯框*/ %>
+        <% include edit %>
+        <% /*研究生*/%>
+        <div class="graduate">
+            <div class="nav">
+                <div class="return_space"><a href="/documents"><img src="/documents/return.png" class="return"></a></div>
+                    <div class="sign">
+                        <p class="p1">MUST</p>
+                        <p class="p2">入學須知</p>
                     </div>
-                    <div class="sidenav">
-                            <a href="/documents/graduate_must/22"><img src="/documents/入學須知.png" class="icon"></a>
-                            <a href="/documents/graduate_fresh/29"><img src="/documents/新生週_原.png" class="icon icon2"></a>
+            </div>
+
+            <div class="sidenav">
+                <a href="/documents/graduate_must"><img src="/documents/入學須知.png" class="icon"></a>
+                <a href="/documents/graduate_fresh"><img src="/documents/新生週_原.png" class="icon icon2"></a>
+            </div>
+
+            <div class="must" id="must">
+                <div class="sidenav2">
+                    <p class="option page_now" id="22">＞&emsp;學籍登陸</p>
+                    <p class="option" id="23">＞&emsp;住宿注意事項</p>
+                    <p class="option" id="24">＞&emsp;兵役注意資料</p>
+                    <p class="option" id="25">＞&emsp;腳踏車證申請</p>
+                    <p class="option" id="26">＞&emsp;入住流程管制圖</p>
+                    <p class="option" id="27">＞&emsp;註冊通知、日程表</p>
+                    <p class="option" id="28">＞&emsp;學費減免及助學金</p>
+                </div>         
+            </div>
+
+            <% if (data === null){ %>
+                <div class="box">
+                    <div class="title" >
+                        <p id="show_title"></p>
                     </div>
-          
-                    <div class="must" id="must">
-                            <div class="sidenav2">
-                                <a class="option" id="22">＞&emsp;學籍登陸</p>
-                                <a class="option" id="23">＞&emsp;住宿注意事項</p>
-                                <a class="option" id="24">＞&emsp;兵役注意資料</p>
-                                <a class="option" id="25">＞&emsp;腳踏車證申請</p>
-                                <a class="option" id="26">＞&emsp;入住流程管制圖</p>
-                                <a class="option" id="27">＞&emsp;註冊通知、日程表</p>
-                                <a class="option" id="28">＞&emsp;學費減免及助學金</p>
-                            </div>
-                            
+                    <div class="content" >
+                        
                     </div>
-                </div> 
-        </main>
-      
+                </div>
+            <% }else{ %>
+                <div class="box">
+                    <div class="title" >
+                        <p id="show_title"><%= data.title %></p>
+                    </div>
+                    <div class="content" >
+                        <%- data.content %>
+                    </div>
+                </div>
+            <% } %>
+            
+        </div>
+    </main>
+    <% include ../layouts/js %>
+    <% include js %>
+</body>
+
+</html>
