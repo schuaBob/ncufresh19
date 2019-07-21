@@ -4,16 +4,20 @@
         <title><%= title %></title>
         <% include ../layouts/head %>
         <% include ../layouts/script %>
-        <link rel="stylesheet" href="index/style.css">
+        <link rel="stylesheet" href="index/error.css">
     </head>
-    <body>
+    <body id="background_image">
         <% include ../layouts/header%>
         <main>   
-            <div id="error_background">
-                <div id="error_message">
-                    <p><%= error.status %> <%= message %></p>
-                </div>
-            </div> 
+            <section class="error-container">
+                <span>4</span>
+                <span><span class="screen-reader-text">0</span></span>
+                <span>4</span>
+            </section> 
+            <div class="hint ch">錯誤：找不到此頁面</div>
+            <div class="hint en">Error：Not Found</div>
+            <div class="ch">上線會刪掉以下</div>
+            <div class="en"><%= error.stack %></div>
         </main>
         <% include ../layouts/footer %>
         <% include ../layouts/js %>

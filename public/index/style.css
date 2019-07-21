@@ -184,19 +184,3 @@ main {
     top: 10%;
     position: absolute;
 }
-
-#error_background {
-    position: relative;
-    top: -60px;
-    height: 100vmin;
-    width: 100vmax;
-    background-image: url("/index/首頁1.png");
-    background-repeat: repeat;
-    background-size: cover;
-}
-
-#error_message {
-    position: relative;
-    top: 30%;
-    left: 45%;
-}
