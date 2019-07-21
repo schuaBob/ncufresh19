@@ -102,7 +102,7 @@ router.get('/index-edit', (req, res, next) => {
       return next(error);
     }
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender });
+    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender, user: req.user });
   }).catch((err) => {
     return next(err);
   })
@@ -244,9 +244,9 @@ router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
   Users.findOne({ 'id': req.body.id }, function (err, user) {
     if (err) res.redirect('/login');
     if (user && user.password)
-      res.redirect('/password?id=' + req.body.id, {user: req.user });
+      res.redirect('/password?id=' + req.body.id);
     else
-      res.redirect('/register?id=' + req.body.id, {user: req.user });
+      res.redirect('/register?id=' + req.body.id);
   })
 });
 

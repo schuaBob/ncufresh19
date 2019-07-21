@@ -1,3 +1,27 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <% include ../layouts/head %>
+        <% include ../layouts/script %>
+        <link rel="stylesheet" href="index/style.css">
+    </head>
+    <body>
+        <% include ../layouts/header%>
+        <main>   
+            <div id="error_background">
+                <div id="error_message">
+                    <p><%= error.status %> <%= message %></p>
+                </div>
+            </div> 
+        </main>
+        <% include ../layouts/footer %>
+        <% include ../layouts/js %>
+        <script type="text/javascript" src="index/index.js"></script>
+    </body>
+</html>
+
+
+
+
+
