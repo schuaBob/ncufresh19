@@ -35,7 +35,7 @@ main {
     background-image: url("/index/首頁1.png");
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .error-container {

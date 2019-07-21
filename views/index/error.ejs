@@ -4,7 +4,7 @@
         <title><%= title %></title>
         <% include ../layouts/head %>
         <% include ../layouts/script %>
-        <link rel="stylesheet" href="index/error.css">
+        <link rel="stylesheet" href="/index/error.css">
     </head>
     <body id="background_image">
         <% include ../layouts/header%>
@@ -16,12 +16,12 @@
             </section> 
             <div class="hint ch">錯誤：找不到此頁面</div>
             <div class="hint en">Error：Not Found</div>
-            <div class="ch">上線會刪掉以下</div>
-            <div class="en"><%= error.stack %></div>
+            <div class="ch">上線後會刪掉</div>
+            <pre><%= error.stack %></pre>
         </main>
         <% include ../layouts/footer %>
         <% include ../layouts/js %>
-        <script type="text/javascript" src="index/index.js"></script>
+        <script type="text/javascript" src="/index/index.js"></script>
     </body>
 </html>
 
