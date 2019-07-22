@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
+        
         .modal {
             z-index: 5010;
         }
@@ -99,13 +100,15 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="month">Month</label>
-                                    <input type="text" class="form-control" id="month" placeholder="Enter month" pattern="^0?[1-9]|1[012]*$">
+                                    <input type="text" class="form-control" id="month" placeholder="Enter month"
+                                        pattern="^0?[1-9]|1[012]*$">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="date">Date</label>
-                                    <input type="text" class="form-control" id="date" placeholder="Enter Date" pattern="^0?[1-9]|[12][0-9]|3[01]*$">
+                                    <input type="text" class="form-control" id="date" placeholder="Enter Date"
+                                        pattern="^0?[1-9]|[12][0-9]|3[01]*$">
                                 </div>
                             </div>
                             <textarea name="boardContent" id="boardContent"></textarea>
@@ -136,7 +139,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="news-body">
+                        <div id="news-body"
+                            style="max-height: calc(100vh - 150px); overflow-y:auto; overflow-x: hidden; border: 1px solid black; border-radius: 5px;">
                             <% for(let i in news){ %>
                             <div class="card" data-toggle="modal" data-target="#ScheduleNewsModal"
                                 pk="<%=news[i]['pk']%>">
@@ -182,13 +186,15 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="month">Month</label>
-                                    <input type="text" class="form-control" id="editmonth" placeholder="Enter month" pattern="^0?[1-9]|1[012]*$">
+                                    <input type="text" class="form-control" id="editmonth" placeholder="Enter month"
+                                        pattern="^0?[1-9]|1[012]*$">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="date">Date</label>
-                                    <input type="text" class="form-control" id="editdate" placeholder="Enter Date" pattern="^0[1-9]|[12][0-9]|3[01]*$">
+                                    <input type="text" class="form-control" id="editdate" placeholder="Enter Date"
+                                        pattern="^0[1-9]|[12][0-9]|3[01]*$">
                                 </div>
                             </div>
                         </div>
@@ -198,6 +204,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
     <% include ../layouts/js %>
