@@ -78,7 +78,7 @@
                         <textarea name="NewsBody" id="editor"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="Subbtn" class="btn btn-secondary" data-dismiss="modal">Delete</button>
+                        <button type="button" id="Subbtn" class="btn btn-danger" data-dismiss="modal">Delete</button>
                         <button type="button" id="SaveNewsbtn" class="btn btn-primary">Save</button>
                     </div>
                 </div>
@@ -99,13 +99,13 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="month">Month</label>
-                                    <input type="text" class="form-control" id="month" placeholder="Enter month">
+                                    <input type="text" class="form-control" id="month" placeholder="Enter month" pattern="^0?[1-9]|1[012]*$">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="date">Date</label>
-                                    <input type="text" class="form-control" id="date" placeholder="Enter Date">
+                                    <input type="text" class="form-control" id="date" placeholder="Enter Date" pattern="^0?[1-9]|[12][0-9]|3[01]*$">
                                 </div>
                             </div>
                             <textarea name="boardContent" id="boardContent"></textarea>
@@ -157,25 +157,44 @@
                     </div>
                 </div>
                 <div class="col">
+                    <div>
+                        <div class="text-center">
+                            <div class="card-body">
+                                <h2 class="card-title">
+                                    Calender
+                                    <span><button type="button" class="btn btn-light" style="float: right"
+                                            data-toggle="modal" data-target="#CalenderModal">Add</button></span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <div>
-                            <div class="text-center">
-                                <div class="card-body">
-                                    <h2 class="card-title">
-                                        Calender
-                                        <span><button type="button" class="btn btn-light" style="float: right"
-                                                data-toggle="modal" data-target="#CalenderModal">Add</button></span>
-                                    </h2>
+                        <select class="form-control" id="calender">
+                            <option selected>Inside are added date</option>
+                            <% for (let i in calender) { %>
+                            <option value="<%= calender[i]['pk'] %>">
+                                <%= calender[i]['month'] %>/<%= calender[i]['date'] %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="row" style="display: none;" id="CalenderTime">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="month">Month</label>
+                                    <input type="text" class="form-control" id="editmonth" placeholder="Enter month" pattern="^0?[1-9]|1[012]*$">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="date">Date</label>
+                                    <input type="text" class="form-control" id="editdate" placeholder="Enter Date" pattern="^0[1-9]|[12][0-9]|3[01]*$">
                                 </div>
                             </div>
                         </div>
-                        <select class="form-control" id="calender">
-                            <option selected disabled hidden>Inside are added date</option>
-                            <% for (let i in calender) { %>
-                            <option value="<%= calender[i]['pk'] %>">
-                                <%= calender[i]['month'] %>/<%= calender[i]['date'] %></option>>
-                            <% } %>
-                        </select>
+                        <textarea id="editboard"></textarea>
+                        <button type="button" id="boardDeletebtn" class="btn btn-warning">刪除</button>
+                        <button type="button" id="boardEditbtn" class="btn btn-dark">修改</button>
                     </div>
                 </div>
             </div>
@@ -184,7 +203,16 @@
     <% include ../layouts/js %>
     <script>
         $(document).ready(() => {
-            var newseditor = undefined, Calendereditor = undefined;
+            var newseditor = undefined, Calendereditor = undefined, boardeditor = undefined;
+            ClassicEditor
+                .create(document.querySelector('#editboard'))
+                .then(editor => {
+                    console.log(editor);
+                    boardeditor = editor;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
             $('#news span').click(() => {
                 $('#Subbtn').hide();
                 $('#SaveNewsbtn').text("新增");
@@ -330,8 +358,44 @@
                     alert("Something is empty.");
                 }
             })
-            $('#calender').on('change', () => {
-                console.log($('#calender').val());
+            $('#calender').on('change', (e) => {
+                $.ajax({
+                    url: `/calender/read?pk=${e.currentTarget.value}`,
+                    method: 'GET',
+                    dataType: 'JSON',
+                    error: (err) => { console.error(err.responseText) },
+                    success: (res) => {
+                        boardeditor.setData(res.board_content);
+                        $('#CalenderTime').show()
+                        $('#editmonth').val(res.month);
+                        $('#editdate').val(res.date);
+                    }
+                }).then((result) => {
+                    $('#boardEditbtn').click(() => {
+                        $.ajax({
+                            url: '/calender/update',
+                            method: 'POST',
+                            dataType: 'JSON',
+                            data: {
+                                pk: result.pk,
+                                month: $('#editmonth').val(),
+                                date: $('#editdate').val(),
+                                boardContent: boardeditor.getData()
+                            },
+                            error: (err) => { alert(err.responseText) },
+                            success: (res) => { alert(res.message) }
+                        }).then(() => { location.reload() })
+                    })
+                    $('#boardDeletebtn').click(() => {
+                        $.ajax({
+                            url: `/calender/delete?pk=${result.pk}`,
+                            method: 'GET',
+                            dataType: 'JSON',
+                            error: (err) => { alert(err.responseText) },
+                            success: (res) => { alert(res.message) }
+                        }).then(() => { location.reload() })
+                    })
+                })
             })
             $('#CalenderModal').on('show.bs.modal', (e) => {
                 ClassicEditor

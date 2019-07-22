@@ -185,6 +185,32 @@ router.post('/schedule/:method', (req, res, next) => {
       break;
   }
 })
+router.get('/calender/:method?', (req, res, next) => {
+  switch (req.params.method) {
+    case "read":
+      console.log(req.query.pk)
+      docCalender.findOne({ pk: req.query.pk }, { _id: 0, __v: 0 }).exec((err, doc) => {
+        console.log(doc)
+        if (err) { return next(err) }
+        res.json(doc)
+      })
+      break;
+    case "delete":
+      console.log(req.query.pk);
+      docCalender.findOneAndDelete({ pk: req.query.pk }).exec((err, doc) => {
+        if (err) { return next(err) }
+        var resMes = {
+          message: "Data deleted successfully!"
+        }
+        res.json(resMes);
+      })
+      break;
+
+    default:
+      res.status(404).send('Wrong Page');
+      break;
+  }
+})
 router.post('/calender/:method', (req, res, next) => {
   switch (req.params.method) {
     case "create":
@@ -218,10 +244,22 @@ router.post('/calender/:method', (req, res, next) => {
         }
       })
       break;
-
+    case "update":
+      docCalender.findOneAndUpdate({ pk: req.body.pk }, {
+         month: req.body.month, 
+         date: req.body.date, 
+         board_content: req.body.boardContent
+        }).exec((err,doc)=>{
+          if(err){return next(err)}
+          var resMes = {
+            message: "Data edited successfully!"
+          }
+          res.json(resMes)
+        })
+      break;
     default:
-      res.
-        break;
+      res.status(404).send('Wrong Page');
+      break;
   }
 })
 
@@ -269,42 +307,42 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
   let checkpassword = req.body.checkpassword;
 
   //if ((id && name && password && checkpassword) && (password == checkpassword)) {
-    Users.findOne({'id': id}, function (err, obj) {
-      if (err) {
-        res.redirect('/');
-      }
-      if (!obj) {
-        console.log(id + ': 不存在於新生列表');
-        req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
-        res.redirect('/login');
-      }
+  Users.findOne({ 'id': id }, function (err, obj) {
+    if (err) {
+      res.redirect('/');
+    }
+    if (!obj) {
+      console.log(id + ': 不存在於新生列表');
+      req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
+      res.redirect('/login');
+    }
 
-      if (obj.name !== name) {
-        console.log(id + ': 真實姓名不合');
-        req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
-        res.redirect('/login');
-      } else {
-        obj.password = password;
-        obj.name = name;
-        Users.createUser(obj, function (err, user, next) {
-          if (err) {
-            retun next(err);
-          } else {
-            console.log(id + ': 建立');
-            req.login(user, function (err) {
-              if (err) {
-                retun next(err);
-              }
-              console.log(obj.id + ': 登入')
-              res.redirect('/');
-            });
-          }
-        });
-      }
-    });
-  } else {
-    res.redirect('/register');
-  //}
+    if (obj.name !== name) {
+      console.log(id + ': 真實姓名不合');
+      req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
+      res.redirect('/login');
+    } else {
+      obj.password = password;
+      obj.name = name;
+      Users.createUser(obj, function (err, user, next) {
+        if (err) {
+          return next(err);
+        } else {
+          console.log(id + ': 建立');
+          req.login(user, function (err) {
+            if (err) {
+              return next(err);
+            }
+            console.log(obj.id + ': 登入')
+            res.redirect('/');
+          });
+        }
+      });
+    }
+  });
+  // } else {
+  //   res.redirect('/register');
+  // }
 
   /*var _user = new User({
     id: req.body.id,
