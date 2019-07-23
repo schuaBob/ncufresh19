@@ -6,6 +6,7 @@
   //什麼都沒抓到會有BUG
     //------------game---------------------------------
   var leave_container;
+  var now=0;
   var sound_shape;
   var game_time_image;
   var sound;
@@ -25,7 +26,7 @@
   var generate_bubble;
   var stage;
   var questionboard;
-  var backbround;
+  var background;
   var board_index;
   var sea ;
   var game_time=15;
@@ -96,16 +97,16 @@
         console.log(this);
         this.x=210;
         this.y=250;
-        this.backbround = new createjs.Shape();
+        this.background = new createjs.Shape();
         this.havermask = new createjs.Shape();
         this.text = new createjs.Text("","Bold 17px "+font_family,"#000000");
-        this.addChild(this.backbround);
+        this.addChild(this.background);
         this.addChild(this.text);
         this.addChild(this.havermask);
         this.text.y=8;
         this.text.x=12.5;
-        this.backbround.visible = false;
-        this.backbround.alpha=0.4;
+        this.background.visible = false;
+        this.background.alpha=0.4;
         this.done =false;
         this.havermask.alpha=0.01;
         this.ans =false;
@@ -121,18 +122,18 @@
         this.havermask.addEventListener("mouseover",function(event){
           event.target.parent.havermask.cursor = "pointer";
           if(!event.target.parent.done)
-          event.target.parent.backbround.visible =true;
+          event.target.parent.background.visible =true;
 
         });
         this.havermask.addEventListener("mouseout",function(event){
           if(!event.target.parent.done)
-          event.target.parent.backbround.visible =false;
+          event.target.parent.background.visible =false;
         });
       }
       correct(){
-        this.backbround.visible =true;
+        this.background.visible =true;
         this.done=true;
-        this.backbround.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
+        this.background.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
         ans_num--;
         if(ans_num ==0){
           questionboard.gotoAndStop("correct");
@@ -143,20 +144,20 @@
         }
       }
       wrong(){
-        this.backbround.visible = true;
+        this.background.visible = true;
         this.done=true;
-        this.backbround.graphics.clear().beginFill("red").drawRoundRect(0,0,9*18,33,10);
+        this.background.graphics.clear().beginFill("red").drawRoundRect(0,0,9*18,33,10);
         show_correct();
       }
       setText(t,ans){
         this.text.text = t;
         this.done=false;
         this.visible=true;
-        this.backbround.visible=false;
-        this.backbround.graphics.clear();
+        this.background.visible=false;
+        this.background.graphics.clear();
         this.havermask.graphics.clear();
         this.havermask.graphics.beginFill("#696969").drawRoundRect(0,0,9*18,33,10);
-        this.backbround.graphics.beginFill("#696969").drawRoundRect(0,0,9*18,33,10);
+        this.background.graphics.beginFill("#696969").drawRoundRect(0,0,9*18,33,10);
         this.ans =ans;
       }
     }
@@ -193,9 +194,9 @@
   function show_correct(){
     for(i=0;i<5;i++){
       if(option[i].ans &&  !option[i].done){
-        option[i].backbround.visible =true;
+        option[i].background.visible =true;
         option[i].done=true;
-        option[i].backbround.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
+        option[i].background.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
       }
     }
     createjs.Tween.get(questionboard).wait(1000).call(()=>{
@@ -515,6 +516,7 @@
       {src: "/images/coolgame/fish_ad.png", id: "fish_ad"},
       {src: "/images/coolgame/harpoon.png", id: "harpoon"},
       {src: "/images/coolgame/score_background.png", id: "score_background"},
+      {src: "/images/coolgame/rank_background.png", id: "rank_background"},
       {src: "/images/coolgame/sea.png", id: "score_sea"},
       {src: "/images/coolgame/haver.png", id: "haver"},
       {src: "/images/coolgame/questionboard1.png", id: "questionboard1"},
@@ -526,8 +528,8 @@
       {src: "/images/coolgame/sound_close.png", id: "sound_close"},
       {src: "/images/coolgame/back.png", id: "back"},
       {src: "/images/coolgame/back_haver.png", id: "back_haver"},
-      {src: "/images/coolgame/ranktotal.png", id: "ranktotal"},
-      {src: "/images/coolgame/ranktotal.png", id: "ranktotal"},
+      {src: "/images/coolgame/rank_single.png", id: "rank_single"},
+      {src: "/images/coolgame/rank_total.png", id: "rank_total"},
       {src: "/images/coolgame/leave.png", id: "leave"},
     ];
     loader = new createjs.LoadQueue(true);
@@ -667,7 +669,8 @@
     back_shape.addEventListener("mouseout",function(){
       backbutton.image = loader.getResult("back");
     });
-    back_shape.addEventListener("click",function(){
+    back_shape.addEventListener("mousedown",function(){
+      close_game_event();
       leave_container.visible=true;
       stop = true;
     });
@@ -681,10 +684,13 @@
     var leave_title = new createjs.Text("確定要離開遊戲嗎？","bold 24px "+font_family,"#000000");
     leave_container.visible =false;
     leave_background.scale = 0.7;
-    leave_container.x = canvas_width/2-leave_background.getwidth()/2;
-    leave_container.y= canvas_height/2-leave_background.getheight()/2;
-    leave_title.y=40;
-    leave_title.x=108;
+    var leave_background_mask = new createjs.Shape();
+    leave_background_mask.graphics.beginFill("#000000").drawRect(0,0,800,500);
+    leave_background_mask.alpha = 0.3;
+    leave_background.x = canvas_width/2-leave_background.getwidth()/2;
+    leave_background.y= canvas_height/2-leave_background.getheight()/2;
+    leave_title.y=leave_background.y+40;
+    leave_title.x=leave_background.x+108;
 
     var Yes_shape =  new createjs.Shape();
     Yes_shape.alpha=0.01;
@@ -725,7 +731,11 @@
       leave_container.visible=false;
       stage.removeChild(question_container);
       stage.removeChild(score_catch_animal_container);
+      close_movement();
       clear_game_stage();
+      for(var j=0;j<catch_fish.length;j++){
+        catch_fish[j].visible=false;
+      }
       labby_init();
     });
     Yes_shape.addEventListener("mouseover",function(){
@@ -741,6 +751,8 @@
   
     No_shape.addEventListener("click",function(){  
       leave_container.visible=false;
+      if(now==1)
+      game_event();
       stop =false;
     });
     No_shape.addEventListener("mouseover",function(){
@@ -752,6 +764,7 @@
       leavebutton_source[1].haver.visible=false;
       leavebutton_source[1].underline.visible=false;
     });
+    leave_container.addChild(leave_background_mask);
     leave_container.addChild(leave_background);
     leave_container.addChild(leave_title);
     leave_container.addChild(Yes);
@@ -767,7 +780,7 @@
   function create_stage_element(){
     catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0","12px Arial","#000000");
     stage = new createjs.Stage(document.getElementById("gameStage"));
-    backbround = new createjs.Bitmap(loader.getResult("game_background"));
+    background = new createjs.Bitmap(loader.getResult("game_background"));
     fisherman = new createjs.Bitmap(loader.getResult("fisherman"));
     sea = new createjs.Bitmap(loader.getResult("sea"));
     harpoon_text = new createjs.Text("Harpoon:10","18px Arial","#000000");
@@ -784,7 +797,7 @@
     sound=true;
     sound_shape.graphics.beginFill("#FFFFFF").drawRect(canvas_width-soundbutton.getwidth(),canvas_height - soundbutton.getheight(),soundbutton.getwidth(),soundbutton.getheight());
     sound_shape.alpha=0.01;
-    sound_shape.addEventListener("click",function(event){
+    sound_shape.addEventListener("mousedown",function(event){
       if(sound){
         soundbutton.image = loader.getResult("sound_close");
       }
@@ -796,12 +809,12 @@
     sound_shape.addEventListener("mouseover",()=>{
       sound_shape.cursor = "pointer";
     });
-    stage.addChild(backbround);
+    stage.addChild(background);
     stage.addChild(fisherman);
     stage.addChild(sea);
     stage.addChild(soundbutton);
     stage.addChild(sound_shape);
-    //stage.addChild(fish_ad);
+    stage.addChild(fish_ad);
     create_back_container();
     create_leave_container();
     create_labbybutton();
@@ -829,6 +842,7 @@
         createjs.Tween.get(animal_list[i]).to({x:-110},1000);
       }
     }
+    if(fish_ad.visible)
     createjs.Tween.get(fish_ad).to({x:-450},1000).call(()=>{
       close_fish_ad();
     });
@@ -1051,8 +1065,17 @@
     stage.addChild(question_container);
     stage.setChildIndex(back_container,stage.numChildren-1);
     stage.setChildIndex(leave_container,stage.numChildren-1);
+    back_container.visible=true;
   }
   function clear_game_stage(){
+    stage.removeChild(start_time_text);
+    stage.removeChild(harpoon_text);
+    stage.removeChild(countdown_text);
+    stage.removeChild(catch_animal_container);
+    stage.removeChild(game_time_image);
+    clear_harpoon();
+  }
+  function close_movement(){
     clearInterval(countdown_timer);
     gamestart=false;
     clese_bird();
@@ -1061,16 +1084,13 @@
     clear_animal();
     close_game_event();
     close_fishmanwalk();
-    stage.removeChild(start_time_text);
-    stage.removeChild(harpoon_text);
-    stage.removeChild(countdown_text);
-    stage.removeChild(catch_animal_container);
-    stage.removeChild(game_time_image);
-    clear_harpoon();
+    
   }
   function game_end(){
-    clear_game_stage()
+    close_movement();
+    if(catch_fish.length!=0)
     fish_jump();
+    back_container.visible=false;
     start_time_text.text = "Time's up！";
     start_time_text.x -= 40;
     stage.addChild(start_time_text);
@@ -1080,11 +1100,7 @@
     fisherman_harpoon.revise_position();
     createjs.Tween.get(fisherman_harpoon).wait(3100).to({x:-Math.abs(fisherman.getwidth())+25*(fisherman.scaleX<0?1:-1)},4000);
     createjs.Tween.get(fisherman).wait(3100).to({x:-Math.abs(fisherman.getwidth())},4000).call(()=>{
-      stage.removeChild(start_time_text);
-      stage.removeChild(harpoon_text);
-      stage.removeChild(countdown_text);
-      stage.removeChild(catch_animal_container);
-      stage.removeChild(game_time_image);
+      clear_game_stage();
       clear_harpoon();
       score_init();
     });
@@ -1105,7 +1121,8 @@
   }
   var num_score_fish=0;
   function score_init(){
-    backbround.image = loader.getResult("score_background");
+    now = 2;
+    background.image = loader.getResult("score_background");
     num_score_fish=0;
     sea.y = 270;
     sea.alpha=0.45
@@ -1136,6 +1153,7 @@
             createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},600).wait(600).to({x:70,y:150},600).to({visible:false});
           }
         }
+        if(catch_fish.length!=0)
         for(i=0;i<catch_fish.length;i++){
           if(catch_fish[i].animaltype == 0){
             catch_fish = arrayRemove(catch_fish,catch_fish[i]);
@@ -1238,6 +1256,7 @@
   function game_start(){
     gamestart=true;
     back_container.visible=true;
+    harpoon_update();
     create_game_time_image();
     create_harpoon_text();
     create_catch_animal_container();
@@ -1248,6 +1267,7 @@
     open_bird();
   }
   function game_init() {
+    now=1;
     clese_bird();
     clese_fish();
     clear_animal();
@@ -1297,7 +1317,9 @@
     document.onkeyup = null;
   }
   function open_fish_ad(){
-    stage.addChild(fish_ad);
+    //stage.addChild(fish_ad);
+    fish_ad.visible=true;
+    stage.setChildIndex(fish_ad,stage.numChildren-2);
     fish_ad.y=400;
     fish_ad.x=canvas_width+300;
     fish_ad.scale = 0.5;
@@ -1308,8 +1330,8 @@
     },20);
   }
   function close_fish_ad(){
-    stage.removeChild(fish_ad);
-    //fish_ad.visible=false;
+    //stage.removeChild(fish_ad);
+    fish_ad.visible=false;
     clearInterval(generate_fish_ad);
   }
   function clese_bubble(){
@@ -1383,6 +1405,10 @@
       labbybutton_container.visible=false;
       game_init();
     });
+    ranking_shape.addEventListener("click",function(){  
+      labbybutton_container.visible=false;
+      ranking_init();
+    });
     start_shape.addEventListener("mouseover",function(){
       start_shape.cursor = "pointer";
       labbybutton_source[0].haver.visible=true;
@@ -1428,19 +1454,39 @@
     labbybutton_container.y=200;
     stage.addChild(labbybutton_container);
   }
+  function ranking_init(){
+    background.image = loader.getResult("rank_background");
+    back_container.visible=true;
+    fisherman.visible=false;
+    fisherman_harpoon.visible=false;
+    close_fishmanwalk();
+    close_fish_ad();
+    sea.visible=false;
+    now=3;
+    clese_bird();
+    clese_fish();
+    for(var j=0;j<animal_list.length;j++)animal_list[j].visible=false;
+    clear_animal();
+    clese_bubble();
+    //close_movement();
+  }
   function labby_init(){
+    now = 0;
     gamestart=false;
     close_game_event();
     clese_bird();
     clese_fish();
     clese_bubble();
+    fisherman.visible=true;
+    fisherman_harpoon.visible=true;
+    sea.visible=true;
     stop =false;
     back_container.visible=false;
     harpoon_list = new Array() ;
     animal_list = new Array() ;
     bubble_list =new Array();
-    backbround.image=loader.getResult("game_background");
-    backbround.scale=0.5;
+    background.image=loader.getResult("game_background");
+    background.scale=0.5;
     fisherman.scale =0.16;
     fisherman_harpoon.scale=0.16;
     fisherman.x = 75;
@@ -1460,4 +1506,5 @@
     open_fish();
     open_bubble();
     open_bird();
+    console.log(fish_ad.visible)
   }

@@ -8,10 +8,10 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   qnaDB.find().sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
   if(err){
-     res.render('qna/index', { title: 'Express' });
+     res.render('qna/index', { title: 'Express',user:req.user });
      return err;
   }      
-  res.render('qna/index', { questions: result });
+  res.render('qna/index', { questions: result,user:req.user });
   });
   // res.render('qna/index', { title: 'Express' });
 });
@@ -39,18 +39,18 @@ router.get('/:category', function(req, res, next) {
   if(category1==""){
     qnaDB.find().sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
       if(err){
-        res.render('qna/index', { title: 'Express' });
+        res.render('qna/index', { title: 'Express',user:req.user });
         return err;
       }      
-      res.render('qna/index', { questions: result });          
+      res.render('qna/index', { questions: result,user:req.user });          
     });
   }else{
     qnaDB.find({category:category1}).sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
       if(err){
-        res.render('qna/index', { title: 'Express' });
+        res.render('qna/index', { title: 'Express',user:req.user });
         return err;
       }
-      res.render('qna/index', { questions: result });    
+      res.render('qna/index', { questions: result,user:req.user });    
     });
   }  
 });

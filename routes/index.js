@@ -40,7 +40,7 @@ passport.use(new LocalStrategy({
     });
   });
 }
-))
+));
 
 passport.serializeUser(function (user, done) {
   done(null, user._id);
@@ -67,9 +67,9 @@ router.get('/', (req, res, next) => {
     console.log(newsDocs)
     console.log(req.user)
     res.render('index/index', { title: "新生知訊網", News: newsDocs, icon: catePicArr, user: req.user })
-  })
-
+  });
 });
+
 router.get('/index-edit', (req, res, next) => {
   Promise.all([
     docNews.find({}, {
@@ -102,11 +102,12 @@ router.get('/index-edit', (req, res, next) => {
       return next(error);
     }
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender });
+    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender, user: req.user });
   }).catch((err) => {
     return next(err);
   })
-})
+});
+
 router.get('/schedule/:method?', (req, res, next) => {
   switch (req.params.method) {
     case "read":
@@ -114,7 +115,7 @@ router.get('/schedule/:method?', (req, res, next) => {
         console.log(doc)
         if (err) { return next(err) }
         res.json(doc)
-      })
+      });
       break;
     case "delete":
       docNews.findOneAndDelete({ pk: req.query.pk }, (err) => {
@@ -123,14 +124,14 @@ router.get('/schedule/:method?', (req, res, next) => {
           message: "Data deleted successfully!"
         }
         res.json(resMes)
-      })
-
+      });
       break;
     default:
       res.status(404).send('Wrong Page');
       break;
   }
-})
+});
+
 router.post('/schedule/:method', (req, res, next) => {
   switch (req.params.method) {
     case "create":
@@ -184,7 +185,8 @@ router.post('/schedule/:method', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-})
+});
+
 router.post('/calender/:method', (req, res, next) => {
   switch (req.params.method) {
     case "create":
@@ -223,7 +225,7 @@ router.post('/calender/:method', (req, res, next) => {
       res.
         break;
   }
-})
+});
 
 router.get('/comingsoon', function (req, res, next) {
   res.render('comingsoon/index', {
@@ -232,7 +234,7 @@ router.get('/comingsoon', function (req, res, next) {
 });
 
 router.get('/login', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/index', { title: '新生知訊網' });
+  res.render('login/index', { title: '新生知訊網', user: req.user });
 });
 
 router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
@@ -249,7 +251,7 @@ router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
 });
 
 router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/password', { title: '新生知訊網' });
+  res.render('login/password', { title: '新生知訊網', user: req.user });
 });
 
 router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
@@ -259,7 +261,7 @@ router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local'
 }));
 
 router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/register', { title: '新生知訊網' });
+  res.render('login/register', { title: '新生知訊網', user: req.user });
 });
 
 router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
@@ -269,9 +271,7 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
   let checkpassword = req.body.checkpassword;
 
   if ((id && name && password && checkpassword) && (password == checkpassword)) {
-    Users.findOne({
-      'id': id
-    }, function (err, obj) {
+    Users.findOne({'id': id}, function (err, obj) {
       if (err) {
         res.redirect('/');
       }
@@ -287,6 +287,7 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
         res.redirect('/login');
       } else {
         obj.password = password;
+        obj.name = name;
         Users.createUser(obj, function (err, user, next) {
           if (err) {
             return next(err);
@@ -306,6 +307,20 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
   } else {
     res.redirect('/register');
   }
+
+  /*var _user = new User({
+    id: req.body.id,
+    password: req.body.password,
+    name: req.body.name
+  }).save(function(err) {
+    if(err) {
+      return next(err);
+    }
+    req.session.user = req.body.user;
+
+    res.redirect('/');
+  });*/
+
 });
 
 router.get('/logout', function (req, res, next) {

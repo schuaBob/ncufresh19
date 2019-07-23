@@ -9,6 +9,10 @@
                 document.getElementById("mySidenav").style.width = "0";
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
-        })
-    })
+        });
+
+        $("#topHref").click(function() {
+            $.fn.fullpage.moveTo("indexPage");
+        }); 
+    });    
 </script>
