@@ -4,10 +4,21 @@ $(document).ready(function() { //顯示或更換顯示學院
     var arr = url.split("/")
     console.log(arr);
     var department_type = 0;
+
+    if (arr.length === 6) {
+        if (arr[4] === "department") {
+            console.log("department");
+
+        } else {
+            $(".backgroundimg").hide()
+        }
+
+    }
     if (arr[4] === "department") {
         if (arr.length == 6) {
             department_type = parseInt(arr[arr.length - 1])
         } else if (arr.length == 7) {
+            $(".backgroundimg").hide()
             department_type = parseInt(arr[arr.length - 2])
             var department_name = decodeURI(arr[arr.length - 1])
             console.log(department_name + "getbold");
@@ -57,18 +68,18 @@ $(document).ready(function() { //顯示或更換顯示學院
         $("#" + others_name).css("font-weight", "bold")
 
     }
-
+    ////////////////////////////////////////////////////////接上department後台//////////////////////////////////////////////////////
     $('#select_department_name').on('change', function() {
 
         $.ajax({
-            url: `/groups/get_department`,
-            method: 'POST',
-            dataType: 'JSON',
+            url: `/groups/get_department`, ////要呼叫的route
+            method: 'POST', //////用post方法才可以給data
+            dataType: 'JSON', ////回傳形式
             data: {
-                department_name: $('#select_department_name').val()
+                name: $('#select_department_name').val()
             },
             error: function(err) {
-                console.log("failed")
+                console.log("change failed")
             },
             success: function(data) {
                 console.log(data.name)
@@ -81,15 +92,184 @@ $(document).ready(function() { //顯示或更換顯示學院
                 $('#edit_stu_link').attr("value", data.stu_link);
                 $('#edit_qna_link').attr("value", data.qna_link);
 
+            }
 
+        });
+    })
+
+    $("#edit_department_submit").on('click', function() {
+        $.ajax({
+            url: `/groups/edit_department`,
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                name: $('#select_department_name').val(),
+                en_name: $("#edit_en_name").val(),
+                type: $("#edit_type").val(),
+                de_link: $('#edit_de_link').val(),
+                stu_link: $('#edit_stu_link').val(),
+                qna_link: $('#edit_qna_link').val(),
+            },
+            error: function(err) {
+                console.log("edit failed")
+            },
+            success: function(data) {
+
+                console.log("edit success")
+                location.reload()
+            }
+
+        });
+    })
+    $("#delete_department_submit").on('click', function() {
+            $.ajax({
+                url: `/groups/delete_department`,
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    name: $('#select_department_name').val(),
+                },
+                error: function(err) {
+                    console.log("delete failed")
+                },
+                success: function(data) {
+                    console.log("edit success")
+                    console.log(data)
+                    location.reload()
+                }
+
+            });
+        })
+        //////////////////////////////////////////////////接上selection後台//////////////////////////////////////////////////////
+    $('#select_community_name').on('change', function() {
+
+        $.ajax({
+            url: `/groups/get_community`, ////要呼叫的route
+            method: 'POST', //////用post方法才可以給data
+            dataType: 'JSON', ////回傳形式
+            data: {
+                name: $('#select_community_name').val()
+            },
+            error: function(err) {
+                console.log("change failed")
+            },
+            success: function(data) {
+                console.log(data.intro)
+
+                $("#edit_intro").val(data.intro) //////selection 比較特別需要用.val()來改
 
 
             }
 
         });
+    })
+    $("#edit_community_submit").on('click', function() {
+        $.ajax({
+            url: `/groups/edit_community`,
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                name: $('#select_community_name').val(),
+                intro: $("#edit_intro").val()
+            },
+            error: function(err) {
+                console.log("edit failed")
+            },
+            success: function(data) {
+
+                console.log("edit success")
+                location.reload()
+            }
+
+        });
+    })
+    $("#delete_community_submit").on('click', function() {
+            $.ajax({
+                url: `/groups/delete_community`,
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    name: $('#select_community_name').val(),
+                },
+                error: function(err) {
+                    console.log("delete failed")
+                },
+                success: function(data) {
+                    console.log("edit success")
+                    console.log(data)
+                    location.reload()
+                }
+
+            });
+        })
+        //////////////////////////////////////////////////接上others後台//////////////////////////////////////////////////////
+    $('#select_others_name').on('change', function() {
+
+        $.ajax({
+            url: `/groups/get_others`, ////要呼叫的route
+            method: 'POST', //////用post方法才可以給data
+            dataType: 'JSON', ////回傳形式
+            data: {
+                name: $('#select_others_name').val()
+            },
+            error: function(err) {
+                console.log("change failed")
+            },
+            success: function(data) {
+                console.log(data.intro)
+
+                $("#edit_intro").val(data.intro) //////selection 比較特別需要用.val()來改
 
 
-    });
+            }
+
+        });
+    })
+    $("#edit_others_submit").on('click', function() {
+        $.ajax({
+            url: `/groups/edit_others`,
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                name: $('#select_others_name').val(),
+                intro: $("#edit_intro").val()
+            },
+            error: function(err) {
+                console.log("edit failed")
+            },
+            success: function(data) {
+
+                console.log("edit success")
+                location.reload()
+            }
+
+        });
+    })
+    $("#delete_others_submit").on('click', function() {
+        $.ajax({
+            url: `/groups/delete_others`,
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                name: $('#select_others_name').val(),
+            },
+            error: function(err) {
+                console.log("delete failed")
+            },
+            success: function(data) {
+                console.log("edit success")
+                console.log(data)
+                location.reload()
+            }
+
+        });
+    })
+
+
+
+
+
+
 
 
 
