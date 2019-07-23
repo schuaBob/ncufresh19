@@ -9,41 +9,56 @@
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel='stylesheet' href='/qna/style.css' />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-  <style>   
-    ._modal{
-        display: none;
-        position: fixed;
-        padding: 0px;
-        width: 50vw;            
-        /* border:1px solid red; */
-        z-index: 20;
-        top: 9vh;
-        left: 29vw;
-    }    
-    
-    ._modal-content{
-        height: 100%;            
-        background-size:200px auto;
-        background-repeat: no-repeat; 
-        position: relative;
+
+  <style>
+    ._modal {
+      display: none;
+      position: fixed;
+      padding: 0px;
+      width: 50vw;
+      /* border:1px solid red; */
+      z-index: 20;
+      top: 9vh;
+      left: 29vw;
     }
-    ._modal-content > img{
-        max-width: 100%;
-    }     
-    .cross{
+
+    ._modal-content {
+      height: 100%;
+      background-size: 200px auto;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    ._modal-content>img {
+      max-width: 100%;
+    }
+
+    .cross {
       position: absolute;
       top: 2%;
       right: 1%;
       font-size: 100%;
       z-index: 21;
-    } 
-    
-    .cross:hover{
-      cursor:pointer;
     }
-    .question{
+
+    .cross:hover {
+      cursor: pointer;
+    }
+
+    .question {
+      width: 63%;
+      position: absolute;
+      top: 22%;
+      left: 19%;
+      height: 47vh;
+      
+    }
+    .ck-content > p{
+      /* height: 23vh; */
+      font-size:1.5em;
+    }
+    .answer {
       width: 63%;
       position: absolute;
       top: 22%;
@@ -51,81 +66,82 @@
       height: 47vh;
       font-size: 1.5rem;
     }
-    .answer{
-      width: 63%;
-      position: absolute;
-      top: 22%;
-      left: 19%;
-      height: 47vh;
-      font-size: 1.5rem;
-    }    
-    .modalTitle{
+
+    .modalTitle {
       border-bottom: 1px solid black;
+      font-size: 1.5rem;
     }
-    .modalContent{
-      height: 100%;  
-      margin-top: 1%;   
-    }
-    .formElement{
+
+    .modalContent {
+      height: 90%;
+      margin-top: 1%;
+    }    
+    .formElement {
       width: 100%;
+      font-size:1.5em;
     }
-    .answerModelQ{
+
+    .answerModelQ {
       max-height: 40%;
     }
-    .answerModelA{
+
+    .answerModelA {
       max-height: 60%;
     }
-    .contentPart{          
-      overflow-y:auto;
-      overflow-x:hidden;
-    }    
-    .contentPart > p{
+
+    .contentPart {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .contentPart>p {
       background-color: #EAEAEA;
       height: 80%;
-      border-radius: 4px;  
+      border-radius: 4px;
       /* border: #e5e5e5 1px solid;     */
     }
   </style>
 </head>
 
-<body>  
+<body>
 
   <!-- askModal -->
   <div class="_modal askmodal">
-      <div class="_modal-content">   
-          <img src="dialog.png" alt="">         
-          <div class="question">            
-            <div class="modalTitle"><span>我要發問</span><i class="fas fa-times cross"></i></div>
-            <div class="modalContent">
-              <form action="/qna/toPost" class="needs-validation" method="POST">
-                <h4>標題</h4>
-                <input type="text" class="formElement" id="q_title" placeholder="限10字(必填)" pattern="^.{1,10}$">
-                <h4>內容</h4>
-                <textarea id="q_content" cols="30" rows="7" class="formElement" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
-              </form>
-              <input type="submit" value="提交" id="submit" style="float:right;font-size:0.8em;margin-top:5px;">                
-            </div> 
-          </div>                                     
+    <div class="_modal-content">
+      <img src="dialog.png" alt="">
+      <div class="question">
+        <div class="modalTitle"><span>我要發問</span><i class="fas fa-times cross"></i></div>
+        <div class="modalContent">
+          <form action="/qna/toPost" class="needs-validation" method="POST">
+            <h4>標題</h4>
+            <input type="text" class="formElement" id="q_title" placeholder="限10字(必填)" pattern="^.{1,10}$">
+            <h4>內容</h4>
+            <textarea id="q_content" class="formElement" placeholder="(限200字)"
+              pattern="^.{1,200}$"></textarea>
+          </form>
+          <input type="submit" value="提交" id="submit" style="float:right;font-size:1em;margin-top:5px;">
+        </div>
       </div>
-  </div> 
-  
+    </div>
+  </div>
+
   <!-- answerModal -->
-   <div class="_modal answermodal">
-      <div class="_modal-content">   
-          <img src="dialog.png" alt="">         
-          <div class="answer">            
-            <div class="modalTitle"><span class="answerTitleText">標題</span><i class="fas fa-times cross"></i></div>
-            <div class="modalContent">
-                <div class="contentPart answerModelQ">Question:
-                  <p></p>
-                </div>
-                <div class="contentPart answerModelA">Answer:
-                  <p></p>
-                </div>
-            </div> 
-          </div>                                     
+  <div class="_modal answermodal">
+    <div class="_modal-content">
+      <img src="dialog.png" alt="">
+      <div class="answer">
+        <div class="modalTitle"><span class="answerTitleText">標題</span><i class="fas fa-times cross"></i></div>
+        <div class="modalContent">
+          <div class="contentPart answerModelQ">Question:
+            <p></p>
+          </div>
+          <div class="contentPart answerModelA">Answer:
+            <p></p>
+          </div>
+        </div>
       </div>
-  </div> 
+    </div>
+  </div>
 
   <% include ../layouts/header %>
   <main id="main">
@@ -154,7 +170,7 @@
       <div class="rightSide">
         <!-- 過濾以及搜尋框 -->
         <div class="sort_SearchBar">
-          <div class="buttonGroup d-inline-flex">
+          <div class="buttonGroup">
             <div class="button text-white seaBlueBg">排序</div>
             <div class="button sortButton yellowBg" sort="time">時間</div>
             <div class="button sortButton grayBg" sort="count">人氣</div>
@@ -163,9 +179,25 @@
             <form class="form-inline" id="searchForm">
               <i class="fas fa-search" aria-hidden="true"></i>
               <input class="form-control form-control-sm ml-2 searchInput" type="text" placeholder="Search"
-                aria-label="Search" onkeydown="if(event.keyCode==13){return false;}" id="search">              
-            </form>            
+                aria-label="Search" onkeydown="if(event.keyCode==13){return false;}" id="search">
+            </form>
           </div>
+          <!-- mobileFilter -->
+          <div class="mobileFilter">
+            <span>篩</span>
+            <div class="mobileFilterContent">
+              <div class="option">
+                <ul>
+                  <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
+                  <li><a href="/qna/life"><i class="fas fa-angle-right" id="life"></i>校園生活</a></li>
+                  <li><a href="/qna/course"><i class="fas fa-angle-right" id="course"></i>課程相關</a></li>
+                  <li><a href="/qna/affair"><i class="fas fa-angle-right" id="affair"></i>學生事務</a></li>
+                  <li><a href="/qna/other"><i class="fas fa-angle-right" id="other"></i>其他</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- ------------ -->
         </div>
         <!-- top按鍵 -->
         <i class="far fa-arrow-alt-circle-up fa-5x"></i>
@@ -186,7 +218,7 @@
                   <th scope="col">點閱率</th>
                 </tr>
               </thead>
-              <tbody search="false" >
+              <tbody search="false">
                 <% for(let index in questions){ %>
                 <tr postID="<%= questions[index].postID%>">
                   <th scope="row"><%= questions[index].category%></th>
@@ -210,4 +242,5 @@
 <script>
   
 </script>
+
 </html>

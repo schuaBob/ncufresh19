@@ -5,6 +5,7 @@ var checkUser = require('./check-user');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
 var docNews = require('../models/index/news');
+var docCalender = require('../models/index/calender');
 // for oauth
 var url = require('url');
 var request = require('request');
@@ -39,7 +40,7 @@ passport.use(new LocalStrategy({
     });
   });
 }
-))
+));
 
 passport.serializeUser(function (user, done) {
   done(null, user._id);
@@ -66,26 +67,47 @@ router.get('/', (req, res, next) => {
     console.log(newsDocs)
     console.log(req.user)
     res.render('index/index', { title: "新生知訊網", News: newsDocs, icon: catePicArr, user: req.user })
-  })
-
+  });
 });
+
 router.get('/index-edit', (req, res, next) => {
-  docNews.find().exec((err, doc) => {
-    if (err) { return next(err) };
-    for (let i in doc) {
-      var TimeNow = new Date().getTime() + 28800000;
-      var pass = (TimeNow - new Date(doc[i].date).getTime()) / (1000 * 60 * 60 * 24)
-      if (pass > 0) {
-        doc[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天前`;
-      } else {
-        doc[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天後`;
+  Promise.all([
+    docNews.find({}, {
+      _id: 0,
+      pk: 1,
+      title: 1,
+      date: 1,
+      category: 1
+    }).exec(),
+    docCalender.find({}, {
+      _id: 0,
+      pk: 1,
+      month: 1,
+      date: 1
+    }).exec()
+  ]).then((doc) => {
+    var news = doc[0];
+    var calender = doc[1];
+    try {
+      for (let i in news) {
+        var TimeNow = new Date().getTime() + 28800000;
+        var pass = (TimeNow - new Date(news[i].date).getTime()) / (1000 * 60 * 60 * 24)
+        if (pass > 0) {
+          news[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天前`;
+        } else {
+          news[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天後`;
+        }
       }
+    } catch (error) {
+      return next(error);
     }
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: doc, icon: catePicArr });
+    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender, user: req.user });
+  }).catch((err) => {
+    return next(err);
   })
+});
 
-})
 router.get('/schedule/:method?', (req, res, next) => {
   switch (req.params.method) {
     case "read":
@@ -93,7 +115,7 @@ router.get('/schedule/:method?', (req, res, next) => {
         console.log(doc)
         if (err) { return next(err) }
         res.json(doc)
-      })
+      });
       break;
     case "delete":
       docNews.findOneAndDelete({ pk: req.query.pk }, (err) => {
@@ -102,14 +124,14 @@ router.get('/schedule/:method?', (req, res, next) => {
           message: "Data deleted successfully!"
         }
         res.json(resMes)
-      })
-
+      });
       break;
     default:
       res.status(404).send('Wrong Page');
       break;
   }
-})
+});
+
 router.post('/schedule/:method', (req, res, next) => {
   switch (req.params.method) {
     case "create":
@@ -133,6 +155,14 @@ router.post('/schedule/:method', (req, res, next) => {
               res.json(resMes)
             })
           })
+        } else {
+          temp.save((err, doc) => {
+            if (err) { return next(err) };
+            var resMes = {
+              message: "Data saved successfully!"
+            }
+            res.json(resMes)
+          })
         }
       })
       break;
@@ -155,8 +185,47 @@ router.post('/schedule/:method', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-})
+});
 
+router.post('/calender/:method', (req, res, next) => {
+  switch (req.params.method) {
+    case "create":
+      var temp = new docCalender({
+        month: req.body.month,
+        date: req.body.date,
+        board_content: req.body.boardContent
+      });
+      docCalender.countDocuments((err, number) => {
+        if (err) { return next(err) }
+        if (number > 0) {
+          docCalender.find().sort({ pk: -1 }).limit(1).exec((err, doc) => {
+            if (err) { return next(err) }
+            temp.pk = doc[0].pk + 1;
+            temp.save((err, doc) => {
+              if (err) { return next(err) };
+              var resMes = {
+                message: "Data saved successfully!"
+              }
+              res.json(resMes);
+            })
+          })
+        } else {
+          temp.save((err, doc) => {
+            if (err) { return next(err) };
+            var resMes = {
+              message: "Data saved successfully!"
+            }
+            res.json(resMes)
+          })
+        }
+      })
+      break;
+
+    default:
+      res.
+        break;
+  }
+});
 
 router.get('/comingsoon', function (req, res, next) {
   res.render('comingsoon/index', {
@@ -165,7 +234,7 @@ router.get('/comingsoon', function (req, res, next) {
 });
 
 router.get('/login', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/index', { title: '新生知訊網' });
+  res.render('login/index', { title: '新生知訊網', user: req.user });
 });
 
 router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
@@ -182,7 +251,7 @@ router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
 });
 
 router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/password', { title: '新生知訊網' });
+  res.render('login/password', { title: '新生知訊網', user: req.user });
 });
 
 router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
@@ -192,7 +261,7 @@ router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local'
 }));
 
 router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/register', { title: '新生知訊網' });
+  res.render('login/register', { title: '新生知訊網', user: req.user });
 });
 
 router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
@@ -202,9 +271,7 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
   let checkpassword = req.body.checkpassword;
 
   if ((id && name && password && checkpassword) && (password == checkpassword)) {
-    Users.findOne({
-      'id': id
-    }, function (err, obj) {
+    Users.findOne({'id': id}, function (err, obj) {
       if (err) {
         res.redirect('/');
       }
@@ -220,6 +287,7 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
         res.redirect('/login');
       } else {
         obj.password = password;
+        obj.name = name;
         Users.createUser(obj, function (err, user, next) {
           if (err) {
             return next(err);
@@ -239,6 +307,20 @@ router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
   } else {
     res.redirect('/register');
   }
+
+  /*var _user = new User({
+    id: req.body.id,
+    password: req.body.password,
+    name: req.body.name
+  }).save(function(err) {
+    if(err) {
+      return next(err);
+    }
+    req.session.user = req.body.user;
+
+    res.redirect('/');
+  });*/
+
 });
 
 router.get('/logout', function (req, res, next) {

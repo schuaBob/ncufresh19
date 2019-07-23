@@ -5,8 +5,17 @@
   //選項高度跟著問題亦啟動
   //什麼都沒抓到會有BUG
     //------------game---------------------------------
+  var leave_container;
+  var now=0;
+  var sound_shape;
+  var game_time_image;
+  var sound;
+  var stop=false;
+  var soundbutton;
   var labbybutton_container;
+  var leavebutton_source = new Array();
   var question_container;
+  var back_container;
   var question_num=[0,0,0];
   var generate_bird;
   var option =new Array();
@@ -17,10 +26,10 @@
   var generate_bubble;
   var stage;
   var questionboard;
-  var backbround;
+  var background;
   var board_index;
   var sea ;
-  var game_time=60;
+  var game_time=15;
   var catch_animal_container;
   var harpoon_text;
   var question_list = new Array();
@@ -88,41 +97,43 @@
         console.log(this);
         this.x=210;
         this.y=250;
-        this.backbround = new createjs.Shape();
+        this.background = new createjs.Shape();
         this.havermask = new createjs.Shape();
         this.text = new createjs.Text("","Bold 17px "+font_family,"#000000");
-        this.addChild(this.backbround);
+        this.addChild(this.background);
         this.addChild(this.text);
         this.addChild(this.havermask);
         this.text.y=8;
         this.text.x=12.5;
-        this.backbround.visible = false;
-        this.backbround.alpha=0.4;
+        this.background.visible = false;
+        this.background.alpha=0.4;
         this.done =false;
         this.havermask.alpha=0.01;
         this.ans =false;
         this.havermask.addEventListener("click",function(event){  
-          if(!event.target.parent.done);
+          if(!event.target.parent.done){
           if(event.target.parent.ans){
             event.target.parent.correct();
           }
           else event.target.parent.wrong();
+          }
+ 
         });
         this.havermask.addEventListener("mouseover",function(event){
           event.target.parent.havermask.cursor = "pointer";
           if(!event.target.parent.done)
-          event.target.parent.backbround.visible =true;
+          event.target.parent.background.visible =true;
 
         });
         this.havermask.addEventListener("mouseout",function(event){
           if(!event.target.parent.done)
-          event.target.parent.backbround.visible =false;
+          event.target.parent.background.visible =false;
         });
       }
       correct(){
-        this.backbround.visible =true;
+        this.background.visible =true;
         this.done=true;
-        this.backbround.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
+        this.background.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
         ans_num--;
         if(ans_num ==0){
           questionboard.gotoAndStop("correct");
@@ -133,20 +144,20 @@
         }
       }
       wrong(){
-        this.backbround.visible = true;
+        this.background.visible = true;
         this.done=true;
-        this.backbround.graphics.clear().beginFill("red").drawRoundRect(0,0,9*18,33,10);
+        this.background.graphics.clear().beginFill("red").drawRoundRect(0,0,9*18,33,10);
         show_correct();
       }
       setText(t,ans){
         this.text.text = t;
         this.done=false;
         this.visible=true;
-        this.backbround.visible=false;
-        this.backbround.graphics.clear();
+        this.background.visible=false;
+        this.background.graphics.clear();
         this.havermask.graphics.clear();
         this.havermask.graphics.beginFill("#696969").drawRoundRect(0,0,9*18,33,10);
-        this.backbround.graphics.beginFill("#696969").drawRoundRect(0,0,9*18,33,10);
+        this.background.graphics.beginFill("#696969").drawRoundRect(0,0,9*18,33,10);
         this.ans =ans;
       }
     }
@@ -159,7 +170,8 @@
         super(animalsource[type].spritesheet,"normal");
       this.special=special;
       this.animaltype = type;
-      stage.addChildAt(this,stage.numChildren-2);
+      //stage.addChildAt(this,stage.numChildren-2);
+      stage.addChildAt(this,3);
     }
     move(){
       if(getrandom(1000)<5){
@@ -182,9 +194,9 @@
   function show_correct(){
     for(i=0;i<5;i++){
       if(option[i].ans &&  !option[i].done){
-        option[i].backbround.visible =true;
+        option[i].background.visible =true;
         option[i].done=true;
-        option[i].backbround.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
+        option[i].background.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
       }
     }
     createjs.Tween.get(questionboard).wait(1000).call(()=>{
@@ -227,8 +239,6 @@
       for(i=0;i<animal_list.length;i++){
         var pt =this.localToLocal(this.image.width/2,this.image.height,animal_list[i]); // 传递的是红色小球圆心位置
         if (gamestart && animal_list[i].hitTest(pt.x, pt.y)) {
-          // harpoon.regX = harpoon.image.width/2;
-          // harpoon.reg = harpoon.image.height;
           this.moveable=false;
           harpoon_list= arrayRemove(harpoon_list,this);
           harpoon_update();
@@ -248,7 +258,7 @@
       super(type,special);
       this.scale=0.12;
       this.speed=2;
-      this.alpha=0.8;
+      this.alpha=1;
       this.dic =1;
       if(getrandom(2) == 1){
         this.x = -100;
@@ -372,15 +382,18 @@
       }
   function open_bubble(){
     generate_bubble = setInterval(()=>{
+      if(!stop)
       if(getrandom(100)<3){
         create_bubble();
       }
     },30);
   }
   function update(){
-    harpoon_move();
-    harpoon_check();
-    fish_move();
+    if(!stop){
+      harpoon_move();
+      harpoon_check();
+      fish_move();
+    }
     stage.update();
   }
   function fish_move(){
@@ -388,6 +401,7 @@
     for(i=0;i<animal_list.length;i++){
       if(animal_list[i].x>(canvas_width+100)||(animal_list[i].x<-100)){
         stage.removeChild(animal_list[i]);
+        if(gamestart)
         if(animal_list[i].animaltype!=0){
           if(animal_list[i].animaltype>2){
             question_num[2]++;
@@ -441,24 +455,31 @@
   }
   function open_fish(){
     generate_fish = setInterval(()=>{
+      if(!stop)
       if(question_num[0] +question_num[1]+question_num[2]>0 ){
         rnd =getrandom(120);
         if(rnd<24){
-           var fishtype ;
+           var fishtype ;     
            do{
             fishtype =getrandom(3);
            }while(question_num[fishtype]<=0);
+           if(gamestart)
            question_num[fishtype]--;
           if(rnd<2)
-          animal_list.push(new fish(fishtype ==2?((fishtype+1)+getrandom(2)):(fishtype)+1,true));
+          animal_list.push(new fish(fishtype ==2?((fishtype+1)+getrandom(2)):((fishtype)+1),true));
           else
-          animal_list.push(new fish(fishtype ==2?((fishtype+1)+getrandom(2)):(fishtype)+1,false));
+          animal_list.push(new fish(fishtype ==2?((fishtype+1)+getrandom(2)):((fishtype)+1),false));
         }
+      }
+      else{
+        if(catch_animal_num[1]+catch_animal_num[2]+catch_animal_num[3]+catch_animal_num[4] == question_list[0].length+question_list[1].length+question_list[2].length)
+        game_end();
       }
    },200);
   }
   function open_bird(){
     generate_bird = setInterval(()=>{
+      if(!stop)
       if(getrandom(100)<20){
         animal_list.push(new bird(0,false));
       }
@@ -495,12 +516,21 @@
       {src: "/images/coolgame/fish_ad.png", id: "fish_ad"},
       {src: "/images/coolgame/harpoon.png", id: "harpoon"},
       {src: "/images/coolgame/score_background.png", id: "score_background"},
+      {src: "/images/coolgame/rank_background.png", id: "rank_background"},
       {src: "/images/coolgame/sea.png", id: "score_sea"},
       {src: "/images/coolgame/haver.png", id: "haver"},
       {src: "/images/coolgame/questionboard1.png", id: "questionboard1"},
       {src: "/images/coolgame/questionboard2.png", id: "questionboard2"},
       {src: "/images/coolgame/questionboard3.png", id: "questionboard3"},
       {src: "/images/coolgame/questionboard4.png", id: "questionboard4"},
+      {src: "/images/coolgame/time.png", id: "time"},
+      {src: "/images/coolgame/sound_open.png", id: "sound_open"},
+      {src: "/images/coolgame/sound_close.png", id: "sound_close"},
+      {src: "/images/coolgame/back.png", id: "back"},
+      {src: "/images/coolgame/back_haver.png", id: "back_haver"},
+      {src: "/images/coolgame/rank_single.png", id: "rank_single"},
+      {src: "/images/coolgame/rank_total.png", id: "rank_total"},
+      {src: "/images/coolgame/leave.png", id: "leave"},
     ];
     loader = new createjs.LoadQueue(true);
     loader.on("fileload", handleFileLoad);
@@ -622,18 +652,172 @@
       animalsource.push({type:4,score:100,spritesheet:new createjs.SpriteSheet(fish4)});
       animalsource.push({type:5,spritesheet:new createjs.SpriteSheet(fish_ad_data)});  
   }
+  function create_back_container(){
+    back_container = new createjs.Container();
+    var backbutton = new createjs.Bitmap(loader.getResult("back"));
+    var back_shape = new createjs.Shape();
+    backbutton.scale=0.4;
+    backbutton.y=12;
+    backbutton.x=7;
+    back_container.visible =false;
+    back_shape.graphics.beginFill("#FFFFFF").drawRect(7,12,backbutton.getwidth(),backbutton.getheight());
+    back_shape.alpha=0.01;
+    back_shape.addEventListener("mouseover",function(){
+      backbutton.image = loader.getResult("back_haver");
+      back_shape.cursor = "pointer";
+    });
+    back_shape.addEventListener("mouseout",function(){
+      backbutton.image = loader.getResult("back");
+    });
+    back_shape.addEventListener("mousedown",function(){
+      close_game_event();
+      leave_container.visible=true;
+      stop = true;
+    });
+    back_container.addChild(backbutton);
+    back_container.addChild(back_shape);
+    stage.addChild(back_container);
+  }
+  function create_leave_container(){
+    leave_container = new createjs.Container();
+    var leave_background = new createjs.Bitmap(loader.getResult("leave"));
+    var leave_title = new createjs.Text("確定要離開遊戲嗎？","bold 24px "+font_family,"#000000");
+    leave_container.visible =false;
+    leave_background.scale = 0.7;
+    var leave_background_mask = new createjs.Shape();
+    leave_background_mask.graphics.beginFill("#000000").drawRect(0,0,800,500);
+    leave_background_mask.alpha = 0.3;
+    leave_background.x = canvas_width/2-leave_background.getwidth()/2;
+    leave_background.y= canvas_height/2-leave_background.getheight()/2;
+    leave_title.y=leave_background.y+40;
+    leave_title.x=leave_background.x+108;
+
+    var Yes_shape =  new createjs.Shape();
+    Yes_shape.alpha=0.01;
+    var Yes = new createjs.Text("含淚離開", "Bold 20px 微軟正黑體", "#000000");
+    Yes.x = leave_title.x+50;
+    Yes.y= leave_title.y+50;
+    Yes_shape.graphics.beginFill("#FFFFFF").drawRect( Yes.x, Yes.y,80,30);
+    var w = Yes.getMeasuredWidth();
+    var Yes_underline = new createjs.Shape();
+    Yes_underline.graphics.s("#000000").mt(Yes.x, Yes.y+25).lt(Yes.x+w, Yes.y+25);
+    var Yes_haver =new createjs.Bitmap(loader.getResult("haver"));
+    Yes_haver.x=leave_title.x;
+    Yes_haver.y=Yes.y;
+    Yes_haver.scale=0.48;
+
+    var No_shape =  new createjs.Shape();
+    No_shape.alpha=0.01;
+    var No = new createjs.Text("回心轉意", "Bold 20px 微軟正黑體", "#000000");
+    No.x = leave_title.x+50;
+    No.y= leave_title.y+100;
+    No_shape.graphics.beginFill("#FFFFFF").drawRect( No.x, No.y,80,30);
+    var w = No.getMeasuredWidth();
+    var No_underline = new createjs.Shape();
+    No_underline.graphics.s("#000000").mt(No.x, No.y+25).lt(No.x+w, No.y+25);
+    var No_haver =new createjs.Bitmap(loader.getResult("haver"));
+    No_haver.x=leave_title.x;
+    No_haver.y=No.y;
+    No_haver.scale=0.48;
+
+
+    leavebutton_source.push({text:Yes,underline:Yes_underline,haver:Yes_haver});
+    leavebutton_source.push({text:No,underline:No_underline,haver:No_haver});
+    for(i=0 ;i< leavebutton_source.length;i++){
+      leavebutton_source[i].haver.visible=false;
+      leavebutton_source[i].underline.visible=false;
+    }
+    Yes_shape.addEventListener("click",function(){  
+      leave_container.visible=false;
+      stage.removeChild(question_container);
+      stage.removeChild(score_catch_animal_container);
+      close_movement();
+      clear_game_stage();
+      for(var j=0;j<catch_fish.length;j++){
+        catch_fish[j].visible=false;
+      }
+      labby_init();
+    });
+    Yes_shape.addEventListener("mouseover",function(){
+      Yes_shape.cursor = "pointer";
+      leavebutton_source[0].haver.visible=true;
+      leavebutton_source[0].underline.visible=true;
+    });
+    Yes_shape.addEventListener("mouseout",function(){
+      leavebutton_source[0].haver.visible=false;
+      leavebutton_source[0].underline.visible=false;
+    });
+
+  
+    No_shape.addEventListener("click",function(){  
+      leave_container.visible=false;
+      if(now==1)
+      game_event();
+      stop =false;
+    });
+    No_shape.addEventListener("mouseover",function(){
+      No_shape.cursor = "pointer";
+      leavebutton_source[1].haver.visible=true;
+      leavebutton_source[1].underline.visible=true;
+    });
+    No_shape.addEventListener("mouseout",function(){
+      leavebutton_source[1].haver.visible=false;
+      leavebutton_source[1].underline.visible=false;
+    });
+    leave_container.addChild(leave_background_mask);
+    leave_container.addChild(leave_background);
+    leave_container.addChild(leave_title);
+    leave_container.addChild(Yes);
+    leave_container.addChild(Yes_shape);
+    leave_container.addChild(Yes_underline);
+    leave_container.addChild(Yes_haver);
+    leave_container.addChild(No);
+    leave_container.addChild(No_shape);
+    leave_container.addChild(No_underline);
+    leave_container.addChild(No_haver);
+    stage.addChild(leave_container);
+  }
   function create_stage_element(){
+    catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0","12px Arial","#000000");
     stage = new createjs.Stage(document.getElementById("gameStage"));
-    backbround = new createjs.Bitmap(loader.getResult("game_background"));
+    background = new createjs.Bitmap(loader.getResult("game_background"));
     fisherman = new createjs.Bitmap(loader.getResult("fisherman"));
     sea = new createjs.Bitmap(loader.getResult("sea"));
+    harpoon_text = new createjs.Text("Harpoon:10","18px Arial","#000000");
     fish_ad = new createjs.Sprite(animalsource[5].spritesheet,"normal");
+    game_time_image = new createjs.Bitmap(loader.getResult("time"));
     createjs.Ticker.framerate=50;
     createjs.Ticker.addEventListener("tick",update); 
-    stage.addChild(backbround);
+    leavebutton_source = new Array();
+    sound_shape = new createjs.Shape();
+    soundbutton = new createjs.Bitmap(loader.getResult("sound_open"));
+    soundbutton.scale=0.4;
+    soundbutton.x = canvas_width-soundbutton.getwidth();
+    soundbutton.y = canvas_height - soundbutton.getheight();
+    sound=true;
+    sound_shape.graphics.beginFill("#FFFFFF").drawRect(canvas_width-soundbutton.getwidth(),canvas_height - soundbutton.getheight(),soundbutton.getwidth(),soundbutton.getheight());
+    sound_shape.alpha=0.01;
+    sound_shape.addEventListener("mousedown",function(event){
+      if(sound){
+        soundbutton.image = loader.getResult("sound_close");
+      }
+      else{
+        soundbutton.image = loader.getResult("sound_open");
+      }
+      sound=sound == true?false:true;
+    })
+    sound_shape.addEventListener("mouseover",()=>{
+      sound_shape.cursor = "pointer";
+    });
+    stage.addChild(background);
     stage.addChild(fisherman);
     stage.addChild(sea);
+    stage.addChild(soundbutton);
+    stage.addChild(sound_shape);
     stage.addChild(fish_ad);
+    create_back_container();
+    create_leave_container();
+    create_labbybutton();
     fisherman_harpoon = new harpoon();
   }
   function init(){
@@ -643,7 +827,9 @@
   }
   function game_event(){
     stage.addEventListener("stagemousemove",mousemove);
-    document.onmousedown = mousedown;
+    stage.addEventListener("mousedown",mousedown);
+    //stage.addEventListener("pressmove",keyDown);
+    //stage.onmousedown = mousedown;
     document.onkeydown = keyDown;
     document.onkeyup = keyUp;
   }
@@ -656,19 +842,21 @@
         createjs.Tween.get(animal_list[i]).to({x:-110},1000);
       }
     }
+    if(fish_ad.visible)
     createjs.Tween.get(fish_ad).to({x:-450},1000).call(()=>{
       close_fish_ad();
     });
   }
   function fish_jump(){
-    stage.setChildIndex(fisherman,stage.numChildren-1);
-    stage.setChildIndex(fisherman_harpoon,stage.numChildren-1);
-    stage.setChildIndex(sea,stage.numChildren-1);
+    // stage.setChildIndex(fisherman,stage.numChildren-1);
+    // stage.setChildIndex(fisherman_harpoon,stage.numChildren-1);
+    // stage.setChildIndex(sea,stage.numChildren-1);
     for(i=0;i<catch_fish.length-1;i++){
       createjs.Tween.get(catch_fish[i]).wait(2000).to({y:(fisherman.y-getrandom(50)+20),x:(fisherman.x+50-getrandom(50))},600)
     }
     createjs.Tween.get(catch_fish[catch_fish.length-1]).wait(2000).to({y:(fisherman.y-getrandom(50)+20),x:(fisherman.x+35-getrandom(50))},600).call(()=>{
       for(i=0;i<catch_fish.length;i++){
+        stage.setChildIndex(catch_fish[i],2);
         createjs.Tween.get(catch_fish[i]).wait(500).to({x:-Math.abs(fisherman.getwidth())+30-getrandom(50)},4000);
       }
     });
@@ -680,6 +868,9 @@
     else  if(catch_animal_num[3]>0)board_index=3;
     else  if(catch_animal_num[4]>0)board_index=4;
     else {
+      stage.removeChild(question_container);
+      stage.removeChild(score_catch_animal_container);
+      labby_init();
       console.log("game over");
       return;
     }
@@ -730,6 +921,7 @@
         question_text.text+=q[i];
       }
     }
+    question_text.text += board_index==1?"(多選題)":"(單選題)"
     for(i=0;i<question.answer.length+question.option.length;i++){
       a.push(i);
     }
@@ -788,19 +980,65 @@
     question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
     question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
     question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的","~~sf.dm"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的","~~sf.dm"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[2].push(new Question(2,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[0].push(new Question(0,"請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎請問這遊戲機掰嗎",["超機掰超機","超級"],["小機掰機掰掰","中機掰超機","大"]));
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的","~~sf.dm"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
+    question_list[1].push(new Question(1,"第二題",["還可以"],["小事","蝦還要喔甄試的"]))
     question_num=[0,0,0];
     question_index_list=new Array();
     for(var j =0;j<3;j++){
       question_num[j] = question_list[j].length;
     }
   }
+
   function question_init(){
     question_container= new createjs.Container();
     var question_background = new createjs.Shape();
     question_text = new createjs.Text("","Bold 20px "+font_family,"#000000");
     question_text.x = 190;
     question_text.y=140;
-    question_background.graphics.beginFill("#000000").drawRoundRect(0,0,800,500,45);
+    question_background.graphics.beginFill("#000000").drawRect(0,0,800,500);
     question_background.alpha = 0.4;
     question_container.addChild(question_background);
     question_container.addChild(question_text);
@@ -825,8 +1063,20 @@
     option[4].y = option[0].y+80;
     create_questionboard();
     stage.addChild(question_container);
+    stage.setChildIndex(back_container,stage.numChildren-1);
+    stage.setChildIndex(leave_container,stage.numChildren-1);
+    back_container.visible=true;
   }
-  function game_end(){
+  function clear_game_stage(){
+    stage.removeChild(start_time_text);
+    stage.removeChild(harpoon_text);
+    stage.removeChild(countdown_text);
+    stage.removeChild(catch_animal_container);
+    stage.removeChild(game_time_image);
+    clear_harpoon();
+  }
+  function close_movement(){
+    clearInterval(countdown_timer);
     gamestart=false;
     clese_bird();
     clese_fish();
@@ -834,7 +1084,13 @@
     clear_animal();
     close_game_event();
     close_fishmanwalk();
+    
+  }
+  function game_end(){
+    close_movement();
+    if(catch_fish.length!=0)
     fish_jump();
+    back_container.visible=false;
     start_time_text.text = "Time's up！";
     start_time_text.x -= 40;
     stage.addChild(start_time_text);
@@ -844,20 +1100,18 @@
     fisherman_harpoon.revise_position();
     createjs.Tween.get(fisherman_harpoon).wait(3100).to({x:-Math.abs(fisherman.getwidth())+25*(fisherman.scaleX<0?1:-1)},4000);
     createjs.Tween.get(fisherman).wait(3100).to({x:-Math.abs(fisherman.getwidth())},4000).call(()=>{
-      stage.removeChild(start_time_text);
-      stage.removeChild(harpoon_text);
-      stage.removeChild(countdown_text);
-      stage.removeChild(catch_animal_container);
+      clear_game_stage();
       clear_harpoon();
       score_init();
     });
   }
   function countdown(){
-    countdown_time--;
-    countdown_text.text = ""+countdown_time;
-    if(countdown_time == 0){
-      clearInterval(countdown_timer);
-      game_end();
+    if(!stop){
+      countdown_time--;
+      countdown_text.text = ""+countdown_time;
+      if(countdown_time == 0){
+        game_end();
+      }
     }
   }
   function clear_harpoon(){
@@ -867,11 +1121,14 @@
   }
   var num_score_fish=0;
   function score_init(){
-    backbround.image = loader.getResult("score_background");
+    now = 2;
+    background.image = loader.getResult("score_background");
     num_score_fish=0;
     sea.y = 270;
+    sea.alpha=0.45
     fisherman.y=380
-    fisherman.scale=fisherman_harpoon.scale*=1.56;
+    score_catch_animal_num = [0,0,0,0,0]
+    fisherman.scale=fisherman_harpoon.scale=0.2496;
     fisherman.x=canvas_width+fisherman.getwidth();
     fisherman_harpoon.rotation = 35;
     fisherman_harpoon.revise_position();
@@ -893,9 +1150,10 @@
         for(i=0;i<catch_fish.length;i++){
           if(catch_fish[i].animaltype  ==0){
             brid_num++;
-            createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},1000).wait(600).to({x:70,y:150},1000);
+            createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},600).wait(600).to({x:70,y:150},600).to({visible:false});
           }
         }
+        if(catch_fish.length!=0)
         for(i=0;i<catch_fish.length;i++){
           if(catch_fish[i].animaltype == 0){
             catch_fish = arrayRemove(catch_fish,catch_fish[i]);
@@ -913,7 +1171,7 @@
   function create_game_timer(){
     countdown_time=game_time;
     countdown_text = new createjs.Text(game_time+"","30px Arial","#000000");
-    countdown_text.x = 400;
+    countdown_text.x = canvas_width/2-10;
     countdown_text.y=20;
     countdown_timer=setInterval(countdown,1000)
     stage.addChild(countdown_text);
@@ -922,7 +1180,7 @@
     catch_animal_text.text = " X  "+catch_animal_num[1]+"\n\n X  "+catch_animal_num[2]+"\n\n X  "+catch_animal_num[3]+"\n\n X  "+catch_animal_num[4];
   }
   function create_catch_animal_container(){
-    catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0","12px Arial","#000000");
+    catch_animal_text.text = " X  0\n\n X  0\n\n X  0\n\n X  0";
     catch_animal_text.x  = 25;
     catch_animal_text.y  = -5;
     catch_animal_num = [0,0,0,0,0];
@@ -979,13 +1237,27 @@
     score_catch_animal_container.y=130;
   }
   function create_harpoon_text(){
-    harpoon_text = new createjs.Text("Harpoon:10","18px Arial","#000000");
     harpoon_text.x  =canvas_width-110;
     harpoon_text.y = 20;
     stage.addChild(harpoon_text);
   }
+  function create_game_time_image(){
+    game_time_image.x=canvas_width/2-48;
+    game_time_image.y=12.5;
+    game_time_image.scale=0.345;
+    stage.addChild(game_time_image);
+  }
+  // function create_(){
+  //   game_time_image.x=canvas_width/2-48;
+  //   game_time_image.y=12.5;
+  //   game_time_image.scale=0.345;
+  //   stage.addChild(game_time_image);
+  // }
   function game_start(){
     gamestart=true;
+    back_container.visible=true;
+    harpoon_update();
+    create_game_time_image();
     create_harpoon_text();
     create_catch_animal_container();
     create_game_timer();
@@ -995,6 +1267,7 @@
     open_bird();
   }
   function game_init() {
+    now=1;
     clese_bird();
     clese_fish();
     clear_animal();
@@ -1004,9 +1277,6 @@
     harpoon_list=new Array();
     animal_list =new Array();
     catch_fish = new Array();
-    //close_fishmanwalk();
-    //score_init();
-
     start_time_text = new createjs.Text("5","40px Arial","#000000");
     start_time_text.x=canvas_width/2-10;
     start_time_text.y = 200;
@@ -1023,28 +1293,33 @@
   }
   function open_fishmanwalk(){
     fishman_walk=setInterval(()=>{
-      if( fisherman.scaleX<0){
-        fisherman.x  +=0.5;
-        fisherman_harpoon.x = fisherman.x+25;
+      if(!stop){
+        if( fisherman.scaleX<0){
+          fisherman.x  +=0.5;
+          fisherman_harpoon.x = fisherman.x+25;
+        }
+        else{
+          fisherman.x  -=0.5;
+          fisherman_harpoon.x = fisherman.x-25;
+        }
+        if(fisherman.x+75>= canvas_width ||fisherman.x<75 ){
+          fisherman.scaleX*=-1; 
+          fisherman_harpoon.rotation*=-1;
+        } 
       }
-      else{
-        fisherman.x  -=0.5;
-        fisherman_harpoon.x = fisherman.x-25;
-      }
-      if(fisherman.x+75>= canvas_width ||fisherman.x<75 ){
-        fisherman.scaleX*=-1; 
-        fisherman_harpoon.rotation*=-1;
-      } 
     },20);
   }
   function close_game_event(){
     stage.removeEventListener("stagemousemove",mousemove);
+    stage.removeEventListener("mousedown",mousedown);
     document.onmousedown = null;
     document.onkeydown = null;
     document.onkeyup = null;
   }
   function open_fish_ad(){
+    //stage.addChild(fish_ad);
     fish_ad.visible=true;
+    stage.setChildIndex(fish_ad,stage.numChildren-2);
     fish_ad.y=400;
     fish_ad.x=canvas_width+300;
     fish_ad.scale = 0.5;
@@ -1092,7 +1367,6 @@
     start_haver.x=-5;
     start_haver.y=-2;
     start_haver.scale=0.48;
-  console.log(start);
     var rule = new createjs.Text("規則說明", "Bold 20px 微軟正黑體", "#000000");
     rule.x = start.x;
     rule.y = start.y+50;
@@ -1130,6 +1404,10 @@
     start_shape.addEventListener("click",function(){  
       labbybutton_container.visible=false;
       game_init();
+    });
+    ranking_shape.addEventListener("click",function(){  
+      labbybutton_container.visible=false;
+      ranking_init();
     });
     start_shape.addEventListener("mouseover",function(){
       start_shape.cursor = "pointer";
@@ -1176,17 +1454,41 @@
     labbybutton_container.y=200;
     stage.addChild(labbybutton_container);
   }
+  function ranking_init(){
+    background.image = loader.getResult("rank_background");
+    back_container.visible=true;
+    fisherman.visible=false;
+    fisherman_harpoon.visible=false;
+    close_fishmanwalk();
+    close_fish_ad();
+    sea.visible=false;
+    now=3;
+    clese_bird();
+    clese_fish();
+    for(var j=0;j<animal_list.length;j++)animal_list[j].visible=false;
+    clear_animal();
+    clese_bubble();
+    //close_movement();
+  }
   function labby_init(){
+    now = 0;
     gamestart=false;
     close_game_event();
     clese_bird();
     clese_fish();
     clese_bubble();
+    fisherman.visible=true;
+    fisherman_harpoon.visible=true;
+    sea.visible=true;
+    stop =false;
+    back_container.visible=false;
     harpoon_list = new Array() ;
     animal_list = new Array() ;
     bubble_list =new Array();
-    backbround.scale=0.5;
+    background.image=loader.getResult("game_background");
+    background.scale=0.5;
     fisherman.scale =0.16;
+    fisherman_harpoon.scale=0.16;
     fisherman.x = 75;
     fisherman.y = canvas_seaheight-25;
     fisherman.regX = fisherman.image.width/2;
@@ -1195,11 +1497,14 @@
     fisherman_harpoon.x = fisherman.x+25*(fisherman.scaleX<0?1:-1);
     fisherman_harpoon.y = fisherman.y-5;
     sea.scale=0.5;
-    sea.alpha=0.4;
-    create_labbybutton();
+    sea.alpha=0.3;
+    sea.x=0;
+    sea.y=0;
+    labbybutton_container.visible=true;
     open_fishmanwalk();
     open_fish_ad();
     open_fish();
     open_bubble();
     open_bird();
+    console.log(fish_ad.visible)
   }

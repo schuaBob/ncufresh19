@@ -35,7 +35,7 @@ router.get('/', /*checkUser.isLoggedIn,*/ function(req, res, next) {
 });
 
 var storage = multer.diskStorage({
-  destination: "../public/personal/profile-photo",
+  destination: "public/personal/profile-photo",
   filename: function(req, file, cb) {
     var fileName = req.user.id + ".png";
     User.update({id: req.user.id}, {$set: {profile_pic: fileName}}, function(err, result) {

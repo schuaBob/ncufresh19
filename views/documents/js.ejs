@@ -41,7 +41,28 @@
                 $(this).attr('src','/documents/學習資訊_原.png');
             });
 
-
+/*--------------------------------------使用者---------------------------------------------*/
+/*            $(".option").mousedown(function(){
+                textid = this.id;
+                //當下頁面變色
+                $(".option").removeClass("page_now");
+                $(this).addClass("page_now")
+                
+                $.ajax({
+                url: "/documents/require_data/" + textid,
+                method: 'get',
+                error: function (err) {
+                    console.log(err);
+                },
+                success: function (data) {
+                    $("#show_title").empty();
+                    $(".content").empty();
+                    $("#show_title").html(data.title);  
+                    $(".content").html(data.content);
+                    }
+            });
+            })
+*/
 /*--------------------------------------管理者---------------------------------------------*/
 
            ClassicEditor
