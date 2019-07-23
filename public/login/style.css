@@ -11,20 +11,26 @@ a {
 .box {
   border: 2px #c9c3c1 solid;
   background-color: white;
-  width: 500px;
-  height: 500px;
+  width: 360px;
   position: absolute;
-  top: 0px;
-  left: 510px;
+  left: 600px;
   text-align: center;
+}
+
+#login_box {
+  height: 240px;
+}
+
+#reg_box {
+  height: 330px;
 }
 
 .link {
   border-bottom: 2px #c9c3c1 solid;
   font-size: 15px;
-  width: 250px;
-  height: 65px;
-  line-height: 65px;
+  width: 180px;
+  height: 50px;
+  line-height: 50px;
 }
 
 .link a {
@@ -59,12 +65,27 @@ a {
   position: absolute;
   width: 300px;
   height: 375px;
-  top: 95px;
-  left: 100px;
+  top: 65px;
+  left: 30px;
   overflow: hidden;
 }
 
 #input_area input {
   line-height: 15px;
   margin: 10px;
+}
+
+.box button {
+  background-color: #0163b0;
+  border: none;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-align: center;
+  font-size: 15px;
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
 }

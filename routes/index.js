@@ -264,8 +264,11 @@ router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   res.render('login/register', { title: '新生知訊網', user: req.user });
 });
 
-router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
-  let id = req.body.id;
+router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
+
+  var url = new URL(window.location.href);
+  var id = $("input[name=id]").val(url.searchParams.get('id'));
+
   let name = req.body.name;
   let password = req.body.password;
   let checkpassword = req.body.checkpassword;
