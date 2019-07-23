@@ -97,10 +97,14 @@ router.get('/index-edit', (req, res, next) => {
       pk: 1,
       month: 1,
       date: 1
+    }).exec(),
+    docCommercial.find({}, {
+      _id: 0,
+      pk: 1,
+      picPath: 1
     }).exec()
   ]).then((doc) => {
-    var news = doc[0];
-    var calender = doc[1];
+    var news = doc[0], calender = doc[1], commercial = doc[2];
     try {
       for (let i in news) {
         var TimeNow = new Date().getTime() + 28800000;
@@ -115,18 +119,43 @@ router.get('/index-edit', (req, res, next) => {
       return next(error);
     }
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender, user: req.user });
+    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
   }).catch((err) => {
     return next(err);
   })
 })
-router.post('/adpic',uploadHandler.single('commercialpic'),(req,res,next)=>{
-  console.log(req.file);
-
-  // var temp = new docCommercial({
-  //   picPath:
-  // })
-  res.redirect('back');
+router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) => {
+  var picArray = req.files.map((item) => {
+    var desTemp = item.destination.split('/');
+    var temp = {};
+    temp['picPath'] = `/${desTemp[1]}/${desTemp[2]}/${item.originalname}`;
+    return temp;
+  })
+  docCommercial.countDocuments((err, number) => {
+    if (err) { return next(err) };
+    if (number === 0) {
+      for (let i in picArray) {
+        picArray[i]['pk'] = i;
+      }
+      docCommercial.create(picArray).then(() => {
+        res.redirect('/index-edit');
+      }).catch((error) => {
+        console.log(error)
+        return next(error);
+      })
+    } else {
+      docCommercial.find().sort({ pk: -1 }).limit(1).exec((err, maxPkDoc) => {
+        if (err) { return next(err) }
+        for (let i in picArray) {
+          picArray[i]['pk'] = i + maxPkDoc + 1;
+        }
+        docCommercial.create(picArray, (err) => {
+          if (err) { return next(err) };
+          res.redirect('/index-edit');
+        })
+      })
+    }
+  })
 })
 router.get('/schedule/:method?', (req, res, next) => {
   switch (req.params.method) {
@@ -267,16 +296,16 @@ router.post('/calender/:method', (req, res, next) => {
       break;
     case "update":
       docCalender.findOneAndUpdate({ pk: req.body.pk }, {
-         month: req.body.month, 
-         date: req.body.date, 
-         board_content: req.body.boardContent
-        }).exec((err,doc)=>{
-          if(err){return next(err)}
-          var resMes = {
-            message: "Data edited successfully!"
-          }
-          res.json(resMes)
-        })
+        month: req.body.month,
+        date: req.body.date,
+        board_content: req.body.boardContent
+      }).exec((err, doc) => {
+        if (err) { return next(err) }
+        var resMes = {
+          message: "Data edited successfully!"
+        }
+        res.json(resMes)
+      })
       break;
     default:
       res.status(404).send('Wrong Page');
@@ -314,21 +343,21 @@ router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
 router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
-  failureFlash: false
+  failureFlash: true
 }));
 
 router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   res.render('login/register', { title: '新生知訊網', user: req.user });
 });
 
-router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
+router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   let id = req.body.id;
   let name = req.body.name;
   let password = req.body.password;
   let checkpassword = req.body.checkpassword;
 
   if ((id && name && password && checkpassword) && (password == checkpassword)) {
-    Users.findOne({'id': id}, function (err, obj) {
+    Users.findOne({ 'id': id }, function (err, obj) {
       if (err) {
         res.redirect('/');
       }
