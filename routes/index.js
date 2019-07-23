@@ -6,6 +6,19 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
 var docNews = require('../models/index/news');
 var docCalender = require('../models/index/calender');
+var docCommercial = require('../models/index/commercial');
+var multer = require('multer');
+var uploadHandler = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'public/index/commercial');
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    }
+  })
+})
+
 // for oauth
 var url = require('url');
 var request = require('request');
@@ -107,6 +120,14 @@ router.get('/index-edit', (req, res, next) => {
     return next(err);
   })
 })
+router.post('/adpic',uploadHandler.single('commercialpic'),(req,res,next)=>{
+  console.log(req.file);
+
+  // var temp = new docCommercial({
+  //   picPath:
+  // })
+  res.redirect('back');
+})
 router.get('/schedule/:method?', (req, res, next) => {
   switch (req.params.method) {
     case "read":
@@ -139,7 +160,7 @@ router.post('/schedule/:method', (req, res, next) => {
         date: new Date(`${req.body.time} GMT`),
         category: req.body.category,
         content: req.body.content
-      })
+      });
       docNews.countDocuments((err, number) => {
         if (err) { return next(err) }
         if (number > 0) {

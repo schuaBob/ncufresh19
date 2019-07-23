@@ -3,13 +3,13 @@
 
 <head>
     <title><%= title %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <% include ../layouts/head %>
     <% include ../layouts/script %>
     <script type="text/javascript" src="/js/ckeditor.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
-        
         .modal {
             z-index: 5010;
         }
@@ -142,7 +142,7 @@
                         <div id="news-body"
                             style="max-height: calc(100vh - 150px); overflow-y:auto; overflow-x: hidden; border: 1px solid black; border-radius: 5px;">
                             <% for(let i in news){ %>
-                            <div class="card" data-toggle="modal" data-target="#ScheduleNewsModal"
+                            <div class="card newslist" data-toggle="modal" data-target="#ScheduleNewsModal"
                                 pk="<%=news[i]['pk']%>">
                                 <div class="row align-items-center">
                                     <div class="col-sm-2">
@@ -204,11 +204,50 @@
                     </div>
                 </div>
             </div>
-
+            <div class="container" style="max-width: 90%;">
+                <div class="text-center">
+                    <div class="card-body">
+                        <h2 class="card-title">
+                            Commercial
+                        </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <img class="card-img-top" id="output">
+                            <div class="card-body">
+                                <form action="adpic" method="post" enctype="multipart/form-data">
+                                    <label for="picupload" style="color: #ec6d4f;">
+                                        <span>新增</span>
+                                        <input type="file" name="commercialpic" id="picupload" accept="image/*"
+                                            style="display: none" onchange="loadFile(event)">
+                                    </label>
+                                    <button type="submit" class="btn btn-outline-dark">提交</button>
+                                </form>
+                                <small>one at a time</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <img class="card-img-top" src="">
+                            <div class="card-body">
+                                <a href="#" class="card-link">刪除</a>
+                                <a href="#" class="card-link">編輯</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <% include ../layouts/js %>
     <script>
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
         $(document).ready(() => {
             var newseditor = undefined, Calendereditor = undefined, boardeditor = undefined;
             ClassicEditor
@@ -224,7 +263,7 @@
                 $('#Subbtn').hide();
                 $('#SaveNewsbtn').text("新增");
             })
-            $('.card').click((e) => {
+            $('.newslist').click((e) => {
                 $('#Subbtn').show();
                 $('#SaveNewsbtn').text("修改");
                 $.ajax({
