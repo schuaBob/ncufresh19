@@ -30,6 +30,9 @@
   var board_index;
   var sea ;
   var bucket;
+  var user_score;
+  var now_score;
+  var score_update_timer;
   var score_board;
   var game_time=15;
   var catch_animal_container;
@@ -67,6 +70,9 @@
   var fishman_walk;
   var generate_fish_ad;
   var fish_ad;
+  var game_score_text;
+  var score_board_text;
+  var game_score_text;
   createjs.Bitmap.prototype.getwidth = function(){
     return this.image.width * this.scaleX; 
   }
@@ -85,6 +91,20 @@
 
 
     //------------game---------------------------------
+    class Score_Text extends createjs.Text{
+      constructor(context,font,color,x,y){
+        super(context,font,color);
+        this.regX = this.getMeasuredWidth()/2;
+        this.regY = this.getMeasuredHeight()/2;
+        this.x = x;
+        this.y=y;
+        this.alpha=1;
+        stage.addChild(this);
+        createjs.Tween.get(this).to({y:y-30,alpha:0},500).call(()=>{
+          stage.removeChild(this)
+        });
+      }
+    }
     class Question{
       constructor(t,q,a,o){
         this.question=q;
@@ -119,7 +139,6 @@
           }
           else event.target.parent.wrong();
           }
- 
         });
         this.havermask.addEventListener("mouseover",function(event){
           event.target.parent.havermask.cursor = "pointer";
@@ -166,10 +185,14 @@
     
   class Animal  extends createjs.Sprite{
     constructor(type,special){
-      if(special)
+      if(special){
         super(animalsource[type].spritesheet,"special");
-      else
+        this.score = animalsource[type].score*2;
+      }
+      else{
         super(animalsource[type].spritesheet,"normal");
+        this.score =  animalsource[type].score;
+      }
       this.special=special;
       this.animaltype = type;
       //stage.addChildAt(this,stage.numChildren-2);
@@ -188,8 +211,9 @@
       catch_fish.push(this);
       animal_list = arrayRemove(animal_list,this);  
       this.gotoAndStop(this.special == true?"special_die":"normal_die");
-      console.log(this.animaltype);
       catch_animal_num[this.animaltype]+=1;
+      new Score_Text("+"+this.score,"bold 20px 微軟正黑體","#000000",this.x,this.y);
+      user_score+=this.score;
       catech_animal_update();
     }
   }
@@ -649,9 +673,9 @@
         }
         }
       };
-      animalsource.push({type:0,scroe:200,spritesheet:new createjs.SpriteSheet(bird1)});
-      animalsource.push({type:1,score:150,spritesheet:new createjs.SpriteSheet(fish1)});
-      animalsource.push({type:2,score:100,spritesheet:new createjs.SpriteSheet(fish2)});
+      animalsource.push({type:0,score:2000,spritesheet:new createjs.SpriteSheet(bird1)});
+      animalsource.push({type:1,score:250,spritesheet:new createjs.SpriteSheet(fish1)});
+      animalsource.push({type:2,score:200,spritesheet:new createjs.SpriteSheet(fish2)});
       animalsource.push({type:3,score:100,spritesheet:new createjs.SpriteSheet(fish3)});
       animalsource.push({type:4,score:100,spritesheet:new createjs.SpriteSheet(fish4)});
       animalsource.push({type:5,spritesheet:new createjs.SpriteSheet(fish_ad_data)});  
@@ -800,14 +824,16 @@
     soundbutton.scale=0.4;
     soundbutton.x = canvas_width-soundbutton.getwidth();
     soundbutton.y = canvas_height - soundbutton.getheight();
+    score_board_text = new createjs.Text("0","bold 20px 微軟正黑體","#000000");
+    score_board_text.visible =false;
     sound=true;
-    bucket.scale = 0.6;
-    bucket.scaleX = 0.67;
-    bucket.y=235;
-    bucket.x=-6;
+    bucket.scale = 0.5;
+    bucket.scaleX = 0.6;
     score_board.scale =0.5;
-    score_board.scaleY =0.6;
-    score_board.y=110;
+    score_board.scaleY =0.5;
+    bucket.y=257;
+    bucket.x=-0;
+    score_board.y=140;
     bucket.visible=false;
     score_board.visible =false;
     sound_shape.graphics.beginFill("#FFFFFF").drawRect(canvas_width-soundbutton.getwidth(),canvas_height - soundbutton.getheight(),soundbutton.getwidth(),soundbutton.getheight());
@@ -832,6 +858,7 @@
     stage.addChild(fish_ad);
     stage.addChild(score_board);
     stage.addChild(bucket);
+    stage.addChild(score_board_text);
     create_back_container();
     create_leave_container();
     create_labbybutton();
@@ -1155,7 +1182,16 @@
     stage.setChildIndex(score_board,1);
     bucket.visible = true;
     score_board.visible =true;
-
+    score_board_text.scale=1.4
+    score_board_text.rotation=-4;
+    score_board_text.text = user_score+"";
+    score_board_text.regX = score_board_text.getMeasuredWidth()/2;
+    score_board_text.regY = score_board_text.getMeasuredHeight()/2;
+    score_board_text.x = score_board.getwidth()/2;
+    score_board_text.y = score_board.y+51.5;
+    bucket.y=257;
+    bucket.x=-0;
+    score_board.y=140;
     for(i=0;i<catch_fish.length;i++){
       catch_fish[i].scale *= 1.56;
       catch_fish[i].alpha=1;
@@ -1255,7 +1291,7 @@
     die_fish2.x=die_fish1.x+150;
     die_fish3.x=die_fish2.x+170;
     die_fish4.x=die_fish3.x+165;
-    score_catch_animal_container.x =140;
+    score_catch_animal_container.x =155;
     score_catch_animal_container.y=130;
   }
   function create_harpoon_text(){
@@ -1269,12 +1305,31 @@
     game_time_image.scale=0.345;
     stage.addChild(game_time_image);
   }
+  function create_score_board_update(){
+    score_board_text.scale=1;
+    score_board_text.rotation=0;
+    score_board_text.text = "Score:0"
+    score_board_text.visible =true;
+    score_board_text.x = back_container.x+50;
+    score_board_text.y = harpoon_text.y;
+    score_update_timer = setInterval(score_text_update,10);
+  }
   // function create_(){
   //   game_time_image.x=canvas_width/2-48;
   //   game_time_image.y=12.5;
   //   game_time_image.scale=0.345;
   //   stage.addChild(game_time_image);
   // }
+  function score_text_update(){
+    if(user_score != now_score){
+      v = now_score>user_score?-5:5;
+      if(Math.abs(now_score-user_score)<5)now_score = user_score;
+      else{
+        now_score+=v;
+      }
+      score_board_text.text = (now==1?"Score:":"")+now_score+"";
+    }
+  }
   function game_start(){
     gamestart=true;
     back_container.visible=true;
@@ -1283,6 +1338,7 @@
     create_harpoon_text();
     create_catch_animal_container();
     create_game_timer();
+    create_score_board_update();
     game_event();
     open_bubble();
     open_fish();  
@@ -1499,7 +1555,12 @@
     clese_bird();
     clese_fish();
     clese_bubble();
+    clearInterval(score_update_timer);
+    user_score=0;
+    now_score=0;
     fisherman.visible=true;
+    bucket.visible =false;
+    score_board.visible =false;
     fisherman_harpoon.visible=true;
     sea.visible=true;
     stop =false;
@@ -1512,6 +1573,7 @@
     fisherman.scale =0.16;
     fisherman_harpoon.scale=0.16;
     fisherman.x = 75;
+    score_board_text.visible=false;
     fisherman.y = canvas_seaheight-25;
     fisherman.regX = fisherman.image.width/2;
     fisherman.regY = fisherman.image.height/2;
@@ -1522,6 +1584,7 @@
     sea.alpha=0.3;
     sea.x=0;
     sea.y=0;
+    new Score_Text("+10000","bold 30px 微軟正黑體","#000000",200,200);
     labbybutton_container.visible=true;
     open_fishmanwalk();
     open_fish_ad();
