@@ -1,28 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title><%= title %></title>
     <% include ../layouts/head %>
     <% include ../layouts/script %>
-    <link rel='stylesheet' href='style.css' />    
-  </head>
-  <body class="index_bg">
-      <% include ../layouts/header %>
-      <main id="index_main">
-          <% /*身分選擇*/ %>
-          <div class="identity">
-            <div class="character" id="100">
-                  <a href="/documents/undergraduate_must"><img src="大學生.png" class="under fish_size"></a>
-              </div>
-             <div class="character">
-                  <a href="/documents/graduate_must"><img src="碩士魚.png" class="gra fish_size"></a>
-              </div>
-              <div class="character">
-                  <a href="/documents/common"><img src="共同事項.png" class="com fish_size"></a>
-          </div> 
-      </main>
-      <% include ../layouts/js %>
-      <% include js %>
-  </body>
+</head>
+<body>
+    <script>
+        $(document).ready(function(){
+            var width = innerWidth;
+            if(width <= 768) document.location.href = "/documents/index_phone";
+            else document.location.href = "/documents/index_com";
+        });
+    </script>
+</body>
 </html>
