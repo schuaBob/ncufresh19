@@ -14,14 +14,14 @@
       
       <% /* 使用者資訊 待補 */ %>
       <div class="vertical-line"></div>
-      <div class="username" id="username"></div>
-      <div class="student-number" id="student-number"></div>
+      <div class="username" id="username"><%= user.name %></div>
+      <div class="student-number" id="student-number"><%= user.id %></div>
       
       <% /* BTNs */ %>
-      <div class="link" id="game-score">遊戲積分</div>
-      <div class="link" id="game">小遊戲</div>
-      <div class="link" id="ask-record">發問紀錄</div>
-      <div class="link" id="ask">我要發問</div>
+      <div class="links" id="game-score">遊戲積分</div>
+      <div class="links" id="game">小遊戲</div>
+      <div class="links" id="ask-record">發問紀錄</div>
+      <div class="links" id="ask">我要發問</div>
 
       <% /* 頭貼外框 */ %>
       <div class="circle">
@@ -39,9 +39,9 @@
       <div class="toggle-container">
         
         <% /* 遊戲積分 */ %>
-        <div class="toggles showToggle" id="game-score-toggle">
+        <div class="tog showToggle" id="game-score-toggle">
           <div class="score">
-            <h1 id="sum-point"></h1>
+            <h1 id="sum-point"><%= user.score_sum %></h1>
             <p>分</p>
           </div>
           <div class="score-container">
