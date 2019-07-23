@@ -66,9 +66,18 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.get('/', (req, res, next) => {
-  docNews.find().exec((err, doc) => {
-    if (err) { return next(err) };
-    var newsDocs = doc.filter((item, index, array) => {
+  Promise.all([
+    docNews.find({},{
+      _id:0,
+      __v:0
+    }).exec(),
+    docCommercial.find({}, {
+      _id: 0,
+      __v: 0
+    }).exec()
+  ]).then((result) => {
+    var news = result[0], commercial = result[1];
+    var newsDocs = news.filter((item) => {
       var TimeNow = new Date().getTime() + 28800000;
       var pass = (TimeNow - new Date(item.date).getTime()) / (1000 * 60 * 60 * 24)
       if (pass > 0) {
@@ -77,10 +86,11 @@ router.get('/', (req, res, next) => {
       return pass > 0
     })
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    console.log(`docNews:${newsDocs}`);
     console.log(`User:${req.user}`);
-    res.render('index/index', { title: "新生知訊網", News: newsDocs, icon: catePicArr, user: req.user })
-  });
+    res.render('index/index', { title: "新生知訊網", News: newsDocs, commercial: commercial, icon: catePicArr, user: req.user })
+  }).catch((error) => {
+    if (error) return next(error);
+  })
 });
 
 router.get('/index-edit', (req, res, next) => {
