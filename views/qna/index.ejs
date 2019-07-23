@@ -145,11 +145,13 @@
 
   <% include ../layouts/header %>
   <main id="main">
-
-    <div class="titleSpace">
-      <span class="seaBlue font-weight-bold" id="qatxt">Q&A</span>
-      <span id="qatxt_c">新生問答</span>
+    <div id="outterTitleSpace">
+      <div class="titleSpace">
+        <span class="seaBlue font-weight-bold" id="qatxt">Q&A</span>
+        <span id="qatxt_c">新生問答</span>
+      </div>
     </div>
+    
     <div class="main d-flex">
       <div class="leftSide">
         <div class="pic_classification">
@@ -186,8 +188,16 @@
           <div class="mobileFilter">
             <span>篩</span>
             <div class="mobileFilterContent">
-              <div class="option">
+              <div class="mobileFilterButton">
                 <ul>
+                  <li>排序</li>
+                  <li class="sortButton" sort="time">時間</li>
+                  <li class="sortButton" sort="count">人氣</li>
+                </ul>
+              </div>
+              <div class="option">                
+                <ul>
+                  <li>分類</li>
                   <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
                   <li><a href="/qna/life"><i class="fas fa-angle-right" id="life"></i>校園生活</a></li>
                   <li><a href="/qna/course"><i class="fas fa-angle-right" id="course"></i>課程相關</a></li>
