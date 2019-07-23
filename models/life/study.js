@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 
 var Study = mongoose.Schema({
     mainTitle    : String,
+    name         : String,
     subTitle     : String,
+    picture      : String,
     content      : String
 });
 

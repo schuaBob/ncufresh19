@@ -1,6 +1,11 @@
+html {
+  height: 100%;
+}
+
 body {
   padding: 200px;
   background-color: #fff9dc;
+  height: 100%;
 
 }
 
@@ -12,8 +17,6 @@ ul {
   list-style-type:none;
   padding: 0;
 }
-
-
 
 .mainTitle {
   position: relative;
@@ -35,7 +38,7 @@ ul {
   left: 55px;
   display: block;
   width: 900px;
-  height: 400px;
+  height: 500px;
   overflow-y: scroll;
   overflow-x: hidden; 
   bottom: 0;
@@ -48,10 +51,6 @@ ul {
 #main {
   position: relative;
   top: 20px;
-}
-
-.foodList {
-  position: absolute;
 }
 
 .sideNav {
@@ -76,16 +75,20 @@ ul {
   height: 22vh;
 }
 
+/*-----------study------------*/
+
 .studyPicture {
   position: relative;
 }
 .studyPicture div {
   float: left;
+  width: 35%;
+  height: 35%;
   padding: 5px;
 }
 .studyImg {
-  max-width: 200px;
-  max-height: 300px;
+  width: 100%;
+  height: 100%;
 }
 
 .subTitle {
@@ -93,29 +96,125 @@ ul {
   padding: 10px;
 }
 .studyTitle {
-  background-color: gray;
+  background-color: #e0e0e0;
+  height: 100px;
 }
 
+#name {
+  position: absolute;
+  margin: 2%;
+  margin-left: 7%;
+}
+
+h1 {
+  display: inline;
+}
+h5 {
+  display: inline;
+}
+
+
+.subStudyContent {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  margin: 2%;
+}
+
+.subStudyContent div {
+  display: inline-block;
+}
+
+.SpictureArea {
+  position: relative;
+  left: 10%;
+  margin: 0 auto;
+  width: 40%;
+}
+
+#subStudyImg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.time {
+  top: 10vh;
+  left: 20%;
+  position: relative;
+}
+
+.time p {
+  font-size: 25px;
+}
+
+
+.studyTimeline {
+  top: 10vh;
+  width: 30%;
+  height: 40%;
+  left: 20%;
+  position: relative;
+  border-left:4px solid darkblue;
+}
+.event {
+  margin-bottom: 0;
+}
+
+.event li {
+  margin-bottom: 5%;
+  font-size: 25px;
+}
+.studyContent {
+  position: relative;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+}
+
+
+
+
+
+
+
+
+
 /*---------- food -----------*/
-#FpictureArea {
+
+.foodList {
+  position: absolute;
+}
+
+.foodList li {
+  z-index: 100;
+}
+
+.FpictureArea {
   position: relative;
   display: block;
-  overflow: hidden;
-  cursor: -webkit-grab;
-  height:400px;
-  width: 800px;
-  left: 150px;
+  overflow: scroll;
+  margin: 0 auto;
+  height: 400px;
+  width: 700px;
 }
-#foodImg {
-  position: relative;
-  top: 0;
-  left: 0;
+.foodImg {
+  position: absolute;
+  top: 100%;
+  left: 100%;
   pointer-events: none;
   -moz-user-select: none;
 }
+#areaName {
+  text-align: center;
+}
 
-
-
+.foodIcon {
+  position: absolute;
+  max-width: 10.8%;
+  max-height: 10.8%;
+  z-index: 100;
+}
 
 
 

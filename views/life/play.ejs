@@ -9,9 +9,6 @@
     
     <body>
         <% include ../layouts/header %>
-        <% if(user && user.role === 'admin') { %>
-            <botton type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</botton>
-        <% } %>
         <div class="sideNav" id="navi">
                 <ul>
                     <li><a href="/life/study"> <img class="navSubBtn" src="naviBefore0.png"> </a></li>
