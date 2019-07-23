@@ -8,9 +8,9 @@ body {
 
 .bg {
   position: absolute;
-  top: 180px;
-  width: 99%;
-  height: 76%;
+  top: 163px;
+  width: 1500px;
+  height: 590px;
   overflow: hidden;
 }
 
@@ -61,7 +61,6 @@ body {
   height: 440px;
   overflow-x: hidden;
   overflow-y: scroll;
-  
 }
 
 .links {
