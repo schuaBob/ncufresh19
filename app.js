@@ -150,7 +150,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('index/error', {});
+  res.render('index/error', {title: "新生知訊網", user: req.user});
 });
 
 //------------------- added by 陳威捷 (用於ejs模板中的函式)
