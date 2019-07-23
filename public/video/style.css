@@ -50,6 +50,21 @@ a:visited {
   border-radius: 10px;
 }
 
+.back {
+  margin-top: 15px;
+  margin-right: 5px;
+  margin-left: 80px;
+  float: left;
+}
+
+.seahorse {
+  display: inline-block;
+}
+
+.seahorse:hover {
+  transform: scale(1.25);
+}
+
 .line {
   height: 100px;
   width: 0px;
@@ -62,9 +77,10 @@ a:visited {
 }
 
 .button_area {
-  margin-left: 20%;
+  margin-left: 25%;
   width: 60%;
-  height: 450px;
+  max-width: 760px;
+  max-height: 450px;
   padding-top: 20px;
   overflow: scroll;
 }
@@ -72,7 +88,7 @@ a:visited {
 .v_button {
   height: 143px;
   width: 200px;
-  border-style: solid;
+  border-style:transparent;
   border-width: 3px;
   display: inline-block;
   margin-right: 40px;
@@ -80,6 +96,21 @@ a:visited {
 }
 
 .v_button:hover {
+}
+
+.whale {
+  height: auto;
+  max-width: 200px;
+  position: absolute;
+  right: 10px;
+  bottom: 50px;
+}
+
+.harbor {
+  height: auto;
+  max-width: 100%;
+  bottom: 0px;
+  overflow: hidden;
 }
 
 .tri {
@@ -101,17 +132,17 @@ a:visited {
   width: 60%;
   height: 60%;
   text-align: center;
-  position: fixed;
+  position: relative;
   bottom: 0px;
 }
 
 .background {
-  min-height: 450px;
+  min-height: 500px;
   height: 60%;
   background-color: #0163b0;
-  position: fixed;
-  border-radius: 50px 50px 0px 0px;
-  min-width: 740px;
+  position: relative;
+  border-radius: 50px;
+  min-width: 760px;
   bottom: 0px;
   display:flex;
   justify-content:center;

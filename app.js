@@ -161,4 +161,3 @@ app.locals.convertDateToString = function (date) {
 //----------------------------------
 
 module.exports = app;
-app.listen(8080);
