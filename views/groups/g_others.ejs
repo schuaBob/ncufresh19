@@ -11,7 +11,7 @@
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="yellowBg">
     <% include ../layouts/header %>
 
         <div class="title_bar">
@@ -50,13 +50,13 @@
                                 <label for="intro" class="col-form-label">介紹</label>
                                 <textarea class="form-control" id="intro" name="intro"></textarea>
                             </div>
-
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
+
 
                 </div>
             </div>
@@ -74,20 +74,24 @@
                         <form>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">名稱</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <select name="name" id="select_others_name" class="form-control">
+                                        <% for(var i in others) {%>
+                                        <option value="<%= others[i].name%>"><%=others[i].name%></option>
+                                        <%}%>
+                                                </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="intro" class="col-form-label">介紹</label>
-                                <textarea class="form-control" id="intro" name="intro"></textarea>
+                                <label for="edit_intro" class="col-form-label">介紹</label>
+                                <textarea class="form-control" id="edit_intro" name="intro"></textarea>
                             </div>
 
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Save changes</button>
-                        <button class="btn btn-primary">delete</button>
+                        <button id="edit_others_submit" class="btn btn-primary">Save changes</button>
+                        <button id="delete_others_submit" class="btn btn-danger">Delete</button>
                     </div>
 
                 </div>
@@ -117,6 +121,8 @@
 
 
             <%_ } -%>
+                <img src="其他.PNG" class=backgroundimg>
+
                 <script src="/groups/js/groups.js"></script>
 
                 <% include ../layouts/js %>
