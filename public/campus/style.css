@@ -64,7 +64,9 @@ h1 {
   max-height: calc(178px + 3658 / 5781 * (100vw - 32px));
   margin-top: 3%;
   margin-bottom: 15px;
-  padding: 0%;
+  padding: 0%;  
+  margin-left: 5% !important;
+  width: 90% !important;
 }
 
 .indexelepic.hide {
@@ -270,10 +272,8 @@ body {
   position: relative;
   margin-right: 11%;
   margin-left: 20%;
-  /* margin-top: calc((100vh - 154px - 69vw*996/2000)/2);
-  margin-bottom: calc((100vh - 154px - 69vw*996/2000)/2); */
+  margin-top: calc(42vh - 20vw);
   margin-bottom: auto;
-  margin-top: auto;
   min-height: calc(69vw * 996 / 2000);
   max-height: calc(100vh - 154px);
 }
@@ -286,6 +286,10 @@ main {
   padding: 0;
   width: 100%;
   position: absolute;
+}
+
+body{  
+  overflow: hidden;
 }
 
 #sidebar_left {
@@ -466,15 +470,16 @@ li {
 }
 
 .title_bar {
+  min-width: 150px;
   padding-left: 5%;
-  width: 100%;
+  width: 20%;
   background-color: white;
   position: absolute;
 }
 
 .title {
   height: 50px;
-  width: 140px;
+  width: 80px;
   margin-left: 10px;
   float: left;
   color: #0D4966;
@@ -591,6 +596,12 @@ li {
   width: 20%;
 }
 
+.mg {
+  position: relative;
+  left: 15vw;
+  width: 15%;
+}
+
 .zoomContainer{
   z-index: 100000;
 }
@@ -600,7 +611,7 @@ li {
   background-color: #FFF9DC;
 }
 
-#List_index li{
+#List_index li img{
   position: relative;
 }
 
@@ -619,6 +630,7 @@ li {
     position: absolute;
     background-image: url("./SEA2.png");
     background-position: bottom, 0px;
+    background-size: 100vw;
   }
 
   .main_list_detail{
@@ -695,7 +707,7 @@ li {
     margin-right: 0;
     margin-left: 0;
     padding: 0;
-    height: calc(46vw + 8vw / 2);
+    height: calc(46vw + 8vw / 4);
   }
 
   #List_index li {
@@ -752,11 +764,11 @@ li {
 
   #indexmodalcar {
     margin-top: auto;
-    width: calc(100vw - 32px);
+    /* width: calc(100vw - 32px); */
   }
 
   #indexmodalp {
-    width: calc(100vw - 32px);
+    /* width: calc(100vw - 32px); */
     margin-bottom: auto;
   }
 
@@ -780,6 +792,10 @@ li {
     display: none;
   }
 
+  .sailor1 {
+    display: none;
+  }
+
   .modal-dialog{
     margin-left:0% !important;
     margin-right: 0% !important
@@ -789,6 +805,10 @@ li {
     display: none;
   }
   .show3D{
+    display: none;
+  }
+
+  .decoration{
     display: none;
   }
 }
