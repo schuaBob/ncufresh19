@@ -39,7 +39,18 @@ main {
     height: 100px;
     width: 100px;
 }
-
+#nextbtn{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    transform: rotate(-90deg);
+}
+#prebtn{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    transform: rotate(90deg);
+}
 #indexLogo {
     position: absolute;
     z-index: 500;
@@ -120,7 +131,7 @@ main {
     z-index: 5000;
 }
 
-#indexPage3-frame{
+#indexPage3-frame {
     position: absolute;
     width: 100vmax;
     height: 100vmin;
@@ -133,28 +144,28 @@ main {
     height: inherit;
 }
 
-#pickMonth .container{
+#pickMonth .container {
     height: 100%;
     padding-top: 4%;
     padding-bottom: 4%;
 }
 
-.selectMonth{
-    text-align:center;
+.selectMonth {
+    text-align: center;
     position: relative;
 }
 
-.selectMonth h5{
+.selectMonth h5 {
     position: absolute;
     display: block;
-    top: calc( 50% - 12px);
+    top: calc(50% - 12px);
     width: 100%;
     text-align: center;
     padding: 0;
     margin: 0;
 }
 
-#pickMonth .row{
+#pickMonth .row {
     height: 30%;
 }
 
@@ -173,22 +184,22 @@ main {
     height: 65%;
 }
 
-#days{
+#days {
     position: relative;
     width: 100%;
     height: 35%;
 }
 
-.day{
+.day {
     display: inline-block;
     top: 10%;
     position: absolute;
-<<<<<<< HEAD
 }
-#board-detail{
+
+#board-detail {
     width: 65%;
-    margin-right:17.5%;
-    margin-left:17.5%;
+    margin-right: 17.5%;
+    margin-left: 17.5%;
     margin-top: 7%;
     height: 73%;
     border: 1px solid #0163b0;
@@ -197,8 +208,10 @@ main {
     position: absolute;
 }
 
-
-
-=======
+.carousel-control-prev-icon {
+    background-image: none;
 }
->>>>>>> d3ae58522dde65d0108d1820e18f2eb4422b616a
+
+.carousel-control-next-icon {
+    background-image: none;
+}

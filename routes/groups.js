@@ -7,7 +7,9 @@ var others_data = require('../models/groups/others');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('groups/index', { title: 'Express' });
+    res.render('groups/index', { title: 'Express' ,
+    user:req.user
+});
 });
 /////////??????????????//////////////////////////////////department////////////////////////////////////////////////////////////////
 router.get('/department', function(req, res, next) {

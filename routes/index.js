@@ -143,7 +143,7 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
   })
   docCommercial.countDocuments((err, number) => {
     if (err) { return next(err) };
-    if (number === 0) {
+    if (number == 0) {
       for (let i in picArray) {
         picArray[i]['pk'] = i;
       }
@@ -155,9 +155,10 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
       })
     } else {
       docCommercial.find().sort({ pk: -1 }).limit(1).exec((err, maxPkDoc) => {
+        console.log(maxPkDoc);
         if (err) { return next(err) }
         for (let i in picArray) {
-          picArray[i]['pk'] = i + maxPkDoc + 1;
+          picArray[i]['pk'] = i + maxPkDoc[0].pk + 1;
         }
         docCommercial.create(picArray, (err) => {
           if (err) { return next(err) };
