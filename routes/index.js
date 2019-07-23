@@ -140,7 +140,7 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
       docCommercial.create(picArray).then(() => {
         res.redirect('/index-edit');
       }).catch((error) => {
-        console.log(error)
+        console.log(error);
         return next(error);
       })
     } else {
@@ -156,6 +156,16 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
       })
     }
   })
+})
+router.get('/adpic/delete?', (req, res, next) => {
+  if (req.query.pk) {
+    docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err) => {
+      if (err) return next(err);
+      res.redirect('/index-edit');
+    })
+  } else {
+    res.redirect('/index-edit');
+  }
 })
 router.get('/schedule/:method?', (req, res, next) => {
   switch (req.params.method) {

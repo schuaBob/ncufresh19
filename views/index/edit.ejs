@@ -220,9 +220,10 @@
                                     <label for="picupload" style="color: #ec6d4f;">
                                         <span>新增</span>
                                         <input type="file" name="commercialpic" id="picupload" accept="image/*"
-                                            style="display: none" multiple>
+                                            style="display: none" multiple onchange="loadFile(event)">
                                     </label>
                                     <button type="submit" class="btn btn-outline-dark">提交</button>
+                                    <label id="howMany"></label>
                                 </form>
                                 <small>maxium 6 pic at a time</small>
                             </div>
@@ -231,10 +232,9 @@
                     <% for (let i in commercial) { %>
                     <div class="col-6">
                         <div class="card">
-                            <img class="card-img-top" src="">
+                            <img class="card-img-top" src="<%=commercial[i]['picPath']%>">
                             <div class="card-body">
-                                <a href="#" class="card-link">刪除</a>
-                                <a href="#" class="card-link">編輯</a>
+                                <a href="/adpic/delete?pk=<%= commercial[i]['pk']%>" class="card-link">刪除</a>
                             </div>
                         </div>
                     </div>
@@ -245,6 +245,9 @@
     </main>
     <% include ../layouts/js %>
     <script>
+        var loadFile = function (event) {
+            $('#howMany').text(`上傳${event.target.files.length}個圖片`);
+        };
         $(document).ready(() => {
             var newseditor = undefined, Calendereditor = undefined, boardeditor = undefined;
             ClassicEditor
