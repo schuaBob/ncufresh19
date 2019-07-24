@@ -100,7 +100,7 @@
         this.y=y;
         this.alpha=1;
         stage.addChild(this);
-        createjs.Tween.get(this).to({y:y-30,alpha:0},500).call(()=>{
+        createjs.Tween.get(this).to({y:y-40,alpha:0},550).call(()=>{
           stage.removeChild(this)
         });
       }
@@ -158,6 +158,8 @@
         ans_num--;
         if(ans_num ==0){
           questionboard.gotoAndStop("correct");
+          new Score_Text("+"+animalsource[board_index].score,"bold 30px 微軟正黑體","#000000",canvas_width/2,canvas_height/2);
+          user_score+=animalsource[board_index].score;
           createjs.Tween.get(questionboard).wait(1000).call(()=>{
             questionboard.gotoAndStop("normal");
             next_question();
@@ -196,7 +198,7 @@
       this.special=special;
       this.animaltype = type;
       //stage.addChildAt(this,stage.numChildren-2);
-      stage.addChildAt(this,3);
+      stage.addChildAt(this,4);
     }
     move(){
       if(getrandom(1000)<5){
@@ -212,8 +214,10 @@
       animal_list = arrayRemove(animal_list,this);  
       this.gotoAndStop(this.special == true?"special_die":"normal_die");
       catch_animal_num[this.animaltype]+=1;
-      new Score_Text("+"+this.score,"bold 20px 微軟正黑體","#000000",this.x,this.y);
-      user_score+=this.score;
+      if(this.animaltype != 0){
+        new Score_Text("+"+this.score,"bold 20px 微軟正黑體","#000000",this.x,this.y);
+        user_score+=this.score;
+      }
       catech_animal_update();
     }
   }
@@ -506,7 +510,7 @@
   function open_bird(){
     generate_bird = setInterval(()=>{
       if(!stop)
-      if(getrandom(100)<20){
+      if(getrandom(100000)<2){
         animal_list.push(new bird(0,false));
       }
    },1000);
@@ -1183,12 +1187,10 @@
     bucket.visible = true;
     score_board.visible =true;
     score_board_text.scale=1.4
-    score_board_text.rotation=-4;
+    score_board_text.rotation=-4.5;
     score_board_text.text = user_score+"";
-    score_board_text.regX = score_board_text.getMeasuredWidth()/2;
-    score_board_text.regY = score_board_text.getMeasuredHeight()/2;
-    score_board_text.x = score_board.getwidth()/2;
-    score_board_text.y = score_board.y+51.5;
+    score_board_text.x = score_board.getwidth()/2-score_board_text.getMeasuredWidth()/2-10;
+    score_board_text.y = score_board.y+51.5-score_board_text.getMeasuredHeight()/2-3;
     bucket.y=257;
     bucket.x=-0;
     score_board.y=140;
@@ -1208,7 +1210,10 @@
         for(i=0;i<catch_fish.length;i++){
           if(catch_fish[i].animaltype  ==0){
             brid_num++;
-            createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},600).wait(600).to({y:bucket.y+10,x:bucket.x+bucket.getwidth()/2},600).to({visible:false});
+            createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},600).wait(600).to({y:bucket.y+10,x:bucket.x+bucket.getwidth()/2},600).to({visible:false}).call(()=>{
+              new Score_Text("+"+animalsource[0].score,"bold 20px 微軟正黑體","#000000",bucket.x+bucket.getwidth()/2,bucket.y+10);
+              user_score+=animalsource[0].score;
+            });
           }
         }
         if(catch_fish.length!=0)
@@ -1292,7 +1297,7 @@
     die_fish3.x=die_fish2.x+170;
     die_fish4.x=die_fish3.x+165;
     score_catch_animal_container.x =155;
-    score_catch_animal_container.y=130;
+    score_catch_animal_container.y=100;
   }
   function create_harpoon_text(){
     harpoon_text.x  =canvas_width-110;
@@ -1322,8 +1327,8 @@
   // }
   function score_text_update(){
     if(user_score != now_score){
-      v = now_score>user_score?-5:5;
-      if(Math.abs(now_score-user_score)<5)now_score = user_score;
+      v = now_score>user_score?-2:2;
+      if(Math.abs(now_score-user_score)<2)now_score = user_score;
       else{
         now_score+=v;
       }
@@ -1584,7 +1589,6 @@
     sea.alpha=0.3;
     sea.x=0;
     sea.y=0;
-    new Score_Text("+10000","bold 30px 微軟正黑體","#000000",200,200);
     labbybutton_container.visible=true;
     open_fishmanwalk();
     open_fish_ad();
