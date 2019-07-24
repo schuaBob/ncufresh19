@@ -8,7 +8,9 @@ var UserSchema = mongoose.Schema({
     role: { type: String, default: "student" },
     name: String,
     score_sum: { type: Number, default: 0 },
-    score_high: { type: Number, default: 0 }
+    score_high: { type: Number, default: 0 },
+    update: { type: Date, default: Date.now() },
+    avatar: { type: String, default: "default-profile.png" }
 });
 
 UserSchema.methods.comparePassword = (password, hash, callback) => {
