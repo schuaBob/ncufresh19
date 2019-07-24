@@ -219,11 +219,12 @@ h5 {
 .foodList {
   position: absolute;
   top: 23vh;
-  left: 10vw;
+  left: 8vw;
 }
 
 .foodList li {
   z-index: 100;
+  font-size: 25px;
 }
 
 .FpictureArea {

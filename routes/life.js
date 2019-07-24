@@ -257,6 +257,34 @@ router.post('/addStudyContent', upload.single('picture'), function(req, res, nex
   });
 });
 
+router.post('/addFoodContent', function(req, res, next) {
+  food.findOne({mainTitle: req.body.modifyFoodTitle}).exec(function(err, result) {
+    if (result !== null) {
+      if (req.body.foodTitle) {
+        food.updateOne({ mainTitle: req.body.modifyFoodTitle }, {mainTitle: req.body.foodTitle}, function(err) {
+            if (err) console.log("Fail to update");
+            else console.log("success to update mainTitle");
+        });
+      };
+      if (req.body.foodDetail) {
+        food.updateOne({ mainTitle: req.body.modifyFoodTitle }, {content: req.body.foodDetail}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update content");
+      });
+      };
+    } else {
+      new food({
+        mainTitle: req.body.foodTitle,
+        content: req.body.foodDetail
+      }).save(function(err) {
+        if (err) console.log('FAIL');
+        else console.log('SUCCESS');
+      });
+    };
+  res.redirect('back');
+  });
+});
+
 
 
 
