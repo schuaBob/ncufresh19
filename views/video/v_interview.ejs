@@ -12,6 +12,21 @@
             <%/* 標題 */%>
             <% include ./title_bar %>
 
+            <%/* 返回按鈕 */%>
+            <% if(title_bar[2] == null){ %>
+                <a href="/video/">
+                    <div class="back"><div class="seahorse"><img src="/video/返回按鈕.png"></div></div>
+                </a>
+            <% }else if(title_bar[4] == null ){ %>
+                <a href="/video/<%= back_name %>">
+                    <div class="back"><div class="seahorse"><img src="/video/返回按鈕.png"></div></div>
+                </a>
+            <% }else if(title_bar[4] != null){ %>
+                <a href="/video/v_interview/<%= back_name %>">
+                    <div class="back"><div class="seahorse"><img src="/video/返回按鈕.png"></div></div>
+                </a>
+            <% } %>
+
             <%/* 各學院縮圖連結 */%>
             <div class="button_area">
                 <a href="/video/v_interview/v_engineering"><img src="/video/工院.jpg" class="v_button"></a>
@@ -22,7 +37,10 @@
                 <a href="/video/v_interview/v_science"><img src="/video/理院.jpg" class="v_button"></a>
                 <a href="/video/v_interview/v_computer"><img src="/video/資電.jpg" class="v_button"></a>
                 <a href="/video/v_interview/v_management"><img src="/video/管院.jpg" class="v_button"></a>
-                </div>
+            </div>
+
+            <img src="/video/鯨.png" class="whale">
+            
         </main>
 
     </body>

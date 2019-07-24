@@ -9,9 +9,6 @@
     
     <body>
         <% include ../layouts/header %>
-        <% if(user && user.role === 'admin') { %>
-            <botton type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</botton>
-        <% } %>
         <div class="sideNav" id="navi">
                 <ul>
                     <li><a href="/life/study"> <img class="navSubBtn" src="naviBefore0.png"> </a></li>
@@ -20,12 +17,14 @@
                     <li><a href="/life/live"> <img class="navSubBtn" src="naviBefore3.png"> </a></li>
                 </ul>
             </div>
-            <div class="mainTitle">
+            <!-- <div class="mainTitle">
                     <div class="titleText">
                         <h2>PLAY</h2>
                         <h3>哪裡好玩</h3>
                     </div>
-                </div>
+                </div> -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal" style="position: absolute; z-index: 1; left: 15vw;" id="delete_picture">刪除/修改</button>
         <main id="main">
             <!--content-->
             <div class="content">
@@ -48,7 +47,7 @@
                     </div>
                     <% } %>
             </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
+            
             <!--Modal-->
                 <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -99,7 +98,6 @@
                         </div> <!--/.modal-content-->
                     </div> <!--/.modal -->
                 </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal" style="position: absolute; z-index: 1; left: 15vw;" id="delete_picture">刪除/修改</button>
             <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

@@ -67,28 +67,44 @@ router.get('/live', function(req, res, next) {
 });
 
 router.get('/study/lit', function(req, res, next) {
-  res.render('life/subStudy');
+  study.find({}, function(err, data) {
+    res.render('life/subStudy', { data: data, user: req.user });
+  })
 });
 router.get('/study/science', function(req, res, next) {
-  res.render('life/subStudy');
+  study.find({}, function(err, data) {
+    res.render('life/subStudy', { data: data, user: req.user });
+  })
 });
 router.get('/study/ec', function(req, res, next) {
-  res.render('life/subStudy');
+  study.find({}, function(err, data) {
+    res.render('life/subStudy', { data: data, user: req.user });
+  })
 });
 router.get('/study/mgt', function(req, res, next) {
-  res.render('life/subStudy');
+  study.find({}, function(err, data) {
+    res.render('life/subStudy', { data: data, user: req.user });
+  })
 });
 router.get('/study/ceecs', function(req, res,next) {
-  res.render('life/subStudy');
+  study.find({}, function(err, data) {
+    res.render('life/subStudy', { data: data, user: req.user });
+  })
 });
 router.get('/study/escollege', function(req, res, next) {
-  res.render('life/subStudy');
+  study.find({}, function(err, data) {
+    res.render('life/subStudy', { data: data, user: req.user });
+  })
 });
 router.get('/study/hakka',function(req, res, next) {
-  res.render('life/subStudy');
+  study.find({}, function(err, data) {
+    res.render('life/subStudy', { data: data, user: req.user });
+  })
 });
 router.get('/study/chst', function(req, res, next) {
-  res.render('life/subStudy');
+  study.find({}, function(err, data) {
+    res.render('life/subStudy', { data: data, user: req.user });
+  })
 });
 
 /*-----------------------------後台------------------------------*/
@@ -143,7 +159,6 @@ router.post('/addLiveContent', upload.single('picture'), function(req, res, next
   });
 });
 
-  
 
 router.post('/addPlayContent', upload.single('picture'), function(req, res, next) {
   if (req.file) {
@@ -191,6 +206,60 @@ router.post('/addPlayContent', upload.single('picture'), function(req, res, next
   });
 });
 
+router.post('/addStudyContent', upload.single('picture'), function(req, res, next) {
+  if (req.file) {
+    var cuted = req.file.path.split('/');
+    var pathed = cuted[2] + "/" + cuted[3];
+  }
+  study.findOne({mainTitle: req.body.modifyMainTitle}).exec(function(err, result) {
+    if (result !== null) {
+      if (req.body.mainTitle) {
+        study.updateOne({ mainTitle: req.body.modifyMainTitle }, {mainTitle: req.body.mainTitle}, function(err) {
+            if (err) console.log("Fail to update");
+            else console.log("success to update mainTitle");
+        });
+      };
+      if (req.body.name) {
+        study.updateOne({ mainTitle: req.body.modifyMainTitle }, {name: req.body.name}, function(err) {
+            if (err) console.log("Fail to update");
+            else console.log("success to update name");
+        });
+      };
+      if (req.body.subTitle) {
+        study.updateOne({ mainTitle: req.body.modifyMainTitle }, {subTitle: req.body.subTitle}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update subTitle");
+        });
+      };
+      if (req.body.content) {
+        study.updateOne({ mainTitle: req.body.modifyMainTitle }, {content: req.body.content}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update content");
+        });
+      };
+      if (req.file) {
+        study.updateOne({ mainTitle: req.body.modifyMainTitle }, {picture: pathed}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update picture");
+        });
+      };
+    } else {
+      new study({
+        mainTitle: req.body.mainTitle,
+        name: req.body.name,
+        subTitle: req.body.subTitle,
+        picture: pathed,
+        content: req.body.content
+      }).save(function(err) {
+        if (err) console.log('FAIL');
+        else console.log('SUCCESS');
+      });
+    };
+  res.redirect('back');
+  });
+});
+
+
 router.post('/deleteLiveContent', function(req, res, next) {
   live.deleteOne({ mainTitle: req.body.mainTitle }, function(err) {
     if(err) console.log('Fail');
@@ -206,6 +275,7 @@ router.post('/deletePlayContent', function(req, res, next) {
   });
   res.redirect('back');
 });
+
 
 
 

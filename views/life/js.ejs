@@ -28,98 +28,155 @@ var match_num = {
 
  /*----------food---------*/
 
- var draggingStarted = 0;
- var lastMousePosition = {x: null, y: null};
- var areaOffset = $('#FpictureArea').offset();
- var containerHeight = $("#FpictureArea").outerHeight;
- var containerWidth = $("#FpictuerArea").outerWidth;
- var imageWidth;
- var imageHeight;
- var imageLoaded = 0;
+ $(document).ready(function() {
+     $('.foodList li').on('mouseover', 
+         function() {
+             $(this).css({ "background-color": "#e0e0e0"});
+         }
+     )
+     $('.foodList li').on('mouseout',
+         function() {
+             $(this).css({ "background-color": "transparent"});
+         }
+     )
+     $('#nightStreet').click(
+         function() {
+            $('#areaName').html("宵夜街");
+            $('.foodIcon').remove();
+            //五興路 右側
+            $('.foodImg').append('<img class="foodIcon" title="108果汁" style="top: 40%; left: 82%; transform: rotate(15deg);" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="豪味堡" style="top: 53%; left: 82%; transform: rotate(15deg);" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="魔法咖哩(2F)" style="top: 56%; left: 88%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="一品鍋" style="top: 66%; left: 82%; transform: rotate(15deg);" src="food_icon/鍋物.png">');
+            $('.foodImg').append('<img class="foodIcon" title="香恬園" style="top: 79%; left: 82%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="宵夜屋" style="top: 92%; left: 82%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="來來/喬慧素食" style="top: 105%; left: 82%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="OK" style="top: 118%; left: 82%;" src="food_icon/OK.png">');
+            $('.foodImg').append('<img class="foodIcon" title="粥王" style="top: 131%; left: 82%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="翔食堂" style="top: 131%; left: 90%; transform: rotate(15deg);" src="food_icon/小吃.png">');
+            $('.foodImg').append('<img class="foodIcon" title="美味王炸雞" style="top: 144%; left: 82%; transform: rotate(15deg);" src="food_icon/小吃.png">');
+            $('.foodImg').append('<img class="foodIcon" title="小惡魔" style="top: 144%; left: 90%; transform: rotate(15deg);" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="山頂丼人" style="top: 157%; left: 82%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="咖哩老師" style="top: 170%; left: 82%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="霸王炸雞" style="top: 183%; left: 82%; transform: rotate(15deg);" src="food_icon/小吃.png">');
+            $('.foodImg').append('<img class="foodIcon" title="微笑轉角" style="top: 190%; left: 85%; transform: rotate(15deg);" src="food_icon/麵類.png">');
+            //五興路 左側
+            $('.foodImg').append('<img class="foodIcon" title="星pasta" style="top: 40%; left: 64%; transform: rotate(15deg);" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="早餐店" style="top: 40%; left: 58%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="無敵蛋餅" style="top: 50%; left: 67%; transform: rotate(15deg);" src="food_icon/小吃.png">');
+            $('.foodImg').append('<img class="foodIcon" title="Master of Tea" style="top: 60%; left: 67%; transform: rotate(15deg);" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="麥味登" style="top: 70%; left: 64%; transform: rotate(15deg);" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="滿食記" style="top: 80%; left: 65%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="E&F" style="top: 90%; left: 65%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="饌食園" style="top: 100%; left: 65%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="饕客" style="top: 110%; left: 64%; transform: rotate(15deg);" src="food_icon/滷味.png">');
+            $('.foodImg').append('<img class="foodIcon" title="生鮮大水餃" style="top: 120%; left: 65%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="夏克提" style="top: 130%; left: 67%; transform: rotate(15deg);" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="立橙" style="top: 140%; left: 67%; transform: rotate(15deg);" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="甜甜圈" style="top: 150%; left: 67%; transform: rotate(15deg);" src="food_icon/小吃.png">');
+            $('.foodImg').append('<img class="foodIcon" title="臭豆腐" style="top: 160%; left: 67%; transform: rotate(15deg);" src="food_icon/小吃.png">');
+            $('.foodImg').append('<img class="foodIcon" title="影印豆花" style="top: 170%; left: 63%; transform: rotate(15deg);" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="香城燒臘" style="top: 183%; left: 65%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            //五興路 331巷
+            $('.foodImg').append('<img class="foodIcon" title="真功夫" style="top: 140%; left: 30%; transform: rotate(15deg);" src="food_icon/小吃.png">');
+            $('.foodImg').append('<img class="foodIcon" title="出海抓魚" style="top: 140%; left: 23%; transform: rotate(15deg);" src="food_icon/飯糰.png">');
+            $('.foodImg').append('<img class="foodIcon" title="來客" style="top: 170%; left: 38%; transform: rotate(15deg);" src="food_icon/簡餐.png">');
+            //五興路 下方右側
+            $('.foodImg').append('<img class="foodIcon" title="比大爺" style="top: 227%; left: 70%;" src="food_icon/滷味.png">');
+            $('.foodImg').append('<img class="foodIcon" title="雞叔叔" style="top: 233%; left: 70%; transform: rotate(-45deg);" src="food_icon/小吃.png">');
+            $('.foodImg').append('<img class="foodIcon" title="客臨" style="top: 237%; left: 68%; transform: rotate(-45deg);" src="food_icon/小吃.png">');
+            $('.foodImg').append('<img class="foodIcon" title="緣杏" style="top: 246%; left: 63%;" src="food_icon/麵類.png">');
+            $('.foodImg').append('<img class="foodIcon" title="瑞霖美而美" style="top: 258%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="京城韓式湯飯" style="top: 268%; left: 58%; " src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="早安美芝城" style="top: 278%; left: 54%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="燒餅窯" style="top: 287%; left: 53%; transform: rotate(-45deg);" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="夠義式" style="top: 294%; left: 48%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="幸福廚房" style="top: 304%; left: 46%; " src="food_icon/簡餐.png">');
+            //五興路 下方右側
+            $('.foodImg').append('<img class="foodIcon" title="傻師傅湯包" style="top: 208%; left: 52%; " src="food_icon/麵類.png">');
+            $('.foodImg').append('<img class="foodIcon" title="韓林" style="top: 218%; left: 48%; " src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="內卡小館" style="top: 231%; left: 44%; " src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="雙寶爸" style="top: 243%; left: 40%; " src="food_icon/麵類.png">');
+            $('.foodImg').append('<img class="foodIcon" title="太祖魷魚羹" style="top: 255%; left: 37%; " src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="火靠窯" style="top: 266%; left: 31%; " src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="小紅牛" style="top: 280%; left: 27%; " src="food_icon/西餐.png">');
+            $('#map').css({top: 0, left: 0});
+            $('#map').attr("src","宵夜街地圖.png");
+         }
+     )
+     $('#backdoor').click(
+         function() {
+            $('#areaName').html("後門");
+            $('.foodIcon').remove();
+            //中央路左側
+            $('.foodImg').append('<img class="foodIcon" title="7-11" style="top:72%; left: 60%;" src="food_icon/7-11.png">');
+            $('.foodImg').append('<img class="foodIcon" title="鮮春坊" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="拉亞漢堡" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="福泉" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="巧味香" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="清心福泉" style="top:72%; left: 60%;" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="27度秀梅" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="108果汁" style="top:72%; left: 60%;" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="麥堡堡" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="幸福小館" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="Ifresh" style="top:72%; left: 60%;" src="food_icon/飲品.png">');
+            $('.foodImg').append('<img class="foodIcon" title="米豆" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="津知園" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="櫥窗" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="紅樓自助餐" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="大中央厚切牛排" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="迷路" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="漢林大漢堡" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="飽咖咖" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="麥克小姐" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="紅油炒手" style="top:72%; left: 60%;" src="food_icon/簡餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="來客堡" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="白鬍子" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="惟客" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('.foodImg').append('<img class="foodIcon" title="萊姆斯" style="top:72%; left: 60%;" src="food_icon/西餐.png">');
+            $('#map').css({top: 0, left: 0});
+            $('#map').attr("src", "後門地圖.png");
+         }
+     )
+     $('#campus').click(
+         function() {
+            $('#areaName').html("中央校園");
+            $('.foodIcon').remove();
+            $('#map').css({top: -392, left: -493});
+            $('#map').attr("src", "校內地圖.png");
+         }
+     )
 
- if($('#foodImg').get(0).complete) {
-     ImageLoaded();
- } else {
-     $('#foodImg').on('load', function() {
-         ImageLoaded();
-     })
- }
-
- function ImageLoaded() {
-     imageWidth = $("#foodImg").width();
-     imageHeight = $("#foodImg").height();
-     imageLoaded = 1;
- }
-
- $('#FpictureArea').on('mousedown', function(event) {
-     if(imageLoaded == 1) {
-         draggingStarted = 1;
-
-         lastMousePosition = {
-             x: event.pageX - areaOffset.left,
-             y: event.pageY - areaOffset.top
-        };
-     }
- });
-
- $('#FpictureArea').on('mouseup', function() {
-     draggingStarted = 0;
- });
-
- $('#FpictureArea').on('mousemove', function(event) {
-    if (draggingStarted == 1) {
-        var currentMousePostition = {
-            x: event.pageX - areaOffset.left,
-            y: event.pageY - areaOffset.top
-        };
-        var changeX = currentMousePostition.x - lastMousePosition.x;
-        var changeY = currentMousePostition.y - lastMousePosition.y;
-
-        lastMousePosition = currentMousePostition;
-
-        var imgTop = parseInt($("#foodImg").css('top'), 10);
-        var imgLeft = parseInt($("#foogImg").css('left'), 10);
-
-        var imgLeftNew = imgLeft + changeX;
-        var imgTopNew = imgTop + changeY;
-
-          
-        if (imgLeftNew > 0) imgLeftNew = 0;
-        if (imgLeftNew < (containerWidth - imageWidth))
-          imgLeftNew = containerWidth - imageWidth;
-
-        if (imgTopNew > 0) imgTopNew = 0;
-        if (imgTopNew < -869) imgTopNew = -869;
-        //if (imgTopNew < (containerHeight - imageHeight))
-          //imgTopNew = containerHeight - imageHeight;
-      
-        $("#foodImg").css({top: imgTopNew + 'px', left: imgLeftNew + 'px'});
-     }
- });
+     $('.foodIcon').hover(
+         function() {
+             $(this).css({'max-height': '6%', 'max-width': '6%'})
+         },
+         function() {
+            $(this).css({'max-height': '5%', 'max-width': '5%'})
+         }
+     )
 
 
-/*---------liveContent-------
+     $(document).on('mouseover','.foodIcon',
+        function() {
+            console.log("enter");
+            $(this).css({'max-height': '6%', 'max-width': '6%'});
+        }
+     );
 
-$(document).ready(function() {
-    var num = 1;
+     $(document).on('mouseout','.foodIcon',
+        function() {
+             console.log("leave");
+             $(this).css({'max-height': '5%', 'max-width': '5%'});
+        }
+     );
+     $('body').tooltip({
+        selector: '.foodIcon'
+     });
 
-   $('#next').click(
-       function() {
-           num++;
-           if(num > 5) num = 1;
-           $('#picture').attr("src","live" + num + ".png");
-       }
-   )
+});
 
-   $('#prev').click(
-       function() {
-           num--;
-           if (num == 0) num = 5;
-           $('#picture').attr("src", "live" + num + ".png");
-       }
-   )
-   
-});*/
+
 
 
 

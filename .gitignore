@@ -28,3 +28,6 @@ pids
 
 # stackdump
 *.stackdump
+
+# mongodump file
+dump/

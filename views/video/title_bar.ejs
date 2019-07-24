@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><%= title %></title>
-        <% include ../layouts/head %>
-        <% include ../layouts/script  %>
         <link rel='stylesheet' href='/video/style.css' />
     </head>
     <body>
         <main>
           <%/* 標題 */%>
           <div class="bar_background">
+
             <div class="title_bar">
+
                 <%/* 黃線mark */%>
                 <div class="line"></div>
 
@@ -20,8 +19,31 @@
                     </div>
                 </a>
 
-                <% if(title_bar[2] != null){ %>
+                <% if(title_bar[4] != null){ %>
                     <%/* 三角形*/%>
+                    <div class="tri"></div>
+
+                    <a href="/video/v_interview">
+                        <div class="title">
+                            <h1><%= title_bar[0] %><br><span class="small_title"><%= title_bar[1] %></span></h1>
+                        </div>
+                    </a>
+
+                    <div class="tri"></div>
+
+                    <a href="/video/v_interview/<%= back_name %>">
+                        <div class="title">
+                            <h1><%= title_bar[2] %><br><span class="small_title"><%= title_bar[3] %></span></h1>
+                        </div>
+                    </a>
+
+                    <div class="tri"></div>
+
+                    <div class="title">
+                        <h1><font color="#ec6d4f"><%= title_bar[4] %></font><br><span class="small_title"><%= title_bar[5] %></span></h1>
+                    </div>
+
+                <% }else if(title_bar[2] != null && title_bar[4] == null){ %>
                     <div class="tri"></div>
                     <% if(title_bar[0] === 'LIFE'){ %>
                         <a href="/video/v_nculife">
@@ -30,7 +52,6 @@
                             </div>
                         </a>
 
-                        <%/* 三角形*/%>
                         <div class="tri"></div>
 
                         <div class="title">
@@ -43,7 +64,6 @@
                             </div>
                         </a>
 
-                        <%/* 三角形*/%>
                         <div class="tri"></div>
 
                         <div class="title">
@@ -51,7 +71,6 @@
                         </div>
                     <% } %>
                 <% }else if(title_bar[2] == null){ %>
-                    <%/* 三角形*/%>
                     <div class="tri"></div>
 
                     <div class="title">
@@ -62,6 +81,4 @@
           </div>
         </main>
     </body>
-    <% include ../layouts/js %>
-    
 </html>
