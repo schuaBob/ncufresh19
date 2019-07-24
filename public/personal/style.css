@@ -79,7 +79,20 @@ body {
   padding: 4% 2%;
 }
 
+.game-link {
+  border-radius: 18px;
+  position: absolute;
+  width: 32%;
+  height: 65%;
+  text-align: center;
+  padding: 4% 2%;
+}
+
 .ask-link:hover {
+  background-color: #c2c2c2;
+}
+
+.game-link:hover {
   background-color: #c2c2c2;
 }
 
@@ -87,7 +100,17 @@ body {
   width: 100%;
 }
 
+.game-link img {
+  width: 100%;
+}
+
 .ask-link p {
+  font-size: 15px;
+  color: black;
+  position: absolute;
+}
+
+.game-link p {
   font-size: 15px;
   color: black;
   position: absolute;
@@ -199,3 +222,40 @@ img {
   height: 20%;
 }
 
+.box-show {
+  overflow: scroll;
+}
+
+.box-ask {
+  font-size: 15px;
+  line-height: 25px;
+  padding: 5px;
+}
+
+#date {
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  text-align: center;
+}
+
+#ask-title {
+  position: absolute;
+  left: 30%;
+  width: 70%;
+  height: 100%; 
+}
+
+.tag-ask {
+  text-align: center;
+  font-size: 15px;
+  line-height: 50px;
+}
+
+#date-tag {
+  background-color: #ffd800;
+}
+
+#title-tag {
+  background-color: #736f6e;
+}
