@@ -28,9 +28,7 @@ var match_num = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  play.find({}, function(err, data) {
-    res.render('life/study', { data: data, page: 'study', num: match_num['study'], user: req.user});
-  })
+  res.redirect('/life/study');
 });
 
 router.get('/study', function(req, res, next) {
@@ -258,6 +256,10 @@ router.post('/addStudyContent', upload.single('picture'), function(req, res, nex
   res.redirect('back');
   });
 });
+
+
+
+
 
 
 router.post('/deleteLiveContent', function(req, res, next) {
