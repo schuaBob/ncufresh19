@@ -150,7 +150,6 @@ h1 {
   border-top-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
   background-color: white;
-  min-height: 150px;
 }
 
 #indexmodalp .p {
@@ -556,11 +555,11 @@ li {
 .map{
   display: flex;
   margin-left: 20%;
-  margin-top: calc(40vh - 20vw);
+  margin-top: calc(42vh - 20vw);
 }
 
 .map img{
-  z-index: 5000;
+  z-index: 1000;
 }
 
 .bottom {    

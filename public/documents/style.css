@@ -67,7 +67,7 @@ body {
   box-shadow:2px 2px 2px rgba(20%,20%,40%,0.3),4px 4px 6px rgba(20%,20%,40%,0.1),6px 6px 12px rgba(20%,20%,40%,0.1);
 }
 
-.return_space {
+/*.return_space {
   position: absolute;
   width: 14vw;
   height: 11vh;
@@ -75,19 +75,15 @@ body {
 }
 
 .return {
-  /*position: absolute;
-  margin: 10px 0vw 10px 3.5vw;
-  width: 5%;
-  height: 80px;*/
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 110%;
+  max-height: 115%;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-}
+}*/
 
 
 .sign {
@@ -134,7 +130,7 @@ body {
   overflow-y: hidden;
   padding-top: 2vh;
   height: 79vh;
-  width: 15vw;
+  width: 17vw;
   position: absolute;
   left: 14vw;
   color: rgb(13, 73, 102);
@@ -152,12 +148,17 @@ body {
 
 .sidenav2 p:hover {
   background-color: rgb(251,217,185);
+  border-radius: 3px;
   cursor: pointer;
+  background-image:url("螃蟹.png");
+  background-position:center right;
+  background-size: 20% auto;
+  background-repeat: no-repeat;
 }
 
 .page_now {
+  border-radius: 3px;
   background-color: rgb(251,217,185);
-  /*color: #ffcc00 !important;*/
 }
 
 .icon {
@@ -172,15 +173,15 @@ body {
   margin: 15% 0;
 }
 
- 
+/*顯示資料的地方*/ 
 .box {
   overflow-x: hidden;
   background-color: #FFFDF1;
   position: absolute;
-  width: 70vw;
-  height: 74vh;
+  width: 67vw;
+  height: 77vh;
   right: 0vw;
-  top: 24vh;
+  margin-top:1vh;
   margin-left: 1vw;
   padding: 4vh 5vw;
 }
@@ -237,6 +238,25 @@ body {
     float: left;
   }
 
+  .return_space {
+    position: absolute;
+    width: 14vw;
+    height: 100%;
+    padding: 0.5vh 0 0.5vh 4.5vw;
+    margin: auto 0;
+  }
+
+  .return {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
 }
 
 @media only screen and (min-width: 980px) and (max-width: 1400px)  {
@@ -257,6 +277,25 @@ body {
     margin: auto;
     position: absolute;
   }
+
+  .return_space {
+    position: absolute;
+    width: 14vw;
+    height:100%;
+    padding: 0.5vh 0 0.5vh 4.5vw;
+  }
+
+  .return {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 980px)  {
@@ -277,6 +316,25 @@ body {
     margin: auto;
     position: absolute;
   }
+
+  .return_space {
+    position: absolute;
+    width: 14vw;
+    height: 100%;
+    padding: 0.5vh 0 0.5vh 3.5vw;
+  }
+
+  .return {
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
 }
 
 /*@media only screen and (min-width: 480px) and (max-width: 768px)  {
@@ -307,6 +365,25 @@ body {
     margin: auto;
     position: absolute;
   }
+
+  .return_space {
+    position: absolute;
+    width: 14vw;
+    height: 100%;
+    padding: 0.5vh 0 0.5vh 3vw;
+  }
+
+  .return {
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
 }
 
 /*other手機板*/

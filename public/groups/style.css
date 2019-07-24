@@ -21,7 +21,7 @@
     }
     
     .yellowBg {
-        background-color: #FFFDF1;
+        background-color: #fff9dc
     }
     
     .grayBg {
@@ -177,7 +177,7 @@
         margin-left: 350px;
         position: fixed;
         height: 600px;
-        width: 250px;
+        width: 400px;
         font-size: 30px;
         color: #0D4966;
         overflow: auto;
@@ -204,4 +204,13 @@
         text-align: center;
         top: 200px;
         right: 400px;
+    }
+    
+    .backgroundimg {
+        position: fixed;
+        top: 130px;
+        right: 10px;
+        max-width: 900px;
+        height: inherit;
+        overflow: hidden;
     }
