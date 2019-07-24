@@ -1,4 +1,8 @@
 <script>
+    var url = new URL(window.location.href);
+    var id = $("input[name=id]").val(url.searchParams.get('id'));
+    document.getElementById("id").defaultValue = id;
+
     function checklength(){
         var name = $("#student_id").val();
         if(name.length != 9){

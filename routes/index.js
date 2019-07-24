@@ -381,17 +381,18 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
       if (err) {
         res.redirect('/');
       }
-      if (!obj) {
+      /*if (!obj) {
         console.log(id + ': 不存在於新生列表');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
+        return;
       }
 
       if (obj.name !== name) {
         console.log(id + ': 真實姓名不合');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
-      } else {
+      } else*/ {
         obj.password = password;
         obj.name = name;
         Users.createUser(obj, function (err, user, next) {
@@ -516,7 +517,7 @@ router.get('/auth/provider/callback', function (req, res, next) {
 
 router.get('/adduser', function (req, res, next) {
   Users.createUser(new Users({
-    id: "108000004",
+    id: "108000022",
     unit: "csie",
     name: "eugene"
   }), function (err, user) {
