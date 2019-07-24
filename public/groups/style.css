@@ -1,5 +1,6 @@
     body {
-        font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+        font: "Lucida Grande", Helvetica, Arial, sans-serif;
+        overflow: hidden
     }
     
     * {
@@ -16,8 +17,20 @@
         color: #fc9375;
     }
     
+    div {
+        display: block;
+    }
+    
     .seaBlueBg {
         background-color: #0D4966;
+    }
+    
+    .fa-angle-right {
+        font-size: 1.3em;
+        position: relative;
+        top: 3px;
+        margin-right: 6px;
+        display: none;
     }
     
     .yellowBg {
@@ -30,7 +43,7 @@
     
     .astyle {
         color: white;
-        font-size: 40px;
+        font-size: 4vw;
         text-decoration: none;
         cursor: pointer;
         transition: all 0.6s;
@@ -40,30 +53,32 @@
         transform: scale(1.4);
     }
     
-    .navBar {
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        color: white;
-        position: absolute;
-        height: 100px;
-        line-height: 60px;
-        border-bottom: 1px white solid;
-        font-family: 'Courier New', Courier, monospace
+    .backgroundimg {
+        position: fixed;
+        top: 25vh;
+        right: 1vw;
+        max-width: 60vw;
+        height: inherit;
+        overflow: hidden;
+        z-index: -1;
     }
+    /*--------------------------------------------------------index------------------------------------------------------*/
     
     .container {
-        margin-left: 200px;
-        margin-top: 100px;
-        display: grid;
-        grid-template-columns: 30% 30% 30%;
+        border: 0px;
+        padding: 0px;
+        right: 0px;
+        left: 0px;
+        position: fixed;
+        top: 10vh;
+        width: 100%;
         text-align: center;
     }
     
     .container2 {
-        margin-left: 400px;
-        display: grid;
-        grid-template-columns: 30% 30%;
+        position: fixed;
+        bottom: 5vh;
+        width: 100%;
         text-align: center;
     }
     
@@ -73,24 +88,20 @@
         vertical-align: top;
         color: white;
         text-align: center;
-    }
-    
-    div {
-        display: block;
-    }
-    
-    .fa-angle-right {
-        font-size: 1.3em;
-        position: relative;
-        top: 3px;
-        margin-right: 6px;
-        display: none;
+        font-size: 1vw;
     }
     
     .buttonimg {
-        width: 250px;
-        height: 250px;
+        height: 20vw;
+        width: inherit;
         border: #D0CECE 5px;
+    }
+    /*-----------------------------------------------------------title------------------------------------------------------*/
+    
+    .title_bar {
+        background-color: white;
+        height: 100px;
+        width: 100%;
     }
     
     .title {
@@ -101,6 +112,8 @@
     }
     
     .line {
+        position: relative;
+        left: 20px;
         height: 70px;
         width: 0px;
         border-color: #7cacbc;
@@ -122,29 +135,33 @@
     
     .small_title {
         color: #a4a1a1;
-        font-size: 30px;
+        font-size: 2vw;
     }
-    
-    .title_bar {
-        margin-left: 25px;
-        margin-top: 10px;
-        height: 70px;
-        width: 100%;
-        margin-bottom: 30px;
-    }
+    /*----------------------------------------------------listbar-------------------------------------------------------------*/
     
     .sidebar {
-        margin-left: 50px;
+        left: 5vw;
         position: fixed;
         height: 600px;
-        width: 230px;
-        font-size: 30px;
+        width: auto;
+        font-size: 2.5vw;
         color: #0D4966;
         overflow: auto;
         font-weight: lighter;
         /*
         font-weight: bold;
         */
+    }
+    
+    .sidebar2 {
+        left: 25vw;
+        position: fixed;
+        height: 600px;
+        width: auto;
+        font-size: 2.5vw;
+        color: #0D4966;
+        overflow: auto;
+        font-weight: lighter;
     }
     
     ul {
@@ -154,63 +171,33 @@
     
     .sideli {
         line-height: 40px;
-        margin-top: 20px;
-    }
-    
-    .sideli2 {
-        line-height: 40px;
-        margin-top: 20px;
+        margin-top: 3vh;
         font-weight: lighter;
     }
     
     .sideli:hover {
-        background-color: #FFCC00;
-        cursor: pointer;
-    }
-    
-    .sideli2:hover {
-        background-color: #FFCC00;
-        cursor: pointer;
-    }
-    
-    .sidebar2 {
-        margin-left: 350px;
-        position: fixed;
-        height: 600px;
-        width: 400px;
-        font-size: 30px;
-        color: #0D4966;
-        overflow: auto;
-        font-weight: lighter;
+        background-color: #ec6d4f
     }
     
     .buttons {
         position: fixed;
-        top: 120px;
-        left: 350px;
+        bottom: 5vh;
+        right: 5vw;
+        font-size: 2vw
     }
     
     .de-info {
-        font-size: 40px;
+        font-size: 3vw;
         position: fixed;
-        top: 350px;
-        right: 50px;
+        top: 40vh;
+        right: 7vw;
         text-align: center
     }
     
     .info {
         position: fixed;
-        font-size: 40px;
+        font-size: 4vw;
         text-align: center;
-        top: 200px;
-        right: 400px;
-    }
-    
-    .backgroundimg {
-        position: fixed;
-        top: 130px;
-        right: 10px;
-        max-width: 900px;
-        height: inherit;
-        overflow: hidden;
+        top: 20vh;
+        right: 35vw;
     }

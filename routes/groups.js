@@ -7,7 +7,10 @@ var others_data = require('../models/groups/others');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('groups/index', { title: 'Express' });
+    res.render('groups/index', {
+        title: 'Express',
+        user: req.user
+    });
 });
 /////////??????????????//////////////////////////////////department////////////////////////////////////////////////////////////////
 router.get('/department', function(req, res, next) {
@@ -348,7 +351,13 @@ router.post('/edit_others', function(req, res, next) {
 
 
 router.get('/association', function(req, res, next) {
-    res.render('groups/g_association', { title: 'association' });
+    console.log("get association")
+
+    res.render('groups/g_association', {
+        title: 'association',
+        user: req.user
+
+    });
 });
 
 
