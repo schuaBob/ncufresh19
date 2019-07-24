@@ -87,7 +87,7 @@ router.get('/', (req, res, next) => {
     })
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
     console.log(`User:${req.user}`);
-    res.render('index/index', { title: "新生知訊網", News: newsDocs, commercial: commercial, icon: catePicArr, user: req.user })
+    res.render('index/index', { title: "新生知訊網 | 首頁", News: newsDocs, commercial: commercial, icon: catePicArr, user: req.user })
   }).catch((error) => {
     if (error) return next(error);
   })
@@ -129,7 +129,7 @@ router.get('/index-edit', (req, res, next) => {
       return next(error);
     }
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
+    res.render('index/edit', { title: '新生知訊網 | 編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
   }).catch((err) => {
     return next(err);
   })
