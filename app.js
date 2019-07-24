@@ -160,6 +160,13 @@ app.locals.convertDateToString = function (date) {
   var str = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
   return str;
 }
+app.locals.trunc = function(str){
+  if(str.length>15){
+    return str.substr(0,15)+"...";
+  }else{
+    return str;
+  }
+}
 //----------------------------------
 
 module.exports = app;
