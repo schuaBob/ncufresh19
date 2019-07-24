@@ -5,10 +5,12 @@
     <title>
         <%= title %>
     </title>
+
     <% include ../layouts/head %>
         <% include ../layouts/script %>
-            <link rel='stylesheet' href='/groups/style.css' />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+            <link rel='stylesheet' href='/groups/style.css' />
+
 </head>
 
 <body class="yellowBg">
@@ -29,19 +31,19 @@
                     <li class="sideli 2"><i class="fas fa-angle-right"></i>理學院</li>
                 </a>
                 <a style="text-decoration:none; color: #0D4966;" href="/groups/department/3">
-                    <li class="sideli 3"><i class="fas fa-angle-right"></i>管理學院</li>
+                    <li class="sideli 3"><i class="fas fa-angle-right"></i>工學院</li>
                 </a>
                 <a style="text-decoration:none; color: #0D4966;" href="/groups/department/4">
-                    <li class="sideli 4"><i class="fas fa-angle-right"></i>工學院</li>
+                    <li class="sideli 4"><i class="fas fa-angle-right"></i>管理學院</li>
                 </a>
                 <a style="text-decoration:none; color: #0D4966;" href="/groups/department/5">
-                    <li class="sideli 5"><i class="fas fa-angle-right"></i>資訊電機學院</li>
+                    <li class="sideli 5"><i class="fas fa-angle-right"></i>客家學院</li>
                 </a>
                 <a style="text-decoration:none; color: #0D4966;" href="/groups/department/6">
-                    <li class="sideli 6"><i class="fas fa-angle-right"></i>地球科學學院</li>
+                    <li class="sideli 6"><i class="fas fa-angle-right"></i>資訊電機學院</li>
                 </a>
                 <a style="text-decoration:none; color: #0D4966;" href="/groups/department/7">
-                    <li class="sideli 7"><i class="fas fa-angle-right"></i>客家學院</li>
+                    <li class="sideli 7"><i class="fas fa-angle-right"></i>地球科學學院</li>
                 </a>
                 <a style="text-decoration:none; color: #0D4966;" href="/groups/department/8">
                     <li class="sideli 8"><i class="fas fa-angle-right"></i>生醫理工學院</li>
@@ -80,11 +82,11 @@
                                 <select name="type" id="type" class="form-control">
                                 <option value="1">文學院</option>
                                 <option value="2">理學院</option>
-                                <option value="3">管理學院</option>
-                                <option value="4">工學院</option>
-                                <option value="5">資訊電機學院</option>
-                                <option value="6">地球科學學院</option>
-                                <option value="7">客家學院</option>
+                                <option value="3">工學院</option>
+                                <option value="4">管理學院</option>
+                                <option value="5">客家學院</option>
+                                <option value="6">資訊電機學院</option>
+                                <option value="7">地球科學學院</option>
                                 <option value="8">生醫理工學院</option>
                             </select>
                             </div>
@@ -141,13 +143,13 @@
                                 <label for="edit_type" class="form-control">系所學院</label>
                                 <select name="type" id="edit_type" class="form-control">
                                         <option value="1">文學院</option>
-                                        <option value="2">理學院</option>
-                                        <option value="3">管理學院</option>
-                                        <option value="4">工學院</option>
-                                        <option value="5">資訊電機學院</option>
-                                        <option value="6">地球科學學院</option>
-                                        <option value="7">客家學院</option>
-                                        <option value="8">生醫理工學院</option>
+                                <option value="2">理學院</option>
+                                <option value="3">工學院</option>
+                                <option value="4">管理學院</option>
+                                <option value="5">客家學院</option>
+                                <option value="6">資訊電機學院</option>
+                                <option value="7">地球科學學院</option>
+                                <option value="8">生醫理工學院</option>
                                     </select>
                             </div>
                             <div class="form-group">
@@ -170,8 +172,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="edit_submit" class="btn btn-primary">Save changes</button>
-                        <button id="delete_submit" class="btn btn-danger">Delete</button>
+                        <button id="edit_department_submit" class="btn btn-primary">Save changes</button>
+                        <button id="delete_department_submit" class="btn btn-danger">Delete</button>
                     </div>
 
 
@@ -185,8 +187,8 @@
                     <% for(var i in department) {%>
                         <%_ if(department[i].type===department_type){ -%>
                             <a style="text-decoration:none; color: #0D4966;" href="/groups/department/<%=department[i].type%>/<%=department[i].name%>">
-                                            <li class="sideli2 <%=department[i].type%>" id="<%=department[i].name%>"><i
-                                                    class="fas fa-angle-right"></i>
+                                            <li class="sideli2 <%=department[i].type%>" id="<%=department[i].name%>">
+                                                <i class="fas fa-angle-right"></i>
                                                 <%=department[i].name%>
                                             </li>
                                         </a>
@@ -218,9 +220,10 @@
                             </div>
                         </div>
                     </div>
-
-
                     <%_ } -%>
+
+                        <img src="系所.PNG" class=backgroundimg>
+
 
 
 
@@ -232,4 +235,4 @@
 
 </body>
 
-</html>
+</html

@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // mongoose
 var mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
 mongoose.connect('mongodb://localhost:27017/ncufresh19', {
   useNewUrlParser: true
 });
@@ -161,4 +162,3 @@ app.locals.convertDateToString = function (date) {
 //----------------------------------
 
 module.exports = app;
-app.listen(8080);
