@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='/video/style.css' />
+    </head>
+    <body>
+        <%/* 返回按鈕 */%>
+        <% if(title_bar[2] == null){ %>
+          <a href="/video/">
+              <div class="back"><div class="seahorse"><img src="/video/返回按鈕.png"></div></div>
+          </a>
+        <% }else if(title_bar[4] == null ){ %>
+          <a href="/video/<%= back_name %>">
+              <div class="back"><div class="seahorse"><img src="/video/返回按鈕.png"></div></div>
+          </a>
+        <% }else if(title_bar[4] != null){ %>
+          <a href="/video/v_interview/<%= back_name %>">
+              <div class="back"><div class="seahorse"><img src="/video/返回按鈕.png"></div></div>
+          </a>
+        <% } %>
+    </body>
+</html>
