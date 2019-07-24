@@ -67,9 +67,9 @@ passport.deserializeUser(function (id, done) {
 
 router.get('/', (req, res, next) => {
   Promise.all([
-    docNews.find({},{
-      _id:0,
-      __v:0
+    docNews.find({}, {
+      _id: 0,
+      __v: 0
     }).exec(),
     docCommercial.find({}, {
       _id: 0,
@@ -168,7 +168,7 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
     }
   })
 })
-router.get('/adpic/delete?', (req, res, next) => {
+router.get('/adpic/delete', (req, res, next) => {
   if (req.query.pk) {
     docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err) => {
       if (err) return next(err);
@@ -178,7 +178,7 @@ router.get('/adpic/delete?', (req, res, next) => {
     res.redirect('/index-edit');
   }
 })
-router.get('/schedule/:method?', (req, res, next) => {
+router.get('/schedule/:method', (req, res, next) => {
   switch (req.params.method) {
     case "read":
       docNews.findOne({ pk: req.query.pk }).exec((err, doc) => {
@@ -256,7 +256,7 @@ router.post('/schedule/:method', (req, res, next) => {
       break;
   }
 })
-router.get('/calender/:method?', (req, res, next) => {
+router.get('/calender/:method', (req, res, next) => {
   switch (req.params.method) {
     case "read":
       console.log(req.query.pk)
@@ -388,29 +388,28 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
         res.redirect('/login');
         return;
       }
-
       if (obj.name !== name) {
         console.log(id + ': 真實姓名不合');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
-      } else*/ {
-        obj.password = password;
-        obj.name = name;
-        Users.createUser(obj, function (err, user, next) {
-          if (err) {
-            return next(err);
-          } else {
-            console.log(id + ': 建立');
-            req.login(user, function (err) {
-              if (err) {
-                return next(err);
-              }
-              console.log(obj.id + ': 登入')
-              res.redirect('/');
-            });
-          }
-        });
-      }
+      } else{*/
+      obj.password = password;
+      obj.name = name;
+      Users.createUser(obj, function (err, user, next) {
+        if (err) {
+          return next(err);
+        } else {
+          console.log(id + ': 建立');
+          req.login(user, function (err) {
+            if (err) {
+              return next(err);
+            }
+            console.log(obj.id + ': 登入')
+            res.redirect('/');
+          });
+        }
+      });
+      // }
     });
   } else {
     res.redirect('/register');
