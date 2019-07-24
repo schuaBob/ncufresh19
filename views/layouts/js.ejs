@@ -1,22 +1,16 @@
 <script>
     $(document).ready(() => {
-        $("#toLinks").click(() => {
+        $("#navbtn").click(() => {
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
-                $.fn.fullpage.setMouseWheelScrolling(false);
                 document.getElementById("mySidenav").style.height = "100%";
                 document.getElementById("myNavLinks").style.height = "100%";
                 document.getElementById("myNavPics").style.height = "100%";
                 $("#mySidenav").removeClass("closed").addClass("opened");
             } else if ($("#mySidenav").hasClass("opened")) {
-                $.fn.fullpage.setMouseWheelScrolling(true);
                 document.getElementById("mySidenav").style.height = "0";
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
         });
-
-        $("#topHref").click(function() {
-            $.fn.fullpage.moveTo("indexPage");
-        }); 
     });    
 </script>

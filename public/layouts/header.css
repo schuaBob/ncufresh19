@@ -92,10 +92,10 @@ body {
 }
 
 #mySidenav {
-    
+
     /* 100% Full-height */
     width: 100%;
-    
+
     height: 0;
 
     position: fixed;
@@ -111,7 +111,8 @@ body {
     transition: 0.5s;
     /* 0.5 second transition effect to slide in the sidenav */
 }
-#myNavLinks{
+
+#myNavLinks {
     background-color: #fff9dc;
     width: 30%;
     min-width: 330px;
@@ -119,7 +120,8 @@ body {
     position: relative;
     float: left;
 }
-#myNavPics{
+
+#myNavPics {
     background-color: lightcoral;
     width: 70%;
     max-width: calc(100% - 330px);
@@ -154,6 +156,7 @@ body {
     text-decoration: none;
     white-space: nowrap;
     line-height: 0 !important;
+    position: relative;
 }
 
 
@@ -252,4 +255,34 @@ body {
 .lines-button.x.close .lines:after {
     -webkit-transform: rotate3d(0, 0, 1, -45deg);
     transform: rotate3d(0, 0, 1, -45deg);
+}
+
+
+
+#links li:hover {
+    cursor: pointer;
+}
+
+#links li:hover .link:before,
+#links li:hover .link:after {
+    width: 100%;
+    opacity: 1;
+}
+
+#links .link:before,
+#links .link:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    width: 0px;
+    height: 3px;
+    margin: 5px 0 0;
+    transition: all 0.2s ease-in-out;
+    transition-duration: 0.3s;
+    opacity: 0;
+}
+
+#links .link:after {
+    left: 0;
+    background-color: #0163b0;
 }
