@@ -8,7 +8,13 @@
     var str = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
     return str;
   }
-
+  function trunc(str){
+    if(str.length>15){
+      return str.substr(0,15)+"...";
+    }else{
+      return str;
+    }    
+  }
   $(document).ready(function () {
     var q_ctEditor;
     ClassicEditor
@@ -24,13 +30,20 @@
     // CKEDITOR.replace( 'q_content', {
     //   resize_enabled : true      
     // });
-    
-
+    // $('[data-toggle="tooltip"]').tooltip();
+    $('body').tooltip({
+      selector: '[data-toggle=tooltip]'
+    });
     var timer;
     var sort = ""; //紀錄時間、人氣的按鈕值
     var c = location.pathname.split('/')[2]; //分類的值
 
-
+    $(".option li").mouseenter(function(){
+      $(this).addClass("optionHover");
+    });
+    $(".option li").mouseleave(function(){
+      $(this).removeClass("optionHover");
+    });
 
     $(".searchInput").on("keyup", function (e) {
       if (e.keyCode == "13") {
@@ -199,7 +212,7 @@
         success: function (data) {
           for (let i = 0; i < data.length; i++) {
             let item = '<tr postID="' + data[i].postID + '"><th scope="row">' + data[i].category
-              + '</th><td>' + data[i].title
+              + '</th><td>' + '<span data-toggle="tooltip" data-placement="top" title="'+data[i].title+'">'+ trunc(data[i].title)+'</span>'
               + '</td><td>' + convertDateToString(data[i]._id)
               + '</td><td class="count">' + data[i].count
               + '</td></tr>';
