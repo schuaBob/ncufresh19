@@ -87,7 +87,7 @@ router.get('/', (req, res, next) => {
     })
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
     console.log(`User:${req.user}`);
-    res.render('index/index', { title: "新生知訊網", News: newsDocs, commercial: commercial, icon: catePicArr, user: req.user })
+    res.render('index/index', { title: "新生知訊網 | 首頁", News: newsDocs, commercial: commercial, icon: catePicArr, user: req.user })
   }).catch((error) => {
     if (error) return next(error);
   })
@@ -129,7 +129,7 @@ router.get('/index-edit', (req, res, next) => {
       return next(error);
     }
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
+    res.render('index/edit', { title: '新生知訊網 | 編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
   }).catch((err) => {
     return next(err);
   })
@@ -143,7 +143,7 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
   })
   docCommercial.countDocuments((err, number) => {
     if (err) { return next(err) };
-    if (number === 0) {
+    if (number == 0) {
       for (let i in picArray) {
         picArray[i]['pk'] = i;
       }
@@ -155,9 +155,10 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
       })
     } else {
       docCommercial.find().sort({ pk: -1 }).limit(1).exec((err, maxPkDoc) => {
+        console.log(maxPkDoc);
         if (err) { return next(err) }
         for (let i in picArray) {
-          picArray[i]['pk'] = i + maxPkDoc + 1;
+          picArray[i]['pk'] = i + maxPkDoc[0].pk + 1;
         }
         docCommercial.create(picArray, (err) => {
           if (err) { return next(err) };

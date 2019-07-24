@@ -102,16 +102,30 @@
         <% /* 小遊戲 */ %>
         <div class="toggles" id="game-toggle">
           <div class="game-link">
-            <!-- <img src=""> -->
-            <p>進入小遊戲</p>
+            <a href="/coolgame">
+              <img src="遊戲畫面.png">
+              <p>進入小遊戲</p>
+            </a>
           </div>
         </div>
 
         <% /* 發問紀錄 */ %>
         <div class="toggles" id="ask-record-toggle">
           <div class="ask-record-container">
-            <p class="qnaTag" id="qnaTime">時間</p>
-            <p class="qnaTag" id="qnaQuestion">問題</p>
+            <div class="box-show">
+              <div class="box-ask" id="date">
+                <div class="tag-ask" id="date-tag">
+                  <p>時間</p>
+                </div>
+                <li>0724</li>
+              </div>
+              <div class="box-ask" id="ask-title">
+                <div class="tag-ask" id="title-tag">
+                  <p>問題</p>
+                </div>
+                <li>AAAAA</li>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -119,8 +133,9 @@
         <div class="toggles" id="ask-toggle">
           <div class="ask-link">
             <a href="/qna">
-            <img src="提問.png">
-            <p>新增問題</p>
+              <img src="提問.png">
+              <p>新增問題</p>
+            </a>
           </div>
         </div>
 

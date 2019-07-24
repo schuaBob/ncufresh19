@@ -23,12 +23,43 @@
         </div>
         <div class="sidebar">
             <ul>
-                <li class="sideli"><i class="fas fa-angle-right"></i>簡介</li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>部門介紹</li>
-                <li class="sideli"><i class="fas fa-angle-right"></i>活動剪影</li>
+                <a style="text-decoration:none; color: #0D4966;" href="/association/intro">
+                    <li class="sideli"><i class="fas fa-angle-right"></i>簡介</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/association/section">
+                    <li class="sideli"><i class="fas fa-angle-right"></i>部門介紹</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/association/photos">
+                    <li class="sideli"><i class="fas fa-angle-right"></i>活動剪影</li>
+                </a>
             </ul>
         </div>
-        <img src=學生會.PNG " class=backgroundimg>
+        <% if (content_this==="intro") { %>
+
+            <div class="info">
+                <div class="title">
+                    簡介
+                </div>
+                <div class="content">
+                    <% content[0].intro%>
+                </div>
+
+            </div>
+            <% } else if(content_this==="section"){ %>
+                <div class="info">
+                    <div class="title">
+                        部門介紹
+                    </div>
+                    <div class="content">
+                        <% content[0].section%>
+                    </div>
+
+                </div>
+                <% } else if(content_this==="photos"){ %>
+
+
+                    <% } 
+        <img src="學生會.PNG" class=backgroundimg>
 
         <script src="/groups/js/groups.js "></script>
 
