@@ -6,11 +6,14 @@
   //什麼都沒抓到會有BUG
     //------------game---------------------------------
   var leave_container;
+  var question_end_container;
   var now=0;
+  var correct_fish;
   var sound_shape;
   var game_time_image;
   var sound;
   var stop=false;
+  var question_time_count=0;
   var soundbutton;
   var labbybutton_container;
   var leavebutton_source = new Array();
@@ -21,6 +24,7 @@
   var option =new Array();
   var question_index_list=new Array();
   var question;
+  var question_time_stop=true;
   var question_text;
   var generate_fish;
   var generate_bubble;
@@ -29,12 +33,15 @@
   var background;
   var board_index;
   var sea ;
+  var question_time_text;
+  var question_time;
+  var question_timer;
   var bucket;
   var user_score;
   var now_score;
   var score_update_timer;
   var score_board;
-  var game_time=15;
+  var game_time=45;
   var catch_animal_container;
   var harpoon_text;
   var question_list = new Array();
@@ -70,7 +77,6 @@
   var fishman_walk;
   var generate_fish_ad;
   var fish_ad;
-  var game_score_text;
   var score_board_text;
   var game_score_text;
   createjs.Bitmap.prototype.getwidth = function(){
@@ -100,7 +106,7 @@
         this.y=y;
         this.alpha=1;
         stage.addChild(this);
-        createjs.Tween.get(this).to({y:y-30,alpha:0},500).call(()=>{
+        createjs.Tween.get(this).to({y:y-40,alpha:0},550).call(()=>{
           stage.removeChild(this)
         });
       }
@@ -113,10 +119,46 @@
         this.type =t;
       }
     }
+    class Button_Text extends createjs.Container {
+      constructor(t,f,c,x,y){
+        super();
+        this.x=x;
+        this.y=y;
+        this.text = new createjs.Text(t,f,c);
+        this.havermask = new createjs.Shape();
+        this.havermask.graphics.beginFill("#34AEC7").drawRect(50,0,80,30);
+        this.havermask.alpha = 0.01;
+        var w = this.text.getMeasuredWidth();
+        this.underline = new createjs.Shape();
+        this.haver =new createjs.Bitmap(loader.getResult("haver"));
+        this.haver.x=-5;
+        this.haver.y=-2;
+        this.haver.scale=0.48;
+        this.text.x = 50;
+        this.text.y= 0;
+
+        this.underline.graphics.s("#000000").mt(this.text.x, this.text.y+25).lt(this.text.x+w, this.text.y+25);
+        this.havermask.addEventListener("mouseover",function(event){
+          event.target.parent.havermask.cursor = "pointer";
+          event.target.parent.haver.visible=true;
+          event.target.parent.underline.visible=true;
+        });
+        this.havermask.addEventListener("mouseout",function(event){
+          event.target.parent.havermask.cursor = "defult";
+          event.target.parent.haver.visible=false;
+          event.target.parent.underline.visible=false;
+        });
+        this.underline.visible=false;
+        this.haver.visible=false;
+        this.addChild(this.text);
+        this.addChild(this.underline);
+        this.addChild(this.havermask);
+        this.addChild(this.haver );
+      }
+    }
     class Option extends createjs.Container{
       constructor(){
         super();
-        console.log(this);
         this.x=210;
         this.y=250;
         this.background = new createjs.Shape();
@@ -157,7 +199,19 @@
         this.background.graphics.clear().beginFill("green").drawRoundRect(0,0,9*18,33,10);
         ans_num--;
         if(ans_num ==0){
+          correct_fish =new fish(board_index,false);
+          correct_fish.scale=0.5;
+          correct_fish.x=550;
+          correct_fish.y=350;
+          correct_fish.gotoAndStop("normal_die");
+          stage.addChild(correct_fish);
+          createjs.Tween.get(correct_fish).to({y:bucket.y+10,x:bucket.x+bucket.getwidth()/2,scale:0.18},500).call(()=>{
+            stage.removeChild(correct_fish);
+            user_score+=animalsource[board_index].score;
+          });
+          question_time_stop=true;
           questionboard.gotoAndStop("correct");
+          new Score_Text("+"+animalsource[board_index].score,"bold 40px 微軟正黑體","#000000",canvas_width/2,canvas_height/2);
           createjs.Tween.get(questionboard).wait(1000).call(()=>{
             questionboard.gotoAndStop("normal");
             next_question();
@@ -196,7 +250,7 @@
       this.special=special;
       this.animaltype = type;
       //stage.addChildAt(this,stage.numChildren-2);
-      stage.addChildAt(this,3);
+      stage.addChildAt(this,4);
     }
     move(){
       if(getrandom(1000)<5){
@@ -212,12 +266,15 @@
       animal_list = arrayRemove(animal_list,this);  
       this.gotoAndStop(this.special == true?"special_die":"normal_die");
       catch_animal_num[this.animaltype]+=1;
-      new Score_Text("+"+this.score,"bold 20px 微軟正黑體","#000000",this.x,this.y);
-      user_score+=this.score;
+      if(this.animaltype != 0){
+        new Score_Text("+"+this.score,"bold 20px 微軟正黑體","#000000",this.x,this.y);
+        user_score+=this.score;
+      }
       catech_animal_update();
     }
   }
   function show_correct(){
+    question_time_stop=true;
     for(i=0;i<5;i++){
       if(option[i].ans &&  !option[i].done){
         option[i].background.visible =true;
@@ -506,7 +563,7 @@
   function open_bird(){
     generate_bird = setInterval(()=>{
       if(!stop)
-      if(getrandom(100)<20){
+      if(getrandom(100000)<2){
         animal_list.push(new bird(0,false));
       }
    },1000);
@@ -698,9 +755,14 @@
       backbutton.image = loader.getResult("back");
     });
     back_shape.addEventListener("mousedown",function(){
-      close_game_event();
-      leave_container.visible=true;
-      stop = true;
+      if(now == 3){
+        labby_init();
+      }
+      else{
+        close_game_event();
+        leave_container.visible=true;
+        stop = true;
+      }
     });
     back_container.addChild(backbutton);
     back_container.addChild(back_shape);
@@ -829,11 +891,8 @@
     sound=true;
     bucket.scale = 0.5;
     bucket.scaleX = 0.6;
-    score_board.scale =0.5;
-    score_board.scaleY =0.5;
     bucket.y=257;
     bucket.x=-0;
-    score_board.y=140;
     bucket.visible=false;
     score_board.visible =false;
     sound_shape.graphics.beginFill("#FFFFFF").drawRect(canvas_width-soundbutton.getwidth(),canvas_height - soundbutton.getheight(),soundbutton.getwidth(),soundbutton.getheight());
@@ -859,9 +918,11 @@
     stage.addChild(score_board);
     stage.addChild(bucket);
     stage.addChild(score_board_text);
+    stage.addChild(question_end_container);
     create_back_container();
     create_leave_container();
     create_labbybutton();
+    create_question_end_container();
     fisherman_harpoon = new harpoon();
   }
   function init(){
@@ -905,6 +966,44 @@
       }
     });
   }
+  function create_question_end_container(){
+    var golabby = new Button_Text("回到大廳","bold 20px 微軟正黑體","#000000",0,0);
+    var goranking = new Button_Text("排行榜","bold 20px 微軟正黑體","#000000",200,0);
+    question_end_container = new createjs.Container();
+    question_end_container.addChild(golabby);
+    question_end_container.addChild(goranking);
+    question_end_container.x = 415;
+    question_end_container.y=320;
+    golabby.havermask.addEventListener("click",function(){
+      question_end_container.visible=false;
+      stage.removeChild(question_container);
+      stage.removeChild(score_catch_animal_container);
+      labby_init();
+    });
+    goranking.havermask.addEventListener("click",function(){
+      question_end_container.visible=false;
+      stage.removeChild(question_container);
+      stage.removeChild(score_catch_animal_container);
+      ranking_init();
+    });
+
+    question_end_container.visible=false;
+   stage.addChildAt(question_end_container,stage.numChildren-1);
+  }
+  function question_end(){
+    stage.removeChild(question_container);
+    var a = score_board_text.x-(score_board.x-512);
+    var b = score_board_text.y-(score_board.y-169);
+    createjs.Tween.get(score_board).to({x:512,y:169,scale:0.65},1000).call(()=>{
+      question_end_container.visible=true;
+    })
+    createjs.Tween.get(score_board_text).to({x:a+19,y:b+13,scale:1.5},1000).call(()=>{
+      question_end_container.visible=true;
+    })
+    clearInterval(question_timer);
+    //labby_init();
+    console.log("game over");
+  }
   function create_questionboard(){
     board_index =0;
     if(catch_animal_num[1]>0)board_index=1;
@@ -912,10 +1011,7 @@
     else  if(catch_animal_num[3]>0)board_index=3;
     else  if(catch_animal_num[4]>0)board_index=4;
     else {
-      stage.removeChild(question_container);
-      stage.removeChild(score_catch_animal_container);
-      labby_init();
-      console.log("game over");
+      question_end();
       return;
     }
     question_index_list = new Array();
@@ -983,9 +1079,15 @@
       option[a[index]].setText(String.fromCharCode(65+a[index])+" "+question.option[i],false);
       a = arrayRemove(a,a[index]);
     }
+    question_time=11;
+    question_time_count=49;
+    question_time_text.text="10";
+    question_time_stop=false;
+    question_time_text.visible=true;
   }
   function next_question(){
     if(catch_animal_num[board_index] == 0){
+      question_time_text.visible=false;
       for(var j=0;j<5;j++){
         option[j].visible=false;
       }
@@ -1075,17 +1177,35 @@
       question_num[j] = question_list[j].length;
     }
   }
-
+  function question_time_update(){
+    if(!question_time_stop){
+      question_time_count+=1;
+      if(question_time_count % 50 == 0){
+        if(question_time == 1){
+          show_correct();
+        }
+        question_time--;
+        question_time_text.text =  question_time+"";
+      }
+    }
+  }
   function question_init(){
     question_container= new createjs.Container();
     var question_background = new createjs.Shape();
     question_text = new createjs.Text("","Bold 20px "+font_family,"#000000");
     question_text.x = 190;
     question_text.y=140;
+    question_time_count=0;
+    question_time_text = new createjs.Text("10","bold 30px Arial","#000000");
+    question_time_text.x =canvas_width/2-10;
+    question_time_text.y =  question_text.y-50;
+    question_time_text.visible =false;
+    question_timer = setInterval(question_time_update,20);
     question_background.graphics.beginFill("#000000").drawRect(0,0,800,500);
-    question_background.alpha = 0.4;
+    question_background.alpha = 0.2;
     question_container.addChild(question_background);
     question_container.addChild(question_text);
+    question_container.addChild(question_time_text);
     option = new Array();
     question_num=[0,0,0];
     question_index_list=new Array();
@@ -1171,6 +1291,9 @@
     sea.y = 270;
     sea.alpha=0.45
     fisherman.y=380
+    score_board.scale =0.5;
+    score_board.y=140;
+    score_board.x=0;
     score_catch_animal_num = [0,0,0,0,0]
     fisherman.scale=fisherman_harpoon.scale=0.2496;
     fisherman.x=canvas_width+fisherman.getwidth();
@@ -1183,12 +1306,10 @@
     bucket.visible = true;
     score_board.visible =true;
     score_board_text.scale=1.4
-    score_board_text.rotation=-4;
+    score_board_text.rotation=-4.5;
     score_board_text.text = user_score+"";
-    score_board_text.regX = score_board_text.getMeasuredWidth()/2;
-    score_board_text.regY = score_board_text.getMeasuredHeight()/2;
-    score_board_text.x = score_board.getwidth()/2;
-    score_board_text.y = score_board.y+51.5;
+    score_board_text.x = score_board.getwidth()/2-score_board_text.getMeasuredWidth()/2-8-score_board_text.text.length;
+    score_board_text.y = score_board.y+51.5-score_board_text.getMeasuredHeight()/2-3;
     bucket.y=257;
     bucket.x=-0;
     score_board.y=140;
@@ -1208,7 +1329,10 @@
         for(i=0;i<catch_fish.length;i++){
           if(catch_fish[i].animaltype  ==0){
             brid_num++;
-            createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},600).wait(600).to({y:bucket.y+10,x:bucket.x+bucket.getwidth()/2},600).to({visible:false});
+            createjs.Tween.get(catch_fish[i]).wait(brid_num*200).to({y:220,x:380},600).wait(600).to({y:bucket.y+10,x:bucket.x+bucket.getwidth()/2},600).to({visible:false}).call(()=>{
+              new Score_Text("+"+animalsource[0].score,"bold 20px 微軟正黑體","#000000",bucket.x+bucket.getwidth()/2,bucket.y+10);
+              user_score+=animalsource[0].score;
+            });
           }
         }
         if(catch_fish.length!=0)
@@ -1222,6 +1346,9 @@
             score_catch_animal_num[catch_fish[num_score_fish++].animaltype]++;
             score_catch_animal_text_update();
           })
+        }
+        else{
+          question_end();
         }
       });
     });
@@ -1292,7 +1419,7 @@
     die_fish3.x=die_fish2.x+170;
     die_fish4.x=die_fish3.x+165;
     score_catch_animal_container.x =155;
-    score_catch_animal_container.y=130;
+    score_catch_animal_container.y=100;
   }
   function create_harpoon_text(){
     harpoon_text.x  =canvas_width-110;
@@ -1314,18 +1441,19 @@
     score_board_text.y = harpoon_text.y;
     score_update_timer = setInterval(score_text_update,10);
   }
-  // function create_(){
-  //   game_time_image.x=canvas_width/2-48;
-  //   game_time_image.y=12.5;
-  //   game_time_image.scale=0.345;
-  //   stage.addChild(game_time_image);
-  // }
+  var score_text_lenght=0;
   function score_text_update(){
     if(user_score != now_score){
-      v = now_score>user_score?-5:5;
-      if(Math.abs(now_score-user_score)<5)now_score = user_score;
+      v = now_score>user_score?-2:2;
+      if(Math.abs(now_score-user_score)<2)now_score = user_score;
       else{
         now_score+=v;
+      }
+      if(now == 2){
+        if(score_text_lenght !=score_board_text.text.length)
+        score_text_lenght=score_board_text.text.length;
+        score_board_text.x = score_board.getwidth()/2-score_board_text.getMeasuredWidth()/2-8-score_board_text.text.length;
+        score_board_text.y = score_board.y+51.5-score_board_text.getMeasuredHeight()/2-3;
       }
       score_board_text.text = (now==1?"Score:":"")+now_score+"";
     }
@@ -1432,102 +1560,21 @@
   var labbybutton_source = new Array();
   function create_labbybutton(){
     labbybutton_container = new createjs.Container();//34AEC7
-    var start_shape =  new createjs.Shape();
-    start_shape.graphics.beginFill("#34AEC7").drawRect(50,0,80,30);
-    start_shape.alpha=0.01;
-    var start = new createjs.Text("開始遊戲", "Bold 20px 微軟正黑體", "#000000");
-    start.x = 50;
-    start.y= 0;
-    var w = start.getMeasuredWidth();
-    var start_underline = new createjs.Shape();
-    start_underline.graphics.s("#000000").mt(start.x, start.y+25).lt(start.x+w, start.y+25);
-    var start_haver =new createjs.Bitmap(loader.getResult("haver"));
-    start_haver.x=-5;
-    start_haver.y=-2;
-    start_haver.scale=0.48;
-    var rule = new createjs.Text("規則說明", "Bold 20px 微軟正黑體", "#000000");
-    rule.x = start.x;
-    rule.y = start.y+50;
-    var rule_shape =  new createjs.Shape();
-    rule_shape.graphics.beginFill("#34AEC7").drawRect(50,rule.y,80,30);
-    rule_shape.alpha=0.01;
-    w = rule.getMeasuredWidth();
-    var rule_underline = new createjs.Shape();
-    rule_underline.graphics.s("#000000").mt(rule.x, rule.y+25).lt(rule.x+w, rule.y+25);
-    var rule_haver =new createjs.Bitmap(loader.getResult("haver"));
-    rule_haver.x=-5;
-    rule_haver.y=-2+rule.y;
-    rule_haver.scale=0.48;
-
-    var ranking = new createjs.Text("排行榜", "Bold 20px 微軟正黑體", "#000000");
-    ranking.x = start.x+10;
-    ranking.y = rule.y+50;
-    var ranking_shape =  new createjs.Shape();
-    ranking_shape.graphics.beginFill("#34AEC7").drawRect(60,ranking.y,60,30);
-    ranking_shape.alpha=0.01;
-    w = ranking.getMeasuredWidth();
-    var ranking_underline = new createjs.Shape();
-    ranking_underline.graphics.s("#000000").mt(ranking.x, ranking.y+25).lt(ranking.x+w, ranking.y+25);
-    var ranking_haver =new createjs.Bitmap(loader.getResult("haver"));
-    ranking_haver.x=-5;
-    ranking_haver.y=-2+ranking.y;
-    ranking_haver.scale=0.48;
-    labbybutton_source.push({text:start,underline:start_underline,haver:start_haver});
-    labbybutton_source.push({text:rule,underline:rule_underline,haver:rule_haver});
-    labbybutton_source.push({text:ranking,underline:ranking_underline,haver:ranking_haver});
-    for(i=0 ;i< labbybutton_source.length;i++){
-      labbybutton_source[i].haver.visible=false;
-      labbybutton_source[i].underline.visible=false;
-    }
-    start_shape.addEventListener("click",function(){  
+    var start = new Button_Text("開始遊戲","bold 20px 微軟正黑體","#000000",0,0);
+    var rule = new Button_Text("規則說明","bold 20px 微軟正黑體","#000000",0,50);
+    var ranking = new Button_Text("排行榜","bold 20px 微軟正黑體","#000000",10,100);
+    start.havermask.addEventListener("click",function(event){  
       labbybutton_container.visible=false;
       game_init();
     });
-    ranking_shape.addEventListener("click",function(){  
+      ranking.havermask.addEventListener("click",function(){  
       labbybutton_container.visible=false;
       ranking_init();
     });
-    start_shape.addEventListener("mouseover",function(){
-      start_shape.cursor = "pointer";
-      labbybutton_source[0].haver.visible=true;
-      labbybutton_source[0].underline.visible=true;
-    });
-    start_shape.addEventListener("mouseout",function(){
-      labbybutton_source[0].haver.visible=false;
-      labbybutton_source[0].underline.visible=false;
-    });
-    rule_shape.addEventListener("mouseover",function(){
-      rule_shape.cursor = "pointer";
-      labbybutton_source[1].haver.visible=true;
-      labbybutton_source[1].underline.visible=true;
-    });
-    rule_shape.addEventListener("mouseout",function(){
-      labbybutton_source[1].haver.visible=false;
-      labbybutton_source[1].underline.visible=false;
-    });
-    ranking_shape.addEventListener("mouseover",function(){
-      ranking_shape.cursor = "pointer";
-      labbybutton_source[2].haver.visible=true;
-      labbybutton_source[2].underline.visible=true;
-    });
-    ranking_shape.addEventListener("mouseout",function(){
-      labbybutton_source[2].haver.visible=false;
-      labbybutton_source[2].underline.visible=false;
-    });
-
     stage.enableMouseOver(100); 
     labbybutton_container.addChild(start);
-    labbybutton_container.addChild(start_shape);
-    labbybutton_container.addChild(start_underline);
-    labbybutton_container.addChild(start_haver);
     labbybutton_container.addChild(rule);
-    labbybutton_container.addChild(rule_shape);
-    labbybutton_container.addChild(rule_underline);
-    labbybutton_container.addChild(rule_haver);
     labbybutton_container.addChild(ranking);
-    labbybutton_container.addChild(ranking_shape);
-    labbybutton_container.addChild(ranking_underline);
-    labbybutton_container.addChild(ranking_haver);
     labbybutton_container.x=325;
     labbybutton_container.y=200;
     stage.addChild(labbybutton_container);
@@ -1537,6 +1584,9 @@
     back_container.visible=true;
     fisherman.visible=false;
     fisherman_harpoon.visible=false;
+    bucket.visible =false;
+    score_board.visible =false;
+    score_board_text.visible=false;
     close_fishmanwalk();
     close_fish_ad();
     sea.visible=false;
@@ -1561,6 +1611,7 @@
     fisherman.visible=true;
     bucket.visible =false;
     score_board.visible =false;
+    score_board_text.visible=false;
     fisherman_harpoon.visible=true;
     sea.visible=true;
     stop =false;
@@ -1573,7 +1624,6 @@
     fisherman.scale =0.16;
     fisherman_harpoon.scale=0.16;
     fisherman.x = 75;
-    score_board_text.visible=false;
     fisherman.y = canvas_seaheight-25;
     fisherman.regX = fisherman.image.width/2;
     fisherman.regY = fisherman.image.height/2;
@@ -1584,7 +1634,6 @@
     sea.alpha=0.3;
     sea.x=0;
     sea.y=0;
-    new Score_Text("+10000","bold 30px 微軟正黑體","#000000",200,200);
     labbybutton_container.visible=true;
     open_fishmanwalk();
     open_fish_ad();

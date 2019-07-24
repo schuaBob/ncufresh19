@@ -74,9 +74,13 @@ router.get('/', (req, res, next) => {
     docCommercial.find({}, {
       _id: 0,
       __v: 0
+    }).exec(),
+    docCalender.find({month: "8"}, {
+      _id: 0,
+      __v: 0
     }).exec()
   ]).then((result) => {
-    var news = result[0], commercial = result[1];
+    var news = result[0], commercial = result[1], calender = result[2];
     var newsDocs = news.filter((item) => {
       var TimeNow = new Date().getTime() + 28800000;
       var pass = (TimeNow - new Date(item.date).getTime()) / (1000 * 60 * 60 * 24)
@@ -87,7 +91,17 @@ router.get('/', (req, res, next) => {
     })
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
     console.log(`User:${req.user}`);
-    res.render('index/index', { title: "新生知訊網", News: newsDocs, commercial: commercial, icon: catePicArr, user: req.user })
+
+    calender = calender.sort(function(a, b){
+      if(a.month !== b.month){
+        return Number(a.month) > Number(b.month) ? 1 : -1;
+      }
+      else{
+        return Number(a.date) > Number(b.date) ? 1 : -1;
+      }
+    });
+
+    res.render('index/index', { title: "新生知訊網 | 首頁", News: newsDocs, commercial: commercial, icon: catePicArr, calender: calender, user: req.user })
   }).catch((error) => {
     if (error) return next(error);
   })
@@ -129,11 +143,12 @@ router.get('/index-edit', (req, res, next) => {
       return next(error);
     }
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
+    res.render('index/edit', { title: '新生知訊網 | 編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
   }).catch((err) => {
     return next(err);
   })
-})
+});
+
 router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) => {
   var picArray = req.files.map((item) => {
     var desTemp = item.destination.split('/');
@@ -143,7 +158,7 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
   })
   docCommercial.countDocuments((err, number) => {
     if (err) { return next(err) };
-    if (number === 0) {
+    if (number == 0) {
       for (let i in picArray) {
         picArray[i]['pk'] = i;
       }
@@ -155,9 +170,10 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
       })
     } else {
       docCommercial.find().sort({ pk: -1 }).limit(1).exec((err, maxPkDoc) => {
+        console.log(maxPkDoc);
         if (err) { return next(err) }
         for (let i in picArray) {
-          picArray[i]['pk'] = i + maxPkDoc + 1;
+          picArray[i]['pk'] = i + maxPkDoc[0].pk + 1;
         }
         docCommercial.create(picArray, (err) => {
           if (err) { return next(err) };
@@ -166,7 +182,8 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
       })
     }
   })
-})
+});
+
 router.get('/adpic/delete?', (req, res, next) => {
   if (req.query.pk) {
     docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err) => {
@@ -176,7 +193,8 @@ router.get('/adpic/delete?', (req, res, next) => {
   } else {
     res.redirect('/index-edit');
   }
-})
+});
+
 router.get('/schedule/:method?', (req, res, next) => {
   switch (req.params.method) {
     case "read":
@@ -254,7 +272,8 @@ router.post('/schedule/:method', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-})
+});
+
 router.get('/calender/:method?', (req, res, next) => {
   switch (req.params.method) {
     case "read":
@@ -280,7 +299,8 @@ router.get('/calender/:method?', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-})
+});
+
 router.post('/calender/:method', (req, res, next) => {
   switch (req.params.method) {
     case "create":
@@ -330,6 +350,34 @@ router.post('/calender/:method', (req, res, next) => {
     default:
       res.status(404).send('Wrong Page');
       break;
+  }
+});
+
+router.post('/calender_get_data', function(req, res, next){
+  if(req.body.id == "aug"){
+    docCalender.find({month: "8"}, function(err, obj){
+      obj = obj.sort(function(a, b){
+        if(a.month !== b.month){
+          return Number(a.month) > Number(b.month) ? 1 : -1;
+        }
+        else{
+          return Number(a.date) > Number(b.date) ? 1 : -1;
+        }
+      });
+      res.send(obj);
+    });
+  } else {
+    docCalender.find({month: "9"}, function(err, obj){
+      obj = obj.sort(function(a, b){
+        if(a.month !== b.month){
+          return Number(a.month) > Number(b.month) ? 1 : -1;
+        }
+        else{
+          return Number(a.date) > Number(b.date) ? 1 : -1;
+        }
+      });
+      res.send(obj);
+    });
   }
 });
 
@@ -414,6 +462,19 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   } else {
     res.redirect('/register');
   }
+
+  /*var _user = new User({
+    id: req.body.id,
+    password: req.body.password,
+    name: req.body.name
+  }).save(function(err) {
+    if(err) {
+      return next(err);
+    }
+    req.session.user = req.body.user;
+
+    res.redirect('/');
+  });*/
 });
 
 router.get('/logout', function (req, res, next) {
