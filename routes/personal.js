@@ -12,7 +12,7 @@ var Question = mongoose.model('qna');
 
 var picname;
 
-router.get('/', /*checkUser.isLoggedIn,*/ function(req, res, next) {
+router.get('/', checkUser.isLoggedIn, function(req, res, next) {
 
   fs.access("public/personal/profile-photo/" + req.user.id + ".png", fs.constants.R_OK, (err) => {
     if(err) {

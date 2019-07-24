@@ -6,6 +6,19 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
 var docNews = require('../models/index/news');
 var docCalender = require('../models/index/calender');
+var docCommercial = require('../models/index/commercial');
+var multer = require('multer');
+var uploadHandler = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'public/index/commercial');
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    }
+  })
+})
+
 // for oauth
 var url = require('url');
 var request = require('request');
@@ -53,9 +66,18 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.get('/', (req, res, next) => {
-  docNews.find().exec((err, doc) => {
-    if (err) { return next(err) };
-    var newsDocs = doc.filter((item, index, array) => {
+  Promise.all([
+    docNews.find({},{
+      _id:0,
+      __v:0
+    }).exec(),
+    docCommercial.find({}, {
+      _id: 0,
+      __v: 0
+    }).exec()
+  ]).then((result) => {
+    var news = result[0], commercial = result[1];
+    var newsDocs = news.filter((item) => {
       var TimeNow = new Date().getTime() + 28800000;
       var pass = (TimeNow - new Date(item.date).getTime()) / (1000 * 60 * 60 * 24)
       if (pass > 0) {
@@ -64,10 +86,11 @@ router.get('/', (req, res, next) => {
       return pass > 0
     })
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    console.log(newsDocs)
-    console.log(req.user)
-    res.render('index/index', { title: "新生知訊網", News: newsDocs, icon: catePicArr, user: req.user })
-  });
+    console.log(`User:${req.user}`);
+    res.render('index/index', { title: "新生知訊網 | 首頁", News: newsDocs, commercial: commercial, icon: catePicArr, user: req.user })
+  }).catch((error) => {
+    if (error) return next(error);
+  })
 });
 
 router.get('/index-edit', (req, res, next) => {
@@ -84,10 +107,14 @@ router.get('/index-edit', (req, res, next) => {
       pk: 1,
       month: 1,
       date: 1
+    }).exec(),
+    docCommercial.find({}, {
+      _id: 0,
+      pk: 1,
+      picPath: 1
     }).exec()
   ]).then((doc) => {
-    var news = doc[0];
-    var calender = doc[1];
+    var news = doc[0], calender = doc[1], commercial = doc[2];
     try {
       for (let i in news) {
         var TimeNow = new Date().getTime() + 28800000;
@@ -102,12 +129,55 @@ router.get('/index-edit', (req, res, next) => {
       return next(error);
     }
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    res.render('index/edit', { title: '編輯首頁', news: news, icon: catePicArr, calender: calender, user: req.user });
+    res.render('index/edit', { title: '新生知訊網 | 編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
   }).catch((err) => {
     return next(err);
   })
-});
-
+})
+router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) => {
+  var picArray = req.files.map((item) => {
+    var desTemp = item.destination.split('/');
+    var temp = {};
+    temp['picPath'] = `/${desTemp[1]}/${desTemp[2]}/${item.originalname}`;
+    return temp;
+  })
+  docCommercial.countDocuments((err, number) => {
+    if (err) { return next(err) };
+    if (number == 0) {
+      for (let i in picArray) {
+        picArray[i]['pk'] = i;
+      }
+      docCommercial.create(picArray).then(() => {
+        res.redirect('/index-edit');
+      }).catch((error) => {
+        console.log(error);
+        return next(error);
+      })
+    } else {
+      docCommercial.find().sort({ pk: -1 }).limit(1).exec((err, maxPkDoc) => {
+        console.log(maxPkDoc);
+        if (err) { return next(err) }
+        for (let i in picArray) {
+          picArray[i]['pk'] = i + maxPkDoc[0].pk + 1;
+        }
+        docCommercial.create(picArray, (err) => {
+          if (err) { return next(err) };
+          res.redirect('/index-edit');
+        })
+      })
+    }
+  })
+})
+router.get('/adpic/delete?', (req, res, next) => {
+  if (req.query.pk) {
+    docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err) => {
+      if (err) return next(err);
+      res.redirect('/index-edit');
+    })
+  } else {
+    res.redirect('/index-edit');
+  }
+})
 router.get('/schedule/:method?', (req, res, next) => {
   switch (req.params.method) {
     case "read":
@@ -140,7 +210,7 @@ router.post('/schedule/:method', (req, res, next) => {
         date: new Date(`${req.body.time} GMT`),
         category: req.body.category,
         content: req.body.content
-      })
+      });
       docNews.countDocuments((err, number) => {
         if (err) { return next(err) }
         if (number > 0) {
@@ -185,8 +255,33 @@ router.post('/schedule/:method', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-});
+})
+router.get('/calender/:method?', (req, res, next) => {
+  switch (req.params.method) {
+    case "read":
+      console.log(req.query.pk)
+      docCalender.findOne({ pk: req.query.pk }, { _id: 0, __v: 0 }).exec((err, doc) => {
+        console.log(doc)
+        if (err) { return next(err) }
+        res.json(doc)
+      })
+      break;
+    case "delete":
+      console.log(req.query.pk);
+      docCalender.findOneAndDelete({ pk: req.query.pk }).exec((err, doc) => {
+        if (err) { return next(err) }
+        var resMes = {
+          message: "Data deleted successfully!"
+        }
+        res.json(resMes);
+      })
+      break;
 
+    default:
+      res.status(404).send('Wrong Page');
+      break;
+  }
+})
 router.post('/calender/:method', (req, res, next) => {
   switch (req.params.method) {
     case "create":
@@ -220,10 +315,22 @@ router.post('/calender/:method', (req, res, next) => {
         }
       })
       break;
-
+    case "update":
+      docCalender.findOneAndUpdate({ pk: req.body.pk }, {
+        month: req.body.month,
+        date: req.body.date,
+        board_content: req.body.boardContent
+      }).exec((err, doc) => {
+        if (err) { return next(err) }
+        var resMes = {
+          message: "Data edited successfully!"
+        }
+        res.json(resMes)
+      })
+      break;
     default:
-      res.
-        break;
+      res.status(404).send('Wrong Page');
+      break;
   }
 });
 
@@ -257,35 +364,36 @@ router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
 router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
-  failureFlash: false
+  failureFlash: true
 }));
 
 router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   res.render('login/register', { title: '新生知訊網', user: req.user });
 });
 
-router.post('/regiser', checkUser.isAllowtoLogin, function (req, res, next) {
+router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
   let id = req.body.id;
   let name = req.body.name;
   let password = req.body.password;
   let checkpassword = req.body.checkpassword;
 
   if ((id && name && password && checkpassword) && (password == checkpassword)) {
-    Users.findOne({'id': id}, function (err, obj) {
+    Users.findOne({ 'id': id }, function (err, obj) {
       if (err) {
         res.redirect('/');
       }
-      if (!obj) {
+      /*if (!obj) {
         console.log(id + ': 不存在於新生列表');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
+        return;
       }
 
       if (obj.name !== name) {
         console.log(id + ': 真實姓名不合');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
-      } else {
+      } else*/ {
         obj.password = password;
         obj.name = name;
         Users.createUser(obj, function (err, user, next) {
@@ -410,7 +518,7 @@ router.get('/auth/provider/callback', function (req, res, next) {
 
 router.get('/adduser', function (req, res, next) {
   Users.createUser(new Users({
-    id: "108000004",
+    id: "108000022",
     unit: "csie",
     name: "eugene"
   }), function (err, user) {

@@ -10,15 +10,18 @@ router.get('/', function(req, res, next) {
   res.render('documents/index', { title: 'documents', user:req.user });
 });
 
-router.get('/documents', function(req, res, next) {
-  res.render('documents/index', { title: 'documents', user:req.user });
+router.get('/index_com', function(req, res, next) {
+  res.render('documents/index_com', { title: 'documents', user:req.user });
+});
+
+router.get('/index_phone', function(req, res, next) {
+  res.render('documents/index_phone', { title: 'documents', user:req.user });
 });
 
 //大學生
 router.get('/undergraduate_must', function(req, res, next) {
   Document.findOne({count: 1}).exec(function(err, data){
     if(err) return next(err);
-    console.log(data)
     res.render('documents/undergraduate_must',{ title: 'undergraduate',data: data, user:req.user });
   });
 });

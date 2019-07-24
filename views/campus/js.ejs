@@ -317,9 +317,11 @@
             $('.mapmove').stop().velocity(properties1, 400)
         })
 
-        $('#List_index li').hover(function () {
+        $('li img').hover(function () {
+            console.log($(this)[0].style.top);
             $(this)[0].style.top = '-10%';
         }, function () {
+            console.log($(this)[0].style.top);
             $(this)[0].style.top = '0%';
         })
 
@@ -372,6 +374,7 @@
 
     })
     $('.indexelepic').tooltip();
+
     $('.elelist').hover(function () {
         $(this)[0].style.color = '#0E4A65';
     }, function () {
@@ -422,9 +425,46 @@
         }
     );
 
-    $(".zoom").elevateZoom({
-        zoomType: "lens",
-        lensShape: "round",
-        lensSize: 200
-    });
+    $(".pre").hover(
+        function () {
+            this.setAttribute('src', '/campus/貝5.png');
+        },
+        function () {
+            this.setAttribute('src', '/campus/貝7.png');
+        }
+    );
+
+    $(".next").hover(
+        function () {
+            this.setAttribute('src', '/campus/貝6.png');
+        },
+        function () {
+            this.setAttribute('src', '/campus/貝8.png');
+        }
+    );
+
+    function mg() {
+        console.log($(".MAP2D").hasClass("zoom"));
+        if ($(".MAP2D").hasClass("zoom")) {
+            $(".MAP2D").removeClass("zoom")
+            $(".zoomContainer").remove();
+        } else {
+            $(".MAP2D").addClass("zoom");
+            $(".zoom").elevateZoom({
+                zoomType: "lens",
+                lensShape: "round",
+                lensSize: 200
+            });
+        }
+    }
+
+    $('.mg').hover(function () {
+        $(this).velocity({
+            scale: 1.2
+        }, 100)
+    }, function () {
+        $(this).velocity({
+            scale: 1
+        }, 100)
+    })
 </script>
