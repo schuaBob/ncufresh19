@@ -455,7 +455,7 @@ li {
   position: absolute;
   float: right;
   top: 10px;
-  right:20px;
+  right:35px;
   width: 10%;
   z-index: 1;
 }
@@ -466,12 +466,13 @@ li {
 }
 
 #closemainlist img {
-  width: 150%;
+  width: 200%;
 }
 
 .title_bar {
-  min-width: 150px;
-  padding-left: 5%;
+  min-width: 250px;
+  height: 85px;
+  padding-left: 105px;
   width: 20%;
   background-color: white;
   position: absolute;
@@ -480,6 +481,7 @@ li {
 .title {
   height: 50px;
   width: 80px;
+  margin-top: 10px;
   margin-left: 10px;
   float: left;
   color: #0D4966;
@@ -487,23 +489,24 @@ li {
 
 .big_title {
   display: block;
-  font-size: 200%;
+  font-size: 28px;
   font-weight: 500;
   line-height: 1.2;
   color: #0D4966;
 }
 
 .line {
-  height: 60px;
-  width: 10px;
+  height: 80%;
+  width: 5px;
   background-color: #FFCC00;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-right: 10px;
   float: left;
 }
 
 .small_title {
   color: gray;
+  font-size: 17px;
   font-size: 100%;
 }
 
@@ -549,6 +552,7 @@ li {
 
 .show3D img{
   width: 50%;
+  min-width: 100px;
 }
 
 .decoration img{
@@ -788,11 +792,19 @@ li {
     position: relative;
   }
 
+  .map{
+    margin-top: 40px;
+    height: 90%;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-y: scroll;
+  }
+
   .sailor1 {
     display: none;
   }
 
-  .sailor1 {
+  .sailor2 {
     display: none;
   }
 
@@ -805,10 +817,31 @@ li {
     display: none;
   }
   .show3D{
-    display: none;
+    z-index: 10000000000000000;
+    bottom: -70%;
+    position: relative;
+    left: -60%;
+    height: 100px;
+    top: unset;
   }
 
   .decoration{
     display: none;
   }
+  
+  .MAP2D{   
+    min-width: 700px;
+    min-height: 100%;
+  }
+
+  .SAM{
+    min-width: 200px;
+    min-height: 30%;
+    height: 400px;
+  }
+
+  .bottom{
+    display: none;
+  }
+
 }
