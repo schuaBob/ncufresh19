@@ -1,6 +1,5 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 html {
@@ -47,9 +46,6 @@ overflow: auto;
   position: relative;
 }
 
-/*.identity div {
-  float: left;
-}*/
 
 .character {
   width: 25vw;
@@ -78,35 +74,16 @@ overflow: auto;
 .nav {
   position: relative;
   background-color: white;
-  width: 100%;
+  width: 31vw;
   height: 85px;
   box-shadow:2px 2px 2px rgba(20%,20%,40%,0.3),4px 4px 6px rgba(20%,20%,40%,0.1),6px 6px 12px rgba(20%,20%,40%,0.1);
 }
 
-/*.return_space {
-  position: absolute;
-  width: 14vw;
-  height: 11vh;
-  padding: 0.5vh 0 0.5vh 3vw;
-}
-
-.return {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 115%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}*/
-
-
 .sign {
   position: absolute;
-  border-left: 6px solid #ffcc00;
+  border-left: 5px solid #7CA7BC;
   padding-left: 20px;
-  left: 14vw;
+  left: 104px;
   margin: 1vh 0;
   height: 80%;
 }
@@ -116,13 +93,13 @@ overflow: auto;
 }
 
 .p1 {
-  color: rgb(20, 20, 102);
+  color: #FB8360;
   font-size: 28px;
   font-weight: bold;
 }
 
 .p2 {
-  color: gray;
+  color: #767171;
   font-size: 17px;
 }
 
@@ -191,9 +168,9 @@ overflow: auto;
   background-color: #FFFDF1;
   position: absolute;
   width: 67vw;
-  height: 77vh;
+  height: 90vh;
   right: 0vw;
-  margin-top:1vh;
+  top:60px;
   margin-left: 1vw;
   padding: 4vh 5vw;
 }
@@ -211,14 +188,7 @@ overflow: auto;
   padding-top: 2vh;
 }
 
-.modal-dialog{
-  overflow-y: initial !important
-}
-.modal-body{
-  height: 50vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
+
 
 /*.gra_bg {
   width: 30vw;
@@ -254,26 +224,27 @@ overflow: auto;
 
   .return_space {
     position: absolute;
-    width: 14vw;
-    height: 100%;
-    padding: 0.5vh 0 0.5vh 4.5vw;
+    padding: 0.5vh 0 0.5vh 10px;
     margin: auto 0;
   }
 
   .return {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 85px;
+    height: 75px;
   }
 
 }
 
 @media only screen and (min-width: 980px) and (max-width: 1400px)  {
+
+  .modal-dialog{
+    overflow-y: initial !important
+  }
+  .modal-body{
+    height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
   
   .identity div {
     float: left;
@@ -294,25 +265,27 @@ overflow: auto;
 
   .return_space {
     position: absolute;
-    width: 14vw;
-    height:100%;
-    padding: 0.5vh 0 0.5vh 4.5vw;
+    padding: 0.5vh 0 0.5vh 10px;
+    margin: auto 0;
   }
 
   .return {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 85px;
+    height: 75px;
   }
 
 }
 
 @media only screen and (min-width: 768px) and (max-width: 980px)  {
+
+  .modal-dialog{
+    overflow-y: initial !important
+  }
+  .modal-body{
+    height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
   
   .identity div {
     float: left;
@@ -333,27 +306,29 @@ overflow: auto;
 
   .return_space {
     position: absolute;
-    width: 14vw;
-    height: 100%;
-    padding: 0.5vh 0 0.5vh 3.5vw;
+    padding: 0.5vh 0 0.5vh 10px;
+    margin: auto 0;
   }
 
   .return {
-    width: auto;
-    height: auto;
-    max-width: 90%;
-    max-height: 90%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 85px;
+    height: 75px;
   }
 
 }
 
+@media only screen and (max-width: 768px)  {
 
-/*手機板*/
-@media only screen and  (max-width: 768px)  {
+  .modal-dialog {
+    max-width: 90%; 
+  }
+
+  .modal-body{
+    height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
   .fish_size {
     width: auto;
     height: auto;
@@ -370,7 +345,7 @@ overflow: auto;
 
   .return_space {
     position: absolute;
-    width: 14vw;
+    width: 100px;
     height: 100%;
     padding: 0.5vh 0 0.5vh 3vw;
   }
@@ -378,8 +353,8 @@ overflow: auto;
   .return {
     width: auto;
     height: auto;
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 100%;
+    max-height: 100%;
     top: 0;
     bottom: 0;
     left: 0;
@@ -394,5 +369,126 @@ overflow: auto;
     position: relative;
     
   }
+
+  /*大學生*/
+  .undergraduate {
+    margin: 3vh 3vw;
+  }
+
+  .link {
+    width: 20vw;
+    margin: 1vh 9vw;
+    font-size: 3.5vw;
+    text-decoration: none;
+    color: black;
+    border-bottom: solid rgb(91, 155, 213) 0.5vw;
+  }
+
+  .p_option {
+    font-weight: 500;
+    color: rgb(13, 73, 102);
+    height: 10vh;
+    font-size: 3.5vw;
+    padding-top: 1.5vh;
+    padding-left: 34vw;
+    cursor: pointer;
+  }
+
+  .fade {
+    display: none;
+  }
+
+}
+
+
+/*手機板*/
+@media only screen and (max-device-width: 768px)  {
+  .fish_size {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin-left: 5px;
+    position: absolute;
+    float:left;
+  }
+
+  .return_space {
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    padding: 0.5vh 0 0.5vh 3vw;
+  }
+
+  .return {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .character {
+    width: 25vw;
+    height: 50vh;
+    left: 12vw;
+    top: 20vh;
+    position: relative;
+    
+  }
+
+  /*大學生*/
+  .undergraduate {
+    margin: 3vh 3vw;
+  }
+
+  .link {
+    width: 20vw;
+    margin: 1vh 9vw;
+    font-size: 3.5vw;
+    text-decoration: none;
+    color: black;
+    border-bottom: solid rgb(91, 155, 213) 0.5vw;
+  }
+
+  .p_option {
+    font-weight: 500;
+    color: rgb(13, 73, 102);
+    height: 10vh;
+    font-size: 3.5vw;
+    padding-top: 1.5vh;
+    padding-left: 34vw;
+    cursor: pointer;
+  }
+
+  .fade {
+    display: none;
+  }
+
+  /*show modal*/
+
+  #phone_title {
+    font-size: 25px ;
+    font-weight: bold;
+    color: rgb(58, 154, 216) !important;
+  }
+
+  .modal-dialog {
+    max-width: 90%; 
+  }
+
+  .modal .modal-body {
+    height: 80vh;
+    overflow: auto;
+  }
+
+  
 
 }
