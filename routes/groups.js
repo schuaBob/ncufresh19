@@ -3,6 +3,7 @@ var router = express.Router();
 var department_data = require('../models/groups/department');
 var community_data = require('../models/groups/community');
 var others_data = require('../models/groups/others');
+var student_data = require('../models/groups/student');
 
 
 /* GET home page. */
@@ -348,8 +349,34 @@ router.post('/edit_others', function(req, res, next) {
 
 
 router.get('/association', function(req, res, next) {
-    res.render('groups/g_association', { title: 'association' });
+    console.log("get association")
+
+    res.render('groups/g_association', {
+        title: 'association',
+        content: null,
+        content_this: null,
+        user: req.user
+
+    });
 });
+router.get('/association/:content', function(req, res, next) {
+    student_data.find({}).exec(function(err, data) {
+        if (err) return next(err);
+
+        res.render('groups/g_association', {
+            title: 'others',
+            content: data,
+            content_this: req.params.content,
+            user: req.user
+
+        })
+
+
+    })
+
+
+})
+
 
 
 
