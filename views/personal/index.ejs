@@ -12,7 +12,7 @@
 
     <div class="container">
       
-      <% /* 使用者資訊 待補 */ %>
+      <% /* 使用者資訊 */ %>
       <div class="vertical-line"></div>
       <div class="username" id="username"><%= user.name %></div>
       <div class="student-number" id="student-number"><%= user.id %></div>
@@ -25,7 +25,7 @@
 
       <% /* 頭貼外框 */ %>
       <div class="circle">
-        <img class="profile-pic" src="default-profile.png">
+        <img class="profile-pic" src="/public/personal/profile-photo/<%= picname %>"> 
       </div>
       <% /* 上傳按鈕 */ %>
       <div class="upload-icon">
@@ -56,7 +56,7 @@
                 <p>1</p>
                 <p>1</p>
                 <p>1</p>
-                <p>1</p>
+                <p>1</p> 
                 <p>1</p>
                 <p>1</p>
                 <p>1</p>
