@@ -209,20 +209,26 @@
                             <%=department_this.en_name%>
                         </div>
                         <div class="linkbuttons">
-                            <div class="character">
-                                <a style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>">系所</a>
-                            </div>
-                            <div class="character">
-                                <a style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>">系學會</a>
-                            </div>
-                            <div class="character">
-                                <a style="text-decoration:none;" target="_blank" href="<%= department_this.qna_link%>">系上問答</a>
-                            </div>
+                            <%_ if(department_this.de_link!==""){ -%>
+                                <div class="character">
+                                    <a style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span class="link">系所</span></a>
+                                </div>
+                                <%_ } -%>
+                                    <%_ if(department_this.stu_link!==""){ -%>
+                                        <div class="character">
+                                            <a style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span class="link">系學會</span></a>
+                                        </div>
+                                        <%_ } -%>
+                                            <%_ if(department_this.qna_link!==""){ -%>
+                                                <div class="character">
+                                                    <a style="text-decoration:none;" target="_blank" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span class="link">系上問答</span></a>
+                                                </div>
+                                                <%_ } -%>
                         </div>
                     </div>
                     <%_ } -%>
 
-                        <img src="系所.PNG" class=backgroundimg>
+                        <img src="/groups/系所.PNG" class=backgroundimg>
 
 
 

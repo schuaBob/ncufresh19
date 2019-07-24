@@ -14,7 +14,8 @@
     }
     
     h1 {
-        color: #fc9375;
+        color: #FB8360;
+        font-size: 28px
     }
     
     div {
@@ -55,7 +56,7 @@
     
     .backgroundimg {
         position: fixed;
-        top: 25vh;
+        top: 20vh;
         right: 1vw;
         max-width: 60vw;
         height: inherit;
@@ -92,50 +93,47 @@
     }
     
     .buttonimg {
-        height: 20vw;
+        height: 15vw;
         width: inherit;
         border: #D0CECE 5px;
+        transition: all 0.6s;
+    }
+    
+    .buttonimg:hover {
+        transform: scale(1.4);
     }
     /*-----------------------------------------------------------title------------------------------------------------------*/
     
     .title_bar {
         background-color: white;
-        height: 100px;
+        height: 85px;
         width: 100%;
     }
     
     .title {
-        height: 50px;
-        width: 300px;
+        position: relative;
+        left: 100px;
         margin: 5px 10px 30px 10px;
         float: left;
     }
     
     .line {
         position: relative;
-        left: 20px;
-        height: 70px;
+        left: 100px;
+        top: 8.5px;
+        height: 80%;
         width: 0px;
-        border-color: #7cacbc;
+        border-color: #7CA7BC;
         border-style: solid;
         border-width: 5px;
-        margin-top: 20px;
-        margin-right: 10px;
         float: left;
-    }
-    
-    div img {
-        cursor: pointer;
-        transition: all 0.6s;
-    }
-    
-    div img:hover {
-        transform: scale(1.4);
+        margin: auto;
+        align-items: center;
     }
     
     .small_title {
-        color: #a4a1a1;
-        font-size: 2vw;
+        color: #767171;
+        font-size: 17px;
     }
     /*----------------------------------------------------listbar-------------------------------------------------------------*/
     
@@ -178,6 +176,7 @@
     .sideli:hover {
         background-color: #ec6d4f
     }
+    /*---------------------------------------------edit---------------------------------------------------*/
     
     .buttons {
         position: fixed;
@@ -185,12 +184,14 @@
         right: 5vw;
         font-size: 2vw
     }
+    /*--------------------------------------------info--------------------------------------------------------*/
     
     .de-info {
         font-size: 3vw;
         position: fixed;
-        top: 40vh;
-        right: 7vw;
+        width: 60vw;
+        top: 30vh;
+        right: 1vw;
         text-align: center
     }
     
@@ -198,6 +199,32 @@
         position: fixed;
         font-size: 4vw;
         text-align: center;
+        width: 60vw;
+        height: 70vh;
         top: 20vh;
-        right: 35vw;
+        right: 10vw;
+        background-color: khaki
+    }
+    
+    .linkimg {
+        width: 15vw;
+        height: inherit;
+    }
+    
+    .de-en {
+        font-size: 2vw;
+    }
+    
+    .linkbuttons {
+        position: relative;
+        top: 20vh
+    }
+    
+    .link {
+        text-align: center;
+        font-size: 2vw;
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+        color: #0D4966;
     }
