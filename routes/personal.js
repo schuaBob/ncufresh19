@@ -20,7 +20,7 @@ router.get('/', checkUser.isLoggedIn, function(req, res, next) {
     } else {
       picname = req.user.id + ".png";
     }
-    Question.find({name: req.user.id}).exec(function(err, question) {
+    Question.find({authorID: req.user.id}).exec(function(err, question) {
       if(err) {
         return next(err);
       }
@@ -49,6 +49,45 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage: storage});
 
+router.post('/editPicture', upload.single('picture'), function(req, res, next) {
+  var fileName = "public/personal/profile-photo" + req.user.id + ".png";
+  console.log(req.user.id + " upload picture");
+  fs.access(fileName, fs.constants.R_OK, (err) => {
+    if(err) {
+      return next(err);
+    } else {
+      gm(fileName).resize(200, 200, "!").write(fileName, function(err) {
+        if(err) {
+          return next(err);
+        }
+        res.redirect('/personal');
+      });
+    }
+  });
+});
 
+router.get('/deleteQna/:id', checkUser.isLoggedIn, function(req, res, next) {
+  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.redirect('../');
+  }
+  Question.findById(req.params.id).exec(function(err, result) {
+    if(err) {
+      return next(err);
+    }
+    if(!result) {
+      res.redirect('../');
+    }
+    if(result.authorID !== req.user.id) {
+      res.redirect('../');
+    }
+    result.DeleteDate = Date.now();
+    result.save(function(err) {
+      if(err) {
+        return next(err);
+      }
+      res.redirect('../');
+    });
+  });
+});
 
 module.exports = router;
