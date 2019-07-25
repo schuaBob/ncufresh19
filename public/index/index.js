@@ -15,4 +15,17 @@ $(document).ready(() => {
     $("#topHref").click(function () {
         $.fn.fullpage.moveTo("indexPage");
     });
+    $('.pernews').click((e)=>{
+        $.ajax({
+            url:`/schedule/read?pk=${e.currentTarget.attributes.pk.value}`,
+            method:'GET',
+            dataType:'JSON',
+            error:(err)=>{
+                console.log(err)
+            },
+            success:(res)=>{
+                
+            }
+        })
+    })
 })

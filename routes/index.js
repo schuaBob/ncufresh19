@@ -18,6 +18,7 @@ var uploadHandler = multer({
     }
   })
 })
+var fs = require('fs');
 
 // for oauth
 var url = require('url');
@@ -170,9 +171,13 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
 })
 router.get('/adpic/delete', (req, res, next) => {
   if (req.query.pk) {
-    docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err) => {
+    docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err, doc) => {
       if (err) return next(err);
-      res.redirect('/index-edit');
+      console.log(doc)
+      fs.unlink(`./public${doc.picPath}`, (err) => {
+        if (err) { return next(err) };
+        res.redirect('/index-edit');
+      })
     })
   } else {
     res.redirect('/index-edit');

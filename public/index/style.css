@@ -64,10 +64,11 @@ main {
 }
 
 #secondSection {
-    position: relative;
-    padding-bottom: 60px;
+    position: absolute;
+    height: calc(100% - 60px);
     z-index: 500;
-    bottom: 0;
+    top: 0;
+    padding:3vw 5vw;
 }
 
 #secondSection .row {
@@ -76,11 +77,6 @@ main {
 
 .card {
     margin: 0;
-}
-
-.col-lg {
-    padding-top: 30px;
-    padding-bottom: 30px;
 }
 
 .card-img {
@@ -92,15 +88,15 @@ main {
     position: relative;
     float: right;
 }
-
+.col-lg{
+    height: 100%;
+}
 #news {
     display: block;
     position: relative;
-    width: 80%;
-    margin: 0 auto;
-    height: 100%;
-    max-width: 600px;
+    width: 100%;
 }
+
 
 #news-title {
     position: relative;
@@ -108,7 +104,7 @@ main {
 
 #news-body {
     position: relative;
-    height: 330px;
+    max-height: 30vw;
     overflow-y: scroll;
     overflow-x: hidden;
 }

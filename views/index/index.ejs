@@ -81,7 +81,7 @@
                 </div>
                 <div id="news-body">
                   <% for(let i in News){ %>
-                  <div class="card" data-toggle="modal" data-target="#newsModal" pk="<%= News[i]['pk']%>">
+                  <div class="card pernews" data-toggle="modal" data-target="#newsModal" pk="<%= News[i]['pk']%>">
                     <div class="row align-items-center">
                       <div class="col-sm-3">
                         <img src="index/icon-<%= icon[News[i]['category']-1]%>.png" class="card-img">
