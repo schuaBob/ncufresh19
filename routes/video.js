@@ -7,15 +7,21 @@ router.get('/', function(req, res, next) {
   user: req.user });
 });
 
+
+/** 電腦版首頁 */
 router.get('/index_com', function(req, res, next) {
   res.render('video/index_com', { title: '新生知訊網 | 影音專區',
   user: req.user });
 });
 
+
+/** 手機版首頁 */
 router.get('/index_phone', function(req, res, next) {
   res.render('video/phone/index_phone', { title: '新生知訊網 | 影音專區',
   user: req.user });
 });
+
+/** -------------------- 電腦版分頁 -------------------- */
 
 /** 中大生活 */
 router.get('/v_nculife', function(req, res, next) {
@@ -182,6 +188,8 @@ router.get('/v_legend', function(req, res, next) {
   title_bar: ['LEGEND','中大傳說'],
   user: req.user });
 });
+
+/** -------------------- 手機版分頁 -------------------- */
 
 
 module.exports = router;
