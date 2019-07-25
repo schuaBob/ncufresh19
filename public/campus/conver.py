@@ -9,12 +9,12 @@ with open('內容.txt','r', encoding='UTF-8') as f:
     content = ""
     for i in f.readlines():
         print(i)
-        if '%' in i:
+        if '$' in i:
             if title != "":
                 all[title] = '<p>'+content+'</p>'
                 title = ""
                 content = ""
-            title = i.replace('%','').strip()
+            title = i.replace('$','').strip()
         else:
             content += i.strip()+"<br>"
 

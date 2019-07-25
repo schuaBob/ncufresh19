@@ -43,6 +43,12 @@ router.get('/indexmodal', function (req, res, next) {
     if (content[review.Element_Name]) {
       review.Element_Intro = content[review.Element_Name];
     }
+    if (review.Intropic.includes('5b6663bab8580a33b29b406d.png')){
+      review.Intropic = ['5b6663bab8580a33b29b406d-1.png','5b6663bab8580a33b29b406d-2.png'];
+    }
+    if (review.Intropic.includes('5b680145a1290417d991cb0d.png')){
+      review.Intropic = ['5b680145a1290417d991cb0d-1.png','5b680145a1290417d991cb0d-2.png'];
+    }
     res.json(review);
   });
 });
