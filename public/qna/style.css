@@ -12,25 +12,19 @@ a {
   top: 4vh;
 }
 
-.seaBlue {
-  color: #0D4966;
-}
+
 
 .yellow {
   color: #FFCC00;
 }
 
-.seaBlueBg {
-  background-color: #0D4966;
+
+
+.orangeBg {
+  background-color:rgb(251,217,185) !important;
 }
 
-.yellowBg {
-  background-color: #FFCC00;
-}
 
-.grayBg {
-  background-color: #D0CECE;
-}
 
 body {
   overflow: hidden;
@@ -72,20 +66,20 @@ body {
   border-left: 5px solid #7CA7BC;
   padding-left: 4%;
   position: relative;
-  left: 24%;
+  left: 31%;
 }
 
 #qatxt {
   position: absolute;
   font-size: 28px;
-  top: -11%;
+  top: -6%;
   color: #FB8360;
 }
 
 #qatxt_c {
   position: absolute;
   font-size: 17px;
-  bottom: -6%;
+  bottom: 2%;
   color: #767171;
 }
 
@@ -105,13 +99,13 @@ body {
   margin: 20px auto;
   padding: 0px;
   list-style-type: none;
-  width: 50%;
+  width: 78%;
 }
 
 .option li {
-  margin-bottom: 5vh;
-  text-align: center;
+  margin-bottom: 5vh;  
   border-radius: 2px;
+  padding: 4% 7%;
 }
 
 .option a {
@@ -145,6 +139,7 @@ body {
 .buttonGroup{
   font-size: 16px;
   display: inline-flex;
+  color:black;
 }
 .button {
   border-radius: 5px;
@@ -157,6 +152,9 @@ body {
   width: 100%;
   padding: 10px 80px;
   display: flex;
+}
+.sortButton{
+  background-color: #D0CECE;
 }
 .sortButton:hover{
   cursor: pointer;
@@ -228,6 +226,7 @@ thead>tr {
 }
 .rowTitle{
   min-width: 47%;
+  
 }
 
 
@@ -295,7 +294,7 @@ thead>tr {
     z-index: 87;
   }
   .sortButton{
-    color:#00B7FF;
+    color:#00B7FF;    
   }
   .mobileFilter{
     display: block;
@@ -345,7 +344,7 @@ thead>tr {
 }
 
 /* iphone 6/7/8 plus */
-@media screen and (max-width: 414px) and (max-height: 736px) {
+/* @media screen and (max-width: 414px) and (max-height: 736px) {
   body{
     background-image: none;
   }
@@ -429,10 +428,10 @@ thead>tr {
     text-align: center;
     border-radius: 2px;
   }
-}
+} */
 
 /* iphone X/XS */
-@media screen and (max-width: 375px) and (max-height: 812px) {
+/* @media screen and (max-width: 375px) and (max-height: 812px) {
   body{
     background-image: none;
   }
@@ -516,10 +515,10 @@ thead>tr {
     text-align: center;
     border-radius: 2px;
   }
-}
+} */
 
 /* iphone xr */
-@media screen and (device-width: 414px) and (device-height: 896px) {
+/* @media screen and (device-width: 414px) and (device-height: 896px) {
   body{
     background-image: none;
   }
@@ -603,4 +602,4 @@ thead>tr {
     text-align: center;
     border-radius: 2px;
   }
-}
+} */
