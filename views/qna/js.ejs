@@ -57,16 +57,20 @@
 
     if (c == "") {
       $("#all").addClass("d-inline");
-      $("#all").parents("li").css("background-color", "#FFECA1");
+      $("#all").parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
+      
+  
     }
     else {
       $("#" + c).addClass("d-inline");
-      $("#" + c).parents("li").css("background-color", "#FFECA1");
+      $("#" + c).parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
     }
 
     $(".sortButton").click(function () {
       $("tbody").empty();
       sort = $(this).attr("sort");
+      $(".sortButton").removeClass("orangeBg");
+      $(this).addClass("orangeBg");
       if ($("tbody").attr("search") === "true") {
         search(c, $(this).attr("sort"));
       } else {
@@ -186,7 +190,7 @@
         success: function (data) {
           for (let i = 0; i < data.length; i++) {
             let item = '<tr postID="' + data[i].postID + '"><th scope="row">' + data[i].category
-              + '</th><td>' + data[i].title
+              + '</th><td>' + '<span data-toggle="tooltip" data-placement="top" title="'+data[i].title+'">'+ trunc(data[i].title)+'</span>'
               + '</td><td>' + convertDateToString(data[i]._id)
               + '</td><td class="count">' + data[i].count
               + '</td></tr>';
