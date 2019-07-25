@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var Study = mongoose.Schema({
+    type         : String,
     mainTitle    : String,
     name         : String,
     subTitle     : String,

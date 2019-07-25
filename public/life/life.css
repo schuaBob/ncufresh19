@@ -15,23 +15,43 @@ ul {
   list-style-type:none;
   padding: 0;
 }
-
+.T {
+  position: relative;
+}
 .mainTitle {
   position: relative;
   background-color:white;
-  height: 20vh;
+  width: 300px;
+  height: 85px;
+}
+
+.line {
+  height: 80%;
+  width: 5px;
+  background-color: #7CA7BC;
+  margin: 2.5% 34%;
+  float: left;
 }
 
 .titleText {
   position: absolute;
-  border-left: 6px solid #ffcc00;
-  margin: 3%;
-  left: 10%;
+  margin-left: 34%;
+  margin-top: 3%;
+  border-left: 5px solid #7CA7BC;
 }
 
-.titleText p {
-  font-size: larger;
-  font-weight: bold;
+.titleText span {
+  margin-left: 20%;
+}
+
+#nculife {
+  display: block;
+  font-size: 28px;
+  color: #FB8360;
+}
+#life {
+  font-size: 17px;
+  color: #767171;
 }
 
 .content {
@@ -40,7 +60,7 @@ ul {
   position: relative;
   display: block;
   width: 77vw;
-  height: 85vh;
+  height: 95%;
   top: 3%;
   overflow-y: scroll;
   overflow-x: hidden; 
@@ -53,7 +73,7 @@ ul {
 #main {
   position: relative;
   background-image: url(背景.JPG);
-  height: calc(100% - 60px);
+  height: calc(100% - 145px);
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: bottom;
@@ -64,11 +84,10 @@ ul {
   float:right;
   right: 0;
   left: 0;
-  top:3%;
+  top:4%;
   width: 10%;
   margin: 0;
   padding: 0;
-  
   z-index: 300;
 }
 
@@ -76,11 +95,10 @@ ul {
   position: relative;
   max-width: 75%;
   max-height: 75%;
-  /*width: 100px;*/
 }
 
 .sideNav li {
-  height: 20vh;
+  height: 21vh;
 }
 
 /*-----------study------------*/
@@ -105,8 +123,8 @@ ul {
   padding: 1%;
 }
 .studyImg {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .subTitle {
@@ -115,22 +133,26 @@ ul {
 }
 .studyTitle {
   background-color: #e0e0e0;
-  height: 12vh;
+  height: 80px;
+}
+
+.name {
+  position: absolute;
+  margin-top:3px;
+  margin-left: 100px;
+}
+
+.name p {
+  position: relative;
+  display: inline;
 }
 
 #name {
-  position: absolute;
-  margin: 2%;
-  margin-left: 7%;
+  font-size: 45px;
 }
-
-h1 {
-  display: inline;
+#college {
+  font-size: 20px;
 }
-h5 {
-  display: inline;
-}
-
 
 .subStudyContent {
   position: relative;
@@ -140,9 +162,15 @@ h5 {
 .subStudyContent div {
   display: inline-block;
 }
-
-.SpictureArea {
+.S {
   position: relative;
+  left: 10%;
+  margin: 0 auto;
+  width: 40%;
+}
+.SpictureArea {
+  position: absolute;
+  top: 10%;
   left: 10%;
   margin: 0 auto;
   width: 40%;
@@ -154,6 +182,7 @@ h5 {
   height: 100%;
 }
 
+
 .time {
   top: 10vh;
   left: 20%;
@@ -161,11 +190,11 @@ h5 {
 }
 
 .time p {
-  font-size: 25px;
-}
+  font-size: 10px;
+} 
 
 
-.studyTimeline {
+/* .studyTimeline {
   top: 10vh;
   width: 30%;
   height: 40%;
@@ -180,12 +209,56 @@ h5 {
 .event li {
   margin-bottom: 5%;
   font-size: 25px;
+} */ 
+
+@media (min-width: 500px) {
+.container {
+    max-width: 700px;
+}
+
+.container {
+  position: relative;
+  left: 140px;
+}
+
+ul.timeline {
+  list-style-type: none;
+  position: relative;
+}
+ul.timeline:before {
+  content: ' ';
+  background: #d4d9df;
+  display: inline-block;
+  position: absolute;
+  left: 29px;
+  width: 2px;
+  height: 100%;
+  z-index: 400;
+}
+ul.timeline > li {
+  margin: 20px 0;
+  padding-left: 50px;
+}
+ul.timeline > li:before {
+  content: ' ';
+  background: white;
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #22c0e8;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  z-index: 400;
 }
 .studyContent {
   position: relative;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 5%;
+  white-space: pre-line;
+  word-wrap: break-word;
+  
 }
 
 
@@ -201,35 +274,41 @@ h5 {
 .foodList {
   position: absolute;
   top: 23vh;
-  left: 3vw;
+  left: 8vw;
 }
 
 .foodList li {
   z-index: 100;
+  font-size: 25px;
+  cursor: pointer;
 }
 
 .FpictureArea {
   position: relative;
   display: block;
   overflow: scroll;
-  margin: 0 10%;
-  height: 90%;
+  margin: 0 20%;
+  width: 65%;
+  height: 93%;
   z-index: 300;
-  /* left: 4%; */
 }
 
 .foodImg {
   position: relative; 
   display: block;
-  /* top: 100%;
-  left: 100%; */
-  pointer-events: none;
-  -moz-user-select: none;
-  z-index: 100;
+  /* -moz-user-select: none; */
 }
 
 #areaName {
-  text-align: center;
+  margin-left: 25%;
+}
+#areaName p {
+  font-size: 50px;
+  border-bottom: 4px solid black;
+  /* padding-bottom: 5%; */
+}
+.T div{
+  display: inline-block;
 }
 
 .foodIcon {
@@ -237,7 +316,7 @@ h5 {
   display: block;
   max-width: 4%;
   max-height: 4%;
-  z-index: 2147483647;
+  cursor: pointer;
 }
 
 .FpictureArea::-webkit-scrollbar {
@@ -249,6 +328,72 @@ h5 {
 }
 
 
+#foodModal .modal-dialog {
+  width: 60%;
+  max-width: none;
+  margin-top: 2vh;
+  min-height: calc(100vh - 56px);
+}
+
+#foodModalDetail{
+  position: relative;
+  right: 0;
+  top: 0;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0;
+  display: block;
+  width: 85%;
+  padding: 8px;
+  word-wrap: break-word;
+  border-style: solid;
+  border-color: #2E627B;
+  border-top-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  background-color: white;
+  min-height: 50px;
+}
+
+#foodModalTitle {
+  position: relative;
+  right: 0;
+  top: 0;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0;
+  display: block;
+  width: 85%;
+  padding: 8px;
+  word-wrap: break-word;
+  border-style: solid;
+  border-color: #2E627B;
+  border-top-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  background-color: white;
+  min-height: 50px;
+}
+#foodModalDetail .d {
+  margin: 0;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+#foodModal .modal-header {
+  border-bottom-width: 0px;
+}
+
+#foodModal .modal-body{
+  margin: 0;
+  max-width: 100%;
+}
+
+#foodModal .modal-content {
+  background-color: rgb(81, 172, 207);
+}
+
+.modal-header span {
+  cursor: pointer;
+}
 
 
 

@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
 }
 
 a {
@@ -12,25 +12,19 @@ a {
   top: 4vh;
 }
 
-.seaBlue {
-  color: #0D4966;
-}
+
 
 .yellow {
   color: #FFCC00;
 }
 
-.seaBlueBg {
-  background-color: #0D4966;
+
+
+.orangeBg {
+  background-color:rgb(251,217,185) !important;
 }
 
-.yellowBg {
-  background-color: #FFCC00;
-}
 
-.grayBg {
-  background-color: #D0CECE;
-}
 
 body {
   overflow: hidden;
@@ -58,30 +52,35 @@ body {
 
 #outterTitleSpace{
   position: absolute;
-  top: 1vh;
-  width: 100%;
+  top: -6%;
+  width: 26%;
+  left:0;
   background-color: white;
+  height: 85px;
 }
 
 .titleSpace {  
-  height: 11vh;
-  margin: auto;  
-  width: 83%;
+  height: 80%;
   margin: auto;
-  border-left: 6px solid #FFCC00;
-  padding-left: 15px;
+  top: 12%;
+  border-left: 5px solid #7CA7BC;
+  padding-left: 4%;
+  position: relative;
+  left: 31%;
 }
 
 #qatxt {
   position: absolute;
-  font-size: 5vh;
-  top: -11%;
+  font-size: 28px;
+  top: -6%;
+  color: #FB8360;
 }
 
 #qatxt_c {
   position: absolute;
-  font-size: 4vh;
-  bottom: -6%;
+  font-size: 17px;
+  bottom: 2%;
+  color: #767171;
 }
 
 .leftSide {
@@ -89,29 +88,7 @@ body {
   /* background-color: rgb(102, 252, 164);        */
 }
 
-/* "分類"圖片 */
-.pic_classification {
-  position: relative;
-  padding-left: 4%;
-  left: 5px;
-}
 
-#classification {
-  position: absolute;
-  font-size: 4vh;
-  top: -10%;
-}
-
-#classification_c {
-  position: absolute;
-  font-size: 3.5vh;
-  bottom: -7%;
-}
-
-.pic_classification img {
-  height: 9vh;
-  margin-right: 9px;
-}
 
 .option {
   font-size: 3vh;
@@ -122,19 +99,23 @@ body {
   margin: 20px auto;
   padding: 0px;
   list-style-type: none;
-  width: 50%;
+  width: 78%;
 }
 
 .option li {
-  margin-bottom: 5vh;
-  text-align: center;
+  margin-bottom: 5vh;  
   border-radius: 2px;
+  padding: 4% 7%;
 }
 
 .option a {
   text-decoration: none;  
+  color:#0D4966;
 }
-
+.optionHover{
+  background-color:rgb(251,217,185);
+  color:rgb(32,56,100);
+}
 
 
 /* 選單箭頭 */
@@ -153,10 +134,12 @@ body {
   position: relative;
   width: 78%;
   padding-left: 2%;
+  top: -22%;
 }
 .buttonGroup{
-  font-size: 2vh;
+  font-size: 16px;
   display: inline-flex;
+  color:black;
 }
 .button {
   border-radius: 5px;
@@ -168,6 +151,10 @@ body {
   /* background-color: bisque; */
   width: 100%;
   padding: 10px 80px;
+  display: flex;
+}
+.sortButton{
+  background-color: #D0CECE;
 }
 .sortButton:hover{
   cursor: pointer;
@@ -176,6 +163,7 @@ body {
   min-width: 187px;
   position: absolute;
   right: 6%;
+  top:9px;
   /* float: right; */
 }
 .form-inline{
@@ -198,13 +186,13 @@ body {
   height: auto;
   padding: 0px;
   position: absolute;
-  bottom: 3vh;
-  left: -5.5vw;
+  bottom: -15%;
+  left: -8%;
 }
 
 
 #img1{
-  max-width: 50%;
+  max-width: 66%;
   position: relative;
   top: -1%;
   right: -59%;
@@ -217,7 +205,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   margin: 20px 60px;
-  height: 80%;
+  height: 100%;
 }
 
 tbody>tr {
@@ -228,12 +216,17 @@ tbody>tr {
 
 tbody tr:hover {
   cursor: pointer;
+  
 }
 
 thead>tr {
   border-bottom: 1px dashed #0D4966;
   height: 6vh;
   font-size: 3vh;
+}
+.rowTitle{
+  min-width: 47%;
+  
 }
 
 
@@ -242,7 +235,7 @@ thead>tr {
 
 .modal {
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 6000;
+  z-index: 10000;
 }
 
 .modal-dialog {
@@ -252,6 +245,8 @@ thead>tr {
 
 .modal-content {
   height: 85vh;
+  width: 70%;
+  margin: auto;
 }
 
 .searchInput {
@@ -299,7 +294,7 @@ thead>tr {
     z-index: 87;
   }
   .sortButton{
-    color:#00B7FF;
+    color:#00B7FF;    
   }
   .mobileFilter{
     display: block;
@@ -349,7 +344,7 @@ thead>tr {
 }
 
 /* iphone 6/7/8 plus */
-@media screen and (max-width: 414px) and (max-height: 736px) {
+/* @media screen and (max-width: 414px) and (max-height: 736px) {
   body{
     background-image: none;
   }
@@ -433,10 +428,10 @@ thead>tr {
     text-align: center;
     border-radius: 2px;
   }
-}
+} */
 
 /* iphone X/XS */
-@media screen and (max-width: 375px) and (max-height: 812px) {
+/* @media screen and (max-width: 375px) and (max-height: 812px) {
   body{
     background-image: none;
   }
@@ -520,10 +515,10 @@ thead>tr {
     text-align: center;
     border-radius: 2px;
   }
-}
+} */
 
 /* iphone xr */
-@media screen and (device-width: 414px) and (device-height: 896px) {
+/* @media screen and (device-width: 414px) and (device-height: 896px) {
   body{
     background-image: none;
   }
@@ -607,4 +602,4 @@ thead>tr {
     text-align: center;
     border-radius: 2px;
   }
-}
+} */

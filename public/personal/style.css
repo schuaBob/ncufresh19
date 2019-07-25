@@ -2,7 +2,6 @@
 
 body {
   background-color: white;
-  font-family: Noto Sans TC;
 }
 
 .vertical-line{
@@ -227,9 +226,9 @@ img {
 }
 
 .box-ask {
+  width: 100%;
   font-size: 15px;
   line-height: 25px;
-  padding: 5px;
 }
 
 #date {
@@ -258,4 +257,23 @@ img {
 
 #title-tag {
   background-color: #736f6e;
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }

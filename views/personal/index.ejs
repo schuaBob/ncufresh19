@@ -5,14 +5,14 @@
     <% include ../layouts/head %>
     <% include ../layouts/script  %>
     <link rel='stylesheet' href='/personal/style.css' />
-
+    <link href="bootstrap.css" rel="stylesheet">
   </head>
   <body>
       <% include ../layouts/header %>
 
     <div class="container">
       
-      <% /* 使用者資訊 待補 */ %>
+      <% /* 使用者資訊 */ %>
       <div class="vertical-line"></div>
       <div class="username" id="username"><%= user.name %></div>
       <div class="student-number" id="student-number"><%= user.id %></div>
@@ -25,14 +25,42 @@
 
       <% /* 頭貼外框 */ %>
       <div class="circle">
-        <img class="profile-pic" src="default-profile.png">
+        <img class="profile-pic" src="profile-photo/<%= picname %>"/> 
       </div>
       <% /* 上傳按鈕 */ %>
       <div class="upload-icon">
         <label for="upload">
-          <img id="btn" src="camera.png"`>
-          <input class="file-upload" id="upload" type="file" accept="image/*" style="display: none"/>
+          <a data-toggle="modal" data-target="#changep">
+            <img id="btn" src="camera.png"`>
+          </a>
         </label>
+      </div>
+
+      <% /* 換頭貼Modal */ %>
+      <div class="modal fade" id="changep" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>更改圖片</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="editPicture" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="elecategory">圖片</label>
+                  <div class="col-md-12">
+                    <input type="file" class="form-control input-md" name="picture">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">新增</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
 
       <% /* Toggle */ %>
@@ -56,7 +84,7 @@
                 <p>1</p>
                 <p>1</p>
                 <p>1</p>
-                <p>1</p>
+                <p>1</p> 
                 <p>1</p>
                 <p>1</p>
                 <p>1</p>
@@ -123,7 +151,7 @@
                 <div class="tag-ask" id="title-tag">
                   <p>問題</p>
                 </div>
-                <li>AAAAA</li>
+                <li>aaaaa</li>
               </div>
             </div>
           </div>

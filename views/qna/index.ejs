@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <title><%= title %></title>
   <% include ../layouts/head %>
   <% include ../layouts/script  %>
   <link rel='stylesheet' href='style.css' />
@@ -16,11 +17,10 @@
       display: none;
       position: fixed;
       padding: 0px;
-      width: 50vw;
-      /* border:1px solid red; */
-      z-index: 20;
-      top: 9vh;
-      left: 29vw;
+      width: 63%;      
+      z-index: 8763;
+      top: 2%;
+      left: 30%;
     }
 
     ._modal-content {
@@ -40,6 +40,7 @@
       right: 1%;
       font-size: 100%;
       z-index: 21;
+      color:#FFCC00;
     }
 
     .cross:hover {
@@ -100,11 +101,48 @@
       border-radius: 4px;
       /* border: #e5e5e5 1px solid;     */
     }
+    
   </style>
 </head>
 
 <body>
 
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">發文須知</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+            發文流程：<br>
+            一、 點擊”我要發問”<br>
+            二、 填寫發文資料<br>
+            三、 等待小編審核與通知<br>
+        </p>
+        <p>
+            注意事項：<br>
+            一、 發文需要小編審核，所以問題不一定會成功發出。<br>
+            二、 為了給你最好的答覆，小編回答會需要一些時間，請大家耐心等候。<br>
+            三、 發文前請詳閱各分類的熱門問題以及他人的發文紀錄。<br>
+            四、 嚴禁腥羶色發文，違者審核不予通過。<br>
+        </p>
+          
+          
+          
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="button" id="submit" class="btn btn-primary" data-dismiss="modal">確認送出</button>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- askModal -->
   <div class="_modal askmodal">
     <div class="_modal-content">
@@ -113,13 +151,13 @@
         <div class="modalTitle"><span>我要發問</span><i class="fas fa-times cross"></i></div>
         <div class="modalContent">
           <form action="/qna/toPost" class="needs-validation" method="POST">
-            <h4>標題</h4>
-            <input type="text" class="formElement" id="q_title" placeholder="限10字(必填)" pattern="^.{1,10}$">
-            <h4>內容</h4>
+            <h4 style="color:rgb(32, 56, 100)">標題</h4>
+            <input type="text" class="formElement" id="q_title">
+            <h4 style="color:rgb(32, 56, 100)">內容</h4>
             <textarea id="q_content" class="formElement" placeholder="(限200字)"
               pattern="^.{1,200}$"></textarea>
           </form>
-          <input type="submit" value="提交" id="submit" style="float:right;font-size:1em;margin-top:5px;">
+          <input type="submit" value="提交" style="float:right;font-size:1em;margin-top:5px;background-color:#FFCC00; border:none;"  data-toggle="modal" data-target="#exampleModal">
         </div>
       </div>
     </div>
@@ -147,18 +185,14 @@
   <main id="main">
     <div id="outterTitleSpace">
       <div class="titleSpace">
-        <span class="seaBlue font-weight-bold" id="qatxt">Q&A</span>
+        <span class="font-weight-bold" id="qatxt">Q&A</span>
         <span id="qatxt_c">新生問答</span>
       </div>
     </div>
     
     <div class="main d-flex">
       <div class="leftSide">
-        <div class="pic_classification">
-          <img src="sieve.png" alt="">
-          <span id="classification">分類</span>
-          <span id="classification_c">Classification</span>
-        </div>
+        
         <div class="option">
           <ul>
             <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
@@ -173,9 +207,9 @@
         <!-- 過濾以及搜尋框 -->
         <div class="sort_SearchBar">
           <div class="buttonGroup">
-            <div class="button text-white seaBlueBg">排序</div>
-            <div class="button sortButton yellowBg" sort="time">時間</div>
-            <div class="button sortButton grayBg" sort="count">人氣</div>
+            <div class="button">排序</div>
+            <div class="button sortButton orangeBg" sort="time">時間</div>
+            <div class="button sortButton" sort="count">人氣</div>
           </div>
           <div class="searchBar">
             <form class="form-inline" id="searchForm">
@@ -225,14 +259,14 @@
                   <th scope="col">分類</th>
                   <th scope="col">標題</th>
                   <th scope="col">日期</th>
-                  <th scope="col">點閱率</th>
+                  <th scope="col">點閱數</th>
                 </tr>
               </thead>
               <tbody search="false">
                 <% for(let index in questions){ %>
                 <tr postID="<%= questions[index].postID%>">
                   <th scope="row"><%= questions[index].category%></th>
-                  <td><%= questions[index].title %></td>
+                  <td class="rowTitle"><span   data-toggle="tooltip" data-placement="top" title="<%= questions[index].title %>"><%= trunc(questions[index].title) %></span></td>
                   <td><%= convertDateToString(questions[index]._id.getTimestamp()) %></td>
                   <td class="count"><%= questions[index].count  %></td>
                 </tr>

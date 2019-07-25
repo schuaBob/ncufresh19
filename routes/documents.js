@@ -7,22 +7,22 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('documents/index', { title: 'documents', user:req.user });
+  res.render('documents/index', { title:'新生知訊網｜新生必讀', user:req.user });
 });
 
 router.get('/index_com', function(req, res, next) {
-  res.render('documents/index_com', { title: 'documents', user:req.user });
+  res.render('documents/index_com', { title:'新生知訊網｜新生必讀', user:req.user });
 });
 
 router.get('/index_phone', function(req, res, next) {
-  res.render('documents/index_phone', { title: 'documents', user:req.user });
+  res.render('documents/index_phone', { title:'新生知訊網｜新生必讀', user:req.user });
 });
 
 //大學生
 router.get('/undergraduate_must', function(req, res, next) {
   Document.findOne({count: 1}).exec(function(err, data){
     if(err) return next(err);
-    res.render('documents/undergraduate_must',{ title: 'undergraduate',data: data, user:req.user });
+    res.render('documents/undergraduate_must',{ title:'新生知訊網｜新生必讀',data: data, user:req.user });
   });
 });
 
@@ -30,14 +30,14 @@ router.get('/undergraduate_must', function(req, res, next) {
 router.get('/undergraduate_fresh', function(req, res, next) {
   Document.findOne({count: 8}).exec(function(err, data){
     if(err) return next(err);
-    res.render('documents/undergraduate_fresh',{ title: 'undergraduate',data: data, user:req.user });
+    res.render('documents/undergraduate_fresh',{ title:'新生知訊網｜新生必讀',data: data, user:req.user });
   });
 });
 
 router.get('/undergraduate_study', function(req, res, next) {
   Document.findOne({count: 15}).exec(function(err, data){
     if(err) return next(err);
-      res.render('documents/undergraduate_study',{ title: 'undergraduate',data: data, user:req.user });
+      res.render('documents/undergraduate_study',{ title:'新生知訊網｜新生必讀',data: data, user:req.user });
   });
 });
 
@@ -45,7 +45,7 @@ router.get('/undergraduate_study', function(req, res, next) {
 router.get('/graduate_must', function(req, res, next) {
   Document.findOne({count: 22}).exec(function(err, data){
     if(err) return next(err);
-    res.render('documents/graduate_must',{ title: 'graduate',data: data, user:req.user });
+    res.render('documents/graduate_must',{ title:'新生知訊網｜新生必讀',data: data, user:req.user });
   });
 });
 
@@ -53,7 +53,7 @@ router.get('/graduate_fresh', function(req, res, next) {
   Document.findOne({count: 29}).exec(function(err, data){
     if(err) return next(err);
     
-    res.render('documents/graduate_fresh',{ title: 'graduate',data: data, user:req.user });
+    res.render('documents/graduate_fresh',{ title:'新生知訊網｜新生必讀',data: data, user:req.user });
   });
 });
 
@@ -61,7 +61,29 @@ router.get('/graduate_fresh', function(req, res, next) {
 router.get('/common', function(req, res, next) {
   Document.findOne({count: 31}).exec(function(err, data){
     if(err) return next(err);
-    res.render('documents/common',{ title: 'common',data: data, user:req.user});
+    res.render('documents/common',{ title:'新生知訊網｜新生必讀',data: data, user:req.user});
+  });
+});
+
+/*--------------------------手機板------------------------------------*/
+router.get('/phone/undergraduate', function(req, res, next) {
+  Document.findOne({count: 1}).exec(function(err, data){
+    if(err) return next(err);
+    res.render('documents/phone/undergraduate',{ title:'新生知訊網｜新生必讀',data: data, user:req.user });
+  });
+});
+
+router.get('/phone/graduate', function(req, res, next) {
+  Document.findOne({count: 1}).exec(function(err, data){
+    if(err) return next(err);
+    res.render('documents/phone/graduate',{ title:'新生知訊網｜新生必讀',data: data, user:req.user });
+  });
+});
+
+router.get('/phone/common', function(req, res, next) {
+  Document.findOne({count: 1}).exec(function(err, data){
+    if(err) return next(err);
+    res.render('documents/phone/common_phone',{ title:'新生知訊網｜新生必讀',data: data, user:req.user });
   });
 });
 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <% include ../../layouts/head %>
+    <% include ../../layouts/script %>
+    <link rel='stylesheet' href='/documents/style.css' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script type="text/javascript" src="/js/ckeditor.js"></script>
+</head>
+
+<body>
+    <% include ../../layouts/header %>
+    <main id="main">
+        <% /*編輯框*/ %>
+        <% include ../edit %>
+        <% include content %>
+        <% /*大學生*/ %>
+        <div class="choose" id="must">
+            <div class="undergraduate">
+                <p>
+                    <a class="must link_und now" >入學須知</a>
+                    <a href="#fresh" class="fresh link_und">新生週</a>
+                    <a href="#study" class="study link_und">學習資訊</a>
+                </p>
+            </div> 
+            <div class="options">
+                <p class="p_option" id="1"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學籍登錄</p>
+                <p class="p_option" id="2"><i class="fas fa-angle-right" ></i>&emsp;&emsp;住宿注意事項</p>
+                <p class="p_option" id="3"><i class="fas fa-angle-right" ></i>&emsp;&emsp;兵役注意資料</p>
+                <p class="p_option" id="4"><i class="fas fa-angle-right" ></i>&emsp;&emsp;腳踏車證申請</p>
+                <p class="p_option" id="5"><i class="fas fa-angle-right" ></i>&emsp;&emsp;入住流程管制圖</p>
+                <p class="p_option" id="38"><i class="fas fa-angle-right" ></i>&emsp;&emsp;安心就學計畫</p>
+                <p class="p_option" id="6"><i class="fas fa-angle-right" ></i>&emsp;&emsp;註冊通知、日程表</p>
+                <p class="p_option" id="7"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學費減免及助學金</p>
+                
+            </div>   
+        </div>
+
+        <div class="choose fade" id="fresh">
+            <div class="undergraduate">
+                <p>
+                    <a href="#must" class="must link_und">入學須知</a>
+                    <a class="fresh link_und now">新生週</a>
+                    <a href="#study" class="study link_und">學習資訊</a>
+                </p>
+            </div> 
+            <div class="options">
+                <p class="p_option" id="8"><i class="fas fa-angle-right" ></i>&emsp;&emsp;新生營</p>
+                <p class="p_option" id="9"><i class="fas fa-angle-right" ></i>&emsp;&emsp;社團博覽會</p>
+                <p class="p_option" id="10"><i class="fas fa-angle-right" ></i>&emsp;&emsp;校園安全宣導</p>
+                <p class="p_option" id="11"><i class="fas fa-angle-right" ></i>&emsp;&emsp;新生週日程表</p>
+                <p class="p_option" id="12"><i class="fas fa-angle-right" ></i>&emsp;&emsp;新生健康檢查</p>
+                <p class="p_option" id="13"><i class="fas fa-angle-right" ></i>&emsp;&emsp;心理適應座談</p>
+                <p class="p_option" id="14"><i class="fas fa-angle-right" ></i>&emsp;&emsp;UCAN適性測驗</p>
+            </div>   
+        </div>
+
+        <div class="choose fade" id="study">
+            <div class="undergraduate">
+                <p>
+                    <a href="#must" class="must link_und">入學須知</a>
+                    <a href="#fresh" class="fresh link_und">新生週</a>
+                    <a class="study link_und now">學習資訊</a>
+                </p>
+            </div> 
+            <div class="options">
+                <p class="p_option" id="15"><i class="fas fa-angle-right" ></i>&emsp;&emsp;獎學金</p>
+                <p class="p_option" id="16"><i class="fas fa-angle-right" ></i>&emsp;&emsp;交換學生</p>
+                <p class="p_option" id="17"><i class="fas fa-angle-right" ></i>&emsp;&emsp;大一必修</p>
+                <p class="p_option" id="18"><i class="fas fa-angle-right" ></i>&emsp;&emsp;畢業門檻</p>
+                <p class="p_option" id="19"><i class="fas fa-angle-right" ></i>&emsp;&emsp;選課懶人包</p>
+                <p class="p_option" id="20"><i class="fas fa-angle-right" ></i>&emsp;&emsp;課業輔導管道</p>
+                <p class="p_option" id="21"><i class="fas fa-angle-right" ></i>&emsp;&emsp;NCUx中大磨課師</p>
+            </div>   
+        </div>
+            
+           
+    
+    </main>
+    <% include ../../layouts/js %>
+    <% include ../js %>
+</body>
+
+</html>

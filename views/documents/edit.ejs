@@ -1,95 +1,81 @@
+<% /*管理者介面 */ %>
 
-<html>
-    <head>
-            <link rel='stylesheet' href='style.css' />    
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-            <script type="text/javascript" src="/js/ckeditor.js"></script>
-    </head>
-    <body>
-        <% /*管理者介面 */ %>
-        
-        <div class="modal fade" id="edit_modify" role="dialog">
-                <div class="modal-dialog">
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                            <button type="button" class="btn btn-primary" id=new_data>新增</button>
-                            <button type="button" class="btn btn-primary" id=modify_data>修改</button>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                  
-                </div>
-              </div>
-
-        <% /*新增*/ %>
-        <div class="modal fade " id="edit" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="false">
-
-            <div class="modal-dialog  modal-lg " role="document">
-                <form name="add" id="add" action="edit" method="post" onsubmit="getid()" accept-charset="utf-8">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">
-                                新增標題
-                                <input type="text" name="title" id="edit_title">
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-
-                        <div class="modal-body">
-                            <% /*ckeditor放置地方*/ %>
-                            <textarea class="form-control" id="edit_content" name="add_text"></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="hidden" name="id" >
-                            <input type="submit" class="btn btn-primary" value="save" id="save">
-                        </div>
-
-                         
-                    </div>
-                </form>
+<div class="modal fade" id="edit_modify" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary" id=new_data>新增</button>
+                <button type="button" class="btn btn-primary" id=modify_data>修改</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
 
-        <% /*修改*/ %>
-        <div class="modal fade " id="modify" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="false">
+    </div>
+</div>
 
-                <div class="modal-dialog  modal-lg " role="document">
-                    <form name="change" id="change" method="post" accept-charset="utf-8">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">
-                                    修改標題
-                                    <input type="text" name="change_title" id="modify_title">
-                                </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-    
-                            <div class="modal-body">
-                                <% /*ckeditor放置地方*/ %>
-                                <textarea id="modify_content" name="change_text"></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="save" id="save">
-                            </div>
-                        </div>
-                    </form>
+<% /*新增*/ %>
+<div class="modal fade " id="edit" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="false">
+
+    <div class="modal-dialog  modal-lg " role="document">
+        <form name="add" id="add" action="edit" method="post" onsubmit="getid()" accept-charset="utf-8">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        新增標題
+                        <input type="text" name="title" id="edit_title">
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <% /*ckeditor放置地方*/ %>
+                    <textarea class="form-control" id="edit_content" name="add_text"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="hidden" name="id">
+                    <input type="submit" class="btn btn-primary" value="save" id="save">
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<% /*修改*/ %>
+<div class="modal fade " id="modify" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="false">
+
+    <div class="modal-dialog  modal-lg " role="document">
+        <form name="change" id="change" method="post" accept-charset="utf-8">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        修改標題
+                        <input type="text" name="change_title" id="modify_title">
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <% /*ckeditor放置地方*/ %>
+                    <textarea id="modify_content" name="change_text"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="save" id="save">
                 </div>
             </div>
-    </body>
-    
-</html>
-
+        </form>
+    </div>
+</div>

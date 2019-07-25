@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Study</title>
+        <title>新生知訊網｜中大生活</title>
         <% include ../layouts/head %>
         <% include ../layouts/script %>
         <link rel=stylesheet type="text/css" href="life.css">
@@ -17,40 +17,40 @@
                 <li><a href="/life/live"> <img class="navSubBtn" src="naviBefore3.png"> </a></li>
             </ul>
         </div>
-        <!-- <div class="mainTitle">
+        <div class="mainTitle">
             <div class="titleText">
-                <p>STUDY</p>
-                <p>學習之路</p>
+                <span id="nculife">NCULife</span>
+                <span id="life">中大生活</span>
             </div>
-        </div> -->
+        </div>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
         <main id="main">   
         <!--content-->
         <div class="content">
             <div class="studyPicture">
                 <div>
-                    <a href="/life/study/lit"> <img class="studyImg" src="live2.png"></a>
+                    <a href="/life/study/lit"> <img class="studyImg" src="subPicture/lit.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/science"> <img class="studyImg" src="live2.png"></a>
+                    <a href="/life/study/science"> <img class="studyImg" src="subPicture/science.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/ec"> <img class="studyImg" src="live2.png"></a>
+                    <a href="/life/study/ec"> <img class="studyImg" src="subPicture/ec.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/mgt"> <img class="studyImg" src="live2.png"></a>
+                    <a href="/life/study/mgt"> <img class="studyImg" src="subPicture/mgt.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/ceecs"> <img class="studyImg" src="live2.png"></a>
+                    <a href="/life/study/ceecs"> <img class="studyImg" src="subPicture/ceecs.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/escollege"> <img class="studyImg" src="live2.png"></a>
+                    <a href="/life/study/escollege"> <img class="studyImg" src="subPicture/excollege.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/hakka"> <img class="studyImg" src="live2.png"></a>
+                    <a href="/life/study/hakka"> <img class="studyImg" src="subPicture/hakka.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/chst"> <img class="studyImg" src="live2.png"></a>
+                    <a href="/life/study/chst"> <img class="studyImg" src="subPicture/chst.png"></a>
                 </div>
             </div>
         </div>
@@ -65,12 +65,23 @@
                                 </button> 
                             </div>
                             <div class="modal-body">
-                                <form action="addPlayContent" method="POST" enctype="multipart/form-data">
-                                    <div class="form-group">
+                                <form action="addStudyContent" method="POST" enctype="multipart/form-data">
+                                    <!-- <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">請輸入要修改的學院</label>
                                         <div class="col-md-16">
                                             <textarea class="form-control input-md" name="modifyMainTitle" id="editor2"></textarea>
                                         </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                            <label class="col-md-4 control-label" for="elecategory">學院選項(lit:文, science:理, ec:工, mgt:管理, ceecs: 資電, escollege: 地科, hakka: 客家, chst: 生醫</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control input-md bigTitle" id="descBigTitle" name="modifyStudyTitle">
+                                                    <option value="default">請選擇</option>
+                                                    <% for(var i in data) { %>
+                                                            <option value="<%=data[i].type%>"><%=data[i].type%></option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">學院名稱</label>

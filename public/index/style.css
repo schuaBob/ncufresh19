@@ -153,6 +153,7 @@ main {
 .selectMonth {
     text-align: center;
     position: relative;
+    width: 100px;
 }
 
 .selectMonth h5 {
@@ -167,6 +168,13 @@ main {
 
 #pickMonth .row {
     height: 30%;
+}
+
+.selectMonth:hover {
+    cursor: pointer;
+    animation-name: scaleUpAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 #monthDetail {
@@ -196,6 +204,13 @@ main {
     position: absolute;
 }
 
+.day:hover {
+    cursor: pointer;
+    animation-name: scaleUpAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
 #board-detail {
     width: 65%;
     margin-right: 17.5%;
@@ -205,6 +220,7 @@ main {
     border: 1px solid #0163b0;
     background-color: lightblue;
     border-radius: 37px;
+    padding: 15px;
     position: absolute;
 }
 
@@ -214,4 +230,13 @@ main {
 
 .carousel-control-next-icon {
     background-image: none;
+}
+
+@keyframes scaleUpAnimation{
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
 }

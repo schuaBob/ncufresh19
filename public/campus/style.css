@@ -455,7 +455,7 @@ li {
   position: absolute;
   float: right;
   top: 10px;
-  right:20px;
+  right:35px;
   width: 10%;
   z-index: 1;
 }
@@ -466,12 +466,13 @@ li {
 }
 
 #closemainlist img {
-  width: 150%;
+  width: 200%;
 }
 
 .title_bar {
-  min-width: 150px;
-  padding-left: 5%;
+  min-width: 250px;
+  height: 85px;
+  padding-left: 105px;
   width: 20%;
   background-color: white;
   position: absolute;
@@ -480,30 +481,31 @@ li {
 .title {
   height: 50px;
   width: 80px;
+  margin-top: 10px;
   margin-left: 10px;
   float: left;
-  color: #0D4966;
 }
 
 .big_title {
   display: block;
-  font-size: 200%;
+  font-size: 28px;
   font-weight: 500;
   line-height: 1.2;
-  color: #0D4966;
+  color: #7CA7BC;
 }
 
 .line {
-  height: 60px;
-  width: 10px;
-  background-color: #FFCC00;
-  margin-top: 5px;
+  height: 80%;
+  width: 5px;
+  background-color: #FB8360;
+  margin-top: 10px;
   margin-right: 10px;
   float: left;
 }
 
 .small_title {
-  color: gray;
+  color: #767171;
+  font-size: 17px;
   font-size: 100%;
 }
 
@@ -531,15 +533,15 @@ li {
 
 .show2D {
   position: absolute;
-  left:5%;
-  top:20%;
-  width:20%;
+  left:-20%;
+  top:25%;
+  width:30%;
 }
 
 .show3D {
   position: absolute;
-  left:5%;
-  top:20%;
+  left:7%;
+  top:25%;
   width:20%;
 }
 
@@ -549,6 +551,7 @@ li {
 
 .show3D img{
   width: 50%;
+  min-width: 100px;
 }
 
 .decoration img{
@@ -603,7 +606,7 @@ li {
 }
 
 .zoomContainer{
-  z-index: 100000;
+  z-index: 3000;
 }
 
 .zoomLens{
@@ -788,11 +791,19 @@ li {
     position: relative;
   }
 
+  .map{
+    margin-top: 40px;
+    height: 90%;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: scroll;
+  }
+
   .sailor1 {
     display: none;
   }
 
-  .sailor1 {
+  .sailor2 {
     display: none;
   }
 
@@ -802,13 +813,38 @@ li {
   }
 
   .show2D {
-    display: none;
+    width: 200px;
+    left: 100vh;
+    top: 5%;
   }
   .show3D{
-    display: none;
+    z-index: 10000000000000000;
+    bottom: -70%;
+    position: relative;
+    left: unset;
+    height: 100px;
+    top: unset;
+    right: 50%;
   }
 
   .decoration{
     display: none;
   }
+  
+  .MAP2D{   
+    min-width: 700px;
+    min-height: 100%;
+  }
+
+  .SAM{
+    min-width: 200px;
+    min-height: 30%;
+    height: 400px;
+    margin-top: -5%;
+  }
+
+  .bottom{
+    display: none;
+  }
+
 }
