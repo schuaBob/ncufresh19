@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <title><%= title %></title>
   <% include ../layouts/head %>
   <% include ../layouts/script  %>
   <link rel='stylesheet' href='style.css' />
@@ -39,6 +40,7 @@
       right: 1%;
       font-size: 100%;
       z-index: 21;
+      color:#FFCC00;
     }
 
     .cross:hover {
@@ -149,13 +151,13 @@
         <div class="modalTitle"><span>我要發問</span><i class="fas fa-times cross"></i></div>
         <div class="modalContent">
           <form action="/qna/toPost" class="needs-validation" method="POST">
-            <h4>標題</h4>
+            <h4 style="color:rgb(32, 56, 100)">標題</h4>
             <input type="text" class="formElement" id="q_title">
-            <h4>內容</h4>
+            <h4 style="color:rgb(32, 56, 100)">內容</h4>
             <textarea id="q_content" class="formElement" placeholder="(限200字)"
               pattern="^.{1,200}$"></textarea>
           </form>
-          <input type="submit" value="提交" style="float:right;font-size:1em;margin-top:5px;"  data-toggle="modal" data-target="#exampleModal">
+          <input type="submit" value="提交" style="float:right;font-size:1em;margin-top:5px;background-color:#FFCC00; border:none;"  data-toggle="modal" data-target="#exampleModal">
         </div>
       </div>
     </div>
@@ -205,9 +207,9 @@
         <!-- 過濾以及搜尋框 -->
         <div class="sort_SearchBar">
           <div class="buttonGroup">
-            <div class="button text-white seaBlueBg">排序</div>
-            <div class="button sortButton yellowBg" sort="time">時間</div>
-            <div class="button sortButton grayBg" sort="count">人氣</div>
+            <div class="button">排序</div>
+            <div class="button sortButton orangeBg" sort="time">時間</div>
+            <div class="button sortButton" sort="count">人氣</div>
           </div>
           <div class="searchBar">
             <form class="form-inline" id="searchForm">
