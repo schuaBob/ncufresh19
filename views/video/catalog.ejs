@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <% include ../layouts/head %>
+    <% include ../layouts/script  %>
+    <link rel='stylesheet' href='/video/style.css' />
+</head>
+
+<body>
+    <% include ../layouts/header %>
+
+    <main>
+        <%/* 標題 */%>
+        <% include ./title_bar %>
+
+        <img src="/video/小珊瑚.png" class="picture_left">
+
+        <% if(title_bar[2] == null){ %>
+            <% if(title_bar[0] === 'LIFE'){ %>
+                <%/* 食住行育樂縮圖連結 */%>
+                <div class="button_area">
+                    <div class="v_button"><a href="/video/v_nculife/v_eating">食</a></div>
+                    <div class="v_button"><a href="/video/v_nculife/v_living">住</a></div>
+                    <div class="v_button"><a href="/video/v_nculife/v_going">行</a></div>
+                    <div class="v_button"><a href="/video/v_nculife/v_education">育</a></div>
+                    <div class="v_button"><a href="/video/v_nculife/v_joy">樂</a></div>
+                </div>
+            <% }else if(title_bar[0] === 'INTERVIEW'){ %>
+                <%/* 各學院縮圖連結 */%>
+                <div class="button_area">
+                    <a href="/video/v_interview/v_engineering">
+                        <div class="v_button">
+                            <img src="/video/工院.jpg" class="v_button">
+                            <div class="mask"></div>
+                        </div>   
+                    </a>
+                    <a href="/video/v_interview/v_liberal">
+                        <div class="v_button">
+                            <img src="/video/文院.jpg" class="v_button">
+                            <div class="mask"></div>
+                        </div>
+                    </a>
+                    <a href="/video/v_interview/v_health">
+                        <div class="v_button">
+                            <img src="/video/生醫.jpg" class="v_button">
+                            <div class="mask"></div>
+                        </div>
+                    </a>
+                    <a href="/video/v_interview/v_earth">
+                        <div class="v_button">
+                            <img src="/video/地科院.jpg" class="v_button">
+                            <div class="mask"></div>
+                        </div>
+                    </a>
+                    <a href="/video/v_interview/v_hakka">
+                        <div class="v_button">
+                            <img src="/video/客院.jpg" class="v_button">
+                            <div class="mask"></div>
+                        </div>
+                    </a>
+                    <a href="/video/v_interview/v_science">
+                        <div class="v_button">
+                            <img src="/video/理院.jpg" class="v_button">
+                            <div class="mask"></div>
+                        </div>
+                    </a>
+                    <a href="/video/v_interview/v_computer">
+                        <div class="v_button">
+                            <img src="/video/資電.jpg" class="v_button">
+                            <div class="mask"></div>
+                        </div>
+                    </a>
+                    <a href="/video/v_interview/v_management">
+                        <div class="v_button">
+                            <img src="/video/管院.jpg" class="v_button">
+                            <div class="mask"></div>
+                        </div>
+                    </a>
+                </div>
+            <% }else if(title_bar[0] === 'LEGEND'){ %>
+                <%/* 中大傳說影片縮圖連結 */%>
+                <div class="button_area">
+                        <div class="v_button"><a href="/video/v_nculife/v_eating">傳說一</a></div>
+                        <div class="v_button"><a href="/video/v_nculife/v_living">二</a></div>
+                        <div class="v_button"><a href="/video/v_nculife/v_going">三</a></div>
+                        <div class="v_button"><a href="/video/v_nculife/v_education">四</a></div>
+                        <div class="v_button"><a href="/video/v_nculife/v_joy">五</a></div>
+                </div>
+            <% } %>
+
+        <% }else if(title_bar[2] != null && title_bar[0] === 'INTERVIEW'){ %>
+            <%/* 系所縮圖連結 */%>
+            <div class="button_area">
+                <% if(title_bar[3] === '管理學院'){ %>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                <% }else if(title_bar[3] === '工學院'){ %>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                <% }else if(title_bar[3] === '文學院'){ %>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                <% }else if(title_bar[3] === '生醫理工學院'){ %>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                <% }else if(title_bar[3] === '地球科學學院'){ %>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                <% }else if(title_bar[3] === '客家學院'){ %>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                <% }else if(title_bar[3] === '理學院'){ %>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                <% }else if(title_bar[3] === '資訊電機學院'){ %>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                    <a href="/video/v_interview/v_management/v_mis"><img src="/video/管院.jpg" class="v_button"></a>
+                <% } %>
+            </div>
+        <% } %>
+
+        <img src="/video/大珊瑚.png" class="picture_right">
+
+    </main>
+</body>
+<% include ../layouts/js %>
+
+</html>

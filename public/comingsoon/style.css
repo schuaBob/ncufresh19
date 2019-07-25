@@ -14,10 +14,13 @@ body{
 }
 
 #countdown{
+    width: 100%;
     color: white;
-    font-size: 100px;
-    text-align: center;
+    font-size: 90px;
     font-family: 'Itim', cursive !important;
+    position: absolute;
+    top: 45%;
+    text-align: center;
 }
 
 #fbPic{
@@ -26,7 +29,7 @@ body{
 
 #block2 {
     width: 100%;
-    height: 350px;
+    height: 300px;
 }
 
 #ig_link {

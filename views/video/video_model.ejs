@@ -15,27 +15,16 @@
       <%/* 標題 */%>
       <% include ./title_bar %>
 
-      <%/* 返回按鈕 */%>
-      <% if(title_bar[2] == null){ %>
-          <a href="/video/">
-              <div class="back"><div class="seahorse"><img src="/video/返回按鈕.png"></div></div>
-          </a>
-      <% }else if(title_bar[4] == null ){ %>
-          <a href="/video/<%= back_name %>">
-              <div class="back"><div class="seahorse"><img src="/video/返回按鈕.png"></div></div>
-          </a>
-      <% }else if(title_bar[4] != null){ %>
-          <a href="/video/v_interview/<%= back_name %>">
-              <div class="back"><div class="seahorse"><img src="/video/返回按鈕.png"></div></div>
-          </a>
-      <% } %>
-    
+      <img src="/video/小珊瑚.png" class="picture_left">
+      
       <%/* 影片區 */%>
       <div class="video_area">
         <div class="background">
             <div id="player"></div>
         </div>
       </div>
+
+      <img src="/video/大珊瑚.png" class="picture_right">
 
       <%/* 引入Youtube API */%>
       <script>

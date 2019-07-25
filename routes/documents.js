@@ -65,6 +65,14 @@ router.get('/common', function(req, res, next) {
   });
 });
 
+/*--------------------------手機板------------------------------------*/
+router.get('/phone/undergraduate', function(req, res, next) {
+  Document.findOne({count: 1}).exec(function(err, data){
+    if(err) return next(err);
+    res.render('documents/phone/undergraduate',{ title: 'undergraduate',data: data, user:req.user });
+  });
+});
+
 /*---------------------------後台-------------------------------------*/
 
 //新增

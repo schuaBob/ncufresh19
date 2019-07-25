@@ -15,14 +15,14 @@ router.get('/', function (req, res, next) {
 
 router.get('/3D', function (req, res, next) {
   res.render('campus/3D', {
-    title: '校園地圖',
+    title: '新生知訊網 | 校園地圖',
     user: req.user
   });
 });
 
 router.get('/2D', function (req, res, next) {
   res.render('campus/2D', {
-    title: '校園地圖',
+    title: '新生知訊網 | 校園地圖',
     user: req.user
   });
 });

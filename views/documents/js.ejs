@@ -1,54 +1,55 @@
 <script>
     var textid = 0;
     $(document).ready(function () {
-/*-----------------------------index------------------------------------------*/   
 
-            //身分選擇動畫
-            $(".identity").show();
-            $(".under").hover(function(){
-                $(this).addClass("big");
-            },function(){
-                $(this).removeClass("big");
-            });
-            $(".gra").hover(function(){
-                $(this).addClass("big link");
-            },function(){
-                $(this).removeClass("big");
-            });
-            $(".com").hover(function(){
-                $(this).addClass("big link");
-            },function(){
-                $(this).removeClass("big");
-            });
+/*-------------------------------index------------------------------------------*/
 
-/*-------------------------------其他頁面--------------------------------------*/            
-            /*選單*/
-            $(".icon1").hover(function(){
-                $(this).attr('src','入學須知.png');
-            },function(){
-                $(this).attr('src','入學須知_原.png');
-            });
+        //身分選擇動畫
+        $(".identity").show();
+        $(".under").hover(function () {
+            $(this).addClass("big");
+        }, function () {
+            $(this).removeClass("big");
+        });
+        $(".gra").hover(function () {
+            $(this).addClass("big link");
+        }, function () {
+            $(this).removeClass("big");
+        });
+        $(".com").hover(function () {
+            $(this).addClass("big link");
+        }, function () {
+            $(this).removeClass("big");
+        });
 
-            $(".icon2").hover(function(){
-                $(this).attr('src','新生週.png');
-            },function(){
-                $(this).attr('src','新生週_原.png');
-            });
+/*-------------------------------其他頁面--------------------------------------*/
+        /*選單*/
+        $(".icon1").hover(function () {
+            $(this).attr('src', '入學須知.png');
+        }, function () {
+            $(this).attr('src', '入學須知_原.png');
+        });
 
-            $(".icon3").hover(function(){
-                $(this).attr('src','學習資訊.png');
-            },function(){
-                $(this).attr('src','學習資訊_原.png');
-            });
+        $(".icon2").hover(function () {
+            $(this).attr('src', '新生週.png');
+        }, function () {
+            $(this).attr('src', '新生週_原.png');
+        });
 
-/*--------------------------------------使用者---------------------------------------------*/
-/*            $(".option").mousedown(function(){
-                textid = this.id;
-                //當下頁面變色
-                $(".option").removeClass("page_now");
-                $(this).addClass("page_now")
-                
-                $.ajax({
+        $(".icon3").hover(function () {
+            $(this).attr('src', '學習資訊.png');
+        }, function () {
+            $(this).attr('src', '學習資訊_原.png');
+        });
+
+/*----------------------------------------使用者---------------------------------------------*/
+         $(".option").mousedown(function(){
+            textid = this.id;
+             //當下頁面變色
+            $(".option").removeClass("page_now");
+            $(this).addClass("page_now")
+                        
+            $.ajax({
                 url: "/documents/require_data/" + textid,
                 method: 'get',
                 error: function (err) {
@@ -59,40 +60,40 @@
                     $(".content").empty();
                     $("#show_title").html(data.title);  
                     $(".content").html(data.content);
-                    }
+                }
             });
-            })
-*/
+        })
+        
 /*--------------------------------------管理者---------------------------------------------*/
 
-           ClassicEditor
-            .create( document.querySelector( '#edit_content' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-            var outeditor = undefined;
-            ClassicEditor
-            .create( document.querySelector( '#modify_content' ) )
-            .then( neweditor => {
-                console.log( neweditor );
+/*        ClassicEditor
+            .create(document.querySelector('#edit_content'))
+            .catch(error => {
+                console.error(error);
+            });
+        var outeditor = undefined;
+        ClassicEditor
+            .create(document.querySelector('#modify_content'))
+            .then(neweditor => {
+                console.log(neweditor);
                 outeditor = neweditor;
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
 
-            
 
-            //選擇新增或修改
-           $(".option").mousedown(function(){
-                $("#edit_modify").modal("show");
-                textid = this.id;
-                //當下頁面變色
-                $(".option").removeClass("page_now");
-                $(this).addClass("page_now")
-                
-                $.ajax({
+
+        //選擇新增或修改
+        $(".option").mousedown(function () {
+            $("#edit_modify").modal("show");
+            textid = this.id;
+            //當下頁面變色
+            $(".option").removeClass("page_now");
+            $(this).addClass("page_now")
+
+            $.ajax({
                 url: "/documents/require_data/" + textid,
                 method: 'get',
                 error: function (err) {
@@ -101,31 +102,31 @@
                 success: function (data) {
                     $("#show_title").empty();
                     $(".content").empty();
-                    $("#show_title").html(data.title);  
+                    $("#show_title").html(data.title);
                     $(".content").html(data.content);
-                    }
+                }
             });
-            })
+        })
 
-            //新增
-            $("#new_data").click(function (){
-                $("#edit").modal("show");
+        //新增
+        $("#new_data").click(function () {
+            $("#edit").modal("show");
 
 
-                $("#save").click(function(){
-                    $("#modify").modal("hide");
-                });
-            })
-            
-            //修改
-            $("#modify_data").click(function (){
-                //let textid = this.id; 
-                $("#modify").modal("show");
+            $("#save").click(function () {
+                $("#modify").modal("hide");
+            });
+        })
 
-                //將js的變數給html裡的form action
-                $('#change').attr('action', "/documents/modify/" + textid);
+        //修改
+        $("#modify_data").click(function () {
+            //let textid = this.id; 
+            $("#modify").modal("show");
 
-                $.ajax({
+            //將js的變數給html裡的form action
+            $('#change').attr('action', "/documents/modify/" + textid);
+
+            $.ajax({
                 url: "/documents/require_data/" + textid,
                 method: 'get',
                 error: function (err) {
@@ -134,65 +135,88 @@
                 success: function (data) {
                     $("#modify_title").val(data.title);
                     outeditor.setData(data.content);
-                    }
+                }
             });
 
-                $("#save").click(function(){
-                    $("#modify").modal("hide");
-                });
-            })
+            $("#save").click(function () {
+                $("#modify").modal("hide");
+            });
+        })*/
 
+
+        //調整modal跳出來的位置
+        $('#edit').on('show.bs.modal', function () {
+            $(this).css("top", "20%");
+        });
+        $('#modify').on('show.bs.modal', function () {
+            $(this).css("top", "20%");
+        });
+        $('#edit_modify').on('show.bs.modal', function () {
+            $(this).css("top", "20%");
+        });
+        $('#show').on('show.bs.modal', function () {
+            $(this).css("top", "5%");
+        });
+
+/*-------------------------------------------手機板--------------------------------------------*/
         
-            //調整modal跳出來的位置
-            $('#edit').on('show.bs.modal', function () {
-                $(this).css("top","20%");
-            })
-            $('#modify').on('show.bs.modal', function () {
-                $(this).css("top","20%");
-            })
-            $('#edit_modify').on('show.bs.modal', function () {
-                $(this).css("top","20%");
-            })
-            
-/*--------------------------------------使用者---------------------------------------------*/
-//當下頁面變色
-/*var url = window.location.href;
-        var option = 0;
-           var arr = url.split('/');
-            option=arr[5];
-            $("#"+option).css("background-color","rgb(251,217,185)");
-            
-            //判斷套用哪個layout
-           $(".option").mousedown(function(){
-                textid = this.id;
-                if(arr[4]=='undergraduate_must'){
-                    $(this).attr('href',"/documents/undergraduate_must/"+textid);
-                }
-                if(arr[4]=='undergraduate_fresh'){
-                    $(this).attr('href',"/documents/undergraduate_fresh/"+textid);
-                }
-                if(arr[4]=='undergraduate_study'){
-                    $(this).attr('href',"/documents/undergraduate_study/"+textid);
-                }
-                if(arr[4]=='graduate_must'){
-                    $(this).attr('href',"/documents/graduate_must/"+textid);
-                }
-                if(arr[4]=='graduate_fresh'){
-                    $(this).attr('href',"/documents/graduate_fresh/"+textid);
-                }
-                if(arr[4]=='common'){
-                    $(this).attr('href',"/documents/common/"+textid);
-                }
+        $(".must").mousedown(function () {
+            content_hide();
+            $("#must").removeClass("fade");
+        });
+        $(".fresh").mousedown(function () {
+            content_hide();
+            $("#fresh").removeClass("fade");
+        });
+        $(".study").mousedown(function () {
+            content_hide();
+            $("#study").removeClass("fade");
+        });
 
-            })       */ 
-         
+        $(".p_option").mousedown(function(){
+            textid = this.id;
+            $("#show").modal("show");
+            $.ajax({
+                url: "/documents/require_data/" + textid,
+                method: 'get',
+                error: function (err) {
+                        console.log(err);
+                },
+                success: function (data) {
+                    $("#phone_title").html(data.title);  
+                    $("#show_content").html(data.content);
+                }
+                });
+        })
+
+        /*modal出來時外面滾輪不會動*/
+        $(".modal").on('hide.bs.modal', function () {
+            $("header").show();
+            $("body").css({
+                "overflow":"auto"
+            });
+         });
+        $(".modal").on('show.bs.modal', function () {
+             $("header").hide();
+             
+
+            $("body").css({
+                "overflow":"hidden"
+            });
+         });
 
     })
 
 
     //新增的時候將id傳到modal
-    function getid(){
+    function getid() {
         $('input[name=id]').val(textid);
+    }
+
+    function content_hide() {
+        $("#must").addClass("fade");
+        $("#fresh").addClass("fade");
+        $("#study").addClass("fade");
     }
 
 </script>
