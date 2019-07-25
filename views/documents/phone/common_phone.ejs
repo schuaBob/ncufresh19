@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <% include ../../layouts/head %>
+    <% include ../../layouts/script %>
+    <link rel='stylesheet' href='/documents/style.css' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script type="text/javascript" src="/js/ckeditor.js"></script>
+</head>
+
+<body>
+    <% include ../../layouts/header %>
+    <main id="main">
+        <% /*編輯框*/ %>
+        <% include ../edit %>
+        <% include content %>
+        <% /*大學生*/ %>
+        <div class="choose" id="must">
+            <div class="common">
+                <p>
+                    <a class="must link_com now" >其他</a>
+                </p>
+            </div> 
+            <div class="options">
+                <p class="p_option" id="1"><i class="fas fa-angle-right" ></i>&emsp;&emsp;108校曆</p>
+                <p class="p_option" id="2"><i class="fas fa-angle-right" ></i>&emsp;&emsp;中大圖書館</p>
+                <p class="p_option" id="3"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學生掛號郵件</p>
+                <p class="p_option" id="4"><i class="fas fa-angle-right" ></i>&emsp;&emsp;熱門連結介紹</p>
+                <p class="p_option" id="5"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學生申訴管道</p>
+                <p class="p_option" id="36"><i class="fas fa-angle-right" ></i>&emsp;&emsp;智慧財產權宣導</p>
+                <p class="p_option" id="6"><i class="fas fa-angle-right" ></i>&emsp;&emsp;LMS/ee-CLASS</p> 
+            </div>   
+        </div>
+            
+           
+    
+    </main>
+    <% include ../../layouts/js %>
+    <% include ../js %>
+</body>
+
+</html>

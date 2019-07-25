@@ -12,12 +12,12 @@
             $(this).removeClass("big");
         });
         $(".gra").hover(function () {
-            $(this).addClass("big link");
+            $(this).addClass("big");
         }, function () {
             $(this).removeClass("big");
         });
         $(".com").hover(function () {
-            $(this).addClass("big link");
+            $(this).addClass("big");
         }, function () {
             $(this).removeClass("big");
         });
@@ -155,8 +155,10 @@
             $(this).css("top", "20%");
         });
         $('#show').on('show.bs.modal', function () {
-            $(this).css("top", "5%");
+            $(this).css("top", "42px");
         });
+        
+        
 
 /*-------------------------------------------手機板--------------------------------------------*/
         
@@ -173,7 +175,17 @@
             $("#study").removeClass("fade");
         });
 
+        $(".must_gra").mousedown(function () {
+            content_hide();
+            $("#must_gra").removeClass("fade");
+        });
+        $(".fresh_gra").mousedown(function () {
+            content_hide();
+            $("#fresh_gra").removeClass("fade");
+        });
+
         $(".p_option").mousedown(function(){
+            $(this).addClass("bg");
             textid = this.id;
             $("#show").modal("show");
             $.ajax({
@@ -189,21 +201,10 @@
                 });
         })
 
-        /*modal出來時外面滾輪不會動*/
-        $(".modal").on('hide.bs.modal', function () {
-            $("header").show();
-            $("body").css({
-                "overflow":"auto"
-            });
-         });
-        $(".modal").on('show.bs.modal', function () {
-             $("header").hide();
-             
+        $(".p_option").mouseup(function(){
+            $(this).removeClass("bg");
+        })
 
-            $("body").css({
-                "overflow":"hidden"
-            });
-         });
 
     })
 
@@ -217,6 +218,8 @@
         $("#must").addClass("fade");
         $("#fresh").addClass("fade");
         $("#study").addClass("fade");
+        $("#must_gra").addClass("fade");
+        $("#fresh_gra").addClass("fade");
     }
 
 </script>
