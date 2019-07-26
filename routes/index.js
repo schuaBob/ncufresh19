@@ -578,7 +578,8 @@ router.get('/adduser', function (req, res, next) {
   Users.createUser(new Users({
     id: "108000022",
     unit: "csie",
-    name: "eugene"
+    name: "eugene",
+    role: "admin"
   }), function (err, user) {
     if (err) next(err);
     res.redirect('/login');
