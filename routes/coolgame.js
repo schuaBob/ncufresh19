@@ -4,7 +4,7 @@ var fs = require('fs');
 var Question = require("../models/coolgame/question.js");
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('coolgame/index', { title: '小遊戲', user: req.user });
+  res.render('coolgame/index', { title: '新生資訊網 | 小遊戲', user: req.user });
 });
 // router.get('/addquestion', function(req, res, next) {
 
@@ -26,7 +26,7 @@ router.get('/', function (req, res, next) {
 // });
 router.get('/getquestion', function (req, res, next) {
   Question.find({}).exec(function (err, result){
-    res.send(result);
+    res.send({result:result,user:req.user});
   });
 });
 module.exports = router;
