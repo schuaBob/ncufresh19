@@ -378,6 +378,18 @@ router.post('/calender_get_data', function(req, res, next){
           return Number(a.date) > Number(b.date) ? 1 : -1;
         }
       });
+      var spliceIdx = 0;
+      for(var i in obj){
+        if(Number(obj[i].date) > 15){
+          spliceIdx = i;
+          break;
+        }
+      }
+      if(req.body.id == "sep1"){
+        obj.splice(spliceIdx);
+      } else {
+        obj.splice(0, spliceIdx);
+      }
       res.send(obj);
     });
   }
