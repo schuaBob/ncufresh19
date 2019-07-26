@@ -82,6 +82,17 @@
     </main>
     <% include ../../layouts/js %>
     <% include ../js %>
+    <script>
+        $(window).resize(function(){
+            var width = outerWidth;
+            if(width <= 768)
+                document.location.href = "/documents/phone/undergraduate";
+            var width = outerWidth;
+            if(width > 768){
+                document.location.href = "/documents/undergraduate_must";
+            }
+        });
+    </script>
 </body>
 
 </html>

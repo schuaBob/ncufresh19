@@ -32,7 +32,6 @@ passport.use(new LocalStrategy({
   passReqToCallback: true
 }, function (req, id, password, done) {
   Users.findOne({ id: id }, function (err, user) {
-    console.log("password");
     if (err) done(err);
     if (!user) {
       console.log(id + "不存在");

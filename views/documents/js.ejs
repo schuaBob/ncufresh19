@@ -41,32 +41,11 @@
         }, function () {
             $(this).attr('src', '學習資訊_原.png');
         });
-
-/*----------------------------------------使用者---------------------------------------------*/
-         $(".option").mousedown(function(){
-            textid = this.id;
-             //當下頁面變色
-            $(".option").removeClass("page_now");
-            $(this).addClass("page_now")
-                        
-            $.ajax({
-                url: "/documents/require_data/" + textid,
-                method: 'get',
-                error: function (err) {
-                    console.log(err);
-                },
-                success: function (data) {
-                    $("#show_title").empty();
-                    $(".content").empty();
-                    $("#show_title").html(data.title);  
-                    $(".content").html(data.content);
-                }
-            });
-        })
         
 /*--------------------------------------管理者---------------------------------------------*/
-
-/*        ClassicEditor
+console.log(<%=user.role%>)
+<%_ if (user && user.role === 'admin'){-%>
+        ClassicEditor
             .create(document.querySelector('#edit_content'))
             .catch(error => {
                 console.error(error);
@@ -81,9 +60,6 @@
             .catch(error => {
                 console.error(error);
             });
-
-
-
 
         //選擇新增或修改
         $(".option").mousedown(function () {
@@ -141,9 +117,32 @@
             $("#save").click(function () {
                 $("#modify").modal("hide");
             });
-        })*/
-
-
+        })
+        <%_ }else{ -%>
+        
+ /*----------------------------------------使用者---------------------------------------------*/
+        $(".option").mousedown(function(){
+            textid = this.id;
+             //當下頁面變色
+            $(".option").removeClass("page_now");
+            $(this).addClass("page_now")
+                        
+            $.ajax({
+                url: "/documents/require_data/" + textid,
+                method: 'get',
+                error: function (err) {
+                    console.log(err);
+                },
+                success: function (data) {
+                    $("#show_title").empty();
+                    $(".content").empty();
+                    $("#show_title").html(data.title);  
+                    $(".content").html(data.content);
+                }
+            });
+        })
+        <%_ } -%>
+        
         //調整modal跳出來的位置
         $('#edit').on('show.bs.modal', function () {
             $(this).css("top", "20%");
@@ -157,8 +156,6 @@
         $('#show').on('show.bs.modal', function () {
             $(this).css("top", "42px");
         });
-        
-        
 
 /*-------------------------------------------手機板--------------------------------------------*/
         

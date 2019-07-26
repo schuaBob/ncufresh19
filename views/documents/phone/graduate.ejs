@@ -52,6 +52,14 @@
     </main>
     <% include ../../layouts/js %>
     <% include ../js %>
+    <script>
+        $(window).resize(function(){
+            var width = innerWidth;
+            if(width > 768){
+                document.location.href = "/documents/graduate_must";
+            }
+        });
+    </script>
 </body>
 
 </html>
