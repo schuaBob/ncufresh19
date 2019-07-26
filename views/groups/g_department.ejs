@@ -8,8 +8,9 @@
 
     <% include ../layouts/head %>
         <% include ../layouts/script %>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
             <link rel='stylesheet' href='/groups/style.css' />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 </head>
 
@@ -20,6 +21,15 @@
             <div class="line"></div>
             <div class="title">
                 <h1>DEPARTMENT<br><span class="small_title">系所</span></h1>
+            </div>
+
+            <div class="navbar">
+                <img src="/groups/line.png" id="cuttingline">
+                <a class="nava" style="top:3px; left:11vw;" href="/groups/department"><img src="/groups/系所鈕.PNG" class="navimg"><br>系所</a>
+                <a class="nava" style="top:3px; left:26.5vw;" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/社團鈕.PNG" class="navimg"><br>社團</a>
+                <a class="nava" style="top:3px; left:43.25vw;" href="/groups/association"><img src="/groups/學生會鈕.PNG" class="navimg"><br>學生會</a>
+                <a class="nava" style="top:3px; left:59.25vw;" href="/groups/community"><img src="/groups/社群鈕.PNG" class="navimg"><br>社群</a>
+                <a class="nava" style="top:3px; left:76vw;" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
             </div>
         </div>
         <div class="sidebar">
@@ -208,20 +218,22 @@
                         <div class="de-en">
                             <%=department_this.en_name%>
                         </div>
+
+                        <img src="/groups/cutline.png" class="cutline">
                         <div class="linkbuttons">
                             <%_ if(department_this.de_link!==""){ -%>
                                 <div class="character">
-                                    <a style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span class="link">系所</span></a>
+                                    <a style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:5.5vw" class="link">系所</span></a>
                                 </div>
                                 <%_ } -%>
                                     <%_ if(department_this.stu_link!==""){ -%>
                                         <div class="character">
-                                            <a style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span class="link">系學會</span></a>
+                                            <a style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:4.75vw" class="link">系學會</span></a>
                                         </div>
                                         <%_ } -%>
                                             <%_ if(department_this.qna_link!==""){ -%>
                                                 <div class="character">
-                                                    <a style="text-decoration:none;" target="_blank" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span class="link">系上問答</span></a>
+                                                    <a style="text-decoration:none;" target="_blank" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:4vw" class="link">系上問答</span></a>
                                                 </div>
                                                 <%_ } -%>
                         </div>

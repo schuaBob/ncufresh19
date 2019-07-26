@@ -68,6 +68,19 @@ $(document).ready(function() { //顯示或更換顯示學院
         $("#" + others_name).css("font-weight", "bold")
 
     }
+    ////////////////////////////////////////////////////////貝殼///////////////////////////////////////////////////////////////
+    $(".linkimg").hover(function() {
+        console.log("摸貝殼")
+        $(this).attr("src", "/groups/貝殼打開.png")
+        console.log("往上")
+        $(this).css("bottom", "3vh")
+
+
+    }, function() {
+        $(this).attr("src", "/groups/貝殼關閉.png")
+        $(this).css("bottom", "0")
+
+    });
     ////////////////////////////////////////////////////////接上department後台//////////////////////////////////////////////////////
     $('#select_department_name').on('change', function() {
 
