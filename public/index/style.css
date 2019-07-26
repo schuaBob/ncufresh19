@@ -143,6 +143,7 @@ main {
     position: absolute;
     z-index: 500;
     width: 25%;
+    left: 5%;
     height: inherit;
 }
 
@@ -224,7 +225,16 @@ main {
     border-radius: 37px;
     padding: 15px;
     position: absolute;
+    overflow: auto;
 }
+
+#index3start {
+    position: absolute;
+    right: 9vw;
+    width: 12vw;
+    z-index: 4000;
+}
+
 
 .carousel-control-prev-icon {
     background-image: none;
