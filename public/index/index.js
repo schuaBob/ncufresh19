@@ -20,7 +20,6 @@ $(document).ready(() => {
     $("#topHref").click(function () {
         $.fn.fullpage.moveTo("indexPage");
     });
-<<<<<<< HEAD
     $('.pernews').click((e) => {
         $.ajax({
             url: `/schedule/read?pk=${e.currentTarget.attributes.pk.value}`,
@@ -43,7 +42,6 @@ $(document).ready(() => {
 
 $(".day").each(function () {
     $(this).css("left", (this.id - 1) * 10 + "%");
-=======
     
     $.ajax({
         url:    "calender_get_data",
@@ -56,7 +54,6 @@ $(".day").each(function () {
             append_circle(data);
         }
     });
->>>>>>> e11e22d169009acc4e280463ae1419ffa487cec8
 });
 
 
@@ -69,33 +66,12 @@ $(".selectMonth").on("click", function () {
         error: function (err) {
             alert("Some error occur...");
         },
-<<<<<<< HEAD
-        success: function (data) {
-            $("#days").empty();
-            var count = 0;
-            for (var i in data) {
-                $("#days").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="40" width="40"> <circle cx="20" cy="20" r="20" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
-                count = count + 1;
-            }
-            adjust();
-=======
         success: function(data){
             append_circle(data);
->>>>>>> e11e22d169009acc4e280463ae1419ffa487cec8
         }
     });
 });
 
-<<<<<<< HEAD
-$(".day").on("click", function () {
-
-});
-
-function adjust() {
-    $(".day").each(function () {
-        $(this).css("left", (this.id) * 10 + "%");
-    });
-=======
 function append_circle(data){
     $("#days").empty();
     var count = 0;
@@ -116,5 +92,4 @@ function append_circle(data){
             cnt = cnt + 1;
         }
     });
->>>>>>> e11e22d169009acc4e280463ae1419ffa487cec8
 }
