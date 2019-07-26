@@ -11,6 +11,9 @@ $(document).ready(() => {
     })
     $('#newsModal').on('hide.bs.modal', () => {
         $.fn.fullpage.setMouseWheelScrolling(true)
+        $('.cateTitle').empty();
+        $('.cateIcon').empty();
+        $('#newsdetail').empty();
     });
     $("#topHref").click(function () {
         $.fn.fullpage.moveTo("indexPage");
@@ -24,8 +27,13 @@ $(document).ready(() => {
                 console.log(err)
             },
             success: (res) => {
-
+                $('.cateTitle').append(`<h3>${res.title}</h3>`);
+                var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
+                $('.cateIcon').append(`<img src="index/icon-${catePicArr[res.category - 1]}.png" class="card-img">`);
+                $('#newsdetail').html(res.content);
             }
+        }).then(()=>{
+
         })
     })
 })

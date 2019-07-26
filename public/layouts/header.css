@@ -23,24 +23,25 @@
 
 * {
     font-family: Noto Sans JP;
+    /* scrollbar-color: #736f6e #fff9dc;
+    scrollbar-width: 6px; */
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
 }
 
-/* Track */
+
 ::-webkit-scrollbar-track {
     background: #fff9dc;
-    /*背景顏色*/
 }
 
-/* Handle */
+
 ::-webkit-scrollbar-thumb {
     background: #736f6e;
 }
 
-/* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
