@@ -794,7 +794,6 @@ li {
     padding: 0;
     width: 100%;
     position: relative;    
-    bottom: calc((540px - 100vw) * 0.25);
   }
 
   .map{
@@ -853,4 +852,14 @@ li {
     display: none;
   }
 
+}
+
+
+@media only screen and (max-width: 540px) {
+  #map {
+    padding: 0;
+    width: 100%;
+    position: relative;    
+    bottom: calc((540px - 100vw) * 0.25);
+  }
 }
