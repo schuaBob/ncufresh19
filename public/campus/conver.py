@@ -4,7 +4,7 @@ import json
 
 all = {}
 
-with open('內容.txt','r', encoding='UTF-8') as f:
+with open('新知MAP.txt','r', encoding='UTF-8') as f:
     title = ""
     content = ""
     for i in f.readlines():
