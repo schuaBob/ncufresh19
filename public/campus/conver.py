@@ -8,14 +8,14 @@ with open('新知MAP.txt','r', encoding='UTF-8') as f:
     title = ""
     content = ""
     for i in f.readlines():
-        print(i)
-        if '$' in i:
+        if '$' == i[0]:
+            print(i)
             if title != "":
                 all[title] = '<p>'+content+'</p>'
                 title = ""
                 content = ""
             title = i.replace('$','').strip()
-        else:
+        elif title!="":
             content += i.strip()+"<br>"
 
 with open('內容.json', 'w', encoding='utf-8') as json_file:

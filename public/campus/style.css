@@ -614,6 +614,10 @@ li {
   background-color: #FFF9DC;
 }
 
+.tooltip{
+  z-index: 100000;
+}
+
 #List_index li img{
   position: relative;
 }
@@ -677,6 +681,7 @@ li {
     padding-bottom: calc((100vh - 80px - 46vw - 8vw / 2 - 750px*996/2000)/2);
     margin: 0;
     width: 750px;
+    height: 373.5px;
   }
 
   .mapmove {
@@ -788,7 +793,8 @@ li {
   #map {
     padding: 0;
     width: 100%;
-    position: relative;
+    position: relative;    
+    bottom: calc((540px - 100vw) * 0.25);
   }
 
   .map{
