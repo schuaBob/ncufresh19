@@ -32,7 +32,6 @@ passport.use(new LocalStrategy({
   passReqToCallback: true
 }, function (req, id, password, done) {
   Users.findOne({ id: id }, function (err, user) {
-    console.log("password");
     if (err) done(err);
     if (!user) {
       console.log(id + "不存在");
@@ -579,8 +578,7 @@ router.get('/adduser', function (req, res, next) {
   Users.createUser(new Users({
     id: "108000022",
     unit: "csie",
-    name: "eugene",
-    role: "admin"
+    name: "eugene"
   }), function (err, user) {
     if (err) next(err);
     res.redirect('/login');
