@@ -20,7 +20,7 @@
         <% /*大學生*/ %>
         <div class="choose" id="must">
             <div class="common">
-                <p>
+                <p class="bar">
                     <a class="must link_com now" >其他</a>
                 </p>
             </div> 
@@ -40,6 +40,14 @@
     </main>
     <% include ../../layouts/js %>
     <% include ../js %>
+    <script>
+        $(window).resize(function(){
+            var width = innerWidth;
+            if(width > 768){
+                document.location.href = "/documents/common";
+            }
+        });
+    </script>
 </body>
 
 </html>

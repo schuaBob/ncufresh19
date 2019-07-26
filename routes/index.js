@@ -18,6 +18,7 @@ var uploadHandler = multer({
     }
   })
 })
+var fs = require('fs');
 
 // for oauth
 var url = require('url');
@@ -67,15 +68,15 @@ passport.deserializeUser(function (id, done) {
 
 router.get('/', (req, res, next) => {
   Promise.all([
-    docNews.find({},{
-      _id:0,
-      __v:0
+    docNews.find({}, {
+      _id: 0,
+      __v: 0
     }).exec(),
     docCommercial.find({}, {
       _id: 0,
       __v: 0
     }).exec(),
-    docCalender.find({month: "8"}, {
+    docCalender.find({ month: "8" }, {
       _id: 0,
       __v: 0
     }).exec()
@@ -92,11 +93,11 @@ router.get('/', (req, res, next) => {
     var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
     console.log(`User:${req.user}`);
 
-    calender = calender.sort(function(a, b){
-      if(a.month !== b.month){
+    calender = calender.sort(function (a, b) {
+      if (a.month !== b.month) {
         return Number(a.month) > Number(b.month) ? 1 : -1;
       }
-      else{
+      else {
         return Number(a.date) > Number(b.date) ? 1 : -1;
       }
     });
@@ -182,20 +183,22 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
       })
     }
   })
-});
-
-router.get('/adpic/delete?', (req, res, next) => {
+})
+router.get('/adpic/delete', (req, res, next) => {
   if (req.query.pk) {
-    docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err) => {
+    docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err, doc) => {
       if (err) return next(err);
-      res.redirect('/index-edit');
+      console.log(doc)
+      fs.unlink(`./public${doc.picPath}`, (err) => {
+        if (err) { return next(err) };
+        res.redirect('/index-edit');
+      })
     })
   } else {
     res.redirect('/index-edit');
   }
-});
-
-router.get('/schedule/:method?', (req, res, next) => {
+})
+router.get('/schedule/:method', (req, res, next) => {
   switch (req.params.method) {
     case "read":
       docNews.findOne({ pk: req.query.pk }).exec((err, doc) => {
@@ -272,9 +275,8 @@ router.post('/schedule/:method', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-});
-
-router.get('/calender/:method?', (req, res, next) => {
+})
+router.get('/calender/:method', (req, res, next) => {
   switch (req.params.method) {
     case "read":
       console.log(req.query.pk)
@@ -353,37 +355,37 @@ router.post('/calender/:method', (req, res, next) => {
   }
 });
 
-router.post('/calender_get_data', function(req, res, next){
-  if(req.body.id == "aug"){
-    docCalender.find({month: "8"}, function(err, obj){
-      obj = obj.sort(function(a, b){
-        if(a.month !== b.month){
+router.post('/calender_get_data', function (req, res, next) {
+  if (req.body.id == "aug") {
+    docCalender.find({ month: "8" }, function (err, obj) {
+      obj = obj.sort(function (a, b) {
+        if (a.month !== b.month) {
           return Number(a.month) > Number(b.month) ? 1 : -1;
         }
-        else{
+        else {
           return Number(a.date) > Number(b.date) ? 1 : -1;
         }
       });
       res.send(obj);
     });
   } else {
-    docCalender.find({month: "9"}, function(err, obj){
-      obj = obj.sort(function(a, b){
-        if(a.month !== b.month){
+    docCalender.find({ month: "9" }, function (err, obj) {
+      obj = obj.sort(function (a, b) {
+        if (a.month !== b.month) {
           return Number(a.month) > Number(b.month) ? 1 : -1;
         }
-        else{
+        else {
           return Number(a.date) > Number(b.date) ? 1 : -1;
         }
       });
       var spliceIdx = 0;
-      for(var i in obj){
-        if(Number(obj[i].date) > 15){
+      for (var i in obj) {
+        if (Number(obj[i].date) > 15) {
           spliceIdx = i;
           break;
         }
       }
-      if(req.body.id == "sep1"){
+      if (req.body.id == "sep1") {
         obj.splice(spliceIdx);
       } else {
         obj.splice(0, spliceIdx);
@@ -446,15 +448,13 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
         return;
-      }
-
+      }*/
       if (obj.name !== name) {
         console.log(id + ': 真實姓名不合');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
-      } else*/ {
+      } else {
         obj.password = password;
-        obj.name = name;
         Users.createUser(obj, function (err, user, next) {
           if (err) {
             return next(err);
@@ -584,5 +584,14 @@ router.get('/adduser', function (req, res, next) {
     res.redirect('/login');
   });
 });
-
+router.get('/adduserrnd', function (req, res, next) {
+  Users.createUser(new Users({
+    id: "108000022"+Math.floor(Math.random() * 1000),
+    unit: "csie",
+    name: "eugene"+Math.floor(Math.random() * 1000)
+  }), function (err, user) {
+    if (err) next(err);
+    res.redirect('/login');
+  });
+});
 module.exports = router;

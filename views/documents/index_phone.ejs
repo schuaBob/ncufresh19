@@ -26,12 +26,10 @@
       <% include ../layouts/js %>
       <% include js %>
       <script>
-            $(document).ready(function(){
-                $(window).resize(function(){
-                    var width = innerWidth;
-                    if(width > 768)
-                        document.location.href = "/documents";
-                });
+            $(window).resize(function(){
+                var width = outerWidth;
+                if(width > 768)
+                    document.location.href = "/documents";
             });
         </script>
   </body>

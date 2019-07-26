@@ -20,7 +20,7 @@
         <% /*大學生*/ %>
         <div class="choose" id="must_gra">
             <div class="graduate">
-                <p>
+                <p class="bar">
                     <a class="must_gra link_gra now" >入學須知</a>
                     <a href="#fresh" class="fresh_gra link_gra">新生週</a>
                 </p>
@@ -52,6 +52,14 @@
     </main>
     <% include ../../layouts/js %>
     <% include ../js %>
+    <script>
+        $(window).resize(function(){
+            var width = innerWidth;
+            if(width > 768){
+                document.location.href = "/documents/graduate_must";
+            }
+        });
+    </script>
 </body>
 
 </html>

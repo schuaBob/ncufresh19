@@ -28,16 +28,15 @@
                 </div>
               </div>
             </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <svg id="closenews" data-dismiss="modal" aria-label="Close" aria-hidden="true" focusable="false"
+              data-prefix="far" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="#ec6d4f"
+                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z" />
+            </svg>
           </div>
-          <div class="modal-body">
+          <div class="modal-body " id="newsdetail">
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -81,7 +80,7 @@
                 </div>
                 <div id="news-body">
                   <% for(let i in News){ %>
-                  <div class="card" data-toggle="modal" data-target="#newsModal" pk="<%= News[i]['pk']%>">
+                  <div class="card pernews" data-toggle="modal" data-target="#newsModal" pk="<%= News[i]['pk']%>">
                     <div class="row align-items-center">
                       <div class="col-sm-3">
                         <img src="index/icon-<%= icon[News[i]['category']-1]%>.png" class="card-img">
@@ -198,12 +197,26 @@
           </div>
           <div id="monthDetail">
             <div id="board">
+              <img id="index3start" src="/index/首頁3_海星去背.png">
               <div id="board-detail">
-                count
+                
               </div>
             </div>
             <div id="days">
-              
+              <% var count = 0 %>
+              <% for(var i in calender) { %>
+              <% count = count + 1 %>
+              <div class="day" id="<%=count%>">
+                <div class="dot">
+                  <svg height="40" width="40">
+                    <circle cx="20" cy="20" r="20" fill="#ec6d4f" />
+                  </svg>
+                </div>
+                <div class="date">
+                  <%- calender[i].month %>/<%- calender[i].date %>
+                </div>
+              </div>
+              <% } %>
             </div>
           </div>
         </div>
