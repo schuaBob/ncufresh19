@@ -23,7 +23,10 @@
                 <span id="life">中大生活</span>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
+        <%_ if (user && user.role === 'admin'){ -%>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#timeModal" style="position: absolute; left: 150px; z-index: 1;">新增/修改時間軸</button>
+        <%_ } %>
         <main id="main">   
         <!--content-->
         <div class="content">
@@ -44,7 +47,7 @@
                     <a href="/life/study/ceecs"> <img class="studyImg" src="subPicture/ceecs.png"></a>
                 </div>
                 <div>
-                    <a href="/life/study/escollege"> <img class="studyImg" src="subPicture/excollege.png"></a>
+                    <a href="/life/study/escollege"> <img class="studyImg" src="subPicture/escollege.png"></a>
                 </div>
                 <div>
                     <a href="/life/study/hakka"> <img class="studyImg" src="subPicture/hakka.png"></a>
@@ -73,12 +76,12 @@
                                         </div>
                                     </div> -->
                                     <div class="form-group">
-                                            <label class="col-md-4 control-label" for="elecategory">學院選項(lit:文, science:理, ec:工, mgt:管理, ceecs: 資電, escollege: 地科, hakka: 客家, chst: 生醫</label>
+                                            <label class="col-md-4 control-label" for="elecategory">學院選項(lit:文, science:理, ec:工, mgt:管理, ceecs: 資電, escollege: 地科, hakka: 客家, chst: 生醫)</label>
                                             <div class="col-md-6">
                                                 <select class="form-control input-md bigTitle" id="descBigTitle" name="modifyStudyTitle">
                                                     <option value="default">請選擇</option>
-                                                    <% for(var i in data) { %>
-                                                            <option value="<%=data[i].type%>"><%=data[i].type%></option>
+                                                    <% for(var i in data1) { %>
+                                                            <option value="<%=data1[i].type%>"><%=data1[i].type%></option>
                                                     <% } %>
                                                 </select>
                                             </div>
@@ -104,7 +107,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">敘述文字</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="content" id="editor3"></textarea>
+                                            <textarea class="form-control input-md" name="content" id="editor6"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -121,9 +124,58 @@
                         </div> <!--/.modal-content-->
                     </div> <!--/.modal -->
                 </div>
+                <div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="exampleModalLabel">新增/修改時間軸內容</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"> &times;</span>
+                                    </button> 
+                                </div>
+                                <div class="modal-body">
+                                    <form action="addTimeline" method="POST">
+                                            <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="elecategory">學院(請輸入英文簡稱：lit:文, science:理, ec:工, mgt:管理, ceecs: 資電, escollege: 地科, hakka: 客家, chst: 生醫)</label>
+                                                    <div class="col-md-16">
+                                                        <textarea class="form-control input-md" name="type" id="editor1"></textarea>
+                                                    </div>
+                                                </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="elecategory">時間點</label>
+                                            <div class="col-md-16">
+                                                <textarea class="form-control input-md" name="time" id="editor1"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="elecategory">此時間點之事件</label>
+                                            <div class="col-md-16">
+                                                <textarea class="form-control input-md" name="event" id="editor7"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">儲存/修改</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div> <!--/.modal-content-->
+                        </div> <!--/.modal -->
+                    </div>   
         </main>
         <% include ../layouts/js %>
         <% include js %>
+        <script>
+        $(document).ready(function(){
+            var width = innerWidth;
+            if(width <= 1024)
+                document.location.href = "/life/study_phone";
+            $(window).resize(function(){
+                width = innerWidth;
+                if(width <= 1024)
+                    document.location.href = "/life/study_phone";
+            });
+        });
+    </script>
     </body>
     
 </html>
