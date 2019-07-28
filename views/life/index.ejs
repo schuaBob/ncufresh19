@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <% include ../layouts/head %>
-    <% include ../layouts/script %>
-    <link rel='stylesheet' href='life/style.css' />
+      <% include ../layouts/head %>
+      <% include ../layouts/script %>
   </head>
   <body>
-      <% include ../layouts/header %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <% include ../layouts/js %>
+      <script>
+          $(document).ready(function(){
+            console.log("enter!!!!!");
+              var width = innerWidth;
+              if(width <= 1024) document.location.href = "/life/index_phone";
+              else document.location.href = "/life/study";
+          });
+      </script>
   </body>
 </html>

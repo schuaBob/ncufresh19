@@ -30,14 +30,50 @@ var match_num = {
  /*----------food---------*/
 
  $(document).ready(function() {
-     $('.foodList li').on('mouseover', 
+     $('#LI1').hide();
+     $('#LI2').hide();
+     $('#LI3').hide();
+     $('.foodList p').on('mouseover', 
          function() {
              $(this).css({ "background-color": "#e0e0e0"});
          }
      )
-     $('.foodList li').on('mouseout',
+     $('.foodList p').on('mouseout',
          function() {
              $(this).css({ "background-color": "transparent"});
+         }
+     )
+     $('#nightStreet').on('mouseover',
+         function() {
+            $('#LI1').css({'max-width': '20%','margin-left': '2.5vw'});
+            $('#LI1').show();
+         }
+     )
+     $('#nightStreet').on('mouseout',
+         function() {
+            $('#LI1').hide();
+         }
+     )
+     $('#backdoor').on('mouseover',
+         function() {
+            $('#LI2').css({'max-width': '20%','margin-left': '4vw'});
+            $('#LI2').show();
+         }
+     ) 
+     $('#backdoor').on('mouseout',
+         function() {
+            $('#LI2').hide();
+         }
+     ) 
+     $('#campus').on('mouseover',
+         function() {
+            $('#LI3').css({'max-width': '20%','margin-left': '1vw'});
+            $('#LI3').show();
+         }
+     ) 
+     $('#campus').on('mouseout',
+         function() {
+            $('#LI3').hide();
          }
      )
      $('#nightStreet').click(
@@ -229,51 +265,13 @@ var match_num = {
              }
          })
      });
-
-
 });
 
-/*----------------------study-------------------------
-
-$(document).ready(function() {
-    var url = new URL(window.location.href);
-    url = url.href.split('/');
-    $.ajax({
-        url:"showStudy",
-        method:"POST",
-    })
+/*----------------------study-------------------------*/
 
 
 
-
-
-
-})
-
-
-
-
-
-/*---------------------------後台------------------------
-
-        ClassicEditor
-            .create( document.querySelector( '#editor1' ) )
-            .then( editor1 => {
-                console.log( editor1 );
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
-
-        ClassicEditor
-            .create( document.querySelector( '#editor2' ) )
-            .then( editor2 => {
-                console.log( editor2 );
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
-*/
+/*---------------------------後台------------------------*/
         ClassicEditor
             .create( document.querySelector( '#editor3' ) )
             .then( editor3 => {
@@ -294,6 +292,22 @@ $(document).ready(function() {
             .create( document.querySelector( '#editor5' ) )
             .then( editor5 => {
                 console.log( editor5 );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+            ClassicEditor
+            .create( document.querySelector( '#editor6' ) )
+            .then( editor6 => {
+                console.log( editor6 );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+            ClassicEditor
+            .create( document.querySelector( '#editor7' ) )
+            .then( editor7 => {
+                console.log( editor7 );
             } )
             .catch( error => {
                 console.error( error );

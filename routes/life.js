@@ -4,6 +4,7 @@ var study = require('../models/life/study');
 var live = require('../models/life/live');
 var play = require('../models/life/play');
 var food = require('../models/life/food');
+var time = require('../models/life/time');
 var multer = require('multer');
 
 var storage = multer.diskStorage({
@@ -39,14 +40,16 @@ var match_num = {
   'chst'        : 7
 };
 
-/* GET home page. */
+/* ---------------------網頁版---------------------*/
 router.get('/', function(req, res, next) {
-  res.redirect('/life/study');
+  res.render('life/index', {user: req.user});
 });
 
 router.get('/study', function(req, res, next) {
-  study.find({}, function(err, data) {
-    res.render('life/study', { data: data, user: req.user});
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/study', { data1: data1, data2: data2, user: req.user});
+    })
   })
 });
 
@@ -75,8 +78,10 @@ router.get('/study/lit', function(req, res, next) {
   page = page.split('/');
   console.log("page= " + page[2]);
   console.log("num= " + match_num[page[2]]);
-  study.find({}, function(err, data) {
-    res.render('life/subStudy', { data: data, page: page[2], num: match_num[page[2]], user: req.user });
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
   })
 });
 //理學院
@@ -85,8 +90,10 @@ router.get('/study/science', function(req, res, next) {
   page = page.split('/');
   console.log("page= " + page[2]);
   console.log("num= " + match_num[page[2]]);
-  study.find({}, function(err, data) {
-    res.render('life/subStudy', { data: data, page: page[2], num: match_num[page[2]], user: req.user });
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
   })
 });
 //工學院
@@ -95,8 +102,10 @@ router.get('/study/ec', function(req, res, next) {
   page = page.split('/');
   console.log("page= " + page[2]);
   console.log("num= " + match_num[page[2]]);
-  study.find({}, function(err, data) {
-    res.render('life/subStudy', { data: data, page: page[2], num: match_num[page[2]], user: req.user });
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
   })
 });
 //管理學院
@@ -105,8 +114,10 @@ router.get('/study/mgt', function(req, res, next) {
   page = page.split('/');
   console.log("page= " + page[2]);
   console.log("num= " + match_num[page[2]]);
-  study.find({}, function(err, data) {
-    res.render('life/subStudy', { data: data, page: page[2], num: match_num[page[2]], user: req.user });
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
   })
 });
 //資電學院
@@ -115,8 +126,10 @@ router.get('/study/ceecs', function(req, res,next) {
   page = page.split('/');
   console.log("page= " + page[2]);
   console.log("num= " + match_num[page[2]]);
-  study.find({}, function(err, data) {
-    res.render('life/subStudy', { data: data, page: page[2], num: match_num[page[2]], user: req.user });
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
   })
 });
 //地球科學學院
@@ -125,8 +138,10 @@ router.get('/study/escollege', function(req, res, next) {
   page = page.split('/');
   console.log("page= " + page[2]);
   console.log("num= " + match_num[page[2]]);
-  study.find({}, function(err, data) {
-    res.render('life/subStudy', { data: data, page: page[2], num: match_num[page[2]], user: req.user });
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
   })
 });
 //客家學院
@@ -135,8 +150,10 @@ router.get('/study/hakka',function(req, res, next) {
   page = page.split('/');
   console.log("page= " + page[2]);
   console.log("num= " + match_num[page[2]]);
-  study.find({}, function(err, data) {
-    res.render('life/subStudy', { data: data, page: page[2], num: match_num[page[2]], user: req.user });
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
   })
 });
 //生醫理工學院
@@ -145,10 +162,137 @@ router.get('/study/chst', function(req, res, next) {
   page = page.split('/');
   console.log("page= " + page[2]);
   console.log("num= " + match_num[page[2]]);
-  study.find({}, function(err, data) {
-    res.render('life/subStudy', { data: data, page: page[2], num: match_num[page[2]], user: req.user });
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
   })
 });
+
+/*----------------------手機版-----------------------*/
+
+router.get('/index_phone', function(req, res, next) {
+  res.render('life/phone/index_phone',{user: req.user})
+});
+
+router.get('/study_phone', function(req, res, next) {
+  study.find({}, function(err, data) {
+    res.render('life/phone/study_phone',{data: data, user: req.user})
+  })
+});
+router.get('/food_phone', function(req, res, next) {
+  food.find({}, function(err, data) {
+    res.render('life/phone/food_phone',{data: data, user: req.user})
+  })
+});
+router.get('/live_phone', function(req, res, next) {
+  live.find({}, function(err, data) {
+    res.render('life/phone/live_phone',{data: data, user: req.user})
+  })
+});
+router.get('/play_phone', function(req, res, next) {
+  play.find({}, function(err, data) {
+    res.render('life/phone/play_phone',{data: data, user: req.user})
+  })
+});
+
+//文學院
+router.get('/study_phone/lit', function(req, res, next) {
+  var page= req.url;
+  page = page.split('/');
+  console.log("page= " + page[2]);
+  console.log("num= " + match_num[page[2]]);
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
+  })
+});
+
+router.get('/study_phone/science', function(req, res, next) {
+  var page= req.url;
+  page = page.split('/');
+  console.log("page= " + page[2]);
+  console.log("num= " + match_num[page[2]]);
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
+  })
+});
+
+router.get('/study_phone/ec', function(req, res, next) {
+  var page= req.url;
+  page = page.split('/');
+  console.log("page= " + page[2]);
+  console.log("num= " + match_num[page[2]]);
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
+  })
+});
+
+router.get('/study_phone/ceecs', function(req, res, next) {
+  var page= req.url;
+  page = page.split('/');
+  console.log("page= " + page[2]);
+  console.log("num= " + match_num[page[2]]);
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
+  })
+});
+
+router.get('/study_phone/excollege', function(req, res, next) {
+  var page= req.url;
+  page = page.split('/');
+  console.log("page= " + page[2]);
+  console.log("num= " + match_num[page[2]]);
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
+  })
+});
+
+router.get('/study_phone/hakka', function(req, res, next) {
+  var page= req.url;
+  page = page.split('/');
+  console.log("page= " + page[2]);
+  console.log("num= " + match_num[page[2]]);
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
+  })
+});
+
+router.get('/study_phone/mgt', function(req, res, next) {
+  var page= req.url;
+  page = page.split('/');
+  console.log("page= " + page[2]);
+  console.log("num= " + match_num[page[2]]);
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
+  })
+});
+
+router.get('/study_phone/chst', function(req, res, next) {
+  var page= req.url;
+  page = page.split('/');
+  console.log("page= " + page[2]);
+  console.log("num= " + match_num[page[2]]);
+  study.find({}, function(err, data1) {
+    time.find({}, function(err, data2) {
+      res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
+    })
+  })
+});
+
 
 /*-----------------------------後台------------------------------*/
 
@@ -307,7 +451,6 @@ router.post('/addStudyContent', upload2.single('picture'), function(req, res, ne
 router.post('/addFoodContent', function(req, res, next) {
   food.findOne({mainTitle: req.body.modifyFoodTitle}).exec(function(err, result) {
     if (result !== null) {
-      console.log("enter!!!!!!!");
       if (req.body.foodTitle) {
         food.updateOne({ mainTitle: req.body.modifyFoodTitle }, {mainTitle: req.body.foodTitle}, function(err) {
             if (err) console.log("Fail to update");
@@ -321,7 +464,6 @@ router.post('/addFoodContent', function(req, res, next) {
       });
       };
     } else {
-      console.log("else@@@@@@@@@@");
       new food({
         mainTitle: req.body.foodTitle,
         content: req.body.foodDetail
@@ -333,6 +475,31 @@ router.post('/addFoodContent', function(req, res, next) {
   res.redirect('back');
   });
 });
+
+router.post('/addTimeline', function(req, res, next) {
+  time.findOne({type: req.body.type, time: req.body.time}).exec(function(err, result) {
+    if (result !== null) {
+      if (req.body.event) {
+        time.updateOne({ type: req.body.type, time: req.body.time}, {event: req.body.event}, function(err) {
+          if (err) console.log("Fail to update");
+          else console.log("success to update content");
+      });
+      };
+    } else {
+      new time({
+        type: req.body.type,
+        time: req.body.time,
+        event: req.body.event
+      }).save(function(err) {
+        if (err) console.log('FAIL');
+        else console.log('SUCCESS');
+      });
+    };
+  res.redirect('back');
+  });
+});
+
+
 
 
 router.get('/foodModal', function (req, res, next) {

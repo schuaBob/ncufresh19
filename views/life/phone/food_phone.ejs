@@ -3,45 +3,26 @@
 
 <head>
     <title>新生知訊網｜中大生活</title>
-    <% include ../layouts/head %>
-    <% include ../layouts/script %>
-    <link rel=stylesheet type="text/css" href="life.css">
+    <% include ../../layouts/head %>
+    <% include ../../layouts/script %>
+<link rel=stylesheet type="text/css" href="../life/life_phone.css">
 </head>
 
 <body>
-    <% include ../layouts/header %>
-    <div class="sideNav" id="navi">
-            <ul>
-                <li><a href="/life/study"> <img class="navSubBtn" src="naviBefore0.png"> </a></li>
-                <li><a href="/life/food"> <img class="navSubBtn" src="naviAfter1.png"> </a></li>
-                <li><a href="/life/play"> <img class="navSubBtn" src="naviBefore2.png"> </a></li>
-                <li><a href="/life/live"> <img class="navSubBtn" src="naviBefore3.png"> </a></li>
-            </ul>
-        </div>
-        <div class="T">
+        <% include ../../layouts/header %>
+        <% include ../../layouts/js %>
+        <% include ../js %>
+        <div class="back"><img class="backArrow" src="backToMain.png"></div>
         <div class="mainTitle">
-                <!-- <div class="line"></div> -->
-                <div class="titleText">
-                    <span id="nculife">NCULife</span>
-                    <span id="life">中大生活</span>
-            </div>
+                <span id="nculife">NCULife</span>
+                <span id="life">中大生活</span>
         </div>
-        <div id="areaName"><p>宵夜街</p></div>
-        </div>
-        <%_ if (user && user.role === 'admin'){ -%>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
-        <%_ } %>
-    <main id="main" style="background: #fff9dc; height: calc(100% - 198px);">
+    <main id="main" style="background: #fff9dc;">
         <!--content-->
         <div class="foodList">
-            <p id="nightStreet"> > 宵夜街 <img id="LI1" src="海馬.png"></p>
-            <p id="backdoor"> > 後門 <img id="LI2" src="海馬.png"></p>
-            <p id="campus"> > 中央校園 <img id="LI3" src="海馬.png"></p>
-            <!-- <ul>
-                <li id="nightStreet">> 宵夜街</li><br>
-                <li id="backdoor">> 後門</li><br>
-                <li id="campus">> 中央校園</li><br>
-            </ul> -->
+            <p id="nightStreet">宵夜街</p>
+            <p id="backdoor">後門</p>
+            <p id="campus">中央校園</p>
         </div>        
         <div class="FpictureArea">
             <div class="foodImg">
@@ -109,98 +90,16 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="foodModal" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 60px;">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel">店家名稱</h4>
-                        <span data-dismiss="modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path
-                                  d="M14.59 8L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41 14.59 8zM12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="modal-body">
-                        <div id="foodModalTitle">
-                            <div class="t">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">店家資訊</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div id="foodModalDetail">
-                            <div class="d">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--Modal-->
-        <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel">新增內容</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"> &times;</span>
-                        </button> 
-                    </div>
-                    <div class="modal-body">
-                        <form action="addFoodContent" method="POST">
-                                <div class="form-group">
-                                        <label class="col-md-4 control-label" for="elecategory">店家選項</label>
-                                        <div class="col-md-6">
-                                            <select class="form-control input-md bigTitle" id="descBigTitle" name="modifyFoodTitle">
-                                                <option value="default">請選擇</option>
-                                                <% for(var i in data) { %>
-                                                        <option value="<%=data[i].mainTitle%>"><%=data[i].mainTitle%></option>
-                                                <% } %>
-                                            </select>
-                                        </div>
-                                </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="elecategory">店家名稱(如果要修改再輸入）</label>
-                                <div class="col-md-16">
-                                    <textarea class="form-control input-md" name="foodTitle" id="editor1"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="elecategory">敘述文字</label>
-                                <div class="col-md-16">
-                                    <textarea class="form-control input-md" name="foodDetail" id="editor4"></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">儲存/修改</button>
-                            </div>
-                        </form>
-                    </div>
-                </div> <!--/.modal-content-->
-            </div> <!--/.modal -->
-        </div>
     </main>
-    <% include ../layouts/js %>
-    <% include js %>
     <script>
             $(document).ready(function(){
-                var width = innerWidth;
-                if(width <= 1024)
-                    document.location.href = "/life/food_phone";
                 $(window).resize(function(){
-                    width = innerWidth;
-                    if(width <= 1024)
-                        document.location.href = "/life/food_phone";
+                    var width = innerWidth;
+                    if(width > 1024)
+                        document.location.href = "/life/food";
                 });
             });
         </script>
-
 
 </body>
 
