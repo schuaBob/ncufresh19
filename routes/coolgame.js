@@ -32,4 +32,21 @@ router.get('/getquestion', function (req, res, next) {
     })
   });
 });
+router.post('/updatescore', function (req, res, next) {
+  if(req.body.key == req.body['user[_id]']){
+    User.findOne({'_id':req.body['user[_id]']}).exec(function(err,result){
+      if(result.score_high <　req.body.score){
+        result.set({'score_sum':parseInt(result.score_sum, 10)+parseInt(req.body.score, 10),'score_high':parseInt(req.body.score, 10)});
+      }
+      else{
+        result.set('score_sum',parseInt(result.score_sum, 10)+parseInt(req.body.score, 10));
+      }
+      
+      result.save(function(err){
+        if (err) return next(err);
+      })
+    })
+    res.send("");
+  }
+});
 module.exports = router;

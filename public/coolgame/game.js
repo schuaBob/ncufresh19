@@ -45,7 +45,7 @@ var user_score;
 var now_score;
 var score_update_timer;
 var score_board;
-var game_time = 45;
+var game_time = 10;
 var catch_animal_container;
 var harpoon_text;
 var question_list = new Array();
@@ -203,6 +203,8 @@ class Option extends createjs.Container {
     this.background.graphics.clear().beginFill("green").drawRoundRect(0, 0, 9 * 18, 33, 10);
     ans_num--;
     if (ans_num == 0) {
+      back_container.visible=false;
+
       correct_fish = new fish(board_index, false);
       correct_fish.scale = 0.5;
       correct_fish.x = 550;
@@ -279,6 +281,7 @@ class Animal extends createjs.Sprite {
 }
 function show_correct() {
   question_time_stop = true;
+  back_container.visible=false;
   for (i = 0; i < 5; i++) {
     if (option[i].ans && !option[i].done) {
       option[i].background.visible = true;
@@ -757,7 +760,7 @@ function source_init() {
   };
   var dolphin_data = {
     images: [loader.getResult("dolphin")],
-    frames: { width: 548, height: 220, regX: 274, regY: 125 },
+    frames: { width: 548, height: 220, regX: 274, regY: 110 },
     animations: {
       normal: {
         frames: [0, 1], speed: 0.1
@@ -773,7 +776,7 @@ function source_init() {
   animalsource.push({ type: 3, score: 100, spritesheet: new createjs.SpriteSheet(fish3) });
   animalsource.push({ type: 4, score: 100, spritesheet: new createjs.SpriteSheet(fish4) });
   animalsource.push({ type: 5, spritesheet: new createjs.SpriteSheet(fish_ad_data) });
-  animalsource.push({ type: 6, score: -100000,spritesheet: new createjs.SpriteSheet(dolphin_data) });
+  animalsource.push({ type: 6, score: -10000,spritesheet: new createjs.SpriteSheet(dolphin_data) });
 }
 function create_back_container() {
   back_container = new createjs.Container();
@@ -863,6 +866,9 @@ function create_leave_container() {
     stage.removeChild(score_catch_animal_container);
     close_movement();
     clear_game_stage();
+    for(var j =0;j<dolphin_list.length;j++){
+      stage.removeChild(dolphin_list[j]);
+    }
     for (var j = 0; j < catch_fish.length; j++) {
       catch_fish[j].visible = false;
     }
@@ -1005,7 +1011,7 @@ function fish_jump() {
   createjs.Tween.get(catch_fish[catch_fish.length - 1]).wait(2000).to({ y: (fisherman.y - getrandom(50) + 20), x: (fisherman.x + 35 - getrandom(50)) }, 600).call(() => {
     for (i = 0; i < catch_fish.length; i++) {
       stage.setChildIndex(catch_fish[i], 2);
-      createjs.Tween.get(catch_fish[i]).wait(500).to({ x: -Math.abs(fisherman.getwidth()) + 30 - getrandom(50) }, 4000);
+      createjs.Tween.get(catch_fish[i]).wait(500).to({ x: -Math.abs(fisherman.getwidth()) + 30 - getrandom(50) }, 3500);
     }
   });
 }
@@ -1039,6 +1045,21 @@ function create_question_end_container() {
   question_end_container.visible = false;
   stage.addChildAt(question_end_container, stage.numChildren - 1);
 }
+function update_score(key){
+  $.ajax({
+    url: "updatescore",
+    method:"POST",
+    data: { 
+      key: key, 
+      score: 1,
+      user:user // <-- the $ sign in the parameter name seems unusual, I would avoid it
+  },
+  success:()=>{
+
+  },
+    error:(err)=>{console.log(err)}
+  });
+}
 function question_end() {
   if(dolphin_list.length == 0){
     stage.removeChild(question_container);
@@ -1052,7 +1073,7 @@ function question_end() {
     })
     clearInterval(question_timer);
     clearInterval(score_update_timer);
-    
+    update_score(user._id);
     //labby_init();
     console.log("game over");
   }
@@ -1161,6 +1182,7 @@ function question_show() {
   question_time_count = 49;
   question_time_stop = false;
   question_time_text.visible = true;
+  back_container.visible=true;
 }
 function next_question() {
   if (catch_animal_num[board_index] == 0) {
@@ -1169,6 +1191,7 @@ function next_question() {
       option[j].visible = false;
     }
     question_text.visible = false;
+    back_container.visible=false;
     //console.log(score_catch_animal_container.children[board_index].x);
     createjs.Tween.get(questionboard).to({ scale: 0, x: score_catch_animal_container.children[board_index].x + score_catch_animal_container.x, y: 130 }, 1000).call(() => {
       create_questionboard();
@@ -1274,7 +1297,7 @@ function close_movement() {
 }
 function create_dolphin_container(){
   dolphin_container = new createjs.Container();
-  var dolphin_text = new createjs.Text("粉紅色海豚名為「中華白海豚」依《野生\r\n\r\n動物保育法》公告之保育類野生動物名錄\r\n\r\n，已將中華白海豚列入瀕臨絕種的極度危\r\n\r\n險等級(CR)，讓我們一起守護可愛海豚，\r\n\r\n所以不要用任何方式獵鯊海豚歐~魚叉也\r\n\r\n算，扣你100000分作為警惕。","bold 20px 標楷體","#000000");   
+  var dolphin_text = new createjs.Text("粉紅色海豚名為「中華白海豚」依《野生\r\n\r\n動物保育法》公告之保育類野生動物名錄\r\n\r\n，已將中華白海豚列入瀕臨絕種的極度危\r\n\r\n險等級(CR)，讓我們一起守護可愛海豚，\r\n\r\n所以不要用任何方式獵鯊海豚歐~魚叉也\r\n\r\n算，扣你10000分作為警惕。","bold 20px 標楷體","#000000");   
   dolphin_text.x=218;
   dolphin_text.y=145;
   var dolphin_background = new createjs.Shape();
@@ -1311,7 +1334,7 @@ function create_dolphin_container(){
     })
     dolphin_container.visible=false;
     clearInterval(question_timer);
-    new Score_Text("-100000","bold 30px Arial","#000000",score_board.getwidth()/2+score_board.x,score_board_text.y);
+    new Score_Text("-10000","bold 30px Arial","#000000",score_board.getwidth()/2+score_board.x,score_board_text.y);
     console.log("game over");
   });
   stage.addChild(dolphin_container);
@@ -1329,8 +1352,8 @@ function game_end() {
   fisherman_harpoon.rotation = 35;
   fisherman.scaleX *= fisherman.scaleX < 0 ? -1 : 1;
   fisherman_harpoon.revise_position();
-  createjs.Tween.get(fisherman_harpoon).wait(3100).to({ x: -Math.abs(fisherman.getwidth()) + 25 * (fisherman.scaleX < 0 ? 1 : -1) }, 4000);
-  createjs.Tween.get(fisherman).wait(3100).to({ x: -Math.abs(fisherman.getwidth()) }, 4000).call(() => {
+  createjs.Tween.get(fisherman_harpoon).wait(3100).to({ x: -Math.abs(fisherman.getwidth()) + 25 * (fisherman.scaleX < 0 ? 1 : -1) }, 3500);
+  createjs.Tween.get(fisherman).wait(3100).to({ x: -Math.abs(fisherman.getwidth()) }, 3500).call(() => {
     clear_game_stage();
     clear_harpoon();
     score_init();
@@ -1386,11 +1409,11 @@ function score_init() {
     stage.setChildIndex(catch_fish[i], 3);
     catch_fish[i].y = (fisherman.y - (getrandom(50)) * 1.56 + 20 * 1.56);
     catch_fish[i].x = (fisherman.x + (35 - getrandom(50)) * 1.56)
-    createjs.Tween.get(catch_fish[i]).to({ x: 255 + (50 - getrandom(50)) * 1.56 }, 5000);
+    createjs.Tween.get(catch_fish[i]).to({ x: 255 + (50 - getrandom(50)) * 1.56 }, 3500);
   }
   var brid_num = 0;
-  createjs.Tween.get(fisherman).to({ x: 255 }, 5000);
-  createjs.Tween.get(fisherman_harpoon).to({ x: 255 + 40 * (fisherman.scaleX < 0 ? 1 : -1) }, 5000).call(() => {
+  createjs.Tween.get(fisherman).to({ x: 255 }, 3500);
+  createjs.Tween.get(fisherman_harpoon).to({ x: 255 + 40 * (fisherman.scaleX < 0 ? 1 : -1) }, 3500).call(() => {
     create_score_catch_animal_container();
     createjs.Tween.get(fisherman).wait(1000).call(() => {
       for (i = 0; i < catch_fish.length; i++) {
@@ -1579,7 +1602,7 @@ function game_init() {
   start_time_text.y = 200;
   start_time_text.alpha = 0;
   stage.addChild(start_time_text);
-  createjs.Tween.get(start_time_text).wait(1000).to({ alpha: 1 }, 1000).to({ text: "2" }).to({ alpha: 0 }).to({ alpha: 1 }, 1000).to({ text: "1" }).to({ alpha: 0 }).to({ alpha: 1 }, 1000).to({ x: 360, text: "Start!" }).wait(1000).call(() => {
+  createjs.Tween.get(start_time_text).wait(1000).to({ alpha: 1 }, 1000).to({ text: "2" }).to({ alpha: 0 }).to({ alpha: 1 }, 1000).to({ text: "1" }).to({ alpha: 0 }).to({ alpha: 1 }, 1000).to({ x: 360, text: "Start！" }).wait(1000).call(() => {
     stage.removeChild(start_time_text);
     game_start();
     //score_init();
