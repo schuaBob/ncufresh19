@@ -17,6 +17,7 @@ html {
     right: 0;
     left: 0;
     top: 0;
+    bottom: 0;
     width: 200px;
     margin: 0 auto;
     padding: 0;
@@ -69,8 +70,9 @@ html {
     margin-right: 0;
   }
 
-  .backArrow {
-      max-width:150px;;
+  .backArrow, .backToMain{
+      max-width:150px;
+      cursor: pointer;
   }
 
   .content {
@@ -192,16 +194,26 @@ html {
   .foodList {
     position: relative;
     margin: 0 auto;
-    top: 2.3vh; bottom: 0; left: 0 ; right: 0;
+    padding-top: 2%;
+    padding-left: 25%;
+    top: 2.3vh; bottom: 0; left: 0; right: 0;
   }
   
   .foodList p {
     z-index: 100;
-    font-size: 1.5vw;
+    font-size: 2.7vw;
     width: 16vw;
-    padding: 4vh;
+    padding: 1vh;
+    margin-left: 35px;
+    border: 2px solid #7CA7BC;
+    border-radius: 1rem;
     cursor: pointer;
     display: inline;
+  }
+
+  #nightStreet_p {
+      border-color: white;
+      background-color: #7CA7BC;
   }
   
   .FpictureArea {
@@ -210,8 +222,8 @@ html {
     overflow: scroll;
     margin: 0 auto;
     width: 90%;
-    top: 10%;
-    height: calc(100% - 145px - 24px);
+    top: 7%;
+    height: calc(100% - 60px - 150px - 7%);
     /* z-index: 300; */
   }
   
@@ -284,11 +296,18 @@ html {
     transform: translate(-50%, -50%);
     text-align: center;
   }
+
+  .decoration img{
+    position: absolute;
+    width:25%;
+    bottom: 0px;
+  }
+  
   
   #foodModal .modal-dialog {
-    width: 60%;
+    width: 90%;
     max-width: none;
-    margin-top: 2vh;
+    margin-top: 10vh;
     min-height: calc(100vh - 56px);
   }
   
@@ -300,7 +319,7 @@ html {
     margin-left: auto;
     margin-bottom: 0;
     display: block;
-    width: 85%;
+    width: 70%;
     padding: 8px;
     word-wrap: break-word;
     border-style: solid;
@@ -319,7 +338,7 @@ html {
     margin-left: auto;
     margin-bottom: 0;
     display: block;
-    width: 85%;
+    width: 70%;
     padding: 8px;
     word-wrap: break-word;
     border-style: solid;
@@ -329,9 +348,17 @@ html {
     background-color: white;
     min-height: 50px;
   }
+
+  .t {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 500;
+  }
   #foodModalDetail .d {
     margin: 0;
     max-height: 300px;
+    font-size: 20px;
+    font-weight: lighter;
     overflow-y: scroll;
   }
   
@@ -346,6 +373,10 @@ html {
   
   #foodModal .modal-content {
     background-color: rgb(81, 172, 207);
+  }
+
+  #foodModal .modal-title {
+      font-size: 2rem;
   }
   
   .modal-header span {
