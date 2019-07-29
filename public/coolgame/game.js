@@ -5,6 +5,7 @@
 //於上漁船位置
 //------------game---------------------------------
 //var fs = require('fs');
+var user;
 var question_data;
 var dolphin_container;
 var dolphin_list;
@@ -44,7 +45,7 @@ var user_score;
 var now_score;
 var score_update_timer;
 var score_board;
-var game_time = 20;
+var game_time = 10;
 var catch_animal_container;
 var harpoon_text;
 var question_list = new Array();
@@ -178,7 +179,7 @@ class Option extends createjs.Container {
     this.havermask.alpha = 0.01;
     this.ans = false;
     this.havermask.addEventListener("click", function (event) {
-      if (!event.target.parent.done) {
+      if (!event.target.parent.done && !question_time_stop) {
         if (event.target.parent.ans) {
           event.target.parent.correct();
         }
@@ -187,12 +188,12 @@ class Option extends createjs.Container {
     });
     this.havermask.addEventListener("mouseover", function (event) {
       event.target.parent.havermask.cursor = "pointer";
-      if (!event.target.parent.done)
+      if (!event.target.parent.done && !question_time_stop)
         event.target.parent.background.visible = true;
 
     });
     this.havermask.addEventListener("mouseout", function (event) {
-      if (!event.target.parent.done)
+      if (!event.target.parent.done && !question_time_stop)
         event.target.parent.background.visible = false;
     });
   }
@@ -202,6 +203,8 @@ class Option extends createjs.Container {
     this.background.graphics.clear().beginFill("green").drawRoundRect(0, 0, 9 * 18, 33, 10);
     ans_num--;
     if (ans_num == 0) {
+      back_container.visible=false;
+
       correct_fish = new fish(board_index, false);
       correct_fish.scale = 0.5;
       correct_fish.x = 550;
@@ -278,6 +281,7 @@ class Animal extends createjs.Sprite {
 }
 function show_correct() {
   question_time_stop = true;
+  back_container.visible=false;
   for (i = 0; i < 5; i++) {
     if (option[i].ans && !option[i].done) {
       option[i].background.visible = true;
@@ -393,7 +397,6 @@ function mousemove(event) {
   var c = Math.pow(x * x + y * y, 0.5);
   var r = Math.acos(y / c);
   fisherman_harpoon.rotation = r_x * (r * 180 / Math.PI);
-  stage.update();
 }
 function mousedown(event) {
   if (harpoon_list.length >= 10) return;
@@ -457,6 +460,8 @@ function load_question_data() {
     error:(err)=>{console.log(err)},
     success: function (result) {
       question_data=result.result;
+      user = result.user;
+      console.log(user);
       load_question();
     }
   });
@@ -484,10 +489,10 @@ function create_bubble() {
 function open_bubble() {
   generate_bubble = setInterval(() => {
     if (!stop)
-      if (getrandom(500) < 5) {
+      if (getrandom(10) < 1) {
         create_bubble();
       }
-  }, 30);
+  }, 200);
 }
 function update() {
   if (!stop) {
@@ -528,11 +533,11 @@ function harpoon_check() {
         if (harpoon_list[i].checkboom()) {
           return;
         }
-        if (harpoon_list[i].y > canvas_seaheight) {
-          harpoon_list[i].mv = (500 / harpoon_list[i].y) * 1.8;
-          if (harpoon_list[i].y > 400) {
-            harpoon_list[i].mv = (500 / harpoon_list[i].y) * 1.4;
-          }
+      }
+      if (harpoon_list[i].y > canvas_seaheight) {
+        harpoon_list[i].mv = (500 / harpoon_list[i].y) * 1.8;
+        if (harpoon_list[i].y > 400) {
+          harpoon_list[i].mv = (500 / harpoon_list[i].y) * 1.4;
         }
       }
       if (harpoon_list[i].y - harpoon_list[i].image.height * harpoon_list[i].scaleY / 2 >= canvas_height || harpoon_list[i].y + harpoon_list[i].image.height * harpoon_list[i].scaleY / 2 <= 0 || harpoon_list[i].x - harpoon_list[i].image.height * harpoon_list[i].scaleX / 2 >= canvas_width || harpoon_list[i].x + harpoon_list[i].image.height * harpoon_list[i].scaleX / 2 <= 0) {
@@ -552,16 +557,16 @@ function harpoon_move() {
       harpoon_list[i].y += harpoon_list[i].my * harpoon_list[i].mv / harpoon_list[i].mc;
     }
   }
-  stage.update();
+  //stage.update();
 }
 function open_fish() {
   generate_fish = setInterval(() => {
     if (!stop)
       if (question_num[0] + question_num[1] + question_num[2] > 0) {
         rnd = getrandom(1500);//120
-        if (rnd < 500) {
+        if (rnd < 600) {
           var fishtype;
-          if(rnd<100){
+          if(rnd<10){
             animal_list.push(new fish(6, false));
           }
           else{
@@ -570,7 +575,7 @@ function open_fish() {
             } while (question_num[fishtype] <= 0);
             if (gamestart)
               question_num[fishtype]--;
-            if (rnd < 50)
+            if (rnd < 120)
               animal_list.push(new fish(fishtype == 2 ? ((fishtype + 1) + getrandom(2)) : ((fishtype) + 1), true));
             else
               animal_list.push(new fish(fishtype == 2 ? ((fishtype + 1) + getrandom(2)) : ((fishtype) + 1), false));
@@ -587,7 +592,7 @@ function open_fish() {
 function open_bird() {
   generate_bird = setInterval(() => {
     if (!stop)
-      if (getrandom(100) < 25) {
+      if (getrandom(90) < 1) {
         animal_list.push(new bird(0, false));
       }
   }, 1000);
@@ -755,7 +760,7 @@ function source_init() {
   };
   var dolphin_data = {
     images: [loader.getResult("dolphin")],
-    frames: { width: 548, height: 220, regX: 274, regY: 125 },
+    frames: { width: 548, height: 220, regX: 274, regY: 110 },
     animations: {
       normal: {
         frames: [0, 1], speed: 0.1
@@ -765,13 +770,13 @@ function source_init() {
       }
     }
   }
-  animalsource.push({ type: 0, score: 5000, spritesheet: new createjs.SpriteSheet(bird1) });
+  animalsource.push({ type: 0, score: 1200, spritesheet: new createjs.SpriteSheet(bird1) });
   animalsource.push({ type: 1, score: 250, spritesheet: new createjs.SpriteSheet(fish1) });
   animalsource.push({ type: 2, score: 200, spritesheet: new createjs.SpriteSheet(fish2) });
   animalsource.push({ type: 3, score: 100, spritesheet: new createjs.SpriteSheet(fish3) });
   animalsource.push({ type: 4, score: 100, spritesheet: new createjs.SpriteSheet(fish4) });
   animalsource.push({ type: 5, spritesheet: new createjs.SpriteSheet(fish_ad_data) });
-  animalsource.push({ type: 6, score: -100000,spritesheet: new createjs.SpriteSheet(dolphin_data) });
+  animalsource.push({ type: 6, score: -10000,spritesheet: new createjs.SpriteSheet(dolphin_data) });
 }
 function create_back_container() {
   back_container = new createjs.Container();
@@ -798,6 +803,7 @@ function create_back_container() {
       close_game_event();
       leave_container.visible = true;
       stop = true;
+      question_time_stop=true;
     }
   });
   back_container.addChild(backbutton);
@@ -860,6 +866,9 @@ function create_leave_container() {
     stage.removeChild(score_catch_animal_container);
     close_movement();
     clear_game_stage();
+    for(var j =0;j<dolphin_list.length;j++){
+      stage.removeChild(dolphin_list[j]);
+    }
     for (var j = 0; j < catch_fish.length; j++) {
       catch_fish[j].visible = false;
     }
@@ -881,6 +890,7 @@ function create_leave_container() {
     if (now == 1)
       game_event();
     stop = false;
+    question_time_stop=false;
   });
   No_shape.addEventListener("mouseover", function () {
     No_shape.cursor = "pointer";
@@ -1001,7 +1011,7 @@ function fish_jump() {
   createjs.Tween.get(catch_fish[catch_fish.length - 1]).wait(2000).to({ y: (fisherman.y - getrandom(50) + 20), x: (fisherman.x + 35 - getrandom(50)) }, 600).call(() => {
     for (i = 0; i < catch_fish.length; i++) {
       stage.setChildIndex(catch_fish[i], 2);
-      createjs.Tween.get(catch_fish[i]).wait(500).to({ x: -Math.abs(fisherman.getwidth()) + 30 - getrandom(50) }, 4000);
+      createjs.Tween.get(catch_fish[i]).wait(500).to({ x: -Math.abs(fisherman.getwidth()) + 30 - getrandom(50) }, 3500);
     }
   });
 }
@@ -1035,6 +1045,21 @@ function create_question_end_container() {
   question_end_container.visible = false;
   stage.addChildAt(question_end_container, stage.numChildren - 1);
 }
+function update_score(key){
+  $.ajax({
+    url: "updatescore",
+    method:"POST",
+    data: { 
+      key: key, 
+      score: 1,
+      user:user // <-- the $ sign in the parameter name seems unusual, I would avoid it
+  },
+  success:()=>{
+
+  },
+    error:(err)=>{console.log(err)}
+  });
+}
 function question_end() {
   if(dolphin_list.length == 0){
     stage.removeChild(question_container);
@@ -1048,7 +1073,7 @@ function question_end() {
     })
     clearInterval(question_timer);
     clearInterval(score_update_timer);
-    
+    update_score(user._id);
     //labby_init();
     console.log("game over");
   }
@@ -1079,12 +1104,14 @@ function create_questionboard() {
     question_end();
     return;
   }
-  question_index_list = new Array();
-  for (i = 0; i < question_list[board_index >= 3 ? 2 : (board_index - 1)].length; i++) {
-    question_index_list.push(i);
-  }
-  for (i = 0; i < 5; i++) {
-    option[i].visible = false;
+  if(!(board_index == 4 && score_catch_animal_num[3] !=0)){
+    question_index_list = new Array();
+    for (i = 0; i < question_list[board_index >= 3 ? 2 : (board_index - 1)].length; i++) {
+      question_index_list.push(i);
+    }
+    for (i = 0; i < 5; i++) {
+      option[i].visible = false;
+    } 
   }
   question_text.visible = false;
   var questionboard_sheet = new createjs.SpriteSheet({
@@ -1155,6 +1182,7 @@ function question_show() {
   question_time_count = 49;
   question_time_stop = false;
   question_time_text.visible = true;
+  back_container.visible=true;
 }
 function next_question() {
   if (catch_animal_num[board_index] == 0) {
@@ -1163,6 +1191,7 @@ function next_question() {
       option[j].visible = false;
     }
     question_text.visible = false;
+    back_container.visible=false;
     //console.log(score_catch_animal_container.children[board_index].x);
     createjs.Tween.get(questionboard).to({ scale: 0, x: score_catch_animal_container.children[board_index].x + score_catch_animal_container.x, y: 130 }, 1000).call(() => {
       create_questionboard();
@@ -1268,7 +1297,7 @@ function close_movement() {
 }
 function create_dolphin_container(){
   dolphin_container = new createjs.Container();
-  var dolphin_text = new createjs.Text("粉紅色海豚名為「中華白海豚」依《野生\r\n\r\n動物保育法》公告之保育類野生動物名錄\r\n\r\n，已將中華白海豚列入瀕臨絕種的極度危\r\n\r\n險等級(CR)，讓我們一起守護可愛海豚，\r\n\r\n所以不要用任何方式獵鯊海豚歐~魚叉也\r\n\r\n算，扣你100000分作為警惕。","bold 20px 標楷體","#000000");   
+  var dolphin_text = new createjs.Text("粉紅色海豚名為「中華白海豚」依《野生\r\n\r\n動物保育法》公告之保育類野生動物名錄\r\n\r\n，已將中華白海豚列入瀕臨絕種的極度危\r\n\r\n險等級(CR)，讓我們一起守護可愛海豚，\r\n\r\n所以不要用任何方式獵鯊海豚歐~魚叉也\r\n\r\n算，扣你10000分作為警惕。","bold 20px 標楷體","#000000");   
   dolphin_text.x=218;
   dolphin_text.y=145;
   var dolphin_background = new createjs.Shape();
@@ -1305,7 +1334,7 @@ function create_dolphin_container(){
     })
     dolphin_container.visible=false;
     clearInterval(question_timer);
-    new Score_Text("-100000","bold 30px Arial","#000000",score_board.getwidth()/2+score_board.x,score_board_text.y);
+    new Score_Text("-10000","bold 30px Arial","#000000",score_board.getwidth()/2+score_board.x,score_board_text.y);
     console.log("game over");
   });
   stage.addChild(dolphin_container);
@@ -1323,8 +1352,8 @@ function game_end() {
   fisherman_harpoon.rotation = 35;
   fisherman.scaleX *= fisherman.scaleX < 0 ? -1 : 1;
   fisherman_harpoon.revise_position();
-  createjs.Tween.get(fisherman_harpoon).wait(3100).to({ x: -Math.abs(fisherman.getwidth()) + 25 * (fisherman.scaleX < 0 ? 1 : -1) }, 4000);
-  createjs.Tween.get(fisherman).wait(3100).to({ x: -Math.abs(fisherman.getwidth()) }, 4000).call(() => {
+  createjs.Tween.get(fisherman_harpoon).wait(3100).to({ x: -Math.abs(fisherman.getwidth()) + 25 * (fisherman.scaleX < 0 ? 1 : -1) }, 3500);
+  createjs.Tween.get(fisherman).wait(3100).to({ x: -Math.abs(fisherman.getwidth()) }, 3500).call(() => {
     clear_game_stage();
     clear_harpoon();
     score_init();
@@ -1380,11 +1409,11 @@ function score_init() {
     stage.setChildIndex(catch_fish[i], 3);
     catch_fish[i].y = (fisherman.y - (getrandom(50)) * 1.56 + 20 * 1.56);
     catch_fish[i].x = (fisherman.x + (35 - getrandom(50)) * 1.56)
-    createjs.Tween.get(catch_fish[i]).to({ x: 255 + (50 - getrandom(50)) * 1.56 }, 5000);
+    createjs.Tween.get(catch_fish[i]).to({ x: 255 + (50 - getrandom(50)) * 1.56 }, 3500);
   }
   var brid_num = 0;
-  createjs.Tween.get(fisherman).to({ x: 255 }, 5000);
-  createjs.Tween.get(fisherman_harpoon).to({ x: 255 + 40 * (fisherman.scaleX < 0 ? 1 : -1) }, 5000).call(() => {
+  createjs.Tween.get(fisherman).to({ x: 255 }, 3500);
+  createjs.Tween.get(fisherman_harpoon).to({ x: 255 + 40 * (fisherman.scaleX < 0 ? 1 : -1) }, 3500).call(() => {
     create_score_catch_animal_container();
     createjs.Tween.get(fisherman).wait(1000).call(() => {
       for (i = 0; i < catch_fish.length; i++) {
@@ -1420,7 +1449,7 @@ function score_init() {
           continue;
         }
       }
-      if(brid_num == 0)
+      if(catch_animal_num[0] == 0)
         if (catch_fish.length != 0){
           var wait_time =2000/catch_fish.length;
           for (i = 0; i < catch_fish.length; i++) {
@@ -1529,7 +1558,6 @@ var score_text_lenght = 0;
 function score_text_update() {
   if (user_score != now_score) {
     v =Math.floor(((user_score-now_score)/250)+(now_score > user_score?-2:2));
-    console.log(v);
     if (Math.abs(now_score - user_score) < Math.abs(v)) now_score = user_score;
     else {
       now_score += v;
@@ -1574,7 +1602,7 @@ function game_init() {
   start_time_text.y = 200;
   start_time_text.alpha = 0;
   stage.addChild(start_time_text);
-  createjs.Tween.get(start_time_text).wait(1000).to({ alpha: 1 }, 1000).to({ text: "2" }).to({ alpha: 0 }).to({ alpha: 1 }, 1000).to({ text: "1" }).to({ alpha: 0 }).to({ alpha: 1 }, 1000).to({ x: 360, text: "Start!" }).wait(1000).call(() => {
+  createjs.Tween.get(start_time_text).wait(1000).to({ alpha: 1 }, 1000).to({ text: "2" }).to({ alpha: 0 }).to({ alpha: 1 }, 1000).to({ text: "1" }).to({ alpha: 0 }).to({ alpha: 1 }, 1000).to({ x: 360, text: "Start！" }).wait(1000).call(() => {
     stage.removeChild(start_time_text);
     game_start();
     //score_init();

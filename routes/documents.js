@@ -80,7 +80,7 @@ router.get('/phone/graduate', function(req, res, next) {
   });
 });
 
-router.get('/phone/common', function(req, res, next) {
+router.get('/phone/common_phone', function(req, res, next) {
   Document.findOne({count: 1}).exec(function(err, data){
     if(err) return next(err);
     res.render('documents/phone/common_phone',{ title:'新生知訊網｜新生必讀',data: data, user:req.user });

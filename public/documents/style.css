@@ -119,6 +119,16 @@ body {
   font-size: 17px;
 }
 
+.return_space {
+  position: absolute;
+  padding: 1.5vh 0 1.5vh 10px;
+  margin: auto 0;
+}
+
+.return {
+  width: 70px;
+  height: 60px;
+}
 
 
 
@@ -203,6 +213,7 @@ body {
 
 
 
+
 /*.gra_bg {
   width: 30vw;
   height: 73vh;
@@ -235,17 +246,6 @@ body {
     float: left;
   }
 
-  .return_space {
-    position: absolute;
-    padding: 0.5vh 0 0.5vh 10px;
-    margin: auto 0;
-  }
-
-  .return {
-    width: 85px;
-    height: 75px;
-  }
-
 }
 
 @media only screen and (min-width: 980px) and (max-width: 1400px)  {
@@ -274,17 +274,6 @@ body {
     right: 0;  
     margin: auto;
     position: absolute;
-  }
-
-  .return_space {
-    position: absolute;
-    padding: 0.5vh 0 0.5vh 10px;
-    margin: auto 0;
-  }
-
-  .return {
-    width: 85px;
-    height: 75px;
   }
 
 }
@@ -317,16 +306,6 @@ body {
     position: absolute;
   }
 
-  .return_space {
-    position: absolute;
-    padding: 0.5vh 0 0.5vh 10px;
-    margin: auto 0;
-  }
-
-  .return {
-    width: 85px;
-    height: 75px;
-  }
 
   .title {
     font-size: 2vw;
@@ -363,27 +342,55 @@ body {
     overflow: auto;
   }
 
+  .character {
+    width: 100vw;
+    height: 30vh;
+    left: 0;
+    top: 0;
+    position: relative;
+    margin: auto;
+  }
+
   .fish_size {
     width: auto;
     height: auto;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 90%;
+    max-height: 90%;
     top: 0;  
     bottom: 0;  
     left: 0;  
     right: 0;  
-    margin-left: 5px;
     position: absolute;
-    float:left;
+    margin-left: 20vw;
   }
-  .character {
-    width: 25vw;
-    height: 50vh;
-    left: 12vw;
-    top: 20vh;
-    position: relative;
-    
+
+  .fish_size2 {
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    position: absolute;
+    margin-left: 25vw;
   }
+
+  .index_p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 30vh;
+    font-size: 5.5vw;
+    margin-left: 52vw;
+    color: white;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: black;
+  }
+
 
   .bar {
     width: 100%;
@@ -393,7 +400,7 @@ body {
 
   /*大學生*/
   .undergraduate {
-    margin: 3vh 3vw;
+    margin: 3vh 0vw;
   }
 
   .link_und {
@@ -456,13 +463,13 @@ body {
 
   /*研究生*/
   .graduate {
-    margin: 3vh 10vw;
+    margin: 3vh 0vw;
   }
 
   .link_gra {
     width: 45vw;
-    margin: 1vh 12vw;
-    font-size: 4vw;
+    margin: 1vh 11vw;
+    font-size: 5vw;
     text-decoration: none;
     color: black;
   }
@@ -478,8 +485,8 @@ body {
   }
   .link_com {
     width: 20vw;
-    margin: 1vh 45vw;
-    font-size: 4.5vw;
+    margin: 1vh 0vw;
+    font-size: 5.2vw;
     text-decoration: none;
     color: black;
   }
@@ -496,27 +503,51 @@ body {
 /*手機板*/
 @media only screen and (max-device-width: 768px)  {
   /*index*/
+  .character {
+    width: 100vw;
+    height: 30vh;
+    left: 0;
+    top: 0;
+    position: relative;
+    margin: auto;
+  }
+
   .fish_size {
     width: auto;
     height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    top: 0;  
-    bottom: 0;  
-    left: 0;  
-    right: 0;  
-    margin-left: 5px;
+    max-width: 63%;
+    max-height: 80%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     position: absolute;
-    float:left;
+    margin-left: 14vw;
+    padding-top: 2.5vh;
   }
 
-  .character {
-    width: 25vw;
-    height: 50vh;
-    left: 12vw;
-    top: 20vh;
-    position: relative;
-    
+  .fish_size2 {
+    width: auto;
+    height: auto;
+    max-width: 85%;
+    max-height: 85%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin-left: 22vw;
+    margin-top: 1vh;
+    padding-top: 3.5vh;
+  }
+
+  .index_p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 32.5vh;
+    font-size: 8.5vw;
+    margin-left: 55vw;
+    color: white;
   }
 
   .bar {
@@ -527,7 +558,7 @@ body {
 
   /*大學生*/
   .undergraduate {
-    margin: 3vh 3vw;
+    margin: 3vh 0vw;
   }
 
   .link_und {

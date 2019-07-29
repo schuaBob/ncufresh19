@@ -1,21 +1,28 @@
-.indexPage {
-    height: 100vmin;
-    width: 100vmax;
-    position: relative;
-    bottom: 60px;
-}
-
 #inddexPage1,
 #indexPage2,
 #indexPage3 {
     position: relative;
 }
 
+#indexPage1 {
+    background-image: url("/index/首頁1_small.png");
+    background-position: bottom;
+    background-repeat: repeat;
+    background-size: cover;
+}
+
 #indexPage2 {
-    top: -60px;
     background-image: url("/index/首頁2.png");
     background-repeat: repeat;
     background-size: cover;
+    background-position: bottom;
+}
+
+#indexPage3 {
+    background-image: url("/index/首頁3.png");
+    background-repeat: repeat;
+    background-size: cover;
+    background-position: bottom;
 }
 
 main {
@@ -23,7 +30,8 @@ main {
     width: 100%;
     height: calc(100% - 60px);
 }
-#closenews{
+
+#closenews {
     position: relative;
     float: left;
     width: 6%;
@@ -45,18 +53,21 @@ main {
     height: 100px;
     width: 100px;
 }
-#nextbtn{
+
+#nextbtn {
     position: absolute;
     height: 40px;
     width: 40px;
     transform: rotate(-90deg);
 }
-#prebtn{
+
+#prebtn {
     position: absolute;
     height: 40px;
     width: 40px;
     transform: rotate(90deg);
 }
+
 #indexLogo {
     position: absolute;
     z-index: 500;
@@ -74,7 +85,7 @@ main {
     height: calc(100% - 60px);
     z-index: 500;
     top: 0;
-    padding:3vw 5vw;
+    padding: 3vw 5vw;
 }
 
 #secondSection .row {
@@ -94,15 +105,28 @@ main {
     position: relative;
     float: right;
 }
-.col-lg{
-    height: 100%;
+
+#fishbone {
+    position: absolute;
+    z-index: 500;
+    bottom: -12%;
+    right: -12%;
+    width: 45%;
 }
+
+#jellyfish {
+    position: absolute;
+    z-index: 500;
+    top: -10%;
+    left: -10%;
+    width: 45%;
+}
+
 #news {
     display: block;
     position: relative;
     width: 100%;
 }
-
 
 #news-title {
     position: relative;
@@ -110,7 +134,7 @@ main {
 
 #news-body {
     position: relative;
-    max-height: 30vw;
+    max-height: 25vw;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -135,6 +159,7 @@ main {
 
 #indexPage3-frame {
     position: absolute;
+    top: 0;
     width: 100vmax;
     height: 100vmin;
 }
@@ -244,10 +269,11 @@ main {
     background-image: none;
 }
 
-@keyframes scaleUpAnimation{
+@keyframes scaleUpAnimation {
     0% {
         transform: scale(1);
     }
+
     100% {
         transform: scale(1.1);
     }
