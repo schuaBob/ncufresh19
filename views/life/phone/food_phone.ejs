@@ -12,7 +12,7 @@
         <% include ../../layouts/header %>
         <% include ../../layouts/js %>
         <% include ../js %>
-        <div class="back"><img class="backArrow" src="backToMain.png"></div>
+        <div class="back"><img class="backToMain" src="backToMain.png"></div>
         <div class="mainTitle">
                 <span id="nculife">NCULife</span>
                 <span id="life">中大生活</span>
@@ -20,9 +20,9 @@
     <main id="main" style="background: #fff9dc;">
         <!--content-->
         <div class="foodList">
-            <p id="nightStreet">宵夜街</p>
-            <p id="backdoor">後門</p>
-            <p id="campus">中央校園</p>
+            <p id="nightStreet_p">宵夜街</p>
+            <p id="backdoor_p">後門</p>
+            <p id="campus_p">中央校園</p>
         </div>        
         <div class="FpictureArea">
             <div class="foodImg">
@@ -90,6 +90,43 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="foodModal" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 60px;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">店家名稱</h4>
+                            <span data-dismiss="modal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 25 25">
+                                    <path
+                                      d="M14.59 8L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41 14.59 8zM12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="modal-body">
+                            <div id="foodModalTitle">
+                                <div class="t">
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel">店家資訊</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="foodModalDetail">
+                                <div class="d">
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="decoration">
+                                <img src="CCC.png" alt="" style="left: -5%">
+                                <img src="CLOWNFISH.png" alt="" style="top: 25%; right: -2%;">
+                            </div>        
+                    </div>
+                </div>
+            </div>
+    
     </main>
     <script>
             $(document).ready(function(){

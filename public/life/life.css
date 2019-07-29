@@ -62,6 +62,16 @@ ul {
   -webkit-appearance: none;
 }
 
+.backgroundImg {
+  position: absolute;
+  bottom: 0;
+  z-index: 3000;
+  
+}
+.bgImage {
+  max-width: 30vw;
+  opacity: 0.85;
+}
 #main {
   position: relative;
   /* background-image: url(背景.JPG); */
@@ -255,6 +265,23 @@ ul.timeline > li:before {
   cursor: pointer;
 }
 
+.foodList img  {
+  visibility: hidden;
+}
+
+#LI1 {
+  max-width: 20%;
+  margin-left: 2.5vw;
+}
+#LI2 {
+  max-width: 20%;
+  margin-left: 4vw;
+}
+#LI3 {
+  max-width: 20%;
+  margin-left: 1vw;
+}
+
 .FpictureArea {
   position: relative;
   display: block;
@@ -338,8 +365,14 @@ ul.timeline > li:before {
   text-align: center;
 }
 
+.decoration img{
+  position: absolute;
+  width:30%;
+  bottom: 0px;
+}
+
 #foodModal .modal-dialog {
-  width: 60%;
+  width: 70%;
   max-width: none;
   margin-top: 2vh;
   min-height: calc(100vh - 56px);
@@ -353,7 +386,7 @@ ul.timeline > li:before {
   margin-left: auto;
   margin-bottom: 0;
   display: block;
-  width: 85%;
+  width: 70%;
   padding: 8px;
   word-wrap: break-word;
   border-style: solid;
@@ -372,7 +405,7 @@ ul.timeline > li:before {
   margin-left: auto;
   margin-bottom: 0;
   display: block;
-  width: 85%;
+  width: 70%;
   padding: 8px;
   word-wrap: break-word;
   border-style: solid;
@@ -382,9 +415,17 @@ ul.timeline > li:before {
   background-color: white;
   min-height: 50px;
 }
+
+.t {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 500;
+}
 #foodModalDetail .d {
   margin: 0;
   max-height: 300px;
+  font-size: 20px;
+  font-weight: lighter;
   overflow-y: scroll;
 }
 
