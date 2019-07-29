@@ -7,6 +7,7 @@
     <% include ../layouts/head %>
     <% include ../layouts/script %>
     <script type="text/javascript" src="/js/ckeditor.js"></script>
+    <script type="text/javascript" src="/js/tinymce.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
@@ -30,13 +31,16 @@
             padding: 8%;
             margin-top: 1%;
         }
+
+        .tox.tox-silver-sink.tox-tinymce-aux {
+            z-index: 6000;
+        }
     </style>
 </head>
 
 <body>
     <modal>
-        <div class="modal fade" id="ScheduleNewsModal" tabindex="-1" role="dialog" aria-labelledby="ScheduleNewsTitle"
-            aria-hidden="true">
+        <div class="modal fade" id="ScheduleNewsModal" aria-labelledby="ScheduleNewsTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -76,6 +80,7 @@
                         </p>
                     </div>
                     <div class="modal-body" style="padding: 0;">
+                        <!-- <div id="editor" style="width: 100%;height:100px;display: block"></div> -->
                         <textarea name="NewsBody" id="editor"></textarea>
                     </div>
                     <div class="modal-footer">
@@ -248,17 +253,30 @@
         var loadFile = function (event) {
             $('#howMany').text(`上傳${event.target.files.length}個圖片`);
         };
+
         $(document).ready(() => {
+
             var newseditor = undefined, Calendereditor = undefined, boardeditor = undefined;
-            ClassicEditor
-                .create(document.querySelector('#editboard'))
-                .then(editor => {
-                    console.log(editor);
-                    boardeditor = editor;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            tinyMCE.init({
+                selector: 'textarea',
+                plugins: "image, advlist, table, autolink, code, link, lists, paste, preview, searchreplace, wordcount, emoticons, media, quickbars",
+                toolbar: "styleselect | forecolor | backcolor | bold | italic | underline | alignleft | aligncenter | alignright | alignjustify | bullist | numlist | outdent | indent | link | image | media | code | quickimage",
+                quickbars_insert_toolbar: false,
+                setup: (ed) => {
+                    ed.on('init', function (e) {
+                        console.log(`${e.target.id} textarea is initialized.`);
+                    });
+                    ed.on('keyup', function () {
+                        console.log(ed.getContent());
+                    });
+                    ed.on('GetContent',(e)=>{
+                        console.log(`${e.target.id}'s Content get caught.`);
+                    })
+                    ed.on('SetContent',(e)=>{
+                        console.log(`${e.target.id}'s Content get set.`);
+                    })
+                }
+            })
             $('#news span').click(() => {
                 $('#Subbtn').hide();
                 $('#SaveNewsbtn').text("新增");
@@ -280,7 +298,7 @@
                             static: true,
                             defaultDate: new Date(new Date(res.date).getTime() - 28800000)
                         })
-                        newseditor.setData(res.content)
+                        tinyMCE.get('editor').setContent(res.content);
                     }
                 }).then(() => {
                     $('#SaveNewbtn').addClass('editbtn');
@@ -304,7 +322,7 @@
                                 title: $("#newsTitle").val(),
                                 category: $("#newsCategory").val(),
                                 time: $("#timePicker").val(),
-                                content: newseditor.getData(),
+                                content: tinyMCE.get('editor').getContent(),
                                 pk: e.currentTarget.attributes.pk.value
                             },
                             error: (err) => {
@@ -333,7 +351,7 @@
                                     title: $("#newsTitle").val(),
                                     category: $("#newsCategory").val(),
                                     time: $("#timePicker").val(),
-                                    content: newseditor.getData()
+                                    content: tinyMCE.get('editor').getContent()
                                 },
                                 error: (err) => {
                                     console.log(err.responseJSON);
@@ -347,7 +365,7 @@
                             })
                         }
                     } else {
-                        alert("No time!")
+                        alert("No time!");
                     }
                 } else {
                     alert("No title or category!")
@@ -360,25 +378,11 @@
                     dateFormat: "Y-m-d H:i",
                     static: true
                 });
-                ClassicEditor
-                    .create(document.querySelector('#editor'))
-                    .then(editor => {
-                        console.log(editor);
-                        newseditor = editor;
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
             })
             $('#ScheduleNewsModal').on('hide.bs.modal', (e) => {
                 $('#timePicker').flatpickr().destroy();
                 $("#newsTitle").val("");
                 $("#newsCategory").val(0);
-                newseditor.setData("");
-                newseditor.destroy()
-                    .catch(error => {
-                        console.log(error);
-                    });
                 $('#SaveNewbtn').removeClass('editbtn');
             })
             $('#saveCalender').click(() => {
@@ -390,7 +394,7 @@
                         data: {
                             month: $('#month').val(),
                             date: $('#date').val(),
-                            boardContent: Calendereditor.getData()
+                            boardContent: tinyMCE.get('boardContent').getContent()
                         },
                         error: (err) => { console.error(err) },
                         success: (res) => {
@@ -411,8 +415,8 @@
                     dataType: 'JSON',
                     error: (err) => { console.error(err.responseText) },
                     success: (res) => {
-                        boardeditor.setData(res.board_content);
-                        $('#CalenderTime').show()
+                        tinyMCE.get('boardContent').setContent(res.board_content);
+                        $('#CalenderTime').show();
                         $('#editmonth').val(res.month);
                         $('#editdate').val(res.date);
                     }
@@ -426,7 +430,7 @@
                                 pk: result.pk,
                                 month: $('#editmonth').val(),
                                 date: $('#editdate').val(),
-                                boardContent: boardeditor.getData()
+                                boardContent: tinyMCE.get('boardContent').getContent()
                             },
                             error: (err) => { alert(err.responseText) },
                             success: (res) => { alert(res.message) }
@@ -444,24 +448,11 @@
                 })
             })
             $('#CalenderModal').on('show.bs.modal', (e) => {
-                ClassicEditor
-                    .create(document.querySelector('#boardContent'))
-                    .then(editor => {
-                        console.log(editor);
-                        Calendereditor = editor;
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
             })
             $('#CalenderModal').on('hide.bs.modal', (e) => {
                 $('#month').val("");
                 $('#date').val("");
-                Calendereditor.setData("");
-                Calendereditor.destroy()
-                    .catch(error => {
-                        console.log(error);
-                    })
+                tinyMCE.get('boardContent').setContent("")
             })
         })
     </script>

@@ -136,6 +136,7 @@ app.use('/js', express.static(__dirname + '/node_modules/fullpage.js/vendors'));
 app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist/umd'));
 app.use('/js', express.static(__dirname + '/node_modules/build'));
 app.use('/js', express.static(__dirname + '/node_modules/velocity-animate'));
+app.use('/js', express.static(__dirname + '/node_modules/tinymce/js/tinymce'))
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css', express.static(__dirname + '/node_modules/fullpage.js/dist'));
 
@@ -152,7 +153,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('index/error', {title: "新生知訊網", user: req.user});
+  res.render('index/error', { title: "新生知訊網", user: req.user });
 });
 
 //------------------- added by 陳威捷 (用於ejs模板中的函式)
@@ -160,10 +161,10 @@ app.locals.convertDateToString = function (date) {
   var str = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
   return str;
 }
-app.locals.trunc = function(str){
-  if(str.length>15){
-    return str.substr(0,15)+"...";
-  }else{
+app.locals.trunc = function (str) {
+  if (str.length > 15) {
+    return str.substr(0, 15) + "...";
+  } else {
     return str;
   }
 }
