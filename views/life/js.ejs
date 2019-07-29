@@ -30,53 +30,47 @@ var match_num = {
  /*----------food---------*/
 
  $(document).ready(function() {
-     $('#LI1').hide();
-     $('#LI2').hide();
-     $('#LI3').hide();
-     $('.foodList p').on('mouseover', 
+     $('#nightStreet, #backdoor, #campus').on('mouseover', 
          function() {
              $(this).css({ "background-color": "#e0e0e0"});
          }
      )
-     $('.foodList p').on('mouseout',
+     $('#nightStreet, #backdoor, #campus').on('mouseout',
          function() {
              $(this).css({ "background-color": "transparent"});
          }
      )
      $('#nightStreet').on('mouseover',
          function() {
-            $('#LI1').css({'max-width': '20%','margin-left': '2.5vw'});
-            $('#LI1').show();
+            $('#LI1').css({"visibility": "visible"});
          }
      )
      $('#nightStreet').on('mouseout',
          function() {
-            $('#LI1').hide();
+            $('#LI1').css({"visibility": "hidden"});
          }
      )
      $('#backdoor').on('mouseover',
          function() {
-            $('#LI2').css({'max-width': '20%','margin-left': '4vw'});
-            $('#LI2').show();
+            $('#LI2').css({"visibility": "visible"});
          }
      ) 
      $('#backdoor').on('mouseout',
          function() {
-            $('#LI2').hide();
+            $('#LI2').css({"visibility": "hidden"});
          }
      ) 
      $('#campus').on('mouseover',
          function() {
-            $('#LI3').css({'max-width': '20%','margin-left': '1vw'});
-            $('#LI3').show();
+            $('#LI3').css({"visibility": "visible"});
          }
      ) 
      $('#campus').on('mouseout',
          function() {
-            $('#LI3').hide();
+            $('#LI3').css({"visibility": "hidden"});
          }
      )
-     $('#nightStreet').click(
+     $('#nightStreet, #nightStreet_p').click(
          function() {
             $('#areaName p').html("宵夜街");
             $('.foodIcon').remove();
@@ -143,7 +137,7 @@ var match_num = {
             $('#map').attr("src","宵夜街地圖.png");
          }
      )
-     $('#backdoor').click(
+     $('#backdoor, #backdoor_p').click(
          function() {
             $('#areaName p').html("後門");
             $('.foodIcon').remove();
@@ -204,7 +198,7 @@ var match_num = {
             $('#map').attr("src", "後門地圖.png");
          }
      )
-     $('#campus').click(
+     $('#campus, #campus_p').click(
          function() {
             $('#areaName p').html("中央校園");
             $('.foodIcon').remove();
@@ -270,6 +264,28 @@ var match_num = {
 /*----------------------study-------------------------*/
 
 
+/*---------cellphone-----*/
+$(document).ready(function() {
+    $('.backToMain').click( function() {
+        window.location = '/life/index_phone';
+    });
+    $('.backArrow').click( function() {
+        console.log("backkkkkkk");
+        window.history.back();
+    });
+    $('#nightStreet_p').click( function() {
+        $(this).css({'background-color': '#7CA7BC', 'border-color': 'white'});
+        $('#backdoor_p, #campus_p').css({'background-color': 'transparent', 'border-color': '#7CA7BC'})
+    })
+    $('#backdoor_p').click( function() {
+        $(this).css({'background-color': '#7CA7BC', 'border-color': 'white'});
+        $('#nightStreet_p, #campus_p').css({'background-color': 'transparent', 'border-color': '#7CA7BC'})
+    })
+    $('#campus_p').click( function() {
+        $(this).css({'background-color': '#7CA7BC', 'border-color': 'white'});
+        $('#backdoor_p, #nightStreet_p').css({'background-color': 'transparent', 'border-color': '#7CA7BC'})
+    })
+})
 
 /*---------------------------後台------------------------*/
         ClassicEditor
