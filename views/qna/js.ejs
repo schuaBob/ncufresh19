@@ -1,4 +1,5 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+<script type="text/javascript" src="/js/tinymce.min.js"></script>
 <script>
 
 
@@ -16,16 +17,16 @@
     }    
   }
   $(document).ready(function () {
-    var q_ctEditor;
-    ClassicEditor
-      .create(document.querySelector('#q_content'))
-      .then(neweditor => {
-        console.log(neweditor);        
-        q_ctEditor = neweditor;               
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    // var q_ctEditor;
+    // ClassicEditor
+    //   .create(document.querySelector('#q_content'))
+    //   .then(neweditor => {
+    //     console.log(neweditor);        
+    //     q_ctEditor = neweditor;               
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
       
     // CKEDITOR.replace( 'q_content', {
     //   resize_enabled : true      
@@ -37,6 +38,69 @@
     var timer;
     var sort = ""; //紀錄時間、人氣的按鈕值
     var c = location.pathname.split('/')[2]; //分類的值
+
+    $(document).on("click",".dropdown-item",function(){
+      $("#dropdownMenuButton").text($(this).text());    
+    });
+    $("#modifyBtn").on("click",function(){
+      let category;
+      switch($("#dropdownMenuButton").text()){
+        case "校園生活":
+        case "課程相關":
+        case "學生事務":
+        case "其他":
+          category=$("#dropdownMenuButton").text();
+          break;
+        default:
+          category="";
+      }
+      $.ajax({
+        type: "POST",
+        url: "/qna/toModify",
+        dataType: 'json',
+        timeout: 5000,
+        data: {
+          postID: $("#modifyInput").attr("postid"),
+          category:category,
+          content: tinyMCE.get('modifyInput').getContent(),
+          reviewed: $("#defaultCheck1").is(":checked") ? true : false
+        },
+        success:function(data){
+          if(data.result === "success"){
+            alert("新增修改成功");
+          }
+          else{
+            alert("出錯了");
+          }
+        },
+        error:function(err){
+          alert("資料庫出錯");
+        }
+      });
+    });
+    $("#deleteBtn").on("click",function(){
+      $.ajax({
+        type: "POST",
+        url: "/qna/toDelete",
+        dataType: 'json',
+        timeout: 5000,
+        data:{
+          postID:$("#modifyInput").attr("postid")
+        },
+        success:function(data){
+          if(data.result === "success"){
+            alert("刪除成功");
+          }
+          else{
+            alert("出錯了");
+          }
+        },
+        error:function(err){
+          alert("資料庫出錯");
+        }
+      });
+    });
+
 
     $(".option li").mouseenter(function(){
       $(this).addClass("optionHover");
@@ -55,14 +119,9 @@
 
 
 
-    if (c == "") {
-      $("#all").addClass("d-inline");
+    if (c == "") {      
       $("#all").parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
-      
-  
-    }
-    else {
-      $("#" + c).addClass("d-inline");
+    }else {     
       $("#" + c).parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
     }
 
@@ -93,14 +152,40 @@
         success: function (data) {
           $node.children(".count").text(parseInt($node.children(".count").text()) + 1);
           $("#img1").css("display", "none");
-          $("#img2").attr("src", "wtf_penguin.png");
-          $(".answerTitleText").text("[" + data[0].category + "]" + data[0].title);
-          $(".answerModelQ > p").text(data[0].qContent);
-          $(".answerModelA > p").text(data[0].aContent);
-          $(".answermodal").addClass("animated fadeIn faster");
-          $(".answermodal").css("display", "block");
+          $("#img2").attr("src", "wtf_penguin.png");  
+          
+          if($(window).width() < 767)
+          {
+            //小
+            $("#mobileAnswerModal").modal();
+            $("#mobileAnswerTitleText").text("["+data[0].category+"]"+data[0].title);
+          } else {
+            $(".answerModelQ > p").html(tinyMCE.get('q_content').setContent(data[0].qContent));          
+            //判斷是否為admin
+            if($(".answerModelA > p").length==0){
+              if(data[0].category === ""){
+                $("#dropdownMenuButton").text("請選擇分類");
+              }else{
+                $("#dropdownMenuButton").text(data[0].category);
+              }            
+              $(".answerTitleText").text(data[0].title);
+              $("#modifyInput").attr("postID",data[0].postID);
+              
+              tinyMCE.get('modifyInput').setContent(data[0].aContent);
+              if(data[0].reviewed){
+                $("#defaultCheck1").prop("checked",true);
+              }else{
+                $("#defaultCheck1").prop("checked",false);
+              }
+            }else{
+              $(".answerTitleText").text("[" + data[0].category + "]" + data[0].title);
+              $(".answerModelA > p").text(data[0].aContent);
+            }
+            $(".answermodal").addClass("animated fadeIn faster");
+            $(".answermodal").css("display", "block");
+          }         
           //assign分類到Modal標題
-          $("#aaa").text($(this).children('th').text());
+          // $("#aaa").text($(this).children('th').text());
         },
         error: function (err) {
           alert("資料庫出錯!!");
@@ -113,8 +198,7 @@
       $(".askmodal").addClass("animated fadeIn faster");
       $(".askmodal").css("display", "block");
       $("#img1").css("display", "none")
-      $("#img2").attr("src", "shy_penguin.png");
-      $(".classification_btn").text("請選擇分類");
+      $("#img2").attr("src", "shy_penguin.png");      
       $("#q_title").val("");
       $("#q_content").val("");
     });
@@ -132,11 +216,7 @@
     });
 
 
-    //askmodal的分類鈕
-    $(".dropdown-item").click(function () {
-      //點選分類後更新分類按鈕
-      $(".classification_btn").text($(this).text());
-    });
+    
 
 
     $(".fa-arrow-alt-circle-up").click(function () {
@@ -237,7 +317,7 @@
       var forms = document.getElementsByClassName('needs-validation');
       var validation = Array.prototype.filter.call(forms, function (form) {
         // alert(q_ctEditor.getData());
-        if (form.checkValidity() === false || $(".needs-validation > input").val() === "" || q_ctEditor.getData() === "") {
+        if (form.checkValidity() === false || $(".needs-validation > input").val() === "" || tinyMCE.get('q_content').getContent() === "") {
           event.preventDefault();
           event.stopPropagation();
           console.log("unfit")
@@ -251,7 +331,7 @@
             data: {
               category: $(".classification_btn").text(),
               title: $("#q_title").val(),
-              question: q_ctEditor.getData()
+              question: tinyMCE.get('q_content').getContent()
             },
             success: function (data) {
               if (data[0] === 'success') {
@@ -265,12 +345,7 @@
           });
         }
       });
-
     });
-
-
-
-
   });
 
 </script>
