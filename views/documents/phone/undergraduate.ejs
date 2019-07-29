@@ -31,8 +31,8 @@
                 <p class="p_option" id="2"><i class="fas fa-angle-right" ></i>&emsp;&emsp;住宿注意事項</p>
                 <p class="p_option" id="3"><i class="fas fa-angle-right" ></i>&emsp;&emsp;兵役注意資料</p>
                 <p class="p_option" id="4"><i class="fas fa-angle-right" ></i>&emsp;&emsp;腳踏車證申請</p>
-                <p class="p_option" id="5"><i class="fas fa-angle-right" ></i>&emsp;&emsp;入住流程管制圖</p>
                 <p class="p_option" id="38"><i class="fas fa-angle-right" ></i>&emsp;&emsp;安心就學計畫</p>
+                <p class="p_option" id="5"><i class="fas fa-angle-right" ></i>&emsp;&emsp;入住流程管制圖</p>
                 <p class="p_option" id="6"><i class="fas fa-angle-right" ></i>&emsp;&emsp;註冊通知、日程表</p>
                 <p class="p_option" id="7"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學費減免及助學金</p>
                 
@@ -41,7 +41,7 @@
 
         <div class="choose fade" id="fresh">
             <div class="undergraduate">
-                <p>
+                <p  class="bar">
                     <a href="#must" class="must link_und">入學須知</a>
                     <a class="fresh link_und now">新生週</a>
                     <a href="#study" class="study link_und">學習資訊</a>
@@ -60,7 +60,7 @@
 
         <div class="choose fade" id="study">
             <div class="undergraduate">
-                <p>
+                <p  class="bar">
                     <a href="#must" class="must link_und">入學須知</a>
                     <a href="#fresh" class="fresh link_und">新生週</a>
                     <a class="study link_und now">學習資訊</a>
@@ -71,9 +71,12 @@
                 <p class="p_option" id="16"><i class="fas fa-angle-right" ></i>&emsp;&emsp;交換學生</p>
                 <p class="p_option" id="17"><i class="fas fa-angle-right" ></i>&emsp;&emsp;大一必修</p>
                 <p class="p_option" id="18"><i class="fas fa-angle-right" ></i>&emsp;&emsp;畢業門檻</p>
+                <p class="p_option" id="21"><i class="fas fa-angle-right" ></i>&emsp;&emsp;自主學習</p>
                 <p class="p_option" id="19"><i class="fas fa-angle-right" ></i>&emsp;&emsp;選課懶人包</p>
                 <p class="p_option" id="20"><i class="fas fa-angle-right" ></i>&emsp;&emsp;課業輔導管道</p>
-                <p class="p_option" id="21"><i class="fas fa-angle-right" ></i>&emsp;&emsp;NCUx中大磨課師</p>
+                <p class="p_option" id="40"><i class="fas fa-angle-right" ></i>&emsp;&emsp;大一親師座談</p>
+                
+                
             </div>   
         </div>
             
@@ -82,6 +85,19 @@
     </main>
     <% include ../../layouts/js %>
     <% include ../js %>
+    <script>
+        $(document).ready(function(){
+            $(window).resize(function(){
+            var width = innerWidth;
+            if(width <= 768)
+                document.location.href = "/documents/phone/undergraduate";
+            var width = innerWidth;
+            if(width > 768){
+                document.location.href = "/documents/undergraduate_must";
+            }
+            });
+        });
+    </script>
 </body>
 
 </html>

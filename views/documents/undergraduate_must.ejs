@@ -69,6 +69,19 @@
     </main>
     <% include ../layouts/js %>
     <% include js %>
+    <script>
+        $(document).ready(function(){
+            var width = innerWidth;
+            if(width <= 768)
+                document.location.href = "/documents/phone/undergraduate";
+            $(window).resize(function(){
+                width = innerWidth;
+                if(width <= 768)
+                    document.location.href = "/documents/phone/undergraduate";
+                });
+            });
+            
+        </script>
 </body>
 
 </html>

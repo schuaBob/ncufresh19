@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>新生知訊網｜中大生活</title>
+        <% include ../../layouts/head %>
+        <% include ../../layouts/script %>
+        <link rel=stylesheet type="text/css" href="../life/life_phone.css">
+    </head>
+
+    <body>
+        <% include ../../layouts/header %>
+        <% include ../../layouts/js %>
+        <% include ../js %>
+        <div class="back"><img class="backToMain" src="backToMain.png"></div>
+        <div class="mainTitle">
+                <span id="nculife">NCULife</span>
+                <span id="life">中大生活</span>
+        </div>
+        <main id="main">
+        <div class="content">
+            <div class="studyPicture">
+                <div>
+                    <a href="/life/study/lit"> <img class="studyImg" src="subPicture/lit.png"></a>
+                </div>
+                <div>
+                    <a href="/life/study/science"> <img class="studyImg" src="subPicture/science.png"></a>
+                </div>
+                <div>
+                    <a href="/life/study/ec"> <img class="studyImg" src="subPicture/ec.png"></a>
+                </div>
+                <div>
+                    <a href="/life/study/mgt"> <img class="studyImg" src="subPicture/mgt.png"></a>
+                </div>
+                <div>
+                    <a href="/life/study/ceecs"> <img class="studyImg" src="subPicture/ceecs.png"></a>
+                </div>
+                <div>
+                    <a href="/life/study/escollege"> <img class="studyImg" src="subPicture/escollege.png"></a>
+                </div>
+                <div>
+                    <a href="/life/study/hakka"> <img class="studyImg" src="subPicture/hakka.png"></a>
+                </div>
+                <div>
+                    <a href="/life/study/chst"> <img class="studyImg" src="subPicture/chst.png"></a>
+                </div>
+            </div>
+        </div>
+    </main>
+        <script>
+                $(document).ready(function(){
+                    $(window).resize(function(){
+                        var width = innerWidth;
+                        if(width > 1024)
+                            document.location.href = "/life/study";
+                    });
+                });
+            </script>
+    </body>
+</html>

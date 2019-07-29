@@ -35,7 +35,7 @@ $(document).ready(() => {
                 $('#newsdetail').html(res.content);
             }
         })
-    })
+    });
 })
 
 $(".day").each(function () {
@@ -78,7 +78,7 @@ function append_circle(data){
         count = count + 1;
     }
     $(".day").each(function(){
-        $(this).css("left", (this.id) * 10 + "%");
+        $(this).css("left", (this.id) * 8 + "%");
     });
     current_calender = data;
     $(".day").on("click", function(){

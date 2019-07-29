@@ -12,27 +12,48 @@
     <main id="index_main">
         <% /*身分選擇*/ %>
         <div class="identity">
-            <div class="character">
-                <a href="/documents/phone/undergraduate"><img src="大學生_手機.png" class="under fish_size"></a>
-            </div>
-            <div class="character">
-                <a href="/documents/phone/graduate"><img src="研究生_手機.png" class="gra fish_size"></a>
-            </div>
-            <div class="character">
-                <a href="/documents/phone/common"><img src="共同事項_手機.png" class="com fish_size">共同事項</a>
-            </div>
+            <a href="/documents/phone/undergraduate">
+                <div class="character">
+                    <img src="大學生_手機.png" class="fish_size">
+                    <p class="index_p">大學生</p>
+                </div>
+            </a>
+            <a href="/documents/phone/graduate">
+                <div class="character">
+                    <img src="研究生_手機.png" class="fish_size2">
+                    <p class="index_p">研究生</p>
+                </div>
+            </a>
+            <a href="/documents/phone/common_phone">
+                <div class="character">
+                    <img src="共同事項_手機.png" class="fish_size">
+                    <p class="index_p">共同事項</p>
+                </div>
+            </a>
+            
         </div>
       </main>
       <% include ../layouts/js %>
       <% include js %>
       <script>
-            $(document).ready(function(){
-                $(window).resize(function(){
-                    var width = innerWidth;
-                    if(width > 768)
-                        document.location.href = "/documents";
-                });
+          $(document).ready(function(){
+            var width;
+            if(innerWidth>outerWidth)
+                width = outerWidth;
+            else
+                width = innerWidth;
+            if(width > 768)
+                document.location.href = "/documents/index_com";
+            $(window).resize(function(){
+                if(innerWidth>outerWidth)
+                    width = outerWidth;
+                else
+                    width = innerWidth;
+                if(width > 768)
+                    document.location.href = "/documents/index_com";
             });
+          })
+            
         </script>
   </body>
 </html>

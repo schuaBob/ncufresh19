@@ -1,0 +1,411 @@
+html {
+    height: 100%;
+  }
+  
+  body {
+    background-color: #fff9dc;
+    height: 100vh;
+  }
+  ul {
+    list-style-type:none;
+    padding: 0;
+  }
+
+  .sideNav {
+    /* position: absolute; */
+    /* float:right; */
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 4.5vh;
+    z-index: 300;
+  }
+  
+  .navSubBtn {
+    position: relative;
+    padding-top: 20px;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .sideNav li {
+    height: 21vh;
+  }
+
+  .mainTitle {
+    position: relative;
+    top: 0; bottom: 0; right: 0; left: 0 ; 
+    margin-left: 380px;
+    width: 250px;
+    height: 150px;
+  }
+
+  .mainTitle span {
+    top: 0; bottom: 0; right: 0; left: 0 ; margin: 0 auto;
+
+  }
+    
+  #nculife {
+    /* margin-left: -40px; */
+    display: block;
+    font-size: 60px;
+    color: #FB8360;
+  }
+
+  #life {
+    margin-left: 43px;
+    font-size: 30px;
+    color: #767171;
+  }
+
+  .back {
+    position: absolute;
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 90px;
+    margin-right: 0;
+  }
+
+  .backArrow, .backToMain{
+      max-width:150px;
+      cursor: pointer;
+  }
+
+  .content {
+    margin: 0 auto;
+    padding: 0 auto;
+    position: relative;
+    display: block;
+    width: 77vw;
+    height: 95%;
+    top: 3%;
+    overflow-y: scroll;
+    overflow-x: hidden; 
+  }
+
+  #main {
+    position: relative;
+    /* background-image: url(背景.JPG); */
+    height: calc(100% - 210px);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: bottom;
+  }
+  
+
+  /*--------------study--------------*/
+  .studyPicture {
+    position: relative;
+    top: 0; bottom: 0; right: 0; left: 0 ; margin: 0 auto;
+
+  }
+  .studyPicture div {
+    float: left;
+    width: 50%;
+    /* height: 30%; */
+    padding: 1%;
+  }
+  .studyImg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .subContent {
+    margin: 0 auto;
+    position: relative;
+    height: calc(100% - 60px - 300px);
+    overflow-y: scroll;
+    overflow-x: hidden; 
+  }
+
+  .studyTitle {
+    background-color: #e0e0e0;
+    height: 150px;
+  }
+  
+  .name {
+    position: relative;
+    padding-top:20px;
+    margin-left: 100px;
+  }
+  
+  .name p {
+    position: relative;
+    /* display: inline; */
+  }
+  
+  #name {
+    font-size: 25px;
+    padding-top: 5px;
+  }
+  #college {
+    font-size: 50px;
+    margin-bottom: 0;
+  }
+  .subStudyContent {
+    position: relative;
+    width: 100%;
+  }
+
+  .SpictureArea {
+    position: relative;
+    /* top: 10%;
+    left: 10%; */
+    margin: 5% auto;
+    width: 70%;
+    height: 50%;
+  }
+
+  #subStudyImg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .event {
+      position: relative;
+      margin-left: 15%;
+      margin-right: 15%;
+  }
+
+  #eventTitle {
+      font-size: 3vw;
+  }
+
+  .event p {
+      display: inline;
+      word-break: break-all;
+  }
+
+  .studyContent {
+    position: absolute;
+    margin-left: 5%;
+    margin-right: 5%;
+    white-space: pre-line;
+    word-break: break-all;
+  }
+
+  /*-----------food-----------*/
+
+  .foodList {
+    position: relative;
+    margin: 0 auto;
+    padding-top: 2%;
+    padding-left: 25%;
+    top: 2.3vh; bottom: 0; left: 0; right: 0;
+  }
+  
+  .foodList p {
+    z-index: 100;
+    font-size: 2.7vw;
+    width: 16vw;
+    padding: 1vh;
+    margin-left: 35px;
+    border: 2px solid #7CA7BC;
+    border-radius: 1rem;
+    cursor: pointer;
+    display: inline;
+  }
+
+  #nightStreet_p {
+      border-color: white;
+      background-color: #7CA7BC;
+  }
+  
+  .FpictureArea {
+    position: relative;
+    display: block;
+    overflow: scroll;
+    margin: 0 auto;
+    width: 90%;
+    top: 7%;
+    height: calc(100% - 60px - 150px - 7%);
+    /* z-index: 300; */
+  }
+  
+  .foodImg {
+    position: relative; 
+    display: block;
+    /* -moz-user-select: none; */
+  }
+  
+  #areaName {
+    margin-left: 25%;
+  }
+  #areaName p {
+    font-size: 4vw;
+    border-bottom: 4px solid black;
+    /* padding-bottom: 5%; */
+  }
+  
+  .foodIcon {
+    position: absolute;
+    display: block;
+    max-width: 4%;
+    max-height: 4%;
+    cursor: pointer;
+  }
+  
+  .FpictureArea::-webkit-scrollbar {
+    display: none;
+  }
+  
+  #map {
+    width: 100%;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index:-100;
+    /* transition: .5s ease; */
+    animation-name: oxxo;
+    animation-duration: 3s;
+    animation-delay: 0.5s;
+    background-color: rgb(94, 102, 105);
+  }
+  @keyframes oxxo{
+    from{
+        opacity: 0;
+        z-index: -100;
+    }
+    to{
+        opacity: 0.4;
+        z-index: 300;
+    }
+  }
+  
+  .hint {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .decoration img{
+    position: absolute;
+    width:25%;
+    bottom: 0px;
+  }
+  
+  
+  #foodModal .modal-dialog {
+    width: 90%;
+    max-width: none;
+    margin-top: 10vh;
+    min-height: calc(100vh - 56px);
+  }
+  
+  #foodModalDetail{
+    position: relative;
+    right: 0;
+    top: 0;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+    display: block;
+    width: 70%;
+    padding: 8px;
+    word-wrap: break-word;
+    border-style: solid;
+    border-color: #2E627B;
+    border-top-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    background-color: white;
+    min-height: 50px;
+  }
+  
+  #foodModalTitle {
+    position: relative;
+    right: 0;
+    top: 0;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+    display: block;
+    width: 70%;
+    padding: 8px;
+    word-wrap: break-word;
+    border-style: solid;
+    border-color: #2E627B;
+    border-top-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    background-color: white;
+    min-height: 50px;
+  }
+
+  .t {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 500;
+  }
+  #foodModalDetail .d {
+    margin: 0;
+    max-height: 300px;
+    font-size: 20px;
+    font-weight: lighter;
+    overflow-y: scroll;
+  }
+  
+  #foodModal .modal-header {
+    border-bottom-width: 0px;
+  }
+  
+  #foodModal .modal-body{
+    margin: 0;
+    max-width: 100%;
+  }
+  
+  #foodModal .modal-content {
+    background-color: rgb(81, 172, 207);
+  }
+
+  #foodModal .modal-title {
+      font-size: 2rem;
+  }
+  
+  .modal-header span {
+    cursor: pointer;
+  }
+  
+
+  /*----------live-----------*/
+  .picture {
+    max-width: 70%;
+    max-height: 50%;
+  }
+  
+  .pic {
+    float: left;
+    margin:0 auto;
+  }
+  
+  .pictureArea {
+    position: relative;
+    left: 10%;
+  }
+  
+  .textArea {
+    position: relative;
+    width: 60vw;
+    text-align: center;
+    float: left;
+  }
+  
+  
+  

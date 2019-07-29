@@ -22,8 +22,8 @@
             <div class="nav">
                 <div class="return_space"><a href="/documents"><img src="return.png" class="return"></a></div>
                 <div class="sign">
-                        <p class="p1">FRESH</p>
-                        <p class="p2">新生週</p>
+                        <p class="p1">STUDY</p>
+                        <p class="p2">學習資訊</p>
                 </div>
             </div>
 
@@ -39,10 +39,10 @@
                     <p class="option" id="16"><i class="fas fa-angle-right" ></i>&emsp;交換學生</p>
                     <p class="option" id="17"><i class="fas fa-angle-right" ></i>&emsp;大一必修</p>
                     <p class="option" id="18"><i class="fas fa-angle-right" ></i>&emsp;畢業門檻</p>
+                    <p class="option" id="21"><i class="fas fa-angle-right" ></i>&emsp;自主學習</p>
                     <p class="option" id="19"><i class="fas fa-angle-right" ></i>&emsp;選課懶人包</p>
                     <p class="option" id="20"><i class="fas fa-angle-right" ></i>&emsp;課業輔導管道</p>
-                    <p class="option" id="21"><i class="fas fa-angle-right" ></i>&emsp;NCUx中大磨課師</p>
-                    
+                    <p class="option" id="40"><i class="fas fa-angle-right" ></i>&emsp;大一親師座談</p>  
                 </div>
             </div>
             
@@ -70,6 +70,19 @@
     </main>
     <% include ../layouts/js %>
     <% include js %>
+    <script>
+        $(document).ready(function(){
+            var width = innerWidth;
+            if(width <= 768)
+                document.location.href = "/documents/phone/undergraduate";
+            $(window).resize(function(){
+                width = innerWidth;
+                if(width <= 768)
+                    document.location.href = "/documents/phone/undergraduate";
+            });
+        });
+            
+    </script>
 </body>
 
 </html>

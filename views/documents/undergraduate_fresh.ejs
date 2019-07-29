@@ -21,8 +21,8 @@
             <div class="nav">
                 <div class="return_space"><a href="/documents"><img src="return.png" class="return"></a></div>
                  <div class="sign">
-                    <p class="p1">STUDY</p>
-                    <p class="p2">學習資訊</p>
+                    <p class="p1">FRESH</p>
+                    <p class="p2">新生週</p>
                  </div>
             </div>
 
@@ -68,6 +68,19 @@
     </main>
     <% include ../layouts/js %>
     <% include js %>
+    <script>
+        $(document).ready(function(){
+            var width = innerWidth;
+            if(width <= 768)
+                document.location.href = "/documents/phone/undergraduate";
+            $(window).resize(function(){
+                width = innerWidth;
+                if(width <= 768)
+                    document.location.href = "/documents/phone/undergraduate";
+            });
+        });
+        
+    </script>
 </body>
 
 </html>
