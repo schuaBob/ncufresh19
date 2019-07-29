@@ -719,8 +719,7 @@ li {
   }
 
   #List_index li {
-    margin: calc(8% / 16);
-    width: 23%;
+    width: 25%;
     float: left;
   }
 
@@ -730,8 +729,8 @@ li {
 
   #List_index img {
     width: 80%;
-    margin: 0;
-    padding: 0;
+    margin-right: 10%;
+    margin-left: 10%;
   }
 
   .main_list_detail {
@@ -741,14 +740,15 @@ li {
     width: 100vw;
     margin: 0;
     float: none;
-    right: unset;
-    max-height: calc(24px + 50vw + 8vw / 2);
+    right: unset;    
+    max-height: calc(24px + 50vw + 8vw);
   }
 
   .main_list_detail ul {
     max-height: calc(24px + 46vw + 8vw / 2 - 60px);
     overflow: scroll;
     margin: 0;
+    padding-bottom: 30px;
   }
 
   .elelist:last-child {
