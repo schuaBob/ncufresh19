@@ -38,7 +38,8 @@
                 error: function (err) {
 
                 },
-                success: function (data) {
+                success: function (data) {                    
+                    console.log(data.Element_Intro);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
                     for (let i = 0; i < data.Intropic.length; i++) {
@@ -346,6 +347,7 @@
 
                 },
                 success: function (data) {
+                    console.log(data);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
                     for (let i = 0; i < data.Intropic.length; i++) {
