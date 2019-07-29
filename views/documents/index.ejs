@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <% include ../layouts/head %>
     <% include ../layouts/script %>
 </head>
+
 <body>
     <script>
-        $(document).ready(function(){
-            var width = innerWidth;
-            if(width <= 768) document.location.href = "/documents/index_phone";
-            else document.location.href = "/documents/index_com";
-        });
+        var width = window.outerWidth;
+        console.log(width)
+        if (width <= 768) document.location.href = "/documents/index_phone";
+        else document.location.href = "/documents/index_com";
+
     </script>
 </body>
+
 </html>

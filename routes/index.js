@@ -18,6 +18,7 @@ var uploadHandler = multer({
     }
   })
 })
+var fs = require('fs');
 
 // for oauth
 var url = require('url');
@@ -182,20 +183,22 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
       })
     }
   })
-});
-
-router.get('/adpic/delete?', (req, res, next) => {
+})
+router.get('/adpic/delete', (req, res, next) => {
   if (req.query.pk) {
-    docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err) => {
+    docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err, doc) => {
       if (err) return next(err);
-      res.redirect('/index-edit');
+      console.log(doc)
+      fs.unlink(`./public${doc.picPath}`, (err) => {
+        if (err) { return next(err) };
+        res.redirect('/index-edit');
+      })
     })
   } else {
     res.redirect('/index-edit');
   }
-});
-
-router.get('/schedule/:method?', (req, res, next) => {
+})
+router.get('/schedule/:method', (req, res, next) => {
   switch (req.params.method) {
     case "read":
       docNews.findOne({ pk: req.query.pk }).exec((err, doc) => {
@@ -272,9 +275,8 @@ router.post('/schedule/:method', (req, res, next) => {
       res.status(404).send('Wrong Page');
       break;
   }
-});
-
-router.get('/calender/:method?', (req, res, next) => {
+})
+router.get('/calender/:method', (req, res, next) => {
   switch (req.params.method) {
     case "read":
       console.log(req.query.pk)
@@ -447,14 +449,13 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
         res.redirect('/login');
         return;
       }*/
-
+      
       if (obj.name !== name) {
         console.log(id + ': 真實姓名不合');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
       } else {
         obj.password = password;
-        obj.name = name;
         Users.createUser(obj, function (err, user, next) {
           if (err) {
             return next(err);

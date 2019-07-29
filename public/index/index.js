@@ -13,10 +13,33 @@ $(document).ready(() => {
     })
     $('#newsModal').on('hide.bs.modal', () => {
         $.fn.fullpage.setMouseWheelScrolling(true)
+        $('.cateTitle').empty();
+        $('.cateIcon').empty();
+        $('#newsdetail').empty();
     });
     $("#topHref").click(function () {
         $.fn.fullpage.moveTo("indexPage");
     });
+    $('.pernews').click((e) => {
+        $.ajax({
+            url: `/schedule/read?pk=${e.currentTarget.attributes.pk.value}`,
+            method: 'GET',
+            dataType: 'JSON',
+            error: (err) => {
+                console.log(err)
+            },
+            success: (res) => {
+                $('.cateTitle').html(`<h3>${res.title}</h3>`);
+                var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
+                $('.cateIcon').html(`<img src="index/icon-${catePicArr[res.category - 1]}.png" class="card-img">`);
+                $('#newsdetail').html(res.content);
+            }
+        })
+    })
+})
+
+$(".day").each(function () {
+    $(this).css("left", (this.id - 1) * 10 + "%");
     
     $.ajax({
         url:    "calender_get_data",
@@ -31,12 +54,14 @@ $(document).ready(() => {
     });
 });
 
-$(".selectMonth").on("click", function(){
+
+
+$(".selectMonth").on("click", function () {
     $.ajax({
-        url:    "calender_get_data",
+        url: "calender_get_data",
         method: "POST",
-        data:   { id: this.id },
-        error: function(err){
+        data: { id: this.id },
+        error: function (err) {
             alert("Some error occur...");
         },
         success: function(data){

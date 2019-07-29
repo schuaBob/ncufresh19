@@ -1,5 +1,11 @@
+
 body {
   padding: 50px;
+  /*禁止反白*/
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -o-user-select:none;
+  user-select:none;
 }
 
 html {
@@ -14,8 +20,19 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none;
   height: 100%;
-width: calc(100vw + 18px);
-overflow: auto;
+  width: calc(100vw + 18px);
+  overflow: auto;
+}
+
+#show::-webkit-scrollbar {
+  display: none;
+}
+
+#show {
+  -ms-overflow-style: none;
+  height: 100%;
+  width: calc(100vw + 18px);
+  overflow: auto;
 }
 
 .index_bg {
@@ -76,7 +93,6 @@ overflow: auto;
   background-color: white;
   width: 31vw;
   height: 85px;
-  box-shadow:2px 2px 2px rgba(20%,20%,40%,0.3),4px 4px 6px rgba(20%,20%,40%,0.1),6px 6px 12px rgba(20%,20%,40%,0.1);
 }
 
 .sign {
@@ -129,9 +145,9 @@ overflow: auto;
 .sidenav2 p {
   color: rgb(13, 73, 102);
   display: block;
-  font-size: 1.3vw;
+  font-size: 1.7vw;
   font-weight: bold;
-  padding-top: 2vh;
+  padding-top: 0.5vh;
   padding-bottom: 2vh;
 }
 
@@ -161,6 +177,7 @@ overflow: auto;
   right: 0;
   margin: 15% 0;
 }
+
 
 /*顯示資料的地方*/ 
 .box {
@@ -322,11 +339,9 @@ overflow: auto;
   .modal-dialog {
     max-width: 90%; 
   }
-
-  .modal-body{
-    height: 50vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+  .modal-body {
+    height: 80vh;
+    overflow: auto;
   }
 
   .fish_size {
@@ -342,25 +357,6 @@ overflow: auto;
     position: absolute;
     float:left;
   }
-
-  .return_space {
-    position: absolute;
-    width: 100px;
-    height: 100%;
-    padding: 0.5vh 0 0.5vh 3vw;
-  }
-
-  .return {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
   .character {
     width: 25vw;
     height: 50vh;
@@ -375,13 +371,17 @@ overflow: auto;
     margin: 3vh 3vw;
   }
 
-  .link {
+  .link_und {
     width: 20vw;
     margin: 1vh 9vw;
     font-size: 3.5vw;
     text-decoration: none;
     color: black;
-    border-bottom: solid rgb(91, 155, 213) 0.5vw;
+  }
+
+  .link_und:hover {
+    text-decoration: none;
+    color: black;
   }
 
   .p_option {
@@ -394,15 +394,68 @@ overflow: auto;
     cursor: pointer;
   }
 
+  #phone_title {
+    font-size: 25px ;
+    font-weight: bold;
+    color: rgb(58, 154, 216);
+  }
+
   .fade {
     display: none;
   }
+
+  .now {
+    border-bottom: solid rgb(91, 155, 213) 0.5vw;
+    text-decoration: none;
+  }
+
+  .bg {   
+    height: 10vh;
+    background-color: rgb(255,215,92);
+  }
+
+  /*研究生*/
+  .graduate {
+    margin: 3vh 10vw;
+  }
+
+  .link_gra {
+    width: 45vw;
+    margin: 1vh 12vw;
+    font-size: 4vw;
+    text-decoration: none;
+    color: black;
+  }
+
+  .link_gra:hover {
+    text-decoration: none;
+    color: black;
+  }
+
+  /*共同事項*/
+  .common {
+    margin: 3vh 0;
+  }
+  .link_com {
+    width: 20vw;
+    margin: 1vh 45vw;
+    font-size: 4.5vw;
+    text-decoration: none;
+    color: black;
+  }
+
+  .link_com:hover {
+    text-decoration: none;
+    color: black;
+  }
+
 
 }
 
 
 /*手機板*/
 @media only screen and (max-device-width: 768px)  {
+  /*index*/
   .fish_size {
     width: auto;
     height: auto;
@@ -417,24 +470,6 @@ overflow: auto;
     float:left;
   }
 
-  .return_space {
-    position: absolute;
-    width: 100px;
-    height: 100%;
-    padding: 0.5vh 0 0.5vh 3vw;
-  }
-
-  .return {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
   .character {
     width: 25vw;
     height: 50vh;
@@ -444,32 +479,67 @@ overflow: auto;
     
   }
 
+  .bar {
+    width: 100%;
+    height: 5vh;
+    text-align: center;
+  }
+
   /*大學生*/
   .undergraduate {
     margin: 3vh 3vw;
   }
 
-  .link {
+  .link_und {
     width: 20vw;
-    margin: 1vh 9vw;
-    font-size: 3.5vw;
+    margin: 1vh 4vw;
+    font-size: 6.3vw;
     text-decoration: none;
     color: black;
-    border-bottom: solid rgb(91, 155, 213) 0.5vw;
   }
 
   .p_option {
     font-weight: 500;
     color: rgb(13, 73, 102);
-    height: 10vh;
-    font-size: 3.5vw;
-    padding-top: 1.5vh;
-    padding-left: 34vw;
+    height: 8vh;
+    font-size: 6.5vw;
+    padding-left: 19vw;
+    margin-top: 1.5vh;
     cursor: pointer;
   }
 
   .fade {
     display: none;
+  }
+
+  .now {
+    border-bottom: solid rgb(91, 155, 213) 0.5vw;
+    text-decoration: none;
+  }
+
+  /*研究生*/
+  .graduate {
+    margin: 3vh 0;
+  }
+
+  .link_gra {
+    width: 45vw;
+    margin: 1vh 8vw;
+    font-size: 7vw;
+    text-decoration: none;
+    color: black;
+  }
+
+  /*共同事項*/
+  .common {
+    margin: 3vh 0;
+  }
+  .link_com {
+    width: 20vw;
+    margin: 1vh 45vw;
+    font-size: 4.5vw;
+    text-decoration: none;
+    color: black;
   }
 
   /*show modal*/
@@ -477,18 +547,16 @@ overflow: auto;
   #phone_title {
     font-size: 25px ;
     font-weight: bold;
-    color: rgb(58, 154, 216) !important;
+    color: rgb(58, 154, 216);
   }
 
   .modal-dialog {
     max-width: 90%; 
   }
 
-  .modal .modal-body {
-    height: 80vh;
+  .modal-body {
+    height: 90vh;
     overflow: auto;
   }
-
-  
 
 }
