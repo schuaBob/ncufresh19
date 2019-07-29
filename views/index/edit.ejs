@@ -255,28 +255,6 @@
         };
 
         $(document).ready(() => {
-
-            var newseditor = undefined, Calendereditor = undefined, boardeditor = undefined;
-            tinyMCE.init({
-                selector: 'textarea',
-                plugins: "image, advlist, table, autolink, code, link, lists, paste, preview, searchreplace, wordcount, emoticons, media, quickbars",
-                toolbar: "styleselect | forecolor | backcolor | bold | italic | underline | alignleft | aligncenter | alignright | alignjustify | bullist | numlist | outdent | indent | link | image | media | code | quickimage",
-                quickbars_insert_toolbar: false,
-                setup: (ed) => {
-                    ed.on('init', function (e) {
-                        console.log(`${e.target.id} textarea is initialized.`);
-                    });
-                    ed.on('keyup', function () {
-                        console.log(ed.getContent());
-                    });
-                    ed.on('GetContent',(e)=>{
-                        console.log(`${e.target.id}'s Content get caught.`);
-                    })
-                    ed.on('SetContent',(e)=>{
-                        console.log(`${e.target.id}'s Content get set.`);
-                    })
-                }
-            })
             $('#news span').click(() => {
                 $('#Subbtn').hide();
                 $('#SaveNewsbtn').text("新增");
@@ -447,12 +425,10 @@
                     })
                 })
             })
-            $('#CalenderModal').on('show.bs.modal', (e) => {
-            })
             $('#CalenderModal').on('hide.bs.modal', (e) => {
                 $('#month').val("");
                 $('#date').val("");
-                tinyMCE.get('boardContent').setContent("")
+                tinyMCE.get('boardContent').setContent("");
             })
         })
     </script>

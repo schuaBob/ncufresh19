@@ -117,15 +117,11 @@ var multerUpload = multer({
     }
   })
 })
-
-//ckfinder
-app.post('/ckUpload', multerUpload.single('upload'), (req, res, next) => {
-  var imgurl = `/imguploads/${req.file.filename}`;
-  var resJson = {
-    uploaded: true,
-    url: imgurl
-  }
-  res.json(resJson);
+// var multipart = require('connect-multiparty');
+// var multipartMiddleware = multipart();
+app.post('/tinymceUploader', multerUpload.single('file'),(req, res, next) => {
+  console.log(req.file)
+  res.json({location:`/imguploads/${req.file.originalname}`})
 })
 
 //css and js
