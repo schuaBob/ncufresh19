@@ -8,11 +8,16 @@
 
 <body>
     <script>
-        var width = window.outerWidth;
-        console.log(width)
-        if (width <= 768) document.location.href = "/documents/index_phone";
-        else document.location.href = "/documents/index_com";
-
+        $(document).ready(function(){
+            var width;
+            if(innerWidth>outerWidth)
+                width = outerWidth;
+            else
+                width = innerWidth;
+            if (width <= 768) document.location.href = "/documents/index_phone";
+            else document.location.href = "/documents/index_com";
+        })
+        
     </script>
 </body>
 

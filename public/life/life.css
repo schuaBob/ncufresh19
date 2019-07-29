@@ -25,14 +25,6 @@ ul {
   height: 85px;
 }
 
-.line {
-  height: 80%;
-  width: 5px;
-  background-color: #7CA7BC;
-  margin: 2.5% 34%;
-  float: left;
-}
-
 .titleText {
   position: absolute;
   margin-left: 34%;
@@ -70,9 +62,19 @@ ul {
   -webkit-appearance: none;
 }
 
+.backgroundImg {
+  position: absolute;
+  bottom: 0;
+  z-index: 3000;
+  
+}
+.bgImage {
+  max-width: 30vw;
+  opacity: 0.85;
+}
 #main {
   position: relative;
-  background-image: url(背景.JPG);
+  /* background-image: url(背景.JPG); */
   height: calc(100% - 145px);
   background-repeat: no-repeat;
   background-size: cover;
@@ -129,6 +131,7 @@ ul {
 
 .subTitle {
   text-align: center;
+  font-size: 3.5vw;
   padding: 10px;
 }
 .studyTitle {
@@ -160,7 +163,7 @@ ul {
 }
 
 .subStudyContent div {
-  display: inline-block;
+  display: inline-flex;
 }
 .S {
   position: relative;
@@ -182,35 +185,6 @@ ul {
   height: 100%;
 }
 
-
-.time {
-  top: 10vh;
-  left: 20%;
-  position: relative;
-}
-
-.time p {
-  font-size: 10px;
-} 
-
-
-/* .studyTimeline {
-  top: 10vh;
-  width: 30%;
-  height: 40%;
-  left: 20%;
-  position: relative;
-  border-left:4px solid darkblue;
-}
-.event {
-  margin-bottom: 0;
-}
-
-.event li {
-  margin-bottom: 5%;
-  font-size: 25px;
-} */ 
-
 @media (min-width: 500px) {
 .container {
     max-width: 700px;
@@ -218,7 +192,7 @@ ul {
 
 .container {
   position: relative;
-  left: 140px;
+  left: 80px;
 }
 
 ul.timeline {
@@ -227,7 +201,7 @@ ul.timeline {
 }
 ul.timeline:before {
   content: ' ';
-  background: #d4d9df;
+  background: #04244b;
   display: inline-block;
   position: absolute;
   left: 29px;
@@ -245,20 +219,23 @@ ul.timeline > li:before {
   display: inline-block;
   position: absolute;
   border-radius: 50%;
-  border: 3px solid #22c0e8;
+  border: 3px solid #042446;
   left: 20px;
   width: 20px;
   height: 20px;
   z-index: 400;
 }
+
+/* .timeline li p {
+  word-break: break-all;
+}
+ */
 .studyContent {
-  position: relative;
+  position: absolute;
   margin-left: 5%;
   margin-right: 5%;
-  margin-top: 5%;
   white-space: pre-line;
-  word-wrap: break-word;
-  
+  word-break: break-all;
 }
 
 
@@ -273,14 +250,36 @@ ul.timeline > li:before {
 
 .foodList {
   position: absolute;
-  top: 23vh;
-  left: 8vw;
+  top: 15vh;
+  left: 4vw;
 }
 
-.foodList li {
+.foodList p {
   z-index: 100;
-  font-size: 25px;
+  font-size: 1.5vw;
+  width: 14vw; 
+  padding-right: 3vh;
+  padding-left: 3vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
   cursor: pointer;
+}
+
+.foodList img  {
+  visibility: hidden;
+}
+
+#LI1 {
+  max-width: 20%;
+  margin-left: 2.5vw;
+}
+#LI2 {
+  max-width: 20%;
+  margin-left: 4vw;
+}
+#LI3 {
+  max-width: 20%;
+  margin-left: 1vw;
 }
 
 .FpictureArea {
@@ -290,7 +289,7 @@ ul.timeline > li:before {
   margin: 0 20%;
   width: 65%;
   height: 93%;
-  z-index: 300;
+  /* z-index: 300; */
 }
 
 .foodImg {
@@ -303,7 +302,7 @@ ul.timeline > li:before {
   margin-left: 25%;
 }
 #areaName p {
-  font-size: 50px;
+  font-size: 4vw;
   border-bottom: 4px solid black;
   /* padding-bottom: 5%; */
 }
@@ -327,9 +326,53 @@ ul.timeline > li:before {
   width: 100%;
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index:-100;
+  /* transition: .5s ease; */
+  animation-name: oxxo;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  background-color: rgb(94, 102, 105);
+}
+@keyframes oxxo{
+  from{
+      opacity: 0;
+      z-index: -100;
+  }
+  to{
+      opacity: 0.4;
+      z-index: 300;
+  }
+}
+
+.hint {
+  color: white;
+  font-size: 50px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.decoration img{
+  position: absolute;
+  width:30%;
+  bottom: 0px;
+}
 
 #foodModal .modal-dialog {
-  width: 60%;
+  width: 70%;
   max-width: none;
   margin-top: 2vh;
   min-height: calc(100vh - 56px);
@@ -343,7 +386,7 @@ ul.timeline > li:before {
   margin-left: auto;
   margin-bottom: 0;
   display: block;
-  width: 85%;
+  width: 70%;
   padding: 8px;
   word-wrap: break-word;
   border-style: solid;
@@ -362,7 +405,7 @@ ul.timeline > li:before {
   margin-left: auto;
   margin-bottom: 0;
   display: block;
-  width: 85%;
+  width: 70%;
   padding: 8px;
   word-wrap: break-word;
   border-style: solid;
@@ -372,9 +415,17 @@ ul.timeline > li:before {
   background-color: white;
   min-height: 50px;
 }
+
+.t {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 500;
+}
 #foodModalDetail .d {
   margin: 0;
   max-height: 300px;
+  font-size: 20px;
+  font-weight: lighter;
   overflow-y: scroll;
 }
 

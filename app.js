@@ -45,11 +45,13 @@ app.use(flash());
 app.use(session({
   secret: 'ThisIsNcuFresh19Speaking.',
   name: 'ncufresh.session.id',
-  resave: false,  /* 不要每次讀取就存回去一次 */
-  saveUninitialized: false, /* 除非做儲存的動作，不然不要為每個使用者都存session */
+  resave: false,
+  /* 不要每次讀取就存回去一次 */
+  saveUninitialized: false,
+  /* 除非做儲存的動作，不然不要為每個使用者都存session */
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
-    touchAfter: 24 * 3600   /* 沒動session的話，二十四小時之後再去動它 */
+    touchAfter: 24 * 3600 /* 沒動session的話，二十四小時之後再去動它 */
   })
 }));
 app.use(passport.initialize());
@@ -96,15 +98,6 @@ app.use('/personal', personal);
 // 常用連結
 app.use('/link', link);
 
-//auto update at 00:00 & 12:00
-// console.log("Initiallize auto schedule news 1...");
-// const cronNews1 = new cronJob(
-//     '00 00 00 * * *',
-//     ()=>{
-
-//     }
-// )
-
 //multer settings
 var multer = require('multer');
 var multerUpload = multer({
@@ -118,14 +111,9 @@ var multerUpload = multer({
   })
 })
 
-//ckfinder
-app.post('/ckUpload', multerUpload.single('upload'), (req, res, next) => {
-  var imgurl = `/imguploads/${req.file.filename}`;
-  var resJson = {
-    uploaded: true,
-    url: imgurl
-  }
-  res.json(resJson);
+app.post('/tinymceUploader', multerUpload.single('file'), (req, res, next) => {
+  console.log(req.file)
+  res.json({ location: `/imguploads/${req.file.originalname}` })
 })
 
 //css and js
@@ -136,6 +124,7 @@ app.use('/js', express.static(__dirname + '/node_modules/fullpage.js/vendors'));
 app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist/umd'));
 app.use('/js', express.static(__dirname + '/node_modules/build'));
 app.use('/js', express.static(__dirname + '/node_modules/velocity-animate'));
+app.use('/js', express.static(__dirname + '/node_modules/tinymce/js/tinymce'))
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css', express.static(__dirname + '/node_modules/fullpage.js/dist'));
 
@@ -152,7 +141,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('index/error', {title: "新生知訊網", user: req.user});
+  res.render('index/error', { title: "新生知訊網", user: req.user });
 });
 
 //------------------- added by 陳威捷 (用於ejs模板中的函式)
@@ -160,10 +149,10 @@ app.locals.convertDateToString = function (date) {
   var str = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
   return str;
 }
-app.locals.trunc = function(str){
-  if(str.length>15){
-    return str.substr(0,15)+"...";
-  }else{
+app.locals.trunc = function (str) {
+  if (str.length > 15) {
+    return str.substr(0, 15) + "...";
+  } else {
     return str;
   }
 }

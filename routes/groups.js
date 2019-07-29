@@ -5,19 +5,41 @@ var community_data = require('../models/groups/community');
 var others_data = require('../models/groups/others');
 var student_data = require('../models/groups/student');
 
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public/groups");
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    }
+})
+var upload = multer({ storage: storage });
+
+router.post('/uploadimg', upload.array("img"), (req, res, next) => {
+    console.log("upload")
+    console.log(req.files)
+
+
+})
+
+
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('groups/index', { title: '新生知訊網｜系所社團', user: req.user });
 });
-/////////??????????????//////////////////////////////////department////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////department////////////////////////////////////////////////////////////////
 router.get('/department', function(req, res, next) {
 
     department_data.find({}).exec(function(err, department) {
         if (err) return next(err);
-        console.log(department)
+        console.log(department[0])
         res.render('groups/g_department', {
-            title: '新生知訊網｜系所社團t',
+            title: '新生知訊網｜系所社團',
             department: department,
             department_this: null,
             department_type: null,
@@ -352,6 +374,8 @@ router.post('/edit_others', function(req, res, next) {
 router.get('/association', function(req, res, next) {
     console.log("get association")
     student_data.find({}).exec(function(err, data) {
+        console.log(data[0].section)
+
         res.render('groups/g_association', {
             title: '新生知訊網｜系所社團',
             content: data,
@@ -365,7 +389,7 @@ router.get('/association/:content', function(req, res, next) {
     console.log("givemedetail")
     student_data.find({}).exec(function(err, data) {
         if (err) return next(err);
-        console.log(data)
+        console.log(data.length)
         res.render('groups/g_association', {
             title: '新生知訊網｜系所社團',
             content: data,
@@ -380,9 +404,24 @@ router.get('/association/:content', function(req, res, next) {
 
 })
 router.post('/edit_association', function(req, res, next) {
+    student_data.find({}).exec(function(err, data) {
+        if (data.length === 0) { //firstdata
+            console.log(req.body.intro);
+            console.log(req.body.section);
+            new student_data({
+                intro: req.body.intro,
+                section: req.body.section
+            }).save();
+            console.log("added firstdata");
 
+        } else {
+            data[0].intro = req.body.intro,
+                data[0].section = req.body.section
+            data[0].save()
 
-
+        }
+        res.redirect('association')
+    })
 })
 
 

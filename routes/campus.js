@@ -40,15 +40,22 @@ router.get('/indexmodal', function (req, res, next) {
   } else request('https://ncufresh18.ncu.edu.tw/campus/indexmodal?id=' + req.query.id, function (error, response, body) {
     console.log('body:', JSON.parse(body));
     var review = JSON.parse(body);
-    if (content[review.Element_Name]) {
-      review.Element_Intro = content[review.Element_Name];
-    }
     if (review.Intropic.includes('5b6663bab8580a33b29b406d.png')){
       review.Intropic = ['5b6663bab8580a33b29b406d-1.png','5b6663bab8580a33b29b406d-2.png'];
     }
     if (review.Intropic.includes('5b680145a1290417d991cb0d.png')){
       review.Intropic = ['5b680145a1290417d991cb0d-1.png','5b680145a1290417d991cb0d-2.png'];
     }
+    if (review.Element_Name == "工程三館"){
+      review.Element_Name = "E2 機械館";
+    }
+    if (review.Element_Name == "工程四館"){
+      review.Element_Name = "E4 環工化工館大樓";
+    }
+    if (content[review.Element_Name]) {
+      review.Element_Intro = content[review.Element_Name];
+    }
+    console.log('body:', review);
     res.json(review);
   });
 });

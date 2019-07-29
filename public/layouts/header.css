@@ -1,3 +1,6 @@
+.tox.tox-silver-sink.tox-tinymce-aux {
+    z-index: 6000;
+}
 @font-face {
     font-family: Noto Sans JP;
     src: url("/layouts/font/NotoSansJP-Regular.otf") format("opentype");

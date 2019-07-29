@@ -39,7 +39,7 @@
 
         <div class="choose fade" id="fresh_gra">
             <div class="graduate">
-                <p>
+                <p  class="bar">
                     <a href="#must_gra" class="must_gra link_gra">入學須知</a>
                     <a class="fresh_gra link_gra now">新生週</a>
                 </p>
@@ -52,6 +52,19 @@
     </main>
     <% include ../../layouts/js %>
     <% include ../js %>
+    <script>
+        $(document).ready(function(){
+            $(window).resize(function(){
+                var width = innerWidth;
+                if(width <= 768)
+                    document.location.href = "/documents/phone/graduate";
+                var width = innerWidth;
+                if(width > 768){
+                    document.location.href = "/documents/graduate_must";
+                }
+                });
+            });
+    </script>
 </body>
 
 </html>

@@ -614,6 +614,10 @@ li {
   background-color: #FFF9DC;
 }
 
+.tooltip{
+  z-index: 100000;
+}
+
 #List_index li img{
   position: relative;
 }
@@ -677,6 +681,7 @@ li {
     padding-bottom: calc((100vh - 80px - 46vw - 8vw / 2 - 750px*996/2000)/2);
     margin: 0;
     width: 750px;
+    height: 373.5px;
   }
 
   .mapmove {
@@ -714,8 +719,7 @@ li {
   }
 
   #List_index li {
-    margin: calc(8% / 16);
-    width: 23%;
+    width: 25%;
     float: left;
   }
 
@@ -725,8 +729,8 @@ li {
 
   #List_index img {
     width: 80%;
-    margin: 0;
-    padding: 0;
+    margin-right: 10%;
+    margin-left: 10%;
   }
 
   .main_list_detail {
@@ -736,14 +740,15 @@ li {
     width: 100vw;
     margin: 0;
     float: none;
-    right: unset;
-    max-height: calc(24px + 50vw + 8vw / 2);
+    right: unset;    
+    max-height: calc(24px + 50vw + 8vw);
   }
 
   .main_list_detail ul {
     max-height: calc(24px + 46vw + 8vw / 2 - 60px);
     overflow: scroll;
     margin: 0;
+    padding-bottom: 30px;
   }
 
   .elelist:last-child {
@@ -788,7 +793,7 @@ li {
   #map {
     padding: 0;
     width: 100%;
-    position: relative;
+    position: relative;    
   }
 
   .map{
@@ -847,4 +852,14 @@ li {
     display: none;
   }
 
+}
+
+
+@media only screen and (max-width: 540px) {
+  #map {
+    padding: 0;
+    width: 100%;
+    position: relative;    
+    bottom: calc((540px - 100vw) * 0.25);
+  }
 }

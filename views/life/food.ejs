@@ -28,15 +28,20 @@
         </div>
         <div id="areaName"><p>宵夜街</p></div>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
+        <!-- <%_ if (user && user.role === 'admin'){ -%> -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
+        <!-- <%_ } %> -->
     <main id="main" style="background: #fff9dc; height: calc(100% - 198px);">
         <!--content-->
         <div class="foodList">
-            <ul>
+            <p id="nightStreet"> > 宵夜街 <img id="LI1" src="海馬.png"></p>
+            <p id="backdoor"> > 後門 <img id="LI2" src="海馬.png"></p>
+            <p id="campus"> > 中央校園 <img id="LI3" src="海馬.png"></p>
+            <!-- <ul>
                 <li id="nightStreet">> 宵夜街</li><br>
                 <li id="backdoor">> 後門</li><br>
                 <li id="campus">> 中央校園</li><br>
-            </ul>
+            </ul> -->
         </div>        
         <div class="FpictureArea">
             <div class="foodImg">
@@ -99,8 +104,11 @@
                 <img class="foodIcon" title="火靠窯" idconnect="5d388932dea9437b52631f8e" style="top: 84%; left: 18.5%; " src="food_icon/西餐.png">
                 <img class="foodIcon" title="小紅牛" idconnect="5d38893fdea9437b52631f8f" style="top: 87%; left: 16%; " src="food_icon/西餐.png">
                 <img id="map" src="宵夜街地圖.png">
+                <div class="overlay">
+                    <div class="hint">上下滑動</div>
                 </div>
             </div>
+        </div>
         <div class="modal fade" id="foodModal" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 60px;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -129,6 +137,10 @@
 
                             </div>
                         </div>
+                    </div>
+                    <div class="decoration">
+                        <img src="CCC.png" alt="" style="left: -10%">
+                        <img src="CLOWNFISH.png" alt="" style="top: 17%; right: -3%;">
                     </div>
                 </div>
             </div>
@@ -180,6 +192,20 @@
     </main>
     <% include ../layouts/js %>
     <% include js %>
+    <script>
+            $(document).ready(function(){
+                var width = innerWidth;
+                if(width <= 1024)
+                    document.location.href = "/life/food_phone";
+                $(window).resize(function(){
+                    width = innerWidth;
+                    if(width <= 1024)
+                        document.location.href = "/life/food_phone";
+                });
+            });
+        </script>
+
+
 </body>
 
 </html>
