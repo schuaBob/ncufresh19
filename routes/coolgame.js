@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var User = require('../models/index/user.js');
 var Question = require("../models/coolgame/question.js");
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -26,7 +27,9 @@ router.get('/', function (req, res, next) {
 // });
 router.get('/getquestion', function (req, res, next) {
   Question.find({}).exec(function (err, result){
-    res.send({result:result,user:req.user});
+    User.findOne({id:108000022}).exec(function(err,u){
+      res.send({result:result,user:u});
+    })
   });
 });
 module.exports = router;

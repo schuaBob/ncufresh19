@@ -5,6 +5,7 @@
 //於上漁船位置
 //------------game---------------------------------
 //var fs = require('fs');
+var user;
 var question_data;
 var dolphin_container;
 var dolphin_list;
@@ -44,7 +45,7 @@ var user_score;
 var now_score;
 var score_update_timer;
 var score_board;
-var game_time = 20;
+var game_time = 45;
 var catch_animal_container;
 var harpoon_text;
 var question_list = new Array();
@@ -178,7 +179,7 @@ class Option extends createjs.Container {
     this.havermask.alpha = 0.01;
     this.ans = false;
     this.havermask.addEventListener("click", function (event) {
-      if (!event.target.parent.done) {
+      if (!event.target.parent.done && !question_time_stop) {
         if (event.target.parent.ans) {
           event.target.parent.correct();
         }
@@ -187,12 +188,12 @@ class Option extends createjs.Container {
     });
     this.havermask.addEventListener("mouseover", function (event) {
       event.target.parent.havermask.cursor = "pointer";
-      if (!event.target.parent.done)
+      if (!event.target.parent.done && !question_time_stop)
         event.target.parent.background.visible = true;
 
     });
     this.havermask.addEventListener("mouseout", function (event) {
-      if (!event.target.parent.done)
+      if (!event.target.parent.done && !question_time_stop)
         event.target.parent.background.visible = false;
     });
   }
@@ -393,7 +394,6 @@ function mousemove(event) {
   var c = Math.pow(x * x + y * y, 0.5);
   var r = Math.acos(y / c);
   fisherman_harpoon.rotation = r_x * (r * 180 / Math.PI);
-  stage.update();
 }
 function mousedown(event) {
   if (harpoon_list.length >= 10) return;
@@ -457,6 +457,8 @@ function load_question_data() {
     error:(err)=>{console.log(err)},
     success: function (result) {
       question_data=result.result;
+      user = result.user;
+      console.log(user);
       load_question();
     }
   });
@@ -484,10 +486,10 @@ function create_bubble() {
 function open_bubble() {
   generate_bubble = setInterval(() => {
     if (!stop)
-      if (getrandom(500) < 5) {
+      if (getrandom(10) < 1) {
         create_bubble();
       }
-  }, 30);
+  }, 200);
 }
 function update() {
   if (!stop) {
@@ -528,11 +530,11 @@ function harpoon_check() {
         if (harpoon_list[i].checkboom()) {
           return;
         }
-        if (harpoon_list[i].y > canvas_seaheight) {
-          harpoon_list[i].mv = (500 / harpoon_list[i].y) * 1.8;
-          if (harpoon_list[i].y > 400) {
-            harpoon_list[i].mv = (500 / harpoon_list[i].y) * 1.4;
-          }
+      }
+      if (harpoon_list[i].y > canvas_seaheight) {
+        harpoon_list[i].mv = (500 / harpoon_list[i].y) * 1.8;
+        if (harpoon_list[i].y > 400) {
+          harpoon_list[i].mv = (500 / harpoon_list[i].y) * 1.4;
         }
       }
       if (harpoon_list[i].y - harpoon_list[i].image.height * harpoon_list[i].scaleY / 2 >= canvas_height || harpoon_list[i].y + harpoon_list[i].image.height * harpoon_list[i].scaleY / 2 <= 0 || harpoon_list[i].x - harpoon_list[i].image.height * harpoon_list[i].scaleX / 2 >= canvas_width || harpoon_list[i].x + harpoon_list[i].image.height * harpoon_list[i].scaleX / 2 <= 0) {
@@ -552,16 +554,16 @@ function harpoon_move() {
       harpoon_list[i].y += harpoon_list[i].my * harpoon_list[i].mv / harpoon_list[i].mc;
     }
   }
-  stage.update();
+  //stage.update();
 }
 function open_fish() {
   generate_fish = setInterval(() => {
     if (!stop)
       if (question_num[0] + question_num[1] + question_num[2] > 0) {
         rnd = getrandom(1500);//120
-        if (rnd < 500) {
+        if (rnd < 600) {
           var fishtype;
-          if(rnd<100){
+          if(rnd<10){
             animal_list.push(new fish(6, false));
           }
           else{
@@ -570,7 +572,7 @@ function open_fish() {
             } while (question_num[fishtype] <= 0);
             if (gamestart)
               question_num[fishtype]--;
-            if (rnd < 50)
+            if (rnd < 120)
               animal_list.push(new fish(fishtype == 2 ? ((fishtype + 1) + getrandom(2)) : ((fishtype) + 1), true));
             else
               animal_list.push(new fish(fishtype == 2 ? ((fishtype + 1) + getrandom(2)) : ((fishtype) + 1), false));
@@ -587,7 +589,7 @@ function open_fish() {
 function open_bird() {
   generate_bird = setInterval(() => {
     if (!stop)
-      if (getrandom(100) < 25) {
+      if (getrandom(90) < 1) {
         animal_list.push(new bird(0, false));
       }
   }, 1000);
@@ -765,7 +767,7 @@ function source_init() {
       }
     }
   }
-  animalsource.push({ type: 0, score: 5000, spritesheet: new createjs.SpriteSheet(bird1) });
+  animalsource.push({ type: 0, score: 1200, spritesheet: new createjs.SpriteSheet(bird1) });
   animalsource.push({ type: 1, score: 250, spritesheet: new createjs.SpriteSheet(fish1) });
   animalsource.push({ type: 2, score: 200, spritesheet: new createjs.SpriteSheet(fish2) });
   animalsource.push({ type: 3, score: 100, spritesheet: new createjs.SpriteSheet(fish3) });
@@ -798,6 +800,7 @@ function create_back_container() {
       close_game_event();
       leave_container.visible = true;
       stop = true;
+      question_time_stop=true;
     }
   });
   back_container.addChild(backbutton);
@@ -881,6 +884,7 @@ function create_leave_container() {
     if (now == 1)
       game_event();
     stop = false;
+    question_time_stop=false;
   });
   No_shape.addEventListener("mouseover", function () {
     No_shape.cursor = "pointer";
@@ -1079,12 +1083,14 @@ function create_questionboard() {
     question_end();
     return;
   }
-  question_index_list = new Array();
-  for (i = 0; i < question_list[board_index >= 3 ? 2 : (board_index - 1)].length; i++) {
-    question_index_list.push(i);
-  }
-  for (i = 0; i < 5; i++) {
-    option[i].visible = false;
+  if(!(board_index == 4 && score_catch_animal_num[3] !=0)){
+    question_index_list = new Array();
+    for (i = 0; i < question_list[board_index >= 3 ? 2 : (board_index - 1)].length; i++) {
+      question_index_list.push(i);
+    }
+    for (i = 0; i < 5; i++) {
+      option[i].visible = false;
+    } 
   }
   question_text.visible = false;
   var questionboard_sheet = new createjs.SpriteSheet({
@@ -1420,7 +1426,7 @@ function score_init() {
           continue;
         }
       }
-      if(brid_num == 0)
+      if(catch_animal_num[0] == 0)
         if (catch_fish.length != 0){
           var wait_time =2000/catch_fish.length;
           for (i = 0; i < catch_fish.length; i++) {
@@ -1529,7 +1535,6 @@ var score_text_lenght = 0;
 function score_text_update() {
   if (user_score != now_score) {
     v =Math.floor(((user_score-now_score)/250)+(now_score > user_score?-2:2));
-    console.log(v);
     if (Math.abs(now_score - user_score) < Math.abs(v)) now_score = user_score;
     else {
       now_score += v;
