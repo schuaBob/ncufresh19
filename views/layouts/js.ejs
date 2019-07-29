@@ -12,5 +12,28 @@
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
         });
+        tinyMCE.init({
+            selector: 'textarea',
+            plugins: "image, advlist, table, autolink, code, link, lists, paste, preview, searchreplace, wordcount, emoticons, media",
+            toolbar: "styleselect | forecolor | backcolor | bold | italic | underline | alignleft | aligncenter | alignright | alignjustify | bullist | numlist | outdent | indent | link | image | media | code ",
+            quickbars_insert_toolbar: false,
+            automatic_uploads: true,
+            images_reuse_filename: true,
+            images_upload_url: '/tinymceUploader',
+            setup: (ed) => {
+                ed.on('init', function (e) {
+                    console.log(`${e.target.id} textarea is initialized.`);
+                });
+                ed.on('keyup', function () {
+                    console.log(ed.getContent());
+                });
+                ed.on('GetContent', (e) => {
+                    console.log(`${e.target.id}'s Content get caught.`);
+                })
+                ed.on('SetContent', (e) => {
+                    console.log(`${e.target.id}'s Content get set.`);
+                })
+            }
+        })
     });    
 </script>

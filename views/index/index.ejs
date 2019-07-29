@@ -61,7 +61,7 @@
             </svg>
           </a>
         </div>
-        <img src="index/首頁1.png" class="indexPage">
+
       </div>
 
       <div class="section" id="indexPage2">
@@ -69,6 +69,7 @@
           <div class="row align-items-center justify-content-center">
             <div class="col-lg">
               <div id="news">
+                <img src="/index/jellyfish-tran.png" id="jellyfish">
                 <div id="news-title">
                   <div class="card text-center">
                     <div class="card-body">
@@ -99,6 +100,7 @@
             </div>
             <div class="col-lg">
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <img src="index/fishbone-tran.png" id="fishbone">
                 <ol class="carousel-indicators">
                   <%for (let i in commercial){%>
                   <%if(i==0){%>
@@ -109,7 +111,10 @@
                   <% } %>
                 </ol>
                 <div class="carousel-inner">
-                  <%for (let i in commercial){%>
+                  <div class="carousel-item active">
+                    <img src="index/70667925_p0_master1200.jpg" class="d-block w-100" style="height: 70vmin;">
+                  </div>
+                  <!-- <%for (let i in commercial){%>
                   <% if(i==0){%>
                   <div class="carousel-item active">
                     <img src="<%= commercial[i]['picPath']%>" class="d-block w-100">
@@ -119,7 +124,7 @@
                     <img src="<%= commercial[i]['picPath']%>" class="d-block w-100">
                   </div>
                   <%}%>
-                  <% } %>
+                  <% } %> -->
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true">
@@ -220,9 +225,7 @@
             </div>
           </div>
         </div>
-        <img src="index/首頁3.png" class="indexPage">
       </div>
-
     </div>
   </main>
 
