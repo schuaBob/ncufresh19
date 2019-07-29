@@ -289,6 +289,22 @@ $(document).ready(function() {
 
 /*---------------------------後台------------------------*/
         ClassicEditor
+            .create( document.querySelector( '#editor1' ) )
+            .then( editor1 => {
+                console.log( editor1 );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+            ClassicEditor
+            .create( document.querySelector( '#editor2' ) )
+            .then( editor2 => {
+                console.log( editor2 );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+        ClassicEditor
             .create( document.querySelector( '#editor3' ) )
             .then( editor3 => {
                 console.log( editor3 );
@@ -328,6 +344,15 @@ $(document).ready(function() {
             .catch( error => {
                 console.error( error );
             } );
+            ClassicEditor
+            .create( document.querySelector( '#editor8' ) )
+            .then( editor8 => {
+                console.log( editor8 );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+            
 
 
 
