@@ -6,7 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <% include ../layouts/head %>
     <% include ../layouts/script %>
-    <script type="text/javascript" src="/js/ckeditor.js"></script>
     <script type="text/javascript" src="/js/tinymce.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -112,7 +111,7 @@
                                         pattern="^[1-9]|[12][0-9]|3[01]*$">
                                 </div>
                             </div>
-                            <textarea name="boardContent" id="boardContent"></textarea>
+                            <textarea id="boardContent"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -275,7 +274,7 @@
                         tinyMCE.get('editor').setContent(res.content);
                     }
                 }).then(() => {
-                    $('#SaveNewbtn').addClass('editbtn');
+                    $('#SaveNewsbtn').addClass('editbtn');
                     $('#Subbtn').click(() => {
                         $.ajax({
                             url: `/schedule/delete?pk=${e.currentTarget.attributes.pk.value}`,
@@ -316,7 +315,7 @@
                 if (($("#newsTitle").val() !== "") && ($("#newsCategory").val() !== 0)) {
                     if ($("#timePicker").val() !== "") {
                         var verb;
-                        if (!$(this).hasClass("editbtn")) {
+                        if (!$('#SaveNewsbtn').hasClass("editbtn")) {
                             $.ajax({
                                 url: `/schedule/create`,
                                 method: 'POST',
@@ -389,7 +388,7 @@
                     dataType: 'JSON',
                     error: (err) => { console.error(err.responseText) },
                     success: (res) => {
-                        tinyMCE.get('boardContent').setContent(res.board_content);
+                        tinyMCE.get('editboard').setContent(res.board_content);
                         $('#CalenderTime').show();
                         $('#editmonth').val(res.month);
                         $('#editdate').val(res.date);
@@ -404,7 +403,7 @@
                                 pk: result.pk,
                                 month: $('#editmonth').val(),
                                 date: $('#editdate').val(),
-                                boardContent: tinyMCE.get('boardContent').getContent()
+                                boardContent: tinyMCE.get('editboard').getContent()
                             },
                             error: (err) => { alert(err.responseText) },
                             success: (res) => { alert(res.message) }
