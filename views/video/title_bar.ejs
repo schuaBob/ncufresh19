@@ -10,15 +10,15 @@
             <%/* 返回按鈕 */%>
             <% if(title_bar[2] == null){ %>
             <a href="/video/">
-                <div class="back"><img src="/video/箭頭.png"></div>
+                <img src="/video/箭頭.png" class="back">
             </a>
             <% }else if(title_bar[4] == null ){ %>
             <a href="/video/<%= back_name %>">
-                <div class="back"><div class="seahorse"><img src="/video/箭頭.png"></div></div>
+                <img src="/video/箭頭.png" class="back">
             </a>
             <% }else if(title_bar[4] != null){ %>
-            <a href="/video/v_interview/<%= back_name %>">
-                <div class="back"><div class="seahorse"><img src="/video/箭頭.png"></div></div>
+            <a href="/video/<%= back_name %>">
+                <img src="/video/箭頭.png" class="back">
             </a>
             <% } %>
 
@@ -37,7 +37,7 @@
                     <%/* 三角形*/%>
                     <div class="tri"></div>
 
-                    <a href="/video/v_interview">
+                    <a href="../">
                         <div class="title">
                             <%= title_bar[0] %><div class="small_title"><%= title_bar[1] %></div>
                         </div>
@@ -45,7 +45,7 @@
 
                     <div class="tri"></div>
 
-                    <a href="/video/v_interview/<%= back_name %>">
+                    <a href="../../../<%= back_name %>">
                         <div class="title">
                             <%= title_bar[2] %><div class="small_title"><%= title_bar[3] %></div>
                         </div>
@@ -60,7 +60,7 @@
                 <% }else if(title_bar[2] != null && title_bar[4] == null){ %>
                     <div class="tri"></div>
                     <% if(title_bar[0] === 'LIFE'){ %>
-                        <a href="/video/v_nculife">
+                        <a href="../v_nculife/">
                             <div class="title">
                                 <%= title_bar[0] %><div class="small_title"><%= title_bar[1] %></div>
                             </div>
@@ -72,7 +72,7 @@
                             <font color="#ec6d4f"><%= title_bar[2] %></font><div class="small_title"><%= title_bar[3] %></div>
                         </div>
                     <% }else if(title_bar[0] === 'INTERVIEW'){ %>
-                        <a href="/video/v_interview">
+                        <a href="../">
                             <div class="title">
                                 <%= title_bar[0] %><div class="small_title"><%= title_bar[1] %></div>
                             </div>
