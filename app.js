@@ -14,7 +14,6 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
-// var cronJob = require('cron').CronJob;
 
 // cache views
 app.set('view cache', false);
@@ -79,25 +78,25 @@ var userMiddleWare = require('./routes/check-user');
 // 首頁
 app.use('/', index);
 // 新生必讀
-app.use('/documents',userMiddleWare.isAdmin, documents);
+app.use('/documents', documents);
 // 小遊戲
-app.use('/coolgame',userMiddleWare.isAdmin, coolgame);
+app.use('/coolgame', coolgame);
 // 影音專區
-app.use('/video',userMiddleWare.isAdmin, video);
+app.use('/video', video);
 // 新生Q&A
-app.use('/qna',userMiddleWare.isAdmin, qna);
+app.use('/qna', qna);
 // 關於我們
-app.use('/about',userMiddleWare.isAdmin, about);
+app.use('/about', about);
 // 校園地圖
-app.use('/campus',userMiddleWare.isAdmin, campus);
+app.use('/campus', campus);
 // 中大生活
-app.use('/life',userMiddleWare.isAdmin, life);
+app.use('/life', life);
 // 系所社團
-app.use('/groups',userMiddleWare.isAdmin, groups);
+app.use('/groups', groups);
 // 個人專區
-app.use('/personal',userMiddleWare.isAdmin, personal);
+app.use('/personal', personal);
 // 常用連結
-app.use('/link',userMiddleWare.isAdmin, link);
+app.use('/link', link);
 
 //multer settings
 var multer = require('multer');
