@@ -38,14 +38,14 @@
       <script>
           $(document).ready(function(){
             var width;
-            if(innerWidth>outerWidth)
+            if(innerWidth > outerWidth)
                 width = outerWidth;
             else
                 width = innerWidth;
             if(width > 768)
                 document.location.href = "/documents/index_com";
             $(window).resize(function(){
-                if(innerWidth>outerWidth)
+                if(innerWidth > outerWidth)
                     width = outerWidth;
                 else
                     width = innerWidth;

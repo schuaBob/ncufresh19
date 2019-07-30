@@ -52,6 +52,9 @@ router.get('/indexmodal', function (req, res, next) {
     if (review.Element_Name == "工程四館"){
       review.Element_Name = "E4 環工化工館大樓";
     }
+    if (review.Element_Name == "宿舍服務中心"){
+      review.Element_Name = "住宿服務組";
+    }
     if (content[review.Element_Name]) {
       review.Element_Intro = content[review.Element_Name];
     }
