@@ -7,6 +7,8 @@ var UserSchema = mongoose.Schema({
     unit: String,
     role: { type: String, default: "student" },
     name: String,
+    game_id: String,
+    game_date:{ type: Date, default: new Date() },
     score_sum: { type: Number, default: 0 },
     score_high: { type: Number, default: 0 },
     update: { type: Date, default: Date.now() },
