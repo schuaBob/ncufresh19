@@ -113,7 +113,7 @@
                 <% if (content_this==="intro") {%>
 
                     <div class="info">
-                        <div class="title">
+                        <div class="association_title">
                             簡介
                         </div>
                         <div class="content">
@@ -123,23 +123,32 @@
                     </div>
                     <% } else if(content_this==="section"){%>
                         <div class="info">
-                            <div class="title">
+                            <div class="association_title">
                                 部門介紹
                             </div>
                             <div class="content">
                                 <%=content[0].section%>
+
+
                             </div>
+                            <% } else if(content_this==="photos"){%>
+                                <div class="info">
+                                    <div class="association_title">
+                                        活動剪影
+                                    </div>
+                                    <div class="content">
+                                        <% for(var i in pic) {%>
+                                            <img src="<%= pic[i].pathname%>" class=stu_img>
+                                            <%}%>
+                                    </div>
+                                </div>
 
-                        </div>
-                        <% } else if(content_this==="photos"){%>
+                                <%}%>
+                                    <img src="學生會.PNG" class=backgroundimg>
 
-                            <img src="<%= pic[i]['src']%>" class=backgroundimg>
-                            <%}%>
-                                <img src="學生會.PNG" class=backgroundimg>
+                                    <script src="/groups/js/groups.js "></script>
 
-                                <script src="/groups/js/groups.js "></script>
-
-                                <% include ../layouts/js %>
+                                    <% include ../layouts/js %>
 </body>
 
 </html>
