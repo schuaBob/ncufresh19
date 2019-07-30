@@ -6,7 +6,7 @@
     <% include ../layouts/head %>
     <% include ../layouts/script %>
     <link rel='stylesheet' href='style.css' />
-    <script type="text/javascript" src="/js/ckeditor.js"></script>
+    <script type="text/javascript" src="/js/tinymce.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
@@ -70,11 +70,18 @@
     <% include js %>
     <script>
         $(document).ready(function(){
-            var width = innerWidth;
+            var width;
+            if(innerWidth > outerWidth)
+                width = outerWidth;
+            else
+                width = innerWidth;
             if(width <= 768)
                 document.location.href = "/documents/phone/undergraduate";
             $(window).resize(function(){
-                width = innerWidth;
+                if(innerWidth > outerWidth)
+                    width = outerWidth;
+                else
+                    width = innerWidth;
                 if(width <= 768)
                     document.location.href = "/documents/phone/undergraduate";
             });
