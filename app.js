@@ -74,29 +74,30 @@ var life = require('./routes/life');
 var groups = require('./routes/groups');
 var personal = require('./routes/personal');
 var link = require('./routes/link');
+var userMiddleWare = require('./routes/check-user');
 
 // 首頁
 app.use('/', index);
 // 新生必讀
-app.use('/documents', documents);
+app.use('/documents',userMiddleWare.isAdmin, documents);
 // 小遊戲
-app.use('/coolgame', coolgame);
+app.use('/coolgame',userMiddleWare.isAdmin, coolgame);
 // 影音專區
-app.use('/video', video);
+app.use('/video',userMiddleWare.isAdmin, video);
 // 新生Q&A
-app.use('/qna', qna);
+app.use('/qna',userMiddleWare.isAdmin, qna);
 // 關於我們
-app.use('/about', about);
+app.use('/about',userMiddleWare.isAdmin, about);
 // 校園地圖
-app.use('/campus', campus);
+app.use('/campus',userMiddleWare.isAdmin, campus);
 // 中大生活
-app.use('/life', life);
+app.use('/life',userMiddleWare.isAdmin, life);
 // 系所社團
-app.use('/groups', groups);
+app.use('/groups',userMiddleWare.isAdmin, groups);
 // 個人專區
-app.use('/personal', personal);
+app.use('/personal',userMiddleWare.isAdmin, personal);
 // 常用連結
-app.use('/link', link);
+app.use('/link',userMiddleWare.isAdmin, link);
 
 //multer settings
 var multer = require('multer');

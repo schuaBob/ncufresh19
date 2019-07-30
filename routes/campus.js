@@ -4,7 +4,7 @@ var router = express.Router();
 
 var content = "";
 
-request('http://localhost:3000/campus/%E5%85%A7%E5%AE%B9.json', function (error, response, body) {
+request('http://localhost:4000/campus/%E5%85%A7%E5%AE%B9.json', function (error, response, body) {
   content = JSON.parse(body);
 });
 
