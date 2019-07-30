@@ -501,7 +501,7 @@ body {
 
 
 /*手機板*/
-@media only screen and (max-device-width: 768px)  {
+@media only screen and (max-device-width: 768px){
   /*index*/
   .character {
     width: 100vw;
@@ -574,7 +574,7 @@ body {
     color: rgb(13, 73, 102);
     height: 8vh;
     font-size: 6.5vw;
-    padding-left: 19vw;
+    padding-left: 22vw;
     margin-top: 1.5vh;
     cursor: pointer;
   }
@@ -630,4 +630,71 @@ body {
     overflow: auto;
   }
 
+}
+
+@media only screen and (max-device-width: 768px) and (orientation:landscape)  {
+  .p_option {
+    font-weight: 500;
+    color: rgb(13, 73, 102);
+    height: 8vh;
+    font-size: 5vw;
+    padding-left: 26vw;
+    margin-top: 12.5vh;
+    cursor: pointer;
+  }
+
+  .link_und {
+    width: 20vw;
+    margin: 1vh 4vw;
+    font-size: 5.3vw;
+    text-decoration: none;
+    color: black;
+  }
+
+  .index_p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 65vh;
+    font-size: 8.5vw;
+    margin-left: 55vw;
+    color: white;
+  }
+
+  .fish_size {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin-left: 14vw;
+    padding-top: 2.5vh;
+  }
+
+  .character {
+    width: 100vw;
+    height: 65vh;
+    left: 0;
+    top: 2vh;
+    position: relative;
+    margin: auto;
+  }
+}
+
+@media only screen and (max-device-width: 768px) and (orientation:portrait)  {
+  .fish_size {
+    /* width: 300px; */
+    height: 451px;
+    /* max-width: 100%; */
+    /* max-height: 100%; */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto 0.5vh;
+    position: absolute;
+}
 }

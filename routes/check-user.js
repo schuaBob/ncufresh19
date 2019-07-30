@@ -1,21 +1,26 @@
 module.exports = {
     isLoggedIn:
         function(req, res, next){
-            if(!req.isAuthenticated())
+            if(!req.isAuthenticated()){
                 return res.redirect('/login');
-            next();
+            } else {
+                next();
+            }
         },
     isAllowtoLogin:
         function(req, res, next){
-            if(req.isAuthenticated())
+            if(req.isAuthenticated()) {
                 return res.redirect('/');
-            next();
+            } else {
+                next();
+            }
         },
     isAdmin:
         function(req,res,next) {
-            if(req.isAuthenticated() && req.user.admin === "admin" ){
-                next();
+            if(req.isAuthenticated() && req.user.role === "admin" ){
+                return next();
+            } else {
+                return res.redirect('/');
             }
-            return res.redirect('/');
         }
 }

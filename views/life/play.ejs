@@ -24,10 +24,8 @@
                         <span id="life">中大生活</span>
                     </div>
                 </div>
-            <%_ if (user && user.role === 'admin'){ -%>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal" style="position: absolute; z-index: 1; left: 15vw;" id="delete_picture">刪除/修改</button>
-            <%_ } %>
         <main id="main">
             <div class="backgroundImg">
                 <img class="bgImage" src="燈塔.png">
@@ -37,7 +35,9 @@
                     <% for(let i in data) { %>
                         <div class="pictureArea">
                             <div class="pic">
-                                <img class="picture" src="<%= data[i]['picture'] %>">
+                                <div class="picture">
+                                    <%- data[i]['picture'] %>
+                                </div>
                             </div>
                         <div class="textArea">
                             <div class="contentMainTitle">
@@ -67,35 +67,52 @@
                             <div class="modal-body">
                                 <form action="addPlayContent" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
+                                            <label class="col-md-4 control-label" for="elecategory">主標題選項</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control input-md bigTitle" id="descBigTitle" name="modifyMainTitle">
+                                                    <option value="default">請選擇</option>
+                                                    <% for(var i in data) { %>
+                                                            <option value="<%=data[i].mainTitle%>"><%-data[i].mainTitle%></option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <!-- <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">請輸入要修改的篇章大標題</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="modifyMainTitle" id="editor2"></textarea>
+                                            <textarea class="form-control input-md" name="modifyMainTitle" id="editor"></textarea>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">主要標題</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="mainTitle" id="editor1"></textarea>
+                                            <textarea class="form-control input-md" name="mainTitle" id="editor"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">子標題</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="subTitle" id="editor2"></textarea>
+                                            <textarea class="form-control input-md" name="subTitle" id="editor"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">敘述文字</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="content" id="editor5"></textarea>
+                                            <textarea class="form-control input-md" name="content" id="editor"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                            <label class="col-md-4 control-label" for="elecategory">圖片</label>
+                                            <div class="col-md-16">
+                                                <textarea class="form-control input-md" name="picture" id="editor"></textarea>
+                                            </div>
+                                        </div>
+                                    <!-- <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">圖片</label>
                                         <div class="col-md-12">
                                             <input type="file" class="form-control input-md" name="picture">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">儲存/修改</button>
                                     </div>

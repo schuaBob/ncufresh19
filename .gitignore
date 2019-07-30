@@ -31,3 +31,4 @@ pids
 
 # mongodump file
 dump/
+dump.zip

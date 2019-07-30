@@ -372,8 +372,8 @@ router.post('/addPlayContent', upload.single('picture'), function(req, res, next
           else console.log("success to update content");
       });
       };
-      if (req.file) {
-        play.updateOne({ mainTitle: req.body.modifyMainTitle }, {picture: pathed}, function(err) {
+      if (req.body.picture) {
+        play.updateOne({ mainTitle: req.body.modifyMainTitle }, {picture: req.body.picture}, function(err) {
           if (err) console.log("Fail to update");
           else console.log("success to update picture");
       });
@@ -382,7 +382,7 @@ router.post('/addPlayContent', upload.single('picture'), function(req, res, next
       new play({
         mainTitle: req.body.mainTitle,
         subTitle: req.body.subTitle,
-        picture: pathed,
+        picture: req.body.picture,
         content: req.body.content
       }).save(function(err) {
         if (err) console.log('FAIL');

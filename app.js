@@ -14,7 +14,6 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
-// var cronJob = require('cron').CronJob;
 
 // cache views
 app.set('view cache', false);
@@ -74,6 +73,7 @@ var life = require('./routes/life');
 var groups = require('./routes/groups');
 var personal = require('./routes/personal');
 var link = require('./routes/link');
+var userMiddleWare = require('./routes/check-user');
 
 // 首頁
 app.use('/', index);

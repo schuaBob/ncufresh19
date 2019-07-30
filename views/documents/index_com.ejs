@@ -28,22 +28,17 @@
     <script>
         $(document).ready(function(){
             var width;
-            if(innerWidth>outerWidth)
+            if(innerWidth > outerWidth)
                 width = outerWidth;
             else
                 width = innerWidth;
-            console.log("ready");
-            console.log(width);
             if(width <= 768)
                 document.location.href = "/documents/index_phone";
            $(window).resize(function(){
-               
-                if(innerWidth>outerWidth)
+                if(innerWidth > outerWidth)
                     width = outerWidth;
                 else
                     width = innerWidth;
-                console.log("resize");
-                console.log(width);
                 if(width <= 768)
                     document.location.href = "/documents/index_phone";
             });
