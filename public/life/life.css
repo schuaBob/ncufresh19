@@ -468,13 +468,13 @@ ul.timeline > li:before {
 .textArea {
   position: relative;
   width: 60vw;
-  text-align: center;
+  /* text-align: center; */
   float: left;
 }
 
-
-
-  
+.text {
+  word-break: break-all;
+}
 
 
 
