@@ -4,7 +4,8 @@ $(document).ready(() => {
     $('#fullpage').fullpage({
         anchors: ['indexPage', 'newsPage', 'callenderPage'],
         slideSelector: '.fpslide',
-        scrollOverflow: true
+        scrollOverflow: true,
+        normalScrollElements:'#news-body, #board-detail'
     });
 
     $.fn.fullpage.setRecordHistory(false);

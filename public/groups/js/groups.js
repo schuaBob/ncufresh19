@@ -14,6 +14,7 @@ $(document).ready(function() { //顯示或更換顯示學院
         }
 
     }
+
     if (arr[4] === "department") {
         if (arr.length == 6) {
             department_type = parseInt(arr[arr.length - 1])
