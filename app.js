@@ -14,7 +14,6 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
-// var cronJob = require('cron').CronJob;
 
 // cache views
 app.set('view cache', false);
