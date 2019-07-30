@@ -449,6 +449,7 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
         res.redirect('/login');
         return;
       }*/
+      
       if (obj.name !== name) {
         console.log(id + ': 真實姓名不合');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
@@ -471,6 +472,7 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
         });
       }
     });
+
   } else {
     res.redirect('/register');
   }

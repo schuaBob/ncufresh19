@@ -169,13 +169,30 @@ router.post("/getQuestion",function(req,res){
       return err;
     }    
     qnaDB.updateOne({postID:req.body.postID},{$inc:{count:1}},function(err,result){
-      
+      if(err){
+        return err;
+      } 
     });       
     res.send(result); 
-  });  
-  
+  });    
 });
-
+router.post("/toModify",function(req,res){
+  //判斷是否登入
+  qnaDB.updateOne({postID:req.body.postID},{category:req.body.category,aContent:req.body.content,reviewed:req.body.reviewed},function(err,result){
+    if(err){
+      return err;
+    }
+    res.send({"result":"success"});
+  });
+});
+router.post("/toDelete",function(req,res){
+  qnaDB.deleteOne({postID:req.body.postID},function(err,result){
+    if(err){
+      return err;
+    }
+    res.send({"result":"success"});    
+  });
+});
 function getPostID(){  
   var date = new Date();   
   return (date.getYear()-100)+""+(date.getMonth()+1)+date.getDate()+date.getHours()+date.getMinutes()+date.getSeconds()+date.getMilliseconds();

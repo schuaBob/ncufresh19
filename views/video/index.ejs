@@ -12,9 +12,7 @@
 
     <script>
         $(document).ready(function(){
-            var width = innerWidth;
-            console.log(width)
-            if(width <= 1024) document.location.href = "/video/index_phone/";
+            if(screen.width <= 1024) document.location.href = "/video/index_phone/";
             else document.location.href = "/video/index_com/";
         });
     </script>

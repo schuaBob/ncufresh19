@@ -81,8 +81,7 @@ main {
 }
 
 #secondSection {
-    position: absolute;
-    height: calc(100% - 60px);
+    position: relative;
     z-index: 500;
     top: 0;
     padding: 3vw 5vw;
@@ -97,8 +96,8 @@ main {
 }
 
 .card-img {
-    margin-top: 2%;
-    padding: 12%;
+    width: 50%;
+    padding:10%;
 }
 
 .newsTime {
@@ -137,6 +136,7 @@ main {
     max-height: 25vw;
     overflow-y: scroll;
     overflow-x: hidden;
+    min-height: 300px;
 }
 
 #carouselExampleIndicators {
@@ -196,6 +196,10 @@ main {
 
 #pickMonth .row {
     height: 30%;
+}
+.col-lg{
+    padding-top: 30px;
+    padding-bottom:30px;
 }
 
 .selectMonth:hover {
