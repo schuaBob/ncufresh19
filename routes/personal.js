@@ -20,12 +20,12 @@ router.get('/', checkUser.isLoggedIn, function(req, res, next) {
     } else {
       picname = req.user.id + ".png";
     }
-    Question.find({authorID: req.user.id}).exec(function(err, question) {
+    Question.find({postID: req.user.id}).exec(function(err, question) {
       if(err) {
         return next(err);
       }
         res.render('personal/index', {
-          title: '個人專區',
+          title: '新生知訊網 | 個人專區',
           question: question,
           user: req.user,
           picname: picname
@@ -50,7 +50,7 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage});
 
 router.post('/editPicture', upload.single('picture'), function(req, res, next) {
-  var fileName = "public/personal/profile-photo" + req.user.id + ".png";
+  var fileName = "public/personal/profile-photo/" + req.user.id + ".png";
   console.log(req.user.id + " upload picture");
   fs.access(fileName, fs.constants.R_OK, (err) => {
     if(err) {
@@ -60,10 +60,12 @@ router.post('/editPicture', upload.single('picture'), function(req, res, next) {
         if(err) {
           return next(err);
         }
+        return;
         res.redirect('/personal');
       });
     }
   });
+  res.redirect('/personal');
 });
 
 router.get('/deleteQna/:id', checkUser.isLoggedIn, function(req, res, next) {
