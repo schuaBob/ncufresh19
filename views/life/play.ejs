@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>新生知訊網｜中大生活</title>
         <% include ../layouts/head %>
         <% include ../layouts/script %>
@@ -24,76 +25,46 @@
                         <span id="life">中大生活</span>
                     </div>
                 </div>
-            <%_ if (user && user.role === 'admin'){ -%>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal" style="position: absolute; z-index: 1;">新增/修改內容</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyModal" style="position: absolute; z-index: 1; left: 15vw;" id="delete_picture">刪除/修改</button>
-            <%_ } %>
         <main id="main">
             <div class="backgroundImg">
                 <img class="bgImage" src="燈塔.png">
             </div>
             <!--content-->
             <div class="content">
-                    <% for(let i in data) { %>
-                        <div class="pictureArea">
-                            <div class="pic">
-                                <img class="picture" src="<%= data[i]['picture'] %>">
-                            </div>
-                        <div class="textArea">
-                            <div class="contentMainTitle">
-                                <%- data[i]['mainTitle'] %>
-                            </div>
-                            <div class="contentSubTitle">
-                                <%- data[i]['subTitle'] %>
-                            </div>
-                            <div class="text">
-                                <%- data[i]['content'] %>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
+                <div class="pictureArea">
+                    <%- data[0]['content'] %>
+                </div>
             </div>
             
             <!--Modal-->
-                <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="exampleModalLabel">新增內容</h4>
+                                <h4 class="modal-title" id="exampleModalLabel">新增/修改內容</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true"> &times;</span>
                                 </button> 
                             </div>
                             <div class="modal-body">
-                                <form action="addPlayContent" method="POST" enctype="multipart/form-data">
+                                <form action="addPlayContent" method="POST">
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="elecategory">請輸入要修改的篇章大標題</label>
-                                        <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="modifyMainTitle" id="editor2"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="elecategory">主要標題</label>
-                                        <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="mainTitle" id="editor1"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="elecategory">子標題</label>
-                                        <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="subTitle" id="editor2"></textarea>
-                                        </div>
+                                            <label class="col-md-4 control-label" for="elecategory">主標題選項</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control input-md bigTitle" id="descBigTitle" name="modifyMainTitle">
+                                                    <option value="default">請選擇</option>
+                                                    <% for(var i in data) { %>
+                                                            <option value="<%=data[i].content%>"><%-data[i].content%></option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">敘述文字</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="content" id="editor5"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="elecategory">圖片</label>
-                                        <div class="col-md-12">
-                                            <input type="file" class="form-control input-md" name="picture">
+                                            <textarea class="form-control input-md tinyeditor" name="content" id="editor"><%- data[0]['content'] %></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -104,7 +75,7 @@
                         </div> <!--/.modal-content-->
                     </div> <!--/.modal -->
                 </div>
-            <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

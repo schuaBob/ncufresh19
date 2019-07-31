@@ -7,8 +7,11 @@
     </title>
     <% include ../layouts/head %>
         <% include ../layouts/script %>
+            <script type="text/javascript" src="/js/tinymce.min.js"></script>
+
             <link rel='stylesheet' href='/groups/style.css' />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 
 <body class="yellowBg">
@@ -58,7 +61,7 @@
 
                                     <div class="form-group">
                                         <label for="intro" class="col-form-label">介紹</label>
-                                        <textarea class="form-control" id="intro" name="intro"></textarea>
+                                        <textarea class="form-control" id="intro" name="intro" cols="10" rols="10"></textarea>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -93,7 +96,7 @@
 
                                     <div class="form-group">
                                         <label for="edit_intro" class="col-form-label">介紹</label>
-                                        <textarea class="form-control" id="edit_intro" name="intro"></textarea>
+                                        <textarea class="form-control tinyeditor" id="edit_intro" name="intro" cols="10" rols="10"></textarea>
                                     </div>
 
                                 </form>
@@ -111,7 +114,7 @@
                     <ul>
                         <% for(var i in others) {%>
                             <a style="text-decoration:none; color: #0D4966;" href="/groups/others/<%=others[i].name%>">
-                    <li class="sideli" id="<%=others[i].name%>"><i class="fas fa-angle-right"></i>
+                    <li class="sideli horizontal" id="<%=others[i].name%>"><i class="fas fa-angle-right"></i>
                         <%=others[i].name%>
                     </li>
                 </a>
@@ -120,11 +123,11 @@
                 </div>
                 <%_ if(others_this!==null){ -%>
                     <div class="info">
-                        <div class="others">
+                        <div class="info_title">
                             <%=others_this.name%>
                         </div>
                         <div class="content">
-                            <%=others_this.intro%>
+                            <%-others_this.intro%>
                         </div>
 
                     </div>

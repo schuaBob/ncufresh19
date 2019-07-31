@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <% include ../../layouts/head %>
+    <% include ../../layouts/script  %>
+    <link rel='stylesheet' href='/video/style.css' />
+  </head>
+  <body>
+    
+    <% include ../../layouts/header %>
+    <main>
+
+        <%/* 藍色區域 */%>
+        <div class="video_area">
+          <div id="player"></div>
+        </div>
+
+        <%/* 引入Youtube API */%>
+        <script>
+            /* Youtube api */
+    
+            // This code loads the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
+    
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        
+            // This function creates an <iframe> (and YouTube player)
+            //    after the API code downloads.
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    height: '360',
+                    width: '640',
+                    videoId: '<%= ytID %>',
+                    events: {
+                        'onReady': yt.onPlayerReady,
+                        'onStateChange': yt.onPlayerStateChange
+                    }
+                });
+            }
+        </script>
+
+
+        <%/* 標題 */%>
+        <%/* 標題 */%>
+        <% include ./title_bar_smp %>
+        
+        
+    </main>
+
+  </body>
+  <% include ../../layouts/js %>
+</html>

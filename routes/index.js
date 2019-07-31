@@ -108,7 +108,7 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/index-edit', (req, res, next) => {
+router.get('/index-edit',checkUser.isAdmin, (req, res, next) => {
   Promise.all([
     docNews.find({}, {
       _id: 0,
@@ -449,6 +449,7 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
         res.redirect('/login');
         return;
       }*/
+      
       if (obj.name !== name) {
         console.log(id + ': 真實姓名不合');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
@@ -471,6 +472,7 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
         });
       }
     });
+
   } else {
     res.redirect('/register');
   }
@@ -584,14 +586,5 @@ router.get('/adduser', function (req, res, next) {
     res.redirect('/login');
   });
 });
-router.get('/adduserrnd', function (req, res, next) {
-  Users.createUser(new Users({
-    id: "108000022"+Math.floor(Math.random() * 1000),
-    unit: "csie",
-    name: "eugene"+Math.floor(Math.random() * 1000)
-  }), function (err, user) {
-    if (err) next(err);
-    res.redirect('/login');
-  });
-});
+
 module.exports = router;
