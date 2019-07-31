@@ -45,7 +45,7 @@ body {
   position: fixed;
   padding: 0px;
   width: 63%;      
-  z-index: 8763;
+  
   top: 2%;
   left: 30%;
 }
@@ -82,10 +82,7 @@ body {
   height: 47vh;
   
 }
-.ck-content > p{
-  /* height: 23vh; */
-  font-size:1.5em;
-}
+
 .answer {
   width: 63%;
   position: absolute;
@@ -126,6 +123,7 @@ body {
   background-color: #EAEAEA;
   height: 80%;
   border-radius: 4px;
+  word-wrap:break-word;
   /* border: #e5e5e5 1px solid;     */
 }
 #mdoption{
@@ -183,7 +181,7 @@ body {
 
 .option {
   font-size: 3vh;
-  margin-top: 5vh;
+  margin-top: 5vh;  
 }
 
 .option ul {
@@ -252,7 +250,7 @@ body {
 .searchBar {    
   position: absolute;
   right: 6%;
-  top:9px;
+  top:7px;
   /* float: right; */
 }
 #searchForm{
@@ -324,8 +322,7 @@ thead>tr {
 
 
 .modal {
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.4);  
 }
 
 .modal-dialog {
@@ -342,9 +339,12 @@ thead>tr {
 .searchInput {
   border-radius: 30px;
   margin-right: 2px;
-  border:1px solid black;
+  border:1px solid #B9B9B9;
   padding: 1% 4%;
   width: 93%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
 }
 
 /* iPhone XR */
@@ -355,6 +355,16 @@ thead>tr {
       body{
         background-image: none;
       }      
+      #mobileAskBtn{
+        display: inline !important;
+      }
+      #notice-dialog{
+        max-width: none;
+      }
+      #notice-content{
+        width:90%;
+        height:55vh;
+      }
       #outterTitleSpace{
         width:40%;
       }
@@ -383,6 +393,10 @@ thead>tr {
       
       thead > tr{
         white-space:nowrap;
+        font-size:6vw;
+      }
+      tbody > tr{
+        font-size:5vw;
       }
       .fa-arrow-alt-circle-up {
         visibility: hidden;  
@@ -393,7 +407,7 @@ thead>tr {
         z-index: 87;
       }
       .sortButton{
-        color:#00B7FF;    
+        color:#0D4966;    
       }
       .sort_SearchBar{
         padding:0;
@@ -410,12 +424,15 @@ thead>tr {
         border-radius: 360px;   
         
       }
+      #simpleSieve{
+        width: 6vw;
+      }
       .mobileFilter{
         display: block;
         position: absolute;    
         text-align: right;
         right: 0;
-        top: -3vh;
+        top: -4vh;
         z-index: 88;
       }
       .mobileFilterButton{
@@ -437,7 +454,7 @@ thead>tr {
         background-color: #D0CECE;
         position: relative;
         top: -4%;
-        padding: 1px 0;
+        padding: 1px 0;        
       }
     
       .option{
@@ -455,6 +472,16 @@ thead>tr {
         margin-bottom: 21%;
         text-align: center;
         border-radius: 2px;
+        padding: 4% 0%;
+      }
+      .option i{
+        display: none;
+      }
+      .contentTable{
+        overflow-x:auto;
+      }
+      #Top{        
+        width: 14vw !important;        
       }
     }
 /* iphone 6/7/8 */
