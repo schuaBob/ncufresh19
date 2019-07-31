@@ -108,7 +108,7 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/index-edit', (req, res, next) => {
+router.get('/index-edit',checkUser.isAdmin, (req, res, next) => {
   Promise.all([
     docNews.find({}, {
       _id: 0,
@@ -586,14 +586,5 @@ router.get('/adduser', function (req, res, next) {
     res.redirect('/login');
   });
 });
-router.get('/adduserrnd', function (req, res, next) {
-  Users.createUser(new Users({
-    id: "108000022"+Math.floor(Math.random() * 1000),
-    unit: "csie",
-    name: "eugene"+Math.floor(Math.random() * 1000)
-  }), function (err, user) {
-    if (err) next(err);
-    res.redirect('/login');
-  });
-});
+
 module.exports = router;

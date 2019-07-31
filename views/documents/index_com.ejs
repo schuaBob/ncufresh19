@@ -5,6 +5,7 @@
     <title><%= title %></title>
     <% include ../layouts/head %>
     <% include ../layouts/script %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel='stylesheet' href='style.css' />    
 </head>
 <body class="index_bg">
@@ -15,11 +16,12 @@
             <div class="character">
                 <a href="/documents/undergraduate_must"><img src="大學生.png" class="under fish_size"></a>
             </div>
-            <div class="character">
-                <a href="/documents/graduate_must"><img src="碩士魚.png" class="gra fish_size "></a>
+            <div class="character gra">
+                <a href="/documents/graduate_must"><img src="研究生.png" class="fish_size2 "></a>
+                <a href="/documents/graduate_must"><img src="研究生字.png" class="fish_size3  "></a>
             </div>
             <div class="character">
-                <a href="/documents/common"><img src="共同事項.png" class="com fish_size"></a>
+                <a href="/documents/common"><img src="共同事項.png" class="com fish_size size_sp"></a>
             </div>
         </div>
     </main>
@@ -28,22 +30,17 @@
     <script>
         $(document).ready(function(){
             var width;
-            if(innerWidth>outerWidth)
+            if(innerWidth > outerWidth)
                 width = outerWidth;
             else
                 width = innerWidth;
-            console.log("ready");
-            console.log(width);
             if(width <= 768)
                 document.location.href = "/documents/index_phone";
            $(window).resize(function(){
-               
-                if(innerWidth>outerWidth)
+                if(innerWidth > outerWidth)
                     width = outerWidth;
                 else
                     width = innerWidth;
-                console.log("resize");
-                console.log(width);
                 if(width <= 768)
                     document.location.href = "/documents/index_phone";
             });

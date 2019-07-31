@@ -3,6 +3,7 @@
 
 <head>
     <title>subStudy</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <% include ../../layouts/head %>
     <% include ../../layouts/script %>
     <link rel=stylesheet type="text/css" href="../../life/life_phone.css">
@@ -27,7 +28,9 @@
             <div class="subContent">
                 <div class="subStudyContent">
                     <div class="SpictureArea">
-                        <img id="subStudyImg" src="../subPicture/<%=page%>.png">
+                        <div id="subStudyImg">
+                            <%- data1[i]['picture'] %>
+                        </div>
                     </div>
                     <div class="event">
                         <div id="eventTitle">經歷</div>

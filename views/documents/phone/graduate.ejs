@@ -5,10 +5,11 @@
     <title><%= title %></title>
     <% include ../../layouts/head %>
     <% include ../../layouts/script %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel='stylesheet' href='/documents/style.css' />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <script type="text/javascript" src="/js/ckeditor.js"></script>
+    <script type="text/javascript" src="/js/tinymce.min.js"></script>
 </head>
 
 <body>
@@ -55,13 +56,15 @@
     <script>
         $(document).ready(function(){
             $(window).resize(function(){
-                var width = innerWidth;
+                var width;
+                if(innerWidth > outerWidth)
+                    width = outerWidth;
+                else
+                    width = innerWidth;
                 if(width <= 768)
                     document.location.href = "/documents/phone/graduate";
-                var width = innerWidth;
-                if(width > 768){
+                else
                     document.location.href = "/documents/graduate_must";
-                }
                 });
             });
     </script>

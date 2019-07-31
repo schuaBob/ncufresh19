@@ -14,7 +14,6 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
-// var cronJob = require('cron').CronJob;
 
 // cache views
 app.set('view cache', false);
@@ -24,8 +23,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({limit: "50mb"}));
+app.use(express.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 app.use(cookieParser('NcuFresh19'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -74,6 +73,7 @@ var life = require('./routes/life');
 var groups = require('./routes/groups');
 var personal = require('./routes/personal');
 var link = require('./routes/link');
+var userMiddleWare = require('./routes/check-user');
 
 // 首頁
 app.use('/', index);
