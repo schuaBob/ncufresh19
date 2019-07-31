@@ -275,7 +275,7 @@ body {
   margin-top: calc(42vh - 20vw);
   margin-bottom: auto;
   min-height: calc(69vw * 996 / 2000);
-  max-height: calc(100vh - 154px);
+  max-height: 400px;
 }
 
 main {
@@ -514,6 +514,7 @@ li {
   bottom : 2.5%;  
   display: flex;
   position: absolute;
+  min-height: 200px;
 }
 
 .sailor1 {
