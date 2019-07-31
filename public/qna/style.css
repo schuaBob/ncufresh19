@@ -21,6 +21,7 @@ a {
 }
 
 body {
+<<<<<<< HEAD
   overflow: hidden;
   moz-user-select: none;
   /* for Firefox */
@@ -123,6 +124,19 @@ body {
 #mdoption{
   display:flex;
   position: relative;
+=======
+    overflow: hidden;
+    moz-user-select: none;
+    /* for Firefox */
+    -webkit-user-select: none;
+    /* for Chrome */
+    background-image: url("background.png");
+    background-repeat: no-repeat;
+    background-position-y: 38vh;
+    /* background-position-x: 55%; */
+    background-color: #FFF9DC;
+    background-size: 100%;
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 }
 
 .main {
@@ -172,8 +186,13 @@ body {
 }
 
 .option {
+<<<<<<< HEAD
   font-size: 3vh;
   margin-top: 5vh;  
+=======
+    font-size: 3vh;
+    margin-top: 5vh;
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 }
 
 .option ul {
@@ -247,11 +266,21 @@ body {
 .sortButton:hover {
     cursor: pointer;
 }
+<<<<<<< HEAD
 .searchBar {    
   position: absolute;
   right: 6%;
   top:7px;
   /* float: right; */
+=======
+
+.searchBar {
+    min-width: 187px;
+    position: absolute;
+    right: 6%;
+    top: 9px;
+    /* float: right; */
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 }
 
 .form-inline {
@@ -320,7 +349,12 @@ thead>tr {
 }
 
 .modal {
+<<<<<<< HEAD
   background-color: rgba(0, 0, 0, 0.4);  
+=======
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 }
 
 .modal-dialog {
@@ -335,6 +369,7 @@ thead>tr {
 }
 
 .searchInput {
+<<<<<<< HEAD
   border-radius: 30px;
   margin-right: 2px;
   border:1px solid #B9B9B9;
@@ -370,6 +405,21 @@ thead>tr {
         left:27%;
       }
       .leftSide,.ask {
+=======
+    border-radius: 30px;
+    margin-right: 2px;
+}
+
+
+/* iphone 6/7/8 */
+
+@media screen and (max-width: 375px) and (max-height: 667px) {
+    body {
+        background-image: none;
+    }
+    .leftSide,
+    .ask {
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
         display: none;
     }
     .rightSide {
@@ -387,6 +437,7 @@ thead>tr {
     }
     .buttonGroup {
         display: none;
+<<<<<<< HEAD
       }
       
       thead > tr{
@@ -426,6 +477,24 @@ thead>tr {
         width: 6vw;
       }
       .mobileFilter{
+=======
+    }
+    thead>tr {
+        white-space: nowrap;
+    }
+    .fa-arrow-alt-circle-up {
+        visibility: hidden;
+        position: absolute;
+        right: -2vw;
+        bottom: 5vh;
+        font-size: 2.5em;
+        z-index: 87;
+    }
+    .sortButton {
+        color: #00B7FF;
+    }
+    .mobileFilter {
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
         display: block;
         position: absolute;
         text-align: right;
@@ -452,12 +521,20 @@ thead>tr {
         background-color: #D0CECE;
         position: relative;
         top: -4%;
+<<<<<<< HEAD
         padding: 1px 0;        
       }
     
       .option{
         font-size: 3vh;    
         margin-top:0;
+=======
+        padding: 1px 0;
+    }
+    .option {
+        font-size: 3vh;
+        margin-top: 0;
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
         white-space: nowrap;
     }
     .option ul {
@@ -470,6 +547,7 @@ thead>tr {
         margin-bottom: 21%;
         text-align: center;
         border-radius: 2px;
+<<<<<<< HEAD
         padding: 4% 0%;
       }
       .option i{
@@ -481,6 +559,8 @@ thead>tr {
       #Top{        
         width: 14vw !important;        
       }
+=======
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
     }
 }
 
