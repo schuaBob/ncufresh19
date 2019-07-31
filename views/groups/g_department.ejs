@@ -234,13 +234,18 @@
                                                 <%_ } -%>
                                                     <%_ if(department_this.qna_link!==""){ -%>
                                                         <div class="character">
-                                                            <a class="linkhover" style="text-decoration:none;" target="_blank" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:4vw" class="link">系上問答</span></a>
+                                                            <a class="linkhover" style="text-decoration:none;" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:4vw" class="link">系上問答</span></a>
                                                         </div>
                                                         <%_ } -%>
                                 </div>
                             </div>
                             <%_ } -%>
-
+                                <div id="myshell" class="alert alert-danger alert-dismissible fade show" role="alert" style=" display:none; position: absolute; bottom:5vh; right:10vw;">
+                                    <strong>不要玩貝殼!</strong> 珍珠會掉出來啦！！！！
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                                 <img src="/groups/系所.PNG" class=backgroundimg>
 
 
