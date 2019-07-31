@@ -275,7 +275,7 @@ body {
   margin-top: calc(42vh - 20vw);
   margin-bottom: auto;
   min-height: calc(69vw * 996 / 2000);
-  max-height: calc(100vh - 154px);
+  max-height: 400px;
 }
 
 main {
@@ -852,6 +852,13 @@ li {
     display: none;
   }
 
+  .bottom_list{
+    min-height: 200px;
+  }
+
+  .sbird{
+    display: none;
+  }
 }
 
 
