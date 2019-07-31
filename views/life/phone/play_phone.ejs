@@ -19,24 +19,11 @@
         <main id="main">
             <!--content-->
             <div class="content">
-                <% for(let i in data) { %>
-                    <div class="pictureArea">
-                        <div class="pic">
-                            <img class="picture" src="<%= data[i]['picture'] %>">
-                        </div>
+                <div class="pictureArea">
                     <div class="textArea">
-                        <div class="contentMainTitle">
-                            <%- data[i]['mainTitle'] %>
-                        </div>
-                        <div class="contentSubTitle">
-                            <%- data[i]['subTitle'] %>
-                        </div>
-                        <div class="text">
-                            <%- data[i]['content'] %>
-                        </div>
+                        <%- data[0]['content'] %>
                     </div>
                 </div>
-                <% } %>
             </div>
         </main>
         <script>

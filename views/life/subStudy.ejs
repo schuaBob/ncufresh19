@@ -11,31 +11,33 @@
 <body>
     <% include ../layouts/header %>
     <% for(var i in data1) { %>
-        <% if (data1[i].type == page) { %>
+        <% if(data1[i]['type'] == page) { %> 
             <div class="studyTitle">
                 <div class="name">
-                    <p id="name"><%=data1[i]['name']%></p><p id="college"><%=data1[i]['mainTitle']%></p>
+                    <p id="name"><%- data1[i]['name']%></p><p id="college"><%- data1[i]['mainTitle']%></p>
                 </div>
             </div>
    
             <!-- <main id="main"> -->
             <div class="subContent">
                 <div class="subTitle">
-                    <p><%=data1[i]['subTitle']%></p>
+                    <p><%- data1[i]['subTitle']%></p>
                 </div>
                 <div class="subStudyContent">
                     <div class='S'></div>
                     <div class="SpictureArea">
-                        <img id="subStudyImg" src="../subPicture/<%=page%>.png">
+                        <div class="subStudyImg">
+                            <%- data1[i]['picture'] %>
+                        </div>
                     </div>
                     <div class="container mt-5 mb-5">
                         <div class="row">
                             <div class="col-md-6 offset-md-3">
                                 <ul class="timeline">
                                     <% for(var j in data2) { %>
-                                        <% if (data2[j].type == page) { %>
+                                        <% if (data2[j]['type'] == page) { %>
                                             <li>
-                                                <p id="time"><%=data2[j]['time']%></p>
+                                                <p id="time"><%- data2[j]['time']%></p>
                                                 <%- data2[j]['event']%>
                                             </li>
                                         <% } %>
