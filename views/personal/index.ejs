@@ -7,7 +7,10 @@
     <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
+    <div class="bg">
       <% include ../layouts/header %>
+      <img src="IMG_4161.JPG" id="bgi">
+    </div>
 
     <div class="container">
       
@@ -144,13 +147,21 @@
                 <div class="tag-ask" id="date-tag">
                   <p>時間</p>
                 </div>
-                <li>0724</li>
+                <% for(var a=question.length-1;a>-1;a--) { %>
+                  <% if(question[a]) { %>
+                    <%= convertDateToString(questions[index]._id.getTimestamp()) %>
+                  <% } %>
+                <% } %> 
               </div>
               <div class="box-ask" id="ask-title">
                 <div class="tag-ask" id="title-tag">
                   <p>問題</p>
                 </div>
-                <li>aaaaa</li>
+                <% for(var a=question.length-1;a>-1;a--) { %>
+                  <% if(question[a]) { %>
+                    <li><%= question[a].title %></li>
+                  <% } %>
+                <% } %> 
               </div>
             </div>
           </div>
