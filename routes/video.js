@@ -28,12 +28,21 @@ router.get('/index_smp', function (req, res, next) {
 
 
 /** 中大生活 */
+<<<<<<< HEAD
+router.get('/:device/v_nculife/', function (req, res, next) {
+  var view = '';
+  if (req.params.device === 'index_com') {
+    view = 'video/catalog';
+  }else if(req.params.device === 'index_phone') {
+    view = 'video/phone/catalog_phone';
+=======
 router.get('/:device/nculife/', function (req, res, next) {
   var view = '';
   if (req.params.device === 'index_com') {
     view = 'video/catalog';
   }else if(req.params.device === 'index_smp') {
     view = 'video/phone/catalog_smp';
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
   }
   //var title_bar = ['LIFE', '中大生活', [{ en: 'eating', ch: '食' }, {}]];
   res.render(view, {
@@ -56,6 +65,20 @@ router.get('/:device/nculife/:id', function (req, res, next) {
       title_bar = ['LIFE', '中大生活', 'LIVING', '住'];
       ytID = 'lPSmlyn0PN0';
       break;
+<<<<<<< HEAD
+
+    case 'v_going':
+      title_bar = ['LIFE', '中大生活', 'GOING', '行'];
+      ytID = '7g_zGtH13LY';
+      break;
+
+    case 'v_education':
+      title_bar = ['LIFE', '中大生活', 'EDUCATION', '育'];
+      ytID = 'x06EbxjJAcw';
+      break;
+
+    case 'v_joy':
+=======
     case 'going':
       title_bar = ['LIFE', '中大生活', 'GOING', '行'];
       ytID = '7g_zGtH13LY';
@@ -65,6 +88,7 @@ router.get('/:device/nculife/:id', function (req, res, next) {
       ytID = 'x06EbxjJAcw';
       break;
     case 'joy':
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
       title_bar = ['LIFE', '中大生活', 'JOY', '樂'];
       ytID = 'BYjcSDKP1LY';
       break;
@@ -78,9 +102,16 @@ router.get('/:device/nculife/:id', function (req, res, next) {
   if (req.params.device === "index_com") {
     view = 'video/video_model';
 
+<<<<<<< HEAD
+  } else if (req.params.device === "index_phone") {
+
+    //手機版video model
+    res.redirect('/')
+=======
   } else if (req.params.device === "index_smp") {
     //手機版video model
     view = 'video/phone/video_model_smp';
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 
   } else {
     res.status(404)
@@ -89,19 +120,32 @@ router.get('/:device/nculife/:id', function (req, res, next) {
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: title_bar,
+<<<<<<< HEAD
+    back_name: 'index_com/v_nculife/',
+=======
     back_name: 'index_com/nculife/',
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
     ytID: ytID,
     user: req.user
   });
 });
 
 /** 學長姐訪談 */
+<<<<<<< HEAD
+router.get('/:device/v_interview', function (req, res, next) {
+  var view = '';
+  if (req.params.device === 'index_com') {
+    view = 'video/catalog';
+  }else if(req.params.device === 'index_phone') {
+    view = 'video/phone/catalog_phone';
+=======
 router.get('/:device/interview', function (req, res, next) {
   var view = '';
   if (req.params.device === 'index_com') {
     view = 'video/catalog';
   }else if(req.params.device === 'index_smp') {
     view = 'video/phone/catalog_smp';
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
   }
   res.render(view, {
     title: '新生知訊網 | 影音專區',
@@ -111,6 +155,41 @@ router.get('/:device/interview', function (req, res, next) {
 });
 
 /** 學長姐訪談底下 */
+<<<<<<< HEAD
+router.get('/:device/v_interview/:collegeID', function (req, res, next) {
+  var title_bar = [];
+  switch (req.params.collegeID) {
+    case 'v_engineering':
+      title_bar =  ['INTERVIEW', '學長姐訪談', 'ENGINEERING', '工學院'];
+      break;
+
+    case 'v_liberal':
+      title_bar =  ['INTERVIEW', '學長姐訪談', 'LIBERAL ARTS', '文學院'];
+      break;
+
+    case 'v_health':
+      title_bar =  ['INTERVIEW', '學長姐訪談', 'HEALYH SCIENCES & TECHNOLOGY', '生醫理工學院'];
+      break;
+
+    case 'v_earth':
+      title_bar =  ['INTERVIEW', '學長姐訪談', 'EARTH SCIENCES', '地球科學學院'];
+      break;
+
+    case 'v_hakka':
+      title_bar =  ['INTERVIEW', '學長姐訪談', 'HAKKA STUDIES', '客家學院'];
+      break;
+
+    case 'v_science':
+      title_bar =  ['INTERVIEW', '學長姐訪談', 'SCIENCE', '理學院'];
+      break;
+
+    case 'v_computer':
+      title_bar =  ['INTERVIEW', '學長姐訪談', 'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院'];
+      break;
+
+    case 'v_management':
+      title_bar =  ['INTERVIEW', '學長姐訪談', 'MANAGEMENT', '管理學院'];
+=======
 router.get('/:device/interview/:collegeID', function (req, res, next) {
   var title_bar = [];
   switch (req.params.collegeID) {
@@ -145,6 +224,7 @@ router.get('/:device/interview/:collegeID', function (req, res, next) {
     case 'mgt':
       title_bar =  ['INTERVIEW', '學長姐訪談',
         'MANAGEMENT', '管理學院'];
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
       break;
 
     default:
@@ -157,8 +237,13 @@ router.get('/:device/interview/:collegeID', function (req, res, next) {
   if (req.params.device === "index_com") {
     view = 'video/catalog';
 
+<<<<<<< HEAD
+  } else if (req.params.device === "index_phone") {
+    view = 'video/phone/catalog_phone';
+=======
   } else if (req.params.device === "index_smp") {
     view = 'video/phone/catalog_smp';
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 
   } else {
     res.status(404)
@@ -168,13 +253,25 @@ router.get('/:device/interview/:collegeID', function (req, res, next) {
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: title_bar,
+<<<<<<< HEAD
+    back_name: 'index_com/v_interview/',
+=======
     back_name: 'index_com/interview/',
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
     user: req.user
   });
 
 })
 
 /** 學院底下 */
+<<<<<<< HEAD
+router.get('/:device/v_interview/:collegeID/:subjectID', function (req, res, next) {
+  var title_bar = [];
+  var ytID;
+  switch (req.params.subjectID) {
+    case 'v_mis':
+      title_bar =  ['INTERVIEW', '學長姐訪談', 'MANAGEMENT', '管理學院', 'MIS', '資管系'];
+=======
 router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next) {
   var title_bar = [];
   var ytID;
@@ -342,6 +439,7 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'HEALTH SCIENCES & TECHNOLOGY', '生醫理工學院',
        'BIOMEDICAL SCIENCES AND ENGINEERING', '生醫科學與工程學系'];
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
       ytID = 'yDNAkogkERQ';
       break;
 
@@ -355,15 +453,27 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
   if (req.params.device === "index_com") {
     view = 'video/video_model';
 
+<<<<<<< HEAD
+  } else if (req.params.device === "index_phone") {
+    //手機版video model
+    res.redirect('/')
+=======
   } else if (req.params.device === "index_smp") {
     //手機版video model
     view = 'video/phone/video_model_smp';
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 
   } else {
     res.status(404)
     res.end();
   }
 
+<<<<<<< HEAD
+  res.render('video/video_model', {
+    title: '新生知訊網 | 影音專區',
+    title_bar: title_bar,
+    back_name: 'index_com/v_interview/v_management/',
+=======
   var back_name;
   switch (title_bar[3]) {
     case '管理學院':
@@ -400,6 +510,7 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
     title: '新生知訊網 | 影音專區',
     title_bar: title_bar,
     back_name: back_name,
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
     ytID: ytID,
     user: req.user
   });
