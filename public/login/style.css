@@ -1,13 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #0163b0;
+body{
+  background-image: url("/index/首頁1_small.png");
+  background-position: bottom;
+  background-repeat: repeat;
+  background-size: cover;
 }
-
-a {
-  color: #00B7FF;
-}
-
 .box {
   border: 2px #c9c3c1 solid;
   background-color: white;

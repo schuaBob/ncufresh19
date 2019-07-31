@@ -1,6 +1,7 @@
 .tox.tox-silver-sink.tox-tinymce-aux {
     z-index: 6000;
 }
+
 @font-face {
     font-family: Noto Sans JP;
     src: url("/layouts/font/NotoSansJP-Regular.otf") format("opentype");
@@ -70,6 +71,9 @@ body {
     list-style-type: none;
     height: 60px;
     background-color: #fff9dc;
+    -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 3px rgba(6, 6, 85, 0.185);
 }
 
 #toIndex {
