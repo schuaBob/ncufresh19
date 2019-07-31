@@ -9,6 +9,7 @@
         <% include ../layouts/script %>
             <link rel='stylesheet' href='/groups/style.css' />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 
 <body class="yellowBg">
@@ -32,13 +33,13 @@
         <div class="sidebar">
             <ul>
                 <a style="text-decoration:none; color: #0D4966;" href="/groups/association/intro">
-                    <li class="sideli"><i class="fas fa-angle-right"></i>簡介</li>
+                    <li class="sideli horizontal " id="intro"><i class="fas fa-angle-right"></i>簡介</li>
                 </a>
                 <a style="text-decoration:none; color: #0D4966;" href="/groups/association/section">
-                    <li class="sideli"><i class="fas fa-angle-right"></i>部門介紹</li>
+                    <li class="sideli horizontal " id="section"><i class="fas fa-angle-right"></i>部門介紹</li>
                 </a>
                 <a style="text-decoration:none; color: #0D4966;" href="/groups/association/photos">
-                    <li class="sideli"><i class="fas fa-angle-right"></i>活動剪影</li>
+                    <li class="sideli horizontal " id="photos"><i class="fas fa-angle-right"></i>活動剪影</li>
                 </a>
             </ul>
         </div>
@@ -50,6 +51,9 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload">
             上傳圖片
         </button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                刪除圖片
+            </button>
             </div>
             <%}%>
 
@@ -71,7 +75,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="section" class="col-form-label">社群介紹</label>
+                                        <label for="section" class="col-form-label">部門介紹</label>
                                         <textarea class="form-control" id="section" name="section" rows="8" value="<%=content.section%>"></textarea>
                                     </div>
                                     <div class="modal-footer">
@@ -113,7 +117,7 @@
                 <% if (content_this==="intro") {%>
 
                     <div class="info">
-                        <div class="title">
+                        <div class="info_title">
                             簡介
                         </div>
                         <div class="content">
@@ -123,23 +127,32 @@
                     </div>
                     <% } else if(content_this==="section"){%>
                         <div class="info">
-                            <div class="title">
+                            <div class="info_title">
                                 部門介紹
                             </div>
                             <div class="content">
                                 <%=content[0].section%>
+
+
                             </div>
+                            <% } else if(content_this==="photos"){%>
+                                <div class="info">
+                                    <div class="info_title">
+                                        活動剪影
+                                    </div>
+                                    <div class="content">
+                                        <% for(var i in pic) {%>
+                                            <img src="<%= pic[i].pathname%>" class=stu_img>
+                                            <%}%>
+                                    </div>
+                                </div>
 
-                        </div>
-                        <% } else if(content_this==="photos"){%>
+                                <%}%>
+                                    <img src="學生會.PNG" class=backgroundimg>
 
-                            <img src="<%= pic[i]['src']%>" class=backgroundimg>
-                            <%}%>
-                                <img src="學生會.PNG" class=backgroundimg>
+                                    <script src="/groups/js/groups.js "></script>
 
-                                <script src="/groups/js/groups.js "></script>
-
-                                <% include ../layouts/js %>
+                                    <% include ../layouts/js %>
 </body>
 
 </html>

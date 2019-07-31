@@ -511,7 +511,7 @@ li {
 
 .bottom_list {
   width: 100%;
-  bottom : 0%;  
+  bottom : 2.5%;  
   display: flex;
   position: absolute;
 }
@@ -687,7 +687,7 @@ li {
   .mapmove {
     display: block;
     margin: 0 !important;
-    height: calc(100vh - 80px - 46vw - 8vw / 2);
+    height: calc(100vh - 80px - 46vw - 8vw);
     overflow: scroll;
   }
 

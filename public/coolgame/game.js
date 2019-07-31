@@ -1,3 +1,4 @@
+
 //魚的圖層
 //增加魚叉碰撞點
 //緩衝
@@ -5,7 +6,14 @@
 //於上漁船位置
 //------------game---------------------------------
 //var fs = require('fs');
+var loading_text;
+var game_id="";
+var rank_user_list;
+var rank_background;
+var rank_container;
 var user;
+var rank_name_text ;
+var rank_score_text ;
 var question_data;
 var dolphin_container;
 var dolphin_list;
@@ -25,6 +33,7 @@ var question_container;
 var back_container;
 var question_num = [0, 0, 0];
 var generate_bird;
+var rule_container;
 var option = new Array();
 var question_index_list = new Array();
 var question;
@@ -45,7 +54,7 @@ var user_score;
 var now_score;
 var score_update_timer;
 var score_board;
-var game_time = 10;
+var game_time = 45;
 var catch_animal_container;
 var harpoon_text;
 var question_list = new Array();
@@ -123,7 +132,7 @@ class Question {
     this.type = t;
   }
 }
-class Button_Text extends createjs.Container {
+class Button_Text_Orginal extends createjs.Container {
   constructor(t, f, c, x, y) {
     super();
     this.x = x;
@@ -160,6 +169,52 @@ class Button_Text extends createjs.Container {
     this.addChild(this.haver);
   }
 }
+class Button_Text extends createjs.Container {
+  constructor(t, f, c, x, y) {
+    super();
+    this.x = x;
+    this.y = y;
+    this.text = new createjs.Text(t, f, c);
+    this.havermask = new createjs.Shape();
+    console.log(this.text.text.length)
+    this.havermask.graphics.beginFill("#34AEC7").drawRoundRect(37, -6, this.text.text.length*20+24, 34,10);
+    this.havermask.alpha = 0.01;
+    var w = this.text.getMeasuredWidth();
+    this.underline = new createjs.Shape();
+    this.haver = new createjs.Bitmap(loader.getResult("haver"));
+    this.haver_background = new createjs.Shape();
+    //this.haver_background.graphics.beginFill("#68A8C3").drawRoundRect(37, -6, this.text.text.length*20+24, 34,10);
+    //this.haver_background.graphics.beginFill("#2CB7BB").drawRoundRect(37, -6, this.text.text.length*20+24, 34,10);
+    this.haver_background.graphics.beginFill("#FFFFFF").drawRoundRect(37, -6, this.text.text.length*20+24, 34,10);
+    this.haver_background.alpha =0.5;
+    this.haver.x = -12;
+    this.haver.y = -2;
+    this.haver.scale = 0.48;
+    this.text.x = 50;
+    this.text.y = 0;
+
+    this.underline.graphics.s("#000000").mt(this.text.x, this.text.y + 25).lt(this.text.x + w, this.text.y + 25);
+    this.havermask.addEventListener("mouseover", function (event) {
+      event.target.parent.havermask.cursor = "pointer";
+      event.target.parent.haver.visible = true;
+      //event.target.parent.underline.visible = true;
+      event.target.parent.haver_background.alpha=0.9;
+    });
+    this.havermask.addEventListener("mouseout", function (event) {
+      event.target.parent.havermask.cursor = "defult";
+      event.target.parent.haver.visible = false;
+      event.target.parent.haver_background.alpha=0.4;
+      //event.target.parent.underline.visible = false;
+    });
+    this.underline.visible = false;
+    this.haver.visible = false;
+    this.addChild(this.haver_background);
+    this.addChild(this.text);
+    this.addChild(this.underline);
+    this.addChild(this.havermask);
+    this.addChild(this.haver);
+  }
+}
 class Option extends createjs.Container {
   constructor() {
     super();
@@ -178,7 +233,7 @@ class Option extends createjs.Container {
     this.done = false;
     this.havermask.alpha = 0.01;
     this.ans = false;
-    this.havermask.addEventListener("click", function (event) {
+    this.havermask.addEventListener("mousedown", function (event) {
       if (!event.target.parent.done && !question_time_stop) {
         if (event.target.parent.ans) {
           event.target.parent.correct();
@@ -452,6 +507,16 @@ function keyDown(event) {
 function getrandom(x) {
   return Math.floor(Math.random() * x);
 }
+function getuser(){
+  $.ajax({
+    url: "getuser",
+    method:'GET',
+    error:(err)=>{console.log(err)},
+    success: function (result) {
+      user=result.user;
+    }
+  });
+}
 function load_question_data() {
   $.ajax({
     url: "getquestion",
@@ -460,8 +525,6 @@ function load_question_data() {
     error:(err)=>{console.log(err)},
     success: function (result) {
       question_data=result.result;
-      user = result.user;
-      console.log(user);
       load_question();
     }
   });
@@ -566,12 +629,15 @@ function open_fish() {
         rnd = getrandom(1500);//120
         if (rnd < 600) {
           var fishtype;
-          if(rnd<10){
-            animal_list.push(new fish(6, false));
-          }
-          else{
+          var fishtype_rnd;
+
             do {
-              fishtype = getrandom(3);
+              fishtype_rnd = getrandom(19);
+              fishtype = fishtype_rnd<3?0:fishtype_rnd<9?1:2;
+              // if(fishtype == 0 &&question_num[1] !=0 &&question_num[2] !=0  ){
+              //   var b=getrandom(2);
+              //   if(b !=1 )fishtype = 1+b;
+              //}
             } while (question_num[fishtype] <= 0);
             if (gamestart)
               question_num[fishtype]--;
@@ -581,7 +647,7 @@ function open_fish() {
               animal_list.push(new fish(fishtype == 2 ? ((fishtype + 1) + getrandom(2)) : ((fishtype) + 1), false));
           }
        
-        }
+        
       }
       else {
         if (catch_animal_num[1] + catch_animal_num[2] + catch_animal_num[3] + catch_animal_num[4] == question_list[0].length + question_list[1].length + question_list[2].length)
@@ -591,10 +657,15 @@ function open_fish() {
 }
 function open_bird() {
   generate_bird = setInterval(() => {
-    if (!stop)
-      if (getrandom(90) < 1) {
+    if (!stop){
+      var rnd =getrandom(90);
+      if (rnd < 2) {
         animal_list.push(new bird(0, false));
       }
+      if(rnd==3){
+        animal_list.push(new fish(6, false));
+      }
+    }
   }, 1000);
 }
 function keyUp(event) {
@@ -608,7 +679,14 @@ function keyUp(event) {
       clearInterval(t_boatmove_right);
     }
 }
+var complete_file_num=0;
 function load_source() {
+  stage = new createjs.Stage(document.getElementById("gameStage"));
+  loading_text = new createjs.Text("0%","bold 30px 微軟正黑體","#000000");
+  loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
+  loading_text.y = canvas_height/2-loading_text.getMeasuredHeight() / 2 ;
+  stage.addChild(loading_text);
+  stage.update();
   manifest = [
     { src: "/images/coolgame/sea.png", id: "sea" },
     { src: "/images/coolgame/fisherman.png", id: "fisherman" },
@@ -646,6 +724,8 @@ function load_source() {
     { src: "/images/coolgame/bucket.png", id: "bucket" },
     { src: "/images/coolgame/score_board.png", id: "score_board" },
     { src: "/images/coolgame/dolphin.png", id: "dolphin" },
+    { src: "/images/coolgame/rule1.png", id: "rule1" },
+    { src: "/images/coolgame/rule2.png", id: "rule2" },
   ];
   loader = new createjs.LoadQueue(true);
   loader.on("fileload", handleFileLoad);
@@ -655,10 +735,15 @@ function load_source() {
   load_question_data();
 }
 function handleFileLoad(e) {
-  console.log("complete1");
+  complete_file_num++;
+  console.log(complete_file_num);
+  loading_text.text = Math.floor((complete_file_num/manifest.length)*100)+"%";
+  loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
+  loading_text.y = canvas_height/2-loading_text.getMeasuredHeight() / 2 ;
+  stage.update();
 }
 function handleComplete() {
-  console.log("done");
+  stage.removeChild(loading_text);
   init();
 }
 function handleError() {
@@ -796,7 +881,7 @@ function create_back_container() {
     backbutton.image = loader.getResult("back");
   });
   back_shape.addEventListener("mousedown", function () {
-    if (now == 3) {
+    if (now >= 3) {
       labby_init();
     }
     else {
@@ -809,6 +894,18 @@ function create_back_container() {
   back_container.addChild(backbutton);
   back_container.addChild(back_shape);
   stage.addChild(back_container);
+}
+function create_rule_container(){
+  rule_container= new createjs.Container();
+  var rule_first = new createjs.Bitmap(loader.getResult("rule1"));
+  var rule_second = new createjs.Bitmap(loader.getResult("rule2"));
+  rule_first.scale=0.65;
+  rule_second.scale=0.65;
+  rule_second.visible=false;
+  rule_container.addChild(rule_first);
+  rule_container.addChild(rule_second);
+  rule_container.visible=false;
+  stage.addChild(rule_container);
 }
 function create_leave_container() {
   leave_container = new createjs.Container();
@@ -859,7 +956,7 @@ function create_leave_container() {
     leavebutton_source[i].haver.visible = false;
     leavebutton_source[i].underline.visible = false;
   }
-  Yes_shape.addEventListener("click", function () {
+  Yes_shape.addEventListener("mousedown", function () {
     leave_container.visible = false;
     stage.removeChild(question_container);
     clearInterval(question_timer);
@@ -885,7 +982,7 @@ function create_leave_container() {
   });
 
 
-  No_shape.addEventListener("click", function () {
+  No_shape.addEventListener("mousedown", function () {
     leave_container.visible = false;
     if (now == 1)
       game_event();
@@ -916,7 +1013,6 @@ function create_leave_container() {
 }
 function create_stage_element() {
   catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0", "12px Arial", "#000000");
-  stage = new createjs.Stage(document.getElementById("gameStage"));
   background = new createjs.Bitmap(loader.getResult("game_background"));
   fisherman = new createjs.Bitmap(loader.getResult("fisherman"));
   sea = new createjs.Bitmap(loader.getResult("sea"));
@@ -931,6 +1027,8 @@ function create_stage_element() {
   leavebutton_source = new Array();
   sound_shape = new createjs.Shape();
   soundbutton = new createjs.Bitmap(loader.getResult("sound_open"));
+  rank_container = new createjs.Container();
+  rank_container.visible=false;
   soundbutton.scale = 0.4;
   soundbutton.x = canvas_width - soundbutton.getwidth();
   soundbutton.y = canvas_height - soundbutton.getheight();
@@ -967,11 +1065,14 @@ function create_stage_element() {
   stage.addChild(fish_ad);
   stage.addChild(score_board_text);
   stage.addChild(question_end_container);
+  stage.addChild(rank_container);
+  create_rank_container();
   create_back_container();
   create_leave_container();
   create_labbybutton();
   create_question_end_container();
   create_dolphin_container();
+  create_rule_container();
   fisherman_harpoon = new harpoon();
 }
 function init() {
@@ -1023,7 +1124,7 @@ function create_question_end_container() {
   question_end_container.addChild(goranking);
   question_end_container.x = 415;
   question_end_container.y = 320;
-  golabby.havermask.addEventListener("click", function () {
+  golabby.havermask.addEventListener("mousedown", function () {
     question_end_container.visible = false;
     for(var j =0;j<dolphin_list.length;j++){
       stage.removeChild(dolphin_list[j]);
@@ -1032,7 +1133,7 @@ function create_question_end_container() {
     stage.removeChild(score_catch_animal_container);
     labby_init();
   });
-  goranking.havermask.addEventListener("click", function () {
+  goranking.havermask.addEventListener("mousedown", function () {
     question_end_container.visible = false;
     for(var j =0;j<dolphin_list.length;j++){
       stage.removeChild(dolphin_list[j]);
@@ -1045,14 +1146,23 @@ function create_question_end_container() {
   question_end_container.visible = false;
   stage.addChildAt(question_end_container, stage.numChildren - 1);
 }
-function update_score(key){
+function usergame_init(){
+  $.ajax({
+    url: "usergameinit",
+    method:"get",
+  success:()=>{
+
+  },
+    error:(err)=>{console.log(err)}
+  });
+}
+function update_score(){
   $.ajax({
     url: "updatescore",
     method:"POST",
     data: { 
-      key: key, 
-      score: 1,
-      user:user // <-- the $ sign in the parameter name seems unusual, I would avoid it
+      game_id : game_id,
+      score: user_score,
   },
   success:()=>{
 
@@ -1073,7 +1183,7 @@ function question_end() {
     })
     clearInterval(question_timer);
     clearInterval(score_update_timer);
-    update_score(user._id);
+    update_score();
     //labby_init();
     console.log("game over");
   }
@@ -1146,8 +1256,8 @@ function question_show() {
   var q = question.question.split("");
   question_text.text = "Q：";
   for (i = 0; i < q.length; i++) {
-    if ((i + 1) % 18 == 0) {
-      question_text.text += q[i - 1] + "\n       ";
+    if ((i) % 18 == 0 && i!=0) {
+      question_text.text += q[i] + "\n       ";
     }
     else {
       question_text.text += q[i];
@@ -1274,7 +1384,6 @@ function question_init() {
   stage.addChild(question_container);
   stage.setChildIndex(back_container, stage.numChildren - 1);
   stage.setChildIndex(leave_container, stage.numChildren - 1);
-  back_container.visible = true;
 }
 function clear_game_stage() {
   stage.removeChild(start_time_text);
@@ -1307,15 +1416,16 @@ function create_dolphin_container(){
   dolphin_shape.graphics.beginFill("#FFFFFF").drawRoundRect(200, 125, 400, 250,10);
   dolphin_shape.alpha = 1;
   var dolphin_last_button = new Button_Text("海豚對不起我知道錯了","bold 20px 微軟正黑體","#000000",250,325);
-  dolphin_last_button.havermask.graphics.beginFill("#34AEC7").drawRect(50, 0, 200, 30);
+  dolphin_last_button.haver_background.graphics.beginFill("#FFA1B4").drawRoundRect(37, -6, 10*20+24, 34,10);
+  dolphin_last_button.havermask.graphics.beginFill("#34AEC7").drawRoundRect(37, -6, 10*20+24, 34,10);
   dolphin_container.addChild(dolphin_background);
   dolphin_container.addChild(dolphin_shape);
   dolphin_container.addChild(dolphin_text);
   dolphin_container.addChild(dolphin_last_button);
   dolphin_container.visible=false;
-  dolphin_last_button.addEventListener("click",function(event){
+  dolphin_last_button.addEventListener("mousedown",function(event){
     stage.removeChild(question_container);
-    user_score-= 100000;
+    user_score += animalsource[6].score;
     now_score=user_score;
     score_board_text.text = (now == 1 ? "Score:" : "") + now_score + "";
     if (now == 2) {
@@ -1334,7 +1444,8 @@ function create_dolphin_container(){
     })
     dolphin_container.visible=false;
     clearInterval(question_timer);
-    new Score_Text("-10000","bold 30px Arial","#000000",score_board.getwidth()/2+score_board.x,score_board_text.y);
+    new Score_Text(""+animalsource[6].score,"bold 30px Arial","#000000",score_board.getwidth()/2+score_board.x,score_board_text.y);
+    update_score();
     console.log("game over");
   });
   stage.addChild(dolphin_container);
@@ -1584,6 +1695,15 @@ function game_start() {
   open_bubble();
   open_fish();
   open_bird();
+  $.ajax({
+    url:"startgame",
+    method:'GET',
+    error:(err)=>{console.log("err")},
+    success: function (result) {
+      game_id = result.game_id;
+      console.log(game_id);
+    }
+  });
 }
 function game_init() {
   now = 1;
@@ -1675,13 +1795,13 @@ var labbybutton_source = new Array();
 function create_labbybutton() {
   labbybutton_container = new createjs.Container();//34AEC7
   var start = new Button_Text("開始遊戲", "bold 20px 微軟正黑體", "#000000", 0, 0);
-  var rule = new Button_Text("規則說明", "bold 20px 微軟正黑體", "#000000", 0, 50);
-  var ranking = new Button_Text("排行榜", "bold 20px 微軟正黑體", "#000000", 10, 100);
-  start.havermask.addEventListener("click", function (event) {
+  var rule = new Button_Text("規則說明", "bold 20px 微軟正黑體", "#000000", 0, 55);
+  var ranking = new Button_Text("排行榜", "bold 20px 微軟正黑體", "#000000", 10, 110);
+  start.havermask.addEventListener("mousedown", function (event) {
     labbybutton_container.visible = false;
     game_init();
   });
-  ranking.havermask.addEventListener("click", function () {
+  ranking.havermask.addEventListener("mousedown", function () {
     labbybutton_container.visible = false;
     ranking_init();
   });
@@ -1693,6 +1813,200 @@ function create_labbybutton() {
   labbybutton_container.y = 200;
   stage.addChild(labbybutton_container);
 }
+function get_totalrank(){
+  now=4;
+  $.ajax({
+    url: "gettotalrank",
+    method:'GET',
+    error:(err)=>{console.log(err)},
+    success: function (result) {
+      rank_user_list = result;
+      update_rank();
+    }
+  });
+}
+function get_highrank(){
+  now=3;
+  $.ajax({
+    url: "gethighrank",
+    method:'GET',
+    error:(err)=>{console.log(err)},
+    success: function (result) {
+      rank_user_list = result;
+      update_rank();
+    }
+  });
+}
+function update_rank(){
+  var first_image=new createjs.Bitmap(((now == 3?rank_user_list[0].score_high:rank_user_list[0].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[0].avatar));
+  first_image.image.onload=()=>{
+    rank_container.children[3].image =first_image.image;
+    rank_container.children[3].scale = 1.0/(( rank_container.children[3].image.width> rank_container.children[3].image.hetght? rank_container.children[3].image.width: rank_container.children[3].image.height)/80.0);
+    stage.update();
+  }
+   var second_image=new createjs.Bitmap(((now == 3?rank_user_list[1].score_high:rank_user_list[1].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[1].avatar));
+   second_image.image.onload=()=>{
+    rank_container.children[4].image =second_image.image;
+    rank_container.children[4].scale = 1.0/(( rank_container.children[4].image.width> rank_container.children[4].image.hetght? rank_container.children[4].image.width: rank_container.children[4].image.height)/80.0);
+    stage.update();
+  }
+ var third_image=new createjs.Bitmap(((now == 3?rank_user_list[2].score_high:rank_user_list[2].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[2].avatar));
+
+ third_image.image.onload=()=>{
+   console.log(third_image.image);
+    rank_container.children[5].image =third_image.image;
+    rank_container.children[5].scale = 1.0/(( rank_container.children[5].image.width> rank_container.children[5].image.hetght? rank_container.children[5].image.width: rank_container.children[5].image.height)/80.0);
+    stage.update();
+  }
+  for(var j =0;j<10;j++){
+    if((now == 3?rank_user_list[j].score_high:rank_user_list[j].score_sum) != 0){
+      var a =rank_user_list[j].name.split("");
+      rank_name_text[j].text = a.length==1?"O":a.length==2? (a[0]+"O"):a[0]+"O"+a[a.length-1];
+      rank_score_text[j].text = (j>2?"分數:":"")+(now == 3?rank_user_list[j].score_high:rank_user_list[j].score_sum);
+    }
+    else{
+      rank_name_text[j].text = "";
+      rank_score_text[j].text = "";
+    }
+   }
+  rank_name_text[0].x = rank_container.children[3].x+40- rank_name_text[0].getMeasuredWidth() / 2 ;
+  rank_score_text[0].x = rank_container.children[3].x+40- rank_score_text[0].getMeasuredWidth() / 2 ;
+  rank_name_text[1].x = rank_container.children[4].x+40- rank_name_text[1].getMeasuredWidth() / 2 ;
+  rank_score_text[1].x = rank_container.children[4].x+40- rank_score_text[1].getMeasuredWidth() / 2 ;
+  rank_name_text[2].x = rank_container.children[5].x+40- rank_name_text[2].getMeasuredWidth() / 2 ;
+  rank_score_text[2].x = rank_container.children[5].x+40- rank_score_text[2].getMeasuredWidth() / 2 ;
+  
+ // rank_container.children[3].x=0;
+  // rank_container.children[3].y=0;
+}
+function show_reach_animation(){
+  var reach_fish_list = new Array();
+  var reach_background_one = new createjs.Shape();
+  var text01 = new createjs.Text("大","Bold 20px 微軟正黑體","#FFFFFF");
+  var text02 = new createjs.Text("豐","Bold 20px 微軟正黑體","#FFFFFF");
+  var text03 = new createjs.Text("收","Bold 20px 微軟正黑體","#FFFFFF");
+  reach_background_one.graphics.beginFill("#000000").drawRect(0,0,800,500);
+  reach_background_one.alpha=0;
+  stage.addChild(reach_background_one);
+  createjs.Tween.get(reach_background_one).to({alpha:0.7},800).call(function(){
+    for(var j =0;j<150;j++){
+      var reach_fish = new fish(getrandom(4)+1,false);
+      reach_fish.rotation=getrandom(180)-180;
+      reach_fish.gotoAndStop("normal_die");
+      stage.addChild(reach_fish);
+      reach_fish.x = getrandom(700)+50;
+      reach_fish.scale=0.2;
+      reach_fish.y = -100;
+      createjs.Tween.get(reach_fish).wait(j*30).to({y:500-(j/15)*30,scale:0.5},300-(j/15)*17)
+      reach_fish_list.push(reach_fish);
+    }
+    text01.shadow = new createjs.Shadow("#000000", 5, 6, 1);
+    text01.x=120;
+    text01.y=30;
+    text01.scale=0.1;
+    stage.addChild(text01);
+    text02.shadow = new createjs.Shadow("#000000", 5, 5, 1);
+    text02.x=text01.x+200;
+    text02.y=30;
+    text02.scale=0.1;
+    stage.addChild(text02);
+    text03.shadow = new createjs.Shadow("#000000", 5, 5, 1);
+    text03.x=text02.x+200;
+    text03.y=30;
+    text03.scale=0.1;
+    stage.addChild(text03);
+    createjs.Tween.get(text01).wait(300-(149/15)*17+149*30+500).to({scale:6},600).call(function(){
+      createjs.Tween.get(text02).to({scale:6},600).call(function(){
+        createjs.Tween.get(text03).to({scale:6},600).call(function(){
+
+        });
+      });
+    });
+  });
+}
+function create_rank_container(){
+  rank_name_text = new Array();
+  rank_score_text = new Array();
+  rank_background = new createjs.Bitmap(loader.getResult("rank_single"));
+  rank_background.scale=0.65;
+  rank_background.x=30;
+  rank_background.y=20;
+  var single_mask = new createjs.Shape();
+  single_mask.graphics.beginFill("#34AEC7").drawRoundRect(48,38, 153, 31,5,0,0,0);
+  single_mask.alpha = 0.01;
+  single_mask.addEventListener("mousedown",function(event){
+    rank_background.image = loader.getResult("rank_single");
+    now=3;
+    get_highrank();
+  })
+  single_mask.addEventListener("mouseover",function(event){
+    event.target.cursor="pointer";
+  })
+  var total_mask = new createjs.Shape();
+  total_mask.graphics.beginFill("#000000").drawRoundRect(203,38, 153, 31,5,0,0,0);
+  total_mask.alpha = 0.01;
+  total_mask.addEventListener("mousedown",function(event){
+    now=4;
+    get_totalrank();
+    rank_background.image = loader.getResult("rank_total");
+  })
+  total_mask.addEventListener("mouseover",function(event){
+    event.target.cursor="pointer";
+  })
+
+  var first_circle = new createjs.Shape();
+  first_circle.graphics.beginFill("red").drawCircle(245,150,40); 
+  var first_user_image=new createjs.Bitmap("");
+  first_user_image.mask=first_circle;
+  first_user_image.x=205;
+  first_user_image.y=110;
+  var second_circle = new createjs.Shape();
+  second_circle.graphics.beginFill("red").drawCircle(140,210,40);
+  var second_user_image=new createjs.Bitmap("");
+  second_user_image.mask=second_circle;
+  second_user_image.x=100;
+  second_user_image.y=170;
+  var thrid_circle = new createjs.Shape();
+  thrid_circle.graphics.beginFill("red").drawCircle(350 ,240,40);
+  var third_user_image=new createjs.Bitmap("");
+  third_user_image.mask=thrid_circle;
+  third_user_image.x=310;
+  third_user_image.y=200;
+  rank_container.addChild(rank_background); 
+  rank_container.addChild(single_mask); 
+  rank_container.addChild(total_mask); 
+  rank_container.addChild(first_user_image); 
+  rank_container.addChild(second_user_image); 
+  rank_container.addChild(third_user_image); 
+
+  for(var j =0;j<10;j++){
+    rank_score_text.push(new createjs.Text("","bold 20px 微軟正黑體","#000000"));
+    rank_container.addChild(rank_score_text[j]);
+  }
+  for(var j =0;j<10;j++){
+    rank_name_text.push(new createjs.Text("","bold 20px 微軟正黑體","#000000"));
+    rank_container.addChild(rank_name_text[j]);
+  }
+  rank_name_text[0].x = first_user_image.x;
+  rank_name_text[0].y = first_user_image.y-30;
+  rank_name_text[1].x = second_user_image.x;
+  rank_name_text[1].y = second_user_image.y-30;
+  rank_name_text[2].x = third_user_image.x;
+  rank_name_text[2].y = third_user_image.y-30;
+  rank_score_text[0].x = first_user_image.x;
+  rank_score_text[0].y = first_user_image.y+87;
+  rank_score_text[1].x = second_user_image.x;
+  rank_score_text[1].y = second_user_image.y+87;
+  rank_score_text[2].x = third_user_image.x;
+  rank_score_text[2].y = third_user_image.y+87;
+  for(var j=3;j<10;j++){
+    rank_name_text[j].x = 485;
+    rank_name_text[j].y = 120+51*(j-3);
+    rank_score_text[j].x = 568;
+    rank_score_text[j].y = 120+51*(j-3);
+  }
+  //rank_container.addChild(thrid_circle); 
+}
 function ranking_init() {
   background.image = loader.getResult("rank_background");
   back_container.visible = true;
@@ -1701,21 +2015,26 @@ function ranking_init() {
   bucket.visible = false;
   score_board.visible = false;
   score_board_text.visible = false;
-  close_fishmanwalk();
-  close_fish_ad();
   sea.visible = false;
   now = 3;
+  for (var j = 0; j < animal_list.length; j++)animal_list[j].visible = false;
+  close_fishmanwalk();
+  close_fish_ad();
   clese_bird();
   clese_fish();
-  for (var j = 0; j < animal_list.length; j++)animal_list[j].visible = false;
   clear_animal();
   clese_bubble();
+  rank_container.visible=true;
+  get_highrank();
   //close_movement();
 }
+var at ;
+var bt;
 function labby_init() {
+  usergame_init();
+  getuser();
   now = 0;
   gamestart = false;
-  //load_question_data();
   close_game_event();
   clese_bird();
   clese_fish();
@@ -1725,6 +2044,7 @@ function labby_init() {
   stage.setChildIndex(fisherman,1);
   user_score = 0;
   now_score = 0;
+  rank_container.visible=false;
   fisherman.visible = true;
   bucket.visible = false;
   score_board.visible = false;

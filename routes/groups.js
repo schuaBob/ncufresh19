@@ -4,11 +4,15 @@ var department_data = require('../models/groups/department');
 var community_data = require('../models/groups/community');
 var others_data = require('../models/groups/others');
 var student_data = require('../models/groups/student');
+var photo_data = require('../models/groups/photo');
+
+
+
 
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "public/groups");
+        cb(null, "public/groups/stu_picture");
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname);
@@ -17,8 +21,20 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 router.post('/uploadimg', upload.array("img"), (req, res, next) => {
-    console.log("upload")
-    console.log(req.files)
+
+    for (let i in req.files) {
+
+        var abspath = "/groups/stu_picture/" + req.files[i].originalname
+        new photo_data({
+            route: req.files[i].destination,
+            filename: req.files[i].originalname,
+            pathname: abspath
+
+        }).save();
+        console.log("added" + req.files[i].originalname);
+
+    }
+    res.redirect("association")
 
 
 })
@@ -283,6 +299,7 @@ router.get('/others/:others', function(req, res, next) {
         if (err) return next(err);
         others_data.findOne({ name: req.params.others }).exec(function(err, others_this) {
             if (err) return next(err);
+            console.log(others_this)
             res.render('groups/g_others', {
                 title: '新生知訊網｜系所社團',
                 others: others,
@@ -299,6 +316,7 @@ router.get('/others/:others', function(req, res, next) {
 
 router.post('/add_others', function(req, res, next) {
     console.log("add others")
+
     if (req.body.name !== null) {
 
         new others_data({
@@ -347,6 +365,7 @@ router.post('/delete_others', function(req, res, next) {
 })
 router.post('/edit_others', function(req, res, next) {
     console.log("edit others")
+    console.log(req.body.intro)
 
     others_data.findOne({ name: req.body.name }, function(err, data) {
         if (err) {
@@ -390,13 +409,19 @@ router.get('/association/:content', function(req, res, next) {
     student_data.find({}).exec(function(err, data) {
         if (err) return next(err);
         console.log(data.length)
-        res.render('groups/g_association', {
-            title: '新生知訊網｜系所社團',
-            content: data,
-            content_this: req.params.content,
-            user: req.user
+        photo_data.find({}).exec(function(err, photos) {
+            console.log(photos.length)
+            console.log(photos)
+            res.render('groups/g_association', {
+                title: '新生知訊網｜系所社團',
+                content: data,
+                content_this: req.params.content,
+                user: req.user,
+                pic: photos
 
+            })
         })
+
 
 
     })
