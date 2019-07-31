@@ -148,14 +148,16 @@ body {
 }
 
 .return_space {
+  width: 83px;
+  height: 85px;
   position: absolute;
-  padding: 1.5vh 0 1.5vh 10px;
+  padding: 0.5vh 0 0.5vh 15px;
   margin: auto 0;
 }
 
 .return {
-  width: 70px;
-  height: 60px;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -225,6 +227,8 @@ body {
   margin-left: 1vw;
   padding: 4vh 5vw;
 }
+
+
 
 /*.gra_bg {
   width: 30vw;
@@ -451,6 +455,19 @@ body {
     color: black;
   }
 
+  .bg {
+    height: 88vh;
+    background-size: 100%;
+    background-image:url("手機背景.png");
+    background-repeat: no-repeat;  
+    background-position: 0 bottom;
+  }
+
+  .choose {
+    height: 88vh;
+    background-color: rgba(255, 255, 255, .3)
+  }
+
   .fade {
     display: none;
   }
@@ -464,6 +481,10 @@ body {
     width: 100%;
     height: 5vh;
     text-align: center;
+  }
+
+  .options {
+    margin-top: 50px;
   }
 
   .p_option {
@@ -500,16 +521,6 @@ body {
     color: black;
   }
 
-  .options {
-    margin-top: 43px;
-  }
-
-  /* .p_option:hover {
-    background-image:url("螃蟹.png");
-  background-position:center right;
-  background-size: 20% auto;
-  background-repeat: no-repeat;
-  } */
 
   /*研究生*/
   .graduate {
@@ -549,6 +560,72 @@ body {
 
 }
 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+  .character {
+    width: 29vw;
+    height: 35vh;
+    left: 5vw;
+    top: 29vh;
+    position: relative;
+  }
+  
+  .fish_size {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    position: absolute;
+  }
+
+  .fish_size2 {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 81%;
+    top: 0;
+    bottom: 30%;
+    left: 1.2vw;
+    right: 0;
+    margin: auto;
+    position: absolute;
+  }
+
+  .fish_size3 {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 37%;
+    top: 77%;
+    bottom: 0;
+    left: 1.2vw;
+    right: 0;
+    margin: auto;
+    position: absolute;
+  }
+/*美人魚會有錯*/
+  .size_sp {
+    width: auto;
+    height: auto;
+    max-width: 108%;
+    max-height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 2.1vw;
+    right: 0;
+    margin: auto;
+    position: absolute;
+  }
+
+  .options {
+    margin-top: 5vh;
+  }
+
+}
 
 /*手機板*/
 @media only screen and (max-device-width: 768px){
@@ -599,6 +676,10 @@ body {
     color: white;
   }
 
+  .bg {
+    background-size: 0%;
+  }
+
   .fade {
     display: none;
   }
@@ -610,8 +691,12 @@ body {
 
   .bar {
     width: 100%;
-    height: 110px;
+    height: 5vh;
     text-align: center;
+  }
+
+  .options {
+    margin-top: 8.5vw;
   }
 
   .p_option {
@@ -671,17 +756,18 @@ body {
   }
 
   .modal-dialog {
-    max-width: 90%; 
+    max-width: 93%;
+    max-height: 90%;
   }
 
   .modal-body {
-    height: 90vh;
+    height: 85vh;
     overflow: auto;
   }
 
 }
 
-@media only screen and (max-device-width: 768px) and (orientation:landscape)  {
+ @media only screen and (max-device-width: 768px) and (orientation:landscape)  {
   .index_p {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -716,7 +802,7 @@ body {
 
   .bar {
     width: 100%;
-    height: 65px;
+    height: 9.5vh;
     text-align: center;
   }
 
@@ -754,9 +840,9 @@ body {
     color: black;
   }
 
-}
+} 
 
-@media only screen and (min-device-width: 768px) and (orientation:portrait)  {
+/*@media only screen and (min-device-width: 769px) and (orientation:portrait)  {
   .character {
     width: 30vw;
     height: 50vh;
@@ -800,7 +886,7 @@ body {
   margin: auto;
   position: absolute;
 }
-}
+}*/
 
 /*@media only screen and (min-device-width: 768px) and (orientation:landscape)  {
   .character {
