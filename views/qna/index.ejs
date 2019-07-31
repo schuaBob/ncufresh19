@@ -234,9 +234,6 @@
       </div>
     </div>
   </div>
-
-
-
   <% include ../layouts/header %>
   <main id="main">
     <div id="outterTitleSpace">
@@ -348,19 +345,14 @@
       </div>
     </div>
   </main>
-
-
-  <!-- <div class="main d-flex"><div class="leftSide"> -->
-
-</body>
-<% include ../layouts/js %>
-<% include js %>
-<script type="text/javascript">
-  $(document).ready(function () {
-    $("#mobileAskBtn").click(function () {
-      $("#mobileAskModal").modal();
+  <% include ../layouts/js %>
+  <% include js %>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#mobileAskBtn").click(function () {
+        $("#mobileAskModal").modal();
+      });
     });
-  });
-</script>
+  </script>
 
 </html>
