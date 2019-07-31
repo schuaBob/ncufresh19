@@ -299,6 +299,7 @@ router.get('/others/:others', function(req, res, next) {
         if (err) return next(err);
         others_data.findOne({ name: req.params.others }).exec(function(err, others_this) {
             if (err) return next(err);
+            console.log(others_this)
             res.render('groups/g_others', {
                 title: '新生知訊網｜系所社團',
                 others: others,
@@ -315,6 +316,7 @@ router.get('/others/:others', function(req, res, next) {
 
 router.post('/add_others', function(req, res, next) {
     console.log("add others")
+
     if (req.body.name !== null) {
 
         new others_data({
@@ -363,6 +365,7 @@ router.post('/delete_others', function(req, res, next) {
 })
 router.post('/edit_others', function(req, res, next) {
     console.log("edit others")
+    console.log(req.body.intro)
 
     others_data.findOne({ name: req.body.name }, function(err, data) {
         if (err) {
