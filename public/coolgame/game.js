@@ -6,6 +6,7 @@
 //於上漁船位置
 //------------game---------------------------------
 //var fs = require('fs');
+var loading_text;
 var game_id="";
 var rank_user_list;
 var rank_background;
@@ -32,6 +33,7 @@ var question_container;
 var back_container;
 var question_num = [0, 0, 0];
 var generate_bird;
+var rule_container;
 var option = new Array();
 var question_index_list = new Array();
 var question;
@@ -505,6 +507,16 @@ function keyDown(event) {
 function getrandom(x) {
   return Math.floor(Math.random() * x);
 }
+function getuser(){
+  $.ajax({
+    url: "getuser",
+    method:'GET',
+    error:(err)=>{console.log(err)},
+    success: function (result) {
+      user=result.user;
+    }
+  });
+}
 function load_question_data() {
   $.ajax({
     url: "getquestion",
@@ -513,8 +525,6 @@ function load_question_data() {
     error:(err)=>{console.log(err)},
     success: function (result) {
       question_data=result.result;
-      user = result.user;
-      console.log(user);
       load_question();
     }
   });
@@ -669,7 +679,14 @@ function keyUp(event) {
       clearInterval(t_boatmove_right);
     }
 }
+var complete_file_num=0;
 function load_source() {
+  stage = new createjs.Stage(document.getElementById("gameStage"));
+  loading_text = new createjs.Text("0%","bold 30px 微軟正黑體","#000000");
+  loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
+  loading_text.y = canvas_height/2-loading_text.getMeasuredHeight() / 2 ;
+  stage.addChild(loading_text);
+  stage.update();
   manifest = [
     { src: "/images/coolgame/sea.png", id: "sea" },
     { src: "/images/coolgame/fisherman.png", id: "fisherman" },
@@ -707,6 +724,8 @@ function load_source() {
     { src: "/images/coolgame/bucket.png", id: "bucket" },
     { src: "/images/coolgame/score_board.png", id: "score_board" },
     { src: "/images/coolgame/dolphin.png", id: "dolphin" },
+    { src: "/images/coolgame/rule1.png", id: "rule1" },
+    { src: "/images/coolgame/rule2.png", id: "rule2" },
   ];
   loader = new createjs.LoadQueue(true);
   loader.on("fileload", handleFileLoad);
@@ -716,10 +735,15 @@ function load_source() {
   load_question_data();
 }
 function handleFileLoad(e) {
-  console.log("complete1");
+  complete_file_num++;
+  console.log(complete_file_num);
+  loading_text.text = Math.floor((complete_file_num/manifest.length)*100)+"%";
+  loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
+  loading_text.y = canvas_height/2-loading_text.getMeasuredHeight() / 2 ;
+  stage.update();
 }
 function handleComplete() {
-  console.log("done");
+  stage.removeChild(loading_text);
   init();
 }
 function handleError() {
@@ -871,6 +895,18 @@ function create_back_container() {
   back_container.addChild(back_shape);
   stage.addChild(back_container);
 }
+function create_rule_container(){
+  rule_container= new createjs.Container();
+  var rule_first = new createjs.Bitmap(loader.getResult("rule1"));
+  var rule_second = new createjs.Bitmap(loader.getResult("rule2"));
+  rule_first.scale=0.65;
+  rule_second.scale=0.65;
+  rule_second.visible=false;
+  rule_container.addChild(rule_first);
+  rule_container.addChild(rule_second);
+  rule_container.visible=false;
+  stage.addChild(rule_container);
+}
 function create_leave_container() {
   leave_container = new createjs.Container();
   var leave_background = new createjs.Bitmap(loader.getResult("leave"));
@@ -977,7 +1013,6 @@ function create_leave_container() {
 }
 function create_stage_element() {
   catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0", "12px Arial", "#000000");
-  stage = new createjs.Stage(document.getElementById("gameStage"));
   background = new createjs.Bitmap(loader.getResult("game_background"));
   fisherman = new createjs.Bitmap(loader.getResult("fisherman"));
   sea = new createjs.Bitmap(loader.getResult("sea"));
@@ -1037,6 +1072,7 @@ function create_stage_element() {
   create_labbybutton();
   create_question_end_container();
   create_dolphin_container();
+  create_rule_container();
   fisherman_harpoon = new harpoon();
 }
 function init() {
@@ -1843,6 +1879,51 @@ function update_rank(){
  // rank_container.children[3].x=0;
   // rank_container.children[3].y=0;
 }
+function show_reach_animation(){
+  var reach_fish_list = new Array();
+  var reach_background_one = new createjs.Shape();
+  var text01 = new createjs.Text("大","Bold 20px 微軟正黑體","#FFFFFF");
+  var text02 = new createjs.Text("豐","Bold 20px 微軟正黑體","#FFFFFF");
+  var text03 = new createjs.Text("收","Bold 20px 微軟正黑體","#FFFFFF");
+  reach_background_one.graphics.beginFill("#000000").drawRect(0,0,800,500);
+  reach_background_one.alpha=0;
+  stage.addChild(reach_background_one);
+  createjs.Tween.get(reach_background_one).to({alpha:0.7},800).call(function(){
+    for(var j =0;j<150;j++){
+      var reach_fish = new fish(getrandom(4)+1,false);
+      reach_fish.rotation=getrandom(180)-180;
+      reach_fish.gotoAndStop("normal_die");
+      stage.addChild(reach_fish);
+      reach_fish.x = getrandom(700)+50;
+      reach_fish.scale=0.2;
+      reach_fish.y = -100;
+      createjs.Tween.get(reach_fish).wait(j*30).to({y:500-(j/15)*30,scale:0.5},300-(j/15)*17)
+      reach_fish_list.push(reach_fish);
+    }
+    text01.shadow = new createjs.Shadow("#000000", 5, 6, 1);
+    text01.x=120;
+    text01.y=30;
+    text01.scale=0.1;
+    stage.addChild(text01);
+    text02.shadow = new createjs.Shadow("#000000", 5, 5, 1);
+    text02.x=text01.x+200;
+    text02.y=30;
+    text02.scale=0.1;
+    stage.addChild(text02);
+    text03.shadow = new createjs.Shadow("#000000", 5, 5, 1);
+    text03.x=text02.x+200;
+    text03.y=30;
+    text03.scale=0.1;
+    stage.addChild(text03);
+    createjs.Tween.get(text01).wait(300-(149/15)*17+149*30+500).to({scale:6},600).call(function(){
+      createjs.Tween.get(text02).to({scale:6},600).call(function(){
+        createjs.Tween.get(text03).to({scale:6},600).call(function(){
+
+        });
+      });
+    });
+  });
+}
 function create_rank_container(){
   rank_name_text = new Array();
   rank_score_text = new Array();
@@ -1951,6 +2032,7 @@ var at ;
 var bt;
 function labby_init() {
   usergame_init();
+  getuser();
   now = 0;
   gamestart = false;
   close_game_event();

@@ -10,7 +10,7 @@ function getrandom(x) {
 }
 /* GET home page. */
 router.get('/', checkUser.isLoggedIn, function (req, res, next) {
-  res.render('coolgame/index', { title: '新生資訊網 | 小遊戲', user: req.user });
+  res.render('coolgame/index', { title: '新生知訊網 | 小遊戲', user: req.user });
 });
 router.get('/startgame', function (req, res, next) {
   var game_id =getrandom(100000);
@@ -41,9 +41,14 @@ router.get('/startgame', function (req, res, next) {
 // }) ;
 //   res.render('coolgame/index', { title: '小遊戲' ,user:req.user});
 // });
+router.get('/getuser', function (req, res, next) {
+  User.findOne({_id:req.user._id}).exec(function (err, result){
+    res.send({user:result});
+  });
+});
 router.get('/getquestion', function (req, res, next) {
   Question.find({}).exec(function (err, result){
-    res.send({result:result,user:req.user});
+    res.send({result:result});
   });
 });
 router.get('/gettotalrank', function (req, res, next) {
@@ -83,7 +88,7 @@ router.post('/updatescore', function (req, res, next) {
       }
     })
     res.redirect('usergameinit');
-    res.send("");
+    //res.send("");
   //}
 });
 module.exports = router;
