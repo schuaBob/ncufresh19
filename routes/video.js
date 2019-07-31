@@ -396,7 +396,7 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       break;
   }
 
-  res.render('video/video_model', {
+  res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: title_bar,
     back_name: back_name,
@@ -408,8 +408,13 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
 
 /** 中大傳說 */
 router.get('/:device/legend', function (req, res, next) {
-  var title_bar = [];
-  res.render('video/catalog', {
+  var view = '';
+  if (req.params.device === 'index_com') {
+    view = 'video/catalog';
+  }else if(req.params.device === 'index_smp') {
+    view = 'video/phone/catalog_smp';
+  }
+  res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: ['LEGEND', '中大傳說'],
     user: req.user

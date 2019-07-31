@@ -65,7 +65,6 @@ router.post('/toPost',function(req,res){
   //判斷是否登入  
   new qnaDB({
     postID:getPostID(),
-    category:req.body.category,
     title:req.body.title,
     qContent:req.body.question,     
   }).save(function(err){
@@ -73,8 +72,7 @@ router.post('/toPost',function(req,res){
       return err;
     }           
     res.send(['success']);
-  });
-  
+  });  
 });
 router.post('/search',function(req,res){
   var category1;
