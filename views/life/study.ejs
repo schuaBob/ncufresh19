@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>新生知訊網｜中大生活</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <% include ../layouts/head %>
         <% include ../layouts/script %>
         <link rel=stylesheet type="text/css" href="life.css">
@@ -31,31 +32,30 @@
             </div> 
         <!--content-->
         <div class="content">
-           
             <div class="studyPicture">
-                <div>
-                    <a href="/life/study/lit"> <img class="studyImg" src="subPicture/lit.png"></a>
+                <div class="studyImg">
+                    <a href="/life/study/lit"><img class="pic" src="../life/subPicture/lit.png" alt="" width="100%" height="100%" /></a>
                 </div>
-                <div>
-                    <a href="/life/study/science"> <img class="studyImg" src="subPicture/science.png"></a>
+                <div class="studyImg">
+                    <a href="/life/study/science"><img src="../life/subPicture/ec.png" alt="" width="100%" height="100%" /></a>
                 </div>
-                <div>
-                    <a href="/life/study/ec"> <img class="studyImg" src="subPicture/ec.png"></a>
+                <div class="studyImg">
+                    <a href="/life/study/ec"><img src="../life/subPicture/ec.png" alt="" width="100%" height="100%" /></a>
                 </div>
-                <div>
-                    <a href="/life/study/mgt"> <img class="studyImg" src="subPicture/mgt.png"></a>
+                <div class="studyImg">
+                    <a href="/life/study/mgt"><img src="../life/subPicture/mgt.png" alt="" width="100%" height="100%" /></a>
                 </div>
-                <div>
-                    <a href="/life/study/ceecs"> <img class="studyImg" src="subPicture/ceecs.png"></a>
+                <div class="studyImg">
+                    <a href="/life/study/ceecs"><img src="../life/subPicture/ceecs.png" alt="" width="100%" height="100%" /></a>
                 </div>
-                <div>
-                    <a href="/life/study/escollege"> <img class="studyImg" src="subPicture/escollege.png"></a>
+                <div class="studyImg">
+                    <a href="/life/study/escollege"><img src="../life/subPicture/escollege.png" alt="" width="100%" height="100%" /></a>
                 </div>
-                <div>
-                    <a href="/life/study/hakka"> <img class="studyImg" src="subPicture/hakka.png"></a>
+                <div class="studyImg">
+                    <a href="/life/study/hakka"><img src="../life/subPicture/hakka.png" alt="" width="100%" height="100%" /></a>
                 </div>
-                <div>
-                    <a href="/life/study/chst"> <img class="studyImg" src="subPicture/chst.png"></a>
+                <div class="studyImg">
+                    <a href="/life/study/chst"><img src="../life/subPicture/chst.png" alt="" width="100%" height="100%" /></a>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                                 </button> 
                             </div>
                             <div class="modal-body">
-                                <form action="addStudyContent" method="POST" enctype="multipart/form-data">
+                                <form action="addStudyContent" method="POST">
                                     <!-- <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">請輸入要修改的學院</label>
                                         <div class="col-md-16">
@@ -83,41 +83,49 @@
                                                 <select class="form-control input-md bigTitle" id="descBigTitle" name="modifyStudyTitle">
                                                     <option value="default">請選擇</option>
                                                     <% for(var i in data1) { %>
-                                                            <option value="<%=data1[i].type%>"><%=data1[i].type%></option>
+                                                            <option value="<%=data1[i].type%>"><%-data1[i].type%></option>
                                                     <% } %>
                                                 </select>
                                             </div>
                                     </div>
                                     <div class="form-group">
+                                            <label class="col-md-4 control-label" for="elecategory">學院簡稱</label>
+                                            <div class="col-md-16">
+                                                <textarea class="form-control input-md tinyeditor" name="type" id="editor"></textarea>
+                                            </div>
+                                        </div>
+    
+                                    <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">學院名稱</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="mainTitle" id="editor"></textarea>
+                                            <textarea class="form-control input-md tinyeditor" name="mainTitle" id="editor"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">人名</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="name" id="editor"></textarea>
+                                            <textarea class="form-control input-md tinyeditor" name="name" id="editor"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">子標題</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="subTitle" id="editor"></textarea>
+                                            <textarea class="form-control input-md tinyeditor" name="subTitle" id="editor"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="elecategory">敘述文字</label>
                                         <div class="col-md-16">
-                                            <textarea class="form-control input-md" name="content" id="editor"></textarea>
+                                            <textarea class="form-control input-md tinyeditor" name="content" id="editor"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="elecategory">圖片</label>
-                                        <div class="col-md-12">
-                                            <input type="file" class="form-control input-md" name="picture">
+                                            <label class="col-md-4 control-label" for="elecategory">圖片</label>
+                                            <div class="col-md-16">
+                                                <textarea class="form-control input-md tinyeditor" name="picture" id="editor"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
+    
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">儲存/修改</button>
                                     </div>
@@ -140,19 +148,19 @@
                                             <div class="form-group">
                                                     <label class="col-md-4 control-label" for="elecategory">學院(請輸入英文簡稱：lit:文, science:理, ec:工, mgt:管理, ceecs: 資電, escollege: 地科, hakka: 客家, chst: 生醫)</label>
                                                     <div class="col-md-16">
-                                                        <textarea class="form-control input-md" name="type" id="editor"></textarea>
+                                                        <textarea class="form-control input-md tinyeditor" name="type" id="editor"></textarea>
                                                     </div>
                                                 </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="elecategory">時間點</label>
                                             <div class="col-md-16">
-                                                <textarea class="form-control input-md" name="time" id="editor"></textarea>
+                                                <textarea class="form-control input-md tinyeditor" name="time" id="editor"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="elecategory">此時間點之事件</label>
                                             <div class="col-md-16">
-                                                <textarea class="form-control input-md" name="event" id="editor"></textarea>
+                                                <textarea class="form-control input-md tinyeditor" name="event" id="editor"></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
