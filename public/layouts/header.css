@@ -41,7 +41,7 @@
 }
 
 
-::-webkit-scrollbar-thumb {
+::-webkit-scroll    bar-thumb {
     background: #736f6e;
 }
 
@@ -55,6 +55,64 @@ body {
     height: 100vh;
     padding: 0 !important;
     margin: 0 !important;
+}
+
+
+/* 手機版 */
+@media only screen and (max-width: 768px) {
+    #mySidenav #links .link {
+        font-size: 22px !important;
+        left: calc(50% - 44px);
+    }
+
+    #myNavLinks {
+        width: 100%;
+    }
+
+    #myNavPics {
+        width: 0%;
+    }
+
+    #mySidenav #links li {
+        display: block;
+        padding: calc(5vh - 0.5vw - 16px) 0px;
+        margin: 0;
+        width: 100%;
+        position: relative;
+    }
+
+    #mySidenav #links {
+        height: calc(100vh - 25vw);
+        width: calc(100% - 10px);
+    }
+}
+
+/* 電腦版 */
+@media only screen and (min-width: 768px) {
+    #mySidenav #links .link {
+        font-size: 1.7vw !important;
+        margin: 0 6vw;
+    }
+    
+    #myNavLinks {
+        width: 30%;
+        min-width: 330px;
+    }
+
+    #myNavPics {
+        width: 70%;
+        max-width: calc(100% - 330px);
+    }
+
+    #mySidenav #links li {
+        display: block;
+        padding: calc(5vh - 0.5vw - 13px) 0;
+        position: relative;
+    }
+
+    #mySidenav #links {
+        height: calc(100vh - 10vw);
+    }
 }
 
 
@@ -122,8 +180,6 @@ body {
 
 #myNavLinks {
     background-color: #fff9dc;
-    width: 30%;
-    min-width: 330px;
     z-index: 4003;
     position: relative;
     float: left;
@@ -131,8 +187,6 @@ body {
 
 #myNavPics {
     background-color: lightcoral;
-    width: 70%;
-    max-width: calc(100% - 330px);
     position: relative;
     float: right;
     top: 0;
@@ -147,7 +201,6 @@ body {
     overflow-y: hidden;
     overflow-x: hidden;
     scrollbar-width: none;
-    height: calc(100vh - 10vw);
     margin-top: 7vw;
     margin-bottom: 0;
     margin-left: 0;
@@ -164,19 +217,11 @@ body {
     font-size: 0.9vw;
 }
 
-#mySidenav #links li {
-    display: block;
-    padding: calc(5vh - 0.5vw - 13px) 0;
-    position: relative;
-}
-
 #mySidenav #links .link {
-    font-size: 1.7vw !important;
     color: #0163b0;
     text-decoration: none;
     line-height: 0 !important;
     position: relative;
-    margin: 0 6vw;
 }
 
 

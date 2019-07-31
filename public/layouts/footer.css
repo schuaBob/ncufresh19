@@ -2,13 +2,60 @@
 
 }
 
-#loginHref {
-    position: absolute;
-    right: 120px;
-    bottom: 25px;
-    width: 140px;
-    height: 50px;
-    text-decoration: none;
+/* 手機版 */
+@media only screen and (max-width: 768px) {
+    #loginHref {
+        position: absolute;
+        left: 20px;
+        bottom: 25px;
+        width: 140px;
+        height: 50px;
+        text-decoration: none;
+    } 
+
+    #topHref {
+        position: absolute;
+        right: 20px;
+        bottom: 25px;
+        width: 50px;
+        height: 50px;
+    }
+
+    #topWord {
+        position: relative;
+        left: 20%;
+        bottom: 38px;
+        width: 40px;
+        color: wheat;
+    }
+}
+
+/* 電腦版 */
+@media only screen and (min-width: 768px) {
+    #loginHref {
+        position: absolute;
+        right: 120px;
+        bottom: 25px;
+        width: 140px;
+        height: 50px;
+        text-decoration: none;
+    } 
+
+    #topHref {
+        position: absolute;
+        right: 40px;
+        bottom: 25px;
+        width: 50px;
+        height: 50px;
+    }
+
+    #topWord {
+        position: relative;
+        left: 20%;
+        bottom: 38px;
+        width: 85px;
+        color: wheat;
+    }
 }
 
 #loginHref:hover {
@@ -40,14 +87,6 @@
     color: wheat;
 }
 
-#topHref {
-    position: absolute;
-    right: 40px;
-    bottom: 25px;
-    width: 50px;
-    height: 50px;
-}
-
 #topHref:hover {
     cursor: pointer;
     animation-name: topAnimation;
@@ -70,10 +109,3 @@
     height: 50px;
 }
 
-#topWord {
-    position: relative;
-    left: 20%;
-    bottom: 38px;
-    width: 85px;
-    color: wheat;
-}

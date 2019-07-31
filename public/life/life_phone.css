@@ -12,8 +12,6 @@ html {
   }
 
   .sideNav {
-    /* position: absolute; */
-    /* float:right; */
     right: 0;
     left: 0;
     top: 0;
@@ -39,7 +37,7 @@ html {
   .mainTitle {
     position: relative;
     top: 0; bottom: 0; right: 0; left: 0 ; 
-    margin-left: 380px;
+    margin-left: 38%;
     width: 250px;
     height: 150px;
   }
@@ -52,13 +50,13 @@ html {
   #nculife {
     /* margin-left: -40px; */
     display: block;
-    font-size: 60px;
+    font-size: 6vw;
     color: #FB8360;
   }
 
   #life {
     margin-left: 43px;
-    font-size: 30px;
+    font-size: 3.2vw;
     color: #767171;
   }
 
@@ -66,12 +64,12 @@ html {
     position: absolute;
     margin-top: 20px;
     margin-bottom: 0;
-    margin-left: 90px;
+    margin-left: 8%;
     margin-right: 0;
   }
 
   .backArrow, .backToMain{
-      max-width:150px;
+      max-width: 16vw;
       cursor: pointer;
   }
 
@@ -139,12 +137,15 @@ html {
   }
   
   #name {
-    font-size: 25px;
+    font-size: 50px;
     padding-top: 5px;
+    margin-bottom: 0;
+    font-weight: 500;
   }
   #college {
-    font-size: 50px;
-    margin-bottom: 0;
+    font-size: 25px;
+    padding-bottom: 5px;
+    font-weight: 500;
   }
   .subStudyContent {
     position: relative;
@@ -153,9 +154,8 @@ html {
 
   .SpictureArea {
     position: relative;
-    /* top: 10%;
-    left: 10%; */
     margin: 5% auto;
+    margin-bottom:0%;
     width: 70%;
     height: 50%;
   }
@@ -169,7 +169,7 @@ html {
   .event {
       position: relative;
       margin-left: 15%;
-      margin-right: 15%;
+      margin-right: 16%;
   }
 
   #eventTitle {
@@ -185,6 +185,7 @@ html {
     position: absolute;
     margin-left: 5%;
     margin-right: 5%;
+    margin-bottom: 5%;
     white-space: pre-line;
     word-break: break-all;
   }
