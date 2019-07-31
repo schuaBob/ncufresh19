@@ -125,7 +125,6 @@ a:visited {
   position: absolute;
   bottom: 40px;
   left: 60px;
-<<<<<<< HEAD
   height: auto;
   width: 200px;
 }
@@ -136,18 +135,6 @@ a:visited {
   float: left;
   margin: 10% 1.5% 0% 1.5%;
 }
-=======
-  height: auto;
-  width: 200px;
-}
-/*
-.picture_right_test {
-  width: 200px;
-  height: auto;
-  float: left;
-  margin: 10% 1.5% 0% 1.5%;
-}
->>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 */
 .picture_right {
   position: absolute;
@@ -229,10 +216,6 @@ a:visited {
     max-width: 200px;
     position: absolute;
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
   @media screen and (max-height: 520px){
     .picture_left {
       display: none;
@@ -242,47 +225,6 @@ a:visited {
       display: none;
     }
   }
-<<<<<<< HEAD
-}
-
-@media screen and (max-width: 1230px){
-  .video_area {
-    margin-left: 20%;
-    width: 30%;
-    min-width: 600px;
-  }
-}
-
-@media only screen and (max-width: 1020px) {
-  .picture_left {
-    display: none;
-  }
-
-  .picture_right {
-    display: none;
-  }
-
-  .video_area {
-    margin-left: 15%;
-    min-width: 540px;
-    min-height: 280px;
-  }
-}
-
-@media only screen and (max-width: 680px) {
-  .video_area {
-    height: 20%;
-    margin-left: 15%;
-    min-width: 360px;
-    min-height: 280px;
-  }
-
-  #player {
-    width: 60%;
-    height: 40%;
-  }
-=======
->>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 }
 @media screen and (max-width: 1230px){
   .video_area {
@@ -377,11 +319,7 @@ a:visited {
     margin: 0;
     width: 100%;
     max-width: 100%;
-<<<<<<< HEAD
-    min-height: calc(60% -);
-=======
     min-height: 60%;
->>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
     overflow: scroll;
   }
   .v_button {
