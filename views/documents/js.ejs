@@ -41,10 +41,10 @@
         }, function () {
             $(this).attr('src', '學習資訊_原.png');
         });
+
         
 /*--------------------------------------管理者---------------------------------------------*/
-
-
+<%_ if (user && user.role === 'admin'){-%>
         //選擇新增或修改
         $(".option").mousedown(function () {
             $("#edit_modify").modal("show");
@@ -103,7 +103,7 @@
             });
         })
        
-        
+        <% } else { %>
  /*----------------------------------------使用者---------------------------------------------*/
         $(".option").mousedown(function(){
             textid = this.id;
@@ -125,7 +125,7 @@
                 }
             });
         })
-        
+        <%_ } -%>
         
         //調整modal跳出來的位置
         $('#edit').on('show.bs.modal', function () {
@@ -138,7 +138,7 @@
             $(this).css("top", "42px");
         });
         $('#show').on('show.bs.modal', function () {
-            $(this).css("top", "42px");
+            $(this).css("top", "60px");
         });
 
 /*-------------------------------------------手機板--------------------------------------------*/
@@ -186,6 +186,20 @@
             $(this).removeClass("bg");
         })
 
+        $("#show").on('hide.bs.modal', function () {
+            $("body").css({
+                "position":"fixed",
+                "overflow-y":"hidden",
+                "overflow-x":"hidden"
+            });
+         });
+        $("#show").on('show.bs.modal', function () {
+            $("body").css({
+                "position":"fixed",
+                "overflow-y":"hidden",
+                "overflow-x":"hidden"
+            });
+         });
 
     })
 

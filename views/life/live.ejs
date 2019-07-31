@@ -3,6 +3,7 @@
 
 <head>
     <title>新生知訊網｜中大生活</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <% include ../layouts/head %>
     <% include ../layouts/script %>
     <link rel=stylesheet type="text/css" href="life.css">
@@ -63,7 +64,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="elecategory">敘述文字</label>
                                     <div class="col-md-16">
-                                        <textarea class="form-control input-md" name="content" id="editor"><%- data[0]['content'] %></textarea>
+                                        <textarea class="form-control input-md tinyeditor" name="content" id="editor"><%- data[0]['content'] %></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

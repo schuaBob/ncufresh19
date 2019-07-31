@@ -66,23 +66,43 @@ $(document).ready(function() { //顯示或更換顯示學院
     } else if (arr[4] === "others") {
         var others_name = decodeURI(arr[arr.length - 1])
         console.log(others_name + "getbold");
-        $("#" + others_name).css("font-weight", "bold")
+
+
+    } else if (arr[4] === "association") {
+        var content = arr[arr.length - 1]
+        console.log(content)
+        $("#" + content).css("font-weight", "bold")
 
     }
     ////////////////////////////////////////////////////////貝殼///////////////////////////////////////////////////////////////
+
+
+
+    var shellcounter = 0
+
+
     $(".linkhover").hover(function() {
-        console.log("摸摸貝殼")
+        console.log("摸貝殼")
         $(this).children(".linkimg").attr("src", "/groups/貝殼打開.png")
         $(this).children("span").hide()
-        console.log("往上")
+
+
 
         $(this).children(".linkimg").css("bottom", "3vh")
+
+        shellcounter += 1
+        if (shellcounter >= 10) {
+            console.log("stop it!!!!")
+            $("#myshell").css("display", "block")
+            shellcounter = 0
+        }
 
 
     }, function() {
         $(this).children(".linkimg").attr("src", "/groups/貝殼關閉.png")
         $(this).children(".linkimg").css("bottom", "0")
         $(this).children("span").show()
+        $("#myshell").css("display", "none")
 
     });
     ////////////////////////////////////////////////////////接上department後台//////////////////////////////////////////////////////

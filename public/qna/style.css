@@ -21,6 +21,110 @@ a {
 }
 
 body {
+<<<<<<< HEAD
+  overflow: hidden;
+  moz-user-select: none;
+  /* for Firefox */
+  -webkit-user-select: none;
+  /* for Chrome */
+  background-image: url("background.png");
+  background-repeat:no-repeat;
+  background-position-y:  bottom;
+  /* background-position-x: 55%; */
+  background-color:#FFF9DC; 
+  background-size: 100%;
+}
+
+._modal {
+  display: none;
+  position: fixed;
+  padding: 0px;
+  width: 63%;      
+  
+  top: 2%;
+  left: 30%;
+}
+
+._modal-content {
+  height: 100%;
+  background-size: 200px auto;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+._modal-content>img {
+  max-width: 100%;
+}
+
+.cross {
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  font-size: 100%;
+  z-index: 21;
+  color:#FFCC00;
+}
+
+.cross:hover {
+  cursor: pointer;
+}
+
+.question {
+  width: 63%;
+  position: absolute;
+  top: 22%;
+  left: 19%;
+  height: 47vh;
+  
+}
+
+.answer {
+  width: 63%;
+  position: absolute;
+  top: 22%;
+  left: 19%;
+  height: 47vh;
+  font-size: 1.5rem;
+}
+
+.modalTitle {
+  border-bottom: 1px solid black;
+  font-size: 1.5rem;
+}
+
+.modalContent {
+  height: 90%;
+  margin-top: 1%;
+}    
+.formElement {
+  width: 100%;
+  font-size:1.5em;
+}
+
+.answerModelQ {
+  max-height: 40%;
+}
+
+.answerModelA {
+  max-height: 60%;
+}
+
+.contentPart {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.contentPart>p {
+  background-color: #EAEAEA;
+  height: 80%;
+  border-radius: 4px;
+  word-wrap:break-word;
+  /* border: #e5e5e5 1px solid;     */
+}
+#mdoption{
+  display:flex;
+  position: relative;
+=======
     overflow: hidden;
     moz-user-select: none;
     /* for Firefox */
@@ -32,6 +136,7 @@ body {
     /* background-position-x: 55%; */
     background-color: #FFF9DC;
     background-size: 100%;
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 }
 
 .main {
@@ -81,8 +186,13 @@ body {
 }
 
 .option {
+<<<<<<< HEAD
+  font-size: 3vh;
+  margin-top: 5vh;  
+=======
     font-size: 3vh;
     margin-top: 5vh;
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 }
 
 .option ul {
@@ -156,6 +266,13 @@ body {
 .sortButton:hover {
     cursor: pointer;
 }
+<<<<<<< HEAD
+.searchBar {    
+  position: absolute;
+  right: 6%;
+  top:7px;
+  /* float: right; */
+=======
 
 .searchBar {
     min-width: 187px;
@@ -163,6 +280,7 @@ body {
     right: 6%;
     top: 9px;
     /* float: right; */
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 }
 
 .form-inline {
@@ -231,8 +349,12 @@ thead>tr {
 }
 
 .modal {
+<<<<<<< HEAD
+  background-color: rgba(0, 0, 0, 0.4);  
+=======
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 10000;
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
 }
 
 .modal-dialog {
@@ -247,6 +369,43 @@ thead>tr {
 }
 
 .searchInput {
+<<<<<<< HEAD
+  border-radius: 30px;
+  margin-right: 2px;
+  border:1px solid #B9B9B9;
+  padding: 1% 4%;
+  width: 93%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
+}
+
+/* iPhone XR */
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 896px) 
+    and (-webkit-device-pixel-ratio : 2) {
+      body{
+        background-image: none;
+      }      
+      #mobileAskBtn{
+        display: inline !important;
+      }
+      #notice-dialog{
+        max-width: none;
+      }
+      #notice-content{
+        width:90%;
+        height:55vh;
+      }
+      #outterTitleSpace{
+        width:40%;
+      }
+      .titleSpace{
+        left:27%;
+      }
+      .leftSide,.ask {
+=======
     border-radius: 30px;
     margin-right: 2px;
 }
@@ -260,6 +419,7 @@ thead>tr {
     }
     .leftSide,
     .ask {
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
         display: none;
     }
     .rightSide {
@@ -277,6 +437,47 @@ thead>tr {
     }
     .buttonGroup {
         display: none;
+<<<<<<< HEAD
+      }
+      
+      thead > tr{
+        white-space:nowrap;
+        font-size:6vw;
+      }
+      tbody > tr{
+        font-size:5vw;
+      }
+      .fa-arrow-alt-circle-up {
+        visibility: hidden;  
+        position: absolute;  
+        right: -2vw;  
+        bottom: 5vh;  
+        font-size: 2.5em;
+        z-index: 87;
+      }
+      .sortButton{
+        color:#0D4966;    
+      }
+      .sort_SearchBar{
+        padding:0;
+        font-size: 5vw;
+        /* background-color:red;         */
+      }
+     
+      .searchBar{       
+        width:100%; 
+        position: static;              
+      }
+      
+      .searchInput{
+        border-radius: 360px;   
+        
+      }
+      #simpleSieve{
+        width: 6vw;
+      }
+      .mobileFilter{
+=======
     }
     thead>tr {
         white-space: nowrap;
@@ -293,11 +494,12 @@ thead>tr {
         color: #00B7FF;
     }
     .mobileFilter {
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
         display: block;
         position: absolute;
         text-align: right;
         right: 0;
-        top: -3vh;
+        top: -4vh;
         z-index: 88;
     }
     .mobileFilterButton {
@@ -319,11 +521,20 @@ thead>tr {
         background-color: #D0CECE;
         position: relative;
         top: -4%;
+<<<<<<< HEAD
+        padding: 1px 0;        
+      }
+    
+      .option{
+        font-size: 3vh;    
+        margin-top:0;
+=======
         padding: 1px 0;
     }
     .option {
         font-size: 3vh;
         margin-top: 0;
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
         white-space: nowrap;
     }
     .option ul {
@@ -336,6 +547,20 @@ thead>tr {
         margin-bottom: 21%;
         text-align: center;
         border-radius: 2px;
+<<<<<<< HEAD
+        padding: 4% 0%;
+      }
+      .option i{
+        display: none;
+      }
+      .contentTable{
+        overflow-x:auto;
+      }
+      #Top{        
+        width: 14vw !important;        
+      }
+=======
+>>>>>>> a2aecd60661223f437c8fce7ef0181bcfc01970e
     }
 }
 

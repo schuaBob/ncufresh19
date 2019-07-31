@@ -108,7 +108,7 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/index-edit', (req, res, next) => {
+router.get('/index-edit',checkUser.isAdmin, (req, res, next) => {
   Promise.all([
     docNews.find({}, {
       _id: 0,

@@ -5,6 +5,7 @@
   <title><%= title %></title>
   <% include ../layouts/head %>
   <% include ../layouts/script %>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel='stylesheet' href='about/style.css' />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -107,7 +108,7 @@ body {
 }
 #banner{
   position: absolute;
-  right: 10%;
+  right: 13%;
   height: 100%;
 }
 #qatxt {
@@ -115,6 +116,7 @@ body {
   font-size: 28px;
   top: -6%;
   color: #FB8360;
+  z-index: 3;
 }
 
 #qatxt_c {
@@ -122,6 +124,7 @@ body {
   font-size: 17px;
   bottom: 2%;
   color: #767171;
+  z-index: 3;
 }
 .leftSide {
   width: 20%;
@@ -175,25 +178,27 @@ body {
 ._card{
   height: 100%;
   /* background: #00B7FF; */
-  padding-top: 3%;
+  padding-top: 2%;
   /* border-top:1px solid black; */
   text-align: center;
 }
 .title{
   display: block;  
   font-size: 2em;  
+  position: relative;
+  top:-1%;
 }
 .intro{
   display: block;  
   width: 80%;
   margin-top: 1%;
-  margin: 1% auto 0;
+  margin: 2% auto 0;
   text-align:left;
 }
 
 .photo{
   position: relative;
-  top:4%;
+  top:1%;
   
   height: 70%;
   width: auto;  
@@ -223,47 +228,43 @@ body {
             <ul>
               <li><a href="#all"><i class="fas fa-angle-right"></i>全體工人</a></li>
               <li><a href="#execute"><i class="fas fa-angle-right"></i>執行組</a></li>
-              <li><a href="#planning"><i class="fas fa-angle-right"></i>企劃組</a></li>
-              <li><a href="#programming"><i class="fas fa-angle-right"></i>程設組</a></li>
-              <li><a href="#video"><i class="fas fa-angle-right"></i>影音組</a></li>
-              <li><a href="#art"><i class="fas fa-angle-right"></i>美工組</a></li>
+              <li><a href="#planning"><i class="fas fa-angle-right"></i>行銷企劃組</a></li>
+              <li><a href="#programming"><i class="fas fa-angle-right"></i>程式設計組</a></li>
+              <li><a href="#video"><i class="fas fa-angle-right"></i>媒體影音組</a></li>
+              <li><a href="#art"><i class="fas fa-angle-right"></i>網頁美工組</a></li>
             </ul>
           </div>
       </div>
       <div class="rightSide">
-        <div class="_card" id="all">          
+        <div class="_card" id="all">  
           <span class="title">全體工人</span>
-          <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
           <img src="全體.jpg" alt="" class="photo">
-          
+          <span class="intro">為了讓新生一入學便能迅速了解學校，一群熱血的學長姊聚集起來組成新生知訊網團隊，藉由下學期及暑假的時間討論、撰寫程式及拍攝影片，最後將一切放在新生知訊網裡，等著各位中央大學的新鮮人去發掘，並開啟精采的大學生活。</span>
         </div>
         <div class="_card" id="execute">
             <span class="title">執行組</span>
-            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
             <img src="執行.jpg".jpg" alt="" class="photo">
-
+            <span class="intro">執行組負責統整知訊網的事務，與各個相關社團、系所、組織進行協商與聯絡，成為各單位之間的橋樑 ; 更需招募知訊網工人，規劃網站的大方向，配合各個小組，共同創作出新生知訊網。</span>
         </div>
         <div class="_card" id="planning">
-            <span class="title">企劃組</span>
-            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
+            <span class="title">行銷企劃組</span>
             <img src="企劃.jpg" alt="" class="photo">
+            <span class="intro">行銷企劃組主導網頁的版面設計以及功能開發，提供創新的點子，再把理念交給網頁美工組與程式設計組，將理想付諸程式實現並美化，帶給新生一個有如通往大學橋樑的知訊網。</span>
         </div>
         <div class="_card" id="programming">
-            <span class="title">程設組</span>
-            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
+            <span class="title">程式設計組</span>
             <img src="程設.jpg" alt="" class="photo">
-            
+            <span class="intro">程式設計組以程式架構出知訊網，並利用程式碼，做出其他組希望達到的各種功能，是這個網頁幕後的大功臣，也希望能以程式能力，期許新生一個更好的大學生活。</span>           
         </div>
         <div class="_card" id="video">
-            <span class="title">影音組</span>
-            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
+            <span class="title">媒體影音組</span>
             <img src="影音.jpg" alt="" class="photo">
-
+            <span class="intro">媒體影音組負責製作所有知訊網的影片，包括拍攝、後製，編寫劇本，為的就是提供新生一個熟悉大學的機會，透過生活日常拍攝，甚至是各系所簡介，提早適應陌生的環境，更可從中體會到大學多采多姿的生活。</span>
         </div>
         <div class="_card" id="art">
-            <span class="title">美工組</span>
-            <span class="intro">測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</span>
-            <img src="美工.jpg" alt="" class="photo">          
+            <span class="title">網頁美工組</span>
+            <img src="美工.jpg" alt="" class="photo">  
+            <span class="intro">網頁美工組為單調的網頁模式注入生動活潑的靈魂，各處美編、精美的圖片都出自於他們之手，若說香水點綴了每個人的氣質，那網頁美工組肯定是知訊網不可或缺的芬芳。</span>
         </div>
       </div>
     </div>
