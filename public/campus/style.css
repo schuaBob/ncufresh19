@@ -514,7 +514,6 @@ li {
   bottom : 2.5%;  
   display: flex;
   position: absolute;
-  min-height: 200px;
 }
 
 .sailor1 {
@@ -853,6 +852,13 @@ li {
     display: none;
   }
 
+  .bottom_list{
+    min-height: 200px;
+  }
+
+  .sbird{
+    display: none;
+  }
 }
 
 
