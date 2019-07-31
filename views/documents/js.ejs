@@ -42,9 +42,6 @@
             $(this).attr('src', '學習資訊_原.png');
         });
 
-        $(".contnet a").click(function(){
-            $(this).attr('target', '_blank');
-        });
         
 /*--------------------------------------管理者---------------------------------------------*/
 <%_ if (user && user.role === 'admin'){-%>
@@ -189,6 +186,20 @@
             $(this).removeClass("bg");
         })
 
+        $("#show").on('hide.bs.modal', function () {
+            $("body").css({
+                "position":"fixed",
+                "overflow-y":"hidden",
+                "overflow-x":"hidden"
+            });
+         });
+        $("#show").on('show.bs.modal', function () {
+            $("body").css({
+                "position":"fixed",
+                "overflow-y":"hidden",
+                "overflow-x":"hidden"
+            });
+         });
 
     })
 
