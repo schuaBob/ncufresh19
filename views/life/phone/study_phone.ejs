@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>新生知訊網｜中大生活</title>
-        <% include ../../layouts/head %>
-        <% include ../../layouts/script %>
-        <link rel=stylesheet type="text/css" href="../life/life_phone.css">
-    </head>
 
+<<<<<<< HEAD
     <body>
         <% include ../../layouts/header %>
         <% include ../../layouts/js %>
@@ -18,6 +12,25 @@
                 <p id="life">中大生活</p>
         </div>
         <main id="main">
+=======
+<head>
+    <title>新生知訊網｜中大生活</title>
+    <% include ../../layouts/head %>
+    <% include ../../layouts/script %>
+    <link rel=stylesheet type="text/css" href="../life/life_phone.css">
+</head>
+
+<body>
+    <% include ../../layouts/header %>
+    <% include ../../layouts/js %>
+    <% include ../js %>
+    <div class="back"><img class="backToMain" src="backToMain.png"></div>
+    <div class="mainTitle">
+        <span id="nculife">NCULife</span>
+        <span id="life">中大生活</span>
+    </div>
+    <main id="main" style="padding-bottom: 6%;">
+>>>>>>> 1c8153bb7dbea6ccfa3bf4b80880da40d56319f5
         <div class="content">
             <div class="studyPicture">
                 <div>
@@ -47,14 +60,15 @@
             </div>
         </div>
     </main>
-        <script>
-                $(document).ready(function(){
-                    $(window).resize(function(){
-                        var width = innerWidth;
-                        if(width > 1024)
-                            document.location.href = "/life/study";
-                    });
-                });
-            </script>
-    </body>
+    <script>
+        $(document).ready(function () {
+            $(window).resize(function () {
+                var width = innerWidth;
+                if (width > 1024)
+                    document.location.href = "/life/study";
+            });
+        });
+    </script>
+</body>
+
 </html>

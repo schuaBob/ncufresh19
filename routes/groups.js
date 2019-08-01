@@ -302,8 +302,8 @@ router.get('/others', function(req, res, next) {
     })
 });
 router.get('/others/:others', function(req, res, next) {
-    if (req.params.others === "whokilledDaenerys") {
-        res.redirect("https://en.wikipedia.org/wiki/Jon_Snow_(character)")
+    if (req.params.others === "who'ssonkilledDaenerys") {
+        res.redirect("https://en.wikipedia.org/wiki/List_of_A_Song_of_Ice_and_Fire_characters#Lyanna_Stark")
     } else if (req.params.others === "whoisjonsnow'smom") {
         res.redirect("https://en.wikipedia.org/wiki/List_of_A_Song_of_Ice_and_Fire_characters#Lyanna_Stark")
 

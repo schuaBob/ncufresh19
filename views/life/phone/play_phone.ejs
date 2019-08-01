@@ -2,7 +2,6 @@
 <html>
     <head>
         <title>新生知訊網｜中大生活</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
         <% include ../../layouts/head %>
         <% include ../../layouts/script %>
         <link rel=stylesheet type="text/css" href="../life/life_phone.css">
@@ -26,15 +25,17 @@
                     <!-- </div>
                 </div> -->
             </div>
-        </main>
-        <script>
-                $(document).ready(function(){
-                    $(window).resize(function(){
-                        var width = innerWidth;
-                        if(width > 1024)
-                            document.location.href = "/life/play";
-                    });
-                });
-            </script>
-    </body>
+        </div>
+    </main>
+    <script>
+        $(document).ready(function () {
+            $(window).resize(function () {
+                var width = innerWidth;
+                if (width > 1024)
+                    document.location.href = "/life/play";
+            });
+        });
+    </script>
+</body>
+
 </html>

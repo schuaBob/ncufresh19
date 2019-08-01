@@ -5,10 +5,8 @@
     <title><%= title %></title>
     <% include ../../layouts/head %>
     <% include ../../layouts/script %>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel='stylesheet' href='/documents/style.css' />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
     <script type="text/javascript" src="/js/tinymce.min.js"></script>
 </head>
 
@@ -22,42 +20,42 @@
         <div class="choose" id="must">
             <div class="common">
                 <p class="bar">
-                    <a class="must link_com now" >其他</a>
+                    <a class="must link_com now">其他</a>
                 </p>
-            </div> 
+            </div>
             <div class="options">
-                <p class="p_option" id="31"><i class="fas fa-angle-right" ></i>&emsp;&emsp;108校曆</p>
-                <p class="p_option" id="42"><i class="fas fa-angle-right" ></i>&emsp;&emsp;輔導資訊</p>
-                <p class="p_option" id="32"><i class="fas fa-angle-right" ></i>&emsp;&emsp;中大圖書館</p>
-                <p class="p_option" id="33"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學生掛號郵件</p>
-                <p class="p_option" id="34"><i class="fas fa-angle-right" ></i>&emsp;&emsp;熱門連結介紹</p>
-                <p class="p_option" id="35"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學生申訴管道</p>
-                <p class="p_option" id="41"><i class="fas fa-angle-right" ></i>&emsp;&emsp;中大電算中心</p>
-                <p class="p_option" id="36"><i class="fas fa-angle-right" ></i>&emsp;&emsp;智慧財產權宣導</p>
-                <p class="p_option" id="37"><i class="fas fa-angle-right" ></i>&emsp;&emsp;LMS/ee-CLASS</p> 
-            </div>   
+                <p class="p_option" id="31"><i class="fas fa-angle-right"></i>&emsp;&emsp;108校曆</p>
+                <p class="p_option" id="42"><i class="fas fa-angle-right"></i>&emsp;&emsp;輔導資訊</p>
+                <p class="p_option" id="32"><i class="fas fa-angle-right"></i>&emsp;&emsp;中大圖書館</p>
+                <p class="p_option" id="33"><i class="fas fa-angle-right"></i>&emsp;&emsp;學生掛號郵件</p>
+                <p class="p_option" id="34"><i class="fas fa-angle-right"></i>&emsp;&emsp;熱門連結介紹</p>
+                <p class="p_option" id="35"><i class="fas fa-angle-right"></i>&emsp;&emsp;學生申訴管道</p>
+                <p class="p_option" id="41"><i class="fas fa-angle-right"></i>&emsp;&emsp;中大電算中心</p>
+                <p class="p_option" id="36"><i class="fas fa-angle-right"></i>&emsp;&emsp;智慧財產權宣導</p>
+                <p class="p_option" id="37"><i class="fas fa-angle-right"></i>&emsp;&emsp;LMS/ee-CLASS</p>
+            </div>
         </div>
-            
-           
-    
+
+
+
     </main>
     <% include ../../layouts/js %>
     <% include ../js %>
     <script>
-        $(document).ready(function(){
-            $(window).resize(function(){
+        $(document).ready(function () {
+            $(window).resize(function () {
                 var width;
-                if(innerWidth > outerWidth)
+                if (innerWidth > outerWidth)
                     width = outerWidth;
                 else
                     width = innerWidth;
-                if(width <= 768)
+                if (width <= 768)
                     document.location.href = "/documents/phone/common_phone";
                 else
                     document.location.href = "/documents/common";
             });
         });
-        </script>
+    </script>
 </body>
 
 </html>

@@ -3,7 +3,6 @@
 
 <head>
     <title>subStudy</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <% include ../../layouts/head %>
     <% include ../../layouts/script %>
     <link rel=stylesheet type="text/css" href="../../life/life_phone.css">
@@ -15,48 +14,50 @@
     <% include ../js %>
     <div class="back"><img class="backArrow" src="../backArrow.png"></div>
     <div class="mainTitle">
-            <span id="nculife">NCULife</span>
-            <span id="life">中大生活</span>
+        <span id="nculife">NCULife</span>
+        <span id="life">中大生活</span>
     </div>
     <% for(var i in data1) { %>
-        <% if (data1[i].type == page) { %>
-            <div class="studyTitle">
-                <div class="name">
-                    <p id="name"><%- data1[i]['name']%></p><p id="college"><%- data1[i]['mainTitle']%></p>
+    <% if (data1[i].type == page) { %>
+    <div class="studyTitle">
+        <div class="name">
+            <p id="name"><%- data1[i]['name']%></p>
+            <p id="college"><%- data1[i]['mainTitle']%></p>
+        </div>
+    </div>
+    <div class="subContent">
+        <div class="subStudyContent">
+            <div class="SpictureArea">
+                <div id="subStudyImg">
+                    <%- data1[i]['picture'] %>
                 </div>
             </div>
-            <div class="subContent">
-                <div class="subStudyContent">
-                    <div class="SpictureArea">
-                        <div id="subStudyImg">
-                            <%- data1[i]['picture'] %>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div id="eventTitle">經歷</div>
-                        <% for(var j in data2) { %>
-                            <% if (data2[j].type == page) { %>
-                                <%- data2[j]['event']%>
-                                <p>\</p>
-                            <% } %>
-                        <% } %>
-                    </div>
-                </div> 
-                <div class="studyContent">
-                    <%- data1[i]['content']%>
-                </div>
+            <div class="event">
+                <div id="eventTitle">經歷</div>
+                <% for(var j in data2) { %>
+                <% if (data2[j].type == page) { %>
+                <%- data2[j]['event']%>
+                <p>\</p>
+                <% } %>
+                <% } %>
             </div>
-        <% } %>
+        </div>
+        <div class="studyContent">
+            <%- data1[i]['content']%>
+        </div>
+    </div>
+    <% } %>
     <% } %>
     <script>
-            $(document).ready(function(){
-                $(window).resize(function(){
-                    var width = innerWidth;
-                    if(width > 1024)
-                        document.location.href = "/life/study/<%=page%>";
-                });
+        $(document).ready(function () {
+            $(window).resize(function () {
+                var width = innerWidth;
+                if (width > 1024)
+                    document.location.href = "/life/study/<%=page%>";
             });
-        </script>
+        });
+    </script>
 
 </body>
+
 </html>
