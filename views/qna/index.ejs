@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-  <link rel='stylesheet' href='/qna/style.css' />
+  <link rel='stylesheet' href='/qna/style.css'>
 
 
   <style>
@@ -83,7 +83,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" id="submit" class="btn btn-primary" data-dismiss="modal">確認送出</button>
+          <button type="button" id="mobilesubmit" class="btn btn-primary" data-dismiss="modal">確認送出</button>
         </div>
       </div>
     </div>
@@ -132,9 +132,9 @@
         <div class="modal-body f-5vw">
           <form action="/qna/toPost" class="needs-validation" method="POST">
             <span style="color:rgb(32, 56, 100)" class="f-5vw">標題</span>
-            <input type="text" class="formElement f-5vw" id="q_title">
+            <input type="text" class="formElement f-5vw" id="mobileq_title">
             <span style="color:rgb(32, 56, 100)" class="f-5vw">內容</span>
-            <textarea id="q_content" class="formElement f-5vw" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
+            <textarea id="mobileq_content" class="formElement f-5vw" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
           </form>
         </div>
         <div class="modal-footer">
@@ -180,7 +180,7 @@
             <h4 style="color:rgb(32, 56, 100)">內容</h4>
             <textarea id="q_content" class="formElement" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
           </form>
-          <input type="submit" value="提交"
+          <input type="button" value="提交"
             style="float:right;font-size:1em;margin-top:5px;background-color:#FFCC00; border:none;" data-toggle="modal"
             data-target="#noticeModal">
         </div>
@@ -217,130 +217,141 @@
           <div id="answerModelAID" class="contentPart answerModelA" <% if(true){ %> role="admin" <% } %>>
             Answer:
             <!-- user && (user.role === "admin") -->
-            <% if(true){ %> <textarea type="text" postID="" id="modifyInput" class="modifyInput tinyeditor"></textarea>
-            <div id="mdoption">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-                  審核&nbsp;
-                </label>
+            <% if(true){ %> 
+              <textarea type="text" postID="" id="modifyInput" class="modifyInput tinyeditor"></textarea>
+              <div id="mdoption">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    審核&nbsp;
+                  </label>
+                </div>
+                <button id="modifyBtn" class="btn btn-primary">修改/回覆</button>
+                <button id="deleteBtn" class="btn btn-danger" style="position: absolute; right: 10%;">刪除</button>
               </div>
-            </div>
+            <% }else{ %>  
+              <p>顯示問題</p>
             <% } %>
-            <% include ../layouts/header %>
-            <main id="main">
-              <div id="outterTitleSpace">
-                <div class="titleSpace">
-                  <span class="font-weight-bold" id="qatxt">Q&A</span>
-                  <span id="qatxt_c">新生問答</span>
-                </div>
-              </div>
-
-              <div class="main d-flex">
-                <div class="leftSide">
-
-                  <div class="option">
-                    <ul>
-                      <a href="/qna">
-                        <li><i class="fas fa-angle-right" id="all"></i>全部問題</li>
-                      </a>
-                      <a href="/qna/life">
-                        <li><i class="fas fa-angle-right" id="life"></i>校園生活</li>
-                      </a>
-                      <a href="/qna/course">
-                        <li><i class="fas fa-angle-right" id="course"></i>課程相關</li>
-                      </a>
-                      <a href="/qna/affair">
-                        <li><i class="fas fa-angle-right" id="affair"></i>學生事務</li>
-                      </a>
-                      <a href="/qna/other">
-                        <li><i class="fas fa-angle-right" id="other"></i>其他</li>
-                      </a>
-                    </ul>
-                  </div>
-                </div>
-                <div class="rightSide">
-                  <!-- 過濾以及搜尋框 -->
-                  <div class="sort_SearchBar">
-                    <div class="buttonGroup">
-                      <div class="button">排序</div>
-                      <div class="button sortButton orangeBg" sort="time">時間</div>
-                      <div class="button sortButton" sort="count">人氣</div>
-                    </div>
-                    <div class="searchBar">
-                      <form id="searchForm">
-                        <i class="fas fa-search" aria-hidden="true" style="line-height: 2;"></i>
-                        <input class="ml-2 searchInput" type="text" placeholder="Search" aria-label="Search"
-                          onkeydown="if(event.keyCode==13){return false;}" id="search">
-                      </form>
-                    </div>
-                    <!-- mobileFilter -->
-                    <div class="mobileFilter">
-                      <img src="simpleSieve.png" alt="" id="simpleSieve">
-                      <div class="mobileFilterContent">
-                        <div class="mobileFilterButton">
-                          <ul>
-                            <li>排序</li>
-                            <li class="sortButton" sort="time">時間</li>
-                            <li class="sortButton" sort="count">人氣</li>
-                          </ul>
-                        </div>
-                        <div class="option">
-                          <ul>
-                            <li>分類</li>
-                            <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
-                            <li><a href="/qna/life"><i class="fas fa-angle-right" id="life"></i>校園生活</a>
-                            </li>
-                            <li><a href="/qna/course"><i class="fas fa-angle-right" id="course"></i>課程相關</a></li>
-                            <li><a href="/qna/affair"><i class="fas fa-angle-right" id="affair"></i>學生事務</a></li>
-                            <li><a href="/qna/other"><i class="fas fa-angle-right" id="other"></i>其他</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- ------------ -->
-                  </div>
-                  <!-- 企鵝 -->
-                  <div class="ask">
-                    <img src="qtext.png" alt="" id="img1">
-                    <img src="penguin.png" alt="" id="img2">
-                  </div>
-                  <!-- 問題列表 -->
-                  <div class="content">
-                    <div class="contentTable">
-                      <table class="table table-hover table-borderless">
-                        <thead>
-                          <tr class="head">
-                            <th scope="col">分類</th>
-                            <th scope="col">標題</th>
-                            <th scope="col">日期</th>
-                            <th scope="col">點閱數</th>
-                          </tr>
-                        </thead>
-                        <tbody search="false">
-                          <% for(let index in questions){ %>
-                          <tr postID="<%= questions[index].postID%>">
-                            <th scope="row"><%= questions[index].category%></th>
-                            <td class="rowTitle"><span data-toggle="tooltip" data-placement="top"
-                                title="<%= questions[index].title %>"><%= trunc(questions[index].title) %></span>
-                            </td>
-                            <td><%= convertDateToString(questions[index]._id.getTimestamp()) %></td>
-                            <td class="count"><%= questions[index].count  %></td>
-                          </tr>
-                          <% } %>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </main>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <% include ../layouts/header %>
+  <main id="main">
+    <div id="outterTitleSpace">
+      <div class="titleSpace">
+        <span class="font-weight-bold" id="qatxt">Q&A</span>
+        <span id="qatxt_c">新生問答</span>
+      </div>
+    </div>
+
+    <div class="main d-flex">
+      <div class="leftSide">
+
+        <div class="option">
+          <ul>
+            <a href="/qna">
+              <li><i class="fas fa-angle-right" id="all"></i>全部問題</li>
+            </a>
+            <a href="/qna/life">
+              <li><i class="fas fa-angle-right" id="life"></i>校園生活</li>
+            </a>
+            <a href="/qna/course">
+              <li><i class="fas fa-angle-right" id="course"></i>課程相關</li>
+            </a>
+            <a href="/qna/affair">
+              <li><i class="fas fa-angle-right" id="affair"></i>學生事務</li>
+            </a>
+            <a href="/qna/other">
+              <li><i class="fas fa-angle-right" id="other"></i>其他</li>
+            </a>
+          </ul>
+        </div>
+      </div>
+      <div class="rightSide">
+        <!-- 過濾以及搜尋框 -->
+        <div class="sort_SearchBar">
+          <div class="buttonGroup">
+            <div class="button">排序</div>
+            <div class="button sortButton orangeBg" sort="time">時間</div>
+            <div class="button sortButton" sort="count">人氣</div>
+          </div>
+          <div class="searchBar">
+            <form id="searchForm">
+              <i class="fas fa-search" aria-hidden="true" style="line-height: 2;"></i>
+              <input class="ml-2 searchInput" type="text" placeholder="Search" aria-label="Search"
+                onkeydown="if(event.keyCode==13){return false;}" id="search">
+            </form>
+          </div>
+          <!-- mobileFilter -->
+          <div class="mobileFilter">
+            <img src="simpleSieve.png" alt="" id="simpleSieve">
+            <div class="mobileFilterContent">
+              <div class="mobileFilterButton">
+                <ul>
+                  <li>排序</li>
+                  <li class="sortButton" sort="time">時間</li>
+                  <li class="sortButton" sort="count">人氣</li>
+                </ul>
+              </div>
+              <div class="option">
+                <ul>
+                  <li>分類</li>
+                  <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
+                  <li><a href="/qna/life"><i class="fas fa-angle-right" id="life"></i>校園生活</a>
+                  </li>
+                  <li><a href="/qna/course"><i class="fas fa-angle-right" id="course"></i>課程相關</a></li>
+                  <li><a href="/qna/affair"><i class="fas fa-angle-right" id="affair"></i>學生事務</a></li>
+                  <li><a href="/qna/other"><i class="fas fa-angle-right" id="other"></i>其他</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- ------------ -->
+        </div>
+        <!-- 企鵝 -->
+        <div class="ask">
+          <img src="qtext.png" alt="" id="img1">
+          <img src="penguin.png" alt="" id="img2">
+        </div>
+        <!-- 問題列表 -->
+        <div class="content">
+          <div class="contentTable">
+            <table class="table table-hover table-borderless">
+              <thead>
+                <tr class="head">
+                  <th scope="col">分類</th>
+                  <th scope="col">標題</th>
+                  <th scope="col">日期</th>
+                  <th scope="col">點閱數</th>
+                </tr>
+              </thead>
+              <tbody search="false">
+                <% for(let index in questions){ %>
+                <tr postID="<%= questions[index].postID%>">
+                  <th scope="row"><%= questions[index].category%></th>
+                  <td class="rowTitle"><span data-toggle="tooltip" data-placement="top"
+                      title="<%= questions[index].title %>"><%= trunc(questions[index].title) %></span>
+                  </td>
+                  <td><%= convertDateToString(questions[index]._id.getTimestamp()) %></td>
+                  <td class="count"><%= questions[index].count  %></td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+
 </body>
 <% include ../layouts/js %>
 <% include js %>
