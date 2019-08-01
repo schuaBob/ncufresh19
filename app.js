@@ -127,7 +127,7 @@ app.use('/js', express.static(__dirname + '/node_modules/velocity-animate'));
 app.use('/js', express.static(__dirname + '/tinymce'))
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css', express.static(__dirname + '/node_modules/fullpage.js/dist'));
-app.use('/fontawesome',express.static(__dirname + '/fontawesome/css/all.min.css'));
+app.use('/fontawesome',express.static(__dirname + '/fontawesome'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
