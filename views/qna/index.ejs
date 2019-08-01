@@ -5,7 +5,8 @@
   <title><%= title %></title>
   <% include ../layouts/head %>
   <% include ../layouts/script  %>
-  <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/fontawesome/css/all.min.css">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel='stylesheet' href='/qna/style.css'>
 
@@ -191,7 +192,7 @@
       <img src="dialog.png" alt="">
       <div class="answer">
         <div class="modalTitle">
-          <% if(false){ %>
+          <% if(true){ %>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -211,10 +212,10 @@
           <div class="contentPart answerModelQ">Question:
             <p></p>
           </div>
-          <div id="answerModelAID" class="contentPart answerModelA" <% if(false){ %> role="admin" <% } %>>
+          <div id="answerModelAID" class="contentPart answerModelA" <% if(true){ %> role="admin" <% } %>>
             Answer:
             <!-- user && (user.role === "admin") -->
-            <% if(false){ %> 
+            <% if(true){ %> 
               <textarea type="text" postID="" id="modifyInput" class="modifyInput tinyeditor"></textarea>
               <div id="mdoption">
                 <div class="form-check">
