@@ -21,6 +21,51 @@
     try{ document.createEvent("TouchEvent"); return true; }
     catch(e){ return false;}
   }
+  function submit(){
+    $.ajax({
+            type: "POST",
+            url: "/qna/toPost",
+            dataType: 'json',
+            timeout: 5000,
+            data: {              
+              title: $("#q_title").val(),
+              question: $('#q_content').val()
+            },
+            success: function (data) {
+              console.log(data[0]);
+              if (data[0] === 'success') {                
+                $(".askmodal").css("display", "none");
+                alert("成功");
+                $("#noticeModal").modal("hide");
+              }
+            },
+            error: function (err) {
+              alert("資料庫出錯!!");
+            }
+          });
+  }
+  function mobileSubmit(){
+    $.ajax({
+            type: "POST",
+            url: "/qna/toPost",
+            dataType: 'json',
+            timeout: 5000,
+            data: {              
+              title: $("#mobileq_title").val(),
+              question: $('#mobileq_content').val()
+            },
+            success: function (data) {
+              if (data[0] === 'success') {
+                $(".askmodal").css("display", "none");
+                alert("成功");
+                $("#mobileNoticeModal").modal("hidden");
+              }
+            },
+            error: function (err) {
+              alert("資料庫出錯!!");
+            }
+          });
+  }
   $(document).ready(function () {
     // var q_ctEditor;
     // ClassicEditor
@@ -334,11 +379,12 @@
     }
 
     //askModal的submit觸發後，檢查字數是否符合規定
-    $("#submit").click(function () {      
+    $(document).on("click","#submit",function () {  
       var forms = document.getElementsByClassName('needs-validation');
       var validation = Array.prototype.filter.call(forms, function (form) {
         // alert(q_ctEditor.getData());
-        if (form.checkValidity() === false || $("#q_title").val() === "" || $('#q_content').val() === "") {
+        // form.checkValidity() === false || $("#q_title").val() === "" || $('#q_content').val() === ""
+        if (false) {
           event.preventDefault();
           event.stopPropagation();
           console.log("unfit")
@@ -358,6 +404,7 @@
               if (data[0] === 'success') {                
                 $(".askmodal").css("display", "none");
                 alert("成功");
+                $("#noticeModal").modal("hide");
               }
             },
             error: function (err) {
@@ -374,11 +421,13 @@
     $("#mobileTop").on("click",function(){
       $(".content").scrollTop(0);
     });
-    $("#mobilesubmit").click(function () {
+    $(document).on("click","#mobilesubmit",function () {
+      
       var forms = document.getElementsByClassName('needs-validation');
       var validation = Array.prototype.filter.call(forms, function (form) {
         // alert(q_ctEditor.getData());
-        if (form.checkValidity() === false || $("mobileq_title").val() === "" || $('#mobileq_content').val() === "") {
+        // form.checkValidity() === false || $("#mobileq_title").val() === "" || $('#mobileq_content').val() === ""
+        if (false) {
           event.preventDefault();
           event.stopPropagation();
           console.log("unfit")
@@ -397,6 +446,7 @@
               if (data[0] === 'success') {
                 $(".askmodal").css("display", "none");
                 alert("成功");
+                $("#mobileNoticeModal").modal("hidden");
               }
             },
             error: function (err) {

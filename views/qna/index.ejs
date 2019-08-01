@@ -82,8 +82,8 @@
           </p>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="mobileSubmit()">確認送出</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" id="mobilesubmit" class="btn btn-primary" data-dismiss="modal">確認送出</button>
         </div>
       </div>
     </div>
@@ -115,8 +115,8 @@
           </p>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="submit()">確認送出</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" id="submit" class="btn btn-primary" data-dismiss="modal">確認送出</button>
         </div>
       </div>
     </div>
@@ -168,7 +168,7 @@
     </div>
   </div>
   <!-- askModal -->
-  <div class=" _modal askmodal" style="z-index:5000;">
+  <div class="_modal askmodal" style="z-index:5000;">
     <div class="_modal-content">
       <img src="dialog.png" alt="">
       <div class="question">
@@ -194,7 +194,7 @@
       <img src="dialog.png" alt="">
       <div class="answer">
         <div class="modalTitle">
-          <% if(true){ %>
+          <% if(false){ %>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -214,10 +214,10 @@
           <div class="contentPart answerModelQ">Question:
             <p></p>
           </div>
-          <div id="answerModelAID" class="contentPart answerModelA" <% if(true){ %> role="admin" <% } %>>
+          <div id="answerModelAID" class="contentPart answerModelA" <% if(false){ %> role="admin" <% } %>>
             Answer:
             <!-- user && (user.role === "admin") -->
-            <% if(true){ %> 
+            <% if(false){ %> 
               <textarea type="text" postID="" id="modifyInput" class="modifyInput tinyeditor"></textarea>
               <div id="mdoption">
                 <div class="form-check">
