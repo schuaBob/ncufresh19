@@ -105,6 +105,69 @@ $(document).ready(function() { //顯示或更換顯示學院
         $("#myshell").css("display", "none")
 
     });
+
+    ////////////////////////////////////////////////////////////easter eggs/////////////////////////////////////////////////////////////////
+
+
+    $(".snap_so").on("click", function() {
+        console.log("snap")
+        $(this).css("display", "none")
+        $(".snap_p").css("display", "flex")
+
+
+    })
+
+    $(".snap_p").on("click", function() {
+        console.log("snap")
+        $(this).css("display", "none")
+        $(".snap_s").css("display", "flex")
+
+
+    })
+
+
+    $(".snap_s").on("click", function() {
+        console.log("snap")
+        $(this).css("display", "none")
+        $(".snap_t").css("display", "flex")
+
+
+    })
+    $(".snap_t").on("click", function() {
+        console.log("snap")
+        $(this).css("display", "none")
+        $(".snap_r").css("display", "flex")
+
+
+    })
+    $(".snap_r").on("click", function() {
+        console.log("snap")
+        $(this).css("display", "none")
+        $(".snap_m").css("display", "flex")
+
+
+    })
+    $(".snap_m").on("click", function() {
+        console.log("snap")
+        $(this).css("display", "none")
+        $(".snap_btn").css("display", "flex")
+
+
+    })
+
+    $(".snap_btn").on("click", function() {
+        console.log("snap")
+        $(this).css("display", "none")
+        $(".snap").css("display", "flex")
+
+
+
+    })
+
+
+
+
+
     ////////////////////////////////////////////////////////接上department後台//////////////////////////////////////////////////////
     $('#select_department_name').on('change', function() {
 

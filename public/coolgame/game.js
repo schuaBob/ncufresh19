@@ -6,7 +6,10 @@
 //於上漁船位置
 //------------game---------------------------------
 //var fs = require('fs');
+var reach;
+var reach_conrainer;
 var loading_text;
+var reach_close=true;
 var game_id="";
 var rank_user_list;
 var rank_background;
@@ -514,6 +517,8 @@ function getuser(){
     error:(err)=>{console.log(err)},
     success: function (result) {
       user=result.user;
+      if(user.score_sum <77777)reach=false;
+      else reach=true;
     }
   });
 }
@@ -662,7 +667,7 @@ function open_bird() {
       if (rnd < 2) {
         animal_list.push(new bird(0, false));
       }
-      if(rnd==3){
+       else if(rnd<4){
         animal_list.push(new fish(6, false));
       }
     }
@@ -726,6 +731,7 @@ function load_source() {
     { src: "/images/coolgame/dolphin.png", id: "dolphin" },
     { src: "/images/coolgame/rule1.png", id: "rule1" },
     { src: "/images/coolgame/rule2.png", id: "rule2" },
+    { src: "/images/coolgame/food.png", id: "food" }
   ];
   loader = new createjs.LoadQueue(true);
   loader.on("fileload", handleFileLoad);
@@ -1125,6 +1131,7 @@ function create_question_end_container() {
   question_end_container.x = 415;
   question_end_container.y = 320;
   golabby.havermask.addEventListener("mousedown", function () {
+    if(!reach_close)return;
     question_end_container.visible = false;
     for(var j =0;j<dolphin_list.length;j++){
       stage.removeChild(dolphin_list[j]);
@@ -1134,6 +1141,7 @@ function create_question_end_container() {
     labby_init();
   });
   goranking.havermask.addEventListener("mousedown", function () {
+    if(!reach_close)return;
     question_end_container.visible = false;
     for(var j =0;j<dolphin_list.length;j++){
       stage.removeChild(dolphin_list[j]);
@@ -1180,12 +1188,12 @@ function question_end() {
     })
     createjs.Tween.get(score_board_text).to({ x: a + 19, y: b + 13, scale: 1.5 }, 1000).call(() => {
       question_end_container.visible = true;
+      if(user_score + user.score_sum >= 77777 && reach==false)show_reach_animation();
     })
     clearInterval(question_timer);
     clearInterval(score_update_timer);
     update_score();
-    //labby_init();
-    console.log("game over");
+    //console.log("game over");
   }
   else{
     back_container.visible=false;
@@ -1441,12 +1449,13 @@ function create_dolphin_container(){
     })
     createjs.Tween.get(score_board_text).to({ x: a + 19, y: b + 13, scale: 1.5 }, 1000).call(() => {
       question_end_container.visible = true;
+      if(user_score + user.score_sum >= 77777 && reach==false)show_reach_animation();
     })
     dolphin_container.visible=false;
     clearInterval(question_timer);
     new Score_Text(""+animalsource[6].score,"bold 30px Arial","#000000",score_board.getwidth()/2+score_board.x,score_board_text.y);
     update_score();
-    console.log("game over");
+    //console.log("game over");
   });
   stage.addChild(dolphin_container);
 }
@@ -1880,6 +1889,8 @@ function update_rank(){
   // rank_container.children[3].y=0;
 }
 function show_reach_animation(){
+  reach_conrainer = new createjs.Container();
+  stage.addChild(reach_conrainer);
   var reach_fish_list = new Array();
   var reach_background_one = new createjs.Shape();
   var text01 = new createjs.Text("大","Bold 20px 微軟正黑體","#FFFFFF");
@@ -1887,13 +1898,21 @@ function show_reach_animation(){
   var text03 = new createjs.Text("收","Bold 20px 微軟正黑體","#FFFFFF");
   reach_background_one.graphics.beginFill("#000000").drawRect(0,0,800,500);
   reach_background_one.alpha=0;
-  stage.addChild(reach_background_one);
+  var food = new createjs.Bitmap(loader.getResult("food"));
+  var text_background = new createjs.Shape();
+  var text = new createjs.Text("恭喜獲得生活知能時數 1小時！！！","bold 20px 微軟正黑體","#FFFFFF");
+  reach_close = false;
+  food.visible= false;
+  reach_conrainer.addChild(reach_background_one);
   createjs.Tween.get(reach_background_one).to({alpha:0.7},800).call(function(){
+    food.scale=0.47;
+    food .x = (canvas_width/2 - food.getwidth()/2);
+    food.y = 600;
     for(var j =0;j<150;j++){
       var reach_fish = new fish(getrandom(4)+1,false);
       reach_fish.rotation=getrandom(180)-180;
       reach_fish.gotoAndStop("normal_die");
-      stage.addChild(reach_fish);
+      reach_conrainer.addChild(reach_fish);
       reach_fish.x = getrandom(700)+50;
       reach_fish.scale=0.2;
       reach_fish.y = -100;
@@ -1904,21 +1923,43 @@ function show_reach_animation(){
     text01.x=120;
     text01.y=30;
     text01.scale=0.1;
-    stage.addChild(text01);
+    reach_conrainer.addChild(text01);
     text02.shadow = new createjs.Shadow("#000000", 5, 5, 1);
     text02.x=text01.x+200;
     text02.y=30;
     text02.scale=0.1;
-    stage.addChild(text02);
+    reach_conrainer.addChild(text02);
     text03.shadow = new createjs.Shadow("#000000", 5, 5, 1);
     text03.x=text02.x+200;
     text03.y=30;
     text03.scale=0.1;
-    stage.addChild(text03);
-    createjs.Tween.get(text01).wait(300-(149/15)*17+149*30+500).to({scale:6},600).call(function(){
-      createjs.Tween.get(text02).to({scale:6},600).call(function(){
-        createjs.Tween.get(text03).to({scale:6},600).call(function(){
-
+    reach_conrainer.addChild(text03);
+    reach_conrainer.addChild(food);
+    createjs.Tween.get(food).wait(300-(149/15)*17+149*30+500).to({visible:true}).to({y:(canvas_height/2-food.getheight()/2)-100},1000).to({y:(canvas_height/2-food.getheight()/2)+100},1000).to({y:(canvas_height/2-food.getheight()/2)+50},1000).call(function(){
+      createjs.Tween.get(text01).to({scale:6},600).call(function(){
+        createjs.Tween.get(text02).to({scale:6},600).call(function(){
+          createjs.Tween.get(text03).to({scale:6},600).call(function(){
+            text_background.graphics.beginFill("#000000").drawRoundRect(food.x+150-200+3,food.y+283,385,50,10);
+            text_background.alpha=0;
+            text.x = food.x+150-200+33+3;
+            text.y = food.y+298;
+            text.alpha=0;
+            reach_conrainer.addChild(text_background);
+            reach_conrainer.addChild(text);
+            createjs.Tween.get(text_background).wait(300).to({alpha:0.8},1000);
+            createjs.Tween.get(text).wait(300).to({alpha:1},1000).call(function(){
+              food.addEventListener("mousedown",function(event){
+                createjs.Tween.get(reach_conrainer).to({alpha:0},1000).call(function(){
+                  stage.removeChild(reach_conrainer);
+                  reach_close=true;
+                });
+              });
+              food.addEventListener("mouseover",function(event){
+                food.cursor="pointer";
+              });
+                createjs.Tween.get(food).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600);
+            })
+          });
         });
       });
     });

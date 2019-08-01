@@ -1,6 +1,7 @@
 .tox.tox-silver-sink.tox-tinymce-aux {
     z-index: 6000;
 }
+
 @font-face {
     font-family: Noto Sans JP;
     src: url("/layouts/font/NotoSansJP-Regular.otf") format("opentype");
@@ -40,7 +41,7 @@
 }
 
 
-::-webkit-scrollbar-thumb {
+::-webkit-scroll    bar-thumb {
     background: #736f6e;
 }
 
@@ -57,6 +58,64 @@ body {
 }
 
 
+/* 手機版 */
+@media only screen and (max-width: 768px) {
+    #mySidenav #links .link {
+        font-size: 22px !important;
+        left: calc(50% - 44px);
+    }
+
+    #myNavLinks {
+        width: 100%;
+    }
+
+    #myNavPics {
+        width: 0%;
+    }
+
+    #mySidenav #links li {
+        display: block;
+        padding: calc(5vh - 0.5vw - 16px) 0px;
+        margin: 0;
+        width: 100%;
+        position: relative;
+    }
+
+    #mySidenav #links {
+        height: calc(100vh - 25vw);
+        width: calc(100% - 10px);
+    }
+}
+
+/* 電腦版 */
+@media only screen and (min-width: 768px) {
+    #mySidenav #links .link {
+        font-size: 1.7vw !important;
+        margin: 0 6vw;
+    }
+    
+    #myNavLinks {
+        width: 30%;
+        min-width: 330px;
+    }
+
+    #myNavPics {
+        width: 70%;
+        max-width: calc(100% - 330px);
+    }
+
+    #mySidenav #links li {
+        display: block;
+        padding: calc(5vh - 0.5vw - 13px) 0;
+        position: relative;
+    }
+
+    #mySidenav #links {
+        height: calc(100vh - 10vw);
+    }
+}
+
+
 #header {
     top: 0;
     width: 100%;
@@ -70,6 +129,9 @@ body {
     list-style-type: none;
     height: 60px;
     background-color: #fff9dc;
+    -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 3px rgba(6, 6, 85, 0.185);
 }
 
 #toIndex {
@@ -118,8 +180,6 @@ body {
 
 #myNavLinks {
     background-color: #fff9dc;
-    width: 30%;
-    min-width: 330px;
     z-index: 4003;
     position: relative;
     float: left;
@@ -127,8 +187,6 @@ body {
 
 #myNavPics {
     background-color: lightcoral;
-    width: 70%;
-    max-width: calc(100% - 330px);
     position: relative;
     float: right;
     top: 0;
@@ -143,7 +201,6 @@ body {
     overflow-y: hidden;
     overflow-x: hidden;
     scrollbar-width: none;
-    height: calc(100vh - 10vw);
     margin-top: 7vw;
     margin-bottom: 0;
     margin-left: 0;
@@ -160,19 +217,11 @@ body {
     font-size: 0.9vw;
 }
 
-#mySidenav #links li {
-    display: block;
-    padding: calc(5vh - 0.5vw - 13px) 0;
-    position: relative;
-}
-
 #mySidenav #links .link {
-    font-size: 1.7vw !important;
     color: #0163b0;
     text-decoration: none;
     line-height: 0 !important;
     position: relative;
-    margin: 0 6vw;
 }
 
 

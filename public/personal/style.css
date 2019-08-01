@@ -1,7 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
 
 body {
-  background-color: white;
+}
+
+.bg{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.bg #bgi {
+  width: 100%;
+  position: relative;
+  top: -200px;
+  z-index: -1;
 }
 
 .vertical-line{
@@ -33,7 +44,6 @@ body {
 .links {
   font-size: 15px;
   color: #0163b0;
-  background-color: white;
   width: 100px;
   height: 40px;
   border-radius: 30px;

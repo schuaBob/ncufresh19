@@ -19,10 +19,11 @@ body::-webkit-scrollbar {
 }
 
 body {
+  width: 100%;
   -ms-overflow-style: none;
   height: 100%;
-  width: calc(100vw + 18px);
-  overflow: auto;
+  /*width: calc(100vw + 18px);*/
+  overflow-x: hidden;
 }
 
 #show::-webkit-scrollbar {
@@ -50,7 +51,7 @@ body {
 /*show文字自動縮排*/
 #show_content{
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
   word-wrap:break-word;
 }
 
@@ -164,7 +165,7 @@ body {
 
 /*--------------------------選單--------------------------*/
 .sidenav {
-  height: 79vh;
+  height: 75vh;
   width: 14vw;
   position: absolute;
   z-index: 1;
@@ -175,7 +176,7 @@ body {
 
 .sidenav2 {
   padding-top: 2vh;
-  height: 79vh;
+  height: 75vh;
   width: 17vw;
   position: absolute;
   left: 14vw;
@@ -221,7 +222,7 @@ body {
   background-color: #FFFDF1;
   position: absolute;
   width: 67vw;
-  height: 90vh;
+  height: 88vh;
   right: 0vw;
   top:60px;
   margin-left: 1vw;
@@ -756,8 +757,8 @@ body {
   }
 
   .modal-dialog {
-    max-width: 93%;
-    max-height: 90%;
+    max-width: 96vw;
+    max-height: 88vh;
   }
 
   .modal-body {

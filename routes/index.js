@@ -90,7 +90,7 @@ router.get('/', (req, res, next) => {
       }
       return pass > 0
     })
-    var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
+    var catePicArr = ["重要通知", "重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
     console.log(`User:${req.user}`);
 
     calender = calender.sort(function (a, b) {
