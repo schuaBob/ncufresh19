@@ -156,9 +156,11 @@ router.get('/:device/interview/:collegeID', function (req, res, next) {
   var view = '';
   if (req.params.device === "index_com") {
     view = 'video/catalog';
+    back_name = 'index_com/interview/';
 
   } else if (req.params.device === "index_smp") {
     view = 'video/phone/catalog_smp';
+    back_name = 'index_smp/interview/';
 
   } else {
     res.status(404)
@@ -168,7 +170,7 @@ router.get('/:device/interview/:collegeID', function (req, res, next) {
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: title_bar,
-    back_name: 'index_com/interview/',
+    back_name: back_name,
     user: req.user
   });
 
@@ -352,48 +354,47 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
   }
 
   var view = '';
+  var back_name;
   if (req.params.device === "index_com") {
     view = 'video/video_model';
+    switch (title_bar[3]) {
+      case '管理學院':
+        back_name = 'index_com/interview/mgt/';
+        break;
+      case '文學院':
+        back_name = 'index_com/interview/lit/';
+        break;
+      case '理學院':
+        back_name = 'index_com/interview/science/';
+        break;
+      case '工學院':
+        back_name = 'index_com/interview/engineering/';
+        break;
+      case '資訊電機學院':
+        back_name = 'index_com/interview/ceecs/';
+        break;
+      case '地球科學學院':
+        back_name = 'index_com/interview/escollege/';
+        break;
+      case '客家學院':
+        back_name = 'index_com/interview/hakka_college/';
+        break;
+      case '生醫理工學院':
+        back_name = 'index_com/interview/chst/';
+        break;
+    
+      default:
+        break;
+    }
 
   } else if (req.params.device === "index_smp") {
     //手機版video model
     view = 'video/phone/video_model_smp';
+    back_name = 'index_smp/interview/';
 
   } else {
     res.status(404)
     res.end();
-  }
-
-  var back_name;
-  switch (title_bar[3]) {
-    case '管理學院':
-      back_name = 'index_com/interview/mgt/';
-      break;
-    case '文學院':
-      back_name = 'index_com/interview/lit/';
-      break;
-    case '理學院':
-      back_name = 'index_com/interview/science/';
-      break;
-    case '工學院':
-      back_name = 'index_com/interview/engineering/';
-      break;
-    case '資訊電機學院':
-      back_name = 'index_com/interview/ceecs/';
-      break;
-    case '地球科學學院':
-      back_name = 'index_com/interview/escollege/';
-      break;
-    case '客家學院':
-      back_name = 'index_com/interview/hakka_college/';
-      break;
-    case '生醫理工學院':
-      back_name = 'index_com/interview/chst/';
-      break;
-    
-  
-    default:
-      break;
   }
 
   res.render(view, {
