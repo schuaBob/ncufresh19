@@ -83,10 +83,10 @@
                   <% for(let i in News){ %>
                   <div class="card pernews" data-toggle="modal" data-target="#newsModal" pk="<%= News[i]['pk']%>">
                     <div class="row align-items-center pernews">
-                      <div class="col-2-">
-                        <img src="index/icon-<%= icon[News[i]['category']-1]%>.png" class="card-img">
+                      <div class="news-img">
+                        <img src="index/icon-<%= icon[News[i]['category']]%>.png" class="card-img">
                       </div>
-                      <div class="col-10-">
+                      <div class="news-content">
                         <div class="card-body">
                           <h5><%= News[i]['title']%></h5>
                           <span class="newsTime"><small><%= News[i]['screenTime']%></small></span>
@@ -111,10 +111,7 @@
                   <% } %>
                 </ol>
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="index/70667925_p0_master1200.jpg" class="d-block w-100" style="height: 70vmin;">
-                  </div>
-                  <!-- <%for (let i in commercial){%>
+                  <%for (let i in commercial){%>
                   <% if(i==0){%>
                   <div class="carousel-item active">
                     <img src="<%= commercial[i]['picPath']%>" class="d-block w-100">
@@ -124,7 +121,7 @@
                     <img src="<%= commercial[i]['picPath']%>" class="d-block w-100">
                   </div>
                   <%}%>
-                  <% } %> -->
+                  <% } %>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true">
@@ -204,7 +201,7 @@
             <div id="board">
               <img id="index3start" src="/index/首頁3_海星去背.png">
               <div id="board-detail">
-                
+
               </div>
             </div>
             <div id="days">
