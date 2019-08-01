@@ -2,17 +2,20 @@
 <html>
 
 <head>
-    <title><%= title %></title>
+    <title>
+        <%= title %>
+    </title>
     <% include ../layouts/head %>
-    <% include ../layouts/script %>
-    <link rel='stylesheet' href='/groups/style.css' />
-    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+        <% include ../layouts/script %>
+            <link rel='stylesheet' href='/groups/style.css' />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 
 <body class="yellowBg">
     <% include ../layouts/header %>
 
-    <div class="title_bar">
+        <div class="title_bar">
 
             <div class="line"></div>
             <div class="title">
@@ -27,46 +30,32 @@
                 <a class="nava e" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
             </div>
         </div>
-        <div class="navbar">
-            <img src="/groups/line.png" id="cuttingline">
-            <a class="nava" style="top:3px; left:11vw;" href="/groups/department"><img src="/groups/系所鈕.PNG"
-                    class="navimg"><br>系所</a>
-            <a class="nava" style="top:3px; left:26.5vw;" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img
-                    src="/groups/社團鈕.PNG" class="navimg"><br>社團</a>
-            <a class="nava" style="top:3px; left:43vw;" href="/groups/association"><img src="/groups/學生會鈕.PNG"
-                    class="navimg"><br>學生會</a>
-            <a class="nava" style="top:3px; left:59.25vw;" href="/groups/community"><img src="/groups/社群鈕.PNG"
-                    class="navimg"><br>社群</a>
-            <a class="nava" style="top:3px; left:76vw;" href="/groups/others"><img src="/groups/其他鈕.PNG"
-                    class="navimg"><br>其他學生組織</a>
+        <div class="sidebar">
+            <ul>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/association/intro">
+                    <li class="sideli horizontal " id="intro"><i class="fas fa-angle-right"></i>簡介</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/association/section">
+                    <li class="sideli horizontal " id="section"><i class="fas fa-angle-right"></i>部門介紹</li>
+                </a>
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/association/photos">
+                    <li class="sideli horizontal " id="photos"><i class="fas fa-angle-right"></i>活動剪影</li>
+                </a>
+            </ul>
         </div>
-    </div>
-    <div class="sidebar">
-        <ul>
-            <a style="text-decoration:none; color: #0D4966;" href="/groups/association/intro">
-                <li class="sideli horizontal " id="intro"><i class="fas fa-angle-right"></i>簡介</li>
-            </a>
-            <a style="text-decoration:none; color: #0D4966;" href="/groups/association/section">
-                <li class="sideli horizontal " id="section"><i class="fas fa-angle-right"></i>部門介紹</li>
-            </a>
-            <a style="text-decoration:none; color: #0D4966;" href="/groups/association/photos">
-                <li class="sideli horizontal " id="photos"><i class="fas fa-angle-right"></i>活動剪影</li>
-            </a>
-        </ul>
-    </div>
-    <%if(user && user.role==="admin"){%>
-    <div class="buttons">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">
+        <%if(user && user.role==="admin"){%>
+            <div class="buttons">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">
             編輯資料
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload">
             上傳圖片
         </button>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
-            刪除圖片
-        </button>
-    </div>
-    <%}%>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                刪除圖片
+            </button>
+            </div>
+            <%}%>
 
 
                 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -82,12 +71,12 @@
                                 <form action="/groups/edit_association" method="post">
                                     <div class="form-group">
                                         <label for="intro" class="col-form-label">簡介</label>
-                                        <textarea class="form-control tinyeditor" id="intro" name="intro" rows="8" value="<%=content.intro%>"></textarea>
+                                        <textarea class="form-control" id="intro" name="intro" rows="8" value="<%=content.intro%>"></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="section" class="col-form-label">部門介紹</label>
-                                        <textarea class="form-control tinyeditor" id="section" name="section" rows="8" value="<%=content.section%>"></textarea>
+                                        <textarea class="form-control" id="section" name="section" rows="8" value="<%=content.section%>"></textarea>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -107,63 +96,63 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                            </div>
+                            <form action="/groups/uploadimg" method="post" enctype="multipart/form-data">
+
+                                <div class="modal-body">
+
+                                    <input type="file" name="img" accept="image/*" multiple>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">UPLOAD</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <form action="/groups/uploadimg" method="post" enctype="multipart/form-data">
 
-                    <div class="modal-body">
+                <% if (content_this==="intro") {%>
 
-                        <input type="file" name="img" accept="image/*" multiple>
-
+                    <div class="info">
+                        <div class="info_title">
+                            簡介
+                        </div>
+                        <div class="content">
+                            <%=content[0].intro%>
+                        </div>
 
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">UPLOAD</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <% if (content_this==="intro") {%>
-
-    <div class="info">
-        <div class="info_title">
-            簡介
-        </div>
-        <div class="content">
-            <%=content[0].intro%>
-        </div>
-
-    </div>
-    <% } else if(content_this==="section"){%>
-    <div class="info">
-        <div class="info_title">
-            部門介紹
-        </div>
-        <div class="content">
-            <%=content[0].section%>
+                    <% } else if(content_this==="section"){%>
+                        <div class="info">
+                            <div class="info_title">
+                                部門介紹
+                            </div>
+                            <div class="content">
+                                <%=content[0].section%>
 
 
-        </div>
-        <% } else if(content_this==="photos"){%>
-        <div class="info">
-            <div class="info_title">
-                活動剪影
-            </div>
-            <div class="content">
-                <% for(var i in pic) {%>
-                <img src="<%= pic[i].pathname%>" class=stu_img>
-                <%}%>
+                            </div>
+                            <% } else if(content_this==="photos"){%>
+                                <div class="info">
+                                    <div class="info_title">
+                                        活動剪影
+                                    </div>
+                                    <div class="content">
+                                        <% for(var i in pic) {%>
+                                            <img src="<%= pic[i].pathname%>" class=stu_img>
+                                            <%}%>
                                     </div>
                                 </div>
 
                                 <%}%>
-                <img src="學生會.PNG" class=backgroundimg>
+                                    <img src="學生會.PNG" class=backgroundimg>
 
-                <script src="/groups/js/groups.js "></script>
+                                    <script src="/groups/js/groups.js "></script>
 
-                <% include ../layouts/js %>
+                                    <% include ../layouts/js %>
 </body>
 
 </html>
