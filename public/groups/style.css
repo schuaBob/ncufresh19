@@ -70,8 +70,8 @@
     .container2 {
         position: absolute;
         top: 55vh;
-        left: 15vw;
-        width: 70%;
+        left: 20vw;
+        width: 60%;
         text-align: center;
         display: flex;
         justify-content: Space-around;
@@ -318,14 +318,72 @@
         font-size: 3vw;
         color: #0D4966;
     }
+    /* eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
     
     .snap {
         position: absolute;
         top: 70px;
         left: 20px;
-        height: 5vw;
+        height: 75px;
         z-index: 30;
-        visibility: hidden;
+        display: none;
+    }
+    
+    .snap_btn {
+        position: absolute;
+        top: 85px;
+        left: 10px;
+        z-index: 40;
+        display: none;
+    }
+    
+    .snap_so {
+        background-color: #FB8360;
+        position: absolute;
+        z-index: 3000;
+        top: 46.9vh;
+        left: 62.8vw;
+    }
+    
+    .snap_m {
+        position: absolute;
+        display: none;
+        z-index: 3000;
+        top: 80vh;
+        left: 30vw
+    }
+    
+    .snap_p {
+        background-color: blueviolet;
+        display: none;
+        z-index: 3000;
+        position: absolute;
+        top: 20vh;
+        left: 15vw
+    }
+    
+    .snap_t {
+        position: absolute;
+        display: none;
+        z-index: 3000;
+        top: 15vh;
+        left: 80vw
+    }
+    
+    .snap_s {
+        position: absolute;
+        display: none;
+        z-index: 3000;
+        top: 93vh;
+        left: 20vw
+    }
+    
+    .snap_r {
+        position: absolute;
+        display: none;
+        z-index: 3000;
+        top: 75vh;
+        left: 80vw;
     }
     
     @media screen and (max-width:1050px) and (min-width: 375px) {
@@ -334,7 +392,7 @@
         }
         .navbar {
             display: flex;
-            width: 50vw;
+            width: 60vw;
             left: 17vw
         }
         a.nava {
@@ -395,9 +453,6 @@
             right: 1vw;
             z-index: -1;
         }
-        .navbar {
-            display: none
-        }
         /*---------------------listbar---------------------*/
         .sidebar {
             left: 2.5vw;
@@ -448,6 +503,24 @@
             float: left;
             margin: auto;
             align-items: center;
+        }
+        .cuttingline {
+            display: none
+        }
+        .navbar {
+            position: fixed;
+            top: 150px;
+            left: 270px;
+            display: flex;
+            flex-direction: column;
+            width: auto;
+        }
+        a.nava {
+            position: static;
+        }
+        .buttonimg {
+            height: 25vw;
+            width: inherit;
         }
         /*---------------------info---------------------*/
         .info {
