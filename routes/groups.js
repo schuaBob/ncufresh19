@@ -408,7 +408,7 @@ router.post('/edit_others', function(req, res, next) {
 router.get('/association', function(req, res, next) {
     console.log("get association")
     student_data.find({}).exec(function(err, data) {
-        console.log(data[0].section)
+
 
         res.render('groups/g_association', {
             title: '新生知訊網｜系所社團',
