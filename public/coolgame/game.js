@@ -6,10 +6,13 @@
 //於上漁船位置
 //------------game---------------------------------
 //var fs = require('fs');
+var soundcontrol = {'BGM':null,'CATCH':null,'key3':null}; 
+var BGmsound;
 var reach;
 var reach_conrainer;
 var loading_text;
 var reach_close=true;
+var rule_close=true;
 var game_id="";
 var rank_user_list;
 var rank_background;
@@ -198,12 +201,14 @@ class Button_Text extends createjs.Container {
 
     this.underline.graphics.s("#000000").mt(this.text.x, this.text.y + 25).lt(this.text.x + w, this.text.y + 25);
     this.havermask.addEventListener("mouseover", function (event) {
+      if(!rule_close)return;
       event.target.parent.havermask.cursor = "pointer";
       event.target.parent.haver.visible = true;
       //event.target.parent.underline.visible = true;
       event.target.parent.haver_background.alpha=0.9;
     });
     this.havermask.addEventListener("mouseout", function (event) {
+      if(!rule_close)return;
       event.target.parent.havermask.cursor = "defult";
       event.target.parent.haver.visible = false;
       event.target.parent.haver_background.alpha=0.4;
@@ -731,9 +736,16 @@ function load_source() {
     { src: "/images/coolgame/dolphin.png", id: "dolphin" },
     { src: "/images/coolgame/rule1.png", id: "rule1" },
     { src: "/images/coolgame/rule2.png", id: "rule2" },
-    { src: "/images/coolgame/food.png", id: "food" }
+    { src: "/images/coolgame/food.png", id: "food" },
+    { src: "/images/coolgame/close.png", id: "close" },
+    { src: "/images/coolgame/close_haver.png", id: "close_haver" },
+    { src: "/music/coolgame/BGM01.mp3", id: "BGM01" },
+    { src: "/music/coolgame/BGM01.mp3", id: "BGM02" },
+    { src: "/music/coolgame/BGM01.mp3", id: "BGM03" },
+    { src: "/music/coolgame/BGM01.mp3", id: "BGM04" }
   ];
   loader = new createjs.LoadQueue(true);
+  loader.installPlugin(createjs.Sound);
   loader.on("fileload", handleFileLoad);
   loader.on("complete", handleComplete);
   loader.on("error", handleError);
@@ -905,11 +917,55 @@ function create_rule_container(){
   rule_container= new createjs.Container();
   var rule_first = new createjs.Bitmap(loader.getResult("rule1"));
   var rule_second = new createjs.Bitmap(loader.getResult("rule2"));
+  var next_shape = new createjs.Shape();
+  var close = new createjs.Bitmap(loader.getResult("close"));
+  close.x = 687;
+  close.y = 25;
+  close.scale=0.5;
+  close.addEventListener("mouseover",function(event){
+    event.target.cursor = "pointer";
+    close.image = loader.getResult("close_haver");
+  })
+  close.addEventListener("mouseout",function(event){
+    event.target.cursor = "pointer";
+    close.image = loader.getResult("close");
+  })
+  close.addEventListener("mousedown",function(event){
+    rule_close=true;
+    rule_container.visible=false;
+  })
+  next_shape.graphics.beginFill("#000000").drawCircle(713,261,24);
+  next_shape.alpha=0.01;
+  next_shape.addEventListener("mouseover",function(event){
+    event.target.cursor = "pointer";
+  })
+  next_shape.addEventListener("mousedown",function(event){
+    rule_second.visible=true;
+    rule_first.visible = false;
+    next_shape.visible=false;
+    last_shape.visible=true;
+  })
+  var last_shape = new createjs.Shape();
+  last_shape.graphics.beginFill("#000000").drawCircle(65,255,24);
+  last_shape.alpha=0.01;
+  last_shape.addEventListener("mouseover",function(event){
+    event.target.cursor = "pointer";
+  })
+  last_shape.addEventListener("mousedown",function(event){
+    rule_second.visible=false;
+    rule_first.visible = true;
+    next_shape.visible=true;
+    last_shape.visible=false;
+  })
   rule_first.scale=0.65;
   rule_second.scale=0.65;
   rule_second.visible=false;
+  rule_container.x = 10
   rule_container.addChild(rule_first);
   rule_container.addChild(rule_second);
+  rule_container.addChild(next_shape);
+  rule_container.addChild(last_shape);
+  rule_container.addChild(close);
   rule_container.visible=false;
   stage.addChild(rule_container);
 }
@@ -1807,12 +1863,22 @@ function create_labbybutton() {
   var rule = new Button_Text("規則說明", "bold 20px 微軟正黑體", "#000000", 0, 55);
   var ranking = new Button_Text("排行榜", "bold 20px 微軟正黑體", "#000000", 10, 110);
   start.havermask.addEventListener("mousedown", function (event) {
+    if(!rule_close)return;
     labbybutton_container.visible = false;
     game_init();
   });
   ranking.havermask.addEventListener("mousedown", function () {
+    if(!rule_close)return;
     labbybutton_container.visible = false;
     ranking_init();
+  });
+  rule.havermask.addEventListener("mousedown", function (event) {
+    if(!rule_close)return;
+    rule_close=false;
+    rule_container.visible = true;
+    event.target.parent.havermask.cursor = "defult";
+    event.target.parent.haver.visible = false;
+    event.target.parent.haver_background.alpha=0.4;
   });
   stage.enableMouseOver(100);
   labbybutton_container.addChild(start);
@@ -2071,7 +2137,23 @@ function ranking_init() {
 }
 var at ;
 var bt;
+var resumeAudioContext = function() {
+	// handler for fixing suspended audio context in Chrome	
+	try {
+		if (createjs.WebAudioPlugin.context && createjs.WebAudioPlugin.context.state === "suspended") {
+			createjs.WebAudioPlugin.context.resume();
+		}
+	} catch (e) {
+		// SoundJS context or web audio plugin may not exist
+		console.error("There was an error while trying to resume the SoundJS Web Audio context...");
+		console.error(e);
+	}
+	// Should only need to fire once
+	window.removeEventListener("click", resumeAudioContext);
+};
+window.addEventListener("click", resumeAudioContext);
 function labby_init() {
+  soundcontrol["BGM"]=createjs.Sound.play("BGM01");
   usergame_init();
   getuser();
   now = 0;
