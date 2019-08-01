@@ -5,72 +5,87 @@
     <title>
         <%= title %>
     </title>
-
     <% include ../layouts/head %>
-        <% include ../layouts/script %>
-
-            <link rel='stylesheet' href='/groups/style.css' />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-            <meta name="viewport" content="width=device-width,initial-scale=1">
+    <% include ../layouts/script %>
+    <link rel='stylesheet' href='/groups/style.css' />
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
 </head>
 
 <body class="yellowBg">
     <% include ../layouts/header %>
 
-        <div class="title_bar">
-            <div class="line"></div>
-            <div class="title">
-                <h1>DEPARTMENT<br><span class="small_title">系所</span></h1>
-            </div>
-
-            <div class="navbar">
-                <img src="/groups/line.png" class="cuttingline">
-                <a class="nava a" href="/groups/department"><img src="/groups/系所鈕.PNG" class="navimg"><br>系所</a>
-                <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/社團鈕.PNG" class="navimg"><br>社團</a>
-                <a class="nava c" href="/groups/association"><img src="/groups/學生會鈕.PNG" class="navimg"><br>學生會</a>
-                <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/社群鈕.PNG" class="navimg"><br>社群</a>
-                <a class="nava e" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
-            </div>
+    <div class="title_bar">
+        <div class="line"></div>
+        <div class="title">
+            <h1>DEPARTMENT<br><span class="small_title">系所</span></h1>
         </div>
-        <div class="sidebar">
-            <ul>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/1">
-                    <li class="sideli 1"><i class="fas fa-angle-right"></i>文學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/2">
-                    <li class="sideli 2"><i class="fas fa-angle-right"></i>理學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/3">
-                    <li class="sideli 3"><i class="fas fa-angle-right"></i>工學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/4">
-                    <li class="sideli 4"><i class="fas fa-angle-right"></i>管理學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/5">
-                    <li class="sideli 5"><i class="fas fa-angle-right"></i>客家學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/6">
-                    <li class="sideli 6"><i class="fas fa-angle-right"></i>資訊電機學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/7">
-                    <li class="sideli 7"><i class="fas fa-angle-right"></i>地球科學學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/8">
-                    <li class="sideli 8"><i class="fas fa-angle-right"></i>生醫理工學院</li>
-                </a>
 
-            </ul>
+        <div class="navbar">
+            <img src="/groups/line.png" class="cuttingline">
+            <a class="nava a" href="/groups/department"><img src="/groups/系所鈕.PNG" class="navimg"><br>系所</a>
+            <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/社團鈕.PNG"
+                    class="navimg"><br>社團</a>
+            <a class="nava c" href="/groups/association"><img src="/groups/學生會鈕.PNG" class="navimg"><br>學生會</a>
+            <a class="nava d" target="_blank"
+                href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img
+                    src="/groups/社群鈕.PNG" class="navimg"><br>社群</a>
+            <a class="nava e" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
         </div>
-        <%if(user && user.role==="admin"){%>
-            <div class="buttons">
-                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
+    </div>
+
+    <div class="navbar">
+        <img src="/groups/line.png" id="cuttingline">
+        <a class="nava" style="top:3px; left:11vw;" href="/groups/department"><img src="/groups/系所鈕.PNG"
+                class="navimg"><br>系所</a>
+        <a class="nava" style="top:3px; left:26.5vw;" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img
+                src="/groups/社團鈕.PNG" class="navimg"><br>社團</a>
+        <a class="nava" style="top:3px; left:43.25vw;" href="/groups/association"><img src="/groups/學生會鈕.PNG"
+                class="navimg"><br>學生會</a>
+        <a class="nava" style="top:3px; left:59.25vw;" href="/groups/community"><img src="/groups/社群鈕.PNG"
+                class="navimg"><br>社群</a>
+        <a class="nava" style="top:3px; left:76vw;" href="/groups/others"><img src="/groups/其他鈕.PNG"
+                class="navimg"><br>其他學生組織</a>
+    </div>
+    </div>
+    <div class="sidebar">
+        <ul>
+            <a style="text-decoration:none; color: #0D4966;" href="/groups/department/1">
+                <li class="sideli 1"><i class="fas fa-angle-right"></i>文學院</li>
+            </a>
+            <a style="text-decoration:none; color: #0D4966;" href="/groups/department/2">
+                <li class="sideli 2"><i class="fas fa-angle-right"></i>理學院</li>
+            </a>
+            <a style="text-decoration:none; color: #0D4966;" href="/groups/department/3">
+                <li class="sideli 3"><i class="fas fa-angle-right"></i>工學院</li>
+            </a>
+            <a style="text-decoration:none; color: #0D4966;" href="/groups/department/4">
+                <li class="sideli 4"><i class="fas fa-angle-right"></i>管理學院</li>
+            </a>
+            <a style="text-decoration:none; color: #0D4966;" href="/groups/department/5">
+                <li class="sideli 5"><i class="fas fa-angle-right"></i>客家學院</li>
+            </a>
+            <a style="text-decoration:none; color: #0D4966;" href="/groups/department/6">
+                <li class="sideli 6"><i class="fas fa-angle-right"></i>資訊電機學院</li>
+            </a>
+            <a style="text-decoration:none; color: #0D4966;" href="/groups/department/7">
+                <li class="sideli 7"><i class="fas fa-angle-right"></i>地球科學學院</li>
+            </a>
+            <a style="text-decoration:none; color: #0D4966;" href="/groups/department/8">
+                <li class="sideli 8"><i class="fas fa-angle-right"></i>生醫理工學院</li>
+            </a>
+
+        </ul>
+    </div>
+    <%if(user && user.role==="admin"){%>
+    <div class="buttons">
+        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
             新增系所
         </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_delete">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_delete">
             編輯/刪除系所
         </button>
-            </div>
-            <%}%>
+    </div>
+    <%}%>
 
                 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -145,8 +160,8 @@
                                         <label for="select_department_name" class="col-form-label">系所名稱</label>
                                         <select name="name" id="select_department_name" class="form-control">
                                 <% for(var i in department) {%>
-                                <option value="<%= department[i].name%>"><%=department[i].name%></option>
-                                <%}%>
+    <option value="<%= department[i].name%>"><%=department[i].name%></option>
+    <%}%>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -192,25 +207,26 @@
                     </div>
                 </div>
                 <%_ if(department_type!==null){ -%>
-                    <div class="sidebar2">
-                        <ul>
+    <div class="sidebar2">
+        <ul>
 
-                            <% for(var i in department) {%>
-                                <%_ if(department[i].type===department_type){ -%>
-                                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/<%=department[i].type%>/<%=department[i].name%>">
-                                            <li class="sideli" id="<%=department[i].name%>">
-                                                <i class="fas fa-angle-right"></i>
-                                                <%=department[i].name%>
-                                            </li>
-                                        </a>
+            <% for(var i in department) {%>
+            <%_ if(department[i].type===department_type){ -%>
+            <a style="text-decoration:none; color: #0D4966;"
+                href="/groups/department/<%=department[i].type%>/<%=department[i].name%>">
+                <li class="sideli" id="<%=department[i].name%>">
+                    <i class="fas fa-angle-right"></i>
+                    <%=department[i].name%>
+                </li>
+            </a>
 
-                                    <%}%>
+            <%}%>
                                         <%}%>
 
-                        </ul>
-                    </div>
+        </ul>
+    </div>
 
-                    <%}%>
+    <%}%>
                         <%_ if(department_this!==null){ -%>
                             <button class="snap_so btn btn-light"></button>
                             <div class="de-info">
@@ -221,32 +237,50 @@
                                     <%=department_this.en_name%>
                                 </div>
 
-                                <img src="/groups/cutline.png" class="cutline">
-                                <div class="linkbuttons">
-                                    <%_ if(department_this.de_link!==""){ -%>
-                                        <div class="character">
-                                            <a class="linkhover" style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:5.5vw" class="link">系所</span></a>
-                                        </div>
-                                        <%_ } -%>
-                                            <%_ if(department_this.stu_link!==""){ -%>
-                                                <div class="character">
-                                                    <a class="linkhover" style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:4.75vw" class="link">系學會</span></a>
-                                                </div>
-                                                <%_ } -%>
-                                                    <%_ if(department_this.qna_link!==""){ -%>
-                                                        <div class="character">
-                                                            <a class="linkhover" style="text-decoration:none;" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:4vw" class="link">系上問答</span></a>
-                                                        </div>
-                                                        <%_ } -%>
-                                </div>
-                            </div>
-                            <%_ } -%>
-                                <div id="myshell" class="alert alert-danger alert-dismissible fade show" role="alert" style=" display:none; position: absolute; bottom:5vh; right:10vw;">
-                                    <strong>不要玩貝殼!</strong> 珍珠會掉出來啦！！！！
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+        <img src="/groups/cutline.png" class="cutline">
+        <div class="linkbuttons">
+            <%_ if(department_this.de_link!==""){ -%>
+            <div class="character">
+                <a class="linkhover" style="text-decoration:none; " target="_blank"
+                    href="<%= department_this.de_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span
+                        style="position: absolute;top:4vw;left:5.5vw" class="link">系所</span></a>
+            </div>
+            <%_ } -%>
+            <%_ if(department_this.stu_link!==""){ -%>
+            <div class="character">
+                <a class="linkhover" style="text-decoration:none;" target="_blank"
+                    href="<%= department_this.stu_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span
+                        style="position: absolute;top:4vw;left:4.75vw" class="link">系學會</span></a>
+            </div>
+            <%_ } -%>
+            <%_ if(department_this.qna_link!==""){ -%>
+            <div class="character">
+                <a class="linkhover" style="text-decoration:none;" href="<%= department_this.qna_link%>"><img
+                        src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:4vw"
+                        class="link">系上問答</span></a>
+            </div>
+            <%_ } -%>
+        </div>
+    </div>
+    <%_ } -%>
+    <div id="myshell" class="alert alert-danger alert-dismissible fade show" role="alert"
+        style=" display:none; position: absolute; bottom:5vh; right:10vw;">
+        <strong>不要玩貝殼!</strong> 珍珠會掉出來啦！！！！
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    <img src="/groups/系所.PNG" class=backgroundimg>
+    <img src="/groups/snap.gif" class="snap">
+    <button class="snap_btn btn btn-danger">SNAP!!!</button>
+
+    <button class="snap_r btn alert-danger"></button>
+    <button class="snap_s btn alert-primary"></button>
+    <button class="snap_t btn alert-success"></button>
+    <button class="snap_p btn btn-secondary"></button>
+    <button class="snap_m btn alert-warning"></button>
 
                                 <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
                                 <img src="/groups/系所.PNG" class=backgroundimg>
@@ -264,10 +298,10 @@
 
 
 
-                                <script src="/groups/js/groups.js"></script>
+    <script src="/groups/js/groups.js"></script>
 
 
-                                <% include ../layouts/js %>
+    <% include ../layouts/js %>
 
 </body>
 
