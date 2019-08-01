@@ -85,13 +85,51 @@ body {
         height: calc(100vh - 25vw);
         width: calc(100% - 10px);
     }
+    
+    /* menu */
+    #menuTag {
+        position: relative;
+        width: 100%;
+        margin-top: 1vw;
+        text-align: center;
+        height: 6vw;
+    }
+
+    .one {
+        position: relative !important;
+        animation: doubleyou 3s;
+        display: inline !important;
+        font-size: 30px !important;
+        color: #FF7300 !important;
+    }
+    .two {
+        position: relative !important;
+        animation: oh 3s;
+        display: inline !important;
+        font-size: 30px !important;
+        color: #FF7300 !important;
+    }
+    .three {
+        position: relative !important;
+        animation: are 3s;
+        display: inline !important;
+        font-size: 30px !important;
+        color: #FF7300 !important;
+    }
+    .four {
+        position: relative !important;
+        animation: dee 3s;
+        display: inline !important;
+        font-size: 30px !important;
+        color: #FF7300 !important;
+    }
 }
 
 /* 電腦版 */
 @media only screen and (min-width: 768px) {
     #mySidenav #links .link {
         font-size: 1.7vw !important;
-        margin: 0 6vw;
+        left: calc(50% - 3.5vw);
     }
     
     #myNavLinks {
@@ -112,6 +150,68 @@ body {
 
     #mySidenav #links {
         height: calc(100vh - 10vw);
+    }
+
+    /* menu */
+    #menuTag {
+        position: relative;
+        width: 100%;
+        margin-top: 1vw;
+        text-align: center;
+        height: 4vw;
+    }
+
+    .one {
+        position: relative !important;
+        animation: doubleyou 3s;
+        display: inline !important;
+        font-size: 30px !important;
+        color: #FF7300 !important;
+    }
+    .two {
+        position: relative !important;
+        animation: oh 3s;
+        display: inline !important;
+        font-size: 30px !important;
+        color: #FF7300 !important;
+    }
+    .three {
+        position: relative !important;
+        animation: are 3s;
+        display: inline !important;
+        font-size: 30px !important;
+        color: #FF7300 !important;
+    }
+    .four {
+        position: relative !important;
+        animation: dee 3s;
+        display: inline !important;
+        font-size: 30px !important;
+        color: #FF7300 !important;
+    }
+
+    @keyframes doubleyou {
+        0%   {left: 200px;opacity:0}
+        25%  {left: 200px;}
+        100% {left: 0px;}
+    }
+
+    @keyframes oh {
+        0%   {left: 100px;opacity:0}
+        25%  {left: 60px;}
+        100% {left: 0px;}
+    }
+
+    @keyframes are {
+        0%   {right: 100px;opacity:0}
+        25%  {right: 60px;}
+        100% {right: 0px;}
+    }
+
+    @keyframes dee {
+        0%   {right: 200px;opacity:0}
+        25%  {right: 200px;}
+        100% {right: 0px;}
     }
 }
 
@@ -201,7 +301,7 @@ body {
     overflow-y: hidden;
     overflow-x: hidden;
     scrollbar-width: none;
-    margin-top: 7vw;
+    margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
