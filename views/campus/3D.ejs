@@ -3,16 +3,16 @@
 
 <head>
   <title><%= title %></title>
-
-
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% include ../layouts/head %>
   <% include ../layouts/script %>
   <link rel='stylesheet' href='/campus/style.css' />
-  <style type="text/css">body {-moz-user-select : none;-webkit-user-select: none;}</style>
+  <style type="text/css">
+    body {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+    }
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
 
 <body>
@@ -30,6 +30,7 @@
     </div>
   </div>
   <main id="campusmain">
+    <img src="seagull.png" class="sbird" alt="" style="position: absolute;right: 0%;width: 20vw">
     <div class="main_list_detail collapse">
       <li id="listtitle">title</li>
       <div id="closemainlist">
@@ -864,11 +865,11 @@
           style="top: 20.9717%; left: 64.3603%; width: 2%; display: none;" data-original-title="停車場">
       </div>
       <div class="show2D">
-          <a href="/campus/2D">
-            <img src="2D_btn.png" alt="" srcset="">
-            <img id="wheel" src="WHEEL.png">
-          </a>
-        </div>
+        <a href="/campus/2D">
+          <img src="2D_btn.png" alt="" srcset="">
+          <img id="wheel" src="WHEEL.png">
+        </a>
+      </div>
     </div>
     <div class="bottom_list">
       <img class="sailor1" src="/campus/SAILOR2222.png">
@@ -922,11 +923,13 @@
                 <div class="carousel-inner">
 
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="left: -13%;">
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"
+                  style="left: -13%;">
                   <img class="pre" src="貝7.png" alt="" width="70%">
                   <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="right: -13%;">
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"
+                  style="right: -13%;">
                   <img class="next" src="貝8.png" alt="" width="70%">
                   <span class="sr-only">Next</span>
                 </a>

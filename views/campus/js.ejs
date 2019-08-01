@@ -2,6 +2,8 @@
     $(document).ready(function () {
 
         var temp;
+        var lasyway = false;
+        var verylasy = -1;
         var properties1 = null
         var array1 = []
 
@@ -38,7 +40,7 @@
                 error: function (err) {
 
                 },
-                success: function (data) {                    
+                success: function (data) {
                     console.log(data.Element_Intro);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
@@ -78,9 +80,23 @@
             }, 100)
             $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').stop().tooltip(
                 'hide')
+            if (lasyway) {                
+                console.log(verylasy);
+                $('.indexelepic.hide[val=' + verylasy + ']')
+                    .show()
+                $('.indexelepic[val=' + verylasy + ']').css(
+                    "filter", "none")
+                $('.main_list_detail li[val=' + verylasy + ']').show()
+                $('.main_list_detail').stop().collapse('show', {
+                    direction: "up"
+                })
+                $('.main_list_detail').addClass('clicked')
+            }
         })
 
         $('#List_index li').click(function (event) {
+            lasyway = false;
+            verylasy = -1;
             $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').stop().tooltip(
                 'hide')
             $('.elelist').hide()
@@ -91,25 +107,6 @@
                         if ($('.main_list_detail').hasClass('clicked')) {
                             temp = $(this)[0]
 
-                            $('#List_index li').hover(function (event) {
-                                $('.indexelepic.hide[val=' + event.currentTarget.attributes.val
-                                    .value + ']').show()
-                                $('.indexelepic[val=' + event.currentTarget.attributes.val
-                                    .value + ']').velocity({
-                                    scale: 1.1
-                                }, 100)
-                                $('.indexelepic[val=' + event.currentTarget.attributes.val
-                                    .value + ']').stop().tooltip('show')
-                            }, function (event) {
-                                $('.indexelepic.hide[val=' + event.currentTarget.attributes.val
-                                    .value + ']').hide()
-                                $('.indexelepic[val=' + event.currentTarget.attributes.val
-                                    .value + ']').velocity({
-                                    scale: 1
-                                }, 100)
-                                $('.indexelepic[val=' + event.currentTarget.attributes.val
-                                    .value + ']').stop().tooltip('hide')
-                            })
                             $('#map').css("filter", "none")
                             $('.indexelepic').css("filter", "none")
                             $('.indexelepic.hide[val=' + event.currentTarget.attributes.val.value + ']')
@@ -124,8 +121,9 @@
                             temp = $(this)[0]
                             $('#listtitle').text(array1[i - 1])
                             $('.indexelepic').css("filter", "brightness(55%)")
-                            $('#map').css("filter", "brightness(55%)")
-                            $('#List_index li').unbind('mouseenter mouseleave')
+                            $('#map').css("filter", "brightness(55%)");
+                            lasyway = true;
+                            verylasy = i;
                             $('.indexelepic.hide[val=' + event.currentTarget.attributes.val.value + ']')
                                 .show()
                             $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').css(
@@ -135,6 +133,7 @@
                                 direction: "up"
                             })
                             $('.main_list_detail').addClass('clicked')
+
                         }
 
 
@@ -149,6 +148,14 @@
                                 $('.sailor1').stop().velocity({
                                     opacity: 1,
                                     translateX: '1rem'
+                                }, {
+                                    display: 'block'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
+                                $('.sbird').stop().velocity({
+                                    opacity: 1,
+                                    translateX: '-1rem'
                                 }, {
                                     display: 'block'
                                 }, {
@@ -181,6 +188,14 @@
                                 $('.sailor1').stop().velocity({
                                     opacity: 0,
                                     translateX: '-1rem'
+                                }, {
+                                    display: 'none'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
+                                $('.sbird').stop().velocity({
+                                    opacity: 0,
+                                    translateX: '1rem'
                                 }, {
                                     display: 'none'
                                 }, {
@@ -219,6 +234,14 @@
                             }, {
                                 duration: 200
                             }, 'easeInOutSine');
+                            $('.sbird').stop().velocity({
+                                opacity: 0,
+                                translateX: '1rem'
+                            }, {
+                                display: 'none'
+                            }, {
+                                duration: 200
+                            }, 'easeInOutSine');
                             $('.sailor2').stop().velocity({
                                 opacity: 1,
                                 translateX: '1rem'
@@ -239,6 +262,9 @@
                         $('.mapmove').addClass('clicked')
                         if ($('.main_list_detail').hasClass('clicked')) {
 
+                            lasyway = true;
+                            verylasy = i;
+
                             $('.indexelepic').css("filter", "brightness(55%)")
                             $('.indexelepic.hide').hide()
                             $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').css(
@@ -255,10 +281,14 @@
                             $('.main_list_detail').addClass('clicked')
                         } else {
 
+                            lasyway = true;
+                            verylasy = i;
+
                             $('#listtitle').text(array1[i - 1])
                             $('.indexelepic').css("filter", "brightness(55%)")
                             $('#map').css("filter", "brightness(55%)")
-                            $('#List_index li').unbind('mouseenter mouseleave')
+                            lasyway = true;
+                            verylasy = i;
                             $('.indexelepic.hide[val=' + event.currentTarget.attributes.val.value + ']')
                                 .show()
                             $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').css(
@@ -277,6 +307,10 @@
         })
 
         $('#closemainlist').click(function () {
+
+            lasyway = false;
+            verylasy = -1;
+
             $('#map').css("filter", "none")
             $('.indexelepic').css("filter", "none")
             $('.indexelepic.hide').hide()
@@ -284,12 +318,42 @@
             $('.main_list_detail').removeClass('clicked')
             $('.mapmove').removeClass('clicked')
 
+            $('#List_index li').hover(function (event) {
+                $('.indexelepic.hide[val=' + event.currentTarget.attributes.val.value + ']')
+                    .show()
+                $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']')
+                    .velocity({
+                        scale: 1.1
+                    }, 100)
+                $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').stop()
+                    .tooltip(
+                        'show')
+            }, function (event) {
+                $('.indexelepic.hide[val=' + event.currentTarget.attributes.val.value + ']')
+                    .hide()
+                $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']')
+                    .velocity({
+                        scale: 1
+                    }, 100)
+                $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').stop()
+                    .tooltip(
+                        'hide')
+            })
+
             if ($(window).width() > 770) {
                 $('.sailor1').stop().velocity({
                     opacity: 1,
                     translateX: '1rem'
                 }, {
                     display: 'block'
+                }, {
+                    duration: 200
+                }, 'easeInOutSine');
+                $('.sbird').stop().velocity({
+                    opacity: 1,
+                    translateX: '-1rem'
+                }, {
+                    display: 'none'
                 }, {
                     duration: 200
                 }, 'easeInOutSine');
@@ -319,10 +383,8 @@
         })
 
         $('li img').hover(function () {
-            console.log($(this)[0].style.top);
             $(this)[0].style.top = '-10%';
         }, function () {
-            console.log($(this)[0].style.top);
             $(this)[0].style.top = '0%';
         })
 
@@ -390,7 +452,6 @@
             }, {
                 duration: 500,
                 step: function (now) {
-                    console.log(now);
                     $(this).css({
                         '-webkit-transform': 'rotate(' + now + 'deg)',
                         '-moz-transform': 'rotate(' + now + 'deg)',
@@ -406,7 +467,6 @@
             }, {
                 duration: 500,
                 step: function (now) {
-                    console.log(now);
                     $(this).css({
                         '-webkit-transform': 'rotate(' + now + 'deg)',
                         '-moz-transform': 'rotate(' + now + 'deg)',
@@ -446,7 +506,6 @@
     );
 
     function mg() {
-        console.log($(".MAP2D").hasClass("zoom"));
         if ($(".MAP2D").hasClass("zoom")) {
             $(".MAP2D").removeClass("zoom")
             $(".zoomContainer").remove();

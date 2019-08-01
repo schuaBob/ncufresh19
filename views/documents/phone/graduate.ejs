@@ -5,10 +5,8 @@
     <title><%= title %></title>
     <% include ../../layouts/head %>
     <% include ../../layouts/script %>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel='stylesheet' href='/documents/style.css' />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
     <script type="text/javascript" src="/js/tinymce.min.js"></script>
 </head>
 
@@ -22,51 +20,51 @@
         <div class="choose" id="must_gra">
             <div class="graduate">
                 <p class="bar">
-                    <a class="must_gra link_gra now" >入學須知</a>
+                    <a class="must_gra link_gra now">入學須知</a>
                     <a href="#fresh" class="fresh_gra link_gra">新生週</a>
                 </p>
-            </div> 
+            </div>
             <div class="options">
-                <p class="p_option" id="22"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學籍登錄</p>
-                <p class="p_option" id="23"><i class="fas fa-angle-right" ></i>&emsp;&emsp;住宿注意事項</p>
-                <p class="p_option" id="24"><i class="fas fa-angle-right" ></i>&emsp;&emsp;兵役注意資料</p>
-                <p class="p_option" id="25"><i class="fas fa-angle-right" ></i>&emsp;&emsp;腳踏車證申請</p>
-                <p class="p_option" id="26"><i class="fas fa-angle-right" ></i>&emsp;&emsp;入住流程管制圖</p>
-                <p class="p_option" id="27"><i class="fas fa-angle-right" ></i>&emsp;&emsp;註冊通知、日程表</p>
-                <p class="p_option" id="28"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學費減免及助學金</p>
-                <p class="p_option" id="39"><i class="fas fa-angle-right" ></i>&emsp;&emsp;學術研究倫理課程</p>>            
-            </div>   
+                <p class="p_option" id="22"><i class="fas fa-angle-right"></i>&emsp;&emsp;學籍登錄</p>
+                <p class="p_option" id="23"><i class="fas fa-angle-right"></i>&emsp;&emsp;住宿注意事項</p>
+                <p class="p_option" id="24"><i class="fas fa-angle-right"></i>&emsp;&emsp;兵役注意資料</p>
+                <p class="p_option" id="25"><i class="fas fa-angle-right"></i>&emsp;&emsp;腳踏車證申請</p>
+                <p class="p_option" id="26"><i class="fas fa-angle-right"></i>&emsp;&emsp;入住流程管制圖</p>
+                <p class="p_option" id="27"><i class="fas fa-angle-right"></i>&emsp;&emsp;註冊通知、日程表</p>
+                <p class="p_option" id="28"><i class="fas fa-angle-right"></i>&emsp;&emsp;學費減免及助學金</p>
+                <p class="p_option" id="39"><i class="fas fa-angle-right"></i>&emsp;&emsp;學術研究倫理課程</p>>
+            </div>
         </div>
 
         <div class="choose fade" id="fresh_gra">
             <div class="graduate">
-                <p  class="bar">
+                <p class="bar">
                     <a href="#must_gra" class="must_gra link_gra">入學須知</a>
                     <a class="fresh_gra link_gra now">新生週</a>
                 </p>
-            </div> 
+            </div>
             <div class="options">
-                <p class="p_option" id="29"><i class="fas fa-angle-right" ></i>&emsp;&emsp;社團博覽會</p>
-                <p class="p_option" id="30"><i class="fas fa-angle-right" ></i>&emsp;&emsp;新生健康檢查</p>
-            </div>   
+                <p class="p_option" id="29"><i class="fas fa-angle-right"></i>&emsp;&emsp;社團博覽會</p>
+                <p class="p_option" id="30"><i class="fas fa-angle-right"></i>&emsp;&emsp;新生健康檢查</p>
+            </div>
         </div>
     </main>
     <% include ../../layouts/js %>
     <% include ../js %>
     <script>
-        $(document).ready(function(){
-            $(window).resize(function(){
+        $(document).ready(function () {
+            $(window).resize(function () {
                 var width;
-                if(innerWidth > outerWidth)
+                if (innerWidth > outerWidth)
                     width = outerWidth;
                 else
                     width = innerWidth;
-                if(width <= 768)
+                if (width <= 768)
                     document.location.href = "/documents/phone/graduate";
                 else
                     document.location.href = "/documents/graduate_must";
-                });
             });
+        });
     </script>
 </body>
 

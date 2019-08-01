@@ -477,18 +477,6 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
     res.redirect('/register');
   }
 
-  /*var _user = new User({
-    id: req.body.id,
-    password: req.body.password,
-    name: req.body.name
-  }).save(function(err) {
-    if(err) {
-      return next(err);
-    }
-    req.session.user = req.body.user;
-
-    res.redirect('/');
-  });*/
 });
 
 router.get('/logout', function (req, res, next) {

@@ -8,6 +8,14 @@ request('http://localhost:3000/campus/%E5%85%A7%E5%AE%B9.json', function (error,
   content = JSON.parse(body);
 });
 
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.redirect('/campus/3D');
@@ -46,6 +54,10 @@ router.get('/indexmodal', function (req, res, next) {
     if (review.Intropic.includes('5b680145a1290417d991cb0d.png')){
       review.Intropic = ['5b680145a1290417d991cb0d-1.png','5b680145a1290417d991cb0d-2.png'];
     }
+    if (review.Intropic.includes('5b6658808ddec3339ce66490.png')){
+      var index = review.Intropic.indexOf('5b6658808ddec3339ce66490.png');
+      review.Intropic.splice(index, 1);
+    }
     if (review.Element_Name == "工程三館"){
       review.Element_Name = "E2 機械館";
     }
@@ -58,6 +70,7 @@ router.get('/indexmodal', function (req, res, next) {
     if (content[review.Element_Name]) {
       review.Element_Intro = content[review.Element_Name];
     }
+    review.Intropic = shuffle(review.Intropic);
     console.log('body:', review);
     res.json(review);
   });
