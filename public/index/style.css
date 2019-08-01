@@ -34,14 +34,14 @@ main {
 /* 手機版 */
 @media only screen and (max-width: 768px) {
     #secondSection {
-        height: 85vh;
+        height: 100vh;
     }
 
     #news {
         display: block;
         position: relative;
         width: 100%;
-        height: 100%;
+        height: 100%;   
     }
 
     #news-title {
@@ -50,10 +50,12 @@ main {
     
     #news-body {
         position: relative;
-        max-height: 80%;
+        max-height: 60vh;
         overflow-y: scroll;
         overflow-x: hidden;
         min-height: 300px;
+        /* border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px; */
     }
     
     #jellyfish {
@@ -66,14 +68,14 @@ main {
 
     .news-img {
         position: relative;
-        left: 5%;
-        width: 30%;
+        left: 3vw;
+        width: 25%;
     }
 
     .news-content {
         position: relative;
-        left: 7%;
-        width: 60%;
+        left: 5vw;
+        width: 65%;
     }
 
     .card-body h5 {
@@ -83,7 +85,7 @@ main {
 }
 
 /* 電腦版 */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 786px) {
     #news {
         display: block;
         position: relative;
@@ -118,14 +120,14 @@ main {
 
     .news-img {
         position: relative;
-        left: 3%;
-        width: 10%;
+        left: 2vw;
+        width: 6vw;
     }
 
     .news-content {
         position: relative;
-        left: 8%;
-        width: 70%;
+        left: 4vw;
+        width: 75%;
     }
 
     .card-body h5 {
