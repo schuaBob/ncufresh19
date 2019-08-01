@@ -12,9 +12,15 @@
 
     <script>
         $(document).ready(function(){
-            if(screen.width <= 1024) document.location.href = "/video/index_smp/";
+            var width;
+            if(innerWidth > outerWidth)
+                width = outerWidth;
+            else
+                width = innerWidth;
+            if (width <= 768) document.location.href = "/video/index_smp/";
             else document.location.href = "/video/index_com/";
-        });
+        })
+        
     </script>
     
   </body>

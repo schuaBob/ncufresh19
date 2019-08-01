@@ -388,7 +388,7 @@
         left: 80vw;
     }
     
-    @media screen and (max-width:1050px) and (min-width: 375px) {
+    @media screen and (max-width:1050px) {
         .cuttingline {
             display: none
         }
@@ -455,10 +455,13 @@
             right: 1vw;
             z-index: -1;
         }
+        .buttons {
+            display: none;
+        }
         /*---------------------listbar---------------------*/
         .sidebar {
             left: 10vw;
-            top: 25vh;
+            top: 22vh;
             position: absolute;
             height: 30vh;
             width: auto;
@@ -512,19 +515,20 @@
             display: none;
         }
         .navbar {
-            position: fixed;
-            top: 150px;
-            left: 270px;
-            display: none;
-            flex-direction: column;
-            width: auto;
+            position: absolute;
+            top: 580px;
+            left: calc(50% - 40vw);
+            display: flex;
+            flex-direction: row;
+            width: 80vw;
+            z-index: 100;
         }
         a.nava {
             position: static;
+            z-index: 100;
         }
-        .buttonimg {
-            height: 25vw;
-            width: inherit;
+        .navimg {
+            height: 40px;
         }
         /*---------------------info---------------------*/
         .info {
@@ -534,6 +538,9 @@
             height: 60vh;
             left: 10vw;
             top: 180px;
-            background-color: #FFFDF1
+            background-color: #FFFDF1;
+            overflow: auto;
         }
     }
+    
+    ;
