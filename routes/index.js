@@ -465,7 +465,7 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
               if (err) {
                 return next(err);
               }
-              console.log(obj.id + ': 登入')
+              console.log(obj.id + ': 登入');
               res.redirect('/');
             });
           }
