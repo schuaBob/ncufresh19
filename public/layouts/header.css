@@ -3,36 +3,36 @@
 }
 
 @font-face {
-    font-family: Noto Sans JP;
-    src: url("/layouts/font/NotoSansJP-Regular.otf") format("opentype");
+    font-family: Noto Sans CJK tc;
+    src: url("/layouts/font/NotoSansCJKtc-Regular.otf") format("opentype");
 }
 
 @font-face {
-    font-family: Noto Sans JP;
+    font-family: Noto Sans CJK tc;
     font-weight: 500;
-    src: url("/layouts/font/NotoSansJP-Medium.otf") format("opentype");
+    src: url("/layouts/font/NotoSansCJKtc-Medium.otf") format("opentype");
 }
 
 @font-face {
-    font-family: Noto Sans JP;
+    font-family: Noto Sans CJK tc;
     font-weight: bold;
-    src: url("/layouts/font/NotoSansJP-Bold.otf") format("opentype");
+    src: url("/layouts/font/NotoSansCJKtc-Bold.otf") format("opentype");
 }
 
 @font-face {
-    font-family: Noto Sans JP;
+    font-family: Noto Sans CJK tc;
     font-weight: 300;
-    src: url("/layouts/font/NotoSansJP-Light.otf") format("opentype");
+    src: url("/layouts/font/NotoSansCJKtc-Light.otf") format("opentype");
 }
 
 * {
-    font-family: Noto Sans JP;
-    /* scrollbar-color: #736f6e #fff9dc;
-    scrollbar-width: 6px; */
+    font-family: Noto Sans CJK tc;
+    scrollbar-color: #736f6e #fff9dc;
+    scrollbar-width: 3px;
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 3px;
 }
 
 
@@ -41,7 +41,7 @@
 }
 
 
-::-webkit-scroll    bar-thumb {
+::-webkit-scroll bar-thumb {
     background: #736f6e;
 }
 
@@ -93,7 +93,7 @@ body {
         font-size: 1.7vw !important;
         margin: 0 6vw;
     }
-    
+
     #myNavLinks {
         width: 30%;
         min-width: 330px;
