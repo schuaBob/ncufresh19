@@ -124,7 +124,7 @@ app.use('/js', express.static(__dirname + '/node_modules/fullpage.js/vendors'));
 app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist/umd'));
 app.use('/js', express.static(__dirname + '/node_modules/build'));
 app.use('/js', express.static(__dirname + '/node_modules/velocity-animate'));
-app.use('/js', express.static(__dirname + '/tinymce'))
+app.use('/js', express.static(__dirname + '/tinymce/js/tinymce'))
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css', express.static(__dirname + '/node_modules/fullpage.js/dist'));
 app.use('/fontawesome',express.static(__dirname + '/fontawesome'));
