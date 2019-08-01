@@ -19,22 +19,11 @@ body::-webkit-scrollbar {
 }
 
 body {
-  width: 100%;
-  -ms-overflow-style: none;
-  height: 100%;
-  /*width: calc(100vw + 18px);*/
-  overflow-x: hidden;
-}
-
-#show::-webkit-scrollbar {
-  display: none;
-}
-
-#show {
   -ms-overflow-style: none;
   height: 100%;
   width: calc(100vw + 18px);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /*---------------------------背景色---------------------------------*/
@@ -50,8 +39,8 @@ body {
 /*----------------------------------------------------------------*/
 /*show文字自動縮排*/
 #show_content{
-  overflow-y: auto;
-  overflow-x: auto;
+  overflow-y: scroll;
+  overflow-x: scroll;
   word-wrap:break-word;
 }
 
@@ -150,9 +139,9 @@ body {
 
 .return_space {
   width: 83px;
-  height: 85px;
+  height: 82px;
   position: absolute;
-  padding: 0.5vh 0 0.5vh 15px;
+  padding: 2.5vh 0 2.5vh 15px;
   margin: auto 0;
 }
 
@@ -160,8 +149,6 @@ body {
   width: 100%;
   height: 100%;
 }
-
-
 
 /*--------------------------選單--------------------------*/
 .sidenav {
@@ -188,7 +175,8 @@ body {
   display: block;
   font-size: 1.6vw;
   font-weight: bold;
-  padding-bottom: 2vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 }
 
 .sidenav2 p:hover {
@@ -215,7 +203,6 @@ body {
   margin: 15% 0;
 }
 
-
 /*-------------------顯示資料的地方--------------------------*/ 
 .box {
   overflow-x: hidden;
@@ -229,19 +216,15 @@ body {
   padding: 4vh 5vw;
 }
 
-
-
-/*.gra_bg {
-  width: 30vw;
-  height: 73vh;
-  background-size: 50%;
-  background-image:url("草.png"),url("魚.png"),url("人魚.png");
-  background-repeat: no-repeat, no-repeat, no-repeat;  
-  background-position: 0 bottom, 20px 20px, 400px bottom; 
-  z-index: 1;
-}*/
-
-
+.gra_bg {
+  width: 45vw;
+  height: 79vh;
+  background-size: 100%;
+  background-image:url("MERMAID.png");
+  background-repeat: no-repeat;  
+  background-position: left -5vw bottom; 
+  z-index: -1;
+}
 
 /*------------------------------RWD----------------------------------*/
 @media only screen and (min-width: 1400px) {
@@ -370,7 +353,16 @@ body {
     right: 0;
     margin: auto;
     position: absolute;
-}
+  }
+
+.sidenav2 p {
+  color: rgb(13, 73, 102);
+  display: block;
+  font-size: 1.7vw;
+  font-weight: bold;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  }
 
   .title {
     font-size: 20px;
@@ -378,19 +370,10 @@ body {
     color: rgb(58, 154, 216);
   }
   
-  
   .content {
     overflow-y: hidden;
     font-size: 14px;
     padding-top: 2vh;
-  }
-
-  .sidenav2 p {
-    color: rgb(13, 73, 102);
-    display: block;
-    font-size: 1.7vw;
-    font-weight: bold;
-    padding-bottom: 2vh;
   }
 
 }
@@ -557,7 +540,6 @@ body {
     text-decoration: none;
     color: black;
   }
-
 
 }
 
@@ -842,84 +824,3 @@ body {
   }
 
 } 
-
-/*@media only screen and (min-device-width: 769px) and (orientation:portrait)  {
-  .character {
-    width: 30vw;
-    height: 50vh;
-    left: 6vw;
-    top: 20vh;
-    position: relative;
-}
-
-  .fish_size {
-    height: 451px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto 0.5vh;
-    position: absolute;
-}
-
-.fish_size2 {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 53%;
-  top: 0;
-  bottom: 19%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  position: absolute;
-}
-
-.fish_size3 {
-  width: auto;
-  height: auto;
-  max-width: 90%;
-  max-height: 58%;
-  top: 51%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  position: absolute;
-}
-}*/
-
-/*@media only screen and (min-device-width: 768px) and (orientation:landscape)  {
-  .character {
-    width: 28vw;
-    height: 50vh;
-    left: 8vw;
-    top: 20vh;
-    position: relative;
-}
-  .fish_size2 {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 79%;
-    top: 0;
-    bottom: 27%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    position: absolute;
-  }
-
-  .fish_size3 {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 37%;
-    top: 75%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    position: absolute;
-}
-}*/
