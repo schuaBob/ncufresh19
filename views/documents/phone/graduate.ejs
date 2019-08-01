@@ -6,8 +6,7 @@
     <% include ../../layouts/head %>
     <% include ../../layouts/script %>
     <link rel='stylesheet' href='/documents/style.css' />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
     <script type="text/javascript" src="/js/tinymce.min.js"></script>
 </head>
 
@@ -55,17 +54,17 @@
     <% include ../../layouts/js %>
     <% include ../js %>
     <script>
-        $(document).ready(function(){
-            $(window).resize(function(){
+        $(document).ready(function () {
+            $(window).resize(function () {
                 var width;
-                if(innerWidth > outerWidth)
+                if (innerWidth > outerWidth)
                     width = outerWidth;
                 else
                     width = innerWidth;
                 if(width > 768)
                     document.location.href = "/documents/graduate_must";
-                });
             });
+        });
     </script>
 </body>
 

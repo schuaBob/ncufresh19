@@ -2,143 +2,156 @@
 <html>
 
 <head>
-    <title>
-        <%= title %>
-    </title>
+    <title><%= title %></title>
     <% include ../layouts/head %>
-        <% include ../layouts/script %>
-            <link rel='stylesheet' href='/groups/style.css' />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-            <meta name="viewport" content="width=device-width,initial-scale=1">
+    <% include ../layouts/script %>
+    <link rel='stylesheet' href='/groups/style.css' />
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
 </head>
 
 <body class="yellowBg">
     <% include ../layouts/header %>
+    <!-- 此分頁已經被消失 -->
+    <div class="title_bar">
 
-        <div class="title_bar">
-
-            <div class="line"></div>
-            <div class="title">
-                <h1>COMMUNITY<br><span class="small_title">社群</span></h1>
-            </div>
-            <div class="navbar">
-                <img src="/groups/line.png" class="cuttingline">
-                <a class="nava a" href="/groups/department"><img src="/groups/系所鈕.PNG" class="navimg"><br>系所</a>
-                <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/社團鈕.PNG" class="navimg"><br>社團</a>
-                <a class="nava c" href="/groups/association"><img src="/groups/學生會鈕.PNG" class="navimg"><br>學生會</a>
-                <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/社群鈕.PNG" class="navimg"><br>社群</a>
-                <a class="nava e" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
-            </div>
+        <div class="line"></div>
+        <div class="title">
+            <h1>COMMUNITY<br><span class="small_title">社群</span></h1>
         </div>
-        <%if(user && user.role==="admin"){%>
-            <div class="buttons">
-                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
+        <div class="navbar">
+            <img src="/groups/line.png" class="cuttingline">
+            <a class="nava a" href="/groups/department"><img src="/groups/系所鈕.PNG" class="navimg"><br>系所</a>
+            <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/社團鈕.PNG"
+                    class="navimg"><br>社團</a>
+            <a class="nava c" href="/groups/association"><img src="/groups/學生會鈕.PNG" class="navimg"><br>學生會</a>
+            <a class="nava d" target="_blank"
+                href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img
+                    src="/groups/社群鈕.PNG" class="navimg"><br>社群</a>
+            <a class="nava e" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
             新增社群
         </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_delete">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_delete">
             編輯/刪除社群
         </button>
+    </div>
+
+
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Community</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/groups/add_community" method="post">
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">社群名稱</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="intro" class="col-form-label">社群介紹</label>
+                            <textarea class="form-control" id="intro" name="intro" rows="8"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-            <%}%>
-
-                <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Community</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </div>
+    </div>
+    <div class="modal fade" id="edit_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">edit&delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/groups/add_community" method="post">
-                                    <div class="form-group">
-                                        <label for="name" class="col-form-label">社群名稱</label>
-                                        <input type="text" class="form-control" id="name" name="name">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="intro" class="col-form-label">社群介紹</label>
-                                        <textarea class="form-control" id="intro" name="intro" rows="8"></textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
-                <div class="modal fade" id="edit_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">edit&delete</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="name" class="col-form-label">社群名稱</label>
-                                        <select name="name" id="select_community_name" class="form-control">
-                                        <% for(var i in community) {%>
-                                        <option value="<%= community[i].name%>"><%=community[i].name%></option>
-                                        <%}%>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">社群名稱</label>
+                            <select name="name" id="select_community_name" class="form-control">
+                                <% for(var i in community) {%>
+                                <option value="<%= community[i].name%>"><%=community[i].name%></option>
+                                <%}%>
                                                 </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="edit_intro" class="col-form-label">社群介紹</label>
-                                        <textarea class="form-control" id="edit_intro" name="intro" rows="8"></textarea>
-                                    </div>
-
-                                </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button id="edit_community_submit" class="btn btn-primary">Save changes</button>
-                                <button id="delete_community_submit" class="btn btn-danger">Delete</button>
+
+                            <div class="form-group">
+                                <label for="edit_intro" class="col-form-label">社群介紹</label>
+                                <textarea class="form-control" id="edit_intro" name="intro" rows="8"></textarea>
                             </div>
-                        </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="edit_community_submit" class="btn btn-primary">Save changes</button>
+                        <button id="delete_community_submit" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="sidebar">
-                    <ul>
-                        <% for(var i in community) {%>
-                            <a style="text-decoration:none; color: #0D4966;" href="/groups/community/<%=community[i].name%>">
-                <li class="sideli" id="<%=community[i].name%>"><i class="fas fa-angle-right"></i>
-                    <%=community[i].name%>
-                </li>
-            </a>
-                            <%}%>
-                    </ul>
-                </div>
+        <div class="sidebar">
+            <ul>
+                <% for(var i in community) {%>
+                                <a style="text-decoration:none; color: #0D4966;"
+                                    href="/groups/community/<%=community[i].name%>">
+                                    <li class="sideli" id="<%=community[i].name%>"><i class="fas fa-angle-right"></i>
+                                        <%=community[i].name%>
+                                    </li>
+                                </a>
+                                <%}%>
+            </ul>
+        </div>
 
-                <%_ if(community_this!==null){ -%>
-                    <div class="info">
-                        <div class="community">
-                            <%=community_this.name%>
-                        </div>
-                        <div class="content">
-                            <%=community_this.intro%>
-                        </div>
-
-
-                    </div>
-
-
-                    <%_ } -%>
-                        <img src="社群.PNG" class=backgroundimg>
+        <%_ if(community_this!==null){ -%>
+                                <div class="info">
+                                    <div class="info_title">
+                                        <%=community_this.name%>
+                                    </div>
+                                    <div class="content">
+                                        <%=community_this.intro%>
+                                    </div>
 
 
-                        <script src="/groups/js/groups.js"></script>
+                                </div>
 
-                        <% include ../layouts/js %>
+
+                                <%_ } -%>
+                                <img src="社群.PNG" class=backgroundimg>
+
+                                <div style="position: absolute; width:40% ;left:30vw ;top:40vh"
+                                    class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 style="position:relative;left:1vw" class="alert-heading">Congrats!</h4>
+                                    <p>Awesome, you successfully find this disputed webpage.</p>
+                                    <hr>
+                                    <p class="mb-0">太棒了,你找到了這個被消失的分頁</p>
+
+                                </div>
+
+                                <script src="/groups/js/groups.js"></script>
+
+                                <% include ../layouts/js %>
 </body>
 
 </html>
