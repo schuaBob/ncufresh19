@@ -105,7 +105,14 @@ $(document).ready(function() { //顯示或更換顯示學院
         $("#myshell").css("display", "none")
 
     });
-    ////////////////////////////////////////////////////////接上department後台//////////////////////////////////////////////////////
+
+
+
+    $(".snap").on("click", function() {
+            console.log("snap")
+            $(this).css("visibility", "visible")
+        })
+        ////////////////////////////////////////////////////////接上department後台//////////////////////////////////////////////////////
     $('#select_department_name').on('change', function() {
 
         $.ajax({

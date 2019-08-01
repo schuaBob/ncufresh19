@@ -45,8 +45,10 @@ router.post('/uploadimg', upload.array("img"), (req, res, next) => {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
     res.render('groups/index', { title: '新生知訊網｜系所社團', user: req.user });
 });
+
 
 /////////////////////////////////////////////////////////////department////////////////////////////////////////////////////////////////
 router.get('/department', function(req, res, next) {
@@ -68,19 +70,24 @@ router.get('/department', function(req, res, next) {
     console.log("get department")
 });
 router.get('/department/:college', function(req, res, next) {
-    department_data.find({}).exec(function(err, department) {
-        if (err) return next(err);
+    if (req.params.college === "loveyou3000") {
+        console.log("loveyou3000")
+        res.redirect("https://www.youtube.com/watch?v=eNogd957eHo")
+    } else {
+        department_data.find({}).exec(function(err, department) {
+            if (err) return next(err);
 
-        res.render('groups/g_department', {
-            title: '新生知訊網｜系所社團',
-            department: department,
-            department_this: null,
-            department_type: req.params.college,
-            user: req.user
+            res.render('groups/g_department', {
+                title: '新生知訊網｜系所社團',
+                department: department,
+                department_this: null,
+                department_type: req.params.college,
+                user: req.user
+            })
+            console.log(req.params.college)
+
         })
-        console.log(req.params.college)
-
-    })
+    }
 
 
 })
@@ -295,21 +302,29 @@ router.get('/others', function(req, res, next) {
     })
 });
 router.get('/others/:others', function(req, res, next) {
-    others_data.find({}).exec(function(err, others) {
-        if (err) return next(err);
-        others_data.findOne({ name: req.params.others }).exec(function(err, others_this) {
-            if (err) return next(err);
-            console.log(others_this)
-            res.render('groups/g_others', {
-                title: '新生知訊網｜系所社團',
-                others: others,
-                others_this: others_this,
-                user: req.user
+    if (req.params.others === "whokilledDaenerys") {
+        res.redirect("https://en.wikipedia.org/wiki/Jon_Snow_(character)")
+    } else if (req.params.others === "whoisjonsnow'smom") {
+        res.redirect("https://en.wikipedia.org/wiki/List_of_A_Song_of_Ice_and_Fire_characters#Lyanna_Stark")
 
+    } else {
+        others_data.find({}).exec(function(err, others) {
+            if (err) return next(err);
+            others_data.findOne({ name: req.params.others }).exec(function(err, others_this) {
+                if (err) return next(err);
+                console.log(others_this)
+                res.render('groups/g_others', {
+                    title: '新生知訊網｜系所社團',
+                    others: others,
+                    others_this: others_this,
+                    user: req.user
+
+                })
             })
+
         })
 
-    })
+    }
 
 
 })
@@ -405,26 +420,34 @@ router.get('/association', function(req, res, next) {
     })
 });
 router.get('/association/:content', function(req, res, next) {
-    console.log("givemedetail")
-    student_data.find({}).exec(function(err, data) {
-        if (err) return next(err);
-        console.log(data.length)
-        photo_data.find({}).exec(function(err, photos) {
-            console.log(photos.length)
-            console.log(photos)
-            res.render('groups/g_association', {
-                title: '新生知訊網｜系所社團',
-                content: data,
-                content_this: req.params.content,
-                user: req.user,
-                pic: photos
+    if (req.params.content === "creator") {
+        res.redirect("https://www.instagram.com/wolverine0504/")
+    } else if (req.params.content === "team") {
+        res.redirect("https://www.instagram.com/hello_ncu.2019/")
+    } else if (req.params.content === "nbachamp") {
+        res.redirect("https://g.co/kgs/Dj14aK")
+    } else {
+        student_data.find({}).exec(function(err, data) {
+            if (err) return next(err);
+            console.log(data.length)
+            photo_data.find({}).exec(function(err, photos) {
+                console.log(photos.length)
+                console.log(photos)
+                res.render('groups/g_association', {
+                    title: '新生知訊網｜系所社團',
+                    content: data,
+                    content_this: req.params.content,
+                    user: req.user,
+                    pic: photos
 
+                })
             })
+
+
+
         })
+    }
 
-
-
-    })
 
 
 })
