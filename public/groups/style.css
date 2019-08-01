@@ -267,6 +267,8 @@
         width: 90%;
         margin: 0 auto;
         line-height: 5vh;
+        display: flex;
+        justify-content: Space-around;
     }
     
     .info-line {
@@ -455,20 +457,22 @@
         }
         /*---------------------listbar---------------------*/
         .sidebar {
-            left: 2.5vw;
+            left: 10vw;
+            top: 25vh;
             position: absolute;
-            height: auto;
+            height: 30vh;
             width: auto;
             padding-left: 2vw;
-            font-size: 4vw;
+            font-size: 5vw;
             color: rgb( 32, 56, 100);
             overflow: auto;
             font-weight: lighter;
         }
         .sidebar2 {
-            left: 40vw;
+            left: 50vw;
+            top: 55vh;
             position: absolute;
-            height: auto;
+            height: 30vh;
             width: auto;
             font-size: 5vw;
             color: rgb( 32, 56, 100);
@@ -505,13 +509,13 @@
             align-items: center;
         }
         .cuttingline {
-            display: none
+            display: none;
         }
         .navbar {
             position: fixed;
             top: 150px;
             left: 270px;
-            display: flex;
+            display: none;
             flex-direction: column;
             width: auto;
         }
