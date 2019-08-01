@@ -20,21 +20,17 @@
         <main id="main">
             <!--content-->
             <div class="content">
-                    <div class="pictureArea">
-                        <div class="textArea">
-                            <%- data[0]['content'] %>
-                        </div>
-                    </div>
-                </div>
-            </main>
+                <%- data[0]['content'] %>
+            </div>
+        </main>
         <script>
-                $(document).ready(function(){
-                    $(window).resize(function(){
-                        var width = innerWidth;
-                        if(width > 1024)
-                            document.location.href = "/life/live";
-                    });
+            $(document).ready(function(){
+                $(window).resize(function(){
+                    var width = innerWidth;
+                    if(width > 1024)
+                        document.location.href = "/life/live";
                 });
-            </script>
+            });
+        </script>
     </body>
 </html>
