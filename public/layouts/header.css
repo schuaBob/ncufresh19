@@ -54,6 +54,11 @@ body {
     margin: 0 !important;
 }
 
+#randImg{
+    width: 100%;
+    position: relative;
+}
+
 
 /* 手機版 */
 @media only screen and (max-width: 768px) {
