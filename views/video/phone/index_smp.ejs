@@ -20,7 +20,6 @@
 
 
       <%/* 標題 */%>
-      <div class="bar_background">
         <div class="title_bar">
           <%/* 黃線mark */%>
           <div class="line"></div>
@@ -28,7 +27,6 @@
             VIDEO<div class="small_title">影音專區</div>
           </div>
         </div>
-      </div>
 
       <%/* 縮圖連結 */%>
         <div class="button_area">
@@ -44,6 +42,31 @@
         </div>
 
         <script>
+            //大於768變電腦
+            var orignURL = location.pathname;
+            var newURL = orignURL.replace(/index_smp/g, 'index_com');
+
+            //alert(newURL);
+
+            $(document).ready(function(){
+                var width;
+                if(innerWidth > outerWidth)
+                    width = outerWidth;
+                else
+                    width = innerWidth;
+                if(width > 768)
+                    document.location.href = newURL;
+            $(window).resize(function(){
+                    if(innerWidth > outerWidth)
+                        width = outerWidth;
+                    else
+                        width = innerWidth;
+                    if(width > 768)
+                        document.location.href = newURL;
+                });
+            });
+          
+            /*
             $(document).ready(function(){
                 $(window).resize(function(){
                     var width = innerWidth;
@@ -51,6 +74,7 @@
                         document.location.href = "/video/index_com/";
                 });
             });
+            */
         </script>
 
       
