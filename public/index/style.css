@@ -179,6 +179,14 @@ main {
 
 /* 電腦版 */
 @media only screen and (min-width: 768px) {
+    #indexLogo {
+        position: absolute;
+        z-index: 500;
+        width: 350px;
+        left: calc(50vw - 175px);
+        top: 3.5vw;
+    }
+
     #news {
         display: block;
         position: relative;
