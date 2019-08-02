@@ -5,7 +5,8 @@
   <title><%= title %></title>
   <% include ../layouts/head %>
   <% include ../layouts/script  %>
-  <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/fontawesome/css/all.min.css">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel='stylesheet' href='/qna/style.css'>
 
@@ -79,8 +80,8 @@
           </p>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="mobileSubmit()">確認送出</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" id="mobilesubmit" class="btn btn-primary" data-dismiss="modal">確認送出</button>
         </div>
       </div>
     </div>
@@ -112,8 +113,8 @@
           </p>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="submit()">確認送出</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" id="submit" class="btn btn-primary" data-dismiss="modal">確認送出</button>
         </div>
       </div>
     </div>
@@ -165,7 +166,7 @@
     </div>
   </div>
   <!-- askModal -->
-  <div class=" _modal askmodal" style="z-index:5000;">
+  <div class="_modal askmodal" style="z-index:5000;">
     <div class="_modal-content">
       <img src="dialog.png" alt="">
       <div class="question">
