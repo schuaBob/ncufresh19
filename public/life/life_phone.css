@@ -304,6 +304,14 @@ html {
     height: calc(100% - 60px - 2% - 15vw);
     /* z-index: 300; */
   }
+
+  @media only screen and (orientation:landscape) {
+    .FpictureArea {
+      height: calc(100% - 60px - 2%);
+    }
+}
+
+
   
   .foodImg {
     position: relative; 
