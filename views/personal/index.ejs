@@ -7,23 +7,31 @@
     <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
-    <div class="bg">
+
       <% include ../layouts/header %>
-      <img src="IMG_4161.JPG" id="bgi">
+
+
+    <div class="title-box">
+      <div class="vertical-line"></div>
+      <div class="eng-title">Personal</div>
+      <div class="ch-title">個人專區</div>     
     </div>
 
-    <div class="container">
       
       <% /* 使用者資訊 */ %>
-      <div class="vertical-line"></div>
-      <div class="username" id="username"><%= user.name %></div>
-      <div class="student-number" id="student-number"><%= user.id %></div>
-      
+      <div class="user-box" id="userinfo">
+        <div class="username" id="username"><%= user.name %></div>
+        <div class="student-number" id="student-number"><%= user.id %></div>
+      </div>
+
       <% /* BTNs */ %>
-      <div class="links" id="game-score">遊戲積分</div>
-      <div class="links" id="game">小遊戲</div>
-      <div class="links" id="ask-record">發問紀錄</div>
-      <div class="links" id="ask">我要發問</div>
+    <div class="links" id="game-score">遊戲積分</div>
+    <div class="links" id="game">小遊戲</div>
+    <div class="links" id="ask-record">發問紀錄</div>      
+    <div class="links" id="ask">我要發問</div>
+    <div class="links" id="logout" >
+      <a href="/logout">點我登出</a>
+    </div>
 
       <% /* 頭貼外框 */ %>
       <div class="circle">
@@ -71,8 +79,8 @@
         <% /* 遊戲積分 */ %>
         <div class="tog showToggle" id="game-score-toggle">
           <div class="score">
-            <h1 id="sum-point"><%= user.score_sum %></h1>
-            <p>分</p>
+            <h1>目前積分</h1>
+            <p><%= user.score_high %> 分</p>
           </div>
           <div class="score-container">
 
@@ -143,26 +151,50 @@
         <div class="toggles" id="ask-record-toggle">
           <div class="ask-record-container">
             <div class="box-show">
+              <div class="box-ask" id="category">
+                <div class="tag-ask" id="category-tag">
+                  <p>分類</p>
+                </div>
+                <% for(var a=question.length-1;a>-1;a--) { %>
+                  <% if(question[a]) { %>
+                    <li><%= question[a].category %></li>
+                  <% } %>
+                <% } %> 
+              </div>
+
+              <div class="box-ask" id="ask-title">
+                  <div class="tag-ask" id="title-tag">
+                    <p>標題</p>
+                  </div>
+                  <% for(var a=question.length-1;a>-1;a--) { %>
+                    <% if(question[a]) { %>
+                      <li><%= question[a].title %></li>
+                    <% } %>
+                  <% } %> 
+                </div>
+
               <div class="box-ask" id="date">
                 <div class="tag-ask" id="date-tag">
                   <p>時間</p>
                 </div>
                 <% for(var a=question.length-1;a>-1;a--) { %>
                   <% if(question[a]) { %>
-                    <%= convertDateToString(questions[index]._id.getTimestamp()) %>
+                    <li><%= convertDateToString(question[a]._id.getTimestamp()) %></li>
                   <% } %>
                 <% } %> 
               </div>
-              <div class="box-ask" id="ask-title">
-                <div class="tag-ask" id="title-tag">
-                  <p>問題</p>
+
+              <div class="box-ask" id="count">
+                <div class="tag-ask" id="count-tag">
+                  <p>點閱數</p>
                 </div>
                 <% for(var a=question.length-1;a>-1;a--) { %>
                   <% if(question[a]) { %>
-                    <li><%= question[a].title %></li>
+                    <li><%= question[a].count %></li>
                   <% } %>
-                <% } %> 
+                <% } %>
               </div>
+              
             </div>
           </div>
         </div>
@@ -179,7 +211,6 @@
 
       </div>
 
-    </div>
   </body>
   <% include ../layouts/js %>
   <% include js %>

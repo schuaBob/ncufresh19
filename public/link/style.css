@@ -5,18 +5,14 @@ body {
 }
 
 .bg {
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-#backgroundi {
+  width: 100vw;
+  height: calc(100vh - 145px);
   position: absolute;
   top: 145px;
-  width: 1490px;
-  height: 610px;
+}
+
+.bg img {
+  height: 100%;
 }
 
 .title-box {
@@ -173,4 +169,96 @@ body {
   position: absolute;
   top: 660px;
   right: 50px;
+}
+
+@media only screen and (max-width:1200px) {
+  .bg {
+    display: none;
+  }
+
+  .title-box {
+    width: 100vw;
+  }
+
+  .container {
+    width: 100vw;
+    height: calc(100vh - 185px);
+    position: absolute;
+    top: 165px;
+    left: 0;
+    padding: 0;
+  }
+
+  #portal {
+    position: absolute;
+    top: 0px;
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #UST {
+    position: absolute;
+      top: calc(203px * 1);
+      left: calc((100vw - 300px)/2);
+    }
+  
+  #LMS {
+    position: absolute;
+    top: calc(203px * 2);
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #ee-class {
+    position: absolute;
+    top: calc(203px * 3);
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #dorm-service {
+    position: absolute;
+    top: calc(203px * 4);
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #dorm-net {
+    position: absolute;
+    top: calc(203px * 5);
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #helloNCU {
+    position: absolute;
+    top: calc(203px * 6);
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #NCUtalk {
+    position: absolute;
+    top: calc(203px * 7);
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #course {
+    position: absolute;
+    top: calc(203px * 8);
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #service-learning {
+    position: absolute;
+    top: calc(203px * 9);
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #equity {
+    position: absolute;
+    top: calc(203px * 10);
+    left: calc((100vw - 300px)/2);
+  }
+  
+  #plan {
+    position: absolute;
+    top: calc(203px * 11);
+    left: calc((100vw - 300px)/2);
+  }
+  
 }

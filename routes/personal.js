@@ -20,7 +20,7 @@ router.get('/', checkUser.isLoggedIn, function (req, res, next) {
     } else {
       picname = req.user.id + ".png";
     }
-    Question.find({ postID: req.user.id }).exec(function (err, question) {
+    Question.find({ /*postID: req.user.id*/ }).exec(function (err, question) {
       if (err) {
         return next(err);
       }
