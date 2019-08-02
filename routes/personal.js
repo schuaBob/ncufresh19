@@ -3,43 +3,43 @@ var router = express.Router();
 var checkUser = require('./check-user');
 var fs = require('fs');
 var multer = require('multer');
-var gm = require('gm').subClass({imageMagick: true});
+const sharp = require('sharp');
 
 var mongoose = require('mongoose');
 var User = require('../models/index/user');
-require('../models/qna/qna');
-var Question = mongoose.model('qna');
 
-var picname;
+var Question = require('../models/qna/qna');
 
-router.get('/', checkUser.isLoggedIn, function(req, res, next) {
 
+
+router.get('/', checkUser.isLoggedIn, function (req, res, next) {
+  var picname;
   fs.access("public/personal/profile-photo/" + req.user.id + ".png", fs.constants.R_OK, (err) => {
-    if(err) {
+    if (err) {
       picname = "default-profile.png";
     } else {
       picname = req.user.id + ".png";
     }
-    Question.find({postID: req.user.id}).exec(function(err, question) {
-      if(err) {
+    Question.find({ postID: req.user.id }).exec(function (err, question) {
+      if (err) {
         return next(err);
       }
-        res.render('personal/index', {
-          title: '新生知訊網 | 個人專區',
-          question: question,
-          user: req.user,
-          picname: picname
-        });
+      res.render('personal/index', {
+        title: '新生知訊網 | 個人專區',
+        question: question,
+        user: req.user,
+        picname: picname
+      });
     });
   });
 });
 
 var storage = multer.diskStorage({
   destination: "public/personal/profile-photo",
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     var fileName = req.user.id + ".png";
-    User.update({id: req.user.id}, {$set: {profile_pic: fileName}}, function(err, result) {
-      if(err) {
+    User.update({ id: req.user.id }, { $set: { profile_pic: fileName } }, function (err, result) {
+      if (err) {
         return next(err);
       }
     });
@@ -47,44 +47,47 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({storage: storage});
+var upload = multer({ storage: storage });
 
-router.post('/editPicture', upload.single('picture'), function(req, res, next) {
-  var fileName = "public/personal/profile-photo/" + req.user.id + ".png";
+router.post('/editPicture', upload.single('picture'), function (req, res, next) {
+  var file = "public/personal/profile-photo/" + req.user.id + ".png";
   console.log(req.user.id + " upload picture");
-  fs.access(fileName, fs.constants.R_OK, (err) => {
-    if(err) {
-      return next(err);
+  fs.access(file, fs.constants.F_OK | fs.constants.W_OK, (err) => {
+    if (err) {
+      console.log(
+        `${file} ${err.code === 'ENOENT' ? 'does not exist' : 'is read-only'}`);
+      res.redirect('/personal');
     } else {
-      gm(fileName).resize(200, 200, "!").write(fileName, function(err) {
-        if(err) {
-          return next(err);
-        }
-        return;
-        res.redirect('/personal');
-      });
+      console.log(`${file} exists, and it is writable`);
+      sharp(file)
+        .resize(300, 200)
+        .toFile(`public/personal/profile-photo/${req.user.id}-change.png`)
+        .then((data) => {
+          console.log(data)
+          res.redirect('/personal');
+        })
+        .catch((err) => { return next(err) });
     }
   });
-  res.redirect('/personal');
 });
 
-router.get('/deleteQna/:id', checkUser.isLoggedIn, function(req, res, next) {
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+router.get('/deleteQna/:id', checkUser.isLoggedIn, function (req, res, next) {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.redirect('../');
   }
-  Question.findById(req.params.id).exec(function(err, result) {
-    if(err) {
+  Question.findById(req.params.id).exec(function (err, result) {
+    if (err) {
       return next(err);
     }
-    if(!result) {
+    if (!result) {
       res.redirect('../');
     }
-    if(result.authorID !== req.user.id) {
+    if (result.authorID !== req.user.id) {
       res.redirect('../');
     }
     result.DeleteDate = Date.now();
-    result.save(function(err) {
-      if(err) {
+    result.save(function (err) {
+      if (err) {
         return next(err);
       }
       res.redirect('../');

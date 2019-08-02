@@ -47,14 +47,14 @@
                     <div class="tri"></div>
 
                     <a href="../../../<%= back_name %>">
-                        <div class="title">
+                        <div class="title" >
                             <%= title_bar[2] %><div class="small_title"><%= title_bar[3] %></div>
                         </div>
                     </a>
 
                     <div class="tri"></div>
 
-                    <div class="title">
+                    <div class="title" >
                         <font color="#ec6d4f"><%= title_bar[4] %></font><div class="small_title"><%= title_bar[5] %></div>
                     </div>
 
@@ -71,7 +71,7 @@
 
                         <div class="tri"></div>
 
-                        <div class="title">
+                        <div class="title" >
                             <font color="#ec6d4f"><%= title_bar[2] %></font><div class="small_title"><%= title_bar[3] %></div>
                         </div>
 
@@ -85,7 +85,7 @@
 
                         <div class="tri"></div>
 
-                        <div class="title">
+                        <div class="title" id="en">
                             <font color="#ec6d4f"><%= title_bar[2] %></font><div class="small_title"><%= title_bar[3] %></div>
                         </div>
                     <%/* 學院分頁_學長姐訪談 */%>
@@ -111,5 +111,75 @@
                 <% } %>
             </div>
           </div>
+
+        <script>
+
+            $(document).ready(function(){
+                var num = '<%= title_bar[2] %>'.length;
+
+                if (num > 9) {
+
+                    $("#en").css({
+                        "font-size": "18px"
+                    });   
+                }
+                alert(num);
+                //var num = document.getElementById("en");
+                //alert(num);
+                
+                //var ans = $("#en").val();
+    
+                //var num = document.getElementById("en");
+                //var num = $("#en").length;
+                //alert(ans);
+            });
+
+            /*
+            var ans = $("#en").val;
+    
+            var num = document.getElementById("en");
+            //var num = $("#en").length;
+            alert(ans);
+            */
+
+
+
+
+
+
+
+
+
+
+
+            /*
+            if ("<%= title_bar[5] %>" != null) {
+
+                    
+                    if ('<%= title_bar['+i+'] %>'.length() > 10) {
+                        $(".title").css({
+                            "width": "214px",
+                            "font-size": "16px"
+                        });
+                    }
+                    
+            }
+            */
+            //alert("<%= title_bar[0] %>" + "啊啊啊");
+            /*
+            for (var i = 0; i < '<%= title_bar %>'.size(); i++) {
+                num++;
+                
+                if ('<%= title_bar['+i+'] %>'.length() > 10) {
+                    $(".title").css({
+                        "width": "214px",
+                        "font-size": "16px"
+                    });
+                }
+                
+            }
+            console.log("到底加了幾次啊啊啊啊啊啊" + num);
+            */
+        </script>
     </body>
 </html>

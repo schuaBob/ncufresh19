@@ -1,5 +1,6 @@
 <script>
     $(document).ready(() => {
+        
         $("#navbtn").click(() => {
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
@@ -22,34 +23,37 @@
                 e.stopImmediatePropagation();
             }
         });
-        tinyMCE.init({
-            selector: 'textarea.tinyeditor',
-            plugins: "image, advlist, table, autolink, code, link, lists, paste, preview, searchreplace, wordcount, emoticons, media",
-            toolbar: "styleselect | forecolor | backcolor | bold | italic | underline | alignleft | aligncenter | alignright | alignjustify | bullist | numlist | outdent | indent | link | image | media | code ",
-            paste_enable_default_filters: false,
-            paste_data_images: true,
-            automatic_uploads: true,
-            table_responsive_width:true,
-            images_reuse_filename: true,
-            images_upload_url: '/tinymceUploader',
-            setup: (ed) => {
-                ed.on('init', function (e) {
-                    console.log(`${e.target.id} textarea is initialized.`);
-                });
-                ed.on('keyup', function () {
-                    console.log(ed.getContent());
-                });
-                ed.on('GetContent', (e) => {
-                    console.log(`${e.target.id}'s Content get caught.`);
-                })
-                ed.on('SetContent', (e) => {
-                    console.log(`${e.target.id}'s Content get set.`);
-                })
-            }
-        })
-    });  
+        if (document.getElementsByClassName('tinyeditor').length > 0) {
 
-    function restart_animate(id){
+            tinyMCE.init({
+                selector: 'textarea.tinyeditor',
+                plugins: "image, advlist, table, autolink, code, link, lists, paste, preview, searchreplace, wordcount, emoticons, media",
+                toolbar: "styleselect | forecolor | backcolor | bold | italic | underline | alignleft | aligncenter | alignright | alignjustify | bullist | numlist | outdent | indent | link | image | media | code ",
+                paste_enable_default_filters: false,
+                paste_data_images: true,
+                automatic_uploads: true,
+                table_responsive_width: true,
+                images_reuse_filename: true,
+                images_upload_url: '/tinymceUploader',
+                setup: (ed) => {
+                    ed.on('init', function (e) {
+                        console.log(`${e.target.id} textarea is initialized.`);
+                    });
+                    ed.on('keyup', function () {
+                        console.log(ed.getContent());
+                    });
+                    ed.on('GetContent', (e) => {
+                        console.log(`${e.target.id}'s Content get caught.`);
+                    })
+                    ed.on('SetContent', (e) => {
+                        console.log(`${e.target.id}'s Content get set.`);
+                    })
+                }
+            })
+        }
+    });
+
+    function restart_animate(id) {
         var el = $(id),
             newone = el.clone(true);
         el.before(newone);
