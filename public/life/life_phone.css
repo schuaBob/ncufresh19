@@ -94,7 +94,66 @@ html {
     height: calc(100% - 60px - 2% - 15vw);
     padding-bottom: 0;
   }
-  
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:landscape) {        
+    .sideNav {
+        width: 100%;
+        padding: 15vw 0;
+        padding-left: 3vw;
+        height: calc(100% - 60px);
+    }
+    .sideNav ul {
+        margin: 0 auto;
+    }
+        .sideNav li {
+        float: left;
+        margin: 3vw 4vw;
+
+    } 
+    .navSubBtn {
+        padding-top: 0;
+    }
+}
+@media only screen and (max-device-width: 823px) and (orientation:landscape) {
+    .sideNav {
+        width: 100%;
+        padding: 15vw 0;
+        padding-left: 15vw;
+        height: calc(100% - 60px);
+    }
+    .sideNav ul {
+        margin: 0 auto;
+    }
+        .sideNav li {
+        float: left;
+        margin: 3vw 4vw;
+
+    } 
+    .navSubBtn {
+        padding-top: 0;
+    }
+}  
+
+@media only screen and (max-device-width: 736px) and (orientation:landscape) {
+    .sideNav {
+        width: 100%;
+        padding: 15vw 0;
+        padding-left: 10vw;
+        height: calc(100% - 60px);
+    }
+    .sideNav ul {
+        margin: 0 auto;
+    }
+        .sideNav li {
+        float: left;
+        margin: 3vw 4vw;
+
+    } 
+    .navSubBtn {
+        padding-top: 0;
+    }
+}   
+
 
   /*--------------study--------------*/
   .studyPicture {
