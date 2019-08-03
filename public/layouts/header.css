@@ -43,7 +43,7 @@
     background: #736f6e;
 }
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
@@ -54,7 +54,7 @@ body {
     margin: 0 !important;
 }
 
-#randImg{
+#randImg {
     width: 100%;
     position: relative;
 }
@@ -144,6 +144,8 @@ body {
 @media only screen and (min-width: 768px) {
     #mySidenav #links .link {
         font-size: 4vh !important;
+        position: relative;
+        
     }
 
     #myNavLinks {
@@ -158,20 +160,21 @@ body {
 
     #mySidenav #links li {
         display: block;
-        padding: calc(5vh - 0.5vw - 12px) 0;
+        padding: calc(100vh - 57px - 4.5vw) 0;
         position: relative;
         text-align: center;
+        height: auto;
     }
 
     #mySidenav #links {
-        height: calc(100vh - 44px - 5vw);
+        height: calc(100vh - 57px - 4.5vw);
     }
 
     /* menu */
     #menuTag {
         position: relative;
         width: 100%;
-        margin-top: 1vw;
+        padding-top: 1vw;
         text-align: center;
     }
 
@@ -179,7 +182,7 @@ body {
         position: relative !important;
         animation: doubleyou 3s;
         display: inline !important;
-        font-size: 30px !important;
+        font-size: 38px !important;
         color: #FF7300 !important;
     }
 
@@ -187,7 +190,7 @@ body {
         position: relative !important;
         animation: oh 3s;
         display: inline !important;
-        font-size: 30px !important;
+        font-size: 38px !important;
         color: #FF7300 !important;
     }
 
@@ -195,7 +198,7 @@ body {
         position: relative !important;
         animation: are 3s;
         display: inline !important;
-        font-size: 30px !important;
+        font-size: 38px !important;
         color: #FF7300 !important;
     }
 
@@ -203,7 +206,7 @@ body {
         position: relative !important;
         animation: dee 3s;
         display: inline !important;
-        font-size: 30px !important;
+        font-size: 38px !important;
         color: #FF7300 !important;
     }
 
@@ -273,9 +276,9 @@ body {
         text-align: center;
         display: block;
         width: 100%;
-        height: 3vw;
-        font-size: 1vw;
-        padding-bottom: 1vw;
+        height: 3.5vw;
+        font-size: 0.9vw;
+        padding-bottom: 0.5vw;
     }
 }
 
@@ -365,10 +368,7 @@ body {
     overflow-y: hidden;
     overflow-x: hidden;
     scrollbar-width: none;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
 }
 
 
@@ -376,7 +376,6 @@ body {
 #mySidenav #links .link {
     color: #0163b0;
     text-decoration: none;
-    line-height: 0 !important;
     position: relative;
 }
 
