@@ -145,7 +145,6 @@ body {
     #mySidenav #links .link {
         font-size: 3.5vh !important;
         position: relative;
-
     }
 
     #myNavLinks {
@@ -160,7 +159,7 @@ body {
 
     #mySidenav #links li {
         display: block;
-        /* padding: calc(100vh - 57px - 4.5vw - ) 0; */
+        padding: calc(calc(48vh - 57px - 4.5vw)/20) 0;
         position: relative;
         text-align: center;
         height: auto;
