@@ -58,39 +58,46 @@ router.post('/editPicture', upload.single('picture'), function (req, res, next) 
         `${file} ${err.code === 'ENOENT' ? 'does not exist' : 'is read-only'}`);
       res.redirect('/personal');
     } else {
-      console.log(`${file} exists, and it is writable`);
-      sharp(file)
-        .resize(300, 200)
-        .toFile(`public/personal/profile-photo/${req.user.id}-change.png`)
-        .then((data) => {
-          console.log(data)
-          res.redirect('/personal');
-        })
-        .catch((err) => { return next(err) });
+      sharp(fileName).resize(200, 200, {
+        fit: 'outside',
+        position: 'center'
+      }).toFile("public/personal/profile-photo/" + req.user.id + "-new.png", function(err) {
+        if(err) {
+          return err;
+        }
+        console.log("Resize");
+      });
+
+      fs.rename("public/personal/profile-photo/" + req.user.id + "-new.png", fileName, function(err) {
+        if(err) { return err; }
+        console.log("Rename");
+        return;
+      });
     }
+
   });
 });
 
-router.get('/deleteQna/:id', checkUser.isLoggedIn, function (req, res, next) {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    return res.redirect('../');
+router.get('/deleteQna/:id', checkUser.isLoggedIn, function(req, res, next) {
+  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.redirect('/');
   }
   Question.findById(req.params.id).exec(function (err, result) {
     if (err) {
       return next(err);
     }
-    if (!result) {
-      res.redirect('../');
+    if(!result) {
+      res.redirect('/');
     }
-    if (result.authorID !== req.user.id) {
-      res.redirect('../');
+    if(result.authorID !== req.user.id) {
+      res.redirect('/');
     }
     result.DeleteDate = Date.now();
     result.save(function (err) {
       if (err) {
         return next(err);
       }
-      res.redirect('../');
+      res.redirect('/');
     });
   });
 });
