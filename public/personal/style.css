@@ -16,7 +16,6 @@ body {
   background-color: #7CA7BC;
   width: 5px;
   height: 80%;
-<<<<<<< HEAD
   position: absolute;
   left: 103px;
   top: 10%;
@@ -42,33 +41,6 @@ body {
 #userinfo {
   align-items: center;
   position: absolute;
-=======
-  position: absolute;
-  left: 103px;
-  top: 10%;
-}
-
-.eng-title {
-  font-size: 28px;
-  color: #FB8360;
-  position: absolute;
-  left: 125px;
-  top: 7%;
-  font-weight: bold;
-}
-
-.ch-title {
-  font-size: 17px;
-  color: #767171;
-  position: absolute;
-  left: 125px;
-  top: 56%;
-}
-
-#userinfo {
-  align-items: center;
-  position: absolute;
->>>>>>> b414da17d958df5423618f0f78973019d648aa3d
   top: 170px;
   left: 120px;
 }
