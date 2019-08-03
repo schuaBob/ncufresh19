@@ -1,82 +1,116 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
 
 body {
+  background-color: #fff9dc;
 }
 
-.bg{
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-.bg #bgi {
-  width: 100%;
-  position: relative;
-  top: -200px;
-  z-index: -1;
+.title-box {
+  position: absolute;
+  top: 60px;
+  width: 300px;
+  height: 85px;
+  background-color: white;
 }
 
 .vertical-line{
-  background-color: #0163b0;
-  width: 28px;
-  height:60px;
+  background-color: #7CA7BC;
+  width: 5px;
+  height: 80%;
   position: absolute;
-  left: 200px;
-  top: 100px;
+  left: 103px;
+  top: 10%;
+}
+
+.eng-title {
+  font-size: 28px;
+  color: #FB8360;
+  position: absolute;
+  left: 125px;
+  top: 7%;
+  font-weight: bold;
+}
+
+.ch-title {
+  font-size: 17px;
+  color: #767171;
+  position: absolute;
+  left: 125px;
+  top: 56%;
+}
+
+#userinfo {
+  align-items: center;
+  position: absolute;
+  top: 170px;
+  left: 120px;
 }
 
 .username {
+  display: inline;
+  line-height: 50px;
   font-size: 50px;
-  color: #0163b0;
-  position: absolute;
-  left: 250px;
-  top: 90px;
+  color: #FB8360;
+  padding: 10px;
 }
 
 .student-number {
-  font-size: 15px;
-  color: #ffd800;
-  position: absolute;
-  left: 255px;
-  top: 165px;
-  font-family: Noto Sans TC;
+  display: inline;
+  line-height: 50px;
+  font-size: 30px;
+  color: black;
+  padding: 10px;
 }
 
 .links {
-  font-size: 15px;
-  color: #0163b0;
-  width: 100px;
-  height: 40px;
-  border-radius: 30px;
+  font-size: 2.5vh;
+  color: black;
+  width: 10vw;
+  height: 5vh;
+  border-radius: 10px;
   text-align: center;
-  line-height: 40px;
+  line-height: 5vh;
+  position: absolute;
+  top: 250px;
+}
+
+.links a {
+  color: black;
 }
 
 .links:hover {
-  background-color: #736f6e;
+  background-color: rgb(251, 217, 185);
+  color: white;
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: white;
+  text-decoration: none;
 }
 
 #game-score {
-  position: absolute;
-  left: 240px;
-  top: 220px;
+  left: 120px;
 }
 
 #game {
-  position: absolute;
-  left: 350px;
-  top: 220px;
+  left: calc(120px + 12vw);
 }
 
 #ask-record {
-  position: absolute;
-  left: 460px;
-  top: 220px;
+  left: calc(120px + 24vw);
 }
 
 #ask {
-  position: absolute;
-  left: 570px;
-  top: 220px;
+  left: calc(120px + 36vw);
+}
+
+#logout {
+  left: calc(120px + 48vw);
+  background-color: #bfe8f2;
+}
+
+#logout:hover {
+  background-color: rgb(32, 56, 100);
 }
 
 .ask-link {
@@ -135,15 +169,9 @@ body {
   overflow: hidden;
   width: 180px;
   height: 180px;
-  border: 5px solid #0163b0;
   position: absolute;
   top: 200px;
-  right:200px;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
+  left: calc(100vw - 320px);
 }
 
 .upload-icon {
@@ -154,31 +182,32 @@ img {
 }
 
 .toggle-container {
-  width: 55%;
-  height: 50%;
+  width: 65%;
+  height: 53%;
   position: absolute;
-  top: 300px;
-  left: 250px;
+  top: 42%;
+  left: 120px;
+  background-color: white;
+  padding: 3%;
 }
 
 .score h1 {
-  font-size: 120px;
+  font-size: 35px;
   color: #0163b0;
   position: absolute;
-  top: 25%;
+  top: 30%;
 }
 
 .score p {
-  font-size: 23px;
-  color: #ffd800;
+  font-size: 70px;
+  color: #FB8360;
   position: absolute;
-  top: 50%;
-  left: 17%;
+  top: 45%;
 }
 
 .score-container {
   width: 75%;
-  height: 100%;
+  height: 75%;
   position: absolute;
   left: 25%;
   overflow-x: hidden;
@@ -187,10 +216,9 @@ img {
 
 .scoreTag {
   text-align: center;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 20px;
   padding: 10px 20px;
-  color: #0163b0;
+  color: black;
 }
 
 #ranking-box {
@@ -214,10 +242,10 @@ img {
 .horizontal-bar {
   position: absolute;
   width: 90%;
-  height: 1%;
+  height: 0.5%;
   left: 5%;
-  background-color: #ffd800;
-  top: 13%;
+  background-color: black;
+  top: 15%;
 }
 
 .lists {
@@ -286,4 +314,80 @@ img {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
+}
+
+@media only screen and (max-width:1200px) {
+  .title-box {
+    display: none;
+  }
+
+  #userinfo {
+    display: block;
+    position: absolute;
+    top: 80px;
+    left: 30px;
+    line-height: 60px;
+    width: 50%;
+  }
+
+  #username {
+    font-size: 40px;
+  }
+
+  #student-number {
+    font-size: 30px;
+  }
+
+  .circle {
+    top: 80px;
+    left: 60vw;
+    width: 120px;
+    height: 120px;
+  }
+
+  .links {
+    width: 18vw;
+    font-size: 4vw;
+  }
+
+  #game {
+    display: none;
+  }
+
+  #game-score{
+    left: 11vw;
+  }
+
+  #ask-record {
+    left: 31vw;
+  }
+  
+  #ask {
+    left: 51vw;
+  }
+
+  #logout {
+    left: 71vw;
+  }
+
+  .toggle-container {
+    left: 11vw;
+    width: 80vw;
+    top: 300px;
+    height: calc(100vh - 330px);
+    padding: 10%;
+  }
+
+  .score-container {
+    display: none;
+  }
+
+  .ask-link {
+    width: 80%;
+    padding: 4%;
+  }
+
+  .ask-link img {
+  
+  }
 }
