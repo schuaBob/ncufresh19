@@ -1,6 +1,5 @@
 <script>
     $(document).ready(() => {
-        
         $("#navbtn").click(() => {
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
@@ -24,7 +23,6 @@
             }
         });
         if (document.getElementsByClassName('tinyeditor').length > 0) {
-
             tinyMCE.init({
                 selector: 'textarea.tinyeditor',
                 plugins: "image, advlist, table, autolink, code, link, lists, paste, preview, searchreplace, wordcount, emoticons, media",
@@ -52,7 +50,6 @@
             })
         }
     });
-
     function restart_animate(id) {
         var el = $(id),
             newone = el.clone(true);
