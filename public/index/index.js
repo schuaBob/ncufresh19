@@ -1,4 +1,5 @@
 var current_calender;
+var nowLeft = 10;
 
 $(document).ready(() => {
     $('#fullpage').fullpage({
@@ -82,14 +83,13 @@ $(".selectMonth").on("click", function () {
 
 function append_circle(data) {
     $("#days").empty();
+    $("#days").append('<a class="prev">&#10094;</a><a class="next">&#10095;</a>');
+    $("#days").append('<div id="scrollDay"></div>');
     var count = 0;
     for (var i in data) {
-        $("#days").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="40" width="40"> <circle cx="20" cy="20" r="20" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
+        $("#scrollDay").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="40" width="40"> <circle cx="20" cy="20" r="20" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
         count = count + 1;
     }
-    $(".day").each(function () {
-        $(this).css("left", (this.id) * 8 + "%");
-    });
     current_calender = data;
     $(".day").on("click", function () {
         $("#board-detail").empty();
@@ -99,5 +99,27 @@ function append_circle(data) {
                 $("#board-detail").append(current_calender[i].board_content);
             cnt = cnt + 1;
         }
+    });
+
+    $(".next").on("click", function() {
+        $("#scrollDay").animate({
+            left: (nowLeft+=15) + "vw"
+        }, {
+            duration: 500,
+            done: function() {
+
+            }
+        })
+    });
+
+    $(".prev").on("click", function() {
+        $("#scrollDay").animate({
+            left: (nowLeft-=15) + "vw"
+        }, {
+            duration: 500,
+            done: function() {
+                
+            }
+        })
     });
 }
