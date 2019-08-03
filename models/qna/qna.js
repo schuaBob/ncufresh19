@@ -9,7 +9,7 @@ var qna = mongoose.Schema({
     qContent : String,
     aContent: { type: String, default: "" }, 
     count: { type: Number, default: 0 }, //點擊次數    
-    reviewed: { type: Boolean, default: false }, //審核與否
+    reviewed: { type: Boolean, default: false } //審核與否
 });
 
 

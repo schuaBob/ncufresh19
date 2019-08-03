@@ -94,7 +94,66 @@ html {
     height: calc(100% - 60px - 2% - 15vw);
     padding-bottom: 0;
   }
-  
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:landscape) {        
+    .sideNav {
+        width: 100%;
+        padding: 15vw 0;
+        padding-left: 3vw;
+        height: calc(100% - 60px);
+    }
+    .sideNav ul {
+        margin: 0 auto;
+    }
+        .sideNav li {
+        float: left;
+        margin: 3vw 4vw;
+
+    } 
+    .navSubBtn {
+        padding-top: 0;
+    }
+}
+@media only screen and (max-device-width: 823px) and (orientation:landscape) {
+    .sideNav {
+        width: 100%;
+        padding: 15vw 0;
+        padding-left: 15vw;
+        height: calc(100% - 60px);
+    }
+    .sideNav ul {
+        margin: 0 auto;
+    }
+        .sideNav li {
+        float: left;
+        margin: 3vw 4vw;
+
+    } 
+    .navSubBtn {
+        padding-top: 0;
+    }
+}  
+
+@media only screen and (max-device-width: 736px) and (orientation:landscape) {
+    .sideNav {
+        width: 100%;
+        padding: 15vw 0;
+        padding-left: 10vw;
+        height: calc(100% - 60px);
+    }
+    .sideNav ul {
+        margin: 0 auto;
+    }
+        .sideNav li {
+        float: left;
+        margin: 3vw 4vw;
+
+    } 
+    .navSubBtn {
+        padding-top: 0;
+    }
+}   
+
 
   /*--------------study--------------*/
   .studyPicture {
@@ -108,6 +167,27 @@ html {
     /* height: 30%; */
     padding: 1%;
   }
+
+  .studyImg {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+  }
+  .studyImg:hover, .studyImg:focus, .studyImg:active {
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  
   .studyImg {
     max-width: 100%;
     max-height: 100%;
@@ -224,6 +304,14 @@ html {
     height: calc(100% - 60px - 2% - 15vw);
     /* z-index: 300; */
   }
+
+  @media only screen and (orientation:landscape) {
+    .FpictureArea {
+      height: calc(100% - 60px - 2%);
+    }
+}
+
+
   
   .foodImg {
     position: relative; 
@@ -256,7 +344,7 @@ html {
     width: 100%;
   }
   
-  /* .overlay {
+  .overlay {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -266,7 +354,7 @@ html {
     width: 100%;
     opacity: 0;
     z-index:-100;
-    /* transition: .5s ease; 
+    /* transition: .5s ease; */
     animation-name: oxxo;
     animation-duration: 3s;
     animation-delay: 0.5s;
@@ -285,19 +373,19 @@ html {
   
   .hint {
     color: white;
-    font-size: 50px;
+    font-size: 8vw;
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
-  } */
+  }
 
   .decoration img{
     position: absolute;
-    width:25%;
+    width:30%;
     bottom: 0px;
   }
   
