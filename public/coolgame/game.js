@@ -6,10 +6,14 @@
 //於上漁船位置
 //------------game---------------------------------
 //var fs = require('fs');
+var soundcontrol = {'BGM':null,'CATCH':null,'key3':null}; 
+var muted = false;
+var BGmsound;
 var reach;
 var reach_conrainer;
 var loading_text;
 var reach_close=true;
+var rule_close=true;
 var game_id="";
 var rank_user_list;
 var rank_background;
@@ -198,12 +202,14 @@ class Button_Text extends createjs.Container {
 
     this.underline.graphics.s("#000000").mt(this.text.x, this.text.y + 25).lt(this.text.x + w, this.text.y + 25);
     this.havermask.addEventListener("mouseover", function (event) {
+      if(!rule_close)return;
       event.target.parent.havermask.cursor = "pointer";
       event.target.parent.haver.visible = true;
       //event.target.parent.underline.visible = true;
       event.target.parent.haver_background.alpha=0.9;
     });
     this.havermask.addEventListener("mouseout", function (event) {
+      if(!rule_close)return;
       event.target.parent.havermask.cursor = "defult";
       event.target.parent.haver.visible = false;
       event.target.parent.haver_background.alpha=0.4;
@@ -262,7 +268,8 @@ class Option extends createjs.Container {
     ans_num--;
     if (ans_num == 0) {
       back_container.visible=false;
-
+      if(!muted)
+      createjs.Sound.play("correct");
       correct_fish = new fish(board_index, false);
       correct_fish.scale = 0.5;
       correct_fish.x = 550;
@@ -283,6 +290,8 @@ class Option extends createjs.Container {
     }
   }
   wrong() {
+    if(!muted)
+    createjs.Sound.play("wrong");
     this.background.visible = true;
     this.done = true;
     this.background.graphics.clear().beginFill("red").drawRoundRect(0, 0, 9 * 18, 33, 10);
@@ -331,8 +340,18 @@ class Animal extends createjs.Sprite {
     if(gamestart)
     catch_animal_num[this.animaltype] += 1;
     if (this.animaltype != 0 && this.animaltype != 6) {
+      if(!muted)
+      createjs.Sound.play("catchfish0"+this.animaltype);
       new Score_Text("+" + this.score, "bold 20px 微軟正黑體", "#000000", this.x, this.y);
       user_score += this.score;
+    }
+    else if(this.animaltype == 0){
+      if(!muted)
+      createjs.Sound.play("catchbird");
+    }
+    if(this.animaltype == 6){
+      if(!muted)
+      createjs.Sound.play("catchdolphin");
     }
     catech_animal_update();
   }
@@ -459,6 +478,8 @@ function mousemove(event) {
 function mousedown(event) {
   if (harpoon_list.length >= 10) return;
   var shoot_harpoon = new harpoon();
+  if(!muted)
+  createjs.Sound.play("shoot");
   var x = stage.mouseX - (shoot_harpoon.x);
   var y = stage.mouseY - (shoot_harpoon.y);
   var r_x = -1;
@@ -686,6 +707,7 @@ function keyUp(event) {
 }
 var complete_file_num=0;
 function load_source() {
+  window.addEventListener("click", resumeAudioContext);
   stage = new createjs.Stage(document.getElementById("gameStage"));
   loading_text = new createjs.Text("0%","bold 30px 微軟正黑體","#000000");
   loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
@@ -731,9 +753,29 @@ function load_source() {
     { src: "/images/coolgame/dolphin.png", id: "dolphin" },
     { src: "/images/coolgame/rule1.png", id: "rule1" },
     { src: "/images/coolgame/rule2.png", id: "rule2" },
-    { src: "/images/coolgame/food.png", id: "food" }
+    { src: "/images/coolgame/food.png", id: "food" },
+    { src: "/images/coolgame/close.png", id: "close" },
+    { src: "/images/coolgame/close_haver.png", id: "close_haver" },
+    { src: "/music/coolgame/LabbyBGM.mp3", id: "LabbyBGM" },
+    { src: "/music/coolgame/GameBGM01.mp3", id: "GameBGM01" },
+    { src: "/music/coolgame/GameBGM02.mp3", id: "GameBGM02" },
+    { src: "/music/coolgame/RankBGM.mp3", id: "RankBGM" },
+    { src: "/music/coolgame/catchfish01.mp3", id: "catchfish01" },
+    { src: "/music/coolgame/catchfish02.mp3", id: "catchfish02" },
+    { src: "/music/coolgame/catchfish03.mp3", id: "catchfish03" },
+    { src: "/music/coolgame/catchfish04.mp3", id: "catchfish04" },
+    { src: "/music/coolgame/catchbird.mp3", id: "catchbird" },
+    { src: "/music/coolgame/catchdolphin.mp3", id: "catchdolphin" },
+    { src: "/music/coolgame/correct.mp3", id: "correct" },
+    { src: "/music/coolgame/wrong.mp3", id: "wrong" },
+    { src: "/music/coolgame/shoot.mp3", id: "shoot" },
+    { src: "/music/coolgame/DolphinBGM.mp3", id: "DolphinBGM" },
+    { src: "/music/coolgame/alarm.mp3", id: "alarm" },
+    { src: "/music/coolgame/bell.mp3", id: "bell" },
+    { src: "/music/coolgame/game_end.mp3", id: "game_end" }
   ];
   loader = new createjs.LoadQueue(true);
+  loader.installPlugin(createjs.Sound);
   loader.on("fileload", handleFileLoad);
   loader.on("complete", handleComplete);
   loader.on("error", handleError);
@@ -741,16 +783,22 @@ function load_source() {
   load_question_data();
 }
 function handleFileLoad(e) {
-  complete_file_num++;
-  console.log(complete_file_num);
-  loading_text.text = Math.floor((complete_file_num/manifest.length)*100)+"%";
+  if(!done_loading){
+    complete_file_num++;
+    loading_text.text = Math.floor((complete_file_num/manifest.length)*100)+"%";
+    loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
+    loading_text.y = canvas_height/2-loading_text.getMeasuredHeight() / 2 ;
+    stage.update();
+  }
+
+}
+var done_loading=false;
+function handleComplete() {
+  done_loading = true;
+  loading_text.text = "點擊螢幕開始遊戲~";
   loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
   loading_text.y = canvas_height/2-loading_text.getMeasuredHeight() / 2 ;
   stage.update();
-}
-function handleComplete() {
-  stage.removeChild(loading_text);
-  init();
 }
 function handleError() {
   console.log("erreo");
@@ -891,6 +939,7 @@ function create_back_container() {
       labby_init();
     }
     else {
+      soundcontrol["BGM"].paused=true;
       close_game_event();
       leave_container.visible = true;
       stop = true;
@@ -905,11 +954,55 @@ function create_rule_container(){
   rule_container= new createjs.Container();
   var rule_first = new createjs.Bitmap(loader.getResult("rule1"));
   var rule_second = new createjs.Bitmap(loader.getResult("rule2"));
+  var next_shape = new createjs.Shape();
+  var close = new createjs.Bitmap(loader.getResult("close"));
+  close.x = 687;
+  close.y = 25;
+  close.scale=0.5;
+  close.addEventListener("mouseover",function(event){
+    event.target.cursor = "pointer";
+    close.image = loader.getResult("close_haver");
+  })
+  close.addEventListener("mouseout",function(event){
+    event.target.cursor = "pointer";
+    close.image = loader.getResult("close");
+  })
+  close.addEventListener("mousedown",function(event){
+    rule_close=true;
+    rule_container.visible=false;
+  })
+  next_shape.graphics.beginFill("#000000").drawCircle(713,261,24);
+  next_shape.alpha=0.01;
+  next_shape.addEventListener("mouseover",function(event){
+    event.target.cursor = "pointer";
+  })
+  next_shape.addEventListener("mousedown",function(event){
+    rule_second.visible=true;
+    rule_first.visible = false;
+    next_shape.visible=false;
+    last_shape.visible=true;
+  })
+  var last_shape = new createjs.Shape();
+  last_shape.graphics.beginFill("#000000").drawCircle(65,255,24);
+  last_shape.alpha=0.01;
+  last_shape.addEventListener("mouseover",function(event){
+    event.target.cursor = "pointer";
+  })
+  last_shape.addEventListener("mousedown",function(event){
+    rule_second.visible=false;
+    rule_first.visible = true;
+    next_shape.visible=true;
+    last_shape.visible=false;
+  })
   rule_first.scale=0.65;
   rule_second.scale=0.65;
   rule_second.visible=false;
+  rule_container.x = 10
   rule_container.addChild(rule_first);
   rule_container.addChild(rule_second);
+  rule_container.addChild(next_shape);
+  rule_container.addChild(last_shape);
+  rule_container.addChild(close);
   rule_container.visible=false;
   stage.addChild(rule_container);
 }
@@ -992,6 +1085,7 @@ function create_leave_container() {
     leave_container.visible = false;
     if (now == 1)
       game_event();
+    soundcontrol["BGM"].paused=muted;
     stop = false;
     question_time_stop=false;
   });
@@ -1018,6 +1112,8 @@ function create_leave_container() {
   stage.addChild(leave_container);
 }
 function create_stage_element() {
+  // soundcontrol["BGM"]=createjs.Sound.play("BGM01");
+  // soundcontrol["BGM"].stop();
   catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0", "12px Arial", "#000000");
   background = new createjs.Bitmap(loader.getResult("game_background"));
   fisherman = new createjs.Bitmap(loader.getResult("fisherman"));
@@ -1052,9 +1148,13 @@ function create_stage_element() {
   sound_shape.addEventListener("mousedown", function (event) {
     if (sound) {
       soundbutton.image = loader.getResult("sound_close");
+      soundcontrol["BGM"].paused =true;
+      muted=true;
     }
     else {
       soundbutton.image = loader.getResult("sound_open");
+      soundcontrol["BGM"].paused =false;
+      muted=false;
     }
     sound = sound == true ? false : true;
   })
@@ -1201,7 +1301,7 @@ function question_end() {
     dolphin_container.alpha=0;
     createjs.Tween.get(dolphin_container).to({alpha:1},1500);
     dolphin_container.visible=true;
-
+    BGM_change();
   }
   now_score=user_score;
   score_board_text.text = (now == 1 ? "Score:" : "") + now_score + "";
@@ -1464,8 +1564,11 @@ function game_end() {
   gamestart=false;
   if (catch_fish.length != 0)
     fish_jump();
+  soundcontrol["BGM"].stop();
   back_container.visible = false;
   start_time_text.text = "Time's up！";
+  if(!muted)
+  createjs.Sound.play("game_end");
   start_time_text.x -= 40;
   stage.addChild(start_time_text);
   fisherman_harpoon.scaleX *= fisherman_harpoon.scaleX < 0 ? -1 : 1;
@@ -1541,6 +1644,8 @@ function score_init() {
           brid_num++;
           createjs.Tween.get(catch_fish[i]).wait(brid_num * 200).to({ y: 220, x: 380 }, 600).wait(600).to({ y: bucket.y + 10, x: bucket.x + bucket.getwidth() / 2 }, 600).to({ visible: false }).call(() => {
             brid_num--;
+            if(!muted)
+            createjs.Sound.play("bell");
             new Score_Text("+" + animalsource[0].score, "bold 20px 微軟正黑體", "#000000", bucket.x + bucket.getwidth() / 2, bucket.y + 10);
             user_score += animalsource[0].score;
             if(brid_num == 0){
@@ -1549,6 +1654,9 @@ function score_init() {
                 for (i = 0; i < catch_fish.length; i++) {
                   createjs.Tween.get(catch_fish[i]).wait(wait_time * i ).to({ visible: false, x: score_catch_animal_container.children[catch_fish[i].animaltype].x + score_catch_animal_container.x, y: score_catch_animal_container.children[catch_fish[i].animaltype].y + score_catch_animal_container.y }, 599).call(() => {
                     score_catch_animal_num[catch_fish[num_score_fish++].animaltype]++;
+                    if(!muted){
+                      createjs.Sound.play("alarm");
+                    }
                     score_catch_animal_text_update();
                   })
                 }
@@ -1575,6 +1683,9 @@ function score_init() {
           for (i = 0; i < catch_fish.length; i++) {
             createjs.Tween.get(catch_fish[i]).wait(wait_time * i ).to({ visible: false, x: score_catch_animal_container.children[catch_fish[i].animaltype].x + score_catch_animal_container.x, y: score_catch_animal_container.children[catch_fish[i].animaltype].y + score_catch_animal_container.y }, 599).call(() => {
               score_catch_animal_num[catch_fish[num_score_fish++].animaltype]++;
+              if(!muted){
+                createjs.Sound.play("alarm");
+              }
               score_catch_animal_text_update();
             })
           }
@@ -1713,6 +1824,7 @@ function game_start() {
       console.log(game_id);
     }
   });
+  BGM_change();
 }
 function game_init() {
   now = 1;
@@ -1720,6 +1832,7 @@ function game_init() {
   clese_fish();
   clear_animal();
   clese_bubble();
+  soundcontrol["BGM"].stop();
   dolphin_list = new Array();
   show_catch_animal_num = [0, 0, 0, 0, 0];
   catch_animal_num = [0, 0, 0, 0, 0];
@@ -1807,12 +1920,22 @@ function create_labbybutton() {
   var rule = new Button_Text("規則說明", "bold 20px 微軟正黑體", "#000000", 0, 55);
   var ranking = new Button_Text("排行榜", "bold 20px 微軟正黑體", "#000000", 10, 110);
   start.havermask.addEventListener("mousedown", function (event) {
+    if(!rule_close)return;
     labbybutton_container.visible = false;
     game_init();
   });
   ranking.havermask.addEventListener("mousedown", function () {
+    if(!rule_close)return;
     labbybutton_container.visible = false;
     ranking_init();
+  });
+  rule.havermask.addEventListener("mousedown", function (event) {
+    if(!rule_close)return;
+    rule_close=false;
+    rule_container.visible = true;
+    event.target.parent.havermask.cursor = "defult";
+    event.target.parent.haver.visible = false;
+    event.target.parent.haver_background.alpha=0.4;
   });
   stage.enableMouseOver(100);
   labbybutton_container.addChild(start);
@@ -2058,6 +2181,7 @@ function ranking_init() {
   score_board_text.visible = false;
   sea.visible = false;
   now = 3;
+  BGM_change();
   for (var j = 0; j < animal_list.length; j++)animal_list[j].visible = false;
   close_fishmanwalk();
   close_fish_ad();
@@ -2071,10 +2195,50 @@ function ranking_init() {
 }
 var at ;
 var bt;
+var resumeAudioContext = function() {
+	// handler for fixing suspended audio context in Chrome	
+	try {
+		if (createjs.WebAudioPlugin.context && createjs.WebAudioPlugin.context.state === "suspended") {
+			createjs.WebAudioPlugin.context.resume();
+    }
+	} catch (e) {
+		// SoundJS context or web audio plugin may not exist
+		console.error("There was an error while trying to resume the SoundJS Web Audio context...");
+		console.error(e);
+  }
+  if(done_loading){
+    window.removeEventListener("click", resumeAudioContext);
+    stage.removeChild(loading_text);
+    init();
+  }
+	// Should only need to fire once
+};
+function BGM_change(){
+  if(soundcontrol["BGM"] != null)
+  soundcontrol["BGM"].stop();
+  if(now == 0){
+    soundcontrol["BGM"] = createjs.Sound.play("LabbyBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.7,duration:1120000}));
+  }
+  else if(now == 1){
+    if(getrandom(2) == 1)
+     soundcontrol["BGM"] = createjs.Sound.play("GameBGM"+"01",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.6,startTime:6000,duration:460000}));
+    else
+      soundcontrol["BGM"] = createjs.Sound.play("GameBGM"+"02",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.7}));
+  }
+  else if(now >=3){
+    soundcontrol["BGM"] = createjs.Sound.play("RankBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.9,loop:-1}));
+  }
+  else if(now ==2){
+    soundcontrol["BGM"] = createjs.Sound.play("DolphinBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.6,loop:-1}));
+  }
+    soundcontrol["BGM"].paused=muted;
+  
+}
 function labby_init() {
   usergame_init();
   getuser();
   now = 0;
+  BGM_change();
   gamestart = false;
   close_game_event();
   clese_bird();
@@ -2119,5 +2283,4 @@ function labby_init() {
   open_fish();
   open_bubble();
   open_bird();
-  console.log(fish_ad.visible)
 }

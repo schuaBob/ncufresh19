@@ -16,7 +16,7 @@ html {
     left: 0;
     top: 0;
     bottom: 0;
-    width: 200px;
+    width: 30%;
     margin: 0 auto;
     padding: 0;
     padding-top: 4.5vh;
@@ -36,36 +36,39 @@ html {
 
   .mainTitle {
     position: relative;
-    top: 0; bottom: 0; right: 0; left: 0 ; 
-    margin-left: 38%;
-    width: 250px;
-    height: 150px;
+    top: 2%; bottom: 0; right: 0; left: 0 ; 
+    width: 100%;
+    z-index: 3;
+    height: 15vw;
+    text-align: center;
   }
 
-  .mainTitle span {
-    top: 0; bottom: 0; right: 0; left: 0 ; margin: 0 auto;
-
-  }
+  /* .maintitle p {
+      position: relative;
+  } */
     
   #nculife {
-    /* margin-left: -40px; */
     display: block;
     font-size: 6vw;
+    margin-bottom: 0;
     color: #FB8360;
+    height: 50%;
   }
 
   #life {
-    margin-left: 43px;
     font-size: 3.2vw;
     color: #767171;
+    height: 40%;
+    margin-bottom:0;
   }
 
   .back {
     position: absolute;
-    margin-top: 20px;
+    padding-top: 5%;
     margin-bottom: 0;
     margin-left: 8%;
     margin-right: 0;
+    z-index: 10;
   }
 
   .backArrow, .backToMain{
@@ -87,11 +90,9 @@ html {
 
   #main {
     position: relative;
-    /* background-image: url(背景.JPG); */
-    height: calc(100% - 210px);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position-y: bottom;
+    width: 100%;
+    height: calc(100% - 60px - 2% - 15vw);
+    padding-bottom: 0;
   }
   
 
@@ -107,6 +108,27 @@ html {
     /* height: 30%; */
     padding: 1%;
   }
+
+  .studyImg {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+  }
+  .studyImg:hover, .studyImg:focus, .studyImg:active {
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  
   .studyImg {
     max-width: 100%;
     max-height: 100%;
@@ -115,35 +137,31 @@ html {
   .subContent {
     margin: 0 auto;
     position: relative;
-    height: calc(100% - 60px - 300px);
+    height: calc(100% - 60px - 2% - 15vw - 160px);
     overflow-y: scroll;
     overflow-x: hidden; 
   }
 
   .studyTitle {
+    position: relative;
     background-color: #e0e0e0;
-    height: 150px;
+    height: 120px;
+    margin: 20px 0;
   }
   
   .name {
     position: relative;
-    padding-top:20px;
-    margin-left: 100px;
-  }
-  
-  .name p {
-    position: relative;
-    /* display: inline; */
+    text-align: center;
   }
   
   #name {
-    font-size: 50px;
-    padding-top: 5px;
+    font-size: 45px;
+    padding-top: 1%;
     margin-bottom: 0;
     font-weight: 500;
   }
   #college {
-    font-size: 25px;
+    font-size: 20px;
     padding-bottom: 5px;
     font-weight: 500;
   }
@@ -195,9 +213,8 @@ html {
   .foodList {
     position: relative;
     margin: 0 auto;
-    padding-top: 2%;
-    padding-left: 25%;
-    top: 2.3vh; bottom: 0; left: 0; right: 0;
+    top: 4%; bottom: 0; left: 0; right: 0;
+    text-align: center;
   }
   
   .foodList p {
@@ -205,7 +222,7 @@ html {
     font-size: 2.7vw;
     width: 16vw;
     padding: 1vh;
-    margin-left: 35px;
+    /* margin: 0 5%; */
     border: 2px solid #7CA7BC;
     border-radius: 1rem;
     cursor: pointer;
@@ -223,8 +240,9 @@ html {
     overflow: scroll;
     margin: 0 auto;
     width: 90%;
+    height: 80%;
     top: 7%;
-    height: calc(100% - 60px - 150px - 7%);
+    height: calc(100% - 60px - 2% - 15vw);
     /* z-index: 300; */
   }
   
@@ -288,9 +306,9 @@ html {
   
   .hint {
     color: white;
-    font-size: 50px;
+    font-size: 8vw;
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -300,7 +318,7 @@ html {
 
   .decoration img{
     position: absolute;
-    width:25%;
+    width:30%;
     bottom: 0px;
   }
   
@@ -352,7 +370,7 @@ html {
 
   .t {
       text-align: center;
-      font-size: 40px;
+      font-size: 5vw;
       font-weight: 500;
   }
   #foodModalDetail .d {
@@ -398,12 +416,12 @@ html {
   
   .pictureArea {
     position: relative;
-    left: 10%;
+    /* left: 10%; */
   }
   
   .textArea {
     position: relative;
-    width: 60vw;
+    /* width: 60vw; */
     float: left;
   }
   
