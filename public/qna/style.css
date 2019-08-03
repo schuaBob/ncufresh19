@@ -172,7 +172,7 @@ body {
 }
 
 .option {
-  font-size: 3vh;
+  font-size: 1.3rem;
   margin-top: 5vh;  
 }
 
@@ -219,7 +219,7 @@ body {
 }
 
 .buttonGroup {
-    font-size: 16px;
+    font-size: 1rem;
     display: inline-flex;
     color: black;
 }
@@ -305,7 +305,7 @@ body {
 tbody>tr {
     border-bottom: 1px solid #0D4966;
     height: 6vh;
-    font-size: 2.5vh;
+    font-size: 1.1rem;
 }
 
 tbody tr:hover {
@@ -315,7 +315,7 @@ tbody tr:hover {
 thead>tr {
     border-bottom: 1px dashed #0D4966;
     height: 6vh;
-    font-size: 3vh;
+    font-size: 1.3rem;
 }
 
 .rowTitle {
@@ -342,7 +342,7 @@ thead>tr {
   margin-right: 2px;
   border:1px solid #B9B9B9;
   padding: 1% 4%;
-  width: 93%;
+  width: 98%;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
@@ -353,8 +353,14 @@ thead>tr {
     and (device-width : 414px) 
     and (device-height : 896px) 
     and (-webkit-device-pixel-ratio : 2) {
+      html{
+        height: 100%;
+        overflow: hidden;
+      }
       body{
         background-image: none;
+        height: 100%;
+        overflow: hidden;
       }      
       #mobileAskBtn{
         display: inline !important;
@@ -379,6 +385,10 @@ thead>tr {
         position: relative;
         width: 100%;
         padding: 0;
+        top:0;
+      }
+      #searchForm{
+        width:92%;
       }
       .content {
         overflow-x: hidden;
@@ -386,7 +396,7 @@ thead>tr {
         position: absolute;
         width: 100%;
         margin: 0;
-        bottom: 7%;
+        bottom: 2%;
       }
       .buttonGroup {
         display: none;
@@ -413,6 +423,8 @@ thead>tr {
       .sort_SearchBar{
         padding:0;
         font-size: 5vw;
+        position:relative;
+        top:-12%;
         /* background-color:red;         */
       }
      
@@ -432,8 +444,8 @@ thead>tr {
         position: absolute;
         text-align: right;
         right: 0;
-        top: -4vh;
-        z-index: 88;
+        top: 6%;
+        z-index: 400;
       }
       .mobileFilterButton {
         font-size: 3vh;
@@ -454,7 +466,8 @@ thead>tr {
         background-color: #D0CECE;
         position: relative;
         top: -4%;
-        padding: 1px 0;        
+        padding: 1px 0; 
+        display: none;       
       }
     
       .option{
@@ -477,7 +490,8 @@ thead>tr {
       .option i{
         display: none;
       }
-      .contentTable{
+      .content{
+        overflow-y:scroll;
         overflow-x:auto;
       }
       #Top{        
