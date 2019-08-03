@@ -49,7 +49,6 @@
 
 body {
     width: 100vw;
-    height: 100vh;
     padding: 0 !important;
     margin: 0 !important;
 }
@@ -64,6 +63,7 @@ body {
 @media only screen and (max-width: 768px) {
     #mySidenav #links .link {
         font-size: 22px !important;
+        line-height: 0;
     }
 
     #myNavLinks {
@@ -143,9 +143,9 @@ body {
 /* 電腦版 */
 @media only screen and (min-width: 768px) {
     #mySidenav #links .link {
-        font-size: 4vh !important;
+        font-size: 3.5vh !important;
         position: relative;
-        
+
     }
 
     #myNavLinks {
@@ -160,7 +160,7 @@ body {
 
     #mySidenav #links li {
         display: block;
-        padding: calc(100vh - 57px - 4.5vw) 0;
+        /* padding: calc(100vh - 57px - 4.5vw - ) 0; */
         position: relative;
         text-align: center;
         height: auto;
