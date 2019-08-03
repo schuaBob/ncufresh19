@@ -5,14 +5,14 @@ body {
 }
 
 .bg {
-  background-image: url("底.png");
-  background-position: bottom;
-  background-repeat: repeat;
-  background-size: cover;
+  width: 100vw;
+  height: calc(100vh - 145px);
   position: absolute;
-  top: 20vh;
-  width: 80vw;
-  height: 80vh;
+  top: 145px;
+}
+
+.bg img {
+  height: 100%;
 }
 
 .title-box {
@@ -176,78 +176,89 @@ body {
     display: none;
   }
 
-  .container {
-    position: absolute;
-    left: 0;
-    top: 165px;
+  .title-box {
     width: 100vw;
-    padding: 0;
-    height: calc(100vh - 180px);
-    overflow-y: scroll;
-    overflow-x: scroll;
   }
 
-  .links {
+  .container {
+    width: 100vw;
+    height: calc(100vh - 185px);
     position: absolute;
+    top: 165px;
+    left: 0;
+    padding: 0;
   }
 
   #portal {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: 0px;
+    left: calc((100vw - 300px)/2);
   }
   
   #UST {
-    right: calc((100vw - 300px)/2);
-    top: calc(203px * 1);
-  }
+    position: absolute;
+      top: calc(203px * 1);
+      left: calc((100vw - 300px)/2);
+    }
   
   #LMS {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 2);
+    left: calc((100vw - 300px)/2);
   }
   
   #ee-class {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 3);
+    left: calc((100vw - 300px)/2);
   }
   
   #dorm-service {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 4);
+    left: calc((100vw - 300px)/2);
   }
   
   #dorm-net {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 5);
+    left: calc((100vw - 300px)/2);
   }
   
   #helloNCU {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 6);
+    left: calc((100vw - 300px)/2);
   }
   
   #NCUtalk {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 7);
+    left: calc((100vw - 300px)/2);
   }
   
   #course {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 8);
+    left: calc((100vw - 300px)/2);
   }
   
   #service-learning {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 9);
+    left: calc((100vw - 300px)/2);
   }
   
   #equity {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 10);
+    left: calc((100vw - 300px)/2);
   }
   
   #plan {
-    right: calc((100vw - 300px)/2);
+    position: absolute;
     top: calc(203px * 11);
+    left: calc((100vw - 300px)/2);
   }
+  
 }

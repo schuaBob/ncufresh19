@@ -3,7 +3,6 @@
   <head>
     <title><%= title %></title>
     <% include ../layouts/head %>
-    <% include ../layouts/script  %>
     <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
@@ -151,26 +150,50 @@
         <div class="toggles" id="ask-record-toggle">
           <div class="ask-record-container">
             <div class="box-show">
+              <div class="box-ask" id="category">
+                <div class="tag-ask" id="category-tag">
+                  <p>分類</p> 
+                </div>
+                <% for(var a=question.length-1;a>-1;a--) { %>
+                  <% if(question[a]) { %>
+                    <li><%= question[a].category %></li>
+                  <% } %>
+                <% } %> 
+              </div>
+
+              <div class="box-ask" id="title">
+                  <div class="tag-ask" id="title-tag">
+                    <p>標題</p>
+                  </div>
+                  <% for(var a=question.length-1;a>-1;a--) { %>
+                    <% if(question[a]) { %>
+                      <li><%= question[a].title %></li>
+                    <% } %>
+                  <% } %> 
+                </div>
+
               <div class="box-ask" id="date">
                 <div class="tag-ask" id="date-tag">
                   <p>時間</p>
                 </div>
                 <% for(var a=question.length-1;a>-1;a--) { %>
                   <% if(question[a]) { %>
-                    <%= convertDateToString(questions[index]._id.getTimestamp()) %>
+                    <li><%= convertDateToString(question[a]._id.getTimestamp()) %></li>
                   <% } %>
                 <% } %> 
               </div>
-              <div class="box-ask" id="ask-title">
-                <div class="tag-ask" id="title-tag">
-                  <p>問題</p>
+
+              <div class="box-ask" id="count">
+                <div class="tag-ask" id="count-tag">
+                  <p>點閱數</p>
                 </div>
                 <% for(var a=question.length-1;a>-1;a--) { %>
                   <% if(question[a]) { %>
-                    <li><%= question[a].title %></li>
+                    <li><%= question[a].count %></li>
                   <% } %>
-                <% } %> 
+                <% } %>
               </div>
+              
             </div>
           </div>
         </div>
