@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var qna = mongoose.Schema({    
     postID: Number,
-    authorID : { type: String, default: "test" },
+    authorID : { type: String, default: "anonymous" },
     category: { type: String, default: "" },
     title : String,
     qContent : String,

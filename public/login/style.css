@@ -88,6 +88,7 @@ body{
 }
 
 @media only screen and (max-width:1200px) {
+<<<<<<< HEAD
   body {
     background-image: url("/index/首頁1手機背景.png");
   }
@@ -95,5 +96,10 @@ body{
   .box {
     width: 80%;
     left: 10%;
+=======
+  .box {
+    width: 80vw;
+    left: 10vw;
+>>>>>>> b414da17d958df5423618f0f78973019d648aa3d
   }
 }
