@@ -90,7 +90,7 @@ router.get('/', (req, res, next) => {
       }
       return pass > 0
     })
-    var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
+    var catePicArr = ["重要通知", "重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
     console.log(`User:${req.user}`);
 
     calender = calender.sort(function (a, b) {
@@ -143,7 +143,7 @@ router.get('/index-edit',checkUser.isAdmin, (req, res, next) => {
     } catch (error) {
       return next(error);
     }
-    var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
+    var catePicArr = ["重要通知", "重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
     res.render('index/edit', { title: '新生知訊網 | 編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
   }).catch((err) => {
     return next(err);
@@ -465,7 +465,7 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
               if (err) {
                 return next(err);
               }
-              console.log(obj.id + ': 登入')
+              console.log(obj.id + ': 登入');
               res.redirect('/');
             });
           }

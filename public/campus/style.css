@@ -209,10 +209,9 @@ body {
   z-index: 5;
   border-style: solid;
   border-color: #FDBE6B;
-  min-width: 143px;
   border-radius: 15px;
   background: #FDBE6B;
-  font-size:24px;
+  min-width: 300px;
 }
 
 .main_list_detail ul {
@@ -245,7 +244,7 @@ body {
   z-index: 1;
   font-weight: bold;
   position: relative;
-  font-size: 150%;
+  font-size: 1.5em;
   margin-top: 4%;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -260,7 +259,7 @@ body {
 
 .elelist {
   position: relative;
-  font-size: 100%;
+  font-size: 1.2rem;
   font-weight: 650;
 }
 
@@ -491,13 +490,13 @@ li {
   font-size: 28px;
   font-weight: 500;
   line-height: 1.2;
-  color: #7CA7BC;
+  color: #FB8360;
 }
 
 .line {
   height: 80%;
   width: 5px;
-  background-color: #FB8360;
+  background-color: #7CA7BC;
   margin-top: 10px;
   margin-right: 10px;
   float: left;
@@ -641,7 +640,7 @@ li {
   }
 
   .main_list_detail{
-    margin-top:10vh;
+    margin-top: 3vh;
   }
 }
 

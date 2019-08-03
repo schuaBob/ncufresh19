@@ -61,7 +61,7 @@ router.get('/:category', function(req, res, next) {
 
 
 router.post('/toPost',function(req,res){ 
-   
+  console.log("submit question");
   //判斷是否登入  
   new qnaDB({
     postID:getPostID(),

@@ -6,7 +6,6 @@
     <body>
           
         <%/* 標題 */%>
-      <div class="bar_background">
         <div class="title_bar">
           <%/* 黃線mark */%>
           <div class="line"></div>
@@ -29,15 +28,47 @@
                 <%= title_bar[0] %><div class="small_title"><%= title_bar[1] %></div>
             </div>
 
-          <%/* 分頁用_學長姊 */%>  
+          <%/* 分頁用_學長姊學院 */%>  
+          <% }else if(title_bar[0] === 'INTERVIEW' && title_bar[2] != null){ %>
+            <div class="title">
+                <%= title_bar[2] %><div class="small_title"><%= title_bar[3] %></div>
+            </div>
           <% }else if(title_bar[0] === 'INTERVIEW'){ %>
             <div class="title">
                 <%= title_bar[0] %><div class="small_title"><%= title_bar[1] %></div>
             </div>
           <% } %>
 
+
+          <%/* 返回鍵 */%>
+          <%/* 中大生活、中大傳說、學長姊 */%>
+          <% if(title_bar[2] == null){ %>
+            <a href="/video/">
+              <img src="/video/箭頭.png" class="back">
+            </a>
+
+          <% }else if(title_bar[4] == null ){ %>
+            <%/* 中大生活、中大傳說影片 */%>
+            <% if(title_bar[0] != 'INTERVIEW'){ %>
+              <a href="/video/">
+                <img src="/video/箭頭.png" class="back">
+              </a>
+
+            <%/* 學院底下 */%>
+            <% }else if(title_bar[0] === 'INTERVIEW'){ %>
+              <a href="/video/<%= back_name %>">
+                <img src="/video/箭頭.png" class="back">
+              </a>
+            <% } %>
+
+          <%/* 學長姊影片 */%>
+          <% }else if(title_bar[4] != null){ %>
+            <a href="/video/<%= back_name %>">
+              <img src="/video/箭頭.png" class="back">
+            </a>
+          <% } %>
+
         </div>
-      </div>
 
 
     </body>

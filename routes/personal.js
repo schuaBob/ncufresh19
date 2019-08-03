@@ -3,14 +3,12 @@ var router = express.Router();
 var checkUser = require('./check-user');
 var fs = require('fs');
 var multer = require('multer');
-var gm = require('gm').subClass({
-  imageMagick: true
-});
+const sharp = require('sharp');
 
 var mongoose = require('mongoose');
 var User = require('../models/index/user');
-require('../models/qna/qna');
-var Question = mongoose.model('qna');
+
+var Question = require('../models/qna/qna');
 
 
 
@@ -22,9 +20,7 @@ router.get('/', checkUser.isLoggedIn, function (req, res, next) {
     } else {
       picname = req.user.id + ".png";
     }
-    Question.find({
-      postID: req.user.id
-    }).exec(function (err, question) {
+    Question.find({ postID: req.user.id }).exec(function (err, question) {
       if (err) {
         return next(err);
       }
@@ -42,13 +38,7 @@ var storage = multer.diskStorage({
   destination: "public/personal/profile-photo",
   filename: function (req, file, cb) {
     var fileName = req.user.id + ".png";
-    User.update({
-      id: req.user.id
-    }, {
-      $set: {
-        profile_pic: fileName
-      }
-    }, function (err, result) {
+    User.update({ id: req.user.id }, { $set: { profile_pic: fileName } }, function (err, result) {
       if (err) {
         return next(err);
       }
@@ -57,27 +47,28 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({
-  storage: storage
-});
+var upload = multer({ storage: storage });
 
 router.post('/editPicture', upload.single('picture'), function (req, res, next) {
-  var fileName = "public/personal/profile-photo/" + req.user.id + ".png";
+  var file = "public/personal/profile-photo/" + req.user.id + ".png";
   console.log(req.user.id + " upload picture");
-  fs.access(fileName, fs.constants.R_OK, (err) => {
+  fs.access(file, fs.constants.F_OK | fs.constants.W_OK, (err) => {
     if (err) {
-      return next(err);
+      console.log(
+        `${file} ${err.code === 'ENOENT' ? 'does not exist' : 'is read-only'}`);
+      res.redirect('/personal');
     } else {
-      gm(fileName).resize(200, 200, "!").write(fileName, function (err) {
-        if (err) {
-          return next(err);
-        }
-        return;
-        res.redirect('/personal');
-      });
+      console.log(`${file} exists, and it is writable`);
+      sharp(file)
+        .resize(300, 200)
+        .toFile(`public/personal/profile-photo/${req.user.id}-change.png`)
+        .then((data) => {
+          console.log(data)
+          res.redirect('/personal');
+        })
+        .catch((err) => { return next(err) });
     }
   });
-  res.redirect('/personal');
 });
 
 router.get('/deleteQna/:id', checkUser.isLoggedIn, function (req, res, next) {
