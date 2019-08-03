@@ -745,9 +745,7 @@ li {
 
   .main_list_detail ul {
     max-height: calc(24px + 46vw + 8vw / 2 - 60px);
-    overflow: scroll;
     margin: 0;
-    padding-bottom: 30px;
   }
 
   .elelist:last-child {
@@ -804,11 +802,15 @@ li {
   }
 
   .sailor1 {
-    display: none;
+    display: none !important;
   }
 
   .sailor2 {
-    display: none;
+    display: none !important;
+  }
+
+  .sbird {
+    display: none !important;
   }
 
   .modal-dialog{
