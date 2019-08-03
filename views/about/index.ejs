@@ -5,198 +5,11 @@
   <title><%= title %></title>
   <% include ../layouts/head %>
   <% include ../layouts/script %>
-  <link rel='stylesheet' href='about/style.css' />
+  <link rel='stylesheet' href='/about/style.css' />
   <link rel="stylesheet" href="/fontawesome/css/all.min.css">
   <style>
-    #main {
-      position: relative;
-      top: 4vh;
-    }
-
-    .seaBlue {
-      color: #0D4966;
-    }
-
-    .yellow {
-      color: #FFCC00;
-    }
-
-    .seaBlueBg {
-      background-color: #0D4966;
-    }
-
-    .yellowBg {
-      background-color: #FFCC00;
-    }
-
-    .grayBg {
-      background-color: #D0CECE;
-    }
-
-    body {
-      overflow: hidden;
-      user-select: none;
-      /* for Firefox */
-      -webkit-user-select: none;
-      /* for Chrome */
-      background-color: #FFF9DC;
-    }
-
-    #myModal {
-      display: none;
-      position: absolute;
-      z-index: 7000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 0;
-    }
-
-    #modalcontent {
-      position: absolute;
-      top: 20%;
-      background-color: #D0CECE;
-      margin: auto;
-      height: 30%;
-      width: auto;
-    }
-
-    #modalcontent>img {
-      height: 100%;
-    }
-
-    .main {
-      position: relative;
-      top: 13vh;
-      width: 90vw;
-      margin: auto;
-      height: 69vh;
-    }
-
-    #outterTitleSpace {
-      position: absolute;
-      top: -6%;
-      width: 100%;
-      left: 0;
-      background-color: white;
-      height: 85px;
-    }
-
-    .titleSpace {
-      height: 80%;
-      top: 12%;
-      border-left: 5px solid #7CA7BC;
-      padding-left: 17px;
-      position: relative;
-      left: 8%;
-    }
-
-    #banner {
-      position: absolute;
-      right: 13%;
-      height: 100%;
-    }
-
-    #qatxt {
-      position: absolute;
-      font-size: 28px;
-      top: -6%;
-      color: #FB8360;
-      z-index: 3;
-    }
-
-    #qatxt_c {
-      position: absolute;
-      font-size: 17px;
-      bottom: 2%;
-      color: #767171;
-      z-index: 3;
-    }
-
-    .leftSide {
-      width: 20%;
-      /* background-color: rgb(102, 252, 164);        */
-    }
-
-    .option {
-      font-size: 3vh;
-    }
-
-    .option ul {
-      margin: 20px auto;
-      padding: 0px;
-      list-style-type: none;
-      width: 78%;
-    }
-
-    .option li {
-      margin-bottom: 15%;
-      border-radius: 2px;
-      padding: 4% 7%;
-    }
-
-    .option a {
-      text-decoration: none;
-      color: #0D4966;
-    }
-
-    .optionHover {
-      background-color: rgb(251, 217, 185) !important;
-      color: rgb(32, 56, 100);
-    }
-
-
-    /* 選單箭頭 */
-    .fa-angle-right {
-      font-size: 1.3em;
-      position: relative;
-      top: 2px;
-      margin-right: 6px;
-      display: inline;
-    }
-
-
-    .rightSide {
-      background-color: #FFFDF1;
-      position: relative;
-      width: 80%;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-
-    ._card {
-      height: 100%;
-      /* background: #00B7FF; */
-      padding-top: 2%;
-      /* border-top:1px solid black; */
-      text-align: center;
-    }
-
-    .title {
-      display: block;
-      font-size: 2em;
-      position: relative;
-      top: -1%;
-    }
-
-    .intro {
-      display: block;
-      width: 80%;
-      margin-top: 1%;
-      margin: 2% auto 0;
-      text-align: left;
-    }
-
-    .photo {
-      position: relative;
-      top: 1%;
-
-      height: 70%;
-      width: auto;
-    }
+    
+    
   </style>
 </head>
 
@@ -228,6 +41,20 @@
             <li><a href="#art"><i class="fas fa-angle-right"></i>網頁美工組</a></li>
           </ul>
         </div>
+      </div>
+      <div id="mobileOption">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col"><a href="#all"><i class="fas fa-angle-right"></i>全體工人</a></div>
+            <div class="col"><a href="#execute"><i class="fas fa-angle-right"></i>執行組</a></div>
+            <div class="col"><a href="#planning"><i class="fas fa-angle-right"></i>行銷企劃組</a></div>
+          </div><br>
+          <div class="row">
+            <div class="col"><a href="#programming"><i class="fas fa-angle-right"></i>程式設計組</a></div>
+            <div class="col"><a href="#video"><i class="fas fa-angle-right"></i>媒體影音組</a></div>
+            <div class="col"><a href="#art"><i class="fas fa-angle-right"></i>網頁美工組</a></div>
+          </div>
+         </div>
       </div>
       <div class="rightSide">
         <div class="_card" id="all">
