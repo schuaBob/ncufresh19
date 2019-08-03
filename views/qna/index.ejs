@@ -152,10 +152,10 @@
           <span id="mobileAnswerTitleText">mobileanswertitletext</span>
         </div>
         <div class="modal-body f-5vw">
-          <div class="contentPart answerModelQ">Question:
+          <div class="contentPart answerModelQ" id="mobileQContentText">Question:
             <p>aaaaaaaaaaa</p>
           </div>
-          <div class="contentPart answerModelA">Answer:
+          <div class="contentPart answerModelA" id="mobileAContentText">Answer:
             <p>bbbbbbbbbbbbb</p>
           </div>
         </div>
@@ -250,19 +250,19 @@
         <div class="option">
           <ul>
             <a href="/qna">
-              <li><i class="fas fa-angle-right" id="all"></i>全部問題</li>
+              <li><i class="fas fa-angle-right" option="all"></i>全部問題</li>
             </a>
             <a href="/qna/life">
-              <li><i class="fas fa-angle-right" id="life"></i>校園生活</li>
+              <li><i class="fas fa-angle-right" option="life"></i>校園生活</li>
             </a>
             <a href="/qna/course">
-              <li><i class="fas fa-angle-right" id="course"></i>課程相關</li>
+              <li><i class="fas fa-angle-right" option="course"></i>課程相關</li>
             </a>
             <a href="/qna/affair">
-              <li><i class="fas fa-angle-right" id="affair"></i>學生事務</li>
+              <li><i class="fas fa-angle-right" option="affair"></i>學生事務</li>
             </a>
             <a href="/qna/other">
-              <li><i class="fas fa-angle-right" id="other"></i>其他</li>
+              <li><i class="fas fa-angle-right" option="other"></i>其他</li>
             </a>
           </ul>
         </div>
@@ -281,33 +281,34 @@
               <input class="ml-2 searchInput" type="text" placeholder="Search" aria-label="Search"
                 onkeydown="if(event.keyCode==13){return false;}" id="search">
             </form>
-          </div>
-          <!-- mobileFilter -->
-          <div class="mobileFilter">
-            <img src="simpleSieve.png" alt="" id="simpleSieve">
-            <div class="mobileFilterContent">
-              <div class="mobileFilterButton">
-                <ul>
-                  <li>排序</li>
-                  <li class="sortButton" sort="time">時間</li>
-                  <li class="sortButton" sort="count">人氣</li>
-                </ul>
-              </div>
-              <div class="option">
-                <ul>
-                  <li>分類</li>
-                  <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
-                  <li><a href="/qna/life"><i class="fas fa-angle-right" id="life"></i>校園生活</a>
-                  </li>
-                  <li><a href="/qna/course"><i class="fas fa-angle-right" id="course"></i>課程相關</a></li>
-                  <li><a href="/qna/affair"><i class="fas fa-angle-right" id="affair"></i>學生事務</a></li>
-                  <li><a href="/qna/other"><i class="fas fa-angle-right" id="other"></i>其他</a>
-                  </li>
-                </ul>
+              <!-- mobileFilter -->
+            <div class="mobileFilter">
+              <img src="simpleSieve.png" alt="" id="simpleSieve">
+              <div class="mobileFilterContent">
+                <div class="mobileFilterButton">
+                  <ul>
+                    <li>排序</li>
+                    <li class="sortButton" sort="time">時間</li>
+                    <li class="sortButton" sort="count">人氣</li>
+                  </ul>
+                </div>
+                <div class="option">
+                  <ul>
+                    <li>分類</li>
+                    <li><a href="/qna"><i class="fas fa-angle-right" option="all"></i>全部問題</a></li>
+                    <li><a href="/qna/life"><i class="fas fa-angle-right" option="life"></i>校園生活</a>
+                    </li>
+                    <li><a href="/qna/course"><i class="fas fa-angle-right" option="course"></i>課程相關</a></li>
+                    <li><a href="/qna/affair"><i class="fas fa-angle-right" option="affair"></i>學生事務</a></li>
+                    <li><a href="/qna/other"><i class="fas fa-angle-right" option="other"></i>其他</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
+            <!-- ------------ -->
           </div>
-          <!-- ------------ -->
+          
         </div>
         <!-- 企鵝 -->
         <div class="ask">
