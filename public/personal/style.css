@@ -269,18 +269,31 @@ body {
   line-height: 25px;
 }
 
-#date {
+#category {
   position: absolute;
-  width: 30%;
-  height: 100%;
+  width: 20%;
   text-align: center;
 }
 
-#ask-title {
+#title {
   position: absolute;
-  left: 30%;
-  width: 70%;
-  height: 100%; 
+  left: 20%;
+  width: 40%;
+  text-align: center;
+}
+
+#date {
+  position: absolute;
+  left: 60%;
+  width: 20%;
+  text-align: center;
+}
+
+#count {
+  position: absolute;
+  left: 80%;
+  width: 20%;
+  text-align: center;
 }
 
 .tag-ask {
