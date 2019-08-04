@@ -1,5 +1,6 @@
 var current_calender;
-var nowLeft = 10;
+var nowLeft = 0;
+var isAnimating = false;
 
 $(document).ready(() => {
     $('#fullpage').fullpage({
@@ -47,7 +48,35 @@ $(document).ready(() => {
             }
         })
     });
-})
+
+    $(".next").on("click", function() {
+        if(!isAnimating) {
+            isAnimating = true;
+            $("#scrollDay").animate({
+                left: (nowLeft+=15) + "vw"
+            }, {
+                duration: 500,
+                done: function() {
+                    isAnimating = false;
+                }
+            });
+        }
+    });
+
+    $(".prev").on("click", function() {
+        if(!isAnimating) {
+            isAnimating = true;
+            $("#scrollDay").animate({
+                left: (nowLeft-=15) + "vw"
+            }, {
+                duration: 500,
+                done: function() {
+                    isAnimating = false;
+                }
+            });
+        }
+    });
+});
 
 $(".day").each(function () {
     $(this).css("left", (this.id - 1) * 10 + "%");
@@ -83,7 +112,6 @@ $(".selectMonth").on("click", function () {
 
 function append_circle(data) {
     $("#days").empty();
-    $("#days").append('<a class="prev">&#10094;</a><a class="next">&#10095;</a>');
     $("#days").append('<div id="scrollDay"></div>');
     var count = 0;
     for (var i in data) {
@@ -99,27 +127,5 @@ function append_circle(data) {
                 $("#board-detail").append(current_calender[i].board_content);
             cnt = cnt + 1;
         }
-    });
-
-    $(".next").on("click", function() {
-        $("#scrollDay").animate({
-            left: (nowLeft+=15) + "vw"
-        }, {
-            duration: 500,
-            done: function() {
-
-            }
-        })
-    });
-
-    $(".prev").on("click", function() {
-        $("#scrollDay").animate({
-            left: (nowLeft-=15) + "vw"
-        }, {
-            duration: 500,
-            done: function() {
-                
-            }
-        })
     });
 }
