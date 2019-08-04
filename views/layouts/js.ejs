@@ -1,5 +1,17 @@
 <script>
     $(document).ready(() => {
+        if (window.innerWidth > 768) {
+            InitRandImg(Math.floor(Math.random() * 13) + 1);
+
+        }
+        $(window).resize(() => {
+            if (window.innerWidth > 768) {
+                InitRandImg(Math.floor(Math.random() * 13) + 1);
+            } else {
+                $('#myNavPics').empty();
+            }
+        })
+
         $("#navbtn").click(() => {
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
@@ -11,14 +23,14 @@
                 document.getElementById("mySidenav").style.height = "0";
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
-
             restart_animate(".one");
             restart_animate(".two");
             restart_animate(".three");
             restart_animate(".four");
         });
         $(document).on('focusin', function (e) {
-            if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+            if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root")
+                .length) {
                 e.stopImmediatePropagation();
             }
         });
@@ -50,10 +62,55 @@
             })
         }
     });
+
+
     function restart_animate(id) {
         var el = $(id),
             newone = el.clone(true);
         el.before(newone);
         $("." + el.attr("class") + ":last").remove();
+    }
+
+    function InitRandImg(initPic) {
+        $('#myNavPics').append(`
+            <img class="randImg" id="randImg-1" src="/layouts/headerPic/header-1.jpg">
+            <img class="randImg" id="randImg-2" src="/layouts/headerPic/header-2.jpg">
+            <img class="randImg" id="randImg-3" src="/layouts/headerPic/header-3.jpg">
+            <img class="randImg" id="randImg-4" src="/layouts/headerPic/header-4.jpg">
+            <img class="randImg" id="randImg-5" src="/layouts/headerPic/header-5.jpg">
+            <img class="randImg" id="randImg-6" src="/layouts/headerPic/header-6.jpg">
+            <img class="randImg" id="randImg-7" src="/layouts/headerPic/header-7.jpg">
+            <img class="randImg" id="randImg-8" src="/layouts/headerPic/header-8.jpg">
+            <img class="randImg" id="randImg-9" src="/layouts/headerPic/header-9.jpg">
+            <img class="randImg" id="randImg-10" src="/layouts/headerPic/header-10.jpg">
+            <img class="randImg" id="randImg-11" src="/layouts/headerPic/header-11.jpg">
+            <img class="randImg" id="randImg-12" src="/layouts/headerPic/header-12.jpg">
+            <img class="randImg" id="randImg-13" src="/layouts/headerPic/header-13.jpg">
+        `)
+        $('.randImg').css({
+            "display": "none"
+        });
+        $(`#randImg-${initPic}`).velocity({
+            display: "block",
+            height: 0
+        }).then((picNow) => {
+            console.log("init pic:")
+            console.log(picNow)
+            $('#links li').hover((e) => {
+                console.log(picNow)
+                InrandNum = Math.floor(Math.random() * 13) + 1;
+                $(`#randImg-${InrandNum}`).velocity({
+                    display: "block"
+                });
+                $(picNow).velocity({
+                    display: "none"
+                })
+
+            }, () => {
+                picNow = $(`#randImg-${InrandNum}`);
+                $(picNow).velocity("stop");
+            })
+
+        });
     }
 </script>

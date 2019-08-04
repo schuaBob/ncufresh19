@@ -47,12 +47,6 @@
     background: #555;
 }
 
-body {
-    width: 100vw;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
 #randImg {
     width: 100%;
     position: relative;
@@ -61,9 +55,15 @@ body {
 
 /* 手機版 */
 @media only screen and (max-width: 768px) {
+    body {
+        width: 100vw;
+        height: calc(var(--vh, 1vh)*100);
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
     #mySidenav #links .link {
         font-size: 22px !important;
-        line-height: 0;
     }
 
     #myNavLinks {
@@ -142,6 +142,12 @@ body {
 
 /* 電腦版 */
 @media only screen and (min-width: 768px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
     #mySidenav #links .link {
         font-size: 3.5vh !important;
         position: relative;
@@ -279,6 +285,12 @@ body {
         font-size: 0.9vw;
         padding-bottom: 0.5vw;
     }
+
+    .randImg {
+        position: absolute;
+        height: 100vmin;
+        right: 0;
+    }
 }
 
 
@@ -352,7 +364,6 @@ body {
 }
 
 #myNavPics {
-    background-color: lightcoral;
     position: relative;
     float: right;
     top: 0;
