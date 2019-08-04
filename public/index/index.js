@@ -1,6 +1,7 @@
 var current_calender;
 var nowLeft = 30,
-    nowTarget = 0;
+    nowTarget = 0,
+    nowTotal = 0;
 var isAnimating = false;
 
 $(document).ready(() => {
@@ -51,7 +52,7 @@ $(document).ready(() => {
     });
 
     $(".next").on("click", function() {
-        if(!isAnimating) {
+        if(!isAnimating && nowTarget > 0) {
             isAnimating = true;
             $("#scrollDay").animate({
                 left: (nowLeft+=15) + "vw"
@@ -75,7 +76,7 @@ $(document).ready(() => {
     });
 
     $(".prev").on("click", function() {
-        if(!isAnimating) {
+        if(!isAnimating && nowTarget < nowTotal) {
             isAnimating = true;
             $("#scrollDay").animate({
                 left: (nowLeft-=15) + "vw"
@@ -132,11 +133,15 @@ $(".selectMonth").on("click", function () {
 function append_circle(data) {
     $("#days").empty();
     $("#days").append('<div id="scrollDay"></div>');
-    var count = 0;
+    var count = 0;	
+    var today = new Date(); 
     for (var i in data) {
         $("#scrollDay").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="40" width="40"> <circle cx="20" cy="20" r="20" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
+        if( (today.getMonth()+1) == data[i].month && today.getDate() == data[i].date )
+            $("#" + count).append('<img id="index3crab" src="/index/首頁3_螃蟹去背.png">');
         count = count + 1;
     }
+    nowTotal = count;
     current_calender = data;
     $(".day").on("click", function () {
         $("#board-detail").empty();
@@ -149,4 +154,5 @@ function append_circle(data) {
     });
 
     $("#0").addClass("target");
+    
 }
