@@ -10,11 +10,11 @@
 
 
   <style>
-    .f-6vw {
+    .titleTextSize {
       font-size: 6vw;
     }
 
-    .f-5vw {
+    .contentTextSize {
       font-size: 5vw;
     }
 
@@ -122,21 +122,21 @@
     aria-hidden="true" style="z-index: 5000;">
     <div class="modal-dialog" role="document" style="top: 7%;max-width:100%;">
       <div class="modal-content mobilAskModalContent">
-        <div class="modal-header f-6vw">
+        <div class="modal-header titleTextSize">
           <span id="mobileAskTitleText">MOBILE我要發問</span>
         </div>
-        <div class="modal-body f-5vw">
+        <div class="modal-body contentTextSize">
           <form action="/qna/toPost" class="needs-validation" method="POST">
-            <span style="color:rgb(32, 56, 100)" class="f-5vw">標題</span>
-            <input type="text" class="formElement f-5vw" id="mobileq_title">
-            <span style="color:rgb(32, 56, 100)" class="f-5vw">內容</span>
-            <textarea id="mobileq_content" class="formElement f-5vw" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
+            <span style="color:rgb(32, 56, 100)" class="contentTextSize">標題</span>
+            <input type="text" class="formElement contentTextSize" id="mobileq_title">
+            <span style="color:rgb(32, 56, 100)" class="contentTextSize">內容</span>
+            <textarea id="mobileq_content" class="formElement contentTextSize" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary f-6vw" data-toggle="modal"
+          <button type="button" class="btn btn-primary titleTextSize" data-toggle="modal"
             data-target="#mobileNoticeModal">送出</button>
-          <button type="button" class="btn btn-secondary f-6vw" data-dismiss="modal">關閉</button>
+          <button type="button" class="btn btn-secondary titleTextSize" data-dismiss="modal">關閉</button>
         </div>
       </div>
     </div>
@@ -146,19 +146,19 @@
     aria-hidden="true" style="z-index: 5000;">
     <div class="modal-dialog" role="document" style="top: 7%;max-width:100%;">
       <div class="modal-content mobilAnswerModalContent">
-        <div class="modal-header f-6vw">
+        <div class="modal-header titleTextSize">
           <span id="mobileAnswerTitleText">mobileanswertitletext</span>
         </div>
-        <div class="modal-body f-5vw">
-          <div class="contentPart answerModelQ" id="mobileQContentText">Question:
-            <p>aaaaaaaaaaa</p>
+        <div class="modal-body contentTextSize">
+          <div class="contentPart answerModelQ">Question:
+            <p id="mobileQContentText">aaaaaaaaaaa</p>
           </div>
-          <div class="contentPart answerModelA" id="mobileAContentText">Answer:
-            <p>bbbbbbbbbbbbb</p>
+          <div class="contentPart answerModelA">Answer:
+            <p id="mobileAContentText">bbbbbbbbbbbbb</p>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary f-6vw" data-dismiss="modal">關閉</button>
+          <button type="button" class="btn btn-secondary titleTextSize" data-dismiss="modal">關閉</button>
         </div>
       </div>
     </div>
@@ -241,10 +241,8 @@
         <span id="qatxt_c">新生問答</span>
       </div>
     </div>
-
     <div class="main d-flex">
       <div class="leftSide">
-
         <div class="option">
           <ul>
             <a href="/qna">
@@ -269,7 +267,7 @@
         <!-- 過濾以及搜尋框 -->
         <div class="sort_SearchBar">
           <div class="buttonGroup">
-            <div class="button">排序</div>
+            <div class="button" style="color:#0D4966">排序</div>
             <div class="button sortButton orangeBg" sort="time">時間</div>
             <div class="button sortButton" sort="count">人氣</div>
           </div>

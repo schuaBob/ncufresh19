@@ -417,9 +417,12 @@
       e.stopPropagation();
       $(".mobileFilterContent").css("display","block");
     });
-    //按其他區域時會隱藏mobileFilterContent
-    $(document).on("click",function(){
-      $(".mobileFilterContent").css("display","none");
+    //按其他區域時會隱藏mobileFilterContent    
+    $(document).on('mouseup touchend', function(e){
+      var container = $(".mobileFilterContent");
+      if(!container.is(e.target) && container.has(e.target).length === 0){
+        $(".mobileFilterContent").css("display","none");
+      }      
     });
     $("#mobileTop").on("click",function(){
       $(".content").scrollTop(0);
