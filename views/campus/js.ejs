@@ -80,7 +80,7 @@
             }, 100)
             $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').stop().tooltip(
                 'hide')
-            if (lasyway) {                
+            if (lasyway) {
                 console.log(verylasy);
                 $('.indexelepic.hide[val=' + verylasy + ']')
                     .show()
@@ -353,7 +353,7 @@
                     opacity: 1,
                     translateX: '-1rem'
                 }, {
-                    display: 'none'
+                    display: 'block'
                 }, {
                     duration: 200
                 }, 'easeInOutSine');
@@ -457,12 +457,8 @@
                         '-moz-transform': 'rotate(' + now + 'deg)',
                         'transform': 'rotate(' + now + 'deg)'
                     });
-                    if (now % 360 == 0) $('#wheel').removeClass("animating");
                 }
-            });
-        },
-        function () {
-            $('#wheel').animate({
+            }).animate({
                 deg: -360
             }, {
                 duration: 500,
@@ -472,8 +468,15 @@
                         '-moz-transform': 'rotate(' + now + 'deg)',
                         'transform': 'rotate(' + now + 'deg)'
                     });
-                    if (now % 360 == 0) $('#wheel').removeClass("animating");
                 }
+            });
+        },
+        function () {
+            $('#wheel').stop();
+            $('#wheel').css({
+                '-webkit-transform': 'rotate(' + 0 + 'deg)',
+                '-moz-transform': 'rotate(' + 0 + 'deg)',
+                'transform': 'rotate(' + 0 + 'deg)'
             });
         }
     );

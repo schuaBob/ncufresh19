@@ -377,7 +377,7 @@ ul.timeline > li:before {
   animation-delay: 0.5s;
   background-color: rgb(94, 102, 105);
 }
-/* @keyframes oxxo{
+@keyframes oxxo{
   from{
       opacity: 0;
       z-index: -100;
@@ -386,7 +386,7 @@ ul.timeline > li:before {
       opacity: 0.4;
       z-index: 300;
   }
-} */
+}
 
 .hint {
   color: white;
@@ -402,7 +402,7 @@ ul.timeline > li:before {
 
 .decoration img{
   position: absolute;
-  width:30%;
+  width:23%;
   bottom: 0px;
 }
 

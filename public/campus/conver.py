@@ -9,8 +9,10 @@ with open('新知MAP.txt','r', encoding='UTF-8') as f:
     content = ""
     for i in f.readlines():
         if '$' == i[0]:
-            print(i)
             if title != "":
+                print(content[-4:])
+                while content[-4:] == '<br>':
+                    content = content[:-4]
                 all[title] = '<p>'+content+'</p>'
                 title = ""
                 content = ""

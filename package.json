@@ -19,7 +19,6 @@
     "express-minify": "^1.0.0",
     "express-session": "^1.16.2",
     "fullpage.js": "^3.0.7",
-    "gm": "^1.23.1",
     "helmet": "^3.20.0",
     "http-errors": "~1.6.2",
     "jquery": "^3.4.1",
@@ -31,6 +30,7 @@
     "popper.js": "^1.15.0",
     "request": "^2.88.0",
     "serve-favicon": "^2.5.0",
+    "sharp": "^0.23.0",
     "velocity-animate": "^2.0.5"
   }
 }

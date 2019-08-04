@@ -178,9 +178,9 @@
 
 
     if (c == "") {      
-      $("#all").parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
+      $("i[option='all']").parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
     }else {     
-      $("#" + c).parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
+      $("i[option='"+c+"']").parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
     }
 
     $(".sortButton").click(function () {
@@ -218,6 +218,8 @@
             //小
             $("#mobileAnswerModal").modal();
             $("#mobileAnswerTitleText").text("["+data[0].category+"]"+data[0].title);
+            $("#mobileQContentText").text(data[0].qContent);
+            $("#mobileAContentText").children("p").replaceWith(data[0].aContent);
           } else {
             //插入問題內容
             $(".answerModelQ > p").text(data[0].qContent);         
@@ -411,12 +413,24 @@
       });
     });
     //手機版js
-    $("#simpleSieve").on("click",function(){
+    $("#simpleSieve").on("click",function(e){
+      e.stopPropagation();
       $(".mobileFilterContent").css("display","block");
+    });
+    //按其他區域時會隱藏mobileFilterContent    
+    $(document).on('mouseup touchend', function(e){
+      var container = $(".mobileFilterContent");
+      if(!container.is(e.target) && container.has(e.target).length === 0){
+        $(".mobileFilterContent").css("display","none");
+      }      
     });
     $("#mobileTop").on("click",function(){
       $(".content").scrollTop(0);
     });
+
+
+
+
     $(document).on("click","#mobilesubmit",function () {
       
       var forms = document.getElementsByClassName('needs-validation');

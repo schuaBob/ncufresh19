@@ -3,7 +3,6 @@
   <head>
     <title><%= title %></title>
     <% include ../../layouts/head %>
-    <% include ../../layouts/script  %>
     <link rel='stylesheet' href='/video/style.css' />
   </head>
   <body>
@@ -12,10 +11,16 @@
     <main>
 
         <%/* 藍色區域 */%>
+        <!--
         <div class="background">
             <div class="video_area">
                 <div id="player"></div>
             </div>
+        </div>
+        -->
+
+        <div class="background">
+            <div id="player"></div>
         </div>
 
         <%/* 引入Youtube API */%>
@@ -195,7 +200,49 @@
           <% } %>
         <% } %>
 
+        
 
+        <script>
+            //大於768變電腦
+            var orignURL = location.pathname;
+            var newURL = orignURL.replace(/index_smp/g, 'index_com');
+
+            //alert(newURL);
+
+            $(document).ready(function(){
+                var width;
+                if(innerWidth > outerWidth)
+                    width = outerWidth;
+                else
+                    width = innerWidth;
+                if(width > 768)
+                    document.location.href = newURL;
+            $(window).resize(function(){
+                    if(innerWidth > outerWidth)
+                        width = outerWidth;
+                    else
+                        width = innerWidth;
+                    if(width > 768)
+                        document.location.href = newURL;
+                });
+            });
+
+            /* 還是加一下進入判斷好了，控制台會玩壞他
+            //大於768變電腦
+            var orignURL = location.pathname;
+            var newURL = orignURL.replace(/index_smp/g, 'index_com');
+
+            //alert(newURL);
+            
+            $(document).ready(function(){
+                $(window).resize(function(){
+                    var width = innerWidth;
+                    if(width > 768)
+                        document.location.href = newURL;
+                });
+            });
+            */
+        </script>
         
         
     </main>

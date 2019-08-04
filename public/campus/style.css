@@ -490,13 +490,13 @@ li {
   font-size: 28px;
   font-weight: 500;
   line-height: 1.2;
-  color: #7CA7BC;
+  color: #FB8360;
 }
 
 .line {
   height: 80%;
   width: 5px;
-  background-color: #FB8360;
+  background-color: #7CA7BC;
   margin-top: 10px;
   margin-right: 10px;
   float: left;
@@ -745,9 +745,7 @@ li {
 
   .main_list_detail ul {
     max-height: calc(24px + 46vw + 8vw / 2 - 60px);
-    overflow: scroll;
     margin: 0;
-    padding-bottom: 30px;
   }
 
   .elelist:last-child {
@@ -804,11 +802,15 @@ li {
   }
 
   .sailor1 {
-    display: none;
+    display: none !important;
   }
 
   .sailor2 {
-    display: none;
+    display: none !important;
+  }
+
+  .sbird {
+    display: none !important;
   }
 
   .modal-dialog{

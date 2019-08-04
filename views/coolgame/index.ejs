@@ -1,22 +1,25 @@
 <html>
-  <head>
-    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-    <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
-    <script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
-    <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
-    <script src="/coolgame/game.js"></script>
-    <title><%= title %></title>
-    <% include ../layouts/head %>
-    <% include ../layouts/script %>
-  </head>
+
+<head>
+  <% include ../layouts/head %>
+  <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+  <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
+  <script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
+  <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
+  <script src="/coolgame/game.js"></script>
+  <title><%= title %></title>
+</head>
+
+<body onload="load_source()">
+  <% include ../layouts/header %>
   <main id="m">
-  <body onload="load_source()">
-    <% include ../layouts/header %>
-    <div id="game" style="width:800px;height:500px;margin:auto;display:grid;justify-content:center;align-items:center;height:80%;">
-        <!-- <canvas id="gameLabby" width="800" height="500" style="background-color: rgb(142, 219, 245)"></canvas> -->
-        <canvas id="gameStage" width="800" height="500" style="background-color: rgb(142, 219, 245)"></canvas>
+    <div id="game"
+      style="width:800px;height:500px;margin:auto;display:grid;justify-content:center;align-items:center;height:80%;">
+      <!-- <canvas id="gameLabby" width="800" height="500" style="background-color: rgb(142, 219, 245)"></canvas> -->
+      <canvas id="gameStage" width="800" height="500" style="background-color: rgb(142, 219, 245)"></canvas>
     </div>
-    <% include ../layouts/js %>
-  </body>
   </main>
+  <% include ../layouts/js %>
+</body>
+
 </html>
