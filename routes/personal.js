@@ -13,6 +13,31 @@ var Question = require('../models/qna/qna');
 
 
 router.get('/', checkUser.isLoggedIn, function (req, res, next) {
+  var userRank;
+  var rankByScore;
+  User.find({}).exec(function(err, scoreRank) {
+    if(err) {
+      return next(err);
+    }
+    rankByScore = scoreRank.sort(function(a,b) {
+      return a.score_high < b.score_high ? 1 : -1;
+    });
+    /* 測試 */
+    for(var a in rankByScore) {
+      console.log(rankByScore[a].name);
+    }
+  });
+  
+  for(var i in rankByScore) {
+    if(rankByScore[i].id == user.id) {
+      userRank = i;
+      /* 測試 */
+      console.log(userRank);
+    }
+  }
+
+  console.log(userRank);
+  
   var picname;
   fs.access("public/personal/profile-photo/" + req.user.id + ".png", fs.constants.R_OK, (err) => {
     if (err) {
@@ -20,7 +45,7 @@ router.get('/', checkUser.isLoggedIn, function (req, res, next) {
     } else {
       picname = req.user.id + ".png";
     }
-    Question.find({ /*postID: req.user.id*/ }).exec(function (err, question) {
+    Question.find({ postID: req.user.id }).exec(function (err, question) {
       if (err) {
         return next(err);
       }
@@ -28,7 +53,9 @@ router.get('/', checkUser.isLoggedIn, function (req, res, next) {
         title: '新生知訊網 | 個人專區',
         question: question,
         user: req.user,
-        picname: picname
+        picname: picname,
+        userRank: userRank,
+        rankByScore: rankByScore
       });
     });
   });

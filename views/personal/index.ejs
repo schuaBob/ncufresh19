@@ -83,57 +83,12 @@
             <p><%= user.score_high %> 分</p>
           </div>
           <div class="score-container">
-
-            <div class="horizontal-bar"></div>
+            <div class="ranking" style="border-bottom: 2px solid black; margin-bottom: 2%;"> <p>即時排名</p> <p>分數</p> <p>姓名</p> </div>
+            <% for(var a=userRank-5;a<userRank+5;a++) { %>
+              <div class="ranking rankingHover"> <p>第<%= a %>名</p> <p><%= rankByScore[a].score_high %></p> <p><%= rankByScore[a].name %></p> </div>
+            <% } %>
             
-            <div class="box" id="ranking-box">
-              <p class="scoreTag" id="rank">即時排名</p>
-              <div class="lists" id="ranking-list">
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p> 
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-              </div>
-            </div>
 
-            <div class="box" id="score-box">
-              <p class="scoreTag" id="playerScore">分數</p>
-              <div class="lists" id="score-list">
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-              </div>
-            </div>
-
-            <div class="box" id="name-box">
-              <p class="scoreTag" id="playerName">姓名</p>
-              <div class="lists" id="name-list">
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-              </div>
-            </div>
-            
           </div>
         </div>
 
@@ -150,52 +105,10 @@
         <% /* 發問紀錄 */ %>
         <div class="toggles" id="ask-record-toggle">
           <div class="ask-record-container">
-            <div class="box-show">
-              <div class="box-ask" id="category">
-                <div class="tag-ask" id="category-tag">
-                  <p>分類</p> 
-                </div>
-                <% for(var a=question.length-1;a>-1;a--) { %>
-                  <% if(question[a]) { %>
-                    <li><%= question[a].category %></li>
-                  <% } %>
-                <% } %> 
-              </div>
-
-              <div class="box-ask" id="title">
-                  <div class="tag-ask" id="title-tag">
-                    <p>標題</p>
-                  </div>
-                  <% for(var a=question.length-1;a>-1;a--) { %>
-                    <% if(question[a]) { %>
-                      <li><%= question[a].title %></li>
-                    <% } %>
-                  <% } %> 
-                </div>
-
-              <div class="box-ask" id="date">
-                <div class="tag-ask" id="date-tag">
-                  <p>時間</p>
-                </div>
-                <% for(var a=question.length-1;a>-1;a--) { %>
-                  <% if(question[a]) { %>
-                    <li><%= convertDateToString(question[a]._id.getTimestamp()) %></li>
-                  <% } %>
-                <% } %> 
-              </div>
-
-              <div class="box-ask" id="count">
-                <div class="tag-ask" id="count-tag">
-                  <p>點閱數</p>
-                </div>
-                <% for(var a=question.length-1;a>-1;a--) { %>
-                  <% if(question[a]) { %>
-                    <li><%= question[a].count %></li>
-                  <% } %>
-                <% } %>
-              </div>
-              
-            </div>
+            <div class="ask" style="border-bottom: 2px solid black; margin-bottom: 2%;"> <p>分類</p> <p>標題</p> <p>日期</p> <p>點閱數</p> </div>
+            <% for(var a=question.length-1;a>-1;a--) { %>
+              <div class="ask askHover"> <p><%= question[a].category %></p> <p><%= question[a].title %></p> <p><%= convertDateToString(question[a]._id.getTimestamp()) %></p> <p><%= question[a].count %></p> </div>
+            <% } %>
           </div>
         </div>
 
