@@ -1,14 +1,17 @@
 <script>
     $(document).ready(() => {
         if (window.innerWidth > 768) {
-            InitRandImg(Math.floor(Math.random() * 13) + 1);
-
+            InitRandImg();
+            chgPic(Math.floor(Math.random() * 13) + 1)
         }
         $(window).resize(() => {
             if (window.innerWidth > 768) {
-                InitRandImg(Math.floor(Math.random() * 13) + 1);
+                if ($('#myNavPics').find('img').length === 0) {
+                    InitRandImg(Math.floor(Math.random() * 13) + 1);
+
+                }
             } else {
-                $('#myNavPics').empty();
+                $('#myNavPics').empty()
             }
         })
 
@@ -18,6 +21,7 @@
                 document.getElementById("mySidenav").style.height = "100%";
                 document.getElementById("myNavLinks").style.height = "100%";
                 document.getElementById("myNavPics").style.height = "100%";
+                document.getElementById("randImg-6").velocity({opacity:1})
                 $("#mySidenav").removeClass("closed").addClass("opened");
             } else if ($("#mySidenav").hasClass("opened")) {
                 document.getElementById("mySidenav").style.height = "0";
@@ -71,7 +75,7 @@
         $("." + el.attr("class") + ":last").remove();
     }
 
-    function InitRandImg(initPic) {
+    function InitRandImg() {
         $('#myNavPics').append(`
             <img class="randImg" id="randImg-1" src="/layouts/headerPic/header-1.jpg">
             <img class="randImg" id="randImg-2" src="/layouts/headerPic/header-2.jpg">
@@ -86,31 +90,26 @@
             <img class="randImg" id="randImg-11" src="/layouts/headerPic/header-11.jpg">
             <img class="randImg" id="randImg-12" src="/layouts/headerPic/header-12.jpg">
             <img class="randImg" id="randImg-13" src="/layouts/headerPic/header-13.jpg">
-        `)
-        $('.randImg').css({
-            "display": "none"
+        `) 
+        $("#navbtn").click(() => {
+            if ($("#mySidenav").hasClass("closed")) {
+                // document.getElementById("randImg-6").style.height = "100vh";
+            } 
         });
-        $(`#randImg-${initPic}`).velocity({
-            display: "block",
-            height: 0
-        }).then((picNow) => {
-            console.log("init pic:")
-            console.log(picNow)
-            $('#links li').hover((e) => {
-                console.log(picNow)
-                InrandNum = Math.floor(Math.random() * 13) + 1;
+    }
+
+    function chgPic(initPic) {
+        var picNow = "#ramdImg-6";
+        $('#links li').hover(() => {
+            InrandNum = Math.floor(Math.random() * 13) + 1;
+            $(picNow).velocity({
+                opacity:0
+            }).then(()=>{
                 $(`#randImg-${InrandNum}`).velocity({
-                    display: "block"
+                    opacity:1  
                 });
-                $(picNow).velocity({
-                    display: "none"
-                })
-
-            }, () => {
                 picNow = $(`#randImg-${InrandNum}`);
-                $(picNow).velocity("stop");
             })
-
-        });
+        })
     }
 </script>

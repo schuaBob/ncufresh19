@@ -148,6 +148,7 @@
         padding: 0 !important;
         margin: 0 !important;
     }
+
     #mySidenav #links .link {
         font-size: 3.5vh !important;
         position: relative;
@@ -288,8 +289,10 @@
 
     .randImg {
         position: absolute;
-        height: 100vmin;
         right: 0;
+        height: 100vh;
+        opacity: 0;
+        width: 100vmax;
     }
 }
 
