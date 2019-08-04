@@ -1,5 +1,8 @@
 var current_calender;
-var nowLeft = 10;
+var nowLeft = 30,
+    nowTarget = 0,
+    nowTotal = 0;
+var isAnimating = false;
 
 $(document).ready(() => {
     $('#fullpage').fullpage({
@@ -47,10 +50,54 @@ $(document).ready(() => {
             }
         })
     });
-})
 
-$(".day").each(function () {
-    $(this).css("left", (this.id - 1) * 10 + "%");
+    $(".next").on("click", function() {
+        if(!isAnimating && nowTarget > 0) {
+            isAnimating = true;
+            $("#scrollDay").animate({
+                left: (nowLeft+=15) + "vw"
+            }, {
+                duration: 500,
+                done: function() {
+                    isAnimating = false;
+                    $("#"+nowTarget).removeClass("target");
+                    nowTarget -= 1;
+                    $("#"+nowTarget).addClass("target");
+                    $("#board-detail").empty();
+                    var cnt = 0;
+                    for (var i in current_calender) {
+                        if (cnt == nowTarget)
+                            $("#board-detail").append(current_calender[i].board_content);
+                        cnt = cnt + 1;
+                    }
+                }
+            });
+        }
+    });
+
+    $(".prev").on("click", function() {
+        if(!isAnimating && nowTarget < nowTotal) {
+            isAnimating = true;
+            $("#scrollDay").animate({
+                left: (nowLeft-=15) + "vw"
+            }, {
+                duration: 500,
+                done: function() {
+                    isAnimating = false;
+                    $("#"+nowTarget).removeClass("target");
+                    nowTarget += 1;
+                    $("#"+nowTarget).addClass("target");
+                    $("#board-detail").empty();
+                    var cnt = 0;
+                    for (var i in current_calender) {
+                        if (cnt == nowTarget)
+                            $("#board-detail").append(current_calender[i].board_content);
+                        cnt = cnt + 1;
+                    }
+                }
+            });
+        }
+    });
 
     $.ajax({
         url: "calender_get_data",
@@ -61,11 +108,11 @@ $(".day").each(function () {
         },
         success: function (data) {
             append_circle(data);
+            $("#board-detail").empty();
+            $("#board-detail").append(current_calender[0].board_content);
         }
     });
 });
-
-
 
 $(".selectMonth").on("click", function () {
     $.ajax({
@@ -77,19 +124,24 @@ $(".selectMonth").on("click", function () {
         },
         success: function (data) {
             append_circle(data);
+            $("#board-detail").empty();
+            $("#board-detail").append(current_calender[0].board_content);
         }
     });
 });
 
 function append_circle(data) {
     $("#days").empty();
-    $("#days").append('<a class="prev">&#10094;</a><a class="next">&#10095;</a>');
     $("#days").append('<div id="scrollDay"></div>');
-    var count = 0;
+    var count = 0;	
+    var today = new Date(); 
     for (var i in data) {
         $("#scrollDay").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="40" width="40"> <circle cx="20" cy="20" r="20" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
+        if( (today.getMonth()+1) == data[i].month && today.getDate() == data[i].date )
+            $("#" + count).append('<img id="index3crab" src="/index/首頁3_螃蟹去背.png">');
         count = count + 1;
     }
+    nowTotal = count;
     current_calender = data;
     $(".day").on("click", function () {
         $("#board-detail").empty();
@@ -101,25 +153,6 @@ function append_circle(data) {
         }
     });
 
-    $(".next").on("click", function() {
-        $("#scrollDay").animate({
-            left: (nowLeft+=15) + "vw"
-        }, {
-            duration: 500,
-            done: function() {
-
-            }
-        })
-    });
-
-    $(".prev").on("click", function() {
-        $("#scrollDay").animate({
-            left: (nowLeft-=15) + "vw"
-        }, {
-            duration: 500,
-            done: function() {
-                
-            }
-        })
-    });
+    $("#0").addClass("target");
+    
 }
