@@ -1,5 +1,6 @@
 var current_calender;
-var nowLeft = 0;
+var nowLeft = 30,
+    nowTarget = 0;
 var isAnimating = false;
 
 $(document).ready(() => {
@@ -58,6 +59,16 @@ $(document).ready(() => {
                 duration: 500,
                 done: function() {
                     isAnimating = false;
+                    $("#"+nowTarget).removeClass("target");
+                    nowTarget -= 1;
+                    $("#"+nowTarget).addClass("target");
+                    $("#board-detail").empty();
+                    var cnt = 0;
+                    for (var i in current_calender) {
+                        if (cnt == nowTarget)
+                            $("#board-detail").append(current_calender[i].board_content);
+                        cnt = cnt + 1;
+                    }
                 }
             });
         }
@@ -72,14 +83,20 @@ $(document).ready(() => {
                 duration: 500,
                 done: function() {
                     isAnimating = false;
+                    $("#"+nowTarget).removeClass("target");
+                    nowTarget += 1;
+                    $("#"+nowTarget).addClass("target");
+                    $("#board-detail").empty();
+                    var cnt = 0;
+                    for (var i in current_calender) {
+                        if (cnt == nowTarget)
+                            $("#board-detail").append(current_calender[i].board_content);
+                        cnt = cnt + 1;
+                    }
                 }
             });
         }
     });
-});
-
-$(".day").each(function () {
-    $(this).css("left", (this.id - 1) * 10 + "%");
 
     $.ajax({
         url: "calender_get_data",
@@ -90,11 +107,11 @@ $(".day").each(function () {
         },
         success: function (data) {
             append_circle(data);
+            $("#board-detail").empty();
+            $("#board-detail").append(current_calender[0].board_content);
         }
     });
 });
-
-
 
 $(".selectMonth").on("click", function () {
     $.ajax({
@@ -106,6 +123,8 @@ $(".selectMonth").on("click", function () {
         },
         success: function (data) {
             append_circle(data);
+            $("#board-detail").empty();
+            $("#board-detail").append(current_calender[0].board_content);
         }
     });
 });
@@ -128,4 +147,6 @@ function append_circle(data) {
             cnt = cnt + 1;
         }
     });
+
+    $("#0").addClass("target");
 }
