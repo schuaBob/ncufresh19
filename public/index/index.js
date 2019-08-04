@@ -52,16 +52,16 @@ $(document).ready(() => {
     });
 
     $(".next").on("click", function() {
-        if(!isAnimating && nowTarget > 0) {
+        if(!isAnimating && nowTarget < nowTotal) {
             isAnimating = true;
             $("#scrollDay").animate({
-                left: (nowLeft+=15) + "vw"
+                left: (nowLeft-=15) + "vw"
             }, {
                 duration: 500,
                 done: function() {
                     isAnimating = false;
                     $("#"+nowTarget).removeClass("target");
-                    nowTarget -= 1;
+                    nowTarget += 1;
                     $("#"+nowTarget).addClass("target");
                     $("#board-detail").empty();
                     var cnt = 0;
@@ -76,16 +76,16 @@ $(document).ready(() => {
     });
 
     $(".prev").on("click", function() {
-        if(!isAnimating && nowTarget < nowTotal) {
+        if(!isAnimating && nowTarget > 0) {
             isAnimating = true;
             $("#scrollDay").animate({
-                left: (nowLeft-=15) + "vw"
+                left: (nowLeft+=15) + "vw"
             }, {
                 duration: 500,
                 done: function() {
                     isAnimating = false;
                     $("#"+nowTarget).removeClass("target");
-                    nowTarget += 1;
+                    nowTarget -= 1;
                     $("#"+nowTarget).addClass("target");
                     $("#board-detail").empty();
                     var cnt = 0;
