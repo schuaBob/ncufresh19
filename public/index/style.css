@@ -7,20 +7,20 @@
 #indexPage1 {
     background-image: url("/index/首頁1_small.png");
     background-position: bottom;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
 #indexPage2 {
     background-image: url("/index/首頁2.png");
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
 }
 
 #indexPage3 {
     background-image: url("/index/首頁3.png");
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
 }
@@ -44,14 +44,14 @@ main {
     #indexPage1 {
         background-image: url("/index/首頁1手機背景.png");
         background-position: center;
-        background-repeat: repeat;
+        background-repeat: no-repeat;
         background-size: cover;
     }
 
     #indexPage3 {
         background-image: url("/index/首頁2.png");
         background-position: center;
-        background-repeat: repeat;
+        background-repeat: no-repeat;
         background-size: cover;
     }
 
