@@ -94,22 +94,6 @@
             display: "block",
             height: 0
         }).then((picNow) => {
-            $("#navbtn").click(() => {
-                $(".lines-button").toggleClass("close");
-                if ($("#mySidenav").hasClass("closed")) {
-                    document.getElementById("mySidenav").style.height = "100%";
-                    document.getElementById("myNavLinks").style.height = "100%";
-                    document.getElementById("myNavPics").style.height = "100%";
-                    $("#mySidenav").removeClass("closed").addClass("opened");
-                } else if ($("#mySidenav").hasClass("opened")) {
-                    document.getElementById("mySidenav").style.height = "0";
-                    $("#mySidenav").removeClass("opened").addClass("closed");
-                }
-                restart_animate(".one");
-                restart_animate(".two");
-                restart_animate(".three");
-                restart_animate(".four");
-            });
             console.log("init pic:")
             console.log(picNow)
             $('#links li').hover((e) => {
