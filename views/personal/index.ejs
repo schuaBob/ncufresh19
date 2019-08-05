@@ -3,31 +3,33 @@
   <head>
     <title><%= title %></title>
     <% include ../layouts/head %>
-    <% include ../layouts/script  %>
     <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
-    <div class="bg">
       <% include ../layouts/header %>
-      <img src="IMG_4161.JPG" id="bgi">
-    </div>
-
-    <div class="container">
-      
-      <% /* 使用者資訊 */ %>
+    <div class="title-box">
       <div class="vertical-line"></div>
-      <div class="username" id="username"><%= user.name %></div>
-      <div class="student-number" id="student-number"><%= user.id %></div>
-      
+      <div class="eng-title">Personal</div>
+      <div class="ch-title">個人專區</div>     
+    </div>
+      <% /* 使用者資訊 */ %>
+      <div class="user-box" id="userinfo">
+        <div class="username" id="username"><%= user.name %></div>
+        <div class="student-number" id="student-number"><%= user.id %></div>
+      </div>
+
       <% /* BTNs */ %>
-      <div class="links" id="game-score">遊戲積分</div>
-      <div class="links" id="game">小遊戲</div>
-      <div class="links" id="ask-record">發問紀錄</div>
-      <div class="links" id="ask">我要發問</div>
+    <div class="links" id="game-score">遊戲積分</div>
+    <div class="links" id="game">小遊戲</div>
+    <div class="links" id="ask-record">發問紀錄</div>      
+    <div class="links" id="ask">我要發問</div>
+    <div class="links" id="logout" >
+      <a href="/logout">點我登出</a>
+    </div>
 
       <% /* 頭貼外框 */ %>
       <div class="circle">
-        <img class="profile-pic" src="profile-photo/<%= picname %>"/> 
+        <img class="profile-pic" src="profile-photo/<%= user.avatar %>" />
       </div>
       <% /* 上傳按鈕 */ %>
       <div class="upload-icon">
@@ -53,7 +55,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="elecategory">圖片</label>
                   <div class="col-md-12">
-                    <input type="file" class="form-control input-md" name="picture">
+                    <input type="file" class="form-control input-md" accept="image/*" name="picture">
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -71,61 +73,16 @@
         <% /* 遊戲積分 */ %>
         <div class="tog showToggle" id="game-score-toggle">
           <div class="score">
-            <h1 id="sum-point"><%= user.score_sum %></h1>
-            <p>分</p>
+            <h1>目前積分</h1>
+            <p><%= user.score_high %> 分</p>
           </div>
           <div class="score-container">
-
-            <div class="horizontal-bar"></div>
+            <div class="ranking" style="border-bottom: 2px solid black; margin-bottom: 2%;"> <p>即時排名</p> <p>分數</p> <p>姓名</p> </div>
+            <% for(var a=userRank-5;a<userRank+5;a++) { %>
+              <div class="ranking rankingHover"> <p>第<%= a %>名</p> <p><%= rankByScore[a].score_high %></p> <p><%= rankByScore[a].name %></p> </div>
+            <% } %>
             
-            <div class="box" id="ranking-box">
-              <p class="scoreTag" id="rank">即時排名</p>
-              <div class="lists" id="ranking-list">
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p> 
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-              </div>
-            </div>
 
-            <div class="box" id="score-box">
-              <p class="scoreTag" id="playerScore">分數</p>
-              <div class="lists" id="score-list">
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-              </div>
-            </div>
-
-            <div class="box" id="name-box">
-              <p class="scoreTag" id="playerName">姓名</p>
-              <div class="lists" id="name-list">
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-                <p>1</p>
-              </div>
-            </div>
-            
           </div>
         </div>
 
@@ -142,28 +99,10 @@
         <% /* 發問紀錄 */ %>
         <div class="toggles" id="ask-record-toggle">
           <div class="ask-record-container">
-            <div class="box-show">
-              <div class="box-ask" id="date">
-                <div class="tag-ask" id="date-tag">
-                  <p>時間</p>
-                </div>
-                <% for(var a=question.length-1;a>-1;a--) { %>
-                  <% if(question[a]) { %>
-                    <%= convertDateToString(questions[index]._id.getTimestamp()) %>
-                  <% } %>
-                <% } %> 
-              </div>
-              <div class="box-ask" id="ask-title">
-                <div class="tag-ask" id="title-tag">
-                  <p>問題</p>
-                </div>
-                <% for(var a=question.length-1;a>-1;a--) { %>
-                  <% if(question[a]) { %>
-                    <li><%= question[a].title %></li>
-                  <% } %>
-                <% } %> 
-              </div>
-            </div>
+            <div class="ask" style="border-bottom: 2px solid black; margin-bottom: 2%;"> <p>分類</p> <p>標題</p> <p>日期</p> <p>點閱數</p> </div>
+            <% for(var a=question.length-1;a>-1;a--) { %>
+              <div class="ask askHover"> <p><%= question[a].category %></p> <p><%= question[a].title %></p> <p><%= convertDateToString(question[a]._id.getTimestamp()) %></p> <p><%= question[a].count %></p> </div>
+            <% } %>
           </div>
         </div>
 
@@ -179,7 +118,6 @@
 
       </div>
 
-    </div>
   </body>
   <% include ../layouts/js %>
   <% include js %>

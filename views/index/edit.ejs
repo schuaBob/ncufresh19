@@ -3,9 +3,7 @@
 
 <head>
     <title><%= title %></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <% include ../layouts/head %>
-    <% include ../layouts/script %>
     <script type="text/javascript" src="/js/tinymce.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -234,6 +232,7 @@
                         <div class="card">
                             <img class="card-img-top" src="<%=commercial[i]['picPath']%>">
                             <div class="card-body">
+                                <a class="card-link" data-toggle="popover">連結</a>
                                 <a href="/adpic/delete?pk=<%= commercial[i]['pk']%>" class="card-link">刪除</a>
                             </div>
                         </div>
@@ -248,8 +247,15 @@
         var loadFile = function (event) {
             $('#howMany').text(`上傳${event.target.files.length}個圖片`);
         };
-
         $(document).ready(() => {
+            // $(function () {
+            //     $('[data-toggle="popover"]').popover({
+            //         placement:"top",
+            //         title:"Add links"
+            //         content:
+            //     })
+            // })
+            tinyMCE.get('editboard').setContent("");
             $('#news span').click(() => {
                 $('#Subbtn').hide();
                 $('#SaveNewsbtn').text("新增");
@@ -273,7 +279,7 @@
                         })
                         tinyMCE.get('editor').setContent(res.content);
                     }
-                }).then(() => {
+                }).done(() => {
                     $('#SaveNewsbtn').addClass('editbtn');
                     $('#Subbtn').click(() => {
                         $.ajax({
@@ -393,8 +399,9 @@
                         $('#editmonth').val(res.month);
                         $('#editdate').val(res.date);
                     }
-                }).then((result) => {
-                    $('#boardEditbtn').click(() => {
+                }).done((result) => {
+                    $('#boardEditbtn').off('click');
+                    $('#boardEditbtn').on('click', () => {
                         $.ajax({
                             url: '/calender/update',
                             method: 'POST',
@@ -407,16 +414,17 @@
                             },
                             error: (err) => { alert(err.responseText) },
                             success: (res) => { alert(res.message) }
-                        }).then(() => { location.reload() })
+                        }).done(() => { location.reload() })
                     })
-                    $('#boardDeletebtn').click(() => {
+                    $('#boardDeletebtn').off('click');
+                    $('#boardDeletebtn').on('click', () => {
                         $.ajax({
                             url: `/calender/delete?pk=${result.pk}`,
                             method: 'GET',
                             dataType: 'JSON',
                             error: (err) => { alert(err.responseText) },
                             success: (res) => { alert(res.message) }
-                        }).then(() => { location.reload() })
+                        }).done(() => { location.reload() })
                     })
                 })
             })

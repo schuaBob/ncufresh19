@@ -12,7 +12,7 @@
 
           <%/* 影片用_學長姊學院 */%>
           <% if(title_bar[4] != null){ %>
-            <div class="title">
+            <div class="title" id="en1">
                 <%= title_bar[2] %><div class="small_title"><%= title_bar[3] %></div>
             </div>
 
@@ -30,7 +30,7 @@
 
           <%/* 分頁用_學長姊學院 */%>  
           <% }else if(title_bar[0] === 'INTERVIEW' && title_bar[2] != null){ %>
-            <div class="title">
+            <div class="title" id="en1">
                 <%= title_bar[2] %><div class="small_title"><%= title_bar[3] %></div>
             </div>
           <% }else if(title_bar[0] === 'INTERVIEW'){ %>
@@ -69,6 +69,25 @@
           <% } %>
 
         </div>
+
+        <script>
+          //太長標題縮減
+          $(document).ready(function(){
+              var num1 = '<%= title_bar[2] %>'.length;
+
+              //學長姊學院、影片
+              if ('<%= title_bar[0] %>'==='INTERVIEW') {
+                  //學院
+                  //生理理工
+                  if (num1 > 11) {
+                      $("#en1").css({
+                          "font-size": "14px",
+                          "padding-top": "5px"
+                      });
+                  }
+              }
+          });
+        </script>
 
 
     </body>

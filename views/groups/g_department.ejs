@@ -7,17 +7,14 @@
     </title>
 
     <% include ../layouts/head %>
-        <% include ../layouts/script %>
-
-            <link rel='stylesheet' href='/groups/style.css' />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-            <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel='stylesheet' href='/groups/style.css' />
+        <link rel="stylesheet" href="/fontawesome/css/all.min.css">
 </head>
 
 <body class="yellowBg">
     <% include ../layouts/header %>
 
-        <div class="title_bar">
+        <<<<<<< HEAD <div class="title_bar">
             <div class="line"></div>
             <div class="title">
                 <h1>DEPARTMENT<br><span class="small_title">系所</span></h1>
@@ -31,66 +28,82 @@
                 <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/community_btn.PNG" class="navimg"><br>社群</a>
                 <a class="nava e" href="/groups/others"><img src="/groups/others_btn.PNG" class="navimg"><br>其他學生組織</a>
             </div>
-        </div>
-        <div class="sidebar">
-            <ul>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/1">
-                    <li class="sideli 1"><i class="fas fa-angle-right"></i>文學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/2">
-                    <li class="sideli 2"><i class="fas fa-angle-right"></i>理學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/3">
-                    <li class="sideli 3"><i class="fas fa-angle-right"></i>工學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/4">
-                    <li class="sideli 4"><i class="fas fa-angle-right"></i>管理學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/5">
-                    <li class="sideli 5"><i class="fas fa-angle-right"></i>客家學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/6">
-                    <li class="sideli 6"><i class="fas fa-angle-right"></i>資訊電機學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/7">
-                    <li class="sideli 7"><i class="fas fa-angle-right"></i>地球科學學院</li>
-                </a>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/department/8">
-                    <li class="sideli 8"><i class="fas fa-angle-right"></i>生醫理工學院</li>
-                </a>
+            =======
+            <div class="title_bar">
+                <div class="line"></div>
+                <div class="title">
+                    <h1>DEPARTMENT<br><span class="small_title">系所</span></h1>
+                    >>>>>>> 83934bf05e435648dd551ecc0d211107d864227e
+                </div>
 
-            </ul>
-        </div>
-        <%if(user && user.role==="admin"){%>
-            <div class="buttons">
-                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
+                <div class="navbar">
+                    <img src="/groups/line.png" class="cuttingline">
+                    <a class="nava a" href="/groups/department"><img src="/groups/系所鈕.PNG" class="navimg"><br>系所</a>
+                    <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/社團鈕.PNG" class="navimg"><br>社團</a>
+                    <a class="nava c" href="/groups/association"><img src="/groups/學生會鈕.PNG" class="navimg"><br>學生會</a>
+                    <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/社群鈕.PNG" class="navimg"><br>社群</a>
+                    <a class="nava e" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
+                </div>
+            </div>
+            <div class="sidebar">
+                <ul>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/1">
+                        <li class="sideli 1"><i class="fas fa-angle-right"></i>文學院</li>
+                    </a>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/2">
+                        <li class="sideli 2"><i class="fas fa-angle-right"></i>理學院</li>
+                    </a>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/3">
+                        <li class="sideli 3"><i class="fas fa-angle-right"></i>工學院</li>
+                    </a>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/4">
+                        <li class="sideli 4"><i class="fas fa-angle-right"></i>管理學院</li>
+                    </a>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/5">
+                        <li class="sideli 5"><i class="fas fa-angle-right"></i>客家學院</li>
+                    </a>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/6">
+                        <li class="sideli 6"><i class="fas fa-angle-right"></i>資訊電機學院</li>
+                    </a>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/7">
+                        <li class="sideli 7"><i class="fas fa-angle-right"></i>地球科學學院</li>
+                    </a>
+                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/8">
+                        <li class="sideli 8"><i class="fas fa-angle-right"></i>生醫理工學院</li>
+                    </a>
+
+                </ul>
+            </div>
+            <%if(user && user.role==="admin"){%>
+                <div class="buttons">
+                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add">
             新增系所
         </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_delete">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_delete">
             編輯/刪除系所
         </button>
-            </div>
-            <%}%>
+                </div>
+                <%}%>
 
-                <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/groups/add_department" method="post">
-                                    <div class="form-group">
-                                        <label for="name" class="col-form-label">系所名稱</label>
-                                        <input type="text" class="form-control" id="name" name="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- 選擇類別 -->
-                                        <label for="type" class="form-control">系所學院</label>
-                                        <select name="type" id="type" class="form-control">
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/groups/add_department" method="post">
+                                        <div class="form-group">
+                                            <label for="name" class="col-form-label">系所名稱</label>
+                                            <input type="text" class="form-control" id="name" name="name">
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- 選擇類別 -->
+                                            <label for="type" class="form-control">系所學院</label>
+                                            <select name="type" id="type" class="form-control">
                                 <option value="1">文學院</option>
                                 <option value="2">理學院</option>
                                 <option value="3">工學院</option>
@@ -100,59 +113,59 @@
                                 <option value="7">地球科學學院</option>
                                 <option value="8">生醫理工學院</option>
                             </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="en_name" class="col-form-label">系所英文名稱</label>
-                                        <input type="text" class="form-control" id="en_name" name="en_name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="de_link" class="col-form-label">系所網站連結</label>
-                                        <input type="text" class="form-control" id="de_link" name="de_link">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="stu_link" class="col-form-label">系學會連結</label>
-                                        <input type="text" class="form-control" id="stu_link" name="stu_link">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="qna_link" class="col-form-label">系上問答連結</label>
-                                        <input type="text" class="form-control" id="qna_link" name="qna_link">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="en_name" class="col-form-label">系所英文名稱</label>
+                                            <input type="text" class="form-control" id="en_name" name="en_name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="de_link" class="col-form-label">系所網站連結</label>
+                                            <input type="text" class="form-control" id="de_link" name="de_link">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="stu_link" class="col-form-label">系學會連結</label>
+                                            <input type="text" class="form-control" id="stu_link" name="stu_link">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="qna_link" class="col-form-label">系上問答連結</label>
+                                            <input type="text" class="form-control" id="qna_link" name="qna_link">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
 
-                                </form>
+                                    </form>
+                                </div>
+
                             </div>
-
                         </div>
                     </div>
-                </div>
 
 
-                <div class="modal fade" id="edit_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">edit&delete dedartment</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <div class="modal fade" id="edit_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">edit&delete dedartment</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="select_department_name" class="col-form-label">系所名稱</label>
-                                        <select name="name" id="select_department_name" class="form-control">
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="select_department_name" class="col-form-label">系所名稱</label>
+                                            <select name="name" id="select_department_name" class="form-control">
                                 <% for(var i in department) {%>
-                                <option value="<%= department[i].name%>"><%=department[i].name%></option>
-                                <%}%>
+    <option value="<%= department[i].name%>"><%=department[i].name%></option>
+    <%}%>
                                         </select>
-                                    </div>
-                                    <div class="form-group">
+                                        </div>
+                                        <div class="form-group">
 
-                                        <label for="edit_type" class="form-control">系所學院</label>
-                                        <select name="type" id="edit_type" class="form-control">
+                                            <label for="edit_type" class="form-control">系所學院</label>
+                                            <select name="type" id="edit_type" class="form-control">
                                         <option value="1">文學院</option>
                                 <option value="2">理學院</option>
                                 <option value="3">工學院</option>
@@ -162,125 +175,125 @@
                                 <option value="7">地球科學學院</option>
                                 <option value="8">生醫理工學院</option>
                                     </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit_en_name" class="col-form-label">系所英文名稱</label>
-                                        <input type="text" class="form-control" id="edit_en_name" name="en_name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit_de_link" class="col-form-label">系所網站連結</label>
-                                        <input type="text" class="form-control" id="edit_de_link" name="de_link">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit_stu_link" class="col-form-label">系學會連結</label>
-                                        <input type="text" class="form-control" id="edit_stu_link" name="stu_link">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit_qna_link" class="col-form-label">系上問答連結</label>
-                                        <input type="text" class="form-control" id="edit_qna_link" name="qna_link">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button id="edit_department_submit" class="btn btn-primary">Save changes</button>
-                                <button id="delete_department_submit" class="btn btn-danger">Delete</button>
-                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edit_en_name" class="col-form-label">系所英文名稱</label>
+                                            <input type="text" class="form-control" id="edit_en_name" name="en_name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edit_de_link" class="col-form-label">系所網站連結</label>
+                                            <input type="text" class="form-control" id="edit_de_link" name="de_link">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edit_stu_link" class="col-form-label">系學會連結</label>
+                                            <input type="text" class="form-control" id="edit_stu_link" name="stu_link">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edit_qna_link" class="col-form-label">系上問答連結</label>
+                                            <input type="text" class="form-control" id="edit_qna_link" name="qna_link">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="edit_department_submit" class="btn btn-primary">Save changes</button>
+                                    <button id="delete_department_submit" class="btn btn-danger">Delete</button>
+                                </div>
 
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <%_ if(department_type!==null){ -%>
+                    <%_ if(department_type!==null){ -%>
 
-                    <div class=".mob_de_type" style="display: none">
-                        <%=department_type%>
-                    </div>
-                    <div class="sidebar2">
-                        <ul>
+                        <div class=".mob_de_type" style="display: none">
+                            <%=department_type%>
+                        </div>
+                        <div class="sidebar2">
+                            <ul>
 
-                            <% for(var i in department) {%>
-                                <%_ if(department[i].type===department_type){ -%>
-                                    <a style="text-decoration:none; color: #0D4966;" href="/groups/department/<%=department[i].type%>/<%=department[i].name%>">
+                                <% for(var i in department) {%>
+                                    <%_ if(department[i].type===department_type){ -%>
+                                        <a style="text-decoration:none; color: #0D4966;" href="/groups/department/<%=department[i].type%>/<%=department[i].name%>">
                                             <li class="sideli" id="<%=department[i].name%>">
                                                 <i class="fas fa-angle-right"></i>
                                                 <%=department[i].name%>
                                             </li>
                                         </a>
 
-                                    <%}%>
                                         <%}%>
+                                            <%}%>
 
-                        </ul>
-                    </div>
+                            </ul>
+                        </div>
 
-                    <%}%>
-                        <%_ if(department_this!==null){ -%>
-                            <button class="snap_so btn btn-light btn-circle"></button>
-                            <div class="de-info">
-                                <div class="department">
-                                    <%=department_this.name%>
+                        <%}%>
+                            <%_ if(department_this!==null){ -%>
+                                <button class="snap_so btn btn-light btn-circle"></button>
+                                <div class="de-info">
+                                    <div class="department">
+                                        <%=department_this.name%>
+                                    </div>
+                                    <div class="de-en">
+                                        <%=department_this.en_name%>
+                                    </div>
+
+                                    <img src="/groups/cutline.png" class="cutline">
+                                    <div class="linkbuttons">
+                                        <%_ if(department_this.de_link!==""){ -%>
+                                            <div class="shell">
+                                                <a class="linkhover" style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>"><img src="/groups/貝殼關閉.png" class="linkimg">
+                                                    <p class="link">系所</p>
+                                                </a>
+
+                                            </div>
+                                            <%_ } -%>
+                                                <%_ if(department_this.stu_link!==""){ -%>
+                                                    <div class="shell">
+                                                        <a class="linkhover" style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>"><img src="/groups/貝殼關閉.png" class="linkimg">
+                                                            <p class="link">系學會</p>
+                                                        </a>
+
+                                                    </div>
+                                                    <%_ } -%>
+                                                        <%_ if(department_this.qna_link!==""){ -%>
+                                                            <div class="shell">
+                                                                <a class="linkhover" style="text-decoration:none;" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg">
+                                                                    <p class="link">系上問答</p>
+                                                                </a>
+
+                                                            </div>
+                                                            <%_ } -%>
+                                    </div>
                                 </div>
-                                <div class="de-en">
-                                    <%=department_this.en_name%>
-                                </div>
-
-                                <img src="/groups/cutline.png" class="cutline">
-                                <div class="linkbuttons">
-                                    <%_ if(department_this.de_link!==""){ -%>
-                                        <div class="shell">
-                                            <a class="linkhover" style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>"><img src="/groups/貝殼關閉.png" class="linkimg">
-                                                <p class="link">系所</p>
-                                            </a>
-
-                                        </div>
-                                        <%_ } -%>
-                                            <%_ if(department_this.stu_link!==""){ -%>
-                                                <div class="shell">
-                                                    <a class="linkhover" style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>"><img src="/groups/貝殼關閉.png" class="linkimg">
-                                                        <p class="link">系學會</p>
-                                                    </a>
-
-                                                </div>
-                                                <%_ } -%>
-                                                    <%_ if(department_this.qna_link!==""){ -%>
-                                                        <div class="shell">
-                                                            <a class="linkhover" style="text-decoration:none;" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg">
-                                                                <p class="link">系上問答</p>
-                                                            </a>
-
-                                                        </div>
-                                                        <%_ } -%>
-                                </div>
-                            </div>
-                            <%_ } -%>
-                                <div id="myshell" class="alert alert-danger alert-dismissible fade show" role="alert" style=" display:none; position: absolute; bottom:5vh; right:10vw;">
-                                    <strong>不要玩貝殼!</strong> 珍珠會掉出來啦！！！！
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <%_ } -%>
+                                    <div id="myshell" class="alert alert-danger alert-dismissible fade show" role="alert" style=" display:none; position: absolute; bottom:5vh; right:10vw;">
+                                        <strong>不要玩貝殼!</strong> 珍珠會掉出來啦！！！！
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
-                                </div>
+                                    </div>
 
-                                <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-                                <img src="/groups/系所.PNG" class=backgroundimg>
-                                <img src="/groups/snap.gif" class="snap">
-                                <button class="snap_btn btn btn-danger ">SNAP!!!</button>
+                                    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+                                    <img src="/groups/系所.PNG" class=backgroundimg>
+                                    <img src="/groups/snap.gif" class="snap">
+                                    <button class="snap_btn btn btn-danger ">SNAP!!!</button>
 
-                                <button class="snap_r btn alert-danger btn-circle"></button>
-                                <button class="snap_s btn alert-primary btn-circle"></button>
-                                <button class="snap_t btn alert-success btn-circle"></button>
-                                <button class="snap_p btn btn-secondary btn-circle"></button>
-                                <button class="snap_m btn alert-warning btn-circle"></button>
-
-
+                                    <button class="snap_r btn alert-danger btn-circle"></button>
+                                    <button class="snap_s btn alert-primary btn-circle"></button>
+                                    <button class="snap_t btn alert-success btn-circle"></button>
+                                    <button class="snap_p btn btn-secondary btn-circle"></button>
+                                    <button class="snap_m btn alert-warning btn-circle"></button>
 
 
 
 
-                                <script src="/groups/js/groups.js"></script>
 
 
-                                <% include ../layouts/js %>
+                                    <script src="/groups/js/groups.js"></script>
+
+
+                                    <% include ../layouts/js %>
 
 </body>
 

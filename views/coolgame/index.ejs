@@ -7,7 +7,13 @@
     <script src="/coolgame/game.js"></script>
     <title><%= title %></title>
     <% include ../layouts/head %>
-    <% include ../layouts/script %>
+    <style >
+      @media only screen and (max-width:800px){
+        #header{
+          width:800px !important;
+        }
+      }
+    </style>
   </head>
   <main id="m">
   <body onload="load_source()">

@@ -3,7 +3,6 @@
   <head>
     <title><%= title %></title>
     <% include ../../layouts/head %>
-    <% include ../../layouts/script  %>
     <link rel='stylesheet' href='/video/style.css' />
   </head>
   <body>
@@ -12,10 +11,9 @@
     <main>
 
         <%/* 藍色區域 */%>
+        
         <div class="background">
-            <div class="video_area">
-                <div id="player"></div>
-            </div>
+            <div id="player"></div>
         </div>
 
         <%/* 引入Youtube API */%>
@@ -195,7 +193,7 @@
           <% } %>
         <% } %>
 
-
+        <% include ./js_smp %>
         
         
     </main>

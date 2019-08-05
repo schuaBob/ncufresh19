@@ -3,7 +3,6 @@
   <head>
     <title><%= title %></title>
     <% include ../layouts/head %>
-    <% include ../layouts/script  %>
     <link rel='stylesheet' href='/video/style.css' />
   </head>
   <body>
@@ -42,32 +41,61 @@
           .title_bar {
             margin-left: 103px;
           }
-
           .button_area {
             width: 70%;
             max-width: 70%;
+            margin-left: 20%;
+          }
+          /*網頁變形*/
+          @media only screen and (min-width: 1400px){
+            @media only screen and (max-height: 620px) {
+              .harbor {
+                display: none;
+              }
+            }
+          }
+          @media only screen and (max-width: 1400px){
+            .button_area {
+              margin-left: 17%;
+            }
+            @media only screen and (max-height: 590px) {
+              .harbor {
+                display: none;
+              }
+            }
+          }
+          @media only screen and (max-width: 1270px){
+            .button_area{
+              margin-left: 17%;
+            }
+            .v_button {
+              width: 200px;
+              height: 143px;
+            }
+            @media only screen and (max-height: 515px) {
+              .harbor {
+                display: none;
+              }
+            }
+          }
+          @media only screen and (max-width: 1038px){
+            .button_area{
+              margin-left: 23%;
+            }
+            @media only screen and (max-height: 630px) {
+              .harbor {
+                display: none;
+              }
+            }
+          }
+          @media only screen and (max-width: 840px){
+            .button_area{
+              margin-left: 20%;
+            }
           }
         </style>
 
-        <script>
-        $(document).ready(function(){
-            var width;
-            if(innerWidth > outerWidth)
-                width = outerWidth;
-            else
-                width = innerWidth;
-            if(width <= 768)
-                document.location.href = "/video/index_smp/";
-           $(window).resize(function(){
-                if(innerWidth > outerWidth)
-                    width = outerWidth;
-                else
-                    width = innerWidth;
-                if(width <= 768)
-                    document.location.href = "/video/index_smp/";
-            });
-        });
-        </script>
+        <% include ./js %>
 
     </main>
 

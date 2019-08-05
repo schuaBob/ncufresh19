@@ -1,15 +1,10 @@
-body {
-    padding: 50px;
-    /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
-}
-
 a {
     color: #00B7FF;
 }
 
 #main {
     position: relative;
-    top: 4vh;
+    /* top: 4vh; */
 }
 
 .yellow {
@@ -21,6 +16,8 @@ a {
 }
 
 body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   overflow: hidden;
   moz-user-select: none;
   /* for Firefox */
@@ -135,7 +132,7 @@ body {
 
 #outterTitleSpace {
     position: absolute;
-    top: -6%;
+    /* top: -6%; */
     width: 26%;
     left: 0;
     background-color: white;
@@ -172,7 +169,7 @@ body {
 }
 
 .option {
-  font-size: 3vh;
+  font-size: 1.5vw;
   margin-top: 5vh;  
 }
 
@@ -215,18 +212,20 @@ body {
     position: relative;
     width: 78%;
     padding-left: 2%;
-    top: -22%;
+    top: -16%;
 }
 
 .buttonGroup {
-    font-size: 16px;
-    display: inline-flex;
+    font-size: 1vw;
+    display:flex;
     color: black;
+    position: absolute;
+    left: 7.5%;
 }
 
 .button {
     border-radius: 5px;
-    padding: 2% 10%;
+    padding: 2px 10px;
     white-space: nowrap;
 }
 
@@ -236,8 +235,9 @@ body {
 .sort_SearchBar {
     /* background-color: bisque; */
     width: 100%;
-    padding: 10px 80px;
-    display: flex;
+    /* padding: 10px 80px; */
+    /* display: flex; */
+    position: relative;
 }
 
 .sortButton {
@@ -249,8 +249,8 @@ body {
 }
 .searchBar {    
   position: absolute;
-  right: 6%;
-  top:7px;
+  right: 9%;
+  /* top:10px; */
   /* float: right; */
 }
 #searchForm{
@@ -276,7 +276,7 @@ body {
 
 .ask {
     display: inline-block;
-    width: 10vw;
+    width: 9vw;
     height: auto;
     padding: 0px;
     position: absolute;
@@ -298,14 +298,14 @@ body {
 .content {
     overflow-x: hidden;
     overflow-y: auto;
-    margin: 20px 60px;
+    margin: 7% 7% 3%;
     height: 100%;
 }
 
 tbody>tr {
     border-bottom: 1px solid #0D4966;
     height: 6vh;
-    font-size: 2.5vh;
+    font-size: 1.3vw;
 }
 
 tbody tr:hover {
@@ -315,7 +315,10 @@ tbody tr:hover {
 thead>tr {
     border-bottom: 1px dashed #0D4966;
     height: 6vh;
-    font-size: 3vh;
+    font-size: 1.5vw;
+    position: sticky; 
+    top: 0;
+    background-color:#FFF9DC; 
 }
 
 .rowTitle {
@@ -342,181 +345,218 @@ thead>tr {
   margin-right: 2px;
   border:1px solid #B9B9B9;
   padding: 1% 4%;
-  width: 93%;
+  width: 98%;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
 }
 
-/* iPhone XR */
+/* ipad 直立設計*/
 @media only screen 
-    and (device-width : 414px) 
-    and (device-height : 896px) 
-    and (-webkit-device-pixel-ratio : 2) {
-      body{
-        background-image: none;
-      }      
-      #mobileAskBtn{
-        display: inline !important;
-      }
-      #notice-dialog{
-        max-width: none;
-      }
-      #notice-content{
-        width:90%;
-        height:55vh;
-      }
-      #outterTitleSpace{
-        width:40%;
-      }
-      .titleSpace{
-        left:27%;
-      }
-      .leftSide,.ask {
-        display: none;
-      }
-      .rightSide {
-        position: relative;
-        width: 100%;
-        padding: 0;
-      }
-      .content {
-        overflow-x: hidden;
-        overflow-y: auto;
-        position: absolute;
-        width: 100%;
-        margin: 0;
-        bottom: 7%;
-      }
-      .buttonGroup {
-        display: none;
-      }
-      
-      thead > tr{
-        white-space:nowrap;
-        font-size:6vw;
-      }
-      tbody > tr{
-        font-size:5vw;
-      }
-      .fa-arrow-alt-circle-up {
-        visibility: hidden;  
-        position: absolute;  
-        right: -2vw;  
-        bottom: 5vh;  
-        font-size: 2.5em;
-        z-index: 87;
-      }
-      .sortButton{
-        color:#0D4966;    
-      }
-      .sort_SearchBar{
-        padding:0;
-        font-size: 5vw;
-        /* background-color:red;         */
-      }
-     
-      .searchBar{       
-        width:100%; 
-        position: static;              
-      }
-      
-      .searchInput{
-        border-radius: 360px;        
-      }
-      #simpleSieve{
-        width: 6vw;
-      }
-      .mobileFilter{
-        display: block;
-        position: absolute;
-        text-align: right;
-        right: 0;
-        top: -4vh;
-        z-index: 88;
-      }
-      .mobileFilterButton {
-        font-size: 3vh;
-      }
-      .mobileFilterButton ul {
-        margin: 5% auto;
-        padding: 0px;
-        list-style-type: none;
-        width: 50%;
-      }
-      .mobileFilterButton li {
-        margin-bottom: 21%;
-        text-align: center;
-        border-radius: 2px;
-      }
-      .mobileFilterContent {
-        width: 50vw;
-        background-color: #D0CECE;
-        position: relative;
-        top: -4%;
-        padding: 1px 0;        
-      }
-    
-      .option{
-        font-size: 3vh;    
-        margin-top:0;
-        white-space: nowrap;
-      }
-      .option ul {
-        margin: 5% auto;
-        padding: 0px;
-        list-style-type: none;
-        width: 50%;
-      }
-      .option li {
-        margin-bottom: 21%;
-        text-align: center;
-        border-radius: 2px;
-        padding: 4% 0%;
-      }
-      .option i{
-        display: none;
-      }
-      .contentTable{
-        overflow-x:auto;
-      }
-      #Top{        
-        width: 14vw !important;        
-      }
+  and (min-device-width : 768px) 
+  and (max-device-width : 1024px) 
+  and (orientation : portrait)  {
+  .option{
+    font-size:1.2rem;
+  }
+  .option ul{
+    width:90%;
+  }
+  .searchInput{
+    width:72%;
+  }
+  .searchBar{
+    right:-6%;
+  }
+  .ask{
+    display: none;
+  }
+  #mobileAskBtn{
+    display: inline !important; 
+    bottom:7vh;   
+    right: 3vw;
+    width: 6vw;
+  }
+  #Top{
+    right: 3vw !important;
+    width: 6vw !important;
+    bottom: 14vh !important;
+  }
+  .mobilAnswerModalContent{
+    width:80% !important;
+  }
+  .titleTextSize{
+    font-size: 4vw !important;
+  }
+  .contentTextSize{
+    font-size: 3vw !important;
+  }
+  .buttonGroup{
+    font-size: 0.9rem;
+  }
+  thead > tr{
+    font-size: 1.3rem;
+  }
+  tbody > tr{
+    font-size:1.2rem;
+  }
+}
+/* ipad 橫放設計 */
+@media only screen 
+  and (min-device-width : 768px) 
+  and (max-device-width : 1024px) 
+  and (orientation : landscape) {
+    .ask{
+      display: none;
     }
+    #mobileAskBtn{
+      display: inline !important;
+      bottom: 10vh;
+      right: 5vw;
+      width: 4vw;      
+    }
+    #Top{
+      bottom: 20vh !important;
+    }
+    .mobilAnswerModalContent{
+      width: 70% !important;
+    }
+    .titleTextSize{
+      font-size:3vw !important;
+    }
+    .contentTextSize{
+      font-size:2vw !important;
+    }
+    .option{
+      font-size:1.3rem;
+    }
+    .buttonGroup{
+      font-size:0.9rem;
+    }
+    thead > tr{
+      font-size: 1.3rem;
+    }
+    tbody > tr{
+      font-size:1.2rem;
+    }
+  }
 
-
-
-/* iphone 6/7/8 plus */
-
-
-/* @media screen and (max-width: 414px) and (max-height: 736px) {
+/* 手機橫放的通用設計 */
+@media only screen 
+  and (max-width:900px)
+  and (orientation : landscape){
+  .ask{
+    display: none;
+  }
+  #mobileAskBtn{
+    display: inline !important;
+    width:4vw !important;
+    bottom: 24vh !important;
+    right:5vw;
+  }
+  .content{
+    position: relative;
+    top: 0;
+  }
+  .modal-content{
+    height:auto !important;
+    width:65% !important;
+  }
+  .titleTextSize,.contentTextSize{
+    font-size: 2vw !important;
+  }
+  .searchInput{
+    width:70%;
+  }
+  .searchBar{
+    right:-6%;
+  }
+  .option li{
+    margin-bottom: 2vh;
+  }
+  .option{
+    font-size: 1.1rem;
+    margin-top:7vh;
+  }
+  .buttonGroup{
+    font-size: 1rem;
+  }
+  thead > tr{
+    font-size: 1.1rem;
+  }
+  tbody > tr{
+    font-size:1rem;
+  }
+  /* #Top{
+    right: 
+    bottom: 8vh !important;
+  } */
+}
+/* 手機直立的通用設計 */
+@media only screen and (max-width:500px) and (orientation : portrait){
+  html{
+    height: 100%;
+    overflow: hidden;
+  }
   body{
     background-image: none;
+    height: 100%;
+    overflow: hidden;
+  }      
+  #mobileAskBtn{
+    display: inline !important;
+    bottom: 2vh;
+    right: 5vw;
+    width: 14vw;
+  }
+  #notice-dialog{
+    max-width: none;
+  }
+  #notice-content{
+    width:90%;
+    height:55vh;
+  }
+  #outterTitleSpace{
+    width:40%;
+    position: relative;
+  }
+  .main{
+    position: relative;
+    top: 16px;
+  }
+  .titleSpace{
+    left:27%;
   }
   .leftSide,.ask {
     display: none;
   }
-  .rightSide{
+  .rightSide {
     position: relative;
     width: 100%;
     padding: 0;
+    top:0;
   }
-  .content{
+  #searchForm{
+    width:92%;
+  }
+  .content {
     overflow-x: hidden;
     overflow-y: auto;
-    position: absolute;
     width: 100%;
     margin: 0;
-    bottom: 7%;
+    position: relative;
+    top: 1%;
   }
-  
-  .buttonGroup{
+  .buttonGroup {
     display: none;
   }
   
   thead > tr{
     white-space:nowrap;
+    font-size:6vw;
+  }
+  tbody > tr{
+    font-size:5vw;
   }
   .fa-arrow-alt-circle-up {
     visibility: hidden;  
@@ -527,35 +567,56 @@ thead>tr {
     z-index: 87;
   }
   .sortButton{
-    color:#00B7FF;
+    color:#0D4966;    
+  }
+  .sort_SearchBar{
+    padding:0;
+    font-size: 5vw;
+    position:relative;
+    /* top:-10%; */
+    /* background-color:red;         */
+  }
+ 
+  .searchBar{       
+    width:100%; 
+    position: static;              
+  }
+  
+  .searchInput{
+    border-radius: 360px;        
+  }
+  #simpleSieve{
+    width: 6vw;
   }
   .mobileFilter{
     display: block;
-    position: absolute;    
+    position: absolute;
     text-align: right;
     right: 0;
-    top: -3%;
-    z-index: 88;
+    top: 6%;
+    z-index: 400;
   }
-  .mobileFilterButton{
-      font-size: 3vh;    
+  .mobileFilterButton {
+    font-size: 3vh;
   }
-  .mobileFilterButton ul{
+  .mobileFilterButton ul {
     margin: 5% auto;
     padding: 0px;
     list-style-type: none;
     width: 50%;
-  }.mobileFilterButton li{
+  }
+  .mobileFilterButton li {
     margin-bottom: 21%;
     text-align: center;
     border-radius: 2px;
   }
-  .mobileFilterContent{
-    width: 50vw;    
+  .mobileFilterContent {
+    width: 50vw;
     background-color: #D0CECE;
     position: relative;
     top: -4%;
-    padding: 1px 0;
+    padding: 1px 0; 
+    display: none;       
   }
 
   .option{
@@ -563,195 +624,27 @@ thead>tr {
     margin-top:0;
     white-space: nowrap;
   }
-  .option ul{
+  .option ul {
     margin: 5% auto;
     padding: 0px;
     list-style-type: none;
     width: 50%;
   }
-  .option li{
+  .option li {
     margin-bottom: 21%;
     text-align: center;
     border-radius: 2px;
+    padding: 4% 0%;
   }
-} */
-
-
-/* iphone X/XS */
-
-
-/* @media screen and (max-width: 375px) and (max-height: 812px) {
-  body{
-    background-image: none;
-  }
-  .leftSide,.ask {
+  .option i{
     display: none;
-  }
-  .rightSide{
-    position: relative;
-    width: 100%;
-    padding: 0;
   }
   .content{
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: absolute;
-    width: 100%;
-    margin: 0;
-    bottom: 7%;
+    overflow-y:scroll;
+    overflow-x:auto;
   }
-  
-  .buttonGroup{
-    display: none;
+  #Top{        
+    width: 14vw !important;        
   }
-  
-  thead > tr{
-    white-space:nowrap;
-  }
-  .fa-arrow-alt-circle-up {
-    visibility: hidden;  
-    position: absolute;  
-    right: -2vw;  
-    bottom: 5vh;  
-    font-size: 2.5em;
-    z-index: 87;
-  }
-  .sortButton{
-    color:#00B7FF;
-  }
-  .mobileFilter{
-    display: block;
-    position: absolute;    
-    text-align: right;
-    right: 0;
-    top: -3vh;
-    z-index: 88;
-  }
-  .mobileFilterButton{
-      font-size: 3vh;    
-  }
-  .mobileFilterButton ul{
-    margin: 5% auto;
-    padding: 0px;
-    list-style-type: none;
-    width: 50%;
-  }.mobileFilterButton li{
-    margin-bottom: 21%;
-    text-align: center;
-    border-radius: 2px;
-  }
-  .mobileFilterContent{
-    width: 50vw;    
-    background-color: #D0CECE;
-    position: relative;
-    top: -4%;
-    padding: 1px 0;
-  }
+}
 
-  .option{
-    font-size: 3vh;    
-    margin-top:0;
-    white-space: nowrap;
-  }
-  .option ul{
-    margin: 5% auto;
-    padding: 0px;
-    list-style-type: none;
-    width: 50%;
-  }
-  .option li{
-    margin-bottom: 21%;
-    text-align: center;
-    border-radius: 2px;
-  }
-} */
-
-
-/* iphone xr */
-
-
-/* @media screen and (device-width: 414px) and (device-height: 896px) {
-  body{
-    background-image: none;
-  }
-  .leftSide,.ask {
-    display: none;
-  }
-  .rightSide{
-    position: relative;
-    width: 100%;
-    padding: 0;
-  }
-  .content{
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: absolute;
-    width: 100%;
-    margin: 0;
-    bottom: 7%;
-  }
-  
-  .buttonGroup{
-    display: none;
-  }
-  
-  thead > tr{
-    white-space:nowrap;
-  }
-  .fa-arrow-alt-circle-up {
-    visibility: hidden;  
-    position: absolute;  
-    right: -2vw;  
-    bottom: 5vh;  
-    font-size: 2.5em;
-    z-index: 87;
-  }
-  .sortButton{
-    color:#00B7FF;
-  }
-  .mobileFilter{
-    display: block;
-    position: absolute;    
-    text-align: right;
-    right: 0;
-    top: -3vh;
-    z-index: 88;
-  }
-  .mobileFilterButton{
-      font-size: 3vh;    
-  }
-  .mobileFilterButton ul{
-    margin: 5% auto;
-    padding: 0px;
-    list-style-type: none;
-    width: 50%;
-  }.mobileFilterButton li{
-    margin-bottom: 21%;
-    text-align: center;
-    border-radius: 2px;
-  }
-  .mobileFilterContent{
-    width: 50vw;    
-    background-color: #D0CECE;
-    position: relative;
-    top: -4%;
-    padding: 1px 0;
-  }
-
-  .option{
-    font-size: 3vh;    
-    margin-top:0;
-    white-space: nowrap;
-  }
-  .option ul{
-    margin: 5% auto;
-    padding: 0px;
-    list-style-type: none;
-    width: 50%;
-  }
-  .option li{
-    margin-bottom: 21%;
-    text-align: center;
-    border-radius: 2px;
-  }
-} */

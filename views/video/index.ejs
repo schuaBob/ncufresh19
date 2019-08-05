@@ -3,7 +3,6 @@
   <head>
     <title><%= title %></title>
     <% include ../layouts/head %>
-    <% include ../layouts/script  %>
     <link rel='stylesheet' href='/video/style.css' />
   </head>
   <body>
@@ -11,16 +10,46 @@
     <% include ../layouts/header %>
 
     <script>
-        $(document).ready(function(){
+      $(document).ready(function(){
             var width;
-            if(innerWidth > outerWidth)
-                width = outerWidth;
-            else
-                width = innerWidth;
-            if (width <= 768) document.location.href = "/video/index_smp/";
-            else document.location.href = "/video/index_com/";
-        })
-        
+            if(innerWidth > outerWidth) {
+              width = outerWidth;
+            }else {
+              width = innerWidth;
+            }
+            if (width <= 768) {
+              document.location.href = "/video/index_smp/";
+            }else {
+              document.location.href = "/video/index_com/";
+            }
+      });
+
+      /*
+      window.addEventListener("orientationchange",onOrientationchange ,false);
+      function onOrientationchange() {
+        //直式
+        if (window.orientation === 180 || window.orientation === 0) {
+          //大於768變電腦，小於768變手機
+          $(document).ready(function(){
+            var width;
+            if(innerWidth > outerWidth) {
+              width = outerWidth;
+            }else {
+              width = innerWidth;
+            }
+            if (width <= 768) {
+              document.location.href = "/video/index_smp/";
+            }else {
+              document.location.href = "/video/index_com/";
+            }
+        });
+        }
+        //橫式
+        if (window.orientation === 90 || window.orientation === -90 ){
+          document.location.href = "/video/index_com/";
+        } 
+      }
+      */
     </script>
     
   </body>
