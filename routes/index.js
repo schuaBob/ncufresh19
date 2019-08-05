@@ -484,7 +484,7 @@ router.get('/logout', function (req, res, next) {
   res.redirect('/');
 });
 
-router.get('/auth/provider', function (req, res, next) {
+router.get('/auth/provider', checkUser.isAllowtoLogin,  function (req, res, next) {
   var url = 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize?response_type=code&scope=user.info.basic.read&client_id=' + CLIENT_ID;
   res.redirect(url);
 });
@@ -522,7 +522,7 @@ router.get('/auth/provider/callback', function (req, res, next) {
       headers: {
         'Authorization': 'Bearer' + obj.access_token,
       }
-    }, function Callback(err, httpResponse, token) {
+    }, function Callback(err, httpResponse, info) {
       if (err)
         return console.error('failed to grab personal info:', err);
       if (!httpResponse.statusCode === 200) {
