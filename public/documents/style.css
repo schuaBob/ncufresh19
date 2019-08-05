@@ -36,6 +36,10 @@ body {
   background-color: #fff9dc;
 }
 
+.p_bg {
+  background-color: rgb(251,217,185);
+}
+
 /*----------------------------------------------------------------*/
 /*show文字自動縮排*/
 #show_content{
@@ -382,6 +386,10 @@ body {
 
  @media only screen and (max-width: 768px)  {
 
+  .modal {
+    top:40px;
+  }
+
   .modal-dialog {
     max-width: 90%; 
   }
@@ -608,6 +616,10 @@ body {
     margin-top: 5vh;
   }
 
+  .modal {
+    top:60px;
+  }
+
 }
 
 /*手機板*/
@@ -738,19 +750,29 @@ body {
     color: rgb(58, 154, 216);
   }
 
+  .modal {
+    top:60px;
+  }
+
   .modal-dialog {
     max-width: 96vw;
     max-height: 88vh;
   }
 
   .modal-body {
-    height: 80vh;
-    overflow: auto;
+    height: 70vh;
+    overflow-x: scroll;
+    overflow-y: scroll;
   }
 
 }
 
  @media only screen and (max-device-width: 768px) and (orientation:landscape)  {
+
+  .modal {
+    top:40px;
+  }
+
   .index_p {
     margin-top: 0;
     margin-bottom: 1rem;
