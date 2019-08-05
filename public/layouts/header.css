@@ -291,7 +291,9 @@
         position: relative;
         height: 0;
         width: 100%;
-        background-blend-mode: lighten;     
+        display: block;
+        background-blend-mode: lighten;
+        transition: 0.5s;     
     }
 }
 

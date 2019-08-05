@@ -14,9 +14,9 @@
         //         $('#myNavPics').empty()
         //     }
         // })
-
         $("#navbtn").click(() => {
-            var randNum = Math.floor(Math.random() * 13) + 1;
+            // var randNum = Math.floor(Math.random() * 13) + 1;
+            var randNum = 1;
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
                 if (window.innerWidth > 768) {
@@ -81,13 +81,12 @@
         $("." + el.attr("class") + ":last").remove();
     }
 
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i <= 1; i++) {
         $(`#randimg-${i}`).css({
             "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
-            "background-position": "center",
+            "background-position": "bottom",
             "background-repeat": "no-repeat",
             "background-size": "cover",
-            "display": "block",
             "background-color": "rgba(255, 255, 255, 0.6)",
             "background-blend-mode": "lighten"
         })
