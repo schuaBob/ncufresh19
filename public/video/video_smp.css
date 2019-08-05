@@ -1,0 +1,122 @@
+body {
+  height: 100vh;
+  background-color: #fff9dc;
+}
+
+main {
+  height: calc(100% - 60px);
+}
+
+a {
+  text-decoration: none;
+}
+a:link {
+  color: #000;
+}
+a:visited {
+  color: #000;
+}
+
+/* 手機版 */
+/* 0.1 max-device-width 1024px*/
+@media only screen and (max-width: 768px) {
+  /* ---------------- 手機直屏 ---------------- */
+  /* 35% */
+  .background {
+    width: 100vw;
+    height: 30%;
+    max-width: 100vw;
+    min-height: 180px;
+    margin-left: 0%;
+    margin-top: 3%;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+  }
+  #player {
+    width: 80%;
+    height: 80%;
+    min-width: 80%;
+    min-height: 100%;
+  }
+  .line {
+    width: 10px;
+    height: 50px;
+    background-color: #7CA7BC;
+    margin: 9px 10px 9px 0px;
+    float: left;
+  }
+  .title_bar {
+    width: 100vw;
+    min-width: 100%;
+    position: relative;
+    margin-left: 5%;
+    display:flex;
+    align-items:center;
+  }
+  .title {
+    font-size: 20px;
+    max-width: 270px;
+    min-height: 60px;
+    padding: 0px 0px;
+    margin-top: 5px;
+    text-align: center;
+    float: left;
+  }
+  .small_title {
+    color: gray;
+    font-size: 14px;
+  }
+  .back {
+    position: absolute;
+    right: 10%;
+    bottom: 20%;
+    margin: 0px 0px 0px 0px;
+    display: inline-block;
+  }
+  .button_area {
+    width: 100vw;
+    max-width: 100vw;
+    min-height: 35%;
+    max-height: 80%;
+    padding-top: 20px;
+    overflow: scroll;
+  }
+  .button_no_scroll {
+    width: 100vw;
+    max-width: 100vw;
+    min-height: 35%;
+    max-height: 80%;
+    padding-top: 20px;
+    overflow: scroll;
+  }
+  .v_button {
+    position: relative;
+    width: 50%;
+    height: auto;
+    margin: 0% 25% 5% 25%;
+    display: inline-block;
+  }
+}
+/* ---------------- 手機橫屏 ---------------- */
+@media only screen and (orientation: landscape) {
+  .v_button {
+    width: 25%;
+    margin: 0% 1.5% 3% 1.5%;
+  }
+  .button_area {
+    max-width: 80%; 
+    margin-left: 17%;
+  }
+  .button_no_scroll {
+    max-width: 80%; 
+    margin-left: 17%;
+    overflow: unset;
+  }
+  #player {
+    width: 50%;
+    height: 100%;
+    min-width: 50%;
+    min-height: 100%;
+  }
+}

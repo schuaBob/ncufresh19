@@ -150,7 +150,7 @@ router.get('/index-edit',checkUser.isAdmin, (req, res, next) => {
   })
 });
 
-router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) => {
+router.post('/adpic', uploadHandler.array('commercialpic', 6), checkUser.isAdmin, (req, res, next) => {
   var picArray = req.files.map((item) => {
     var desTemp = item.destination.split('/');
     var temp = {};
@@ -184,7 +184,7 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
     }
   })
 })
-router.get('/adpic/delete', (req, res, next) => {
+router.get('/adpic/delete', checkUser.isAdmin, (req, res, next) => {
   if (req.query.pk) {
     docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err, doc) => {
       if (err) return next(err);
@@ -198,7 +198,10 @@ router.get('/adpic/delete', (req, res, next) => {
     res.redirect('/index-edit');
   }
 })
-router.get('/schedule/:method', (req, res, next) => {
+router.post('/adpic/commercial_urls',checkUser.isAdmin,(req,res,next)=>{
+  
+})
+router.get('/schedule/:method',checkUser.isAdmin,  (req, res, next) => {
   switch (req.params.method) {
     case "read":
       docNews.findOne({ pk: req.query.pk }).exec((err, doc) => {
@@ -222,7 +225,7 @@ router.get('/schedule/:method', (req, res, next) => {
   }
 });
 
-router.post('/schedule/:method', (req, res, next) => {
+router.post('/schedule/:method', checkUser.isAdmin, (req, res, next) => {
   switch (req.params.method) {
     case "create":
       var temp = new docNews({
@@ -276,7 +279,7 @@ router.post('/schedule/:method', (req, res, next) => {
       break;
   }
 })
-router.get('/calender/:method', (req, res, next) => {
+router.get('/calender/:method', checkUser.isAdmin, (req, res, next) => {
   switch (req.params.method) {
     case "read":
       console.log(req.query.pk)
@@ -303,7 +306,7 @@ router.get('/calender/:method', (req, res, next) => {
   }
 });
 
-router.post('/calender/:method', (req, res, next) => {
+router.post('/calender/:method', checkUser.isAdmin, (req, res, next) => {
   switch (req.params.method) {
     case "create":
       var temp = new docCalender({

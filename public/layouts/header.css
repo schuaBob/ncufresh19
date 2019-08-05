@@ -287,11 +287,14 @@
         padding-bottom: 0.5vw;
     }
 
-    /* .randImg {
+    .randImg {
         position: relative;
         height: 0;
-        width: 100%;        
-    } */
+        width: 100%;
+        display: block;
+        background-blend-mode: lighten;
+        transition: 0.5s;     
+    }
 }
 
 
