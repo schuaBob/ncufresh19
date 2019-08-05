@@ -31,7 +31,7 @@ a {
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   user-select: none;
   /* for Firefox */
   -webkit-user-select: none;
@@ -248,10 +248,10 @@ body {
 /* 手機直立的通用設計 */
 @media only screen and (max-width:500px) and (orientation : portrait){
   html{
-    overflow: hidden;
+    overflow-x: hidden;
   }
   body{
-    overflow: hidden;
+    overflow-x: hidden;
   }      
   .leftSide{
     display: none;

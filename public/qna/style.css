@@ -131,6 +131,7 @@ body {
     left: 0;
     background-color: white;
     height: 85px;
+    
 }
 
 .titleSpace {
@@ -208,7 +209,7 @@ body {
 }
 
 .buttonGroup {
-    font-size: 1vw;
+    font-size: 1.4vw;
     display:flex;
     color: black;
     position: absolute;
@@ -543,6 +544,7 @@ thead>tr {
   }
   .titleSpace{
     left:27%;
+    width:92%;
   }
   .leftSide,.ask {
     display: none;

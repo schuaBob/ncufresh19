@@ -198,8 +198,7 @@
             //插入問題內容
             $(".answerModelQ > p").text(data[0].qContent);         
             //判斷是否為admin            
-            if($("#answerModelAID").attr("role")==="admin"){  
-              alert("admin mode");              
+            if($("#answerModelAID").attr("role")==="admin"){               
               if(data[0].category === ""){                
                 $("#dropdownMenuButton").text("請選擇分類");
               }else{
@@ -214,8 +213,7 @@
               }else{
                 $("#defaultCheck1").prop("checked",false);
               }
-            }else{         
-              alert("user mode");     
+            }else{          
               $(".answerTitleText").text("[" + data[0].category + "]" + data[0].title);
               $(".answerModelA > p").replaceWith(data[0].aContent);
             }

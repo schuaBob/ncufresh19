@@ -151,7 +151,7 @@
       <img src="dialog.png" alt="">
       <div class="answer">
         <div class="modalTitle">
-          <% if(true){ %>
+          <% if(user && user.role){ %>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -171,10 +171,10 @@
           <div class="contentPart answerModelQ">Question:
             <p></p>
           </div>
-          <div id="answerModelAID" class="contentPart answerModelA" <% if(true){ %> role="admin" <% } %>>
+          <div id="answerModelAID" class="contentPart answerModelA" <% if(user && user.role){ %> role="admin" <% } %>>
             Answer:
             <!-- user && (user.role === "admin") -->
-            <% if(true){ %> 
+            <% if(user && user.role){ %> 
               <textarea type="text" postID="" id="modifyInput" class="modifyInput tinyeditor"></textarea>
               <div id="mdoption">
                 <div class="form-check">
@@ -282,7 +282,7 @@
                 </tr>
               </thead>
               <tbody search="false">
-                <% for(let index in questions){ %>
+                <% if(questions.length>0){ for(let index in questions){ %>
                 <tr postID="<%= questions[index].postID%>">
                   <th scope="row"><%= questions[index].category%></th>
                   <td class="rowTitle"><span data-toggle="tooltip" data-placement="top"
@@ -291,7 +291,7 @@
                   <td><%= convertDateToString(questions[index]._id.getTimestamp()) %></td>
                   <td class="count"><%= questions[index].count  %></td>
                 </tr>
-                <% } %>
+                <% }} %>
               </tbody>
             </table>
           </div>
