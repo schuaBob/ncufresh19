@@ -96,7 +96,7 @@
                 <img class="foodIcon" title="影印店豆花" idconnect="5d3888dddea9437b52631f85" style="top: 50%; left: 36%; transform: rotate(15deg);" src="food_icon/飲品.png">
                 <img class="foodIcon" title="香城燒臘" idconnect="5d3888d6dea9437b52631f84" style="top: 54%; left: 38%; transform: rotate(15deg);" src="food_icon/簡餐.png">
                 <!-- 五興路 331巷 -->
-                <img class="foodIcon" title="真功夫" idconnect="5d3888e7dea9437b52631f86"
+                <img class="foodIcon" title="臻功夫" idconnect="5d3888e7dea9437b52631f86"
                     style="top: 46.5%; left: 20%; transform: rotate(15deg);" src="food_icon/小吃.png">
                 <img class="foodIcon" title="出海抓魚" idconnect="5d3888eedea9437b52631f87"
                     style="top: 46.5%; left: 16%; transform: rotate(15deg);" src="food_icon/飯糰.png">
@@ -183,8 +183,8 @@
                 </div>
             </div>
         </div>
-
-        <!--Modal-->
+        <%_ if (user && user.role === 'admin'){ -%>
+            <!--Modal-->
         <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -233,6 +233,7 @@
             </div>
             <!--/.modal -->
         </div>
+    <%_ } -%>
     </main>
     <% include ../layouts/js %>
     <% include js %>
