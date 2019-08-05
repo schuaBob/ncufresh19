@@ -17,10 +17,12 @@ html {
     top: 0;
     bottom: 0;
     width: 30%;
+    height: calc(100% - 60px);
     margin: 0 auto;
     padding: 0;
     padding-top: 4.5vh;
     z-index: 300;
+    overflow: hidden;
   }
   
   .navSubBtn {
@@ -194,9 +196,9 @@ html {
   }
 
   .subContent {
-    margin: 0 auto;
+    margin: 3% auto;
     position: relative;
-    height: calc(100% - 60px - 2% - 15vw - 160px);
+    height: calc(100% - 60px - 5% - 15vw);
     overflow-y: scroll;
     overflow-x: hidden; 
   }
@@ -204,7 +206,7 @@ html {
   .studyTitle {
     position: relative;
     background-color: #e0e0e0;
-    height: 120px;
+    height: 80px;
     margin: 20px 0;
   }
   
@@ -214,13 +216,13 @@ html {
   }
   
   #name {
-    font-size: 45px;
+    font-size: 30px;
     padding-top: 1%;
     margin-bottom: 0;
     font-weight: 500;
   }
   #college {
-    font-size: 20px;
+    font-size: 15px;
     padding-bottom: 5px;
     font-weight: 500;
   }
@@ -490,6 +492,10 @@ html {
     position: relative;
     /* width: 60vw; */
     float: left;
+  }
+
+  .content h3 {
+      font-size: 20px;
   }
   
   
