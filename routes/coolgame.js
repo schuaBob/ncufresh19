@@ -51,6 +51,11 @@ router.get('/getquestion', function (req, res, next) {
     res.send({result:result});
   });
 });
+// router.get('/gethistory', function (req, res, next) {
+//   History.find({}).exec(function (err, result){
+//     res.send({result:result});
+//   });
+// });
 router.get('/gettotalrank', function (req, res, next) {
   User.find({},{name:1,avatar:1,score_sum:1}).sort({score_sum:-1}).limit(10).exec(function (err, result){
     res.send(result);
