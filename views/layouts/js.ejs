@@ -7,7 +7,7 @@
         // $(window).resize(() => {
         //     if (window.innerWidth > 768) {
         //         if ($('#myNavPics').find('.randImg').length === 0) {
-        //             // InitRandImg(Math.floor(Math.random() * 13) + 1);
+        //             InitRandImg();
 
         //         }
         //     } else {
@@ -19,7 +19,9 @@
             var randNum = Math.floor(Math.random() * 13) + 1;
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
-
+                if (window.innerWidth > 768) {
+                    document.getElementById(`randimg-${randNum}`).style.height = "100vh";
+                }
                 document.getElementById("myNavLinks").style.height = "100%";
                 document.getElementById("myNavPics").style.height = "100%";
                 restart_animate(".one");
@@ -30,6 +32,9 @@
                 $("#mySidenav").removeClass("closed").addClass("opened");
             } else if ($("#mySidenav").hasClass("opened")) {
                 document.getElementById("mySidenav").style.height = "0";
+                if (window.innerWidth > 768) {
+                    document.getElementById(`randimg-${randNum}`).style.height = "0";
+                }
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
         });
@@ -76,18 +81,18 @@
         $("." + el.attr("class") + ":last").remove();
     }
 
-    // function InitRandImg() {
-    //     for (let i = 1; i <= 13; i++) {
-    //         $(`#randimg-${i}`).css({
-    //             "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
-    //             "background-position": "center",
-    //             "background-repeat": "no-repeat",
-    //             "background-size": "cover",
-    //             "display": "block",
-    //             "backdrop-filter": "opacity(70%)"
-    //         })
-    //     }
-    // }
+    for (let i = 1; i <= 12; i++) {
+        $(`#randimg-${i}`).css({
+            "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
+            "background-position": "center",
+            "background-repeat": "no-repeat",
+            "background-size": "cover",
+            "display": "block",
+            "background-color": "rgba(255, 255, 255, 0.6)",
+            "background-blend-mode": "lighten"
+        })
+    }
+
 
     // function chgPic(initPic) {
     //     var picNow = "#ramdImg-6";

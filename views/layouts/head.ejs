@@ -6,13 +6,26 @@
 <script type="text/javascript" src="/js/velocity.min.js"></script>
 <script type="text/javascript" src="/js/velocity.ui.min.js"></script>
 <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+ 
+        if ((document.body.offsetHeight - window.innerHeight > currentScrollPos) && (currentScrollPos > 0)) {
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("Navbar").style.top = "0";
+            } else {
+                document.getElementById("Navbar").style.top = "-60px";
+            }
+            prevScrollpos = currentScrollPos;
+        }
+    }
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     window.addEventListener('resize', () => {
         let vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     });
-    
+
 </script>
 <link rel='stylesheet' href='/css/bootstrap.min.css'>
 <link rel='stylesheet' href='/layouts/header.css' />

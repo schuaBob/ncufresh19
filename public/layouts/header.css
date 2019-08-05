@@ -287,11 +287,12 @@
         padding-bottom: 0.5vw;
     }
 
-    /* .randImg {
+    .randImg {
         position: relative;
         height: 0;
-        width: 100%;        
-    } */
+        width: 100%;
+        background-blend-mode: lighten;     
+    }
 }
 
 
