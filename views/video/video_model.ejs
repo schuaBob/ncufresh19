@@ -49,48 +49,9 @@
             }
           });
         }
-
-        var orignURL = location.pathname;
-        var newURL = orignURL.replace(/index_com/g, 'index_smp');
-
-        //alert(newURL);
-
-        //小於768變手機
-        $(document).ready(function(){
-            $(window).resize(function(){
-                var width = innerWidth;
-                if(width <= 768){
-                  document.location.href = newURL;
-                }
-            });
-        });
-
-        /*如果能不用他我就不用 不然再要寫35條：D
-        var changeURL;
-        if ('<%= title_bar[0] %>' === 'LIFE') {
-          switch ('<%= title_bar[3] %>') {
-            case '食':
-              changeURL = "/video/index_smp/nculife/eating";
-              break;
-            case '住':
-              changeURL = "/video/index_smp/nculife/living";
-              break;
-            case '行':
-              changeURL = "/video/index_smp/nculife/going";
-              break;
-            case '育':
-              changeURL = "/video/index_smp/nculife/education";
-              break;
-            case '樂':
-              changeURL = "/video/index_smp/nculife/joy";
-              break;
-          
-            default:
-              break;
-          }
-        }
-        */
       </script>
+
+      <% include ./js %>
 
   </main>
 </body>

@@ -179,49 +179,7 @@
         <img src="/video/大珊瑚.png" class="picture_right">
 
 
-        <script>
-        // 還是加一下進入判斷好了，控制台會玩壞他
-        //小於768變手機
-        var orignURL = location.pathname;
-        var newURL = orignURL.replace(/index_com/g, 'index_smp');
-
-        //alert(newURL);
-
-        $(document).ready(function(){
-            var width;
-            if(innerWidth > outerWidth)
-                width = outerWidth;
-            else
-                width = innerWidth;
-            if(width <= 768)
-                document.location.href = newURL;
-           $(window).resize(function(){
-                if(innerWidth > outerWidth)
-                    width = outerWidth;
-                else
-                    width = innerWidth;
-                if(width <= 768)
-                    document.location.href = newURL;
-            });
-        });
-
-        /*應該不需要判斷進入網頁的狀況
-        //小於768變手機
-        var orignURL = location.pathname;
-        var newURL = orignURL.replace(/index_com/g, 'index_smp');
-
-        //alert(newURL);
-
-        $(document).ready(function(){
-            $(window).resize(function(){
-                var width = innerWidth;
-                if(width <= 768){
-                  document.location.href = newURL;
-                }
-            });
-        });
-        */
-        </script>
+        <% include ./js %>
 
     </main>
 </body>
