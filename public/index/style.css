@@ -262,6 +262,13 @@ main {
         margin: 0 auto;
     }
 
+    #indexPage1 {
+        background-image: url("/index/首頁1_small.png");
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
     .bigSvg {
         position: relative;
         height: 140px;
