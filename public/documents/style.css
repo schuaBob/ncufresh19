@@ -691,7 +691,9 @@ body {
   }
 
   .options {
+    height: 70vh;
     margin-top: 8.5vw;
+    overflow-y: scroll;
   }
 
   .p_option {
@@ -760,7 +762,7 @@ body {
   }
 
   .modal-body {
-    height: 70vh;
+    height: 66vh;
     overflow-x: scroll;
     overflow-y: scroll;
   }
