@@ -68,7 +68,7 @@ ul {
   bottom: 0;
 }
 .bgImage {
-  max-width: 250px;
+  max-width: 20vw;
   left:0;
 }
 #main {
@@ -398,7 +398,7 @@ ul.timeline > li:before {
 
 .hint {
   color: white;
-  font-size: 50px;
+  font-size: 8vw;
   position: absolute;
   top: 25%;
   left: 50%;
