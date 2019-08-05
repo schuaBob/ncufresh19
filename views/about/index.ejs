@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title><%= title %></title>
-  <% include ../layouts/head %>
-  
+  <% include ../layouts/head %>  
   <link rel='stylesheet' href='/about/style.css' />
   <link rel="stylesheet" href="/fontawesome/css/all.min.css">
   <style>    
   </style>
 </head>
-
 <body>  
   <% include ../layouts/header %>
   <!-- The Modal -->
@@ -95,19 +92,12 @@
   </div>
   <% include ../layouts/js %>
   <script>
-    $(document).ready(function () {
-      // $('a[href^="#"]').click(function(){
-      //   $('.rightSide').animate({
-      //         scrollTop: $( $.attr(this, 'href') ).offset().top-30
-      //     }, 1000);          
-      // });     
+    $(document).ready(function () {   
       if (location.href.split("#")[1] === "") {
         $(".option li").css("background-color", "transparent");
-        // $("a[href='#all']").parent("li").find("i").css("display","inline");
         $("a[href='#all']").parent("li").css("background-color", "rgb(251,217,185)");
       } else {
         $(".option li").css("background-color", "transparent");
-        // $("a[href='#"+location.href.split("#")[1]+"']").parent("li").find("i").css("display","inline");
         $("a[href='#" + location.href.split("#")[1] + "']").parent("li").css("background-color",
         "rgb(251,217,185)");
       }
@@ -117,15 +107,11 @@
       });
       $(".option li").mouseenter(function () {
         $(this).addClass("optionHover");
-        // $(this).find("i").css("display","inline");
       });
       $(".option li").mouseleave(function () {
         $(this).removeClass("optionHover");
-        // $(this).find("i").css("display","none");
       });
     });
   </script>
 </body>
-
-
 </html>
