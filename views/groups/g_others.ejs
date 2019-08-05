@@ -25,11 +25,11 @@
             </div>
             <div class="navbar">
                 <img src="/groups/line.png" class="cuttingline">
-                <a class="nava a" href="/groups/department"><img src="/groups/系所鈕.PNG" class="navimg"><br>系所</a>
-                <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/社團鈕.PNG" class="navimg"><br>社團</a>
-                <a class="nava c" href="/groups/association"><img src="/groups/學生會鈕.PNG" class="navimg"><br>學生會</a>
-                <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/社群鈕.PNG" class="navimg"><br>社群</a>
-                <a class="nava e" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
+                <a class="nava a" href="/groups/department"><img src="/groups/department_btn.PNG" class="navimg"><br>系所</a>
+                <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/club_btn.PNG" class="navimg"><br>社團</a>
+                <a class="nava c" href="/groups/association"><img src="/groups/stu_btn.PNG" class="navimg"><br>學生會</a>
+                <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/community_btn.PNG" class="navimg"><br>社群</a>
+                <a class="nava e" href="/groups/others"><img src="/groups/others_btn.PNG" class="navimg"><br>其他學生組織</a>
             </div>
         </div>
         <%if(user && user.role==="admin"){%>
@@ -61,7 +61,7 @@
 
                                     <div class="form-group">
                                         <label for="intro" class="col-form-label">介紹</label>
-                                        <textarea class="form-control" id="intro" name="intro" cols="10" rols="10"></textarea>
+                                        <textarea class="form-control  tinyeditor" id="intro" name="intro" cols="10" rols="10"></textarea>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -114,7 +114,7 @@
                     <ul>
                         <% for(var i in others) {%>
                             <a style="text-decoration:none; color: #0D4966;" href="/groups/others/<%=others[i].name%>">
-                    <li class="sideli horizontal" id="<%=others[i].name%>"><i class="fas fa-angle-right"></i>
+                    <li class="sideli horizontal" id="<%=others[i].name%>"><i class="fas fa-angle-right fa-mob"></i>
                         <%=others[i].name%>
                     </li>
                 </a>

@@ -7,6 +7,7 @@
     </title>
     <% include ../layouts/head %>
         <% include ../layouts/script %>
+            <script type="text/javascript" src="/js/tinymce.min.js"></script>
             <link rel='stylesheet' href='/groups/style.css' />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
             <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,11 +24,11 @@
             </div>
             <div class="navbar">
                 <img src="/groups/line.png" class="cuttingline">
-                <a class="nava a" href="/groups/department"><img src="/groups/系所鈕.PNG" class="navimg"><br>系所</a>
-                <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/社團鈕.PNG" class="navimg"><br>社團</a>
-                <a class="nava c" href="/groups/association"><img src="/groups/學生會鈕.PNG" class="navimg"><br>學生會</a>
-                <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/社群鈕.PNG" class="navimg"><br>社群</a>
-                <a class="nava e" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
+                <a class="nava a" href="/groups/department"><img src="/groups/department_btn.PNG" class="navimg"><br>系所</a>
+                <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/club_btn.PNG" class="navimg"><br>社團</a>
+                <a class="nava c" href="/groups/association"><img src="/groups/stu_btn.PNG" class="navimg"><br>學生會</a>
+                <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/community_btn.PNG" class="navimg"><br>社群</a>
+                <a class="nava e" href="/groups/others"><img src="/groups/others_btn.PNG" class="navimg"><br>其他學生組織</a>
             </div>
         </div>
         <div class="sidebar">
@@ -71,12 +72,12 @@
                                 <form action="/groups/edit_association" method="post">
                                     <div class="form-group">
                                         <label for="intro" class="col-form-label">簡介</label>
-                                        <textarea class="form-control" id="intro" name="intro" rows="8" value="<%=content.intro%>"></textarea>
+                                        <textarea class="form-control tinyeditor" id="intro" name="intro" rows="8" value="<%-content.intro%>"></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="section" class="col-form-label">部門介紹</label>
-                                        <textarea class="form-control" id="section" name="section" rows="8" value="<%=content.section%>"></textarea>
+                                        <textarea class="form-control tinyeditor" id="section" name="section" rows="8" value="<%-content.section%>"></textarea>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -121,7 +122,7 @@
                             簡介
                         </div>
                         <div class="content">
-                            <%=content[0].intro%>
+                            <%-content[0].intro%>
                         </div>
 
                     </div>
@@ -131,7 +132,7 @@
                                 部門介紹
                             </div>
                             <div class="content">
-                                <%=content[0].section%>
+                                <%-content[0].section%>
 
 
                             </div>
@@ -140,7 +141,7 @@
                                     <div class="info_title">
                                         活動剪影
                                     </div>
-                                    <div class="content">
+                                    <div class="content_pic">
                                         <% for(var i in pic) {%>
                                             <img src="<%= pic[i].pathname%>" class=stu_img>
                                             <%}%>

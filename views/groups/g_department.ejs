@@ -25,11 +25,11 @@
 
             <div class="navbar">
                 <img src="/groups/line.png" class="cuttingline">
-                <a class="nava a" href="/groups/department"><img src="/groups/系所鈕.PNG" class="navimg"><br>系所</a>
-                <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/社團鈕.PNG" class="navimg"><br>社團</a>
-                <a class="nava c" href="/groups/association"><img src="/groups/學生會鈕.PNG" class="navimg"><br>學生會</a>
-                <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/社群鈕.PNG" class="navimg"><br>社群</a>
-                <a class="nava e" href="/groups/others"><img src="/groups/其他鈕.PNG" class="navimg"><br>其他學生組織</a>
+                <a class="nava a" href="/groups/department"><img src="/groups/department_btn.PNG" class="navimg"><br>系所</a>
+                <a class="nava b" href="http://club.adm.ncu.edu.tw/clubs" target="_blank"><img src="/groups/club_btn.PNG" class="navimg"><br>社團</a>
+                <a class="nava c" href="/groups/association"><img src="/groups/stu_btn.PNG" class="navimg"><br>學生會</a>
+                <a class="nava d" target="_blank" href="https://sites.google.com/g.ncu.edu.tw/ideancu/%E7%A4%BE%E7%BE%A4%E5%9C%98%E9%9A%8A?authuser=0&fbclid=IwAR07XTyDeWeAc2hLV0WI6B5Z_0homKitFfINFvQ9mNK2jWZAfzcDcjbyZHQ"><img src="/groups/community_btn.PNG" class="navimg"><br>社群</a>
+                <a class="nava e" href="/groups/others"><img src="/groups/others_btn.PNG" class="navimg"><br>其他學生組織</a>
             </div>
         </div>
         <div class="sidebar">
@@ -192,6 +192,10 @@
                     </div>
                 </div>
                 <%_ if(department_type!==null){ -%>
+
+                    <div class=".mob_de_type" style="display: none">
+                        <%=department_type%>
+                    </div>
                     <div class="sidebar2">
                         <ul>
 
@@ -212,7 +216,7 @@
 
                     <%}%>
                         <%_ if(department_this!==null){ -%>
-                            <button class="snap_so btn btn-light"></button>
+                            <button class="snap_so btn btn-light btn-circle"></button>
                             <div class="de-info">
                                 <div class="department">
                                     <%=department_this.name%>
@@ -224,18 +228,27 @@
                                 <img src="/groups/cutline.png" class="cutline">
                                 <div class="linkbuttons">
                                     <%_ if(department_this.de_link!==""){ -%>
-                                        <div class="character">
-                                            <a class="linkhover" style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:5.5vw" class="link">系所</span></a>
+                                        <div class="shell">
+                                            <a class="linkhover" style="text-decoration:none; " target="_blank" href="<%= department_this.de_link%>"><img src="/groups/貝殼關閉.png" class="linkimg">
+                                                <p class="link">系所</p>
+                                            </a>
+
                                         </div>
                                         <%_ } -%>
                                             <%_ if(department_this.stu_link!==""){ -%>
-                                                <div class="character">
-                                                    <a class="linkhover" style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:4.75vw" class="link">系學會</span></a>
+                                                <div class="shell">
+                                                    <a class="linkhover" style="text-decoration:none;" target="_blank" href="<%= department_this.stu_link%>"><img src="/groups/貝殼關閉.png" class="linkimg">
+                                                        <p class="link">系學會</p>
+                                                    </a>
+
                                                 </div>
                                                 <%_ } -%>
                                                     <%_ if(department_this.qna_link!==""){ -%>
-                                                        <div class="character">
-                                                            <a class="linkhover" style="text-decoration:none;" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg"><span style="position: absolute;top:4vw;left:4vw" class="link">系上問答</span></a>
+                                                        <div class="shell">
+                                                            <a class="linkhover" style="text-decoration:none;" href="<%= department_this.qna_link%>"><img src="/groups/貝殼關閉.png" class="linkimg">
+                                                                <p class="link">系上問答</p>
+                                                            </a>
+
                                                         </div>
                                                         <%_ } -%>
                                 </div>
@@ -251,13 +264,13 @@
                                 <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
                                 <img src="/groups/系所.PNG" class=backgroundimg>
                                 <img src="/groups/snap.gif" class="snap">
-                                <button class="snap_btn btn btn-danger">SNAP!!!</button>
+                                <button class="snap_btn btn btn-danger ">SNAP!!!</button>
 
-                                <button class="snap_r btn alert-danger"></button>
-                                <button class="snap_s btn alert-primary"></button>
-                                <button class="snap_t btn alert-success"></button>
-                                <button class="snap_p btn btn-secondary"></button>
-                                <button class="snap_m btn alert-warning"></button>
+                                <button class="snap_r btn alert-danger btn-circle"></button>
+                                <button class="snap_s btn alert-primary btn-circle"></button>
+                                <button class="snap_t btn alert-success btn-circle"></button>
+                                <button class="snap_p btn btn-secondary btn-circle"></button>
+                                <button class="snap_m btn alert-warning btn-circle"></button>
 
 
 
