@@ -180,33 +180,7 @@
         </div>
     <% } %>
 
-    <script>
-        //大於768變com
-        var orignURL = location.pathname;
-        var newURL = orignURL.replace(/index_smp/g, 'index_com');
-
-        //alert(newURL);
-
-        $(document).ready(function(){
-            var width;
-            if(innerWidth > outerWidth)
-                width = outerWidth;
-            else
-                width = innerWidth;
-            if(width > 768)
-                document.location.href = newURL;
-           $(window).resize(function(){
-                if(innerWidth > outerWidth)
-                    width = outerWidth;
-                else
-                    width = innerWidth;
-                if(width > 768)
-                    document.location.href = newURL;
-            });
-        });
-    </script>
-
-
+    <% include ./js_smp %>
 
     </main>
 
