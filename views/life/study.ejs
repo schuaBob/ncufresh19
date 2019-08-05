@@ -68,7 +68,8 @@
                 </div>
             </div>
         </div>
-        <!--Modal-->
+    <%_ if (user && user.role === 'admin'){ -%>
+            <!--Modal-->
         <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -198,6 +199,7 @@
             </div>
             <!--/.modal -->
         </div>
+    <%_ } -%>
     </main>
     <% include ../layouts/js %>
     <% include js %>
