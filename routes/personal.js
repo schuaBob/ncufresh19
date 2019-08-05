@@ -71,7 +71,7 @@ var storage = multer.diskStorage({
       id: req.user.id
     }, {
       $set: {
-        profile_pic: fileName
+        avatar: fileName
       }
     }, function (err) {
       if (err) {
