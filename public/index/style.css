@@ -32,7 +32,20 @@ main {
 }
 
 /* 手機版 */
-@media only screen and (max-width: 1025px) {
+@media only screen and (max-width: 768px) {
+
+    #triangle {
+        z-index: 4999;
+        position: absolute;
+        height: 70px;
+        width: 70px;
+    }
+
+    #indexOneCircle {
+        height: 70px;
+        width: 70px;
+    }
+
     #indexLogo {
         position: absolute;
         z-index: 500;
@@ -103,7 +116,7 @@ main {
     .card-body h5 {
         font-size: 25px;
         margin: 0;
-    }    
+    }
 
     #pickMonth {
         position: absolute;
@@ -112,7 +125,7 @@ main {
         width: 100vw;
         top: 4vh;
     }
-    
+
     #pickMonth .container1 {
         width: 100vw;
         padding-left: 1vw;
@@ -127,7 +140,7 @@ main {
         margin-left: 4vw;
         margin-right: 4vw;
     }
-    
+
     .selectMonth h5 {
         position: absolute;
         display: block;
@@ -139,17 +152,13 @@ main {
         margin: 0;
         font-size: 18px;
     }
-    
+
     .bigSvg {
         height: 24vw;
         width: 24vw;
     }
 
-    .bigCircle {
-        cx: 12vw;
-        cy: 12vw;
-        r: 12vw;
-    }
+    
 
     #monthDetail {
         position: absolute;
@@ -208,7 +217,7 @@ main {
         margin-left: 2.5vw;
         margin-right: 2.5vw;
     }
-    
+
     .dot {
         display: none;
     }
@@ -228,7 +237,8 @@ main {
         text-align: center;
     }
 
-    .prev, .next{
+    .prev,
+    .next {
         position: absolute;
         cursor: pointer;
         font-size: 11vw;
@@ -250,16 +260,13 @@ main {
 }
 
 /* 平板 */
-@media only screen and (min-width: 600px) and (max-width: 1025px) {
-    #news {
-        position: relative;
-        width: 700;
-    }
-
-    #carouselExampleIndicators {
-        width: 100%;
-        display: block;
-        margin: 0 auto;
+@media only screen and (min-width: 768px) and (max-width: 1025px) {
+    #indexLogo {
+        position: absolute;
+        z-index: 500;
+        width: 280px;
+        left: calc(50vw - 140px);
+        bottom: calc(calc(100vh - 30px)/2 + 36px);
     }
 
     #indexPage1 {
@@ -268,18 +275,24 @@ main {
         background-repeat: no-repeat;
         background-size: cover;
     }
-    
-    .bigSvg {
-        position: relative;
-        height: 140px;
-        width: 140px;
-        left: calc(50% - 70px);
+
+    #triangle {
+        z-index: 4999;
+        position: absolute;
+        height: 100px;
+        width: 100px;
     }
 
-    .bigCircle {
-        cx: 70px;
-        cy: 70px;
-        r: 70px;
+    #indexOneCircle {
+        height: 100px;
+        width: 100px;
+    }
+
+    .bigSvg {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        left: calc(50% - 50px);
     }
 
     .selectMonth h5 {
@@ -304,6 +317,7 @@ main {
     .target .date {
         font-size: 50px;
     }
+
 }
 
 /* 電腦版 */
@@ -362,7 +376,7 @@ main {
     .card-body h5 {
         font-size: 2vw;
         margin: 0;
-    }    
+    }
 
     #pickMonth {
         position: absolute;
@@ -370,7 +384,7 @@ main {
         width: 25%;
         left: 5%;
     }
-    
+
     #pickMonth .container1 {
         height: 100%;
         padding-top: 4%;
@@ -383,7 +397,7 @@ main {
         margin-top: 3vh;
         margin-bottom: 7vh;
     }
-    
+
     .selectMonth h5 {
         position: absolute;
         display: block;
@@ -393,17 +407,12 @@ main {
         padding: 0;
         margin: 0;
     }
-    
+
     .bigSvg {
         height: 120px;
         width: 120px;
     }
 
-    .bigCircle {
-        cx: 60px;
-        cy: 60px;
-        r: 60px;
-    }
 
     #monthDetail {
         position: absolute;
@@ -454,8 +463,9 @@ main {
         margin-left: 0;
         margin-right: 6%;
     }
-    
-    .prev, .next{
+
+    .prev,
+    .next {
         display: none;
     }
 
@@ -469,6 +479,18 @@ main {
         width: 8vw;
         left: calc(50% - 4vw);
         bottom: 24px;
+    }
+
+    #triangle {
+        z-index: 4999;
+        position: absolute;
+        height: 100px;
+        width: 100px;
+    }
+
+    #indexOneCircle {
+        height: 100px;
+        width: 100px;
     }
 }
 
@@ -490,12 +512,7 @@ main {
     left: calc(50% - 35px);
 }
 
-#triangle {
-    z-index: 4999;
-    position: absolute;
-    height: 100px;
-    width: 100px;
-}
+
 
 #nextbtn {
     position: absolute;
@@ -568,8 +585,8 @@ main {
     width: 100vmax;
     height: 100vmin;
 }
-    
-.col-lg{
+
+.col-lg {
     padding-top: 30px;
     padding-bottom: 30px;
 }

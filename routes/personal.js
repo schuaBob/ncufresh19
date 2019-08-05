@@ -70,14 +70,14 @@ var storage = multer.diskStorage({
     User.update({
       id: req.user.id
     }, {
-      $set: {
-        avatar: fileName
-      }
-    }, function (err) {
-      if (err) {
-        return next(err);
-      }
-    });
+        $set: {
+          avatar: fileName
+        }
+      }, function (err) {
+        if (err) {
+          return next(err);
+        }
+      });
     cb(null, fileName);
   }
 });
@@ -97,10 +97,10 @@ router.post('/editPicture', upload.single('picture'), function (req, res, next) 
     } else {
       console.log(`${fileName} exists, and it is writable`);
       sharp(fileName).resize({
-        width:800,
-        height:800,
+        width: 800,
+        height: 800,
         fit: sharp.fit.cover,
-        position:'centre'
+        position: 'centre'
       }).toFile("public/personal/profile-photo/" + req.user.id + "-new.png").then((info) => {
         console.log(info);
       }).catch((err) => {

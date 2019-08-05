@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
+        .card-link{
+            cursor: pointer;
+        }
         .modal {
             z-index: 5010;
         }
@@ -33,6 +36,15 @@
 
 <body>
     <modal>
+        <div class="myForm">
+            <form action="/adpic/commercial_urls" method="POST">
+                <div class="form-group">
+                    <label for="month">Month</label>
+                    <input type="text" class="form-control" name="commerUrl" placeholder="url" style="margin-bottom:5px">
+                    <button type="submit" class="btn btn-info">Update</button>
+                </div>
+            </form>
+        </div>
         <div class="modal fade" id="ScheduleNewsModal" aria-labelledby="ScheduleNewsTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -244,17 +256,21 @@
     </main>
     <% include ../layouts/js %>
     <script>
+        $('.myForm button').click(()=>{
+            $(this).popover('toggle')
+        })
         var loadFile = function (event) {
             $('#howMany').text(`上傳${event.target.files.length}個圖片`);
         };
         $(document).ready(() => {
-            // $(function () {
-            //     $('[data-toggle="popover"]').popover({
-            //         placement:"top",
-            //         title:"Add links"
-            //         content:
-            //     })
-            // })
+            $(function () {
+                $('[data-toggle="popover"]').popover({
+                    placement:"top",
+                    html:true,
+                    title:"Add links",
+                    content:$(".myForm")
+                })
+            })
             tinyMCE.get('editboard').setContent("");
             $('#news span').click(() => {
                 $('#Subbtn').hide();
