@@ -229,6 +229,10 @@
         margin-right: 6px;
         display: none;
     }
+    
+    #stu_mob {
+        display: none
+    }
     /*---------------------------------------------edit---------------------------------------------------*/
     
     .buttons {
@@ -253,11 +257,11 @@
     .info {
         position: absolute;
         width: 60vw;
-        height: 70vh;
+        height: 75vh;
         top: 175px;
         right: 10vw;
         background-color: #FFFDF1;
-        overflow: scroll
+        overflow: auto;
     }
     
     .content {
@@ -271,9 +275,10 @@
     
     .content_pic {
         position: relative;
-        top: 1vh;
-        display: flex;
-        justify-content: Space-around;
+        top: 4vh;
+        width: 85%;
+        margin: 0 auto;
+        height: 35vh;
     }
     
     .info-line {
@@ -288,9 +293,9 @@
     .info_title {
         text-align: center;
         position: relative;
-        top: 1vh;
+        top: 2vh;
         color: #0D4966;
-        font-size: 4vw
+        font-size: 3vw
     }
     
     .cutline {
@@ -335,7 +340,7 @@
     }
     
     .stu_img {
-        width: 20vw
+        height: 20vh;
     }
     /* eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
     
@@ -434,7 +439,7 @@
     }
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%phone%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 600px) and (orientation: portrait) {
         .container {
             border: 0px;
             padding: 0px;
@@ -509,6 +514,14 @@
             overflow: auto;
             font-weight: lighter;
         }
+        #stu_com {
+            display: none;
+        }
+        #stu_mob {
+            display: flex;
+            width: 100vw;
+            justify-content: Space-around;
+        }
         .fas .fa-angle-right .fa-mob {
             display: none;
         }
@@ -566,24 +579,29 @@
         .info {
             position: absolute;
             font-size: 4vw;
-            width: 80%;
-            height: 60vh;
-            top: 45vw;
+            width: 90vw;
+            left: calc(50% - 45vw);
+            height: 50vh;
+            top: 32vh;
             background-color: #FFFDF1;
             overflow: auto;
         }
         .info_title {
-            font-size: 10vw;
+            font-size: 8vw;
+        }
+        .content_pic {
+            top: 5vh;
+            width: 90%;
+        }
+        .content {
+            font-size: 4vw;
+            top: 3vh;
         }
         .de-info {
             position: absolute;
             top: 45vw;
             width: 100vw;
-            font-size: 7vw
-        }
-        .info {
-            top: 30vh;
-            height: 55vh;
+            font-size: 7vw;
         }
         .cutline {
             width: 50vw;
