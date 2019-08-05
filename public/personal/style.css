@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
+
 
 body {
   background-color: #fff9dc;
@@ -163,13 +163,15 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .circle {
   border-radius: 1000px !important;
   overflow: hidden;
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   position: absolute;
   top: 100px;
   left: calc(370px + 48vw);

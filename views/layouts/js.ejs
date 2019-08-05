@@ -1,50 +1,40 @@
 <script>
     $(document).ready(() => {
-        if (window.innerWidth > 768) {
-            InitRandImg();
-            // chgPic(Math.floor(Math.random() * 13) + 1)
-        }
-        $(window).resize(() => {
-            if (window.innerWidth > 768) {
-                if ($('#myNavPics').find('.randImg').length === 0) {
-                    // InitRandImg(Math.floor(Math.random() * 13) + 1);
+        // if (window.innerWidth > 768) {
+        //     InitRandImg();
+        //     // chgPic(Math.floor(Math.random() * 13) + 1)
+        // }
+        // $(window).resize(() => {
+        //     if (window.innerWidth > 768) {
+        //         if ($('#myNavPics').find('.randImg').length === 0) {
+        //             InitRandImg();
 
-                }
-            } else {
-                $('#myNavPics').empty()
-            }
-        })
-
+        //         }
+        //     } else {
+        //         $('#myNavPics').empty()
+        //     }
+        // })
         $("#navbtn").click(() => {
-            var randNum = Math.floor(Math.random() * 13) + 1;
+            // var randNum = Math.floor(Math.random() * 13) + 1;
+            var randNum = 1;
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
-                $(`#randimg-${randNum}`).velocity({
-                    height:"100vh"
-                }).then(() => {
-                    $('#mySidenav').velocity({
-                        "height": "100%"
-                    })
-                    document.getElementById("myNavLinks").style.height = "100%";
-                    document.getElementById("myNavPics").style.height = "100%";
-                    restart_animate(".one");
-                    restart_animate(".two");
-                    restart_animate(".three");
-                    restart_animate(".four");
-                }).catch((err) => {
-                    console.error(err);
-                })
+                if (window.innerWidth > 768) {
+                    document.getElementById(`randimg-${randNum}`).style.height = "100vh";
+                }
+                document.getElementById("myNavLinks").style.height = "100%";
+                document.getElementById("myNavPics").style.height = "100%";
+                restart_animate(".one");
+                restart_animate(".two");
+                restart_animate(".three");
+                restart_animate(".four");
+                document.getElementById("mySidenav").style.height = "100%";
                 $("#mySidenav").removeClass("closed").addClass("opened");
             } else if ($("#mySidenav").hasClass("opened")) {
-                $('#mySidenav').velocity({
-                    height: 0
-                }).then(() => {
-                    $(`#randimg-${randNum}`).velocity({
-                        height: 0
-                    });
-                }).catch((err)=>{
-                    console.error(err);
-                })
+                document.getElementById("mySidenav").style.height = "0";
+                if (window.innerWidth > 768) {
+                    document.getElementById(`randimg-${randNum}`).style.height = "0";
+                }
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
         });
@@ -91,18 +81,17 @@
         $("." + el.attr("class") + ":last").remove();
     }
 
-    function InitRandImg() {
-        for (let i = 1; i <= 13; i++) {
-            $(`#randimg-${i}`).css({
-                "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
-                "background-position": "center",
-                "background-repeat": "no-repeat",
-                "background-size": "cover",
-                "display": "block",
-                "backdrop-filter": "opacity(70%)"
-            })
-        }
+    for (let i = 1; i <= 1; i++) {
+        $(`#randimg-${i}`).css({
+            "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
+            "background-position": "bottom",
+            "background-repeat": "no-repeat",
+            "background-size": "cover",
+            "background-color": "rgba(255, 255, 255, 0.6)",
+            "background-blend-mode": "lighten"
+        })
     }
+
 
     // function chgPic(initPic) {
     //     var picNow = "#ramdImg-6";
