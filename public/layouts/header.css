@@ -57,7 +57,7 @@
 @media only screen and (max-width: 768px) {
     body {
         width: 100vw;
-        height: calc(var(--vh, 1vh)*100);
+        height: calc(var(--vh, 1vh)*100) !important;
         padding: 0 !important;
         margin: 0 !important;
     }
