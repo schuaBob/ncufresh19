@@ -39,7 +39,7 @@
     background: #fff9dc;
 }
 
-::-webkit-scroll bar-thumb {
+::-webkit-scrollbar-thumb {
     background: #736f6e;
 }
 
@@ -47,19 +47,23 @@
     background: #555;
 }
 
-body {
-    width: 100vw;
-    height: 100vh;
-    padding: 0 !important;
-    margin: 0 !important;
+#randImg {
+    width: 100%;
+    position: relative;
 }
 
 
 /* 手機版 */
 @media only screen and (max-width: 768px) {
+    body {
+        width: 100vw;
+        height: calc(var(--vh, 1vh)*100);
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
     #mySidenav #links .link {
         font-size: 22px !important;
-        left: calc(50% - 44px);
     }
 
     #myNavLinks {
@@ -72,24 +76,35 @@ body {
 
     #mySidenav #links li {
         display: block;
-        padding: calc(5vh - 0.5vw - 16px) 0px;
         margin: 0;
+        width: 100%;
+        position: relative;
+        padding: calc(calc(var(--vh, 1vh) * 5) - 16px - 0.15vw) 0;
+        text-align: center;
+    }
+
+    #mySidenav #links {
+        height: calc(calc(var(--vh, 1vh) * 100) - 80px - 3vw);
         width: 100%;
         position: relative;
     }
 
-    #mySidenav #links {
-        height: calc(100vh - 25vw);
-        width: calc(100% - 10px);
+    #copyright {
+        position: relative;
+        color: #0163b0;
+        text-align: center;
+        display: block;
+        width: 100%;
+        font-size: 12px;
+        padding-bottom: 2vw;
     }
-    
+
     /* menu */
     #menuTag {
         position: relative;
         width: 100%;
         margin-top: 1vw;
         text-align: center;
-        height: 6vw;
     }
 
     .one {
@@ -99,6 +114,7 @@ body {
         font-size: 30px !important;
         color: #FF7300 !important;
     }
+
     .two {
         position: relative !important;
         animation: oh 3s;
@@ -106,6 +122,7 @@ body {
         font-size: 30px !important;
         color: #FF7300 !important;
     }
+
     .three {
         position: relative !important;
         animation: are 3s;
@@ -113,6 +130,7 @@ body {
         font-size: 30px !important;
         color: #FF7300 !important;
     }
+
     .four {
         position: relative !important;
         animation: dee 3s;
@@ -124,9 +142,16 @@ body {
 
 /* 電腦版 */
 @media only screen and (min-width: 768px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
     #mySidenav #links .link {
-        font-size: 1.7vw !important;
-        left: calc(50% - 3.5vw);
+        font-size: 3.5vh !important;
+        position: relative;
     }
 
     #myNavLinks {
@@ -141,74 +166,131 @@ body {
 
     #mySidenav #links li {
         display: block;
-        padding: calc(5vh - 0.5vw - 13px) 0;
+        padding: calc(calc(48vh - 57px - 4.5vw)/20) 0;
         position: relative;
+        text-align: center;
+        height: auto;
     }
 
     #mySidenav #links {
-        height: calc(100vh - 10vw);
+        height: calc(100vh - 57px - 4.5vw);
     }
 
     /* menu */
     #menuTag {
         position: relative;
         width: 100%;
-        margin-top: 1vw;
+        padding-top: 1vw;
         text-align: center;
-        height: 4vw;
     }
 
     .one {
         position: relative !important;
         animation: doubleyou 3s;
         display: inline !important;
-        font-size: 30px !important;
+        font-size: 38px !important;
         color: #FF7300 !important;
     }
+
     .two {
         position: relative !important;
         animation: oh 3s;
         display: inline !important;
-        font-size: 30px !important;
+        font-size: 38px !important;
         color: #FF7300 !important;
     }
+
     .three {
         position: relative !important;
         animation: are 3s;
         display: inline !important;
-        font-size: 30px !important;
+        font-size: 38px !important;
         color: #FF7300 !important;
     }
+
     .four {
         position: relative !important;
         animation: dee 3s;
         display: inline !important;
-        font-size: 30px !important;
+        font-size: 38px !important;
         color: #FF7300 !important;
     }
 
     @keyframes doubleyou {
-        0%   {left: 200px;opacity:0}
-        25%  {left: 200px;}
-        100% {left: 0px;}
+        0% {
+            left: 200px;
+            opacity: 0
+        }
+
+        25% {
+            left: 200px;
+        }
+
+        100% {
+            left: 0px;
+        }
     }
 
     @keyframes oh {
-        0%   {left: 100px;opacity:0}
-        25%  {left: 60px;}
-        100% {left: 0px;}
+        0% {
+            left: 100px;
+            opacity: 0
+        }
+
+        25% {
+            left: 60px;
+        }
+
+        100% {
+            left: 0px;
+        }
     }
 
     @keyframes are {
-        0%   {right: 100px;opacity:0}
-        25%  {right: 60px;}
-        100% {right: 0px;}
+        0% {
+            right: 100px;
+            opacity: 0
+        }
+
+        25% {
+            right: 60px;
+        }
+
+        100% {
+            right: 0px;
+        }
     }
 
     @keyframes dee {
-        0%   {right: 200px;opacity:0}
-        25%  {right: 200px;}
-        100% {right: 0px;}
+        0% {
+            right: 200px;
+            opacity: 0
+        }
+
+        25% {
+            right: 200px;
+        }
+
+        100% {
+            right: 0px;
+        }
+    }
+
+    #copyright {
+        position: relative;
+        color: #0163b0;
+        text-align: center;
+        display: block;
+        width: 100%;
+        height: 3.5vw;
+        font-size: 0.9vw;
+        padding-bottom: 0.5vw;
+    }
+
+    .randImg {
+        position: relative;
+        height: 0;
+        width: 100%;        
     }
 }
 
@@ -242,7 +324,7 @@ body {
 }
 
 #toIndex a {
-    padding: 0 60px;
+    padding: 0 6vw;
     display: inline-block;
     height: 30px;
 }
@@ -283,7 +365,6 @@ body {
 }
 
 #myNavPics {
-    background-color: lightcoral;
     position: relative;
     float: right;
     top: 0;
@@ -298,26 +379,14 @@ body {
     overflow-y: hidden;
     overflow-x: hidden;
     scrollbar-width: none;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
 }
 
-#mySidenav span {
-    position: relative;
-    color: #0163b0;
-    text-align: center;
-    display: block;
-    width: 100%;
-    height: 3vw;
-    font-size: 0.9vw;
-}
+
 
 #mySidenav #links .link {
     color: #0163b0;
     text-decoration: none;
-    line-height: 0 !important;
     position: relative;
 }
 

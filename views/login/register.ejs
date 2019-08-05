@@ -4,7 +4,6 @@
 <head>
   <title><%= title %></title>
   <% include ../layouts/head %>
-  <% include ../layouts/script %>
   <link rel='stylesheet' href='/login/style.css' />
 </head>
 
@@ -23,7 +22,6 @@
 
         <div id="input_area">
             <input type="text" placeholder="姓名 (驗證用, 請填真實姓名)" name="name" required /><br>
-            <input type="text" placeholder="電子信箱" name="mail" required /><br>
             <input type="password" placeholder="密碼" name="password" required /><br>
             <input type="password" placeholder="確認密碼" name="checkpassword" required /><br>
             <input type="hidden" name="id" />

@@ -7,20 +7,20 @@
 #indexPage1 {
     background-image: url("/index/首頁1_small.png");
     background-position: bottom;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
 #indexPage2 {
     background-image: url("/index/首頁2.png");
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
 }
 
 #indexPage3 {
     background-image: url("/index/首頁3.png");
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
 }
@@ -32,7 +32,29 @@ main {
 }
 
 /* 手機版 */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1025px) {
+    #indexLogo {
+        position: absolute;
+        z-index: 500;
+        width: 220px;
+        left: calc(50vw - 110px);
+        bottom: 70vh;
+    }
+
+    #indexPage1 {
+        background-image: url("/index/首頁1手機背景.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #indexPage3 {
+        background-image: url("/index/首頁2.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
     #secondSection {
         height: 100vh;
     }
@@ -41,13 +63,13 @@ main {
         display: block;
         position: relative;
         width: 100%;
-        height: 100%;   
+        height: 100%;
     }
 
     #news-title {
         position: relative;
     }
-    
+
     #news-body {
         position: relative;
         max-height: 60vh;
@@ -57,9 +79,9 @@ main {
         /* border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px; */
     }
-    
+
     #jellyfish {
-       display: none;
+        display: none;
     }
 
     #carouselExampleIndicators {
@@ -82,16 +104,206 @@ main {
         font-size: 25px;
         margin: 0;
     }    
+
+    #pickMonth {
+        position: absolute;
+        z-index: 500;
+        height: 13vh;
+        width: 100vw;
+        top: 4vh;
+    }
+    
+    #pickMonth .container1 {
+        width: 100vw;
+        padding-left: 1vw;
+        padding-right: 0;
+        margin: 0;
+    }
+
+    .selectMonth {
+        position: relative;
+        display: inline-block;
+        width: 24vw;
+        margin-left: 4vw;
+        margin-right: 4vw;
+    }
+    
+    .selectMonth h5 {
+        position: absolute;
+        display: block;
+        right: 0;
+        top: calc(50% - 9px);
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        font-size: 18px;
+    }
+    
+    .bigSvg {
+        height: 24vw;
+        width: 24vw;
+    }
+
+    .bigCircle {
+        cx: 12vw;
+        cy: 12vw;
+        r: 12vw;
+    }
+
+    #monthDetail {
+        position: absolute;
+        width: 100vw;
+        height: 70vh;
+        left: 0;
+        top: 17vh;
+        z-index: 500;
+    }
+
+    #board {
+        position: relative;
+        width: 100%;
+        height: 70%;
+    }
+
+    #index3start {
+        display: none;
+    }
+
+    #board-detail {
+        width: 90%;
+        margin-right: 5%;
+        margin-left: 5%;
+        margin-top: 4vh;
+        height: 90%;
+        border: 1px solid #0163b0;
+        background-color: lightblue;
+        border-radius: 37px;
+        padding: 15px;
+        position: absolute;
+        overflow: auto;
+        font-size: 19px;
+    }
+
+    #days {
+        position: relative;
+        overflow: hidden;
+        width: 80vw;
+        height: 25%;
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    #scrollDay {
+        position: absolute;
+        width: 1000vw;
+        left: 30vw;
+    }
+
+    .day {
+        position: relative;
+        display: inline-block;
+        width: 10vw;
+        top: 2vh;
+        margin-left: 2.5vw;
+        margin-right: 2.5vw;
+    }
+    
+    .dot {
+        display: none;
+    }
+
+    .date {
+        font-size: 5vw;
+        width: 100%;
+    }
+
+    .target {
+        color: #FFFF4D;
+        width: 15vw;
+    }
+
+    .target .date {
+        font-size: 7vw;
+        text-align: center;
+    }
+
+    .prev, .next{
+        position: absolute;
+        cursor: pointer;
+        font-size: 11vw;
+        border: 3px black solid;
+        z-index: 4000;
+    }
+
+    .prev {
+        left: 0;
+    }
+
+    .next {
+        right: 0;
+    }
+
+    #index3crab {
+        display: none;
+    }
+}
+
+/* 平板 */
+@media only screen and (min-width: 600px) and (max-width: 1025px) {
+    .bigSvg {
+        position: relative;
+        height: 140px;
+        width: 140px;
+        left: calc(50% - 70px);
+    }
+
+    .bigCircle {
+        cx: 70px;
+        cy: 70px;
+        r: 70px;
+    }
+
+    .selectMonth h5 {
+        position: absolute;
+        top: calc(50% - 13px);
+        font-size: 26px;
+    }
+
+    #board-detail {
+        font-size: 25px;
+        padding: 25px;
+    }
+
+    #scrollDay {
+        top: 1vh;
+    }
+
+    .date {
+        font-size: 40px;
+    }
+
+    .target .date {
+        font-size: 50px;
+    }
 }
 
 /* 電腦版 */
-@media only screen and (min-width: 786px) {
+@media only screen and (min-width: 1025px) {
+    #indexLogo {
+        position: absolute;
+        z-index: 500;
+        width: 350px;
+        left: calc(50vw - 175px);
+        top: 3.5vw;
+    }
+
     #news {
         display: block;
         position: relative;
         width: 100%;
     }
-    
+
     #carouselExampleIndicators {
         max-width: 650px;
         display: block;
@@ -101,7 +313,7 @@ main {
     #news-title {
         position: relative;
     }
-    
+
     #news-body {
         position: relative;
         max-height: 25vw;
@@ -134,7 +346,116 @@ main {
         font-size: 2vw;
         margin: 0;
     }    
+
+    #pickMonth {
+        position: absolute;
+        z-index: 500;
+        width: 25%;
+        left: 5%;
+    }
+    
+    #pickMonth .container1 {
+        height: 100%;
+        padding-top: 4%;
+        padding-bottom: 4%;
+    }
+
+    .selectMonth {
+        position: relative;
+        width: 120px;
+        margin-top: 3vw;
+        margin-bottom: 6.2vw;
+    }
+    
+    .selectMonth h5 {
+        position: absolute;
+        display: block;
+        top: calc(50% - 12px);
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .bigSvg {
+        height: 120px;
+        width: 120px;
+    }
+
+    .bigCircle {
+        cx: 60px;
+        cy: 60px;
+        r: 60px;
+    }
+
+    #monthDetail {
+        position: absolute;
+        width: 75%;
+        right: 0;
+        top: 0;
+        z-index: 500;
+        height: calc(100% - 60px);
+    }
+
+    #board {
+        position: relative;
+        width: 100%;
+        height: 70vh;
+    }
+
+    #index3start {
+        position: absolute;
+        right: 9vw;
+        width: 12vw;
+        z-index: 4000;
+    }
+
+    #board-detail {
+        width: 65%;
+        margin-right: 17.5%;
+        margin-left: 17.5%;
+        margin-top: 7%;
+        height: 73%;
+        border: 1px solid #0163b0;
+        background-color: lightblue;
+        border-radius: 37px;
+        padding: 15px;
+        position: absolute;
+        overflow: auto;
+    }
+
+    #days {
+        position: relative;
+        width: 100%;
+        height: 30vh;
+    }
+
+    .day {
+        position: relative;
+        display: inline-block;
+        top: 3vh;
+        margin-left: 0;
+        margin-right: 6%;
+    }
+    
+    .prev, .next{
+        display: none;
+    }
+
+    .date {
+        width: 100%;
+        text-align: center;
+    }
+
+    #index3crab {
+        position: absolute;
+        width: 8vw;
+        left: calc(50% - 4vw);
+        bottom: 24px;
+    }
 }
+
+
 
 #closenews {
     position: relative;
@@ -173,13 +494,7 @@ main {
     transform: rotate(90deg);
 }
 
-#indexLogo {
-    position: absolute;
-    z-index: 500;
-    width: 28%;
-    left: 36%;
-    top: 20px;
-}
+
 
 #fullpage {
     position: absolute;
@@ -202,7 +517,7 @@ main {
 
 .card-img {
     width: 100%;
-    padding:10%;
+    padding: 10%;
 }
 
 .newsTime {
@@ -237,42 +552,9 @@ main {
     height: 100vmin;
 }
 
-#pickMonth {
-    position: absolute;
-    z-index: 500;
-    width: 25%;
-    left: 5%;
-    height: inherit;
-}
-
-#pickMonth .container {
-    height: 100%;
-    padding-top: 4%;
-    padding-bottom: 4%;
-}
-
-.selectMonth {
-    text-align: center;
-    position: relative;
-    width: 100px;
-}
-
-.selectMonth h5 {
-    position: absolute;
-    display: block;
-    top: calc(50% - 12px);
-    width: 100%;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-}
-
-#pickMonth .row {
-    height: 30%;
-}
 .col-lg{
     padding-top: 30px;
-    padding-bottom:30px;
+    padding-bottom: 30px;
 }
 
 .selectMonth:hover {
@@ -282,61 +564,12 @@ main {
     animation-fill-mode: forwards;
 }
 
-#monthDetail {
-    position: absolute;
-    width: 75%;
-    right: 0;
-    top: 0;
-    z-index: 500;
-    height: calc(100% - 60px);
-}
-
-#board {
-    position: relative;
-    width: 100%;
-    height: 65%;
-}
-
-#days {
-    position: relative;
-    width: 100%;
-    height: 35%;
-}
-
-.day {
-    display: inline-block;
-    top: 10%;
-    position: absolute;
-}
-
 .day:hover {
     cursor: pointer;
     animation-name: scaleUpAnimation;
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
-
-#board-detail {
-    width: 65%;
-    margin-right: 17.5%;
-    margin-left: 17.5%;
-    margin-top: 7%;
-    height: 73%;
-    border: 1px solid #0163b0;
-    background-color: lightblue;
-    border-radius: 37px;
-    padding: 15px;
-    position: absolute;
-    overflow: auto;
-}
-
-#index3start {
-    position: absolute;
-    right: 9vw;
-    width: 12vw;
-    z-index: 4000;
-}
-
 
 .carousel-control-prev-icon {
     background-image: none;

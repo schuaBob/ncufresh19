@@ -1,5 +1,19 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/popper.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/velocity.min.js"></script>
+<script type="text/javascript" src="/js/velocity.ui.min.js"></script>
+<script>
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    window.addEventListener('resize', () => {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
+    
+</script>
 <link rel='stylesheet' href='/css/bootstrap.css'>
 <link rel='stylesheet' href='/layouts/header.css' />
 <link rel='stylesheet' href="/layouts/footer.css" />
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">

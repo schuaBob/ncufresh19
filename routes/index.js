@@ -443,12 +443,12 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
       if (err) {
         res.redirect('/');
       }
-      /*if (!obj) {
+      if (!obj) {
         console.log(id + ': 不存在於新生列表');
         req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
         res.redirect('/login');
         return;
-      }*/
+      }
       
       if (obj.name !== name) {
         console.log(id + ': 真實姓名不合');
@@ -484,7 +484,7 @@ router.get('/logout', function (req, res, next) {
   res.redirect('/');
 });
 
-router.get('/auth/provider', function (req, res, next) {
+router.get('/auth/provider', checkUser.isAllowtoLogin,  function (req, res, next) {
   var url = 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize?response_type=code&scope=user.info.basic.read&client_id=' + CLIENT_ID;
   res.redirect(url);
 });
@@ -522,7 +522,7 @@ router.get('/auth/provider/callback', function (req, res, next) {
       headers: {
         'Authorization': 'Bearer' + obj.access_token,
       }
-    }, function Callback(err, httpResponse, token) {
+    }, function Callback(err, httpResponse, info) {
       if (err)
         return console.error('failed to grab personal info:', err);
       if (!httpResponse.statusCode === 200) {

@@ -1,58 +1,121 @@
 <script>
     $(document).ready(() => {
+        if (window.innerWidth > 768) {
+            InitRandImg();
+            // chgPic(Math.floor(Math.random() * 13) + 1)
+        }
+        $(window).resize(() => {
+            if (window.innerWidth > 768) {
+                if ($('#myNavPics').find('.randImg').length === 0) {
+                    // InitRandImg(Math.floor(Math.random() * 13) + 1);
+
+                }
+            } else {
+                $('#myNavPics').empty()
+            }
+        })
+
         $("#navbtn").click(() => {
+            var randNum = Math.floor(Math.random() * 13) + 1;
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
-                document.getElementById("mySidenav").style.height = "100%";
-                document.getElementById("myNavLinks").style.height = "100%";
-                document.getElementById("myNavPics").style.height = "100%";
+                $(`#randimg-${randNum}`).velocity({
+                    height:"100vh"
+                }).then(() => {
+                    $('#mySidenav').velocity({
+                        "height": "100%"
+                    })
+                    document.getElementById("myNavLinks").style.height = "100%";
+                    document.getElementById("myNavPics").style.height = "100%";
+                    restart_animate(".one");
+                    restart_animate(".two");
+                    restart_animate(".three");
+                    restart_animate(".four");
+                }).catch((err) => {
+                    console.error(err);
+                })
                 $("#mySidenav").removeClass("closed").addClass("opened");
             } else if ($("#mySidenav").hasClass("opened")) {
-                document.getElementById("mySidenav").style.height = "0";
+                $('#mySidenav').velocity({
+                    height: 0
+                }).then(() => {
+                    $(`#randimg-${randNum}`).velocity({
+                        height: 0
+                    });
+                }).catch((err)=>{
+                    console.error(err);
+                })
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
-
-            restart_animate(".one");
-            restart_animate(".two");
-            restart_animate(".three");
-            restart_animate(".four");
         });
         $(document).on('focusin', function (e) {
-            if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+            if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root")
+                .length) {
                 e.stopImmediatePropagation();
             }
         });
-        tinyMCE.init({
-            selector: 'textarea.tinyeditor',
-            plugins: "image, advlist, table, autolink, code, link, lists, paste, preview, searchreplace, wordcount, emoticons, media",
-            toolbar: "styleselect | forecolor | backcolor | bold | italic | underline | alignleft | aligncenter | alignright | alignjustify | bullist | numlist | outdent | indent | link | image | media | code ",
-            paste_enable_default_filters: false,
-            paste_data_images: true,
-            automatic_uploads: true,
-            table_responsive_width:true,
-            images_reuse_filename: true,
-            images_upload_url: '/tinymceUploader',
-            setup: (ed) => {
-                ed.on('init', function (e) {
-                    console.log(`${e.target.id} textarea is initialized.`);
-                });
-                ed.on('keyup', function () {
-                    console.log(ed.getContent());
-                });
-                ed.on('GetContent', (e) => {
-                    console.log(`${e.target.id}'s Content get caught.`);
-                })
-                ed.on('SetContent', (e) => {
-                    console.log(`${e.target.id}'s Content get set.`);
-                })
-            }
-        })
-    });  
+        if (document.getElementsByClassName('tinyeditor').length > 0) {
+            tinyMCE.init({
+                selector: 'textarea.tinyeditor',
+                plugins: "image, advlist, table, autolink, code, link, lists, paste, preview, searchreplace, wordcount, emoticons, media",
+                toolbar: "styleselect | forecolor | backcolor | bold | italic | underline | alignleft | aligncenter | alignright | alignjustify | bullist | numlist | outdent | indent | link | image | media | code ",
+                paste_enable_default_filters: false,
+                paste_data_images: true,
+                automatic_uploads: true,
+                table_responsive_width: true,
+                images_reuse_filename: true,
+                images_upload_url: '/tinymceUploader',
+                setup: (ed) => {
+                    ed.on('init', function (e) {
+                        console.log(`${e.target.id} textarea is initialized.`);
+                    });
+                    ed.on('keyup', function () {
+                        console.log(ed.getContent());
+                    });
+                    ed.on('GetContent', (e) => {
+                        console.log(`${e.target.id}'s Content get caught.`);
+                    })
+                    ed.on('SetContent', (e) => {
+                        console.log(`${e.target.id}'s Content get set.`);
+                    })
+                }
+            })
+        }
+    });
 
-    function restart_animate(id){
+
+    function restart_animate(id) {
         var el = $(id),
             newone = el.clone(true);
         el.before(newone);
         $("." + el.attr("class") + ":last").remove();
     }
+
+    function InitRandImg() {
+        for (let i = 1; i <= 13; i++) {
+            $(`#randimg-${i}`).css({
+                "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
+                "background-position": "center",
+                "background-repeat": "no-repeat",
+                "background-size": "cover",
+                "display": "block",
+                "backdrop-filter": "opacity(70%)"
+            })
+        }
+    }
+
+    // function chgPic(initPic) {
+    //     var picNow = "#ramdImg-6";
+    //     $('#links li').hover(() => {
+    //         InrandNum = Math.floor(Math.random() * 13) + 1;
+    //         $(picNow).velocity({
+    //             opacity: 0
+    //         }).then(() => {
+    //             $(`#randImg-${InrandNum}`).velocity({
+    //                 opacity: 1
+    //             });
+    //             picNow = $(`#randImg-${InrandNum}`);
+    //         })
+    //     })
+    // }
 </script>

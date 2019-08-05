@@ -7,6 +7,7 @@
 //------------game---------------------------------
 //var fs = require('fs');
 var soundcontrol = {'BGM':null,'CATCH':null,'key3':null}; 
+var muted = false;
 var BGmsound;
 var reach;
 var reach_conrainer;
@@ -182,7 +183,6 @@ class Button_Text extends createjs.Container {
     this.y = y;
     this.text = new createjs.Text(t, f, c);
     this.havermask = new createjs.Shape();
-    console.log(this.text.text.length)
     this.havermask.graphics.beginFill("#34AEC7").drawRoundRect(37, -6, this.text.text.length*20+24, 34,10);
     this.havermask.alpha = 0.01;
     var w = this.text.getMeasuredWidth();
@@ -267,7 +267,8 @@ class Option extends createjs.Container {
     ans_num--;
     if (ans_num == 0) {
       back_container.visible=false;
-
+      if(!muted)
+      createjs.Sound.play("correct");
       correct_fish = new fish(board_index, false);
       correct_fish.scale = 0.5;
       correct_fish.x = 550;
@@ -288,6 +289,8 @@ class Option extends createjs.Container {
     }
   }
   wrong() {
+    if(!muted)
+    createjs.Sound.play("wrong");
     this.background.visible = true;
     this.done = true;
     this.background.graphics.clear().beginFill("red").drawRoundRect(0, 0, 9 * 18, 33, 10);
@@ -336,8 +339,18 @@ class Animal extends createjs.Sprite {
     if(gamestart)
     catch_animal_num[this.animaltype] += 1;
     if (this.animaltype != 0 && this.animaltype != 6) {
+      if(!muted)
+      createjs.Sound.play("catchfish0"+this.animaltype);
       new Score_Text("+" + this.score, "bold 20px 微軟正黑體", "#000000", this.x, this.y);
       user_score += this.score;
+    }
+    else if(this.animaltype == 0){
+      if(!muted)
+      createjs.Sound.play("catchbird");
+    }
+    if(this.animaltype == 6){
+      if(!muted)
+      createjs.Sound.play("catchdolphin");
     }
     catech_animal_update();
   }
@@ -426,11 +439,7 @@ class fish extends Animal {
     }
     this.width = animalsource[type].spritesheet.getFrame(animalsource[type].spritesheet.getAnimation(special == true ? "special" : "normal").frames[0]).rect.width;
     this.height = animalsource[type].spritesheet.getFrame(animalsource[type].spritesheet.getAnimation(special == true ? "special" : "normal").frames[0]).rect.height;
-    // this.y=getrandom(300-(this.height*this.scale*2))+200+this.height*this.scale;
-    //this.y=150-(this.height*this.scale*2)+200+this.height*this.scale;
-    //  console.log(this.y);
     this.y = getrandom(275) + canvas_seaheight + 50;
-    //this.catch();
   }
 }
 class bird extends Animal {
@@ -464,6 +473,8 @@ function mousemove(event) {
 function mousedown(event) {
   if (harpoon_list.length >= 10) return;
   var shoot_harpoon = new harpoon();
+  if(!muted)
+  createjs.Sound.play("shoot");
   var x = stage.mouseX - (shoot_harpoon.x);
   var y = stage.mouseY - (shoot_harpoon.y);
   var r_x = -1;
@@ -644,10 +655,6 @@ function open_fish() {
             do {
               fishtype_rnd = getrandom(19);
               fishtype = fishtype_rnd<3?0:fishtype_rnd<9?1:2;
-              // if(fishtype == 0 &&question_num[1] !=0 &&question_num[2] !=0  ){
-              //   var b=getrandom(2);
-              //   if(b !=1 )fishtype = 1+b;
-              //}
             } while (question_num[fishtype] <= 0);
             if (gamestart)
               question_num[fishtype]--;
@@ -691,6 +698,7 @@ function keyUp(event) {
 }
 var complete_file_num=0;
 function load_source() {
+  window.addEventListener("click", resumeAudioContext);
   stage = new createjs.Stage(document.getElementById("gameStage"));
   loading_text = new createjs.Text("0%","bold 30px 微軟正黑體","#000000");
   loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
@@ -739,10 +747,24 @@ function load_source() {
     { src: "/images/coolgame/food.png", id: "food" },
     { src: "/images/coolgame/close.png", id: "close" },
     { src: "/images/coolgame/close_haver.png", id: "close_haver" },
-    { src: "/music/coolgame/BGM01.mp3", id: "BGM01" },
-    { src: "/music/coolgame/BGM01.mp3", id: "BGM02" },
-    { src: "/music/coolgame/BGM01.mp3", id: "BGM03" },
-    { src: "/music/coolgame/BGM01.mp3", id: "BGM04" }
+    { src: "/music/coolgame/LabbyBGM.mp3", id: "LabbyBGM" },
+    { src: "/music/coolgame/GameBGM01.mp3", id: "GameBGM01" },
+    { src: "/music/coolgame/GameBGM02.mp3", id: "GameBGM02" },
+    { src: "/music/coolgame/RankBGM.mp3", id: "RankBGM" },
+    { src: "/music/coolgame/catchfish01.mp3", id: "catchfish01" },
+    { src: "/music/coolgame/catchfish02.mp3", id: "catchfish02" },
+    { src: "/music/coolgame/catchfish03.mp3", id: "catchfish03" },
+    { src: "/music/coolgame/catchfish04.mp3", id: "catchfish04" },
+    { src: "/music/coolgame/catchbird.mp3", id: "catchbird" },
+    { src: "/music/coolgame/catchdolphin.mp3", id: "catchdolphin" },
+    { src: "/music/coolgame/correct.mp3", id: "correct" },
+    { src: "/music/coolgame/wrong.mp3", id: "wrong" },
+    { src: "/music/coolgame/shoot.mp3", id: "shoot" },
+    { src: "/music/coolgame/DolphinBGM.mp3", id: "DolphinBGM" },
+    { src: "/music/coolgame/QuestionBGM.mp3", id: "QuestionBGM" },
+    { src: "/music/coolgame/alarm.mp3", id: "alarm" },
+    { src: "/music/coolgame/bell.mp3", id: "bell" },
+    { src: "/music/coolgame/game_end.mp3", id: "game_end" }
   ];
   loader = new createjs.LoadQueue(true);
   loader.installPlugin(createjs.Sound);
@@ -753,16 +775,22 @@ function load_source() {
   load_question_data();
 }
 function handleFileLoad(e) {
-  complete_file_num++;
-  console.log(complete_file_num);
-  loading_text.text = Math.floor((complete_file_num/manifest.length)*100)+"%";
+  if(!done_loading){
+    complete_file_num++;
+    loading_text.text = Math.floor((complete_file_num/manifest.length)*100)+"%";
+    loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
+    loading_text.y = canvas_height/2-loading_text.getMeasuredHeight() / 2 ;
+    stage.update();
+  }
+
+}
+var done_loading=false;
+function handleComplete() {
+  done_loading = true;
+  loading_text.text = "點擊螢幕開始遊戲~";
   loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
   loading_text.y = canvas_height/2-loading_text.getMeasuredHeight() / 2 ;
   stage.update();
-}
-function handleComplete() {
-  stage.removeChild(loading_text);
-  init();
 }
 function handleError() {
   console.log("erreo");
@@ -903,6 +931,7 @@ function create_back_container() {
       labby_init();
     }
     else {
+      soundcontrol["BGM"].paused=true;
       close_game_event();
       leave_container.visible = true;
       stop = true;
@@ -1048,6 +1077,7 @@ function create_leave_container() {
     leave_container.visible = false;
     if (now == 1)
       game_event();
+    soundcontrol["BGM"].paused=muted;
     stop = false;
     question_time_stop=false;
   });
@@ -1074,6 +1104,8 @@ function create_leave_container() {
   stage.addChild(leave_container);
 }
 function create_stage_element() {
+  // soundcontrol["BGM"]=createjs.Sound.play("BGM01");
+  // soundcontrol["BGM"].stop();
   catch_animal_text = new createjs.Text(" X  0\n\n X  0\n\n X  0\n\n X  0", "12px Arial", "#000000");
   background = new createjs.Bitmap(loader.getResult("game_background"));
   fisherman = new createjs.Bitmap(loader.getResult("fisherman"));
@@ -1108,9 +1140,13 @@ function create_stage_element() {
   sound_shape.addEventListener("mousedown", function (event) {
     if (sound) {
       soundbutton.image = loader.getResult("sound_close");
+      soundcontrol["BGM"].paused =true;
+      muted=true;
     }
     else {
       soundbutton.image = loader.getResult("sound_open");
+      soundcontrol["BGM"].paused =false;
+      muted=false;
     }
     sound = sound == true ? false : true;
   })
@@ -1249,7 +1285,6 @@ function question_end() {
     clearInterval(question_timer);
     clearInterval(score_update_timer);
     update_score();
-    //console.log("game over");
   }
   else{
     back_container.visible=false;
@@ -1257,7 +1292,8 @@ function question_end() {
     dolphin_container.alpha=0;
     createjs.Tween.get(dolphin_container).to({alpha:1},1500);
     dolphin_container.visible=true;
-
+    now = -1;
+    BGM_change();
   }
   now_score=user_score;
   score_board_text.text = (now == 1 ? "Score:" : "") + now_score + "";
@@ -1303,7 +1339,6 @@ function create_questionboard() {
   question_container.removeChild(questionboard);
   questionboard = new createjs.Sprite(questionboard_sheet, "normal");
   questionboard.scale = 0;
-  console.log(score_catch_animal_container.children[board_index].x);
   questionboard.x = score_catch_animal_container.children[board_index].x + score_catch_animal_container.x;
   questionboard.y = 130;
   question_container.addChildAt(questionboard, 1);
@@ -1366,14 +1401,12 @@ function next_question() {
     }
     question_text.visible = false;
     back_container.visible=false;
-    //console.log(score_catch_animal_container.children[board_index].x);
     createjs.Tween.get(questionboard).to({ scale: 0, x: score_catch_animal_container.children[board_index].x + score_catch_animal_container.x, y: 130 }, 1000).call(() => {
       create_questionboard();
     });
   }
   else {
     catch_animal_num[board_index]--;
-    //console.log( catch_animal_num[board_index]);
     var rnd = getrandom(question_index_list.length);
     question = question_list[board_index >= 3 ? 2 : (board_index - 1)][question_index_list[rnd]];
     question_index_list = arrayRemove(question_index_list, question_index_list[rnd]);
@@ -1444,6 +1477,7 @@ function question_init() {
   option[3].x = option[0].x + 185;
   option[3].y = option[0].y + 40;
   option[4].y = option[0].y + 80;
+  BGM_change();
   create_questionboard();
   stage.addChild(question_container);
   stage.setChildIndex(back_container, stage.numChildren - 1);
@@ -1470,7 +1504,7 @@ function close_movement() {
 }
 function create_dolphin_container(){
   dolphin_container = new createjs.Container();
-  var dolphin_text = new createjs.Text("粉紅色海豚名為「中華白海豚」依《野生\r\n\r\n動物保育法》公告之保育類野生動物名錄\r\n\r\n，已將中華白海豚列入瀕臨絕種的極度危\r\n\r\n險等級(CR)，讓我們一起守護可愛海豚，\r\n\r\n所以不要用任何方式獵鯊海豚歐~魚叉也\r\n\r\n算，扣你10000分作為警惕。","bold 20px 標楷體","#000000");   
+  var dolphin_text = new createjs.Text("粉紅色海豚名為「中華白海豚」依《野生\r\n\r\n動物保育法》公告之保育類野生動物名錄\r\n\r\n，已將中華白海豚列入瀕臨絕種的極度危\r\n\r\n險等級(CR)，讓我們一起守護可愛海豚，\r\n\r\n所以不要用任何方式獵殺海豚歐~魚叉也\r\n\r\n算，扣你10000分作為警惕。","bold 20px 標楷體","#000000");   
   dolphin_text.x=218;
   dolphin_text.y=145;
   var dolphin_background = new createjs.Shape();
@@ -1511,8 +1545,7 @@ function create_dolphin_container(){
     clearInterval(question_timer);
     new Score_Text(""+animalsource[6].score,"bold 30px Arial","#000000",score_board.getwidth()/2+score_board.x,score_board_text.y);
     update_score();
-    //console.log("game over");
-  });
+    });
   stage.addChild(dolphin_container);
 }
 function game_end() {
@@ -1520,8 +1553,11 @@ function game_end() {
   gamestart=false;
   if (catch_fish.length != 0)
     fish_jump();
+  soundcontrol["BGM"].stop();
   back_container.visible = false;
   start_time_text.text = "Time's up！";
+  if(!muted)
+  createjs.Sound.play("game_end");
   start_time_text.x -= 40;
   stage.addChild(start_time_text);
   fisherman_harpoon.scaleX *= fisherman_harpoon.scaleX < 0 ? -1 : 1;
@@ -1597,6 +1633,8 @@ function score_init() {
           brid_num++;
           createjs.Tween.get(catch_fish[i]).wait(brid_num * 200).to({ y: 220, x: 380 }, 600).wait(600).to({ y: bucket.y + 10, x: bucket.x + bucket.getwidth() / 2 }, 600).to({ visible: false }).call(() => {
             brid_num--;
+            if(!muted)
+            createjs.Sound.play("bell");
             new Score_Text("+" + animalsource[0].score, "bold 20px 微軟正黑體", "#000000", bucket.x + bucket.getwidth() / 2, bucket.y + 10);
             user_score += animalsource[0].score;
             if(brid_num == 0){
@@ -1605,6 +1643,9 @@ function score_init() {
                 for (i = 0; i < catch_fish.length; i++) {
                   createjs.Tween.get(catch_fish[i]).wait(wait_time * i ).to({ visible: false, x: score_catch_animal_container.children[catch_fish[i].animaltype].x + score_catch_animal_container.x, y: score_catch_animal_container.children[catch_fish[i].animaltype].y + score_catch_animal_container.y }, 599).call(() => {
                     score_catch_animal_num[catch_fish[num_score_fish++].animaltype]++;
+                    if(!muted){
+                      createjs.Sound.play("alarm");
+                    }
                     score_catch_animal_text_update();
                   })
                 }
@@ -1631,6 +1672,9 @@ function score_init() {
           for (i = 0; i < catch_fish.length; i++) {
             createjs.Tween.get(catch_fish[i]).wait(wait_time * i ).to({ visible: false, x: score_catch_animal_container.children[catch_fish[i].animaltype].x + score_catch_animal_container.x, y: score_catch_animal_container.children[catch_fish[i].animaltype].y + score_catch_animal_container.y }, 599).call(() => {
               score_catch_animal_num[catch_fish[num_score_fish++].animaltype]++;
+              if(!muted){
+                createjs.Sound.play("alarm");
+              }
               score_catch_animal_text_update();
             })
           }
@@ -1766,9 +1810,9 @@ function game_start() {
     error:(err)=>{console.log("err")},
     success: function (result) {
       game_id = result.game_id;
-      console.log(game_id);
     }
   });
+  BGM_change();
 }
 function game_init() {
   now = 1;
@@ -1776,6 +1820,7 @@ function game_init() {
   clese_fish();
   clear_animal();
   clese_bubble();
+  soundcontrol["BGM"].stop();
   dolphin_list = new Array();
   show_catch_animal_num = [0, 0, 0, 0, 0];
   catch_animal_num = [0, 0, 0, 0, 0];
@@ -1916,21 +1961,38 @@ function update_rank(){
   var first_image=new createjs.Bitmap(((now == 3?rank_user_list[0].score_high:rank_user_list[0].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[0].avatar));
   first_image.image.onload=()=>{
     rank_container.children[3].image =first_image.image;
-    rank_container.children[3].scale = 1.0/(( rank_container.children[3].image.width> rank_container.children[3].image.hetght? rank_container.children[3].image.width: rank_container.children[3].image.height)/80.0);
+    rank_container.children[3].scale = 1.0/(( rank_container.children[3].image.width> rank_container.children[3].image.height? rank_container.children[3].image.width: rank_container.children[3].image.height)/80.0);
+    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
+    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
+    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
+    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
+    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
+    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
    var second_image=new createjs.Bitmap(((now == 3?rank_user_list[1].score_high:rank_user_list[1].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[1].avatar));
    second_image.image.onload=()=>{
     rank_container.children[4].image =second_image.image;
-    rank_container.children[4].scale = 1.0/(( rank_container.children[4].image.width> rank_container.children[4].image.hetght? rank_container.children[4].image.width: rank_container.children[4].image.height)/80.0);
+    rank_container.children[4].scale = 1.0/(( rank_container.children[4].image.width> rank_container.children[4].image.height? rank_container.children[4].image.width: rank_container.children[4].image.height)/80.0);
+    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
+    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
+    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
+    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
+    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
+    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
  var third_image=new createjs.Bitmap(((now == 3?rank_user_list[2].score_high:rank_user_list[2].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[2].avatar));
 
  third_image.image.onload=()=>{
-   console.log(third_image.image);
     rank_container.children[5].image =third_image.image;
-    rank_container.children[5].scale = 1.0/(( rank_container.children[5].image.width> rank_container.children[5].image.hetght? rank_container.children[5].image.width: rank_container.children[5].image.height)/80.0);
+    rank_container.children[5].scale = 1.0/(( rank_container.children[5].image.width> rank_container.children[5].image.height? rank_container.children[5].image.width: rank_container.children[5].image.height)/80.0);
+    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
+    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
+    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
+    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
+    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
+    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
   for(var j =0;j<10;j++){
@@ -1950,7 +2012,6 @@ function update_rank(){
   rank_score_text[1].x = rank_container.children[4].x+40- rank_score_text[1].getMeasuredWidth() / 2 ;
   rank_name_text[2].x = rank_container.children[5].x+40- rank_name_text[2].getMeasuredWidth() / 2 ;
   rank_score_text[2].x = rank_container.children[5].x+40- rank_score_text[2].getMeasuredWidth() / 2 ;
-  
  // rank_container.children[3].x=0;
   // rank_container.children[3].y=0;
 }
@@ -2112,7 +2173,6 @@ function create_rank_container(){
     rank_score_text[j].x = 568;
     rank_score_text[j].y = 120+51*(j-3);
   }
-  //rank_container.addChild(thrid_circle); 
 }
 function ranking_init() {
   background.image = loader.getResult("rank_background");
@@ -2124,6 +2184,7 @@ function ranking_init() {
   score_board_text.visible = false;
   sea.visible = false;
   now = 3;
+  BGM_change();
   for (var j = 0; j < animal_list.length; j++)animal_list[j].visible = false;
   close_fishmanwalk();
   close_fish_ad();
@@ -2142,21 +2203,48 @@ var resumeAudioContext = function() {
 	try {
 		if (createjs.WebAudioPlugin.context && createjs.WebAudioPlugin.context.state === "suspended") {
 			createjs.WebAudioPlugin.context.resume();
-		}
+    }
 	} catch (e) {
 		// SoundJS context or web audio plugin may not exist
 		console.error("There was an error while trying to resume the SoundJS Web Audio context...");
 		console.error(e);
-	}
+  }
+  if(done_loading){
+    window.removeEventListener("click", resumeAudioContext);
+    stage.removeChild(loading_text);
+    init();
+  }
 	// Should only need to fire once
-	window.removeEventListener("click", resumeAudioContext);
 };
-window.addEventListener("click", resumeAudioContext);
+function BGM_change(){
+  if(soundcontrol["BGM"] != null)
+  soundcontrol["BGM"].stop();
+  if(now == 0){
+    soundcontrol["BGM"] = createjs.Sound.play("LabbyBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.7,duration:1120000}));
+  }
+  else if(now == 1){
+    if(getrandom(2) == 1)
+     soundcontrol["BGM"] = createjs.Sound.play("GameBGM"+"01",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.6,startTime:6000,duration:460000}));
+    else
+      soundcontrol["BGM"] = createjs.Sound.play("GameBGM"+"02",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.7}));
+  }
+  else if(now >=3){
+    soundcontrol["BGM"] = createjs.Sound.play("RankBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.9,loop:-1}));
+  }
+  else if(now ==-1){
+    soundcontrol["BGM"] = createjs.Sound.play("DolphinBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.6,loop:-1}));
+  }
+  else if(now ==2){
+    soundcontrol["BGM"] = createjs.Sound.play("QuestionBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.6,loop:-1}));
+  }
+   soundcontrol["BGM"].paused=muted;
+  
+}
 function labby_init() {
-  soundcontrol["BGM"]=createjs.Sound.play("BGM01");
   usergame_init();
   getuser();
   now = 0;
+  BGM_change();
   gamestart = false;
   close_game_event();
   clese_bird();
@@ -2201,5 +2289,4 @@ function labby_init() {
   open_fish();
   open_bubble();
   open_bird();
-  console.log(fish_ad.visible)
 }
