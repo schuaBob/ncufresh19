@@ -57,7 +57,7 @@
 @media only screen and (max-width: 768px) {
     body {
         width: 100vw;
-        height: calc(var(--vh, 1vh)*100);
+        height: calc(var(--vh, 1vh)*100) !important;
         padding: 0 !important;
         margin: 0 !important;
     }
@@ -79,7 +79,7 @@
         margin: 0;
         width: 100%;
         position: relative;
-        padding: calc(calc(var(--vh, 1vh) * 5) - 16px - 0.15vw) 0;
+        padding:calc(calc(calc(var(--vh, 1vh) * 100) - 410px - 3vw)/20) 0;
         text-align: center;
     }
 
@@ -287,13 +287,11 @@
         padding-bottom: 0.5vw;
     }
 
-    .randImg {
-        position: absolute;
-        right: 0;
-        height: 100vh;
-        opacity: 0;
-        width: 100vmax;
-    }
+    /* .randImg {
+        position: relative;
+        height: 0;
+        width: 100%;        
+    } */
 }
 
 

@@ -6,17 +6,12 @@
     <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
-
       <% include ../layouts/header %>
-
-
     <div class="title-box">
       <div class="vertical-line"></div>
       <div class="eng-title">Personal</div>
       <div class="ch-title">個人專區</div>     
     </div>
-
-      
       <% /* 使用者資訊 */ %>
       <div class="user-box" id="userinfo">
         <div class="username" id="username"><%= user.name %></div>
@@ -34,7 +29,7 @@
 
       <% /* 頭貼外框 */ %>
       <div class="circle">
-        <img class="profile-pic" src="profile-photo/<%= picname %>"/> 
+        <img class="profile-pic" src="profile-photo/<%= user.avatar %>" />
       </div>
       <% /* 上傳按鈕 */ %>
       <div class="upload-icon">
@@ -60,7 +55,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="elecategory">圖片</label>
                   <div class="col-md-12">
-                    <input type="file" class="form-control input-md" name="picture">
+                    <input type="file" class="form-control input-md" accept="image/*" name="picture">
                   </div>
                 </div>
                 <div class="modal-footer">

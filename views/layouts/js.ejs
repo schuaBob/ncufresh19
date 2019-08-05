@@ -1,36 +1,37 @@
 <script>
     $(document).ready(() => {
-        if (window.innerWidth > 768) {
-            InitRandImg();
-            chgPic(Math.floor(Math.random() * 13) + 1)
-        }
-        $(window).resize(() => {
-            if (window.innerWidth > 768) {
-                if ($('#myNavPics').find('img').length === 0) {
-                    InitRandImg(Math.floor(Math.random() * 13) + 1);
+        // if (window.innerWidth > 768) {
+        //     InitRandImg();
+        //     // chgPic(Math.floor(Math.random() * 13) + 1)
+        // }
+        // $(window).resize(() => {
+        //     if (window.innerWidth > 768) {
+        //         if ($('#myNavPics').find('.randImg').length === 0) {
+        //             // InitRandImg(Math.floor(Math.random() * 13) + 1);
 
-                }
-            } else {
-                $('#myNavPics').empty()
-            }
-        })
+        //         }
+        //     } else {
+        //         $('#myNavPics').empty()
+        //     }
+        // })
 
         $("#navbtn").click(() => {
+            var randNum = Math.floor(Math.random() * 13) + 1;
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
-                document.getElementById("mySidenav").style.height = "100%";
+
                 document.getElementById("myNavLinks").style.height = "100%";
                 document.getElementById("myNavPics").style.height = "100%";
-                document.getElementById("randImg-6").velocity({opacity:1})
+                restart_animate(".one");
+                restart_animate(".two");
+                restart_animate(".three");
+                restart_animate(".four");
+                document.getElementById("mySidenav").style.height = "100%";
                 $("#mySidenav").removeClass("closed").addClass("opened");
             } else if ($("#mySidenav").hasClass("opened")) {
                 document.getElementById("mySidenav").style.height = "0";
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
-            restart_animate(".one");
-            restart_animate(".two");
-            restart_animate(".three");
-            restart_animate(".four");
         });
         $(document).on('focusin', function (e) {
             if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root")
@@ -75,41 +76,31 @@
         $("." + el.attr("class") + ":last").remove();
     }
 
-    function InitRandImg() {
-        $('#myNavPics').append(`
-            <img class="randImg" id="randImg-1" src="/layouts/headerPic/header-1.jpg">
-            <img class="randImg" id="randImg-2" src="/layouts/headerPic/header-2.jpg">
-            <img class="randImg" id="randImg-3" src="/layouts/headerPic/header-3.jpg">
-            <img class="randImg" id="randImg-4" src="/layouts/headerPic/header-4.jpg">
-            <img class="randImg" id="randImg-5" src="/layouts/headerPic/header-5.jpg">
-            <img class="randImg" id="randImg-6" src="/layouts/headerPic/header-6.jpg">
-            <img class="randImg" id="randImg-7" src="/layouts/headerPic/header-7.jpg">
-            <img class="randImg" id="randImg-8" src="/layouts/headerPic/header-8.jpg">
-            <img class="randImg" id="randImg-9" src="/layouts/headerPic/header-9.jpg">
-            <img class="randImg" id="randImg-10" src="/layouts/headerPic/header-10.jpg">
-            <img class="randImg" id="randImg-11" src="/layouts/headerPic/header-11.jpg">
-            <img class="randImg" id="randImg-12" src="/layouts/headerPic/header-12.jpg">
-            <img class="randImg" id="randImg-13" src="/layouts/headerPic/header-13.jpg">
-        `) 
-        $("#navbtn").click(() => {
-            if ($("#mySidenav").hasClass("closed")) {
-                // document.getElementById("randImg-6").style.height = "100vh";
-            } 
-        });
-    }
+    // function InitRandImg() {
+    //     for (let i = 1; i <= 13; i++) {
+    //         $(`#randimg-${i}`).css({
+    //             "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
+    //             "background-position": "center",
+    //             "background-repeat": "no-repeat",
+    //             "background-size": "cover",
+    //             "display": "block",
+    //             "backdrop-filter": "opacity(70%)"
+    //         })
+    //     }
+    // }
 
-    function chgPic(initPic) {
-        var picNow = "#ramdImg-6";
-        $('#links li').hover(() => {
-            InrandNum = Math.floor(Math.random() * 13) + 1;
-            $(picNow).velocity({
-                opacity:0
-            }).then(()=>{
-                $(`#randImg-${InrandNum}`).velocity({
-                    opacity:1  
-                });
-                picNow = $(`#randImg-${InrandNum}`);
-            })
-        })
-    }
+    // function chgPic(initPic) {
+    //     var picNow = "#ramdImg-6";
+    //     $('#links li').hover(() => {
+    //         InrandNum = Math.floor(Math.random() * 13) + 1;
+    //         $(picNow).velocity({
+    //             opacity: 0
+    //         }).then(() => {
+    //             $(`#randImg-${InrandNum}`).velocity({
+    //                 opacity: 1
+    //             });
+    //             picNow = $(`#randImg-${InrandNum}`);
+    //         })
+    //     })
+    // }
 </script>

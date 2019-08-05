@@ -32,13 +32,16 @@ router.get('/:device/nculife/', function (req, res, next) {
   var view = '';
   if (req.params.device === 'index_com') {
     view = 'video/catalog';
+    back_name = 'index_com/';
   }else if(req.params.device === 'index_smp') {
     view = 'video/phone/catalog_smp';
+    back_name = 'index_smp/';
   }
   //var title_bar = ['LIFE', '中大生活', [{ en: 'eating', ch: '食' }, {}]];
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: ['LIFE', '中大生活'],
+    back_name: back_name,
     user: req.user
   });
 });
@@ -77,10 +80,12 @@ router.get('/:device/nculife/:id', function (req, res, next) {
   var view = '';
   if (req.params.device === "index_com") {
     view = 'video/video_model';
+    back_name = 'index_com/nculife/';
 
   } else if (req.params.device === "index_smp") {
     //手機版video model
     view = 'video/phone/video_model_smp';
+    back_name = 'index_smp/nculife/';
 
   } else {
     res.status(404)
@@ -89,7 +94,7 @@ router.get('/:device/nculife/:id', function (req, res, next) {
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: title_bar,
-    back_name: 'index_com/nculife/',
+    back_name: back_name,
     ytID: ytID,
     user: req.user
   });
@@ -100,12 +105,15 @@ router.get('/:device/interview', function (req, res, next) {
   var view = '';
   if (req.params.device === 'index_com') {
     view = 'video/catalog';
+    back_name = 'index_com/';
   }else if(req.params.device === 'index_smp') {
     view = 'video/phone/catalog_smp';
+    back_name = 'index_smp/';
   }
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: ['INTERVIEW', '學長姐訪談'],
+    back_name: back_name,
     user: req.user
   });
 });
@@ -412,12 +420,15 @@ router.get('/:device/legend', function (req, res, next) {
   var view = '';
   if (req.params.device === 'index_com') {
     view = 'video/catalog';
+    back_name = 'index_com/';
   }else if(req.params.device === 'index_smp') {
     view = 'video/phone/catalog_smp';
+    back_name = 'index_smp/';
   }
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: ['LEGEND', '中大傳說'],
+    back_name: back_name,
     user: req.user
   });
 });
@@ -456,10 +467,11 @@ router.get('/:device/legend/:id', function (req, res, next) {
   var view = '';
   if (req.params.device === "index_com") {
     view = 'video/video_model';
-
+    back_name = 'index_com/legend/';
   } else if (req.params.device === "index_smp") {
     //手機版video model
     view = 'video/phone/video_model_smp';
+    back_name = 'index_smp/legend/';
 
   } else {
     res.status(404)
@@ -468,7 +480,7 @@ router.get('/:device/legend/:id', function (req, res, next) {
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: title_bar,
-    back_name: 'index_com/legend/',
+    back_name: back_name,
     ytID: ytID,
     user: req.user
   });
