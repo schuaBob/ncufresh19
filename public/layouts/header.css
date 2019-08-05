@@ -79,7 +79,7 @@
         margin: 0;
         width: 100%;
         position: relative;
-        padding: calc(calc(var(--vh, 1vh) * 5) - 16px - 0.15vw) 0;
+        padding:calc(calc(calc(var(--vh, 1vh) * 100) - 410px - 3vw)/20) 0;
         text-align: center;
     }
 
@@ -287,11 +287,11 @@
         padding-bottom: 0.5vw;
     }
 
-    .randImg {
+    /* .randImg {
         position: relative;
         height: 0;
         width: 100%;        
-    }
+    } */
 }
 
 
