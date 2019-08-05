@@ -526,6 +526,16 @@ function keyDown(event) {
 function getrandom(x) {
   return Math.floor(Math.random() * x);
 }
+function geth(){
+  $.ajax({
+    url: "gethistory",
+    method:'GET',
+    error:(err)=>{console.log(err)},
+    success: function (result) {
+      console.log(result);
+    }
+  });
+}
 function getuser(){
   $.ajax({
     url: "getuser",
@@ -2006,12 +2016,12 @@ function update_rank(){
       rank_score_text[j].text = "";
     }
    }
-  rank_name_text[0].x = rank_container.children[3].x+40- rank_name_text[0].getMeasuredWidth() / 2 ;
-  rank_score_text[0].x = rank_container.children[3].x+40- rank_score_text[0].getMeasuredWidth() / 2 ;
-  rank_name_text[1].x = rank_container.children[4].x+40- rank_name_text[1].getMeasuredWidth() / 2 ;
-  rank_score_text[1].x = rank_container.children[4].x+40- rank_score_text[1].getMeasuredWidth() / 2 ;
-  rank_name_text[2].x = rank_container.children[5].x+40- rank_name_text[2].getMeasuredWidth() / 2 ;
-  rank_score_text[2].x = rank_container.children[5].x+40- rank_score_text[2].getMeasuredWidth() / 2 ;
+  rank_name_text[0].x = 205 + 40- rank_name_text[0].getMeasuredWidth() / 2 ;
+  rank_score_text[0].x = 205 + 40- rank_score_text[0].getMeasuredWidth() / 2 ;
+  rank_name_text[1].x = 100+40- rank_name_text[1].getMeasuredWidth() / 2 ;
+  rank_score_text[1].x = 100+40- rank_score_text[1].getMeasuredWidth() / 2 ;
+  rank_name_text[2].x = 310+40- rank_name_text[2].getMeasuredWidth() / 2 ;
+  rank_score_text[2].x = 310+40- rank_score_text[2].getMeasuredWidth() / 2 ;
  // rank_container.children[3].x=0;
   // rank_container.children[3].y=0;
 }

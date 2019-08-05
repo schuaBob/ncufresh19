@@ -8,7 +8,6 @@ a {
 }
 #main {
   position: relative;
-  /* top: 4vh; */
 }
 
 .seaBlue {
@@ -32,7 +31,7 @@ a {
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   user-select: none;
   /* for Firefox */
   -webkit-user-select: none;
@@ -76,7 +75,6 @@ body {
 
 #outterTitleSpace {
   position: relative;
-  /* top: -6%; */
   width: 100%;
   left: 0;
   background-color: white;
@@ -116,7 +114,6 @@ body {
 
 .leftSide {
   width: 20%;
-  /* background-color: rgb(102, 252, 164);        */
 }
 
 .option {
@@ -170,9 +167,6 @@ body {
 
 ._card {
   height: 69vh;
-  /* background: #00B7FF; */
-  /* padding-top: 2%; */
-  /* border-top:1px solid black; */
   text-align: center;
   position: relative;
 }
@@ -188,8 +182,6 @@ body {
 .intro {
   display: block;
   width: 80%;
-  /* margin-top: 1%; */
-  /* margin: 2% auto 0; */
   text-align: left;
   position: relative;
   bottom: -3%;
@@ -205,6 +197,35 @@ body {
 #mobileOption{
   display: none;
 }
+/* ipad 直立設計*/
+@media only screen 
+  and (min-device-width : 768px) 
+  and (max-device-width : 1024px) 
+  and (orientation : portrait)  {
+    .option{
+      font-size:1.3rem;
+      position: absolute;
+      top: 12%;
+      width: 100%;
+    }
+    .leftSide{
+      width:27%;
+      position: relative;
+    }
+    .rightSide{
+      width:73%;
+    }
+    .rightSideInner{
+      width:100%;
+    }
+    .photo{
+      width: 80%;
+      height: auto;
+    }
+    .main{
+      height:60vh;
+    }
+  }
 /* 手機橫放的通用設計 */
 @media only screen 
   and (max-width:900px)
@@ -227,10 +248,10 @@ body {
 /* 手機直立的通用設計 */
 @media only screen and (max-width:500px) and (orientation : portrait){
   html{
-    overflow: hidden;
+    overflow-x: hidden;
   }
   body{
-    overflow: hidden;
+    overflow-x: hidden;
   }      
   .leftSide{
     display: none;

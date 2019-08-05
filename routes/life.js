@@ -7,27 +7,27 @@ var food = require('../models/life/food');
 var time = require('../models/life/time');
 var multer = require('multer');
 
-var storage = multer.diskStorage({
-  destination: "public/life/subPicture/",
-  filename   : function(req, file, cb){
-    var rdm = '';
-    for(var i=0 ; i<10 ; i++) rdm += Math.floor((Math.random() * 10));
-    var fileName = req.body.mainTitle + "_" + req.body.subTitle + "_" + rdm + ".png";
-    cb(null, fileName);
-  }
-})
-var storage2 = multer.diskStorage({
-  destination: "public/life/subPicture/",
-  filename   : function(req, file, cb){
-    var rdm = '';
-    for(var i=0 ; i<10 ; i++) rdm += Math.floor((Math.random() * 10));
-    var fileName = req.body.modifyStudyTitle + ".png";
-    cb(null, fileName);
-  }
-})
+// var storage = multer.diskStorage({
+//   destination: "public/life/subPicture/",
+//   filename   : function(req, file, cb){
+//     var rdm = '';
+//     for(var i=0 ; i<10 ; i++) rdm += Math.floor((Math.random() * 10));
+//     var fileName = req.body.mainTitle + "_" + req.body.subTitle + "_" + rdm + ".png";
+//     cb(null, fileName);
+//   }
+// })
+// var storage2 = multer.diskStorage({
+//   destination: "public/life/subPicture/",
+//   filename   : function(req, file, cb){
+//     var rdm = '';
+//     for(var i=0 ; i<10 ; i++) rdm += Math.floor((Math.random() * 10));
+//     var fileName = req.body.modifyStudyTitle + ".png";
+//     cb(null, fileName);
+//   }
+// })
 
-var upload = multer({ storage: storage });
-var upload2 = multer({ storage: storage2 });
+// var upload = multer({ storage: storage });
+// var upload2 = multer({ storage: storage2 });
 
 var match_num = {
   'lit'         : 0,
@@ -76,8 +76,6 @@ router.get('/live', function(req, res, next) {
 router.get('/study/lit', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -88,8 +86,6 @@ router.get('/study/lit', function(req, res, next) {
 router.get('/study/science', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -100,8 +96,6 @@ router.get('/study/science', function(req, res, next) {
 router.get('/study/ec', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -112,8 +106,6 @@ router.get('/study/ec', function(req, res, next) {
 router.get('/study/mgt', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -124,8 +116,6 @@ router.get('/study/mgt', function(req, res, next) {
 router.get('/study/ceecs', function(req, res,next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -136,8 +126,6 @@ router.get('/study/ceecs', function(req, res,next) {
 router.get('/study/escollege', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -148,8 +136,6 @@ router.get('/study/escollege', function(req, res, next) {
 router.get('/study/hakka',function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -160,8 +146,6 @@ router.get('/study/hakka',function(req, res, next) {
 router.get('/study/chst', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/subStudy', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -200,8 +184,6 @@ router.get('/play_phone', function(req, res, next) {
 router.get('/study_phone/lit', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -212,8 +194,6 @@ router.get('/study_phone/lit', function(req, res, next) {
 router.get('/study_phone/science', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -224,8 +204,6 @@ router.get('/study_phone/science', function(req, res, next) {
 router.get('/study_phone/ec', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -236,8 +214,6 @@ router.get('/study_phone/ec', function(req, res, next) {
 router.get('/study_phone/ceecs', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -248,8 +224,6 @@ router.get('/study_phone/ceecs', function(req, res, next) {
 router.get('/study_phone/escollege', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -260,8 +234,6 @@ router.get('/study_phone/escollege', function(req, res, next) {
 router.get('/study_phone/hakka', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -272,8 +244,6 @@ router.get('/study_phone/hakka', function(req, res, next) {
 router.get('/study_phone/mgt', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -284,8 +254,6 @@ router.get('/study_phone/mgt', function(req, res, next) {
 router.get('/study_phone/chst', function(req, res, next) {
   var page= req.url;
   page = page.split('/');
-  console.log("page= " + page[2]);
-  console.log("num= " + match_num[page[2]]);
   study.find({}, function(err, data1) {
     time.find({}, function(err, data2) {
       res.render('life/phone/subStudy_phone', { data1: data1, data2: data2, page: page[2], num: match_num[page[2]], user: req.user });
@@ -323,7 +291,6 @@ res.redirect('back');
 
 router.post('/addStudyContent', function(req, res, next) {
   study.findOne({type: req.body.modifyStudyTitle}).exec(function(err, result) {
-    console.log("enter!!!!");
     if (result !== null) {
       if (req.body.mainTitle) {
         study.updateOne({ type: req.body.modifyStudyTitle }, {mainTitle: req.body.mainTitle}, function(err) {
@@ -356,7 +323,6 @@ router.post('/addStudyContent', function(req, res, next) {
         });
       };
     } else {
-      console.log("mainTitle" + req.body.mainTitle);
       new study({
         type: req.body.type,
         mainTitle: req.body.mainTitle,

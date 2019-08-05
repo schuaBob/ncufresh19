@@ -112,7 +112,6 @@ var multerUpload = multer({
 })
 
 app.post('/tinymceUploader', multerUpload.single('file'), (req, res, next) => {
-  console.log(req.file)
   res.json({ location: `/imguploads/${req.file.originalname}` })
 })
 

@@ -74,6 +74,44 @@ $(document).ready(function() { //顯示或更換顯示學院
         $("#" + content).css("font-weight", "bold")
 
     }
+    ////////////////////////////////////////////////////////手機版///////////////////////////////////////////////////////////////
+    var width = $(window).width();
+    console.log(width)
+    $(window).resize(function() {
+        width = $(window).width();
+        console.log(width)
+        if (width <= 600) {
+            if (arr[4] === "department") {
+                if (arr.length === 6) {
+                    $(".sidebar").hide()
+
+                } else if (arr.length == 7) {
+                    $(".sidebar2").hide()
+                    $(".sidebar").hide()
+                }
+            }
+
+        }
+    });
+    if (width <= 600) {
+        if (arr[4] === "department") {
+            if (arr.length === 5) {
+                $(".sidebar").show()
+                console.log("index")
+            } else if (arr.length === 6) {
+                $(".sidebar").css("display", "none")
+                $(".sidebar2").show()
+                console.log("學院")
+
+            } else if (arr.length === 7) {
+                $(".mob_de_type").show()
+                $(".sidebar").css("display", "none")
+                $(".sidebar2").css("display", "none")
+                console.log("系所")
+            }
+        }
+
+    }
     ////////////////////////////////////////////////////////貝殼///////////////////////////////////////////////////////////////
 
 
@@ -81,27 +119,23 @@ $(document).ready(function() { //顯示或更換顯示學院
     var shellcounter = 0
 
 
-    $(".linkhover").hover(function() {
+    $(".shell").hover(function() {
         console.log("摸貝殼")
-        $(this).children(".linkimg").attr("src", "/groups/貝殼打開.png")
-        $(this).children("span").hide()
+        $(this).children().children(".linkimg").attr("src", "/groups/貝殼打開.png")
 
 
 
-        $(this).children(".linkimg").css("bottom", "3vh")
-
+        $(this).css("bottom", "50px")
         shellcounter += 1
         if (shellcounter >= 10) {
             console.log("stop it!!!!")
             $("#myshell").css("display", "block")
             shellcounter = 0
         }
-
-
     }, function() {
-        $(this).children(".linkimg").attr("src", "/groups/貝殼關閉.png")
-        $(this).children(".linkimg").css("bottom", "0")
-        $(this).children("span").show()
+        $(this).children().children(".linkimg").attr("src", "/groups/貝殼關閉.png")
+        $(this).css("bottom", "0")
+
         $("#myshell").css("display", "none")
 
     });
@@ -240,7 +274,7 @@ $(document).ready(function() { //顯示或更換顯示學院
 
             });
         })
-        //////////////////////////////////////////////////接上selection後台//////////////////////////////////////////////////////
+        //////////////////////////////////////////////////接上community後台//////////////////////////////////////////////////////
     $('#select_community_name').on('change', function() {
 
         $.ajax({
