@@ -211,7 +211,7 @@ body {
   border-color: #FDBE6B;
   border-radius: 15px;
   background: #FDBE6B;
-  min-width: 300px;
+  min-width: 270px;
 }
 
 .main_list_detail ul {
@@ -469,9 +469,9 @@ li {
 }
 
 .title_bar {
-  min-width: 250px;
+  min-width: 150px;
   height: 85px;
-  padding-left: 105px;
+  padding-left: 5%;
   width: 20%;
   background-color: white;
   position: absolute;
@@ -643,8 +643,32 @@ li {
     margin-top: 3vh;
   }
 }
+@media only screen and (max-width: 770px) and (orientation:landscape){
 
-@media only screen and (max-width: 770px) {
+  #List_index li {
+    margin: 0;
+    display: inline-block;
+    width: 10vw;
+  }
+  
+  #List_index img {
+    width: 75%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #List_index{
+    left: 20%;
+    margin: 0%;
+  }
+
+  .bottom_list{
+    bottom: 0%;
+  }
+}
+
+
+@media only screen and (max-width: 770px) and (orientation:portrait){
   .modal {
     z-index: 4001;
   }
@@ -863,11 +887,20 @@ li {
 }
 
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 540px) and (min-height: 700px){
   #map {
     padding: 0;
     width: 100%;
     position: relative;    
     bottom: calc((540px - 100vw) * 0.25);
+  }
+}
+
+@media only screen and (max-width: 420px) and (min-height: 700px){
+  #map {
+    padding: 0;
+    width: 100%;
+    position: relative;    
+    bottom: calc((540px - 100vw) * 0.65);
   }
 }
