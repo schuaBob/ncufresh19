@@ -51,51 +51,51 @@ $(document).ready(() => {
         })
     });
 
-    $(".next").on("click", function() {
-        if(!isAnimating && nowTarget < nowTotal) {
+    $(".next").on("click", function () {
+        if (!isAnimating && nowTarget < nowTotal) {
             isAnimating = true;
             $("#scrollDay").animate({
-                left: (nowLeft-=15) + "vw"
+                left: (nowLeft -= 15) + "vw"
             }, {
-                duration: 500,
-                done: function() {
-                    isAnimating = false;
-                    $("#"+nowTarget).removeClass("target");
-                    nowTarget += 1;
-                    $("#"+nowTarget).addClass("target");
-                    $("#board-detail").empty();
-                    var cnt = 0;
-                    for (var i in current_calender) {
-                        if (cnt == nowTarget)
-                            $("#board-detail").append(current_calender[i].board_content);
-                        cnt = cnt + 1;
+                    duration: 500,
+                    done: function () {
+                        isAnimating = false;
+                        $("#" + nowTarget).removeClass("target");
+                        nowTarget += 1;
+                        $("#" + nowTarget).addClass("target");
+                        $("#board-detail").empty();
+                        var cnt = 0;
+                        for (var i in current_calender) {
+                            if (cnt == nowTarget)
+                                $("#board-detail").append(current_calender[i].board_content);
+                            cnt = cnt + 1;
+                        }
                     }
-                }
-            });
+                });
         }
     });
 
-    $(".prev").on("click", function() {
-        if(!isAnimating && nowTarget > 0) {
+    $(".prev").on("click", function () {
+        if (!isAnimating && nowTarget > 0) {
             isAnimating = true;
             $("#scrollDay").animate({
-                left: (nowLeft+=15) + "vw"
+                left: (nowLeft += 15) + "vw"
             }, {
-                duration: 500,
-                done: function() {
-                    isAnimating = false;
-                    $("#"+nowTarget).removeClass("target");
-                    nowTarget -= 1;
-                    $("#"+nowTarget).addClass("target");
-                    $("#board-detail").empty();
-                    var cnt = 0;
-                    for (var i in current_calender) {
-                        if (cnt == nowTarget)
-                            $("#board-detail").append(current_calender[i].board_content);
-                        cnt = cnt + 1;
+                    duration: 500,
+                    done: function () {
+                        isAnimating = false;
+                        $("#" + nowTarget).removeClass("target");
+                        nowTarget -= 1;
+                        $("#" + nowTarget).addClass("target");
+                        $("#board-detail").empty();
+                        var cnt = 0;
+                        for (var i in current_calender) {
+                            if (cnt == nowTarget)
+                                $("#board-detail").append(current_calender[i].board_content);
+                            cnt = cnt + 1;
+                        }
                     }
-                }
-            });
+                });
         }
     });
 
@@ -133,11 +133,11 @@ $(".selectMonth").on("click", function () {
 function append_circle(data) {
     $("#days").empty();
     $("#days").append('<div id="scrollDay"></div>');
-    var count = 0;	
-    var today = new Date(); 
+    var count = 0;
+    var today = new Date();
     for (var i in data) {
         $("#scrollDay").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="40" width="40"> <circle cx="20" cy="20" r="20" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
-        if( (today.getMonth()+1) == data[i].month && today.getDate() == data[i].date )
+        if ((today.getMonth() + 1) == data[i].month && today.getDate() == data[i].date)
             $("#" + count).append('<img id="index3crab" src="/index/首頁3_螃蟹去背.png">');
         count = count + 1;
     }
@@ -154,5 +154,58 @@ function append_circle(data) {
     });
 
     $("#0").addClass("target");
-    
+    var vw = window.innerWidth;
+    if (vw > 1025) {
+        ///電腦版
+        $("#indexOneCircle circle").attr('cx', '50');
+        $("#indexOneCircle circle").attr('cy', '50');
+        $("#indexOneCircle circle").attr('r', '40');
+        $('.bigCircle').attr('cx', '60px');
+        $('.bigCircle').attr('cy', '60px');
+        $('.bigCircle').attr('r', '60px');
+    } else if (vw < 768) {
+        ///手機板
+        $('.bigCircle').attr('cx', '12vw');
+        $('.bigCircle').attr('cy', '12vw');
+        $('.bigCircle').attr('r', '12vw');
+        $("#indexOneCircle circle").attr('cx', '35');
+        $("#indexOneCircle circle").attr('cy', '35');
+        $("#indexOneCircle circle").attr('r', '25');
+    }else if ((1025 > vw) && (vw > 768)){
+        ///平板
+        $("#indexOneCircle circle").attr('cx', '50');
+        $("#indexOneCircle circle").attr('cy', '50');
+        $("#indexOneCircle circle").attr('r', '40');
+        $('.bigCircle').attr('cx', '50px');
+        $('.bigCircle').attr('cy', '50px');
+        $('.bigCircle').attr('r', '50px');
+    }
+    window.addEventListener('resize', () => {
+        var vw = window.innerWidth;
+        if (vw > 1025) {
+            ///電腦版
+            $("#indexOneCircle circle").attr('cx', '50');
+            $("#indexOneCircle circle").attr('cy', '50');
+            $("#indexOneCircle circle").attr('r', '40');
+            $('.bigCircle').attr('cx', '60px');
+            $('.bigCircle').attr('cy', '60px');
+            $('.bigCircle').attr('r', '60px');
+        } else if (vw < 768) {
+            ///手機板
+            $('.bigCircle').attr('cx', '12vw');
+            $('.bigCircle').attr('cy', '12vw');
+            $('.bigCircle').attr('r', '12vw');
+            $("#indexOneCircle circle").attr('cx', '35');
+            $("#indexOneCircle circle").attr('cy', '35');
+            $("#indexOneCircle circle").attr('r', '25');
+        }else if ((1025 > vw) && (vw > 768)){
+            ///平板
+            $("#indexOneCircle circle").attr('cx', '50');
+            $("#indexOneCircle circle").attr('cy', '50');
+            $("#indexOneCircle circle").attr('r', '40');
+            $('.bigCircle').attr('cx', '50px');
+            $('.bigCircle').attr('cy', '50px');
+            $('.bigCircle').attr('r', '50px');
+        }
+    });
 }
