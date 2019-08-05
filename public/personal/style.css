@@ -160,11 +160,8 @@ body {
 }
 
 .profile-pic {
-<<<<<<< HEAD
   width: 100%;
   height: 100%;
-=======
->>>>>>> 29f330524c07e50d929b63b39d246be84cc3c414
   display: block;
   width: 100%;
   height: 100%;
@@ -176,25 +173,15 @@ body {
   width: 200px;
   height: 200px;
   position: absolute;
-<<<<<<< HEAD
   top: 100px;
   left: calc(370px + 48vw);
-=======
-  top: 200px;
-  left: calc(100vw - 300px);
->>>>>>> 29f330524c07e50d929b63b39d246be84cc3c414
 }
 
 .upload-icon {
   position: absolute;
   width: 40px;
-<<<<<<< HEAD
   top: 230px;
   left: calc(500px + 48vw)
-=======
-  top: 330px;
-  left: calc(100vw - 140px);
->>>>>>> 29f330524c07e50d929b63b39d246be84cc3c414
 }
 
 .toggle-container {
