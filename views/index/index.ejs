@@ -110,20 +110,25 @@
                                 <% } %>
                             </ol>
                             <% for (let i in commercial) { %>
-                            <% if (commercial[i]['picLink'] !== "") { %>
-                            <a href="<%= commercial[i]['picLink']%>" target="_blank" rel="noopener noreferrer">
-                                <% if(i == 0){%>
-                                <div class="carousel-item active">
+                            <% if(i == 0){%>
+                            <div class="carousel-item active">
+
+                                <% if (commercial[i]['picLink'] !== "") { %>
+                                <a href="<%= commercial[i]['picLink']%>" target="_blank" rel="noopener noreferrer">
                                     <img src="<%= commercial[i]['picPath']%>" class="d-block w-100">
-                                </div>
-                                <% } else { %>
-                                <div class="carousel-item">
+                                    <% } %>
+                            </div>
+                            <% } else { %>
+                            <div class="carousel-item">
+                                <% if (commercial[i]['picLink'] !== "") { %>
+                                <a href="<%= commercial[i]['picLink']%>" target="_blank" rel="noopener noreferrer">
                                     <img src="<%= commercial[i]['picPath']%>" class="d-block w-100">
-                                </div>
-                                <% } %>
+                                    <% } %>
+                            </div>
+                            <% } %>
                             </a>
                             <%}%>
-                            <% } %>
+            
 
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                                 data-slide="prev">
@@ -208,8 +213,8 @@
     </main>
 
     <% include ../layouts/footer %>
-    <% include ../layouts/js %>
-    <script type="text/javascript" src="index/index.js"></script>
+                            <% include ../layouts/js %>
+                            <script type="text/javascript" src="index/index.js"></script>
 </body>
 
 </html>
