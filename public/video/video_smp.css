@@ -1,6 +1,9 @@
 body {
   height: 100vh;
   background-color: #fff9dc;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 
 main {
@@ -75,7 +78,7 @@ a:visited {
     width: 70px;
     height: auto;
     position: absolute;
-    right: 10%;
+    right: 5%;
     bottom: 20%;
     margin: 0px 0px 0px 0px;
     display: inline-block;
