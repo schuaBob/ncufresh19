@@ -1,28 +1,22 @@
 <script>
     $(document).ready(() => {
-        // if (window.innerWidth > 768) {
-        //     InitRandImg();
-        //     // chgPic(Math.floor(Math.random() * 13) + 1)
-        // }
-        // $(window).resize(() => {
-        //     if (window.innerWidth > 768) {
-        //         if ($('#myNavPics').find('.randImg').length === 0) {
-        //             InitRandImg();
-
-        //         }
-        //     } else {
-        //         $('#myNavPics').empty()
-        //     }
-        // })
-        $("#navbtn").click(() => {
-            // var randNum = Math.floor(Math.random() * 13) + 1;
-            var randNum = 1;
+        if (window.innerWidth > 768) {
+            loadImg();
+        }
+        $(window).resize(() => {
+            if (window.innerWidth > 768) {
+                if ($('#myNavPics').find('.asyncImage').length !== 0) {
+                    loadImg();
+                }
+            } else {
+                $('#myNavPics').empty()
+            }
+        })
+        $("#navbtn").on('click', () => {
+            var timerID = undefined;
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
-                if (window.innerWidth > 768) {
-                    document.getElementById(`randimg-${randNum}`).style.height = "100vh";
-                    document.getElementById("myNavPics").style.height = "100%";
-                }
+                document.getElementById("myNavPics").style.height = "100%";
                 document.getElementById("myNavLinks").style.height = "100%";
                 restart_animate(".one");
                 restart_animate(".two");
@@ -30,11 +24,34 @@
                 restart_animate(".four");
                 document.getElementById("mySidenav").style.height = "100%";
                 $("#mySidenav").removeClass("closed").addClass("opened");
-            } else if ($("#mySidenav").hasClass("opened")) {
-                document.getElementById("mySidenav").style.height = "0";
                 if (window.innerWidth > 768) {
-                    document.getElementById(`randimg-${randNum}`).style.height = "0";
+                    setTimeout(() => {///3sec later
+                        timerID = window.setInterval(function () {//every 7 sec
+                            if ($("#mySidenav").hasClass("opened")) {
+                                var randNum = Math.floor(Math.random() * 12) + 1;
+                                var $this = $('.randImg').eq(randNum - 1);
+                                $this.show()
+                                $this.velocity({ opacity: 1 }, 2000).then(() => {
+                                    setTimeout(() => {
+                                        $this.velocity({ opacity: 0 }, 2000).then(()=>{
+                                            $this.hide().removeClass('active');
+                                        });
+                                    }, 4000)
+
+                                })
+                                $this.addClass('active');
+                            }
+                        }, 8000);
+                    }, 3000)
                 }
+
+            } else if ($("#mySidenav").hasClass("opened")) {
+                // if (window.innerWidth > 768) {
+                //     alert(timerID)
+                //     window.clearInterval(timerID);
+                //     alert("remove")
+                // }
+                document.getElementById("mySidenav").style.height = "0";
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
         });
@@ -82,58 +99,34 @@
         el.before(newone);
         $("." + el.attr("class") + ":last").remove();
     }
+    function loadImg() {
+        'use strict';
+        // Page is loaded
+        const objects = document.getElementsByClassName('asyncImage');
+        Array.from(objects).map((item, index) => {
+            // Start loading image
+            var path = `/layouts/headerPic/header-${index + 1}.jpg`;
+            const img = new Image();
+            img.src = path;
+            // Once image is loaded replace the src of the HTML element
+            item.classList.remove('asyncImage');
+            img.onload = () => {
+                return item.nodeName === 'IMG' ?
+                    item.src = path :
+                    item.style.backgroundImage = `url(${path})`;
+            };
+        });
+    };
 
-    for (let i = 1; i <= 12; i++) {
-        $(`#randimg-${i}`).css({
-            "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
-            "background-position": "bottom",
-            "background-repeat": "no-repeat",
-            "background-size": "cover",
 
-        })
-    }
-    console.log()
-    $.each(document.getElementsByClassName('randImg'),(index,val) =>{
-        $(`#randimg-${index}`).src = 
-        var img = $(this)
-        img.src = 
-        console.log($(this))
-        var img = new Image($(this)); // creating image element
-        console.log(img)
-        // img.onload = function () { // trigger if the image was loaded
-        //     console.log($(this).attr('src') + ' - done!');
-        // }
 
-        // img.onerror = function () { // trigger if the image wasn't loaded
-        //     console.log($(this).attr('src') + ' - error!');
-        // }
 
-        // img.onAbort = function () { // trigger if the image load was abort
-        //     console.log($(this).attr('src') + ' - abort!');
-        // }
 
-        // img.src = $(this).attr('src'); // pass src to image object
+    //interval function works only when pause is false
 
-        // // log image attributes
-        // console.log(img.src);
-        // console.log(img.width);
-        // console.log(img.height);
-        // console.log(img.complete);
 
-    });
 
-    // function chgPic(initPic) {
-    //     var picNow = "#ramdImg-6";
-    //     $('#links li').hover(() => {
-    //         InrandNum = Math.floor(Math.random() * 13) + 1;
-    //         $(picNow).velocity({
-    //             opacity: 0
-    //         }).then(() => {
-    //             $(`#randImg-${InrandNum}`).velocity({
-    //                 opacity: 1
-    //             });
-    //             picNow = $(`#randImg-${InrandNum}`);
-    //         })
-    //     })
-    // }
+
+
+
 </script>
