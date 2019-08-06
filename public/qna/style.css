@@ -367,7 +367,7 @@ thead>tr {
   right: 5vw;
   width: 4vw;
   z-index: 200;
-  visibility: hidden;
+  display: none;
 }
 
 /* ipad 直立設計*/

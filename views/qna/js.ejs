@@ -7,7 +7,7 @@
     return str;
   }
   function trunc(str){
-    if(str.length>15){
+    if(str!==undefined && str.length>15){
       return str.substr(0,15)+"...";
     }else{
       return str;
@@ -31,8 +31,10 @@
               console.log(data[0]);
               if (data[0] === 'success') {                
                 $(".askmodal").css("display", "none");
-                alert("成功");
+                $("#img2").attr("src","penguin.png");
+                $("#img1").css("display","inline");                
                 $("#noticeModal").modal("hide");
+                alert("成功");
               }
             },
             error: function (err) {
