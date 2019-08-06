@@ -797,6 +797,7 @@ function load_source() {
   }
   else{
     alert("手機碰到水會壞掉所以不支援歐，雖然電腦碰到水也會壞掉，但是我只是想說，只能用電腦玩歐~啾咪");
+    window.location = '/';
  }
 }
 function handleFileLoad(e) {
