@@ -6,17 +6,34 @@
     <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
+      <div class="qnaModal" id="showRecord" style="z-index: 5000;">
+        <div class="grid">
+          <div class="qnamodal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" style="color: #7CA7BC;"></h2>
+              <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body"><h5 style="color: #FB8360;">Question</h5></div>
+            <div class="modal-body" id="qContent"></div>
+            <div class="modal-body"><h5 style="color: #FB8360;">Answer</h5></div>
+            <div class="modal-body" id="aContent"></div>
+            <div class="modal-footer">
+              <form action="deleteQna" method="POST">
+                <button type="button" style="background: red; color: white;"> 刪除 </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <% include ../layouts/header %>
-
-
     <div class="title-box">
       <div class="vertical-line"></div>
       <div class="eng-title">Personal</div>
       <div class="ch-title">個人專區</div>     
     </div>
-
-      
       <% /* 使用者資訊 */ %>
       <div class="user-box" id="userinfo">
         <div class="username" id="username"><%= user.name %></div>
@@ -34,7 +51,7 @@
 
       <% /* 頭貼外框 */ %>
       <div class="circle">
-        <img class="profile-pic" src="profile-photo/<%= picname %>"/> 
+        <img class="profile-pic" src="profile-photo/<%= user.avatar %>" />
       </div>
       <% /* 上傳按鈕 */ %>
       <div class="upload-icon">
@@ -60,7 +77,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="elecategory">圖片</label>
                   <div class="col-md-12">
-                    <input type="file" class="form-control input-md" name="picture">
+                    <input type="file" class="form-control input-md" accept="image/*" name="picture">
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -83,8 +100,10 @@
           </div>
           <div class="score-container">
             <div class="ranking" style="border-bottom: 2px solid black; margin-bottom: 2%;"> <p>即時排名</p> <p>分數</p> <p>姓名</p> </div>
-            <% for(var a=userRank-5;a<userRank+5;a++) { %>
-              <div class="ranking rankingHover"> <p>第<%= a %>名</p> <p><%= rankByScore[a].score_high %></p> <p><%= rankByScore[a].name %></p> </div>
+            <% for(var a = userRank-5;a < userRank+5 ; a++ ) { %>
+              <% if(rankByScore[a]) { %>
+                <div class="ranking rankingHover"> <p>第<%= a+1 %>名</p> <p><%= rankByScore[a].score_high %></p> <p><%= rankByScore[a].name %></p> </div>
+              <% } %>
             <% } %>
             
 
@@ -95,8 +114,8 @@
         <div class="toggles" id="game-toggle">
           <div class="game-link">
             <a href="/coolgame">
-              <img src="遊戲畫面.png">
-              <p>進入小遊戲</p>
+            <p style="position: absolute; z-index: 2; font-size: 23px; width: 85%; height: 50%; top: 65%; text-align: center;">進入小遊戲</p>
+              <img src="遊戲畫面.png" style="z-index: 1">
             </a>
           </div>
         </div>
@@ -104,10 +123,17 @@
         <% /* 發問紀錄 */ %>
         <div class="toggles" id="ask-record-toggle">
           <div class="ask-record-container">
-            <div class="ask" style="border-bottom: 2px solid black; margin-bottom: 2%;"> <p>分類</p> <p>標題</p> <p>日期</p> <p>點閱數</p> </div>
+            <div class="ask" style="border-bottom: 2px solid black; margin-bottom: 2%;">
+              <p>分類</p> <p>標題</p> <p>日期</p> <p>點閱數</p>
+            </div>
             <% for(var a=question.length-1;a>-1;a--) { %>
-              <div class="ask askHover"> <p><%= question[a].category %></p> <p><%= question[a].title %></p> <p><%= convertDateToString(question[a]._id.getTimestamp()) %></p> <p><%= question[a].count %></p> </div>
-            <% } %>
+              <div class="ask askHover" id="<%= question[a].postID %>">
+                  <p><%= question[a].category %></p>
+                  <p><%= question[a].title %></p>
+                  <p><%= convertDateToString(question[a]._id.getTimestamp()) %></p>
+                  <p><%= question[a].count %></p>
+              </div>
+            <% } %>            
           </div>
         </div>
 
@@ -115,8 +141,8 @@
         <div class="toggles" id="ask-toggle">
           <div class="ask-link">
             <a href="/qna">
-              <img src="提問.png">
-              <p>新增問題</p>
+              <p style="position: absolute; z-index: 2; font-size: 23px; width: 85%; height: 50%; top: 65%; text-align: center;">新增問題</p>
+              <img src="提問.png" style="z-index: 1;">
             </a>
           </div>
         </div>

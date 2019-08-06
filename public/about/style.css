@@ -4,11 +4,10 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #0D4966;
 }
 #main {
   position: relative;
-  top: 4vh;
 }
 
 .seaBlue {
@@ -32,7 +31,7 @@ a {
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   user-select: none;
   /* for Firefox */
   -webkit-user-select: none;
@@ -68,15 +67,14 @@ body {
 
 .main {
   position: relative;
-  top: 13vh;
+  top: 5vh;
   width: 90vw;
   margin: auto;
   height: 69vh;
 }
 
 #outterTitleSpace {
-  position: absolute;
-  top: -6%;
+  position: relative;
   width: 100%;
   left: 0;
   background-color: white;
@@ -116,11 +114,10 @@ body {
 
 .leftSide {
   width: 20%;
-  /* background-color: rgb(102, 252, 164);        */
 }
 
 .option {
-  font-size: 3vh;
+  font-size: 1.5vw;
 }
 
 .option ul {
@@ -164,45 +161,139 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
-
-._card {
-  height: 100%;
-  /* background: #00B7FF; */
-  padding-top: 2%;
-  /* border-top:1px solid black; */
-  text-align: center;
+.rightSideInner{
+  position: absolute;
 }
 
+._card {
+  height: 69vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content{
+  display: flex;
+  height: 90%;
+  width:96%;
+}
 .title {
-  display: block;
-  font-size: 2em;
-  position: relative;
-  top: -1%;
+  text-align: center;
+  font-size: 2.7vw;
+  margin:3vh 0;
+  color:#0D4966;
 }
 
 .intro {
-  display: block;
-  width: 80%;
-  margin-top: 1%;
-  margin: 2% auto 0;
-  text-align: left;
+  position: relative;
 }
 
 .photo {
-  position: relative;
-  top: 1%;
-
-  height: 70%;
   width: auto;
+  height: 100%;
+}
+.introText{
+  font-size: 1.3vw;
+  margin:0 1vh;
 }
 
+#mobileOption{
+  display: none;
+}
+.mobileTitle{
+  display: none;
+  color:#0D4966;
+}
+@media only screen 
+  and (min-device-width : 768px) 
+  and (max-device-width : 1024px) 
+  and (orientation : landscape) {
+    .content{
+      height: 72%;
+      width: 93%;
+    }
+    .option li{
+      margin-bottom:25%;
+    }
+  }
+/* ipad 直立設計*/
+@media only screen 
+  and (min-device-width : 768px) 
+  and (max-device-width : 1024px) 
+  and (orientation : portrait)  {
+    html{
+      overflow-x: hidden;
+    }
+    body{
+      overflow-x: hidden;
+    } 
+    .content{
+      display: block;
+    }
+    .photo{
+      height: auto;
+      width: 100%;
+      position: relative;
+    }
+    .mobileTitle{
+      display: block;
+      font-size:2rem;
+      text-align: center;
+    }
+    .title{
+      display: none;
+    }
+    .introText{
+      font-size: 1.2rem;
+    }
+    .main{
+      height:63vh;
+    }
+    ._card{
+      height:63vh;
+    }
+    .option{
+      font-size:1.2rem;
+      margin-top:48%;
+    }
+    .option li{
+      margin-bottom:26%;
+    }
+    .rightSide{
+      width:77%;
+    }
+    .leftSide{
+      width: 23%;
+    }
+    .photo{
+      width: 80%;
+      height: auto;
+    }
+    .main{
+      height:60vh;
+    }
+  }
+/* 手機橫放的通用設計 */
+@media only screen 
+  and (max-width:900px)
+  and (orientation : landscape){
+    html{
+      overflow-x: hidden;
+    }
+    body{
+      overflow-x: hidden;
+    } 
+    .option ul{
+      margin:10px 0;
+    }
+  }
 /* 手機直立的通用設計 */
 @media only screen and (max-width:500px) and (orientation : portrait){
   html{
-    overflow: hidden;
+    overflow-x: hidden;
   }
   body{
-    overflow: hidden;
+    overflow-x: hidden;
   }      
   .leftSide{
     display: none;
@@ -210,24 +301,48 @@ body {
   .rightSide{
     width:100%;
     position: relative;
-    top: 14%;
+    top: 16%;
+    height:60vh;
   }
   .photo{
     height: auto;
-    width: 90%;
+    width: 100%;
   }
   ._card{
-    height:70%;
+    height: auto;
+    position: relative;
+  }
+  .title{
+    display: none;
+  }
+  .mobileTitle{
+    display: block;
+    font-size: 6.3vw;
+    text-align: center;
+    margin: 1vh auto;
+    /* font-size: 3.8vw; */
+  }
+  .content{
+    display: block;
+    position: relative;
+    height: 60vh;
+  }
+  .introText{
+    font-size: 3.6vw;
+    margin:auto;
   }
   .main{
-    top:7vh;
+    top:3vh;
   }
   #mobileOption{
     position: absolute;
     width:100%;
+    display: block;
   }
-  .col{
+  .col-4{
     white-space: nowrap;
   }
-  
+  .rightSideInner{
+    position: absolute;
+  }
 }

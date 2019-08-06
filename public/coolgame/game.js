@@ -183,7 +183,6 @@ class Button_Text extends createjs.Container {
     this.y = y;
     this.text = new createjs.Text(t, f, c);
     this.havermask = new createjs.Shape();
-    console.log(this.text.text.length)
     this.havermask.graphics.beginFill("#34AEC7").drawRoundRect(37, -6, this.text.text.length*20+24, 34,10);
     this.havermask.alpha = 0.01;
     var w = this.text.getMeasuredWidth();
@@ -440,11 +439,7 @@ class fish extends Animal {
     }
     this.width = animalsource[type].spritesheet.getFrame(animalsource[type].spritesheet.getAnimation(special == true ? "special" : "normal").frames[0]).rect.width;
     this.height = animalsource[type].spritesheet.getFrame(animalsource[type].spritesheet.getAnimation(special == true ? "special" : "normal").frames[0]).rect.height;
-    // this.y=getrandom(300-(this.height*this.scale*2))+200+this.height*this.scale;
-    //this.y=150-(this.height*this.scale*2)+200+this.height*this.scale;
-    //  console.log(this.y);
     this.y = getrandom(275) + canvas_seaheight + 50;
-    //this.catch();
   }
 }
 class bird extends Animal {
@@ -530,6 +525,16 @@ function keyDown(event) {
 }
 function getrandom(x) {
   return Math.floor(Math.random() * x);
+}
+function geth(){
+  $.ajax({
+    url: "gethistory",
+    method:'GET',
+    error:(err)=>{console.log(err)},
+    success: function (result) {
+      console.log(result);
+    }
+  });
 }
 function getuser(){
   $.ajax({
@@ -660,10 +665,6 @@ function open_fish() {
             do {
               fishtype_rnd = getrandom(19);
               fishtype = fishtype_rnd<3?0:fishtype_rnd<9?1:2;
-              // if(fishtype == 0 &&question_num[1] !=0 &&question_num[2] !=0  ){
-              //   var b=getrandom(2);
-              //   if(b !=1 )fishtype = 1+b;
-              //}
             } while (question_num[fishtype] <= 0);
             if (gamestart)
               question_num[fishtype]--;
@@ -770,6 +771,7 @@ function load_source() {
     { src: "/music/coolgame/wrong.mp3", id: "wrong" },
     { src: "/music/coolgame/shoot.mp3", id: "shoot" },
     { src: "/music/coolgame/DolphinBGM.mp3", id: "DolphinBGM" },
+    { src: "/music/coolgame/QuestionBGM.mp3", id: "QuestionBGM" },
     { src: "/music/coolgame/alarm.mp3", id: "alarm" },
     { src: "/music/coolgame/bell.mp3", id: "bell" },
     { src: "/music/coolgame/game_end.mp3", id: "game_end" }
@@ -1293,7 +1295,6 @@ function question_end() {
     clearInterval(question_timer);
     clearInterval(score_update_timer);
     update_score();
-    //console.log("game over");
   }
   else{
     back_container.visible=false;
@@ -1301,6 +1302,7 @@ function question_end() {
     dolphin_container.alpha=0;
     createjs.Tween.get(dolphin_container).to({alpha:1},1500);
     dolphin_container.visible=true;
+    now = -1;
     BGM_change();
   }
   now_score=user_score;
@@ -1347,7 +1349,6 @@ function create_questionboard() {
   question_container.removeChild(questionboard);
   questionboard = new createjs.Sprite(questionboard_sheet, "normal");
   questionboard.scale = 0;
-  console.log(score_catch_animal_container.children[board_index].x);
   questionboard.x = score_catch_animal_container.children[board_index].x + score_catch_animal_container.x;
   questionboard.y = 130;
   question_container.addChildAt(questionboard, 1);
@@ -1410,14 +1411,12 @@ function next_question() {
     }
     question_text.visible = false;
     back_container.visible=false;
-    //console.log(score_catch_animal_container.children[board_index].x);
     createjs.Tween.get(questionboard).to({ scale: 0, x: score_catch_animal_container.children[board_index].x + score_catch_animal_container.x, y: 130 }, 1000).call(() => {
       create_questionboard();
     });
   }
   else {
     catch_animal_num[board_index]--;
-    //console.log( catch_animal_num[board_index]);
     var rnd = getrandom(question_index_list.length);
     question = question_list[board_index >= 3 ? 2 : (board_index - 1)][question_index_list[rnd]];
     question_index_list = arrayRemove(question_index_list, question_index_list[rnd]);
@@ -1488,6 +1487,7 @@ function question_init() {
   option[3].x = option[0].x + 185;
   option[3].y = option[0].y + 40;
   option[4].y = option[0].y + 80;
+  BGM_change();
   create_questionboard();
   stage.addChild(question_container);
   stage.setChildIndex(back_container, stage.numChildren - 1);
@@ -1514,7 +1514,7 @@ function close_movement() {
 }
 function create_dolphin_container(){
   dolphin_container = new createjs.Container();
-  var dolphin_text = new createjs.Text("粉紅色海豚名為「中華白海豚」依《野生\r\n\r\n動物保育法》公告之保育類野生動物名錄\r\n\r\n，已將中華白海豚列入瀕臨絕種的極度危\r\n\r\n險等級(CR)，讓我們一起守護可愛海豚，\r\n\r\n所以不要用任何方式獵鯊海豚歐~魚叉也\r\n\r\n算，扣你10000分作為警惕。","bold 20px 標楷體","#000000");   
+  var dolphin_text = new createjs.Text("粉紅色海豚名為「中華白海豚」依《野生\r\n\r\n動物保育法》公告之保育類野生動物名錄\r\n\r\n，已將中華白海豚列入瀕臨絕種的極度危\r\n\r\n險等級(CR)，讓我們一起守護可愛海豚，\r\n\r\n所以不要用任何方式獵殺海豚歐~魚叉也\r\n\r\n算，扣你10000分作為警惕。","bold 20px 標楷體","#000000");   
   dolphin_text.x=218;
   dolphin_text.y=145;
   var dolphin_background = new createjs.Shape();
@@ -1555,8 +1555,7 @@ function create_dolphin_container(){
     clearInterval(question_timer);
     new Score_Text(""+animalsource[6].score,"bold 30px Arial","#000000",score_board.getwidth()/2+score_board.x,score_board_text.y);
     update_score();
-    //console.log("game over");
-  });
+    });
   stage.addChild(dolphin_container);
 }
 function game_end() {
@@ -1821,7 +1820,6 @@ function game_start() {
     error:(err)=>{console.log("err")},
     success: function (result) {
       game_id = result.game_id;
-      console.log(game_id);
     }
   });
   BGM_change();
@@ -1973,21 +1971,38 @@ function update_rank(){
   var first_image=new createjs.Bitmap(((now == 3?rank_user_list[0].score_high:rank_user_list[0].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[0].avatar));
   first_image.image.onload=()=>{
     rank_container.children[3].image =first_image.image;
-    rank_container.children[3].scale = 1.0/(( rank_container.children[3].image.width> rank_container.children[3].image.hetght? rank_container.children[3].image.width: rank_container.children[3].image.height)/80.0);
+    rank_container.children[3].scale = 1.0/(( rank_container.children[3].image.width> rank_container.children[3].image.height? rank_container.children[3].image.width: rank_container.children[3].image.height)/80.0);
+    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
+    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
+    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
+    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
+    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
+    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
    var second_image=new createjs.Bitmap(((now == 3?rank_user_list[1].score_high:rank_user_list[1].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[1].avatar));
    second_image.image.onload=()=>{
     rank_container.children[4].image =second_image.image;
-    rank_container.children[4].scale = 1.0/(( rank_container.children[4].image.width> rank_container.children[4].image.hetght? rank_container.children[4].image.width: rank_container.children[4].image.height)/80.0);
+    rank_container.children[4].scale = 1.0/(( rank_container.children[4].image.width> rank_container.children[4].image.height? rank_container.children[4].image.width: rank_container.children[4].image.height)/80.0);
+    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
+    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
+    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
+    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
+    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
+    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
  var third_image=new createjs.Bitmap(((now == 3?rank_user_list[2].score_high:rank_user_list[2].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[2].avatar));
 
  third_image.image.onload=()=>{
-   console.log(third_image.image);
     rank_container.children[5].image =third_image.image;
-    rank_container.children[5].scale = 1.0/(( rank_container.children[5].image.width> rank_container.children[5].image.hetght? rank_container.children[5].image.width: rank_container.children[5].image.height)/80.0);
+    rank_container.children[5].scale = 1.0/(( rank_container.children[5].image.width> rank_container.children[5].image.height? rank_container.children[5].image.width: rank_container.children[5].image.height)/80.0);
+    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
+    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
+    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
+    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
+    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
+    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
   for(var j =0;j<10;j++){
@@ -2001,13 +2016,12 @@ function update_rank(){
       rank_score_text[j].text = "";
     }
    }
-  rank_name_text[0].x = rank_container.children[3].x+40- rank_name_text[0].getMeasuredWidth() / 2 ;
-  rank_score_text[0].x = rank_container.children[3].x+40- rank_score_text[0].getMeasuredWidth() / 2 ;
-  rank_name_text[1].x = rank_container.children[4].x+40- rank_name_text[1].getMeasuredWidth() / 2 ;
-  rank_score_text[1].x = rank_container.children[4].x+40- rank_score_text[1].getMeasuredWidth() / 2 ;
-  rank_name_text[2].x = rank_container.children[5].x+40- rank_name_text[2].getMeasuredWidth() / 2 ;
-  rank_score_text[2].x = rank_container.children[5].x+40- rank_score_text[2].getMeasuredWidth() / 2 ;
-  
+  rank_name_text[0].x = 205 + 40- rank_name_text[0].getMeasuredWidth() / 2 ;
+  rank_score_text[0].x = 205 + 40- rank_score_text[0].getMeasuredWidth() / 2 ;
+  rank_name_text[1].x = 100+40- rank_name_text[1].getMeasuredWidth() / 2 ;
+  rank_score_text[1].x = 100+40- rank_score_text[1].getMeasuredWidth() / 2 ;
+  rank_name_text[2].x = 310+40- rank_name_text[2].getMeasuredWidth() / 2 ;
+  rank_score_text[2].x = 310+40- rank_score_text[2].getMeasuredWidth() / 2 ;
  // rank_container.children[3].x=0;
   // rank_container.children[3].y=0;
 }
@@ -2169,7 +2183,6 @@ function create_rank_container(){
     rank_score_text[j].x = 568;
     rank_score_text[j].y = 120+51*(j-3);
   }
-  //rank_container.addChild(thrid_circle); 
 }
 function ranking_init() {
   background.image = loader.getResult("rank_background");
@@ -2228,10 +2241,13 @@ function BGM_change(){
   else if(now >=3){
     soundcontrol["BGM"] = createjs.Sound.play("RankBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.9,loop:-1}));
   }
-  else if(now ==2){
+  else if(now ==-1){
     soundcontrol["BGM"] = createjs.Sound.play("DolphinBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.6,loop:-1}));
   }
-    soundcontrol["BGM"].paused=muted;
+  else if(now ==2){
+    soundcontrol["BGM"] = createjs.Sound.play("QuestionBGM",new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, volume: 0.6,loop:-1}));
+  }
+   soundcontrol["BGM"].paused=muted;
   
 }
 function labby_init() {

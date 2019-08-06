@@ -7,45 +7,6 @@
   <link rel="stylesheet" href="/fontawesome/css/all.min.css">  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel='stylesheet' href='/qna/style.css'>
-
-
-  <style>
-    .titleTextSize {
-      font-size: 6vw;
-    }
-
-    .contentTextSize {
-      font-size: 5vw;
-    }
-
-    .mobilAnswerModalContent {
-      width: 90%;
-      height: 60vh;
-    }
-
-    #mobileAskBtn {
-      position: fixed;
-      bottom: 2vh;
-      right: 5vw;
-      width: 14vw;
-      z-index: 200;
-      display: none;
-    }
-
-    .mobilAskModalContent {
-      width: 90%;
-      height: 60vh;
-    }
-
-    #Top {
-      position: fixed;
-      bottom: 10vh;
-      right: 5vw;
-      width: 4vw;
-      z-index: 200;
-      visibility: hidden;
-    }
-  </style>
 </head>
 
 <body>
@@ -57,7 +18,7 @@
     <div class="modal-dialog" role="document" id="notice-dialog">
       <div class="modal-content" id="notice-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">MOBILE發文須知</h5>
+          <h5 class="modal-title" id="exampleModalLabel">發文須知</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -123,7 +84,7 @@
     <div class="modal-dialog" role="document" style="top: 7%;max-width:100%;">
       <div class="modal-content mobilAskModalContent">
         <div class="modal-header titleTextSize">
-          <span id="mobileAskTitleText">MOBILE我要發問</span>
+          <span id="mobileAskTitleText">我要發問</span>
         </div>
         <div class="modal-body contentTextSize">
           <form action="/qna/toPost" class="needs-validation" method="POST">
@@ -151,10 +112,10 @@
         </div>
         <div class="modal-body contentTextSize">
           <div class="contentPart answerModelQ">Question:
-            <p id="mobileQContentText">aaaaaaaaaaa</p>
+            <p id="mobileQContentText"></p>
           </div>
           <div class="contentPart answerModelA">Answer:
-            <p id="mobileAContentText">bbbbbbbbbbbbb</p>
+            <p id="mobileAContentText"></p>
           </div>
         </div>
         <div class="modal-footer">
@@ -277,7 +238,6 @@
               <input class="ml-2 searchInput" type="text" placeholder="Search" aria-label="Search"
                 onkeydown="if(event.keyCode==13){return false;}" id="search">
             </form>
-              <!-- mobileFilter -->
             <div class="mobileFilter">
               <img src="simpleSieve.png" alt="" id="simpleSieve">
               <div class="mobileFilterContent">
@@ -302,9 +262,7 @@
                 </div>
               </div>
             </div>
-            <!-- ------------ -->
-          </div>
-          
+          </div>          
         </div>
         <!-- 企鵝 -->
         <div class="ask">
