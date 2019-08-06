@@ -9,30 +9,34 @@
 
 <body>
   <% include ../layouts/header%>
-  <main style="position: relative; top: 80px;">
-    <form method="post" action="/register" onsubmit="login()">
-      <div class="box" id="reg_box">
-        
-        <div class="loglink" id="reg_link">
-          <a href="/register">註冊帳號</a>
-        </div>
-        <div class="loglink" id="login_link_click">
-          <a href="/login">帳號登入</a> 
-        </div>
+  <div class="bg">
+    <main style="position: relative; top: 80px;">
+      <form method="post" action="/register" onsubmit="login()">
+        <div class="box" id="reg_box">
+            <a href="/">
+              <div class="close" style="width: 40px; height: 40px;">
+                <p style="font-size: 40px; color: #0163b0;">&times;<p>
+              </div>
+            </a>
 
-        <div id="input_area">
-            <input type="text" placeholder="姓名 (驗證用, 請填真實姓名)" name="name" required /><br>
-            <input type="password" placeholder="密碼" name="password" required /><br>
-            <input type="password" placeholder="確認密碼" name="checkpassword" required /><br>
-            <input type="hidden" name="id" />
-        </div>
+            <div class="loglink" id="login_link">
+              <p>帳號註冊 / 登入</p>
+            </div>
 
-        <button type="submit" value="submit" name="regist">> 送出</button>
+          <div id="input_area">
+              <input type="text" placeholder="姓名 (驗證用, 請填真實姓名)" name="name" required /><br>
+              <input type="password" placeholder="密碼" name="password" required /><br>
+              <input type="password" placeholder="確認密碼" name="checkpassword" required /><br>
+              <input type="hidden" name="id" />
+          </div>
+
+          <button type="submit" value="submit" name="regist">> 註冊</button>
+          
+        </div>
         
-      </div>
-      
-    </form>
-  </main>
+      </form>
+    </main>
+  </div>
   <% include ../layouts/js %>
   <% include js %>
 </body>
