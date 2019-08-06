@@ -57,21 +57,21 @@ $(document).ready(() => {
             $("#scrollDay").animate({
                 left: (nowLeft -= 15) + "vw"
             }, {
-                    duration: 500,
-                    done: function () {
-                        isAnimating = false;
-                        $("#" + nowTarget).removeClass("target");
-                        nowTarget += 1;
-                        $("#" + nowTarget).addClass("target");
-                        $("#board-detail").empty();
-                        var cnt = 0;
-                        for (var i in current_calender) {
-                            if (cnt == nowTarget)
-                                $("#board-detail").append(current_calender[i].board_content);
-                            cnt = cnt + 1;
-                        }
+                duration: 500,
+                done: function () {
+                    isAnimating = false;
+                    $("#" + nowTarget).removeClass("target");
+                    nowTarget += 1;
+                    $("#" + nowTarget).addClass("target");
+                    $("#board-detail").empty();
+                    var cnt = 0;
+                    for (var i in current_calender) {
+                        if (cnt == nowTarget)
+                            $("#board-detail").append(current_calender[i].board_content);
+                        cnt = cnt + 1;
                     }
-                });
+                }
+            });
         }
     });
 
@@ -81,28 +81,30 @@ $(document).ready(() => {
             $("#scrollDay").animate({
                 left: (nowLeft += 15) + "vw"
             }, {
-                    duration: 500,
-                    done: function () {
-                        isAnimating = false;
-                        $("#" + nowTarget).removeClass("target");
-                        nowTarget -= 1;
-                        $("#" + nowTarget).addClass("target");
-                        $("#board-detail").empty();
-                        var cnt = 0;
-                        for (var i in current_calender) {
-                            if (cnt == nowTarget)
-                                $("#board-detail").append(current_calender[i].board_content);
-                            cnt = cnt + 1;
-                        }
+                duration: 500,
+                done: function () {
+                    isAnimating = false;
+                    $("#" + nowTarget).removeClass("target");
+                    nowTarget -= 1;
+                    $("#" + nowTarget).addClass("target");
+                    $("#board-detail").empty();
+                    var cnt = 0;
+                    for (var i in current_calender) {
+                        if (cnt == nowTarget)
+                            $("#board-detail").append(current_calender[i].board_content);
+                        cnt = cnt + 1;
                     }
-                });
+                }
+            });
         }
     });
 
     $.ajax({
         url: "calender_get_data",
         method: "POST",
-        data: { id: "aug" },
+        data: {
+            id: "aug"
+        },
         error: function (err) {
             alert("Some error occur...");
         },
@@ -118,7 +120,9 @@ $(".selectMonth").on("click", function () {
     $.ajax({
         url: "calender_get_data",
         method: "POST",
-        data: { id: this.id },
+        data: {
+            id: this.id
+        },
         error: function (err) {
             alert("Some error occur...");
         },
@@ -171,7 +175,7 @@ function append_circle(data) {
         $('.bigCircle').attr('cx', '11vw');
         $('.bigCircle').attr('cy', '11vw');
         $('.bigCircle').attr('r', '11vw');
-    }else if ((1025 > vw) && (vw > 768)){
+    } else if ((1025 > vw) && (vw > 768)) {
         ///平板
         $("#indexOneCircle circle").attr('cx', '50');
         $("#indexOneCircle circle").attr('cy', '50');
@@ -198,7 +202,7 @@ function append_circle(data) {
             $('.bigCircle').attr('cx', '11vw');
             $('.bigCircle').attr('cy', '11vw');
             $('.bigCircle').attr('r', '11vw');
-        }else if ((1025 > vw) && (vw > 768)){
+        } else if ((1025 > vw) && (vw > 768)) {
             ///平板
             $("#indexOneCircle circle").attr('cx', '50');
             $("#indexOneCircle circle").attr('cy', '50');
