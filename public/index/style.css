@@ -182,7 +182,7 @@ main {
         margin-left: 5%;
         margin-top: 2vh;
         height: 95%;
-        border: 1px solid #0163b0;
+        border: 0px solid #0163b0;
         background-color: lightblue;
         border-radius: 37px;
         padding: 15px;
@@ -252,6 +252,10 @@ main {
     }
 
     #index3crab {
+        display: none;
+    }
+
+    .myinvisible {
         display: none;
     }
 }
@@ -512,7 +516,7 @@ main {
         margin-left: 17.5%;
         margin-top: 7%;
         height: 73%;
-        border: 1px solid #0163b0;
+        border: 0px solid #0163b0;
         background-color: lightblue;
         border-radius: 37px;
         padding: 15px;

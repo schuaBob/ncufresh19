@@ -12,12 +12,18 @@ $(document).ready(() => {
         scrollOverflow: true,
         normalScrollElements: '#news-body, #board-detail',
         afterLoad: function (anchorLink, index) {
-            if (index.index === 0)
+            if (index.index === 0) {
                 $("#topHref").css("display", "none");
-            else if (index.index === 1)
+                $("#footer").removeClass();
+            }
+            else if (index.index === 1) {
                 $("#topHref").css("display", "inline");
-            else
+                $("#footer").addClass("myinvisible");
+            }
+            else {
                 $("#topHref").css("display", "inline");
+                $("#footer").addClass("myinvisible");
+            }
         }
     });
 
