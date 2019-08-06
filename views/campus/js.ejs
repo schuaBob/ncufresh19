@@ -44,7 +44,7 @@
 
                 },
                 success: function (data) {
-                    console.log(data.Element_Intro);
+                    // console.log(data.Element_Intro);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
                     if (data.Element_Intro == '<p></p>') $('#indexmodalp').hide();
@@ -92,7 +92,7 @@
             $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').stop().tooltip(
                 'hide')
             if (lasyway) {
-                console.log(verylasy);
+                // console.log(verylasy);
                 $('.indexelepic.hide[val=' + verylasy + ']')
                     .show()
                 $('.indexelepic[val=' + verylasy + ']').css(
@@ -420,7 +420,7 @@
 
                 },
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
                     if (data.Element_Intro == '<p></p>') $('#indexmodalp').hide();

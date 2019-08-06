@@ -75,16 +75,16 @@
                     images_upload_url: '/tinymceUploader',
                     setup: (ed) => {
                         ed.on('init', function (e) {
-                            console.log(`${e.target.id} textarea is initialized.`);
+                            // console.log(`${e.target.id} textarea is initialized.`);
                         });
                         ed.on('keyup', function () {
-                            console.log(ed.getContent());
+                            // console.log(ed.getContent());
                         });
                         ed.on('GetContent', (e) => {
-                            console.log(`${e.target.id}'s Content get caught.`);
+                            // console.log(`${e.target.id}'s Content get caught.`);
                         })
                         ed.on('SetContent', (e) => {
-                            console.log(`${e.target.id}'s Content get set.`);
+                            // console.log(`${e.target.id}'s Content get set.`);
                         })
                     }
                 })
@@ -112,7 +112,6 @@
             // Once image is loaded replace the src of the HTML element
             item.classList.remove('asyncImage');
             img.onload = () => {
-                console.log("loadsuc");
                 return item.nodeName === 'IMG' ?
                     item.src = path :
                     item.style.backgroundImage = `url(${path})`;
