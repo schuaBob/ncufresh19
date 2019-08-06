@@ -100,14 +100,14 @@
 
         <% /* 小遊戲 */ %>
         <div class="toggles showToggle" id="game-toggle">
-            <div class="game-link col-md">
-              <a href="/coolgame">
-                <p>點我進入小遊戲</p>
-                <img src="遊戲畫面.png">
-              </a>
-            </div>
+          <a href="/coolgame">
+              <div class="game-link">
+                  <p>點我進入小遊戲</p>
+                  <img src="遊戲畫面.png">
+              </div>
+          </a>
             
-            <div class="score col-md">
+            <div class="score">
               <h1>目前積分</h1>
               <p><%= user.score_sum %> 分</p>
             </div>
