@@ -678,6 +678,11 @@ li {
 
 
 @media only screen and (max-width: 770px) and (orientation:portrait) {
+  body{
+    height: 100vh !important;
+    overflow: scroll !important;
+  }
+
   .modal {
     z-index: 4001;
   }
