@@ -24,12 +24,12 @@ body{
   text-align: center;
 }
 
-  .close {
-    padding: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
+.close {
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 
 .loglink {
   background-color: #fff9dc;
