@@ -9,26 +9,30 @@
 
 <body>
   <% include ../layouts/header%>
-  <main style="position: relative; top: 80px;">
-    <form method="post" action="/login" onsubmit="return checklength()">
-      <div class="box" id="login_box">
+  <div class="bg">
+    <main style="position: relative; top: 80px;">
+      <form method="post" action="/login" onsubmit="return checklength()">
+        <div class="box" id="login_box">
+            <a href="/">
+              <div class="close" style="width: 40px; height: 40px;">
+                <p style="font-size: 40px;">&times;</p>
+              </div>
+            </a>
 
-        <div class="loglink" id="reg_link_click">
-          <a>註冊帳號</a>
+          <div class="loglink" id="login_link">
+            <p>帳號登入 / 註冊</p>
+          </div>
+
+          <div id="input_area">
+            <input type="text" placeholder="學號" name="id" id="student_id" required /><br>
+          </div>
+
+          <button type="submit" value="submit" name="regist">> 登入</button>
+
         </div>
-        <div class="loglink" id="login_link">
-          <a href="/login">帳號登入</a>
-        </div>
-
-        <div id="input_area">
-          <input type="text" placeholder="學號" name="id" id="student_id" required /><br>
-        </div>
-
-        <button type="submit" value="submit" name="regist">> 登入</button>
-
-      </div>
-    </form>
-  </main>
+      </form>
+    </main>
+  </div>
   <% include ../layouts/js %>
   <% include js %>
 </body>
