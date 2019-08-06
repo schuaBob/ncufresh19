@@ -502,13 +502,3 @@ body {
     padding: 0.5vw;
   }
 }
-
-@media only screen and (max-height:600px) {
-  .circle {
-    display: none;
-  }
-
-  .upload-icon {
-    display: none;
-  }
-}
