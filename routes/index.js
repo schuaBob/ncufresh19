@@ -154,11 +154,9 @@ router.get('/index-edit', checkUser.isAdmin, (req, res, next) => {
                 var TimeNow = new Date().getTime() + 28800000;
                 var pass = (TimeNow - new Date(news[i].date).getTime()) / (1000 * 60 * 60 * 24)
                 if (pass > 0) {
-                    news[i]['screenTime'] = $ { Math.abs(pass.toFixed(2)) }
-                    天前;
+                    news[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天前`;
                 } else {
-                    news[i]['screenTime'] = $ { Math.abs(pass.toFixed(2)) }
-                    天後;
+                    news[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天後`;
                 }
             }
         } catch (error) {
@@ -182,8 +180,7 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), checkUser.isAdmin
     var picArray = req.files.map((item) => {
         var desTemp = item.destination.split('/');
         var temp = {};
-        temp['picPath'] = /${desTemp[1]}/$ { desTemp[2] }
-        /${item.originalname};
+        temp['picPath'] = `/${desTemp[1]}/${desTemp[2]}/${item.originalname}`;
         temp['picLink'] = "";
         return temp;
     })
@@ -229,7 +226,7 @@ router.get('/adpic/delete', checkUser.isAdmin, (req, res, next) => {
         }).exec((err, doc) => {
             if (err) return next(err);
             console.log(doc)
-            fs.unlink(. / public$ { doc.picPath }, (err) => {
+            fs.unlink(`./public${doc.picPath}`, (err) => {
                 if (err) {
                     return next(err)
                 };
@@ -284,8 +281,7 @@ router.post('/schedule/:method', checkUser.isAdmin, (req, res, next) => {
         case "create":
             var temp = new docNews({
                 title: req.body.title,
-                date: new Date($ { req.body.time }
-                    GMT),
+                date: new Date(`${req.body.time}GMT`),
                 category: req.body.category,
                 content: req.body.content
             });
@@ -329,8 +325,7 @@ router.post('/schedule/:method', checkUser.isAdmin, (req, res, next) => {
                 pk: req.body.pk
             }, {
                 title: req.body.title,
-                date: new Date($ { req.body.time }
-                    GMT),
+                date: new Date(`${req.body.time}GMT`),
                 category: req.body.category,
                 content: req.body.content
             }).exec((err, doc) => {
