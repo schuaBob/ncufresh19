@@ -118,6 +118,8 @@ $(document).ready(() => {
             append_circle(data);
             $("#board-detail").empty();
             $("#board-detail").append(current_calender[0].board_content);
+            nowLeft = 30;
+            nowTarget = 0;
         }
     });
 
@@ -150,6 +152,8 @@ $(".selectMonth").on("click", function () {
             append_circle(data);
             $("#board-detail").empty();
             $("#board-detail").append(current_calender[0].board_content);
+            nowLeft = 30;
+            nowTarget = 0;
         }
     });
 });
@@ -168,12 +172,38 @@ function append_circle(data) {
     nowTotal = count;
     current_calender = data;
     $(".day").on("click", function () {
-        $("#board-detail").empty();
-        var cnt = 0;
-        for (var i in current_calender) {
-            if (cnt == this.id)
-                $("#board-detail").append(current_calender[i].board_content);
-            cnt = cnt + 1;
+        var width = $(window).width();
+        if(width > 1024) {
+            $("#board-detail").empty();
+            var cnt = 0;
+            for (var i in current_calender) {
+                if (cnt == this.id)
+                    $("#board-detail").append(current_calender[i].board_content);
+                cnt = cnt + 1;
+            }
+        } else {
+            var tobescroll = this.id - nowTarget;
+            if(tobescroll !== 0) {
+                isAnimating = true;
+                $("#scrollDay").animate({
+                    left: (nowLeft -= (tobescroll * 15)) + "vw"
+                }, {
+                    duration: 500,
+                    done: function () {
+                        isAnimating = false;
+                        $("#" + nowTarget).removeClass("target");
+                        nowTarget += tobescroll;
+                        $("#" + nowTarget).addClass("target");
+                        $("#board-detail").empty();
+                        var cnt = 0;
+                        for (var i in current_calender) {
+                            if (cnt == nowTarget)
+                                $("#board-detail").append(current_calender[i].board_content);
+                            cnt = cnt + 1;
+                        }
+                    }
+                });
+            }
         }
     });
 

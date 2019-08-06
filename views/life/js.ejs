@@ -207,9 +207,13 @@ var match_num = {
              $(this).css({'max-height': '4%', 'max-width': '4%'});
         }
      );
-     $('body').tooltip({
-        selector: '.foodIcon'
-     });
+        var width = innerWidth;
+        if (width > 1024) {
+            $('body').tooltip({
+                selector: '.foodIcon'
+            });
+        }
+
 
      $(document).on('click', '.foodIcon', function(event) {
          $('.foodIcon').tooltip('hide');

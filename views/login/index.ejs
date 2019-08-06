@@ -24,6 +24,9 @@
           </div>
 
           <div id="input_area">
+            <% if(error.length) { %>
+              <p style="color: red; font-weight: bold;"><%= error[0] %></p>
+            <% } %>
             <input type="text" placeholder="學號" name="id" id="student_id" required /><br>
           </div>
 

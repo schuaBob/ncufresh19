@@ -1,5 +1,7 @@
 body {
   background-color: #fff9dc;
+  -moz-user-select : none;
+  -webkit-user-select: none;
 }
 
 .title-box {
@@ -40,7 +42,7 @@ body {
   align-items: center;
   position: absolute;
   top: 160px;
-  left: 250px;
+  left: 15vw;
 }
 
 .username {
@@ -48,7 +50,7 @@ body {
   line-height: 8vh;
   font-size: 8vh;
   color: #FB8360;
-  padding: 10px;
+  padding: 2vh;
 }
 
 .student-number {
@@ -56,19 +58,36 @@ body {
   line-height: 5vh;
   font-size: 5vh;
   color: black;
-  padding: 10px;
+  padding: 2vh;
 }
 
 .links {
+  width: 10vw;
   font-size: 2.5vh;
   color: black;
-  width: 10vw;
   height: 5vh;
   border-radius: 10px;
   text-align: center;
   line-height: 5vh;
   position: absolute;
-  top: calc(160px + 15vh);
+  top: calc(160px + 13vh);
+  cursor: pointer;
+}
+
+#game {
+  left: 15vw;
+}
+
+#ask-record {
+  left: 28vw;
+}
+
+#ask {
+  left: 41vw;
+}
+
+#logout {
+  left: 54vw;
 }
 
 .links a {
@@ -97,24 +116,7 @@ body {
   text-decoration: none;
 }
 
-#game-score {
-  left: 250px;
-}
-
-#game {
-  left: calc(250px + 12vw);
-}
-
-#ask-record {
-  left: calc(250px + 24vw);
-}
-
-#ask {
-  left: calc(250px + 36vw);
-}
-
 #logout {
-  left: calc(250px + 48vw);
   background-color: #bfe8f2;
 }
 
@@ -138,6 +140,11 @@ body {
   height: calc((48% / 1197 * 745)+4%);
   text-align: center;
   padding: 4% 2%;
+}
+
+.game-link a {
+  width: 100%;
+  height: 100%;
 }
 
 .ask-link:hover {
@@ -188,41 +195,52 @@ body {
   width: 100%;
   height: 100%;
   display: block;
-  width: 100%;
-  height: 100%;
 }
 
 .circle {
   border-radius: 1000px !important;
   overflow: hidden;
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: width;
   position: absolute;
-  top: 100px;
-  left: calc(370px + 50vw);
+  top: 140px;
+  left: 70vw;
 }
 
 .upload-icon {
   position: absolute;
-  width: 40px;
   top: 240px;
-  left: calc(500px + 52vw)
+  left: calc(70vw + 130px);
+}
+
+.upload-icon img {
+  cursor: pointer;
 }
 
 .toggle-container {
-  width: 65%;
-  height: calc(90vh - 250px - 5vh);
+  width: 70%;
+  height: calc(80vh - 200px);
   position: absolute;
-  top: calc(160px + 23vh);
-  left: 250px;
+  top: 320px;
+  left: 15%;
   background-color: white;
   padding: 3%;
 }
 
+.toggles {
+  width: 100%;
+  height: 100%;
+}
+
+.score {
+  width: 100%;
+  height: 100%;
+}
 .score h1 {
   font-size: 5vh;
   color: #0163b0;
   position: absolute;
+  left: 60%;
   top: 30%;
 }
 
@@ -230,33 +248,8 @@ body {
   font-size: 7vh;
   color: #FB8360;
   position: absolute;
+  left: 60%;
   top: 45%;
-}
-
-.score-container {
-  width: 60%;
-  height: 80%;
-  position: absolute;
-  top: 10%;
-  left: 35%;
-  padding-right: 5%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.score-container p {
-  font-size: 1.5vw;
-  line-height: 3vw;
-}
-
-.ranking {
-  display: grid;
-  grid-template-columns: 30% 40% 30%;
-  text-align: center;
-}
-
-.rankingHover:hover {
-  background-color: #767171;
 }
 
 .ask-record-container {
@@ -283,6 +276,10 @@ body {
   text-align: center;
   place-items: center;
   padding: 0vw;
+}
+
+.askHover {
+  cursor: pointer;
 }
 
 .askHover:hover {
@@ -446,30 +443,42 @@ body {
 
   .links {
     top: 230px;
-    width: 9vh;
+    width: 20vw;
     font-size: 2vh;
     line-height: 5vh;
     height: 5vh;
   }
 
   #game {
-    display: none;
-  }
-
-  #game-score{
-    left: 11vw;
+    left: 10vw;
   }
 
   #ask-record {
-    left: 31vw;
+    left: 30vw;
   }
-  
+
   #ask {
-    left: 51vw;
+    left: 50vw;
   }
 
   #logout {
-    left: 71vw;
+    left: 70vw;
+  }
+
+  .score h1 {
+    width: 100%;
+    text-align: center;
+    left: 4%;
+  }
+
+  .score p {
+    width: 100%;
+    text-align: center;
+    left: 4%;
+  }
+
+  .game-link {
+    display: none;
   }
 
   .toggle-container {
@@ -480,25 +489,13 @@ body {
     padding: 5%;
   }
 
-  .score-container {
-    display: none;
-  }
-
   .ask p {
     font-size: 13px;
   }
 
   .ask-link {
-    width: 60%;
-    height: calc((68% / 1197 * 745)+4%);
+    width: 88%;
+    height: calc((98% / 1197 * 745)+4%);
     padding: 4% 2%;
-  }
-
-  .ask-record-container p {
-    font-size: 2.7vw;
-  }
-
-  .ask {
-    padding: 0.5vw;
   }
 }
