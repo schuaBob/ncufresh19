@@ -371,6 +371,10 @@ thead>tr {
   display: none;
 }
 
+#searchImg:hover {
+  cursor: pointer;
+}
+
 /* ipad 直立設計*/
 @media only screen 
   and (min-width : 768px) 
