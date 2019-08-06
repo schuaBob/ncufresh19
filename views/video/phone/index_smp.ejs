@@ -3,24 +3,23 @@
   <head>
     <title><%= title %></title>
     <% include ../../layouts/head %>
-    <% include ../../layouts/script  %>
-    <link rel='stylesheet' href='/video/style.css' />
+    <link rel='stylesheet' href='/video/video_smp.css' />
   </head>
   <body>
     
     <% include ../../layouts/header %>
     <main>
 
-        <%/* 藍色區域 */%>
+        <%/* 藍色區域 
         <div class="background">
           <div class="video_area">
             <img src="/video/鯨_phone.png" class="whale">
           </div>
         </div>
+        */%>
 
 
       <%/* 標題 */%>
-      <div class="bar_background">
         <div class="title_bar">
           <%/* 黃線mark */%>
           <div class="line"></div>
@@ -28,10 +27,9 @@
             VIDEO<div class="small_title">影音專區</div>
           </div>
         </div>
-      </div>
 
       <%/* 縮圖連結 */%>
-        <div class="button_area">
+        <div class="button_no_scroll">
           <a href="nculife/">
             <img src="/video/中大生活.jpg" class="v_button">
           </a>
@@ -43,15 +41,7 @@
           </a>
         </div>
 
-        <script>
-            $(document).ready(function(){
-                $(window).resize(function(){
-                    var width = innerWidth;
-                    if(width > 768)
-                        document.location.href = "/video/index_com/";
-                });
-            });
-        </script>
+        <% include ./js_smp %>
 
       
     </main>

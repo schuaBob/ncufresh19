@@ -229,6 +229,10 @@
         margin-right: 6px;
         display: none;
     }
+    
+    #stu_mob {
+        display: none
+    }
     /*---------------------------------------------edit---------------------------------------------------*/
     
     .buttons {
@@ -253,22 +257,28 @@
     .info {
         position: absolute;
         width: 60vw;
-        height: 70vh;
+        height: 75vh;
         top: 175px;
         right: 10vw;
         background-color: #FFFDF1;
-        overflow: scroll
+        overflow: auto;
     }
     
     .content {
         position: relative;
-        top: 5vh;
+        top: 1vh;
         font-size: 1.5vw;
         width: 90%;
         margin: 0 auto;
         line-height: 5vh;
-        display: flex;
-        justify-content: Space-around;
+    }
+    
+    .content_pic {
+        position: relative;
+        top: 4vh;
+        width: 85%;
+        margin: 0 auto;
+        height: 35vh;
     }
     
     .info-line {
@@ -280,6 +290,14 @@
         top: 1vh;
     }
     
+    .info_title {
+        text-align: center;
+        position: relative;
+        top: 2vh;
+        color: #0D4966;
+        font-size: 3vw
+    }
+    
     .cutline {
         width: 20vw;
     }
@@ -287,8 +305,8 @@
     .linkimg {
         position: relative;
         width: 15vw;
-        height: inherit;
-        margin: auto
+        margin: auto;
+        top: 0;
     }
     
     .de-en {
@@ -297,28 +315,32 @@
     
     .linkbuttons {
         position: relative;
-        top: 10vh
+        top: 5vh;
     }
     
-    .character a .link {
-        text-align: center;
-        font-size: 2vw;
-        position: absolute;
-        top: 7vh;
-        left: 5vw;
+    .linkhover {
+        position: relative;
+        width: 100%;
+        height: 20vh;
+        top: 0;
+    }
+    
+    .shell a .link {
+        left: calc(50% - 50vw);
+        width: 100%;
+        text-decoration: none;
         color: #0D4966;
+    }
+    
+    .shell {
+        position: relative;
+        display: inline-block;
+        width: 15vw;
+        vertical-align: top;
     }
     
     .stu_img {
-        width: 20vw
-    }
-    
-    .info_title {
-        text-align: center;
-        position: relative;
-        top: 3vh;
-        font-size: 3vw;
-        color: #0D4966;
+        height: 20vh;
     }
     /* eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
     
@@ -339,12 +361,22 @@
         display: none;
     }
     
+    .btn-circle {
+        width: 15px;
+        height: 15px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+    }
+    
     .snap_so {
         background-color: #FB8360;
         position: absolute;
         z-index: 3000;
-        top: 46.9vh;
-        left: 62.8vw;
+        top: 100px;
+        left: 20vh;
     }
     
     .snap_m {
@@ -405,9 +437,9 @@
             width: inherit;
         }
     }
-    /*-----------------------------------------------phone--------------------------------------------------*/
+    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%phone%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 600px) and (orientation: portrait) {
         .container {
             border: 0px;
             padding: 0px;
@@ -422,7 +454,7 @@
         }
         .container2 {
             position: relative;
-            top: 87vh;
+            top: 90vh;
             left: 0px;
             width: 100%;
             text-align: center;
@@ -442,7 +474,7 @@
         }
         a.indexa {
             color: white;
-            font-size: 5vw;
+            font-size: 6vw;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.6s !important;
@@ -458,12 +490,12 @@
         .buttons {
             display: none;
         }
-        /*---------------------listbar---------------------*/
+        /*-%%%%%%%%%%%%%%%%%%%%%%%%%%%-listbar-%%%%%%%%%%%%%%%%%%%%%%%%%*/
         .sidebar {
             left: 10vw;
-            top: 22vh;
+            top: 24vh;
             position: absolute;
-            height: 30vh;
+            height: auto;
             width: auto;
             padding-left: 2vw;
             font-size: 5vw;
@@ -472,15 +504,26 @@
             font-weight: lighter;
         }
         .sidebar2 {
-            left: 50vw;
-            top: 55vh;
+            left: 10vw;
+            top: 24vh;
             position: absolute;
-            height: 30vh;
+            height: auto;
             width: auto;
             font-size: 5vw;
             color: rgb( 32, 56, 100);
             overflow: auto;
             font-weight: lighter;
+        }
+        #stu_com {
+            display: none;
+        }
+        #stu_mob {
+            display: flex;
+            width: 100vw;
+            justify-content: Space-around;
+        }
+        .fas .fa-angle-right .fa-mob {
+            display: none;
         }
         .sideli {
             margin-top: 1vh;
@@ -492,7 +535,7 @@
             display: inline;
             position: relative;
         }
-        /*---------------------title---------------------*/
+        /*%%%%%%%%%%%%%%%%%%%%%title-%%%%%%%%%%%%%%%%%%%%%%%%-*/
         .title {
             position: relative;
             left: 20px;
@@ -516,31 +559,69 @@
         }
         .navbar {
             position: absolute;
-            top: 580px;
-            left: calc(50% - 40vw);
+            left: calc(50% - 50vw);
+            top: 85vh;
             display: flex;
             flex-direction: row;
-            width: 80vw;
+            width: 100vw;
             z-index: 100;
+            justify-content: Center;
         }
         a.nava {
             position: static;
             z-index: 100;
+            font-size: 4vw;
         }
         .navimg {
-            height: 40px;
+            height: 13vw;
         }
-        /*---------------------info---------------------*/
+        /*--%%%%%%%%%%%%%%%%%%%%--info--%%%%%%%%%%%%%%%%%%%%-*/
         .info {
             position: absolute;
             font-size: 4vw;
-            width: 80%;
-            height: 60vh;
-            left: 10vw;
-            top: 180px;
+            width: 90vw;
+            left: calc(50% - 45vw);
+            height: 50vh;
+            top: 32vh;
             background-color: #FFFDF1;
             overflow: auto;
         }
+        .info_title {
+            font-size: 8vw;
+        }
+        .content_pic {
+            top: 5vh;
+            width: 90%;
+        }
+        .content {
+            font-size: 4vw;
+            top: 3vh;
+        }
+        .de-info {
+            position: absolute;
+            top: 45vw;
+            width: 100vw;
+            font-size: 7vw;
+        }
+        .cutline {
+            width: 50vw;
+        }
+        .de-en {
+            font-size: 3vw;
+        }
+        .shell a .link {
+            font-size: 5vw
+        }
+        .shell {
+            position: relative;
+            display: inline-block;
+            width: 30vw;
+            vertical-align: top;
+        }
+        .linkimg {
+            position: relative;
+            width: 30vw;
+            margin: auto;
+            top: 0;
+        }
     }
-    
-    ;

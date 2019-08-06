@@ -6,14 +6,23 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  qnaDB.find().sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
-  if(err){
-     res.render('qna/index', { title: '新生知訊網|新生問答',user:req.user });
-     return err;
-  }      
-  res.render('qna/index', { title: '新生知訊網|新生問答',questions: result,user:req.user });
-  });
-  // res.render('qna/index', { title: 'Express' });
+  if(req.user && req.user.role==="admin"){
+    qnaDB.find().sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
+      if(err){
+         res.render('qna/index', { title: '新生知訊網 | 新生問答',user:req.user });
+         return err;
+      }    
+      res.render('qna/index', { title: '新生知訊網 | 新生問答',questions: result,user:req.user}); 
+    });
+  }else{
+    qnaDB.find({reviewed:true}).sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
+      if(err){
+         res.render('qna/index', { title: '新生知訊網 | 新生問答',user:req.user });
+         return err;
+      }   
+      res.render('qna/index', { title: '新生知訊網 | 新生問答',questions: result,user:req.user}); 
+    });
+  } 
 });
 
 router.get('/:category', function(req, res, next) {
@@ -37,21 +46,42 @@ router.get('/:category', function(req, res, next) {
   }
   
   if(category1==""){
-    qnaDB.find().sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
-      if(err){
-        res.render('qna/index', { title: '新生知訊網|新生問答',user:req.user });
-        return err;
-      }      
-      res.render('qna/index', { title: '新生知訊網|新生問答',questions: result,user:req.user });          
-    });
+
+    if(req.user && req.user.role==="admin"){
+      qnaDB.find().sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
+        if(err){
+          res.render('qna/index', { title: '新生知訊網 | 新生問答',user:req.user });
+          return err;
+        }      
+        res.render('qna/index', { title: '新生知訊網 | 新生問答',questions: result,user:req.user });          
+      });
+    }else{
+      qnaDB.find({reviewed:true}).sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
+        if(err){
+          res.render('qna/index', { title: '新生知訊網 | 新生問答',user:req.user });
+          return err;
+        }      
+        res.render('qna/index', { title: '新生知訊網 | 新生問答',questions: result,user:req.user });          
+      });
+    }    
   }else{
-    qnaDB.find({category:category1}).sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
-      if(err){
-        res.render('qna/index', { title: '新生知訊網|新生問答',user:req.user });
-        return err;
-      }
-      res.render('qna/index', { title: '新生知訊網|新生問答',questions: result,user:req.user });    
-    });
+    if(req.user && req.user.role==="admin"){
+      qnaDB.find({category:category1}).sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
+        if(err){
+          res.render('qna/index', { title: '新生知訊網 | 新生問答',user:req.user });
+          return err;
+        }
+        res.render('qna/index', { title: '新生知訊網 | 新生問答',questions: result,user:req.user });    
+      });
+    }else{
+      qnaDB.find({category:category1,reviewed:true}).sort({"_id":-1,"count":-1}).skip(0).limit(12).exec(function(err,result){
+        if(err){
+          res.render('qna/index', { title: '新生知訊網 | 新生問答',user:req.user });
+          return err;
+        }
+        res.render('qna/index', { title: '新生知訊網 | 新生問答',questions: result,user:req.user });    
+      });
+    }    
   }  
 });
 
@@ -61,9 +91,9 @@ router.get('/:category', function(req, res, next) {
 
 
 router.post('/toPost',function(req,res){ 
-  console.log("submit question");
   //判斷是否登入  
   new qnaDB({
+    authorID:(req.user && req.user.id) ? req.user.id : "anonymous", 
     postID:getPostID(),
     title:req.body.title,
     qContent:req.body.question,     
@@ -101,12 +131,22 @@ router.post('/search',function(req,res){
   var rowCount = parseInt(req.body.rowCount); 
   var rgx = new RegExp(".*"+ req.body.searchText +".*", "i");    
   if(category1==""){
-    qnaDB.find({$or:[{title:{$regex:rgx}},{qContent:{$regex:rgx}},{aContent:{$regex:rgx}}]}).sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
-      if(err){
-        return err;
-      }    
-      res.send(result);    
-    });  
+    if(req.user && req.user.role==="admin"){
+      qnaDB.find({$or:[{title:{$regex:rgx}},{qContent:{$regex:rgx}},{aContent:{$regex:rgx}}]}).sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
+        if(err){
+          return err;
+        }    
+        res.send(result);    
+      });
+    }else{
+      qnaDB.find({$or:[{title:{$regex:rgx}},{qContent:{$regex:rgx}},{aContent:{$regex:rgx}}],reviewed:true}).sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
+        if(err){
+          return err;
+        }    
+        res.send(result);    
+      });
+    }
+      
   }else{
     qnaDB.find({$and:[{$or:[{title:{$regex:rgx}},{qContent:{$regex:rgx}},{aContent:{$regex:rgx}}]},{category:category1}]}).sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
       if(err){
@@ -144,20 +184,38 @@ router.post('/getData',function(req,res){
   }
   
   if(category1==""){
-    //從第幾列開始之後加載10個問題
-    qnaDB.find().sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
-      if(err){
-        return err;
-      }      
-      res.send(result);
-    });
+    if(req.user && req.user.role==="admin"){
+      //從第幾列開始之後加載10個問題
+      qnaDB.find().sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
+        if(err){
+          return err;
+        }      
+        res.send(result);
+      });
+    }else{
+      qnaDB.find({reviewed:true}).sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
+        if(err){
+          return err;
+        }      
+        res.send(result);
+      });
+    }    
   }else{
-    qnaDB.find({category:category1}).sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
-      if(err){
-        return err;
-      }      
-      res.send(result);
-    });
+    if(req.user && req.user.role==="admin"){
+      qnaDB.find({category:category1}).sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
+        if(err){
+          return err;
+        }      
+        res.send(result);
+      });
+    }else{
+      qnaDB.find({category:category1,reviewed:true}).sort(sorter).skip(rowCount).limit(12).exec(function(err,result){
+        if(err){
+          return err;
+        }      
+        res.send(result);
+      });
+    }    
   }
   
 });

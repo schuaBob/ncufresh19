@@ -1,18 +1,22 @@
 var current_calender;
+var nowLeft = 30,
+    nowTarget = 0,
+    nowTotal = 0;
+var isAnimating = false;
 
 $(document).ready(() => {
     $('#fullpage').fullpage({
+        licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
         anchors: ['indexPage', 'newsPage', 'callenderPage'],
         slideSelector: '.fpslide',
         scrollOverflow: true,
-        normalScrollElements:'#news-body, #board-detail',
-
-        afterLoad:function(anchorLink,index){
-            if(index.index === 0)
+        normalScrollElements: '#news-body, #board-detail',
+        afterLoad: function (anchorLink, index) {
+            if (index.index === 0)
                 $("#topHref").css("display", "none");
-            else if(index.index === 1)
+            else if (index.index === 1)
                 $("#topHref").css("display", "inline");
-            else 
+            else
                 $("#topHref").css("display", "inline");
         }
     });
@@ -46,58 +50,166 @@ $(document).ready(() => {
             }
         })
     });
-})
 
-$(".day").each(function () {
-    $(this).css("left", (this.id - 1) * 10 + "%");
-    
+    $(".next").on("click", function () {
+        if (!isAnimating && nowTarget < nowTotal) {
+            isAnimating = true;
+            $("#scrollDay").animate({
+                left: (nowLeft -= 15) + "vw"
+            }, {
+                duration: 500,
+                done: function () {
+                    isAnimating = false;
+                    $("#" + nowTarget).removeClass("target");
+                    nowTarget += 1;
+                    $("#" + nowTarget).addClass("target");
+                    $("#board-detail").empty();
+                    var cnt = 0;
+                    for (var i in current_calender) {
+                        if (cnt == nowTarget)
+                            $("#board-detail").append(current_calender[i].board_content);
+                        cnt = cnt + 1;
+                    }
+                }
+            });
+        }
+    });
+
+    $(".prev").on("click", function () {
+        if (!isAnimating && nowTarget > 0) {
+            isAnimating = true;
+            $("#scrollDay").animate({
+                left: (nowLeft += 15) + "vw"
+            }, {
+                duration: 500,
+                done: function () {
+                    isAnimating = false;
+                    $("#" + nowTarget).removeClass("target");
+                    nowTarget -= 1;
+                    $("#" + nowTarget).addClass("target");
+                    $("#board-detail").empty();
+                    var cnt = 0;
+                    for (var i in current_calender) {
+                        if (cnt == nowTarget)
+                            $("#board-detail").append(current_calender[i].board_content);
+                        cnt = cnt + 1;
+                    }
+                }
+            });
+        }
+    });
+
     $.ajax({
-        url:    "calender_get_data",
+        url: "calender_get_data",
         method: "POST",
-        data:   { id: "aug" },
-        error: function(err){
+        data: {
+            id: "aug"
+        },
+        error: function (err) {
             alert("Some error occur...");
         },
-        success: function(data){
+        success: function (data) {
             append_circle(data);
+            $("#board-detail").empty();
+            $("#board-detail").append(current_calender[0].board_content);
         }
     });
 });
-
-
 
 $(".selectMonth").on("click", function () {
     $.ajax({
         url: "calender_get_data",
         method: "POST",
-        data: { id: this.id },
+        data: {
+            id: this.id
+        },
         error: function (err) {
             alert("Some error occur...");
         },
-        success: function(data){
+        success: function (data) {
             append_circle(data);
+            $("#board-detail").empty();
+            $("#board-detail").append(current_calender[0].board_content);
         }
     });
 });
 
-function append_circle(data){
+function append_circle(data) {
     $("#days").empty();
+    $("#days").append('<div id="scrollDay"></div>');
     var count = 0;
-    for(var i in data){
-        $("#days").append('<div class="day" id="' +  count + '"> <div class="dot"> <svg height="40" width="40"> <circle cx="20" cy="20" r="20" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
+    var today = new Date();
+    for (var i in data) {
+        $("#scrollDay").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="40" width="40"> <circle cx="20" cy="20" r="20" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
+        if ((today.getMonth() + 1) == data[i].month && today.getDate() == data[i].date)
+            $("#" + count).append('<img id="index3crab" src="/index/首頁3_螃蟹去背.png">');
         count = count + 1;
     }
-    $(".day").each(function(){
-        $(this).css("left", (this.id) * 8 + "%");
-    });
+    nowTotal = count;
     current_calender = data;
-    $(".day").on("click", function(){
+    $(".day").on("click", function () {
         $("#board-detail").empty();
         var cnt = 0;
-        for(var i in current_calender) {
-            if(cnt == this.id)
+        for (var i in current_calender) {
+            if (cnt == this.id)
                 $("#board-detail").append(current_calender[i].board_content);
             cnt = cnt + 1;
+        }
+    });
+
+    $("#0").addClass("target");
+    var vw = window.innerWidth;
+    if (vw > 1025) {
+        ///電腦版
+        $("#indexOneCircle circle").attr('cx', '50');
+        $("#indexOneCircle circle").attr('cy', '50');
+        $("#indexOneCircle circle").attr('r', '40');
+        $('.bigCircle').attr('cx', '60px');
+        $('.bigCircle').attr('cy', '60px');
+        $('.bigCircle').attr('r', '60px');
+    } else if (vw < 768) {
+        ///手機板
+        $("#indexOneCircle circle").attr('cx', '35');
+        $("#indexOneCircle circle").attr('cy', '35');
+        $("#indexOneCircle circle").attr('r', '25');
+        $('.bigCircle').attr('cx', '11vw');
+        $('.bigCircle').attr('cy', '11vw');
+        $('.bigCircle').attr('r', '11vw');
+    } else if ((1025 > vw) && (vw > 768)) {
+        ///平板
+        $("#indexOneCircle circle").attr('cx', '50');
+        $("#indexOneCircle circle").attr('cy', '50');
+        $("#indexOneCircle circle").attr('r', '40');
+        $('.bigCircle').attr('cx', '50px');
+        $('.bigCircle').attr('cy', '50px');
+        $('.bigCircle').attr('r', '50px');
+    }
+    window.addEventListener('resize', () => {
+        var vw = window.innerWidth;
+        if (vw > 1025) {
+            ///電腦版
+            $("#indexOneCircle circle").attr('cx', '50');
+            $("#indexOneCircle circle").attr('cy', '50');
+            $("#indexOneCircle circle").attr('r', '40');
+            $('.bigCircle').attr('cx', '60px');
+            $('.bigCircle').attr('cy', '60px');
+            $('.bigCircle').attr('r', '60px');
+        } else if (vw < 768) {
+            ///手機板
+            $("#indexOneCircle circle").attr('cx', '35');
+            $("#indexOneCircle circle").attr('cy', '35');
+            $("#indexOneCircle circle").attr('r', '25');
+            $('.bigCircle').attr('cx', '11vw');
+            $('.bigCircle').attr('cy', '11vw');
+            $('.bigCircle').attr('r', '11vw');
+        } else if ((1025 > vw) && (vw > 768)) {
+            ///平板
+            $("#indexOneCircle circle").attr('cx', '50');
+            $("#indexOneCircle circle").attr('cy', '50');
+            $("#indexOneCircle circle").attr('r', '40');
+            $('.bigCircle').attr('cx', '50px');
+            $('.bigCircle').attr('cy', '50px');
+            $('.bigCircle').attr('r', '50px');
         }
     });
 }

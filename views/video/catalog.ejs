@@ -4,8 +4,7 @@
 <head>
     <title><%= title %></title>
     <% include ../layouts/head %>
-    <% include ../layouts/script  %>
-    <link rel='stylesheet' href='/video/style.css' />
+    <link rel='stylesheet' href='/video/video.css' />
 </head>
 
 <body>
@@ -28,7 +27,7 @@
                         <img src="/video/button/中大生活_住.png" class="v_button"> 
                     </a>
                     <a href="going">
-                        <img src="/video/button/中大生活_食.png" class="v_button">  
+                        <img src="/video/button/中大生活_行.png" class="v_button">  
                     </a>
                     <a href="education">
                         <img src="/video/button/中大生活_育.png" class="v_button"> 
@@ -81,7 +80,7 @@
                         <img src="/video/button/中大傳說_早餐.png" class="v_button">
                     </a>
                     <a href="lover">
-                        <img src="/video/button/中大生活_食.png" class="v_button">  
+                        <img src="/video/button/中大傳說_男女朋友.png" class="v_button">  
                     </a>
                 </div>
             <% } %>
@@ -161,7 +160,7 @@
                     </a>
                 <% }else if(title_bar[3] === '資訊電機學院'){ %>
                     <a href="ipeecs">
-                        <img src="/video/button/資電院學士班系.png" class="v_button">
+                        <img src="/video/button/資電學士班.png" class="v_button">
                     </a>
                     <a href="ee">
                         <img src="/video/button/電機系.png" class="v_button">
@@ -179,25 +178,7 @@
         <img src="/video/大珊瑚.png" class="picture_right">
 
 
-        <script>
-        $(document).ready(function(){
-            var width;
-            if(innerWidth > outerWidth)
-                width = outerWidth;
-            else
-                width = innerWidth;
-            if(width <= 768)
-                document.location.href = "/video/index_smp/";
-           $(window).resize(function(){
-                if(innerWidth > outerWidth)
-                    width = outerWidth;
-                else
-                    width = innerWidth;
-                if(width <= 768)
-                    document.location.href = "/video/index_smp/";
-            });
-        });
-        </script>
+        <% include ./js %>
 
     </main>
 </body>

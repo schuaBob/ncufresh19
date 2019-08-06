@@ -32,13 +32,16 @@ router.get('/:device/nculife/', function (req, res, next) {
   var view = '';
   if (req.params.device === 'index_com') {
     view = 'video/catalog';
+    back_name = 'index_com/';
   }else if(req.params.device === 'index_smp') {
     view = 'video/phone/catalog_smp';
+    back_name = 'index_smp/';
   }
   //var title_bar = ['LIFE', '中大生活', [{ en: 'eating', ch: '食' }, {}]];
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: ['LIFE', '中大生活'],
+    back_name: back_name,
     user: req.user
   });
 });
@@ -50,11 +53,11 @@ router.get('/:device/nculife/:id', function (req, res, next) {
   switch (req.params.id) {
     case 'eating':
       title_bar = ['LIFE', '中大生活', 'EATING', '食'];
-      ytID = 'B_8YrtgyC5o';
+      ytID = '8eUCmcJOByc';
       break;
     case 'living':
       title_bar = ['LIFE', '中大生活', 'LIVING', '住'];
-      ytID = 'lPSmlyn0PN0';
+      ytID = 'Y60o43bna74';
       break;
     case 'going':
       title_bar = ['LIFE', '中大生活', 'GOING', '行'];
@@ -62,11 +65,11 @@ router.get('/:device/nculife/:id', function (req, res, next) {
       break;
     case 'education':
       title_bar = ['LIFE', '中大生活', 'EDUCATION', '育'];
-      ytID = 'x06EbxjJAcw';
+      ytID = 'b0osIzJaPVQ';
       break;
     case 'joy':
       title_bar = ['LIFE', '中大生活', 'JOY', '樂'];
-      ytID = 'BYjcSDKP1LY';
+      ytID = 'TkLqASD6dJI';
       break;
 
     default:
@@ -77,10 +80,12 @@ router.get('/:device/nculife/:id', function (req, res, next) {
   var view = '';
   if (req.params.device === "index_com") {
     view = 'video/video_model';
+    back_name = 'index_com/nculife/';
 
   } else if (req.params.device === "index_smp") {
     //手機版video model
     view = 'video/phone/video_model_smp';
+    back_name = 'index_smp/nculife/';
 
   } else {
     res.status(404)
@@ -89,7 +94,7 @@ router.get('/:device/nculife/:id', function (req, res, next) {
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: title_bar,
-    back_name: 'index_com/nculife/',
+    back_name: back_name,
     ytID: ytID,
     user: req.user
   });
@@ -100,12 +105,15 @@ router.get('/:device/interview', function (req, res, next) {
   var view = '';
   if (req.params.device === 'index_com') {
     view = 'video/catalog';
+    back_name = 'index_com/';
   }else if(req.params.device === 'index_smp') {
     view = 'video/phone/catalog_smp';
+    back_name = 'index_smp/';
   }
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: ['INTERVIEW', '學長姐訪談'],
+    back_name: back_name,
     user: req.user
   });
 });
@@ -186,25 +194,25 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'MANAGEMENT', '管理學院',
        'INFORMATION MANAGEMENT', '資訊管理系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'BDsmp_jZjf4';
       break;
     case 'ba':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'MANAGEMENT', '管理學院',
        'BUSINESS ADMINISTRATION', '企業管理學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = '2jN9UJDSP6M';
       break;
     case 'fm':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'MANAGEMENT', '管理學院',
        'FINANCE', '財務金融學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'wPWpeHR-n0I';
       break;
     case 'ec':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'MANAGEMENT', '管理學院',
        'ECONOMICS', '經濟學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'YKcSdCvHiiQ';
       break;
     
     //文院
@@ -212,19 +220,19 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'LIBERAL ARTS', '文學院',
        'CHINESE LITERATURE', '中國文學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'iQBI3POmn-E';
       break;
     case 'english':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'LIBERAL ARTS', '文學院',
        'ENGLISH', '英美語文系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'eHxoiyeFuPw';
       break;
     case 'fr':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'LIBERAL ARTS', '文學院',
        'FRANÇAIS', '法國語文學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'ZZHRWGi9DyQ';
       break;
 
     //理院
@@ -232,31 +240,31 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'SCIENCE', '理學院',
        'JOINT SCIENCE PROGRAM, COLLEGE OF SCIENCE', '理學院學士班'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'FKtjUkvxTeM';
       break;
     case 'phy':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'SCIENCE', '理學院',
        'PHYSICS', '物理學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'rI_faYYoNGc';
       break;
     case 'math':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'SCIENCE', '理學院',
        'MATHEMATICS', '數學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'AUVAAZpXOqk';
       break;
     case 'chem':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'SCIENCE', '理學院',
        'CHEMISTRY', '化學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = '4mdOWS5m564';
       break;
     case 'dop':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'SCIENCE', '理學院',
        'OPTICS AND PHOTONICS', '光電科學與工程學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'YJYJxNJw7WY';
       break;
 
     //工院
@@ -264,25 +272,25 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'ENGINEERING', '工學院',
        'CHEMICAL AND MATERIALS ENGINEERING', '化學工程與材料工程學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'qJBMEzYNhSw';
       break;
     case 'cv':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'ENGINEERING', '工學院',
        'CIVIL ENGINEERING', '土木工程學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = '331QtNdv0FQ';
       break;
     case 'me':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'ENGINEERING', '工學院',
        'MECHANICAL ENGINEERING', '機械工程學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'puoSmXhaM6k';
       break;
     case 'ipe':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'ENGINEERING', '工學院',
        'INTERDISCIPLINARY PROGRAM OF ENGINEERING', '工學院學士班'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'vOgESAbLXi8';
       break;
 
     //資訊電機學院
@@ -296,7 +304,7 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院',
        'ELECTRICAL ENGINEERING', '電機工程學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = '2ugT_MrP7gg';
       break;
     case 'csie':
       title_bar =  ['INTERVIEW', '學長姐訪談',
@@ -316,13 +324,13 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'EARTH SCIENCES', '地球科學學院',
        'EARTH SCIENCES', '地球科學學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = '8Xd1yvR5JXI';
       break;
     case 'atm':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'EARTH SCIENCES', '地球科學學院',
        'ATMOSPHERIC SCIENCES', '大氣科學學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'QmBkO6PdWvA';
       break;
 
     //客院
@@ -338,13 +346,13 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'HEALTH SCIENCES & TECHNOLOGY',
        '生醫理工學院', 'LIFE SCIENCE', '生命科學學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'X4w6ab_WgT0';
       break;
     case 'dbse':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'HEALTH SCIENCES & TECHNOLOGY', '生醫理工學院',
        'BIOMEDICAL SCIENCES AND ENGINEERING', '生醫科學與工程學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'L38BZiVPkVU';
       break;
 
     default:
@@ -412,12 +420,15 @@ router.get('/:device/legend', function (req, res, next) {
   var view = '';
   if (req.params.device === 'index_com') {
     view = 'video/catalog';
+    back_name = 'index_com/';
   }else if(req.params.device === 'index_smp') {
     view = 'video/phone/catalog_smp';
+    back_name = 'index_smp/';
   }
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: ['LEGEND', '中大傳說'],
+    back_name: back_name,
     user: req.user
   });
 });
@@ -429,23 +440,23 @@ router.get('/:device/legend/:id', function (req, res, next) {
   switch (req.params.id) {
     case 'breakfast':
       title_bar = ['LEGEND', '中大傳說', '中大傳說之早餐大胃王', '中央大學的學生早餐最多能吃多少'];
-      ytID = 'LTb4EQBAMbw';
+      ytID = 'G4v2Zdo_Ub0';
       break;
     case 'mustdo':
       title_bar = ['LEGEND', '中大傳說', '中大傳說之大學生了沒', '大學必做的事'];
-      ytID = 'yctNjGa4aDo';
+      ytID = 'PtqaS2-Pjy0';
       break;
     case 'lover':
       title_bar = ['LEGEND', '中大傳說', '中大傳說之聖下你了', '到底交不交的到男/女朋友'];
-      ytID = 'YEIyhm-QTkg';
+      ytID = '1szWNee56CI';
       break;
     case 'underfloor':
       title_bar = ['LEGEND', '中大傳說', '中大傳說之恐怖的宿舍地下室', '竟然拍到......？'];
-      ytID = 'LLgFyfYqKbs';
+      ytID = '0KpEbbfYyKs';
       break;
     case '100challenge':
       title_bar = ['LEGEND', '中大傳說', '中大傳說之省錢必備的方法', '挑戰100塊錢過一天'];
-      ytID = 'SX_ViT4Ra7k';
+      ytID = '98YLEWwhOEM';
       break;
 
     default:
@@ -456,10 +467,11 @@ router.get('/:device/legend/:id', function (req, res, next) {
   var view = '';
   if (req.params.device === "index_com") {
     view = 'video/video_model';
-
+    back_name = 'index_com/legend/';
   } else if (req.params.device === "index_smp") {
     //手機版video model
     view = 'video/phone/video_model_smp';
+    back_name = 'index_smp/legend/';
 
   } else {
     res.status(404)
@@ -468,7 +480,7 @@ router.get('/:device/legend/:id', function (req, res, next) {
   res.render(view, {
     title: '新生知訊網 | 影音專區',
     title_bar: title_bar,
-    back_name: 'index_com/legend/',
+    back_name: back_name,
     ytID: ytID,
     user: req.user
   });

@@ -4,50 +4,9 @@
 <head>
   <title><%= title %></title>
   <% include ../layouts/head %>
-  <% include ../layouts/script  %>
   <link rel="stylesheet" href="/fontawesome/css/all.min.css">  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel='stylesheet' href='/qna/style.css'>
-
-
-  <style>
-    .f-6vw {
-      font-size: 6vw;
-    }
-
-    .f-5vw {
-      font-size: 5vw;
-    }
-
-    .mobilAnswerModalContent {
-      width: 90%;
-      height: 60vh;
-    }
-
-    #mobileAskBtn {
-      position: fixed;
-      bottom: 2vh;
-      right: 5vw;
-      width: 14vw;
-      z-index: 200;
-      display: none;
-    }
-
-    .mobilAskModalContent {
-      width: 90%;
-      height: 60vh;
-    }
-
-    #Top {
-      position: fixed;
-      bottom: 10vh;
-      right: 5vw;
-      width: 4vw;
-      z-index: 200;
-      visibility: hidden;
-    }
-  </style>
 </head>
 
 <body>
@@ -59,7 +18,7 @@
     <div class="modal-dialog" role="document" id="notice-dialog">
       <div class="modal-content" id="notice-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">MOBILE發文須知</h5>
+          <h5 class="modal-title" id="exampleModalLabel">發文須知</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -124,21 +83,21 @@
     aria-hidden="true" style="z-index: 5000;">
     <div class="modal-dialog" role="document" style="top: 7%;max-width:100%;">
       <div class="modal-content mobilAskModalContent">
-        <div class="modal-header f-6vw">
-          <span id="mobileAskTitleText">MOBILE我要發問</span>
+        <div class="modal-header titleTextSize">
+          <span id="mobileAskTitleText">我要發問</span>
         </div>
-        <div class="modal-body f-5vw">
+        <div class="modal-body contentTextSize">
           <form action="/qna/toPost" class="needs-validation" method="POST">
-            <span style="color:rgb(32, 56, 100)" class="f-5vw">標題</span>
-            <input type="text" class="formElement f-5vw" id="mobileq_title">
-            <span style="color:rgb(32, 56, 100)" class="f-5vw">內容</span>
-            <textarea id="mobileq_content" class="formElement f-5vw" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
+            <span style="color:rgb(32, 56, 100)" class="contentTextSize">標題</span>
+            <input type="text" class="formElement contentTextSize" id="mobileq_title">
+            <span style="color:rgb(32, 56, 100)" class="contentTextSize">內容</span>
+            <textarea id="mobileq_content" class="formElement contentTextSize" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary f-6vw" data-toggle="modal"
+          <button type="button" class="btn btn-primary titleTextSize" data-toggle="modal"
             data-target="#mobileNoticeModal">送出</button>
-          <button type="button" class="btn btn-secondary f-6vw" data-dismiss="modal">關閉</button>
+          <button type="button" class="btn btn-secondary titleTextSize" data-dismiss="modal">關閉</button>
         </div>
       </div>
     </div>
@@ -148,19 +107,19 @@
     aria-hidden="true" style="z-index: 5000;">
     <div class="modal-dialog" role="document" style="top: 7%;max-width:100%;">
       <div class="modal-content mobilAnswerModalContent">
-        <div class="modal-header f-6vw">
+        <div class="modal-header titleTextSize">
           <span id="mobileAnswerTitleText">mobileanswertitletext</span>
         </div>
-        <div class="modal-body f-5vw">
+        <div class="modal-body contentTextSize">
           <div class="contentPart answerModelQ">Question:
-            <p>aaaaaaaaaaa</p>
+            <p id="mobileQContentText"></p>
           </div>
           <div class="contentPart answerModelA">Answer:
-            <p>bbbbbbbbbbbbb</p>
+            <p id="mobileAContentText"></p>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary f-6vw" data-dismiss="modal">關閉</button>
+          <button type="button" class="btn btn-secondary titleTextSize" data-dismiss="modal">關閉</button>
         </div>
       </div>
     </div>
@@ -243,26 +202,24 @@
         <span id="qatxt_c">新生問答</span>
       </div>
     </div>
-
     <div class="main d-flex">
       <div class="leftSide">
-
         <div class="option">
           <ul>
             <a href="/qna">
-              <li><i class="fas fa-angle-right" id="all"></i>全部問題</li>
+              <li><i class="fas fa-angle-right" option="all"></i>全部問題</li>
             </a>
             <a href="/qna/life">
-              <li><i class="fas fa-angle-right" id="life"></i>校園生活</li>
+              <li><i class="fas fa-angle-right" option="life"></i>校園生活</li>
             </a>
             <a href="/qna/course">
-              <li><i class="fas fa-angle-right" id="course"></i>課程相關</li>
+              <li><i class="fas fa-angle-right" option="course"></i>課程相關</li>
             </a>
             <a href="/qna/affair">
-              <li><i class="fas fa-angle-right" id="affair"></i>學生事務</li>
+              <li><i class="fas fa-angle-right" option="affair"></i>學生事務</li>
             </a>
             <a href="/qna/other">
-              <li><i class="fas fa-angle-right" id="other"></i>其他</li>
+              <li><i class="fas fa-angle-right" option="other"></i>其他</li>
             </a>
           </ul>
         </div>
@@ -271,7 +228,7 @@
         <!-- 過濾以及搜尋框 -->
         <div class="sort_SearchBar">
           <div class="buttonGroup">
-            <div class="button">排序</div>
+            <div class="button" style="color:#0D4966">排序</div>
             <div class="button sortButton orangeBg" sort="time">時間</div>
             <div class="button sortButton" sort="count">人氣</div>
           </div>
@@ -281,33 +238,31 @@
               <input class="ml-2 searchInput" type="text" placeholder="Search" aria-label="Search"
                 onkeydown="if(event.keyCode==13){return false;}" id="search">
             </form>
-          </div>
-          <!-- mobileFilter -->
-          <div class="mobileFilter">
-            <img src="simpleSieve.png" alt="" id="simpleSieve">
-            <div class="mobileFilterContent">
-              <div class="mobileFilterButton">
-                <ul>
-                  <li>排序</li>
-                  <li class="sortButton" sort="time">時間</li>
-                  <li class="sortButton" sort="count">人氣</li>
-                </ul>
-              </div>
-              <div class="option">
-                <ul>
-                  <li>分類</li>
-                  <li><a href="/qna"><i class="fas fa-angle-right" id="all"></i>全部問題</a></li>
-                  <li><a href="/qna/life"><i class="fas fa-angle-right" id="life"></i>校園生活</a>
-                  </li>
-                  <li><a href="/qna/course"><i class="fas fa-angle-right" id="course"></i>課程相關</a></li>
-                  <li><a href="/qna/affair"><i class="fas fa-angle-right" id="affair"></i>學生事務</a></li>
-                  <li><a href="/qna/other"><i class="fas fa-angle-right" id="other"></i>其他</a>
-                  </li>
-                </ul>
+            <div class="mobileFilter">
+              <img src="simpleSieve.png" alt="" id="simpleSieve">
+              <div class="mobileFilterContent">
+                <div class="mobileFilterButton">
+                  <ul>
+                    <li>排序</li>
+                    <li class="sortButton" sort="time">時間</li>
+                    <li class="sortButton" sort="count">人氣</li>
+                  </ul>
+                </div>
+                <div class="option">
+                  <ul>
+                    <li>分類</li>
+                    <li><a href="/qna"><i class="fas fa-angle-right" option="all"></i>全部問題</a></li>
+                    <li><a href="/qna/life"><i class="fas fa-angle-right" option="life"></i>校園生活</a>
+                    </li>
+                    <li><a href="/qna/course"><i class="fas fa-angle-right" option="course"></i>課程相關</a></li>
+                    <li><a href="/qna/affair"><i class="fas fa-angle-right" option="affair"></i>學生事務</a></li>
+                    <li><a href="/qna/other"><i class="fas fa-angle-right" option="other"></i>其他</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- ------------ -->
+          </div>          
         </div>
         <!-- 企鵝 -->
         <div class="ask">

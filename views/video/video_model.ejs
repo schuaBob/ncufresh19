@@ -4,8 +4,7 @@
 <head>
   <title><%= title %></title>
   <% include ../layouts/head %>
-  <% include ../layouts/script  %>
-  <link rel='stylesheet' href='/video/style.css' />
+  <link rel='stylesheet' href='/video/video.css' />
 
 </head>
 
@@ -40,8 +39,8 @@
         var player;
         function onYouTubeIframeAPIReady() {
           player = new YT.Player('player', {
-            height: '360',
-            width: '640',
+            height: '270',
+            width: '480',
             videoId: '<%= ytID %>',
             events: {
               'onReady': yt.onPlayerReady,
@@ -50,6 +49,8 @@
           });
         }
       </script>
+
+      <% include ./js %>
 
   </main>
 </body>

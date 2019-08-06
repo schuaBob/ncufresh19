@@ -4,7 +4,6 @@
 <head>
     <title>新生知訊網｜中大生活</title>
     <% include ../layouts/head %>
-    <% include ../layouts/script %>
     <link rel=stylesheet type="text/css" href="life.css">
 </head>
 
@@ -24,17 +23,17 @@
             <span id="life">中大生活</span>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal"
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal"
         style="position: absolute; z-index: 1;">新增/修改內容</button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#timeModal"
-        style="position: absolute; left: 150px; z-index: 1;">新增/修改時間軸</button>
+        style="position: absolute; left: 150px; z-index: 1;">新增/修改時間軸</button> -->
     <main id="main">
         <div class="backgroundImg">
-            <img class="bgImage" style="max-width: 250px; left: 0;" src="燈塔.png">
+            <img class="bgImage" src="燈塔.png">
         </div>
         <!--content-->
         <div class="content">
-            <div class="studyPicture">
+            <div class="studyPicture" style=" padding-left: 10%">
                 <div class="studyImg">
                     <a href="/life/study/lit"><img class="pic" src="../life/subPicture/lit.png" alt="" width="100%"
                             height="100%" /></a>
@@ -69,7 +68,8 @@
                 </div>
             </div>
         </div>
-        <!--Modal-->
+    <%_ if (user && user.role === 'admin'){ -%>
+            <!--Modal-->
         <div class="modal fade" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -199,6 +199,7 @@
             </div>
             <!--/.modal -->
         </div>
+    <%_ } -%>
     </main>
     <% include ../layouts/js %>
     <% include js %>
