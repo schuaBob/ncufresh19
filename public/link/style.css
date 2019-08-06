@@ -62,9 +62,8 @@ main {
 }
 
 .links {
-  background-color: #0163b0;
   width: 30%;
-  height: calc(0.3 / 300 * 173);
+  height: calc(0.3 / 300 * 172);
   border-radius: 13px;
 }
 
@@ -84,7 +83,7 @@ main {
   top: 0;
   display: none;
   background-color: #736f6e;
-  border-radius: 13px;
+  border-radius: 3%;
 }
 
 .captn-title {
