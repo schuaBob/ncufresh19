@@ -286,8 +286,13 @@
                 <tr postID="<%= questions[index].postID%>">
                   <th scope="row"><%= questions[index].category%></th>
                   <td class="rowTitle"><span data-toggle="tooltip" data-placement="top"
-                      title="<%= questions[index].title %>"><%= trunc(questions[index].title) %></span>
-                  </td>
+                      title="<%= questions[index].title %>">
+                      <% if(questions[index].title!==undefined && questions[index].title.length>15){ %>
+                      <%= questions[index].title.substr(0, 15) + "..." %>
+                      <% }else{ %>
+                      <%= questions[index].title %>
+                      <% } %>
+                  </span></td>
                   <td><%= convertDateToString(questions[index]._id.getTimestamp()) %></td>
                   <td class="count"><%= questions[index].count  %></td>
                 </tr>
