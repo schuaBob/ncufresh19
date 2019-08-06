@@ -29,7 +29,6 @@ router.get('/2D', function (req, res, next) {
   });
 });
 
-
 var content = "";
 
 router.get('/indexmodal', function (req, res, next) {
