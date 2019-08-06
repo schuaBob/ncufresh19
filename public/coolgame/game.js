@@ -975,8 +975,8 @@ function create_rule_container(){
   var rule_second = new createjs.Bitmap(loader.getResult("rule2"));
   var next_shape = new createjs.Shape();
   var close = new createjs.Bitmap(loader.getResult("close"));
-  close.x = 687;
-  close.y = 25;
+  close.x = 685;
+  close.y = 32;
   close.scale=0.5;
   close.addEventListener("mouseover",function(event){
     event.target.cursor = "pointer";
@@ -990,7 +990,7 @@ function create_rule_container(){
     rule_close=true;
     rule_container.visible=false;
   })
-  next_shape.graphics.beginFill("#000000").drawCircle(713,261,24);
+  next_shape.graphics.beginFill("#000000").drawCircle(718,261,24);
   next_shape.alpha=0.01;
   next_shape.addEventListener("mouseover",function(event){
     event.target.cursor = "pointer";
@@ -1002,7 +1002,8 @@ function create_rule_container(){
     last_shape.visible=true;
   })
   var last_shape = new createjs.Shape();
-  last_shape.graphics.beginFill("#000000").drawCircle(65,255,24);
+  last_shape.graphics.beginFill("#000000").drawCircle(70,255,24);
+  last_shape.visible=false;
   last_shape.alpha=0.01;
   last_shape.addEventListener("mouseover",function(event){
     event.target.cursor = "pointer";
@@ -1013,6 +1014,8 @@ function create_rule_container(){
     next_shape.visible=true;
     last_shape.visible=false;
   })
+  rule_first.x = 13;
+  rule_second.x=13;
   rule_first.scale=0.65;
   rule_second.scale=0.65;
   rule_second.visible=false;
