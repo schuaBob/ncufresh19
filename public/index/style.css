@@ -33,6 +33,74 @@ main {
 
 /* 手機版 */
 @media only screen and (max-width: 1025px) {
+    .fp-tableCell {
+        height: 100% !important;
+        padding: 0;
+    }
+
+    .switch {
+        position: relative;
+        display: block;
+        z-index: 4000px;
+        top: 2vh;
+        left: 5vw;
+    }
+
+    .switch input {
+        display: none;
+    }
+    
+    .switch small {
+        display: inline-block;
+        width: 120px;
+        height: 30px;
+        background: #455a64;
+        border-radius: 30px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .switch small:after {
+        content: "News";
+        position: absolute;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        width: 100%;
+        left: 0px;
+        text-align: right;
+        padding: 6px;
+        box-sizing: border-box;
+        line-height: 18px;
+    }
+
+    .switch small:before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 25px;
+        background: #fff;
+        border-radius: 50%;
+        top: 3px;
+        left: 3px;
+        transition: .3s;
+        box-shadow: -3px 0 3px rgba(0,0,0,0.1);
+    }
+
+    .switch input:checked ~ small {
+        background: #4fc5c5;
+        transition: .3s;
+    }
+
+    .switch input:checked ~ small:before {
+        transform: translate(85px, 0px);
+        transition: .3s;
+    }
+
+    .switch input:checked ~ small:after {
+        content: "Commerical";
+        text-align: left;
+    }
 
     #triangle {
         z-index: 4999;
@@ -69,15 +137,19 @@ main {
     }
 
     #secondSection {
-        height: 94vh;
+        position: relative;
+        display: block;
+        height: 80vh;
+        top: 3vh;
         padding: 1vh 4vw;
     }
 
     #news {
-        display: block;
         position: relative;
+        display: block;
+        top:  4vh;
         width: 100%;
-        height: 100%;
+        height: 90%;
     }
 
     #news-title {
@@ -86,24 +158,20 @@ main {
 
     #news-body {
         position: relative;
-        max-height: 55vh;
+        max-height: 40vh;
         overflow-y: scroll;
         overflow-x: hidden;
-        min-height: 300px;
+        min-height: 120px;
     }
 
     #jellyfish {
         display: none;
     }
 
-    #carouselExampleIndicators {
-        display: none;
-    }
-
     .news-img {
         position: relative;
         left: 3vw;
-        width: 25%;
+        width: 20%;
     }
 
     .news-content {
@@ -112,9 +180,31 @@ main {
         width: 65%;
     }
 
+    .card-body {
+        padding: 0.8rem;
+    }
+
     .card-body h5 {
-        font-size: 25px;
+        font-size: 18px;
         margin: 0;
+    }
+
+    #carouselExampleIndicators {
+        position: relative;
+        display: block;
+        top:  4vh;
+        width: 100%;
+        height: 90%;
+    }
+
+    #fishbone {
+        display: none;
+    }
+
+    .carousel-inner {
+        position: relative;
+        top: 8vh;
+        width: 100%;
     }
 
     #pickMonth {
@@ -175,7 +265,7 @@ main {
     #index3start {
         display: none;
     }
-
+    
     #board-detail {
         width: 90%;
         margin-right: 5%;
@@ -183,7 +273,7 @@ main {
         margin-top: 2vh;
         height: 95%;
         border: 0px solid #0163b0;
-        background-color: lightblue;
+        background-color: rgba(173, 216, 230, .7);
         border-radius: 37px;
         padding: 15px;
         position: absolute;
@@ -225,7 +315,7 @@ main {
     }
 
     .target {
-        color: #FFFF4D;
+        color: #fff9dc;
         width: 15vw;
     }
 
@@ -238,8 +328,7 @@ main {
     .next {
         position: absolute;
         cursor: pointer;
-        font-size: 11vw;
-        border: 3px black solid;
+        font-size: 10vw;
         z-index: 4000;
     }
 
@@ -256,30 +345,45 @@ main {
     }
 
     .myinvisible {
-        display: none;
+        display: none !important;
+    }
+
+    #closenews {
+        position: relative;
+        float: left;
+        width: 90px;
+        margin: auto 0;
     }
 }
 
 /* 平板 */
 @media only screen and (min-width: 768px) and (max-width: 1025px) {
+    .switch {
+        position: relative;
+        display: block;
+        z-index: 4000px;
+        top: 4vh;
+    }
+
     #secondSection {
         position: relative;
+        display: block;
         z-index: 500;
-        top: 0;
-        padding: 2vw 12vw;
+        top: 10vh;
+        padding: 2vh 12vw;
     }
 
     #news {
         position: relative;
         display: block;
         width: 76vw;
-        height: 45vh;
+        height: 90vh;
     }
 
     .news-img {
         position: relative;
         left: 3vw;
-        width: 7%;
+        width: 8vw;
     }
 
     #news-title {
@@ -293,7 +397,7 @@ main {
 
     #news-body {
         position: relative;
-        height: 70%;
+        height: 80%;
         overflow-y: scroll;
         overflow-x: hidden;
         min-height: 0;
@@ -302,8 +406,8 @@ main {
     #carouselExampleIndicators {
         position: relative;
         display: block;
-        width: 80vw;
-        height: 35vh;
+        width: 76vw;
+        height: 90vh;
     }
 
     #fishbone {
@@ -312,8 +416,9 @@ main {
 
     .carousel-inner {
         position: relative;
-        left: calc( 50% - 15vmax);
-        width: 30vmax;
+        left: 10%;
+        top: 5vh;
+        width: 80%;
     }
 
     #indexLogo {
@@ -377,6 +482,10 @@ main {
 
 /* 電腦版 */
 @media only screen and (min-width: 1025px) {
+    .switch {
+        display: none;
+    }
+
     #secondSection {
         position: relative;
         z-index: 500;
@@ -387,9 +496,9 @@ main {
     #indexLogo {
         position: absolute;
         z-index: 500;
-        width: 400px;
-        left: calc(50vw - 200px);
-        bottom: calc(50vh + 100px);
+        width: 340px;
+        left: calc(50vw - 170px);
+        bottom: calc(50vh + 90px);
     }
 
     #news {
@@ -456,7 +565,7 @@ main {
         position: absolute;
         z-index: 500;
         width: 25%;
-        left: 8%;
+        left: 10%;
     }
 
     #pickMonth .container1 {
@@ -512,9 +621,9 @@ main {
     }
 
     #board-detail {
-        width: 70%;
+        width: 75%;
         margin-right: 17.5%;
-        margin-left: 12.5%;
+        margin-left: 8%;
         margin-top: 7%;
         height: 73%;
         border: 0px solid #0163b0;
@@ -529,6 +638,7 @@ main {
         position: relative;
         width: 100%;
         height: 30vh;
+        left: 7vw;
     }
 
     .day {
@@ -551,9 +661,10 @@ main {
 
     #index3crab {
         position: absolute;
-        width: 8vw;
-        left: calc(50% - 4vw);
-        bottom: 24px;
+        width: 10vw;
+        left: 0;
+        bottom: 25px;
+        z-index: 5000;
     }
 
     #triangle {
@@ -567,14 +678,23 @@ main {
         height: 100px;
         width: 100px;
     }
+
+    .day:hover {
+        cursor: pointer;
+        animation-name: scaleUpAnimation;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+    }
+
+    #closenews {
+        position: relative;
+        float: left;
+        width: 6vw;
+        margin: auto 0;
+    }
 }
 
-#closenews {
-    position: relative;
-    float: left;
-    width: 6%;
-    margin: auto 0;
-}
+
 
 #toPage2 {
     position: absolute;
@@ -646,13 +766,6 @@ main {
 }
 
 .selectMonth:hover {
-    cursor: pointer;
-    animation-name: scaleUpAnimation;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-}
-
-.day:hover {
     cursor: pointer;
     animation-name: scaleUpAnimation;
     animation-duration: 1s;

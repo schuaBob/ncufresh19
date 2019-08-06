@@ -486,11 +486,20 @@ router.get('/comingsoon', function(req, res, next) {
     });
 });
 
+<<<<<<< HEAD
 router.get('/login', checkUser.isAllowtoLogin, function(req, res, next) {
     res.render('login/index', {
         title: '新生知訊網',
         user: req.user
     });
+=======
+router.get('/login', checkUser.isAllowtoLogin, function (req, res, next) {
+  res.render('login/index', {
+    title: '新生知訊網',
+    user: req.user,
+    error: req.flash('error')
+  });
+>>>>>>> 2bdbf19e4a171e9ddd4a0883e78504172703c2fc
 });
 
 router.post('/login', checkUser.isAllowtoLogin, function(req, res, next) {

@@ -29,8 +29,10 @@
             <p>宵夜街</p>
         </div>
     </div>
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal"
-        style="position: absolute; z-index: 1;">新增/修改內容</button> -->
+    <%_ if (user && user.role === 'admin'){ -%>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal"
+        style="position: absolute; z-index: 1;">新增/修改內容</button>
+    <%_ } -%>
     <main id="main" style="background: #fff9dc; height: calc(100% - 60px - 9vw);">
         <!--content-->
         <div class="foodList">
@@ -151,23 +153,13 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel">店家名稱</h4>
+                        <h5 class="modal-title" id="exampleModalLabel"> </h5>
                         <span data-dismiss="modal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="3vw" height="3vw" viewBox="0 0 24 24">
                                 <path
                                     d="M14.59 8L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41 14.59 8zM12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
                             </svg>
                         </span>
-                    </div>
-                    <div class="modal-body">
-                        <div id="foodModalTitle">
-                            <div class="t">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel">店家資訊</h4>
                     </div>
                     <div class="modal-body">
                         <div id="foodModalDetail">
@@ -178,7 +170,7 @@
                     </div>
                     <div class="decoration">
                         <img src="CCC.png" alt="" style="left: -5%">
-                        <img src="CLOWNFISH.png" alt="" style="top: 17%; right: -3%;">
+                        <img src="CLOWNFISH.png" alt="" style="top: 5%; right: -3%;">
                     </div>
                 </div>
             </div>

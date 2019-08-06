@@ -3,6 +3,8 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  -moz-user-select : none;
+  -webkit-user-select: none;
 }
 
 .bg {
@@ -24,12 +26,12 @@ body{
   text-align: center;
 }
 
-  .close {
-    padding: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
+.close {
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 
 .loglink {
   background-color: #fff9dc;
