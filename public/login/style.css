@@ -4,71 +4,63 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.bg {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 60px);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .box {
-  border: 2px #c9c3c1 solid;
   background-color: white;
-  width: 50%;
+  width: 30%;
+  height: 60vh;
+  min-height: 300px;
   position: absolute;
-  left: 25%;
+  left: 35%;
   text-align: center;
 }
 
-#login_box {
-  height: 60vh;
-}
-
-#reg_box {
-  height: 60vh;
-}
+  .close {
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 
 .loglink {
-  border-bottom: 2px #c9c3c1 solid;
-  font-size: 15px;
-  width: 50%;
+  background-color: #fff9dc;
+  border-bottom: 1px #0163b0 solid;
+  font-size: 18px;
+  width: 100%;
   height: 10vh;
   line-height: 50px;
+  min-height: 50px;
 }
 
-.loglink a {
-  color: black;
+.loglink p {
+  color:#0163b0;
   text-align: center;
   line-height: 10vh;
 }
 
-#reg_link {
-  border-right: 2px #c9c3c1 solid;
-}
-
-#login_link {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-#reg_link_click {
-  border-right: 2px #c9c3c1 solid;
-  background-color: #FFFDF1;
-}
-
-#login_link_click {
-  border-left: 2px #c9c3c1 solid;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #FFFDF1;
-}
-
 #input_area {
   position: absolute;
-  width: 80%;
+  width: 100%;
   height: 45vh;
-  top: 15vh;
-  left: 10%;
+  min-height: 250px;
+  top: calc(60px + 8vh);
+  left: 0vw;
   overflow: hidden;
 }
 
 #input_area input {
-  line-height: 30px;
+  line-height: 40px;
+  left: 15%;
+  width: 70%;
   margin-top: 5%;
 }
 

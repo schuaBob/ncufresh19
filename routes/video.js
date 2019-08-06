@@ -61,7 +61,7 @@ router.get('/:device/nculife/:id', function (req, res, next) {
       break;
     case 'going':
       title_bar = ['LIFE', '中大生活', 'GOING', '行'];
-      ytID = '7g_zGtH13LY';
+      ytID = 'XXEECiUJnHg';
       break;
     case 'education':
       title_bar = ['LIFE', '中大生活', 'EDUCATION', '育'];
@@ -73,8 +73,7 @@ router.get('/:device/nculife/:id', function (req, res, next) {
       break;
 
     default:
-      res.status(404)
-      res.end();
+      return next(err);
       break;
   }
   var view = '';
@@ -87,9 +86,6 @@ router.get('/:device/nculife/:id', function (req, res, next) {
     view = 'video/phone/video_model_smp';
     back_name = 'index_smp/nculife/';
 
-  } else {
-    res.status(404)
-    res.end();
   }
   res.render(view, {
     title: '新生知訊網 | 影音專區',
@@ -156,8 +152,7 @@ router.get('/:device/interview/:collegeID', function (req, res, next) {
       break;
 
     default:
-      res.status(404)
-      res.end();
+      return next(err);
       break;
   }
 
@@ -169,10 +164,6 @@ router.get('/:device/interview/:collegeID', function (req, res, next) {
   } else if (req.params.device === "index_smp") {
     view = 'video/phone/catalog_smp';
     back_name = 'index_smp/interview/';
-
-  } else {
-    res.status(404)
-    res.end();
   }
 
   res.render(view, {
@@ -181,13 +172,230 @@ router.get('/:device/interview/:collegeID', function (req, res, next) {
     back_name: back_name,
     user: req.user
   });
-
 })
 
 /** 學院底下 */
 router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next) {
   var title_bar = [];
   var ytID;
+  //管院
+  if (req.params.collegeID === 'mgt') {
+    switch (req.params.subjectID) {
+      case 'im':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'MANAGEMENT', '管理學院',
+       'INFORMATION MANAGEMENT', '資訊管理系'];
+      ytID = 'BDsmp_jZjf4';
+      break;
+    case 'ba':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'MANAGEMENT', '管理學院',
+       'BUSINESS ADMINISTRATION', '企業管理學系'];
+      ytID = '2jN9UJDSP6M';
+      break;
+    case 'fm':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'MANAGEMENT', '管理學院',
+       'FINANCE', '財務金融學系'];
+      ytID = 'wPWpeHR-n0I';
+      break;
+    case 'ec':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'MANAGEMENT', '管理學院',
+       'ECONOMICS', '經濟學系'];
+      ytID = 'YKcSdCvHiiQ';
+      break;
+    default:
+      return next(err);
+      break;
+    }
+
+  //文院
+  }else if(req.params.collegeID === 'lit'){
+    switch (req.params.subjectID) {
+      case 'chinese':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'LIBERAL ARTS', '文學院',
+       'CHINESE LITERATURE', '中國文學系'];
+      ytID = 'iQBI3POmn-E';
+      break;
+    case 'english':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'LIBERAL ARTS', '文學院',
+       'ENGLISH', '英美語文系'];
+      ytID = 'eHxoiyeFuPw';
+      break;
+    case 'fr':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'LIBERAL ARTS', '文學院',
+       'FRANÇAIS', '法國語文學系'];
+      ytID = 'ZZHRWGi9DyQ';
+      break;
+    default:
+      return next(err);
+      break;
+    }
+
+  //理院
+  }else if(req.params.collegeID === 'science'){
+    switch (req.params.subjectID) {
+      case 'jspcos':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'SCIENCE', '理學院',
+       'JOINT SCIENCE PROGRAM, COLLEGE OF SCIENCE', '理學院學士班'];
+      ytID = 'FKtjUkvxTeM';
+      break;
+    case 'phy':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'SCIENCE', '理學院',
+       'PHYSICS', '物理學系'];
+      ytID = 'rI_faYYoNGc';
+      break;
+    case 'math':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'SCIENCE', '理學院',
+       'MATHEMATICS', '數學系'];
+      ytID = 'AUVAAZpXOqk';
+      break;
+    case 'chem':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'SCIENCE', '理學院',
+       'CHEMISTRY', '化學系'];
+      ytID = '4mdOWS5m564';
+      break;
+    case 'dop':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'SCIENCE', '理學院',
+       'OPTICS AND PHOTONICS', '光電科學與工程學系'];
+      ytID = 'YJYJxNJw7WY';
+      break;
+    default:
+      return next(err);
+      break;
+    }
+  
+  //工院
+  }else if(req.params.collegeID === 'engineering'){
+    switch (req.params.subjectID) {
+      case 'cme':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'ENGINEERING', '工學院',
+       'CHEMICAL AND MATERIALS ENGINEERING', '化學工程與材料工程學系'];
+      ytID = 'qJBMEzYNhSw';
+      break;
+    case 'cv':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'ENGINEERING', '工學院',
+       'CIVIL ENGINEERING', '土木工程學系'];
+      ytID = '331QtNdv0FQ';
+      break;
+    case 'me':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'ENGINEERING', '工學院',
+       'MECHANICAL ENGINEERING', '機械工程學系'];
+      ytID = 'puoSmXhaM6k';
+      break;
+    case 'ipe':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'ENGINEERING', '工學院',
+       'INTERDISCIPLINARY PROGRAM OF ENGINEERING', '工學院學士班'];
+      ytID = 'vOgESAbLXi8';
+      break;
+    default:
+      return next(err);
+      break;
+    }
+  
+  //資電院
+  }else if(req.params.collegeID === 'ceecs'){
+    switch (req.params.subjectID) {
+      case 'ipeecs':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院',
+       'INTERDISCIPLINARY PROGRAM OF ELECTERICAL ENGINEERING & COMPUTER SCIENCE', '資訊電機學院學士班'];
+      ytID = 'cI8YiTu3H7Y';
+      break;
+    case 'ee':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院',
+       'ELECTRICAL ENGINEERING', '電機工程學系'];
+      ytID = 'aLLOOdUGmgo';
+      break;
+    case 'csie':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院',
+       'COMPUTER SCIENCE & INFORMATION ENGINEERING', '資訊工程學系'];
+      ytID = 'hvF7k75yYn8';
+      break;
+    case 'ce':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院',
+       'COMMUNICATION ENGINEERING', '通訊工程學系'];
+      ytID = 'CiAm5GRBQtw';
+      break;
+    default:
+      return next(err);
+      break;
+    }
+  
+  //地科院
+  }else if(req.params.collegeID === 'escollege'){
+    switch (req.params.subjectID) {
+      case 'gep':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'EARTH SCIENCES', '地球科學學院',
+       'EARTH SCIENCES', '地球科學學系'];
+      ytID = '8Xd1yvR5JXI';
+      break;
+    case 'atm':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'EARTH SCIENCES', '地球科學學院',
+       'ATMOSPHERIC SCIENCES', '大氣科學學系'];
+      ytID = 'QmBkO6PdWvA';
+      break;
+    default:
+      return next(err);
+      break;
+    }
+  
+  //客院
+  }else if(req.params.collegeID === 'hakka_college'){
+    switch (req.params.subjectID) {
+      case 'hakka':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'HAKKA STUDIES', '客家學院',
+       'HAKKA LANGUAGE', '客家語文暨社會科學學系'];
+      ytID = 'nxeJSxLf2_g';
+      break;
+    default:
+      return next(err);
+      break;
+    }
+  
+  //生醫
+  }else if(req.params.collegeID === 'chst'){
+    switch (req.params.subjectID) {
+      case 'ls':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'HEALTH SCIENCES & TECHNOLOGY',
+       '生醫理工學院', 'LIFE SCIENCE', '生命科學學系'];
+      ytID = 'X4w6ab_WgT0';
+      break;
+    case 'dbse':
+      title_bar =  ['INTERVIEW', '學長姐訪談',
+       'HEALTH SCIENCES & TECHNOLOGY', '生醫理工學院',
+       'BIOMEDICAL SCIENCES AND ENGINEERING', '生醫科學與工程學系'];
+      ytID = 'L38BZiVPkVU';
+      break;
+    default:
+      return next(err);
+      break;
+    }
+  }else{
+    return next(err);
+  }
+  
+  /* 要連同學院一起判斷
   switch (req.params.subjectID) {
     //管院
     case 'im':
@@ -214,7 +422,7 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
        'ECONOMICS', '經濟學系'];
       ytID = 'YKcSdCvHiiQ';
       break;
-    
+
     //文院
     case 'chinese':
       title_bar =  ['INTERVIEW', '學長姐訪談',
@@ -298,25 +506,25 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院',
        'INTERDISCIPLINARY PROGRAM OF ELECTERICAL ENGINEERING & COMPUTER SCIENCE', '資訊電機學院學士班'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'cI8YiTu3H7Y';
       break;
     case 'ee':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院',
        'ELECTRICAL ENGINEERING', '電機工程學系'];
-      ytID = '2ugT_MrP7gg';
+      ytID = 'aLLOOdUGmgo';
       break;
     case 'csie':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院',
        'COMPUTER SCIENCE & INFORMATION ENGINEERING', '資訊工程學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'hvF7k75yYn8';
       break;
     case 'ce':
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'ENGINEERING & COMPUTER SCIENCE', '資訊電機學院',
        'COMMUNICATION ENGINEERING', '通訊工程學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'CiAm5GRBQtw';
       break;
 
     //地科院
@@ -338,7 +546,7 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       title_bar =  ['INTERVIEW', '學長姐訪談',
        'HAKKA STUDIES', '客家學院',
        'HAKKA LANGUAGE', '客家語文暨社會科學學系'];
-      ytID = 'yDNAkogkERQ';
+      ytID = 'nxeJSxLf2_g';
       break;
 
     //生醫
@@ -356,11 +564,12 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
       break;
 
     default:
-      res.status(404)
-      res.end();
+      return next(err);
       break;
   }
+  */
 
+  /* 返回的路由 */
   var view = '';
   var back_name;
   if (req.params.device === "index_com") {
@@ -392,6 +601,7 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
         break;
     
       default:
+        return next(err);
         break;
     }
 
@@ -401,8 +611,7 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
     back_name = 'index_smp/interview/';
 
   } else {
-    res.status(404)
-    res.end();
+    return next(err);
   }
 
   res.render(view, {
@@ -412,7 +621,6 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
     ytID: ytID,
     user: req.user
   });
-
 });
 
 /** 中大傳說 */
@@ -460,8 +668,7 @@ router.get('/:device/legend/:id', function (req, res, next) {
       break;
 
     default:
-      res.status(404)
-      res.end();
+      return next(err);
       break;
   }
   var view = '';
@@ -474,8 +681,7 @@ router.get('/:device/legend/:id', function (req, res, next) {
     back_name = 'index_smp/legend/';
 
   } else {
-    res.status(404)
-    res.end();
+    return next(err);
   }
   res.render(view, {
     title: '新生知訊網 | 影音專區',

@@ -44,6 +44,14 @@
                     console.log(data.Element_Intro);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
+                    if (data.Element_Intro == '<p></p>') $('#indexmodalp').hide();
+                    if (data.Intropic.length == 1) {
+                        $('.next').hide();
+                        $('.pre').hide();
+                    } else {
+                        $('.next').show();
+                        $('.pre').show();
+                    }
                     for (let i = 0; i < data.Intropic.length; i++) {
                         $('.carousel-indicators').append(
                             "<li data-target='#carouselExampleIndicators' data-slide-to='" +
@@ -144,7 +152,7 @@
                             };
 
                             $('.mapmove').removeClass('clicked')
-                            if ($(window).width() > 770) {
+                            if ($(window).width() > 770 || orient() == "landscape") {
                                 $('.sailor1').stop().velocity({
                                     opacity: 1,
                                     translateX: '1rem'
@@ -184,7 +192,7 @@
                                 'margin-right': '26.5%'
                             };
                             $('.mapmove').addClass('clicked')
-                            if ($(window).width() > 770) {
+                            if ($(window).width() > 770 || orient() == "landscape") {
                                 $('.sailor1').stop().velocity({
                                     opacity: 0,
                                     translateX: '-1rem'
@@ -225,7 +233,7 @@
                             'margin-left': '4.5%',
                             'margin-right': '26.5%'
                         };
-                        if ($(window).width() > 770) {
+                        if ($(window).width() > 770 || orient() == "landscape") {
                             $('.sailor1').stop().velocity({
                                 opacity: 0,
                                 translateX: '-1rem'
@@ -340,7 +348,7 @@
                         'hide')
             })
 
-            if ($(window).width() > 770) {
+            if ($(window).width() > 770 || orient() == "landscape") {
                 $('.sailor1').stop().velocity({
                     opacity: 1,
                     translateX: '1rem'
@@ -412,6 +420,14 @@
                     console.log(data);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
+                    if (data.Element_Intro == '<p></p>') $('#indexmodalp').hide();
+                    if (data.Intropic.length == 1) {
+                        $('.next').hide();
+                        $('.pre').hide();
+                    } else {
+                        $('.next').show();
+                        $('.pre').show();
+                    }
                     for (let i = 0; i < data.Intropic.length; i++) {
                         $('.carousel-indicators').append(
                             "<li data-target='#carouselExampleIndicators' data-slide-to='" +
@@ -512,6 +528,9 @@
         if ($(".MAP2D").hasClass("zoom")) {
             $(".MAP2D").removeClass("zoom")
             $(".zoomContainer").remove();
+            $('.mg').css({
+                "width": "15%"
+            })
         } else {
             $(".MAP2D").addClass("zoom");
             $(".zoom").elevateZoom({
@@ -519,6 +538,9 @@
                 lensShape: "round",
                 lensSize: 200
             });
+            $('.mg').css({
+                "width": "18%"
+            })
         }
     }
 
@@ -531,4 +553,12 @@
             scale: 1
         }, 100)
     })
+
+    function orient() {
+        if (window.orientation == 90 || window.orientation == -90) {
+            return 'landscape';
+        } else if (window.orientation == 0 || window.orientation == 180) {
+            return 'portrait';
+        }
+    }
 </script>

@@ -31,7 +31,9 @@ passport.use(new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, function(req, id, password, done) {
-    Users.findOne({ id: id }, function(err, user) {
+    Users.findOne({
+        id: id
+    }, function(err, user) {
         if (err) done(err);
         if (!user) {
             console.log(id + "不存在");
@@ -75,7 +77,9 @@ router.get('/', (req, res, next) => {
             _id: 0,
             __v: 0
         }).exec(),
-        docCalender.find({ month: "8" }, {
+        docCalender.find({
+            month: "8"
+        }, {
             _id: 0,
             __v: 0
         }).exec()
@@ -87,12 +91,17 @@ router.get('/', (req, res, next) => {
             var TimeNow = new Date().getTime() + 28800000;
             var pass = (TimeNow - new Date(item.date).getTime()) / (1000 * 60 * 60 * 24)
             if (pass > 0) {
-                item.screenTime = `${Math.abs(pass.toFixed(0))}天前`;
+                //item.screenTime = ${Math.abs(pass.toFixed(0))}天前;
+                item.screenTime = item.date.getFullYear() + "/" + (item.date.getMonth() + 1) + "/" + item.date.getDate();
             }
             return pass > 0
         })
+
+        newsDocs.sort(function(a, b) {
+            return a.date > b.date ? -1 : 1;
+        });
+
         var catePicArr = ["重要通知", "重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-        console.log(`User:${req.user}`);
 
         calender = calender.sort(function(a, b) {
             if (a.month !== b.month) {
@@ -102,7 +111,14 @@ router.get('/', (req, res, next) => {
             }
         });
 
-        res.render('index/index', { title: "新生知訊網 | 首頁", News: newsDocs, commercial: commercial, icon: catePicArr, calender: calender, user: req.user })
+        res.render('index/index', {
+            title: "新生知訊網 | 首頁",
+            News: newsDocs,
+            commercial: commercial,
+            icon: catePicArr,
+            calender: calender,
+            user: req.user
+        })
     }).catch((error) => {
         if (error) return next(error);
     })
@@ -126,7 +142,8 @@ router.get('/index-edit', checkUser.isAdmin, (req, res, next) => {
         docCommercial.find({}, {
             _id: 0,
             pk: 1,
-            picPath: 1
+            picPath: 1,
+            picLink: 1
         }).exec()
     ]).then((doc) => {
         var news = doc[0],
@@ -137,30 +154,43 @@ router.get('/index-edit', checkUser.isAdmin, (req, res, next) => {
                 var TimeNow = new Date().getTime() + 28800000;
                 var pass = (TimeNow - new Date(news[i].date).getTime()) / (1000 * 60 * 60 * 24)
                 if (pass > 0) {
-                    news[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天前`;
+                    news[i]['screenTime'] = $ { Math.abs(pass.toFixed(2)) }
+                    天前;
                 } else {
-                    news[i]['screenTime'] = `${Math.abs(pass.toFixed(2))}天後`;
+                    news[i]['screenTime'] = $ { Math.abs(pass.toFixed(2)) }
+                    天後;
                 }
             }
         } catch (error) {
             return next(error);
         }
         var catePicArr = ["重要通知", "重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-        res.render('index/edit', { title: '新生知訊網 | 編輯首頁', news: news, icon: catePicArr, calender: calender, commercial: commercial, user: req.user });
+        res.render('index/edit', {
+            title: '新生知訊網 | 編輯首頁',
+            news: news,
+            icon: catePicArr,
+            calender: calender,
+            commercial: commercial,
+            user: req.user
+        });
     }).catch((err) => {
         return next(err);
     })
 });
 
-router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) => {
+router.post('/adpic', uploadHandler.array('commercialpic', 6), checkUser.isAdmin, (req, res, next) => {
     var picArray = req.files.map((item) => {
         var desTemp = item.destination.split('/');
         var temp = {};
-        temp['picPath'] = `/${desTemp[1]}/${desTemp[2]}/${item.originalname}`;
+        temp['picPath'] = /${desTemp[1]}/$ { desTemp[2] }
+        /${item.originalname};
+        temp['picLink'] = "";
         return temp;
     })
     docCommercial.countDocuments((err, number) => {
-        if (err) { return next(err) };
+        if (err) {
+            return next(err)
+        };
         if (number == 0) {
             for (let i in picArray) {
                 picArray[i]['pk'] = i;
@@ -172,27 +202,37 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), (req, res, next) 
                 return next(error);
             })
         } else {
-            docCommercial.find().sort({ pk: -1 }).limit(1).exec((err, maxPkDoc) => {
+            docCommercial.find().sort({
+                pk: -1
+            }).limit(1).exec((err, maxPkDoc) => {
                 console.log(maxPkDoc);
-                if (err) { return next(err) }
+                if (err) {
+                    return next(err)
+                }
                 for (let i in picArray) {
                     picArray[i]['pk'] = i + maxPkDoc[0].pk + 1;
                 }
                 docCommercial.create(picArray, (err) => {
-                    if (err) { return next(err) };
+                    if (err) {
+                        return next(err)
+                    };
                     res.redirect('/index-edit');
                 })
             })
         }
     })
 })
-router.get('/adpic/delete', (req, res, next) => {
+router.get('/adpic/delete', checkUser.isAdmin, (req, res, next) => {
     if (req.query.pk) {
-        docCommercial.findOneAndDelete({ pk: req.query.pk }).exec((err, doc) => {
+        docCommercial.findOneAndDelete({
+            pk: req.query.pk
+        }).exec((err, doc) => {
             if (err) return next(err);
             console.log(doc)
-            fs.unlink(`./public${doc.picPath}`, (err) => {
-                if (err) { return next(err) };
+            fs.unlink(. / public$ { doc.picPath }, (err) => {
+                if (err) {
+                    return next(err)
+                };
                 res.redirect('/index-edit');
             })
         })
@@ -200,47 +240,71 @@ router.get('/adpic/delete', (req, res, next) => {
         res.redirect('/index-edit');
     }
 })
-router.get('/schedule/:method', (req, res, next) => {
-    switch (req.params.method) {
-        case "read":
-            docNews.findOne({ pk: req.query.pk }).exec((err, doc) => {
-                console.log(doc)
-                if (err) { return next(err) }
-                res.json(doc)
-            });
-            break;
-        case "delete":
-            docNews.findOneAndDelete({ pk: req.query.pk }, (err) => {
-                if (err) { return next(err) }
-                var resMes = {
-                    message: "Data deleted successfully!"
-                }
-                res.json(resMes)
-            });
-            break;
-        default:
-            res.status(404).send('Wrong Page');
-            break;
-    }
+router.post('/adpic/editUrl', checkUser.isAdmin, (req, res, next) => {
+    docCommercial.findOneAndUpdate({
+        pk: req.body.pk
+    }, {
+        $set: {
+            picLink: req.body.comPic
+        }
+    }, (err) => {
+        if (err) {
+            return next(err)
+        }
+        res.redirect('/index-edit');
+    })
+})
+router.get('/schedule/delete', (req, res, next) => {
+    docNews.findOneAndDelete({
+        pk: req.query.pk
+    }, (err) => {
+        if (err) {
+            return next(err)
+        }
+        var resMes = {
+            message: "Data deleted successfully!"
+        }
+        res.json(resMes)
+    });
+});
+router.get('/schedule/read', (req, res, next) => {
+    docNews.findOne({
+        pk: req.query.pk
+    }).exec((err, doc) => {
+        console.log(doc)
+        if (err) {
+            return next(err)
+        }
+        res.json(doc)
+    });
 });
 
-router.post('/schedule/:method', (req, res, next) => {
+router.post('/schedule/:method', checkUser.isAdmin, (req, res, next) => {
     switch (req.params.method) {
         case "create":
             var temp = new docNews({
                 title: req.body.title,
-                date: new Date(`${req.body.time} GMT`),
+                date: new Date($ { req.body.time }
+                    GMT),
                 category: req.body.category,
                 content: req.body.content
             });
             docNews.countDocuments((err, number) => {
-                if (err) { return next(err) }
+                if (err) {
+                    return next(err)
+                }
                 if (number > 0) {
-                    docNews.find().sort({ pk: -1 }).limit(1).exec((err, doc) => {
-                        if (err) { return next(err) }
+                    docNews.find().sort({
+                        pk: -1
+                    }).limit(1).exec((err, doc) => {
+                        if (err) {
+                            return next(err)
+                        }
                         temp.pk = doc[0].pk + 1;
                         temp.save((err, doc) => {
-                            if (err) { return next(err) };
+                            if (err) {
+                                return next(err)
+                            };
                             var resMes = {
                                 message: "Data saved successfully!"
                             }
@@ -249,7 +313,9 @@ router.post('/schedule/:method', (req, res, next) => {
                     })
                 } else {
                     temp.save((err, doc) => {
-                        if (err) { return next(err) };
+                        if (err) {
+                            return next(err)
+                        };
                         var resMes = {
                             message: "Data saved successfully!"
                         }
@@ -259,14 +325,19 @@ router.post('/schedule/:method', (req, res, next) => {
             })
             break;
         case "update":
-            docNews.findOneAndUpdate({ pk: req.body.pk }, {
+            docNews.findOneAndUpdate({
+                pk: req.body.pk
+            }, {
                 title: req.body.title,
-                date: new Date(`${req.body.time} GMT`),
+                date: new Date($ { req.body.time }
+                    GMT),
                 category: req.body.category,
                 content: req.body.content
             }).exec((err, doc) => {
                 console.log(doc)
-                if (err) { return next(err) }
+                if (err) {
+                    return next(err)
+                }
                 var resMes = {
                     message: "Data changed successfully!"
                 }
@@ -278,34 +349,35 @@ router.post('/schedule/:method', (req, res, next) => {
             break;
     }
 })
-router.get('/calender/:method', (req, res, next) => {
-    switch (req.params.method) {
-        case "read":
-            console.log(req.query.pk)
-            docCalender.findOne({ pk: req.query.pk }, { _id: 0, __v: 0 }).exec((err, doc) => {
-                console.log(doc)
-                if (err) { return next(err) }
-                res.json(doc)
-            })
-            break;
-        case "delete":
-            console.log(req.query.pk);
-            docCalender.findOneAndDelete({ pk: req.query.pk }).exec((err, doc) => {
-                if (err) { return next(err) }
-                var resMes = {
-                    message: "Data deleted successfully!"
-                }
-                res.json(resMes);
-            })
-            break;
-
-        default:
-            res.status(404).send('Wrong Page');
-            break;
-    }
+router.get('/calender/read', (req, res, next) => {
+    docCalender.findOne({
+        pk: req.query.pk
+    }, {
+        _id: 0,
+        __v: 0
+    }).exec((err, doc) => {
+        console.log(doc)
+        if (err) {
+            return next(err)
+        }
+        res.json(doc)
+    })
+});
+router.get('/calender/delete', checkUser.isAdmin, (req, res, next) => {
+    docCalender.findOneAndDelete({
+        pk: req.query.pk
+    }).exec((err, doc) => {
+        if (err) {
+            return next(err)
+        }
+        var resMes = {
+            message: "Data deleted successfully!"
+        }
+        res.json(resMes);
+    })
 });
 
-router.post('/calender/:method', (req, res, next) => {
+router.post('/calender/:method', checkUser.isAdmin, (req, res, next) => {
     switch (req.params.method) {
         case "create":
             var temp = new docCalender({
@@ -314,13 +386,21 @@ router.post('/calender/:method', (req, res, next) => {
                 board_content: req.body.boardContent
             });
             docCalender.countDocuments((err, number) => {
-                if (err) { return next(err) }
+                if (err) {
+                    return next(err)
+                }
                 if (number > 0) {
-                    docCalender.find().sort({ pk: -1 }).limit(1).exec((err, doc) => {
-                        if (err) { return next(err) }
+                    docCalender.find().sort({
+                        pk: -1
+                    }).limit(1).exec((err, doc) => {
+                        if (err) {
+                            return next(err)
+                        }
                         temp.pk = doc[0].pk + 1;
                         temp.save((err, doc) => {
-                            if (err) { return next(err) };
+                            if (err) {
+                                return next(err)
+                            };
                             var resMes = {
                                 message: "Data saved successfully!"
                             }
@@ -329,7 +409,9 @@ router.post('/calender/:method', (req, res, next) => {
                     })
                 } else {
                     temp.save((err, doc) => {
-                        if (err) { return next(err) };
+                        if (err) {
+                            return next(err)
+                        };
                         var resMes = {
                             message: "Data saved successfully!"
                         }
@@ -339,12 +421,16 @@ router.post('/calender/:method', (req, res, next) => {
             })
             break;
         case "update":
-            docCalender.findOneAndUpdate({ pk: req.body.pk }, {
+            docCalender.findOneAndUpdate({
+                pk: req.body.pk
+            }, {
                 month: req.body.month,
                 date: req.body.date,
                 board_content: req.body.boardContent
             }).exec((err, doc) => {
-                if (err) { return next(err) }
+                if (err) {
+                    return next(err)
+                }
                 var resMes = {
                     message: "Data edited successfully!"
                 }
@@ -359,7 +445,9 @@ router.post('/calender/:method', (req, res, next) => {
 
 router.post('/calender_get_data', function(req, res, next) {
     if (req.body.id == "aug") {
-        docCalender.find({ month: "8" }, function(err, obj) {
+        docCalender.find({
+            month: "8"
+        }, function(err, obj) {
             obj = obj.sort(function(a, b) {
                 if (a.month !== b.month) {
                     return Number(a.month) > Number(b.month) ? 1 : -1;
@@ -370,7 +458,9 @@ router.post('/calender_get_data', function(req, res, next) {
             res.send(obj);
         });
     } else {
-        docCalender.find({ month: "9" }, function(err, obj) {
+        docCalender.find({
+            month: "9"
+        }, function(err, obj) {
             obj = obj.sort(function(a, b) {
                 if (a.month !== b.month) {
                     return Number(a.month) > Number(b.month) ? 1 : -1;
@@ -402,14 +492,19 @@ router.get('/comingsoon', function(req, res, next) {
 });
 
 router.get('/login', checkUser.isAllowtoLogin, function(req, res, next) {
-    res.render('login/index', { title: '新生知訊網', user: req.user });
+    res.render('login/index', {
+        title: '新生知訊網',
+        user: req.user
+    });
 });
 
 router.post('/login', checkUser.isAllowtoLogin, function(req, res, next) {
     let grade = req.body.id.substring(0, 3);
     if (grade !== '108')
         return res.redirect('auth/provider');
-    Users.findOne({ 'id': req.body.id }, function(err, user) {
+    Users.findOne({
+        'id': req.body.id
+    }, function(err, user) {
         if (err) res.redirect('/login');
         if (user && user.password)
             res.redirect('/password?id=' + req.body.id);
@@ -419,7 +514,10 @@ router.post('/login', checkUser.isAllowtoLogin, function(req, res, next) {
 });
 
 router.get('/password', checkUser.isAllowtoLogin, function(req, res, next) {
-    res.render('login/password', { title: '新生知訊網', user: req.user });
+    res.render('login/password', {
+        title: '新生知訊網',
+        user: req.user
+    });
 });
 
 router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
@@ -429,7 +527,10 @@ router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local'
 }));
 
 router.get('/register', checkUser.isAllowtoLogin, function(req, res, next) {
-    res.render('login/register', { title: '新生知訊網', user: req.user });
+    res.render('login/register', {
+        title: '新生知訊網',
+        user: req.user
+    });
 });
 
 router.post('/register', checkUser.isAllowtoLogin, function(req, res, next) {
@@ -439,7 +540,9 @@ router.post('/register', checkUser.isAllowtoLogin, function(req, res, next) {
     let checkpassword = req.body.checkpassword;
 
     if ((id && name && password && checkpassword) && (password == checkpassword)) {
-        Users.findOne({ 'id': id }, function(err, obj) {
+        Users.findOne({
+            'id': id
+        }, function(err, obj) {
             if (err) {
                 res.redirect('/');
             }
@@ -535,7 +638,9 @@ router.get('/auth/provider/callback', function(req, res, next) {
             if (!personalObj.id) {
                 console.log(personalObj.id + ' is not allowed to login');
             }
-            Users.findOne({ 'id': personalObj.id }, function(err, user) {
+            Users.findOne({
+                'id': personalObj.id
+            }, function(err, user) {
                 if (err) next(err);
                 // If found, login
                 if (user) {
@@ -564,15 +669,15 @@ router.get('/auth/provider/callback', function(req, res, next) {
     });
 });
 
-router.get('/adduser', function(req, res, next) {
-    Users.createUser(new Users({
-        id: "108000001",
-        unit: "csie",
-        name: "eugene"
-    }), function(err, user) {
-        if (err) next(err);
-        res.redirect('/login');
-    });
-});
+// router.get('/adduser', function (req, res, next) {
+//   Users.createUser(new Users({
+//     id: "108000022",
+//     unit: "csie",
+//     name: "eugene"
+//   }), function (err, user) {
+//     if (err) next(err);
+//     res.redirect('/login');
+//   });
+// });
 
 module.exports = router;

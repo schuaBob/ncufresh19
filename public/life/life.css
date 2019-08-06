@@ -68,7 +68,7 @@ ul {
   bottom: 0;
 }
 .bgImage {
-  max-width: 250px;
+  max-width: 20vw;
   left:0;
 }
 #main {
@@ -342,15 +342,22 @@ ul.timeline > li:before {
 }
 
 #areaName {
-  margin-left: 25%;
+  padding-bottom: 0.5vw; 
+  padding-top: 2vw;
+  padding-left: 30%;
+
 }
 #areaName p {
-  font-size: 4vw;
+  font-size: 3vw;
   border-bottom: 4px solid black;
   /* padding-bottom: 5%; */
 }
-.T div{
-  display: inline-block;
+
+.T {
+  position: relative;
+  display: inline-flex;
+  height: 9vw;
+  width: 90%;
 }
 
 .foodIcon {
@@ -398,7 +405,7 @@ ul.timeline > li:before {
 
 .hint {
   color: white;
-  font-size: 50px;
+  font-size: 8vw;
   position: absolute;
   top: 25%;
   left: 50%;
@@ -410,15 +417,16 @@ ul.timeline > li:before {
 
 .decoration img{
   position: absolute;
-  width:23%;
+  width: 25%;
   bottom: 0px;
 }
 
 #foodModal .modal-dialog {
   width: 70%;
   max-width: none;
-  margin-top: 2vh;
-  min-height: calc(100vh - 56px);
+  top: 10vh;
+  /* min-height: calc(100vh - 56px); */
+  min-height: 100%;
 }
 
 #foodModalDetail{
@@ -461,13 +469,13 @@ ul.timeline > li:before {
 
 .t {
   text-align: center;
-  font-size: 40px;
+  font-size: 2vw;
   font-weight: 500;
 }
 #foodModalDetail .d {
   margin: 0;
   max-height: 300px;
-  font-size: 20px;
+  font-size: 1.5vw;
   font-weight: lighter;
   padding-top: 10px;
   overflow-y: scroll;
@@ -476,6 +484,12 @@ ul.timeline > li:before {
 #foodModal .modal-header {
   border-bottom-width: 0px;
 }
+
+.modal-title {
+  font-size: 3vw;
+  padding-left: 43%;
+}
+
 
 #foodModal .modal-body{
   margin: 0;
@@ -508,8 +522,11 @@ ul.timeline > li:before {
   float: left;
 }
 
+.content h3 {
+  font-size: 2vw;
+}
 
-
-
-
+.page p {
+  font-size: 1.5vw;
+}
 

@@ -191,7 +191,7 @@
           {
             //小
             $("#mobileAnswerModal").modal();
-            $("#mobileAnswerTitleText").text("["+data[0].category+"]"+data[0].title);
+            $("#mobileAnswerTitleText").text("["+data[0].category+"]"+trunc(data[0].title));
             $("#mobileQContentText").text(data[0].qContent);
             $("#mobileAContentText").children("p").replaceWith(data[0].aContent);
           } else {
@@ -204,7 +204,7 @@
               }else{
                 $("#dropdownMenuButton").text(data[0].category);
               }            
-              $(".answerTitleText").text(data[0].title);
+              $(".answerTitleText").text(trunc(data[0].title));
               $("#modifyInput").attr("postID",data[0].postID);
               
               tinyMCE.get('modifyInput').setContent(data[0].aContent);
@@ -214,7 +214,7 @@
                 $("#defaultCheck1").prop("checked",false);
               }
             }else{          
-              $(".answerTitleText").text("[" + data[0].category + "]" + data[0].title);
+              $(".answerTitleText").text("[" + data[0].category + "]" + trunc(data[0].title));
               $(".answerModelA > p").replaceWith(data[0].aContent);
             }
             $(".answermodal").addClass("animated fadeIn faster");

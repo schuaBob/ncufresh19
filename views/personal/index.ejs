@@ -6,6 +6,30 @@
     <link rel='stylesheet' href='/personal/style.css' />
   </head>
   <body>
+      <div class="modal fade qnaModal" postid="" id="showRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="qnamodal-dialog" role="document">
+          <div class="grid">
+            <div class="qnamodal-content">
+              <div class="qnamodal-header">
+                <h2 class="qnamodal-title" style="color: #7CA7BC;"></h2>
+                <button type="button" class="close" id="closebtn" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="qnamodal-body"><h5 style="color: #FB8360;">Question</h5></div>
+              <div class="qnamodal-body" id="qContent"><p></p></div>
+              <div class="qnamodal-body"><h5 style="color: #FB8360;">Answer</h5></div>
+              <div class="qnamodal-body" id="aContent"><p></p></div>
+              <div class="qnamodal-footer">
+                <form action="deleteQna" method="POST">
+                  <button type="button" id="deletebtn"> 刪除此提問 </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <% include ../layouts/header %>
     <div class="title-box">
       <div class="vertical-line"></div>
@@ -19,7 +43,7 @@
       </div>
 
       <% /* BTNs */ %>
-    <div class="links" id="game-score">遊戲積分</div>
+    <div class="links yourLocation" id="game-score">遊戲積分</div>
     <div class="links" id="game">小遊戲</div>
     <div class="links" id="ask-record">發問紀錄</div>      
     <div class="links" id="ask">我要發問</div>
@@ -41,7 +65,7 @@
       </div>
 
       <% /* 換頭貼Modal */ %>
-      <div class="modal fade" id="changep" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade changeModal" id="changep" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -78,8 +102,10 @@
           </div>
           <div class="score-container">
             <div class="ranking" style="border-bottom: 2px solid black; margin-bottom: 2%;"> <p>即時排名</p> <p>分數</p> <p>姓名</p> </div>
-            <% for(var a=userRank-5;a<userRank+5;a++) { %>
-              <div class="ranking rankingHover"> <p>第<%= a %>名</p> <p><%= rankByScore[a].score_high %></p> <p><%= rankByScore[a].name %></p> </div>
+            <% for(var a = userRank-5;a < userRank+5 ; a++ ) { %>
+              <% if(rankByScore[a]) { %>
+                <div class="ranking rankingHover"> <p>第<%= a+1 %>名</p> <p><%= rankByScore[a].score_high %></p> <p><%= rankByScore[a].name %></p> </div>
+              <% } %>
             <% } %>
             
 
@@ -90,8 +116,8 @@
         <div class="toggles" id="game-toggle">
           <div class="game-link">
             <a href="/coolgame">
-              <img src="遊戲畫面.png">
-              <p>進入小遊戲</p>
+            <p>點我進入小遊戲</p>
+              <img src="遊戲畫面.png" style="z-index: 1">
             </a>
           </div>
         </div>
@@ -99,10 +125,23 @@
         <% /* 發問紀錄 */ %>
         <div class="toggles" id="ask-record-toggle">
           <div class="ask-record-container">
-            <div class="ask" style="border-bottom: 2px solid black; margin-bottom: 2%;"> <p>分類</p> <p>標題</p> <p>日期</p> <p>點閱數</p> </div>
+            <div class="ask" style="border-bottom: 2px solid black; margin-bottom: 2%;">
+              <p>分類</p> <p>標題</p> <p>日期</p> <p>狀態</p>
+            </div>
             <% for(var a=question.length-1;a>-1;a--) { %>
-              <div class="ask askHover"> <p><%= question[a].category %></p> <p><%= question[a].title %></p> <p><%= convertDateToString(question[a]._id.getTimestamp()) %></p> <p><%= question[a].count %></p> </div>
-            <% } %>
+              <a id="linkToModal" data-toggle="modal" data-target=".qnaModal">
+                <div class="ask askHover" id="<%= question[a].postID %>">
+                  <p><%= question[a].category %></p>
+                  <p><%= question[a].title %></p>
+                  <p><%= convertDateToString(question[a]._id.getTimestamp()) %></p>
+                  <% if(question[a].reviewed) { %>
+                    <p>已審核</p>
+                  <% } else { %>
+                    <p>審核中</p>
+                  <% } %>
+                </div>
+              </a>
+            <% } %>            
           </div>
         </div>
 
@@ -110,8 +149,8 @@
         <div class="toggles" id="ask-toggle">
           <div class="ask-link">
             <a href="/qna">
-              <img src="提問.png">
-              <p>新增問題</p>
+              <p>點我發問</p>
+              <img src="提問.png" style="z-index: 1;">
             </a>
           </div>
         </div>

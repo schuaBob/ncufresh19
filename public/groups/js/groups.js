@@ -194,7 +194,7 @@ $(document).ready(function() { //顯示或更換顯示學院
         console.log("snap")
         $(this).css("display", "none")
         $(".snap").css("display", "flex")
-        $(".sidebar").fool('flash')
+
 
 
     })

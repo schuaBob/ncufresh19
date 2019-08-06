@@ -4,7 +4,7 @@
 <head>
   <title><%= title %></title>
   <% include ../layouts/head %>
-  <link rel='stylesheet' href='/video/style.css' />
+  <link rel='stylesheet' href='/video/video.css' />
 
 </head>
 
@@ -51,6 +51,17 @@
       </script>
 
       <% include ./js %>
+
+      <style>
+          @media only screen and (max-width: 1240px){
+              .picture_left{
+                  display: none;
+              }
+              .picture_right{
+                  display: none;
+              }
+          }
+      </style>
 
   </main>
 </body>
