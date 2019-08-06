@@ -554,11 +554,33 @@
         }, 100)
     })
 
+    function getMobileOperatingSystem() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+        }
+
+        if (/android/i.test(userAgent)) {
+            return "Android";
+        }
+
+        // iOS detection from: http://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+        }
+
+        return "unknown";
+    }
+
     function orient() {
         if (window.orientation == 90 || window.orientation == -90) {
-            return 'landscape';
+            if(getMobileOperatingSystem() == "Android") return 'landscape';
+            else return 'portrait';
         } else if (window.orientation == 0 || window.orientation == 180) {
-            return 'portrait';
+            if(getMobileOperatingSystem() == "Android") return 'portrait';
+            else return 'landscape';
         }
     }
 </script>
