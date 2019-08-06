@@ -112,16 +112,31 @@
             <%}%>
 
 
-                <div class="sidebar">
+                <div class="sidebar" id="others_com">
                     <ul>
                         <% for(var i in others) {%>
                             <a style="text-decoration:none; color: #0D4966;" href="/groups/others/<%=others[i].name%>">
-                    <li class="sideli horizontal" id="<%=others[i].name%>"><i class="fas fa-angle-right fa-mob"></i>
+                    <li class="sideli horizontal" id="<%=others[i].name%>"><i class="fas fa-angle-right"></i>
                         <%=others[i].name%>
                     </li>
                 </a>
                             <%}%>
                     </ul>
+                </div>
+                <div id="others_mob">
+
+                    <% for(var i in others) {%>
+
+
+                        <div class="other_side">
+                            <a id="<%=others[i].name%>" style="text-decoration:none; color: #0D4966;" href="/groups/others/<%=others[i].name%>">
+                                <i class="fas fa-tint"></i>
+                                <%=others[i].name%>
+
+                            </a>
+                        </div>
+                        <%}%>
+
                 </div>
                 <%_ if(others_this!==null){ -%>
                     <div class="info">

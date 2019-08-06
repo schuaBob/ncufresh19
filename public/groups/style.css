@@ -233,6 +233,10 @@
     #stu_mob {
         display: none
     }
+    
+    #others_mob {
+        display: none
+    }
     /*---------------------------------------------edit---------------------------------------------------*/
     
     .buttons {
@@ -266,7 +270,7 @@
     
     .content {
         position: relative;
-        top: 1vh;
+        top: 20px;
         font-size: 1.5vw;
         width: 90%;
         margin: 0 auto;
@@ -304,13 +308,13 @@
     
     .linkimg {
         position: relative;
-        width: 15vw;
+        width: 13vw;
         margin: auto;
         top: 0;
     }
     
     .de-en {
-        font-size: 2vw;
+        font-size: 1.5vw;
     }
     
     .linkbuttons {
@@ -330,12 +334,13 @@
         width: 100%;
         text-decoration: none;
         color: #0D4966;
+        font-size: 2vw;
     }
     
     .shell {
         position: relative;
         display: inline-block;
-        width: 15vw;
+        width: 14vw;
         vertical-align: top;
     }
     
@@ -351,7 +356,7 @@
         top: 40vh
     }
     
-    .snap {
+    #snap {
         position: absolute;
         top: 70px;
         left: 20px;
@@ -377,6 +382,7 @@
         z-index: 3000;
         top: 100px;
         left: 20vh;
+        display: none;
     }
     
     .snap_m {
@@ -438,7 +444,181 @@
     }
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%phone%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     
-    @media screen and (max-width: 768px) and (orientation: portrait) {
+    @media screen and (max-width: 850px) and (orientation: landscape) {
+        .backgroundimg {
+            position: absolute;
+            top: 40vh;
+            z-index: -10;
+        }
+        .buttonimg {
+            height: 30vh;
+        }
+        .de-info {
+            top: 50vh;
+        }
+    }
+    /*---------------------------------------------------------------ipad-------------------------------------------------------------*/
+    
+    @media screen and (max-width: 1024px) and (orientation: portrait) {
+        .backgroundimg {
+            position: absolute;
+            top: 25vh;
+            z-index: -10;
+        }
+        #de_pic {
+            display: none;
+        }
+        #ass_pic,
+        #com_pic,
+        #others_pic {
+            width: 100vw;
+            left: calc(50% - 50vw);
+        }
+        .sidebar {
+            left: 10vw;
+            top: 15vh;
+            position: absolute;
+            height: auto;
+            width: auto;
+            padding-left: 2vw;
+            font-size: 5vw;
+            color: rgb( 32, 56, 100);
+            overflow: auto;
+            font-weight: lighter;
+        }
+        .sidebar2 {
+            left: 10vw;
+            top: 15vh;
+            position: absolute;
+            height: auto;
+            width: auto;
+            font-size: 5vw;
+            color: rgb( 32, 56, 100);
+            overflow: auto;
+            font-weight: lighter;
+        }
+        #stu_com {
+            display: none;
+        }
+        #stu_mob {
+            display: flex;
+            width: 100vw;
+            justify-content: Space-around;
+            position: absolute;
+            top: 18vh;
+            font-size: 3vw;
+        }
+        .sideli {
+            margin-top: 3vh;
+            font-weight: lighter;
+            padding-left: 1vw;
+            padding-right: 1vw
+        }
+        .horizontal {
+            display: inline;
+            position: relative;
+        }
+        .navbar {
+            position: absolute;
+            left: calc(50% - 50vw);
+            top: 85vh;
+            display: flex;
+            flex-direction: row;
+            width: 100vw;
+            z-index: 100;
+            justify-content: Center;
+        }
+        a.nava {
+            position: static;
+            z-index: 100;
+            font-size: 4vw;
+        }
+        .navimg {
+            height: 13vw;
+        }
+        a.nava:hover {
+            transform: scale(1);
+        }
+        .buttonimg:hover {
+            transform: scale(1);
+        }
+        .info {
+            position: absolute;
+            font-size: 3vw;
+            width: 90vw;
+            left: calc(50% - 45vw);
+            height: 60vh;
+            top: 25vh;
+            background-color: #FFFDF1;
+            overflow: auto;
+        }
+        .info_title {
+            font-size: 7vw;
+        }
+        .content_pic {
+            top: 5vh;
+            width: 90%;
+        }
+        .stu_img {
+            height: 40vh;
+        }
+        .content {
+            font-size: 3vw;
+            top: 3vh;
+        }
+        .de-info {
+            position: absolute;
+            top: 25vh;
+            width: 100vw;
+            font-size: 7vw;
+        }
+        .cutline {
+            width: 50vw;
+        }
+        .de-en {
+            font-size: 3vw;
+        }
+        .shell a .link {
+            font-size: 5vw
+        }
+        .shell {
+            position: relative;
+            display: inline-block;
+            width: 30vw;
+            vertical-align: top;
+        }
+        .linkbuttons {
+            position: relative;
+            top: 8vh;
+        }
+        .linkimg {
+            position: relative;
+            width: 30vw;
+            margin: auto;
+            top: 0;
+        }
+        /*eeeeee*/
+        #com_alert {
+            position: absolute;
+            width: 90vw;
+            left: calc(50% - 45vw);
+        }
+        #snap {
+            position: absolute;
+            top: 70px;
+            right: 1px;
+            height: 95px;
+            display: none;
+        }
+        .snap_btn {
+            position: absolute;
+            top: 85px;
+            right: 100px;
+            display: none;
+        }
+    }
+    
+    @media screen and (max-width: 500px) and (orientation: portrait) {
         .container {
             border: 0px;
             padding: 0px;
@@ -523,14 +703,29 @@
             display: none;
         }
         #stu_mob {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             width: 100vw;
-            justify-content: Space-around;
             position: absolute;
-            top: 47vw
+            top: 25vh;
+            font-size: 4.5vw
         }
-        .fas .fa-angle-right .fa-mob {
+        .stu_side {
+            text-align: center;
+        }
+        #others_com {
             display: none;
+        }
+        #others_mob {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 100vw;
+            position: absolute;
+            top: 25vh;
+            font-size: 3vw
+        }
+        .other_side {
+            text-align: center;
         }
         .sideli {
             margin-top: 1vh;
@@ -615,7 +810,7 @@
         }
         .de-info {
             position: absolute;
-            top: 45vw;
+            top: 30vh;
             width: 100vw;
             font-size: 7vw;
         }
@@ -650,17 +845,17 @@
             width: 90vw;
             left: calc(50% - 45vw);
         }
-        .snap {
+        #snap {
             position: absolute;
             top: 70px;
-            right: 20vw;
-            height: 75px;
+            right: 1px;
+            height: 95px;
             display: none;
         }
         .snap_btn {
             position: absolute;
             top: 85px;
-            right: 10px;
+            right: 100px;
             display: none;
         }
     }

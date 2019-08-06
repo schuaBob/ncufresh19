@@ -1,29 +1,114 @@
+function isMobile() {
+
+    try {
+        document.createEvent("TouchEvent");
+        return true;
+    } catch (e) { return false; }
+
+}
+
+function isSteep() {
+
+    try {
+        if (window.orientation === 180 || window.orientation === 0) {
+            return true;
+        }
+
+    } catch (e) { return false; }
+
+}
+
+
 $(document).ready(function() { //顯示或更換顯示學院
     var url = window.location.href;
     console.log(url);
     var arr = url.split("/")
     console.log(arr);
     var department_type = 0;
+    console.log(window.orientation);
+    window.addEventListener("orientationchange", onOrientationchange, false);
 
-    if (arr.length === 6) {
-        if (arr[4] === "department") {
-            console.log("department");
+    function onOrientationchange() {
+        if (window.orientation === 180 || window.orientation === 0) {
+            if (isMobile()) {
+                console.log("是要手機版")
+                if (arr[4] === "department") {
+                    if (arr.length === 5) {
+                        $(".sidebar").show()
+                        $(".backgroundimg").hide()
+                        console.log("index")
+                    } else if (arr.length === 6) {
+                        $(".sidebar").css("display", "none")
+                        $(".sidebar2").show()
+                        console.log("學院")
 
-        } else {
-            $(".backgroundimg").hide()
+                    } else if (arr.length === 7) {
+                        $(".mob_de_type").show()
+                        $(".sidebar").css("display", "none")
+                        $(".sidebar2").css("display", "none")
+                        console.log("系所")
+                    }
+                }
+                if (arr.length == 6) {
+                    console.log("背景關掉")
+                    $(".backgroundimg").hide()
+
+                }
+
+            }
         }
+        if (window.orientation === 90 || window.orientation === -90) {
+            if (arr[4] === "department") {
+                if (arr.length === 5) {
+                    $(".sidebar").show()
+                    console.log("index")
+                    $(".backgroundimg").show()
+                } else if (arr.length === 6) {
+                    $(".sidebar").show()
+                    $(".sidebar2").show()
+                    $(".backgroundimg").show()
+                    console.log("學院")
 
+                } else if (arr.length === 7) {
+
+                    $(".sidebar").show()
+                    $(".sidebar2").show()
+                    console.log("系所")
+                }
+
+            }
+
+
+        }
     }
+
+    // if (arr.length === 6) {
+    //     if (arr[4] === "department") {
+    //         console.log("department");
+
+    //     } else {
+    //         $(".backgroundimg").hide()
+    //     }
+
+    // }
 
     if (arr[4] === "department") {
         if (arr.length == 6) {
             department_type = parseInt(arr[arr.length - 1])
+            if (isMobile() === false) {
+                console.log("廢掉")
+                console.log($("[class='nava a']").html())
+                $("[class='nava a']").css("pointer-events", "none")
+            }
         } else if (arr.length == 7) {
             $(".backgroundimg").hide()
             department_type = parseInt(arr[arr.length - 2])
             var department_name = decodeURI(arr[arr.length - 1])
             console.log(department_name + "getbold");
             $("#" + department_name).css("font-weight", "bold")
+
+
+
         }
         console.log(department_type);
         if (department_type != 0) {
@@ -63,18 +148,36 @@ $(document).ready(function() { //顯示或更換顯示學院
         var community_name = decodeURI(arr[arr.length - 1])
         console.log(community_name + "getbold");
         $("#" + community_name).css("font-weight", "bold")
+        if (arr.length == 6) {
+            console.log("背景關掉")
+            $(".backgroundimg").hide()
+
+        }
+
+
     } else if (arr[4] === "others") {
         var others_name = decodeURI(arr[arr.length - 1])
         console.log(others_name + "getbold");
         $("#" + others_name).css("font-weight", "bold")
+        if (arr.length == 6) {
+            console.log("背景關掉")
+            $(".backgroundimg").hide()
+
+        }
 
     } else if (arr[4] === "association") {
         var content = arr[arr.length - 1]
         console.log(content)
         $("#" + content).css("font-weight", "bold")
         $("." + content).css("font-weight", "bold")
+        if (arr.length == 6) {
+            console.log("背景關掉")
+            $(".backgroundimg").hide()
 
+        }
     }
+
+
     ////////////////////////////////////////////////////////手機版///////////////////////////////////////////////////////////////
     var width = $(window).width();
     console.log(width)
@@ -94,7 +197,10 @@ $(document).ready(function() { //顯示或更換顯示學院
 
         }
     });
-    if (width <= 768) {
+
+
+    if (isMobile() && isSteep()) {
+        console.log("是要手機版")
         if (arr[4] === "department") {
             if (arr.length === 5) {
                 $(".sidebar").show()
@@ -111,38 +217,60 @@ $(document).ready(function() { //顯示或更換顯示學院
                 console.log("系所")
             }
         }
+        if (arr.length == 6) {
+            console.log("背景關掉")
+            $(".backgroundimg").hide()
+
+        }
 
     }
+
+
     ////////////////////////////////////////////////////////貝殼///////////////////////////////////////////////////////////////
 
 
 
     var shellcounter = 0
 
+    if (isMobile() === false) {
 
-    $(".shell").hover(function() {
-        console.log("摸貝殼")
-        $(this).children().children(".linkimg").attr("src", "/groups/貝殼打開.png")
+        $(".shell").hover(function() {
+            console.log("摸貝殼")
+            $(this).children().children(".linkimg").attr("src", "/groups/貝殼打開.png")
 
 
 
-        $(this).css("bottom", "50px")
-        shellcounter += 1
-        if (shellcounter >= 10) {
-            console.log("stop it!!!!")
-            $("#myshell").css("display", "block")
-            shellcounter = 0
-        }
-    }, function() {
-        $(this).children().children(".linkimg").attr("src", "/groups/貝殼關閉.png")
-        $(this).css("bottom", "0")
+            $(this).css("bottom", "50px")
+            shellcounter += 1
+            if (shellcounter >= 10) {
+                console.log("stop it!!!!")
+                $("#myshell").css("display", "block")
+                shellcounter = 0
+            }
+        }, function() {
+            $(this).children().children(".linkimg").attr("src", "/groups/貝殼關閉.png")
+            $(this).css("bottom", "0")
 
-        $("#myshell").css("display", "none")
+            $("#myshell").css("display", "none")
 
-    });
+        });
+
+    }
 
     ////////////////////////////////////////////////////////////easter eggs/////////////////////////////////////////////////////////////////
 
+    var boxcount = 0
+
+    $("[class='nava d']").hover(function() {
+        console.log("開寶箱")
+        boxcount += 1;
+        if (boxcount >= 5) {
+            $(".snap_so").show()
+            boxcount = 0
+        }
+    }, function() {
+
+    });
 
     $(".snap_so").on("click", function() {
         console.log("snap")
@@ -193,7 +321,7 @@ $(document).ready(function() { //顯示或更換顯示學院
     $(".snap_btn").on("click", function() {
         console.log("snap")
         $(this).css("display", "none")
-        $(".snap").css("display", "flex")
+        $("#snap").css("display", "flex")
 
 
 
