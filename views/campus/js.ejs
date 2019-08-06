@@ -49,6 +49,10 @@
                         $('.next').hide();
                         $('.pre').hide();
                     }
+                    else{
+                        $('.next').show();
+                        $('.pre').show();
+                    }
                     for (let i = 0; i < data.Intropic.length; i++) {
                         $('.carousel-indicators').append(
                             "<li data-target='#carouselExampleIndicators' data-slide-to='" +
@@ -422,6 +426,10 @@
                         $('.next').hide();
                         $('.pre').hide();
                     }
+                    else{
+                        $('.next').show();
+                        $('.pre').show();
+                    }
                     for (let i = 0; i < data.Intropic.length; i++) {
                         $('.carousel-indicators').append(
                             "<li data-target='#carouselExampleIndicators' data-slide-to='" +
@@ -532,12 +540,12 @@
         }
     }
 
-    $('.mg').hover(function () {
-        $(this).velocity({
+    $('#mg').hover(function () {
+        $('.mg').velocity({
             scale: 1.2
         }, 100)
     }, function () {
-        $(this).velocity({
+        $('.mg').velocity({
             scale: 1
         }, 100)
     })
