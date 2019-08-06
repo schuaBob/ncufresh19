@@ -55,7 +55,7 @@ main {
   position: absolute;
   top: 10%;
   left: 15vw;
-  width: 85vw;
+  width: 80vw;
   height: 70%;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -108,78 +108,90 @@ main {
 #portal {
   position: absolute;
   top: 0%;
-  right: 69%
+  right: 51vw;
 }
 
 #UST {
   position: absolute;
   top: 0%;
-  right: 36%;
+  right: 26vw;
 }
 
 #LMS {
   position: absolute;
   top: 0%;
-  right: 3%;
+  right: 1vw;
 }
 
 #ee-class {
   position: absolute;
   top: calc(calc(23vw / 300 * 173 + 5vh) * 1);
-  right: 69%;
+  right: 51vw;
 }
 
 #dorm-service {
   position: absolute;
   top: calc(calc(23vw / 300 * 173 + 5vh) * 1);
-  right: 36%;
+  right: 26vw;
 }
 
 #dorm-net {
   position: absolute;
   top: calc(calc(23vw / 300 * 173 + 5vh) * 1);
-  right: 3%;
+  right: 1vw;
 }
 
 #helloNCU {
   position: absolute;
   top: calc(calc(23vw / 300 * 173 + 5vh) * 2);
-  right: 69%;
+  right: 51vw;
 }
 
 #NCUtalk {
   position: absolute;
   top: calc(calc(23vw / 300 * 173 + 5vh) * 2);
-  right: 36%;
+  right: 26vw;
 }
 
 #course {
   position: absolute;
   top: calc(calc(23vw / 300 * 173 + 5vh) * 2);
-  right: 3%;
+  right: 1vw;
 }
 
 #service-learning {
   position: absolute;
   top: calc(calc(23vw / 300 * 173 + 5vh) * 3);
-  right: 69%;
+  right: 51vw;
 }
 
 #equity {
   position: absolute;
   top: calc(calc(23vw / 300 * 173 + 5vh) * 3);
-  right: 36%;
+  right: 26vw;
 }
 
 #plan {
   position: absolute;
   top: calc(calc(23vw / 300 * 173 + 5vh) * 3);
-  right: 3%;
+  right: 1vw;
 }
 
-@media only screen and (max-width:1200px) {
+@media only screen and (max-width:600px) {
   main {
     background-size: 250%;
+  }
+
+  .vertical-line {
+    left: 40px;
+  }
+
+  .eng-title {
+    left: 65px;
+  }
+
+  .ch-title {
+    left: 65px;
   }
 
   .title-box {

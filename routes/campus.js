@@ -2,9 +2,6 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 
-var content = "";
-
-
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -35,7 +32,15 @@ router.get('/2D', function (req, res, next) {
   });
 });
 
+
+var content = "";
+
 router.get('/indexmodal', function (req, res, next) {
+  if (content == "") {
+    request('http://localhost:3000/campus/%E5%85%A7%E5%AE%B9.json', function (error, response, body) {
+      content = JSON.parse(body);
+    });
+  }
   if (req.query.id == "1561981206193") {
     var review = {
       'Intropic': ['20190711133634.jpg'],

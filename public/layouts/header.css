@@ -162,6 +162,10 @@
     #myNavPics {
         width: 70%;
         max-width: calc(100% - 330px);
+        background-image: url("/layouts/headerPic/header-1.jpg");
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     #mySidenav #links li {
@@ -293,6 +297,7 @@
         width: 100%;
         display: block;
         background-blend-mode: lighten;
+        background-color: rgba(255, 255, 255, 0.3);
         transition: 0.5s;     
     }
 }
