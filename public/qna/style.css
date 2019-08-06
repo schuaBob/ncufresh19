@@ -105,12 +105,15 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 }
-
-.contentPart>p {
+.answerArea,.questionArea{
   background-color: #EAEAEA;
+  border-radius: 4px;
+}
+.contentPart>p {
+  /* background-color: #EAEAEA;
   height: 80%;
   border-radius: 4px;
-  word-wrap:break-word;
+  word-wrap:break-word; */
 }
 #mdoption{
   display:flex;
@@ -664,6 +667,15 @@ thead>tr {
   }
   #Top{        
     width: 14vw !important;        
+  }
+  .titleTextSize{
+    font-size: 5.2vw;
+  }
+  .contentTextSize{
+    font-size:4.8vw;
+  }
+  .mobilAnswerModalContent{
+    width:90%;
   }
 }
 

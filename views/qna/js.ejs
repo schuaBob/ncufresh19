@@ -193,10 +193,10 @@
             $("#mobileAnswerModal").modal();
             $("#mobileAnswerTitleText").text("["+data[0].category+"]"+trunc(data[0].title));
             $("#mobileQContentText").text(data[0].qContent);
-            $("#mobileAContentText").children("p").replaceWith(data[0].aContent);
+            $("#mobileAContentText").replaceWith(data[0].aContent);
           } else {
             //插入問題內容
-            $(".answerModelQ > p").text(data[0].qContent);         
+            $(".answerModelQ").find("p").text(data[0].qContent);         
             //判斷是否為admin            
             if($("#answerModelAID").attr("role")==="admin"){               
               if(data[0].category === ""){                
@@ -215,7 +215,7 @@
               }
             }else{          
               $(".answerTitleText").text("[" + data[0].category + "]" + trunc(data[0].title));
-              $(".answerModelA > p").replaceWith(data[0].aContent);
+              $(".answerModelA").find("p").replaceWith(data[0].aContent);
             }
             $(".answermodal").addClass("animated fadeIn faster");
             $(".answermodal").css("display", "block");            
