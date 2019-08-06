@@ -82,7 +82,6 @@ router.get('/usergameinit',function(req,res,next){
 router.post('/updatescore', function (req, res, next) {
     User.findOne({'_id':req.user._id}).exec(function(err,result){
       var game_time =( (new Date())- result.game_date)/1000;
-      console.log(game_time);
       if(req.body.game_id == result.game_id &&game_time>54 && game_time<900){
         if(result.score_high <　req.body.score){
           result.set({'score_sum':parseInt(result.score_sum, 10)+parseInt(req.body.score, 10),'score_high':parseInt(req.body.score, 10)});
