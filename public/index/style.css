@@ -265,7 +265,7 @@ main {
     #index3start {
         display: none;
     }
-
+    
     #board-detail {
         width: 90%;
         margin-right: 5%;
@@ -346,6 +346,13 @@ main {
 
     .myinvisible {
         display: none !important;
+    }
+
+    #closenews {
+        position: relative;
+        float: left;
+        width: 90px;
+        margin: auto 0;
     }
 }
 
@@ -654,9 +661,10 @@ main {
 
     #index3crab {
         position: absolute;
-        width: 8vw;
-        left: calc(50% - 4vw);
-        bottom: 24px;
+        width: 10vw;
+        left: 0;
+        bottom: 25px;
+        z-index: 5000;
     }
 
     #triangle {
@@ -677,14 +685,16 @@ main {
         animation-duration: 1s;
         animation-fill-mode: forwards;
     }
+
+    #closenews {
+        position: relative;
+        float: left;
+        width: 6vw;
+        margin: auto 0;
+    }
 }
 
-#closenews {
-    position: relative;
-    float: left;
-    width: 6%;
-    margin: auto 0;
-}
+
 
 #toPage2 {
     position: absolute;

@@ -1,7 +1,8 @@
 var current_calender;
 var nowLeft = 30,
     nowTarget = 0,
-    nowTotal = 0;
+    nowTotal = 0,
+    lastClick = -1;
 var isAnimating = false;
 
 $(document).ready(() => {
@@ -26,7 +27,11 @@ $(document).ready(() => {
             }
         }
     });
-
+    $('.news-line').on('touchstart', function () {
+        $(this).trigger('hover');
+    }).on('touchend', function () {
+        $(this).trigger('hover');
+    });
     $.fn.fullpage.setRecordHistory(false);
     $('#newsModal').on('show.bs.modal', () => {
         $.fn.fullpage.setMouseWheelScrolling(false)
@@ -58,26 +63,26 @@ $(document).ready(() => {
     });
 
     $(".next").on("click", function () {
-        if (!isAnimating && nowTarget < nowTotal-1) {
+        if (!isAnimating && nowTarget < nowTotal - 1) {
             isAnimating = true;
             $("#scrollDay").animate({
                 left: (nowLeft -= 15) + "vw"
             }, {
-                duration: 500,
-                done: function () {
-                    isAnimating = false;
-                    $("#" + nowTarget).removeClass("target");
-                    nowTarget += 1;
-                    $("#" + nowTarget).addClass("target");
-                    $("#board-detail").empty();
-                    var cnt = 0;
-                    for (var i in current_calender) {
-                        if (cnt == nowTarget)
-                            $("#board-detail").append(current_calender[i].board_content);
-                        cnt = cnt + 1;
+                    duration: 500,
+                    done: function () {
+                        isAnimating = false;
+                        $("#" + nowTarget).removeClass("target");
+                        nowTarget += 1;
+                        $("#" + nowTarget).addClass("target");
+                        $("#board-detail").empty();
+                        var cnt = 0;
+                        for (var i in current_calender) {
+                            if (cnt == nowTarget)
+                                $("#board-detail").append(current_calender[i].board_content);
+                            cnt = cnt + 1;
+                        }
                     }
-                }
-            });
+                });
         }
     });
 
@@ -87,21 +92,21 @@ $(document).ready(() => {
             $("#scrollDay").animate({
                 left: (nowLeft += 15) + "vw"
             }, {
-                duration: 500,
-                done: function () {
-                    isAnimating = false;
-                    $("#" + nowTarget).removeClass("target");
-                    nowTarget -= 1;
-                    $("#" + nowTarget).addClass("target");
-                    $("#board-detail").empty();
-                    var cnt = 0;
-                    for (var i in current_calender) {
-                        if (cnt == nowTarget)
-                            $("#board-detail").append(current_calender[i].board_content);
-                        cnt = cnt + 1;
+                    duration: 500,
+                    done: function () {
+                        isAnimating = false;
+                        $("#" + nowTarget).removeClass("target");
+                        nowTarget -= 1;
+                        $("#" + nowTarget).addClass("target");
+                        $("#board-detail").empty();
+                        var cnt = 0;
+                        for (var i in current_calender) {
+                            if (cnt == nowTarget)
+                                $("#board-detail").append(current_calender[i].board_content);
+                            cnt = cnt + 1;
+                        }
                     }
-                }
-            });
+                });
         }
     });
 
@@ -120,11 +125,13 @@ $(document).ready(() => {
             $("#board-detail").append(current_calender[0].board_content);
             nowLeft = 30;
             nowTarget = 0;
+            lastClick = 0;
+            $("#" + lastClick + " div svg circle").attr("fill", "#fff9dc");
         }
     });
 
-    $(".switch input").click(function(){
-        if($(this).prop("checked") == true){
+    $(".switch input").click(function () {
+        if ($(this).prop("checked") == true) {
             // $("#carouselExampleIndicators").css("display", "block");
             // $("#news").css("display", "none");
             $("#carouselExampleIndicators").removeClass("myinvisible");
@@ -154,6 +161,7 @@ $(".selectMonth").on("click", function () {
             $("#board-detail").append(current_calender[0].board_content);
             nowLeft = 30;
             nowTarget = 0;
+            $("#" + lastClick + " div svg circle").attr("fill", "#fff9dc");
         }
     });
 });
@@ -174,6 +182,8 @@ function append_circle(data) {
     $(".day").on("click", function () {
         var width = $(window).width();
         if(width > 1024) {
+            if(lastClick !== -1)
+                $("#" + lastClick + " div svg circle").attr("fill", "#ec6d4f")
             $("#board-detail").empty();
             var cnt = 0;
             for (var i in current_calender) {
@@ -181,28 +191,31 @@ function append_circle(data) {
                     $("#board-detail").append(current_calender[i].board_content);
                 cnt = cnt + 1;
             }
+            lastClick = this.id;
+            $("#" + lastClick + " div svg circle").attr("fill", "#fff9dc")
+
         } else {
             var tobescroll = this.id - nowTarget;
-            if(tobescroll !== 0) {
+            if (tobescroll !== 0) {
                 isAnimating = true;
                 $("#scrollDay").animate({
                     left: (nowLeft -= (tobescroll * 15)) + "vw"
                 }, {
-                    duration: 500,
-                    done: function () {
-                        isAnimating = false;
-                        $("#" + nowTarget).removeClass("target");
-                        nowTarget += tobescroll;
-                        $("#" + nowTarget).addClass("target");
-                        $("#board-detail").empty();
-                        var cnt = 0;
-                        for (var i in current_calender) {
-                            if (cnt == nowTarget)
-                                $("#board-detail").append(current_calender[i].board_content);
-                            cnt = cnt + 1;
+                        duration: 500,
+                        done: function () {
+                            isAnimating = false;
+                            $("#" + nowTarget).removeClass("target");
+                            nowTarget += tobescroll;
+                            $("#" + nowTarget).addClass("target");
+                            $("#board-detail").empty();
+                            var cnt = 0;
+                            for (var i in current_calender) {
+                                if (cnt == nowTarget)
+                                    $("#board-detail").append(current_calender[i].board_content);
+                                cnt = cnt + 1;
+                            }
                         }
-                    }
-                });
+                    });
             }
         }
     });
