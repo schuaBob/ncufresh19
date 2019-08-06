@@ -44,7 +44,7 @@ body {
 /*show文字自動縮排*/
 #show_content{
   overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-x: auto;
   height: 100%;
   word-wrap:break-word;
 }
@@ -387,14 +387,15 @@ body {
  @media only screen and (max-width: 768px)  {
 
   .modal {
-    top:40px;
+    top:56px;
+    background-color: white;
   }
 
   .modal-dialog {
     max-width: 90%; 
   }
   .modal-body {
-    height: 76vh;
+    height: 77vh;
     overflow: auto;
   }
 
@@ -618,6 +619,7 @@ body {
 
   .modal {
     top:60px;
+    background-color: white;
   }
 
 }
@@ -754,6 +756,7 @@ body {
 
   .modal {
     top:60px;
+    background-color: white;
   }
 
   .modal-dialog {
