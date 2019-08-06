@@ -887,6 +887,15 @@ li {
 }
 
 
+@media only screen and (max-width: 420px) and (min-height: 700px){
+  #map {
+    padding: 0;
+    width: 100%;
+    position: relative;    
+    bottom: calc((540px - 100vw) * 0.25);
+  }
+}
+
 @media only screen and (max-width: 540px) and (min-height: 700px){
   #map {
     padding: 0;
@@ -896,11 +905,20 @@ li {
   }
 }
 
-@media only screen and (max-width: 420px) and (min-height: 700px){
+@media only screen and (max-width: 420px) and (min-height: 800px){
   #map {
     padding: 0;
     width: 100%;
     position: relative;    
     bottom: calc((540px - 100vw) * 0.65);
+  }
+}
+
+@media only screen and (max-width: 420px) and (min-height: 900px){
+  #map {
+    padding: 0;
+    width: 100%;
+    position: relative;    
+    bottom: calc((540px - 100vw) * 1);
   }
 }
