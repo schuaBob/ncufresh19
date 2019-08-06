@@ -33,6 +33,67 @@ main {
 
 /* 手機版 */
 @media only screen and (max-width: 1025px) {
+    .switch {
+        position: absolute;
+        z-index: 4000px;
+        top: 2vh;
+    }
+
+    .switch input {
+        display: none;
+    }
+    
+    .switch small {
+        display: inline-block;
+        width: 120px;
+        height: 30px;
+        background: #455a64;
+        border-radius: 30px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .switch small:after {
+        content: "News";
+        position: absolute;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        width: 100%;
+        left: 0px;
+        text-align: right;
+        padding: 6px;
+        box-sizing: border-box;
+        line-height: 18px;
+    }
+
+    .switch small:before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 25px;
+        background: #fff;
+        border-radius: 50%;
+        top: 3px;
+        left: 3px;
+        transition: .3s;
+        box-shadow: -3px 0 3px rgba(0,0,0,0.1);
+    }
+
+    .switch input:checked ~ small {
+        background: #4fc5c5;
+        transition: .3s;
+    }
+
+    .switch input:checked ~ small:before {
+        transform: translate(85px, 0px);
+        transition: .3s;
+    }
+
+    .switch input:checked ~ small:after {
+        content: "Commerical";
+        text-align: left;
+    }
 
     #triangle {
         z-index: 4999;
@@ -69,15 +130,16 @@ main {
     }
 
     #secondSection {
-        height: 94vh;
-        padding: 1vh 4vw;
+        height: 90vh;
+        padding: 6vh 4vw;
     }
 
     #news {
-        display: block;
         position: relative;
+        display: block;
+        top:  4vh;
         width: 100%;
-        height: 100%;
+        height: 90%;
     }
 
     #news-title {
@@ -86,24 +148,20 @@ main {
 
     #news-body {
         position: relative;
-        max-height: 55vh;
+        max-height: 40vh;
         overflow-y: scroll;
         overflow-x: hidden;
-        min-height: 300px;
+        min-height: 120px;
     }
 
     #jellyfish {
         display: none;
     }
 
-    #carouselExampleIndicators {
-        display: none;
-    }
-
     .news-img {
         position: relative;
         left: 3vw;
-        width: 25%;
+        width: 20%;
     }
 
     .news-content {
@@ -112,9 +170,31 @@ main {
         width: 65%;
     }
 
+    .card-body {
+        padding: 0.8rem;
+    }
+
     .card-body h5 {
-        font-size: 25px;
+        font-size: 18px;
         margin: 0;
+    }
+
+    #carouselExampleIndicators {
+        position: relative;
+        display: block;
+        top:  4vh;
+        width: 100%;
+        height: 90%;
+    }
+
+    #fishbone {
+        display: none;
+    }
+
+    .carousel-inner {
+        position: relative;
+        top: 8vh;
+        width: 100%;
     }
 
     #pickMonth {
@@ -183,7 +263,7 @@ main {
         margin-top: 2vh;
         height: 95%;
         border: 0px solid #0163b0;
-        background-color: lightblue;
+        background-color: rgba(173, 216, 230, .7);
         border-radius: 37px;
         padding: 15px;
         position: absolute;
@@ -238,8 +318,7 @@ main {
     .next {
         position: absolute;
         cursor: pointer;
-        font-size: 11vw;
-        border: 3px black solid;
+        font-size: 10vw;
         z-index: 4000;
     }
 
@@ -256,30 +335,36 @@ main {
     }
 
     .myinvisible {
-        display: none;
+        display: none !important;
     }
 }
 
 /* 平板 */
 @media only screen and (min-width: 768px) and (max-width: 1025px) {
+    .switch {
+        position: absolute;
+        z-index: 4000px;
+        top: 4vh;
+    }
+
     #secondSection {
         position: relative;
         z-index: 500;
         top: 0;
-        padding: 2vw 12vw;
+        padding: 10vh 12vw;
     }
 
     #news {
         position: relative;
         display: block;
         width: 76vw;
-        height: 45vh;
+        height: 90vh;
     }
 
     .news-img {
         position: relative;
         left: 3vw;
-        width: 7%;
+        width: 8vw;
     }
 
     #news-title {
@@ -293,7 +378,7 @@ main {
 
     #news-body {
         position: relative;
-        height: 70%;
+        height: 80%;
         overflow-y: scroll;
         overflow-x: hidden;
         min-height: 0;
@@ -302,8 +387,8 @@ main {
     #carouselExampleIndicators {
         position: relative;
         display: block;
-        width: 80vw;
-        height: 35vh;
+        width: 76vw;
+        height: 90vh;
     }
 
     #fishbone {
@@ -312,8 +397,9 @@ main {
 
     .carousel-inner {
         position: relative;
-        left: calc( 50% - 15vmax);
-        width: 30vmax;
+        left: 10%;
+        top: 5vh;
+        width: 80%;
     }
 
     #indexLogo {
@@ -377,6 +463,10 @@ main {
 
 /* 電腦版 */
 @media only screen and (min-width: 1025px) {
+    .switch {
+        display: none;
+    }
+
     #secondSection {
         position: relative;
         z-index: 500;

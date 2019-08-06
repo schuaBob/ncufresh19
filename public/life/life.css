@@ -7,6 +7,10 @@ body {
   height: 100vh;
 }
 
+div, p {
+  cursor: default;
+}
+
 a {
   color: #00B7FF;
 }
@@ -417,7 +421,7 @@ ul.timeline > li:before {
 
 .decoration img{
   position: absolute;
-  width: 25%;
+  width: 23%;
   bottom: 0px;
 }
 
@@ -435,49 +439,25 @@ ul.timeline > li:before {
   top: 0;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 0;
+  margin-bottom: 30px;
   display: block;
   width: 70%;
   padding: 8px;
   word-wrap: break-word;
-  border-style: solid;
-  border-color: #2E627B;
-  border-top-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+  border-radius: 1rem;
   background-color: white;
+  opacity: 0.8;
   min-height: 50px;
 }
 
-#foodModalTitle {
-  position: relative;
-  right: 0;
-  top: 0;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 0;
-  display: block;
-  width: 70%;
-  padding: 8px;
-  word-wrap: break-word;
-  border-style: solid;
-  border-color: #2E627B;
-  border-top-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
-  background-color: white;
-  min-height: 50px;
-}
 
-.t {
-  text-align: center;
-  font-size: 2vw;
-  font-weight: 500;
-}
 #foodModalDetail .d {
   margin: 0;
-  max-height: 300px;
-  font-size: 1.5vw;
+  height: 25vw;
+  font-size: 2vw;
+  text-align: center;
   font-weight: lighter;
-  padding-top: 10px;
+  padding-top: 8vw;
   overflow-y: scroll;
 }
 
@@ -487,7 +467,11 @@ ul.timeline > li:before {
 
 .modal-title {
   font-size: 3vw;
-  padding-left: 43%;
+  display: block;
+  width: 100%;
+  padding-left: 5%;
+  text-align: center;
+  white-space: nowrap;
 }
 
 
@@ -497,11 +481,12 @@ ul.timeline > li:before {
 }
 
 #foodModal .modal-content {
-  background-color: rgb(81, 172, 207);
+  background-color: rgba(161, 212, 232, 0.966);
 }
 
 .modal-header span {
   cursor: pointer;
+  z-index: 3;
 }
 
 

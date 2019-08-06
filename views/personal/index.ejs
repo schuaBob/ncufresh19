@@ -42,25 +42,31 @@
         <div class="student-number" id="student-number"><%= user.id %></div>
       </div>
 
-      <% /* BTNs */ %>
-    <div class="links yourLocation" id="game-score">遊戲積分</div>
-    <div class="links" id="game">小遊戲</div>
-    <div class="links" id="ask-record">發問紀錄</div>      
-    <div class="links" id="ask">我要發問</div>
-    <a href="/logout"><div class="links" id="logout" >點我登出</div></a>
-    
-      <% /* 頭貼外框 */ %>
-      <div class="circle">
-        <img class="profile-pic" src="profile-photo/<%= user.avatar %>" />
-      </div>
-      <% /* 上傳按鈕 */ %>
-      <div class="upload-icon">
-        <label for="upload">
-          <a data-toggle="modal" data-target="#changep">
-            <img id="btn" src="camera.png"`>
-          </a>
-        </label>
-      </div>
+    <% /* BTNs */ %>
+    <div class="btns">
+      <div class="links yourLocation" id="game">小遊戲</div>
+      <div class="links" id="ask-record">發問紀錄</div>      
+      <div class="links" id="ask">我要發問</div>
+      <a href="/logout">
+        <div class="links" id="logout" >點我登出</div>
+      </a>
+    </div>
+
+    <div class="profile">
+        <% /* 頭貼外框 */ %>
+        <div class="circle">
+          <img class="profile-pic" src="profile-photo/<%= user.avatar %>" />
+        </div>
+        <% /* 上傳按鈕 */ %>
+        <div class="upload-icon">
+          <label for="upload">
+            <a data-toggle="modal" data-target="#changep">
+              <img id="btn" src="camera.png"`>
+            </a>
+          </label>
+        </div>
+    </div>
+      
 
       <% /* 換頭貼Modal */ %>
       <div class="modal fade changeModal" id="changep" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -91,33 +97,20 @@
 
       <% /* Toggle */ %>
       <div class="toggle-container">
-        
-        <% /* 遊戲積分 */ %>
-        <div class="tog showToggle" id="game-score-toggle">
-          <div class="score">
-            <h1>目前積分</h1>
-            <p><%= user.score_high %> 分</p>
-          </div>
-          <div class="score-container">
-            <div class="ranking" style="border-bottom: 2px solid black; margin-bottom: 2%;"> <p>即時排名</p> <p>分數</p> <p>姓名</p> </div>
-            <% for(var a = userRank-5;a < userRank+5 ; a++ ) { %>
-              <% if(rankByScore[a]) { %>
-                <div class="ranking rankingHover"> <p>第<%= a+1 %>名</p> <p><%= rankByScore[a].score_high %></p> <p><%= rankByScore[a].name %></p> </div>
-              <% } %>
-            <% } %>
-            
-
-          </div>
-        </div>
 
         <% /* 小遊戲 */ %>
-        <div class="toggles" id="game-toggle">
-          <div class="game-link">
-            <a href="/coolgame">
-            <p>點我進入小遊戲</p>
-              <img src="遊戲畫面.png" style="z-index: 1">
-            </a>
-          </div>
+        <div class="toggles showToggle" id="game-toggle">
+          <a href="/coolgame">
+              <div class="game-link">
+                  <p>點我進入小遊戲</p>
+                  <img src="遊戲畫面.png">
+              </div>
+          </a>
+            
+            <div class="score">
+              <h1>目前積分</h1>
+              <p><%= user.score_sum %> 分</p>
+            </div>
         </div>
 
         <% /* 發問紀錄 */ %>

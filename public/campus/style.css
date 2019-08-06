@@ -540,7 +540,7 @@ li {
 .show3D {
   position: absolute;
   left: 7%;
-  top: 25%;
+  top: 30%;
   width: 20%;
 }
 
@@ -550,7 +550,6 @@ li {
 
 .show3D img {
   width: 100%;
-  min-width: 100px;
 }
 
 .decoration img {
@@ -664,12 +663,30 @@ li {
   }
 
   .bottom_list {
-    bottom: 0%;
+    bottom: -20%;
+  }
+
+  .bottom{
+    bottom: -30%;
+  }
+
+  body{
+    height: 100vh !important;
+    overflow: scroll !important;
+  }
+  
+  .show3D {
+    top: 50%;
   }
 }
 
 
 @media only screen and (max-width: 770px) and (orientation:portrait) {
+  body{
+    height: 100vh !important;
+    overflow: scroll !important;
+  }
+
   .modal {
     z-index: 4001;
   }
@@ -886,6 +903,10 @@ li {
 
   .sbird {
     display: none;
+  }
+
+  .show3D img{
+    min-width: 100px;
   }
 }
 

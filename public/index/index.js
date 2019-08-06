@@ -120,6 +120,20 @@ $(document).ready(() => {
             $("#board-detail").append(current_calender[0].board_content);
         }
     });
+
+    $(".switch input").click(function(){
+        if($(this).prop("checked") == true){
+            // $("#carouselExampleIndicators").css("display", "block");
+            // $("#news").css("display", "none");
+            $("#carouselExampleIndicators").removeClass("myinvisible");
+            $("#news").addClass("myinvisible");
+        } else {
+            // $("#carouselExampleIndicators").css("display", "none");
+            // $("#news").css("display", "block");
+            $("#carouselExampleIndicators").addClass("myinvisible");
+            $("#news").removeClass("myinvisible");
+        }
+    });
 });
 
 $(".selectMonth").on("click", function () {

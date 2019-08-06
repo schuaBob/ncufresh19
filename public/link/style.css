@@ -177,6 +177,24 @@ main {
   right: 1%;
 }
 
+#ncu {
+  position: absolute;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 4);
+  right: 63%;
+}
+
+#equal {
+  position: absolute;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 4);
+  right: 32%;
+}
+
+#student {
+  position: absolute;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 4);
+  right: 1%;
+}
+
 @media only screen and (max-width:600px) {
   main {
     background-size: 250%;
@@ -283,5 +301,22 @@ main {
     top: calc((70vw / 300 * 173 + 5vh) * 11);
     left: 15vw;
   }
+
+  #ncu {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 12);
+    left: 15vw;
+  }
+
+  #equal {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 13);
+    left: 15vw;
+  }
   
+  #student {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 14);
+    left: 15vw;
+  }
 }
