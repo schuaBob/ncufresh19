@@ -33,7 +33,7 @@ html {
   }
   
   .sideNav li {
-    height: 21vh;
+    height: 18vh;
   }
 
   .mainTitle {
@@ -300,8 +300,8 @@ html {
     display: block;
     overflow: scroll;
     margin: 0 auto;
-    width: 90%;
-    height: 80%;
+    width: 90vw;
+    height: 80vw;
     top: 7%;
     height: calc(100% - 60px - 2% - 15vw);
     /* z-index: 300; */
@@ -343,7 +343,7 @@ html {
   }
   
   #map {
-    width: 100%;
+    width: 90vw;
   }
   
   .overlay {
@@ -408,7 +408,7 @@ html {
     margin-bottom: 0;
     display: block;
     width: 70%;
-    padding: 8px;
+    padding: 5px;
     word-wrap: break-word;
     border-style: solid;
     border-color: #2E627B;
@@ -427,7 +427,7 @@ html {
     margin-bottom: 0;
     display: block;
     width: 70%;
-    padding: 8px;
+    padding: 5px;
     word-wrap: break-word;
     border-style: solid;
     border-color: #2E627B;
@@ -452,6 +452,7 @@ html {
   
   #foodModal .modal-header {
     border-bottom-width: 0px;
+    padding: 2vw 2vw;
   }
   
   #foodModal .modal-body{
@@ -464,7 +465,7 @@ html {
   }
 
   #foodModal .modal-title {
-      font-size: 2rem;
+      font-size: 5vw;
   }
   
   .modal-header span {

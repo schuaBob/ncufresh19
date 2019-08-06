@@ -6,6 +6,7 @@ var play = require('../models/life/play');
 var food = require('../models/life/food');
 var time = require('../models/life/time');
 var multer = require('multer');
+var checkUser = require('./check-user');
 
 // var storage = multer.diskStorage({
 //   destination: "public/life/subPicture/",
@@ -265,7 +266,7 @@ router.get('/study_phone/chst', function(req, res, next) {
 /*-----------------------------後台------------------------------*/
 
 /* update live page content */
-router.post('/addLiveContent', function(req, res, next) {
+router.post('/addLiveContent', checkUser.isAdmin, function(req, res, next) {
     new live({
       content: req.body.content
     }).save(function(err) {
@@ -279,7 +280,7 @@ res.redirect('back');
 });
 
 
-router.post('/addPlayContent', function(req, res, next) {
+router.post('/addPlayContent', checkUser.isAdmin, function(req, res, next) {
     new play({
       content: req.body.content
     }).save(function(err) {
@@ -289,7 +290,7 @@ router.post('/addPlayContent', function(req, res, next) {
 res.redirect('back');
 });
 
-router.post('/addStudyContent', function(req, res, next) {
+router.post('/addStudyContent', checkUser.isAdmin, function(req, res, next) {
   study.findOne({type: req.body.modifyStudyTitle}).exec(function(err, result) {
     if (result !== null) {
       if (req.body.mainTitle) {
@@ -339,7 +340,7 @@ router.post('/addStudyContent', function(req, res, next) {
   });
 });
 
-router.post('/addFoodContent', function(req, res, next) {
+router.post('/addFoodContent', checkUser.isAdmin, function(req, res, next) {
   food.findOne({mainTitle: req.body.modifyFoodTitle}).exec(function(err, result) {
     if (result !== null) {
       if (req.body.foodTitle) {
@@ -367,7 +368,7 @@ router.post('/addFoodContent', function(req, res, next) {
   });
 });
 
-router.post('/addTimeline', function(req, res, next) {
+router.post('/addTimeline', checkUser.isAdmin, function(req, res, next) {
   // time.findOne({type: req.body.type, time: req.body.time}).exec(function(err, result) {
   //   if (result !== null) {
   //     if (req.body.event) {
@@ -412,7 +413,7 @@ router.get('/foodModal', function (req, res, next) {
 
 
 
-router.post('/deleteLiveContent', function(req, res, next) {
+router.post('/deleteLiveContent', checkUser.isAdmin, function(req, res, next) {
   live.deleteOne({ mainTitle: req.body.mainTitle }, function(err) {
     if(err) console.log('Fail');
     else console.log('success to delete');
@@ -420,7 +421,7 @@ router.post('/deleteLiveContent', function(req, res, next) {
   res.redirect('back');
 });
 
-router.post('/deletePlayContent', function(req, res, next) {
+router.post('/deletePlayContent', checkUser.isAdmin, function(req, res, next) {
   play.deleteOne({ mainTitle: req.body.mainTitle }, function(err) {
     if(err) console.log('Fail');
     else console.log('success to delete');
