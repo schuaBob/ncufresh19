@@ -75,7 +75,7 @@ body {
   position: absolute;
   top: 22%;
   left: 19%;
-  height: 47vh;
+  height: 53vh;
   font-size: 1.5rem;
 }
 
@@ -94,11 +94,12 @@ body {
 }
 
 .answerModelQ {
-  max-height: 40%;
+  max-height: 35%;
 }
 
 .answerModelA {
-  max-height: 60%;
+  max-height: 63%;
+  margin-top: 2%;
 }
 
 .contentPart {
@@ -413,6 +414,7 @@ thead>tr {
   }
   .contentTextSize{
     font-size: 3vw !important;
+    height:1%;
   }
   .buttonGroup{
     font-size: 0.9rem;
@@ -422,6 +424,13 @@ thead>tr {
   }
   tbody > tr{
     font-size:1.2rem;
+  }
+  .answerModelQ{
+    max-height:30% !important;
+  }
+  .answerModelA{
+    max-height: 68% !important;
+    margin-top:2% !important;
   }
 }
 /* ipad 橫放設計 */
@@ -449,6 +458,7 @@ thead>tr {
     }
     .contentTextSize{
       font-size:2vw !important;
+      height:1%;
     }
     .option{
       font-size:1.3rem;
@@ -488,8 +498,13 @@ thead>tr {
     height:auto !important;
     width:65% !important;
   }
-  .titleTextSize,.contentTextSize{
+  .titleTextSize{
     font-size: 2vw !important;
+  }
+  
+  .contentTextSize{
+    font-size: 2vw !important;
+    height:1%;
   }
   .searchInput{
     width:70%;
@@ -514,9 +529,10 @@ thead>tr {
   tbody > tr{
     font-size:1rem;
   }
+  
 }
 /* 手機直立的通用設計 */
-@media only screen and (max-width:600px) and (orientation : portrait){
+@media only screen and (max-width:767px) and (orientation : portrait){
   html{
     height: 100%;
     overflow: hidden;
@@ -673,59 +689,17 @@ thead>tr {
   }
   .contentTextSize{
     font-size:4.8vw;
+    height: 1%;
   }
   .mobilAnswerModalContent{
     width:90%;
+  }
+  .answerModelQ{
+    max-height:30% !important;
+  }
+  .answerModelA{
+    margin-top:2%;
+    max-height: 68% !important;
   }
 }
 
-@media only screen and (max-width:768px) and (min-width:601px){
-  .option{
-    font-size:1rem;
-  }
-  .option ul{
-    width:90%;
-  }
-  .searchInput{
-    width:50%;
-  }
-  .searchBar{
-    right:-22%;
-    top: -3px;
-  }
-  .ask{
-    display: none;
-  }
-  #mobileAskBtn{
-    display: inline !important; 
-    bottom:7vh;   
-    right: 3vw;
-    width: 6vw;
-  }
-  #Top{
-    right: 3vw !important;
-    width: 6vw !important;
-    bottom: 14vh !important;
-  }
-  .mobilAnswerModalContent{
-    width:80% !important;
-  }
-  .mobilAskModalContent{
-    width:80%;
-  }
-  .titleTextSize{
-    font-size: 4vw !important;
-  }
-  .contentTextSize{
-    font-size: 3vw !important;
-  }
-  .buttonGroup{
-    font-size: 0.8rem;
-  }
-  thead > tr{
-    font-size: 1.3rem;
-  }
-  tbody > tr{
-    font-size:1.2rem;
-  }
-}
