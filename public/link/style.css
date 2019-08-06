@@ -177,6 +177,24 @@ main {
   right: 1%;
 }
 
+#ncu {
+  position: absolute;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 4);
+  right: 63%;
+}
+
+#equal {
+  position: absolute;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 4);
+  right: 32%;
+}
+
+#student {
+  position: absolute;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 4);
+  right: 1%;
+}
+
 @media only screen and (max-width:600px) {
   main {
     background-size: 250%;
