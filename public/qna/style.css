@@ -521,6 +521,15 @@ thead>tr {
     font-size: 1.1rem;
     margin-top:7vh;
   }
+
+  /*
+.button_contener {
+  display: flex;
+  justify-content: flex-start;
+}
+*/
+
+
   .buttonGroup{
     font-size: 1rem;
   }
