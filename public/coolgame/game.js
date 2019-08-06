@@ -796,7 +796,7 @@ function load_source() {
     load_question_data();
   }
   else{
-    alert("僅供電腦版");
+    alert("手機碰到水會壞掉所以不支援歐，雖然電腦碰到水也會壞掉，但是我只是想說，只能用電腦玩歐~啾咪");
  }
 }
 function handleFileLoad(e) {
@@ -2024,7 +2024,7 @@ function update_rank(){
     rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
-  for(var j =0;j<10;j++){
+  for(var j =0;j<rank_user_list.length;j++){
     if((now == 3?rank_user_list[j].score_high:rank_user_list[j].score_sum) != 0){
       var a =rank_user_list[j].name.split("");
       rank_name_text[j].text = a.length==1?"O":a.length==2? (a[0]+"O"):a[0]+"O"+a[a.length-1];
