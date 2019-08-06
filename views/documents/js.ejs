@@ -1,6 +1,9 @@
 <script>
     var textid = 0;
     $(document).ready(function () {
+        $('.p_option').click(()=>{
+            $('.modal-body').scrollTop(0);
+        })
         if(window.innerWidth>768) {
             var insideNum = $('.sidenav2').find('.option').length;
             var vh = window.innerHeight*0.01;

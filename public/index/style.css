@@ -265,7 +265,7 @@ main {
     #index3start {
         display: none;
     }
-
+    
     #board-detail {
         width: 90%;
         margin-right: 5%;
@@ -482,6 +482,10 @@ main {
 
 /* 電腦版 */
 @media only screen and (min-width: 1025px) {
+    .news-line:hover {
+        background-color: #fff9dc;
+        cursor: pointer;
+    }
     .switch {
         display: none;
     }
@@ -661,9 +665,10 @@ main {
 
     #index3crab {
         position: absolute;
-        width: 8vw;
-        left: calc(50% - 4vw);
-        bottom: 24px;
+        width: 10vw;
+        left: 0;
+        bottom: 25px;
+        z-index: 5000;
     }
 
     #triangle {
@@ -783,10 +788,7 @@ main {
     background-image: none;
 }
 
-.news-line:hover {
-    background-color: #fff9dc;
-    cursor: pointer;
-}
+
 
 @keyframes scaleUpAnimation {
     0% {
