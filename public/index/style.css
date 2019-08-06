@@ -265,7 +265,7 @@ main {
     #index3start {
         display: none;
     }
-
+    
     #board-detail {
         width: 90%;
         margin-right: 5%;
@@ -661,9 +661,10 @@ main {
 
     #index3crab {
         position: absolute;
-        width: 8vw;
-        left: calc(50% - 4vw);
-        bottom: 24px;
+        width: 10vw;
+        left: 0;
+        bottom: 25px;
+        z-index: 5000;
     }
 
     #triangle {
