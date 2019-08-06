@@ -347,6 +347,13 @@ main {
     .myinvisible {
         display: none !important;
     }
+
+    #closenews {
+        position: relative;
+        float: left;
+        width: 90px;
+        margin: auto 0;
+    }
 }
 
 /* 平板 */
@@ -677,14 +684,16 @@ main {
         animation-duration: 1s;
         animation-fill-mode: forwards;
     }
+
+    #closenews {
+        position: relative;
+        float: left;
+        width: 6vw;
+        margin: auto 0;
+    }
 }
 
-#closenews {
-    position: relative;
-    float: left;
-    width: 6%;
-    margin: auto 0;
-}
+
 
 #toPage2 {
     position: absolute;
