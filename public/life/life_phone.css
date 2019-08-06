@@ -6,6 +6,11 @@ html {
     background-color: #fff9dc;
     height: 100vh;
   }
+
+  div, p {
+    cursor: default;
+  }
+  
   ul {
     list-style-type:none;
     padding: 0;
@@ -387,7 +392,7 @@ html {
 
   .decoration img{
     position: absolute;
-    width:30%;
+    width: 30%;
     bottom: 0px;
   }
   
@@ -396,8 +401,10 @@ html {
     width: 90%;
     max-width: none;
     margin-top: 10vh;
-    min-height: calc(100vh - 56px);
+    margin-bottom: 0;
+    min-height: calc(100vh - 51px);
   }
+
   
   #foodModalDetail{
     position: relative;
@@ -405,54 +412,27 @@ html {
     top: 0;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 0;
+    margin-bottom: 30px;
     display: block;
     width: 70%;
     padding: 5px;
     word-wrap: break-word;
-    border-style: solid;
-    border-color: #2E627B;
-    border-top-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-radius: 1rem;
     background-color: white;
     min-height: 50px;
   }
   
-  #foodModalTitle {
-    position: relative;
-    right: 0;
-    top: 0;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 0;
-    display: block;
-    width: 70%;
-    padding: 5px;
-    word-wrap: break-word;
-    border-style: solid;
-    border-color: #2E627B;
-    border-top-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-    background-color: white;
-    min-height: 50px;
-  }
-
-  .t {
-      text-align: center;
-      font-size: 5vw;
-      font-weight: 500;
-  }
   #foodModalDetail .d {
     margin: 0;
-    max-height: 300px;
-    font-size: 20px;
+    height: 200px;
+    font-size: 2vw;
     font-weight: lighter;
-    overflow-y: scroll;
+    padding: 35% 0;
+    /* overflow-y: scroll; */
   }
   
   #foodModal .modal-header {
     border-bottom-width: 0px;
-    padding: 2vw 2vw;
   }
   
   #foodModal .modal-body{
@@ -461,15 +441,23 @@ html {
   }
   
   #foodModal .modal-content {
-    background-color: rgb(81, 172, 207);
+    background-color: rgba(161, 212, 232, 0.966);
+    /* min-width: 100vw;
+    height: calc(50vw * 2.2); */
   }
 
-  #foodModal .modal-title {
-      font-size: 5vw;
-  }
+ .modal-title {
+    font-size: 5vw;
+    display: block;
+    width: 100%;
+    padding-left: 10%;
+    text-align: center;
+    white-space: nowrap;
+}
   
   .modal-header span {
     cursor: pointer;
+    z-index: 3;
   }
   
 
