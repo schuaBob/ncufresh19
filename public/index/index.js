@@ -1,7 +1,8 @@
 var current_calender;
 var nowLeft = 30,
     nowTarget = 0,
-    nowTotal = 0;
+    nowTotal = 0,
+    lastClick = -1;
 var isAnimating = false;
 
 $(document).ready(() => {
@@ -174,6 +175,8 @@ function append_circle(data) {
     $(".day").on("click", function () {
         var width = $(window).width();
         if(width > 1024) {
+            if(lastClick !== -1)
+                $("#" + lastClick + " div svg circle").attr("fill", "#ec6d4f")
             $("#board-detail").empty();
             var cnt = 0;
             for (var i in current_calender) {
@@ -181,6 +184,9 @@ function append_circle(data) {
                     $("#board-detail").append(current_calender[i].board_content);
                 cnt = cnt + 1;
             }
+            lastClick = this.id;
+            $("#" + lastClick + " div svg circle").attr("fill", "#fff9dc")
+
         } else {
             var tobescroll = this.id - nowTarget;
             if(tobescroll !== 0) {
