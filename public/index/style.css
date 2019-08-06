@@ -51,7 +51,7 @@ main {
         z-index: 500;
         width: 220px;
         left: calc(50vw - 110px);
-        bottom: 70vh;
+        bottom: calc(50vh + 120px);
     }
 
     #indexPage1 {
@@ -383,9 +383,9 @@ main {
     #indexLogo {
         position: absolute;
         z-index: 500;
-        width: 350px;
-        left: calc(50vw - 175px);
-        top: 3.5vw;
+        width: 400px;
+        left: calc(50vw - 200px);
+        bottom: calc(50vh + 100px);
     }
 
     #news {
