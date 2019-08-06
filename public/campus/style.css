@@ -540,7 +540,7 @@ li {
 .show3D {
   position: absolute;
   left: 7%;
-  bottom: 20%;
+  top: 30%;
   width: 20%;
 }
 
@@ -673,6 +673,10 @@ li {
   body{
     height: 100vh !important;
     overflow: scroll !important;
+  }
+  
+  .show3D {
+    top: 50%;
   }
 }
 
