@@ -12,53 +12,38 @@ var Question = require('../models/qna/qna');
 
 
 router.get('/', checkUser.isLoggedIn, function (req, res, next) {
-  var userRank;
-  var rankByScore;
-  User.find({}).exec(function (err, scoreRank) {
-    if (err) {
-      return next(err);
-    }
-    rankByScore = scoreRank.sort(function (a, b) {
+  Promise.all([
+    User.find({}).exec(),
+    Question.find({
+      authorID: req.user.id
+    }).exec()
+  ]).then((result) => {
+    var scoreRank = result[0], question = result[1], picname;
+    var rankByScore = scoreRank.sort(function (a, b) {
       return a.score_high < b.score_high ? 1 : -1;
     });
-    /* 測試 */
-    for (var a in rankByScore) {
-      console.log(rankByScore[a].name);
-    }
-  });
-
-  for (var i in rankByScore) {
-    if (rankByScore[i].id == user.id) {
-      userRank = i;
-      /* 測試 */
-      console.log(userRank);
-    }
-  }
-
-  console.log(userRank);
-
-  var picname;
-  fs.access("public/personal/profile-photo/" + req.user.id + ".png", fs.constants.R_OK, (err) => {
-    if (err) {
-      picname = "default-profile.png";
-    } else {
-      picname = req.user.id + ".png";
-    }
-    Question.find({
-      postID: req.user.id
-    }).exec(function (err, question) {
-      if (err) {
-        return next(err);
+    for (var i in rankByScore) {
+      if (rankByScore[i].id == req.user.id) {
+        userRank = i;
       }
-      res.render('personal/index', {
-        title: '新生知訊網 | 個人專區',
-        question: question,
-        user: req.user,
-        picname: picname,
-        userRank: userRank,
-        rankByScore: rankByScore
-      });
+    }
+    fs.access("public/personal/profile-photo/" + req.user.id + ".png", fs.constants.R_OK, (err) => {
+      if (err) {
+        picname = "default-profile.png";
+      } else {
+        picname = req.user.id + ".png";
+      }
     });
+    res.render('personal/index', {
+      title: '新生知訊網 | 個人專區',
+      question: question,
+      user: req.user,
+      picname: picname,
+      userRank: userRank,
+      rankByScore: rankByScore
+    });
+  }).catch((err)=>{
+    return next(err);
   });
 });
 
@@ -120,30 +105,6 @@ router.post('/editPicture', upload.single('picture'), function (req, res, next) 
         })
       });
     }
-  });
-});
-
-router.get('/deleteQna/:id', checkUser.isLoggedIn, function (req, res, next) {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    return res.redirect('/');
-  }
-  Question.findById(req.params.id).exec(function (err, result) {
-    if (err) {
-      return next(err);
-    }
-    if (!result) {
-      res.redirect('/');
-    }
-    if (result.authorID !== req.user.id) {
-      res.redirect('/');
-    }
-    result.DeleteDate = Date.now();
-    result.save(function (err) {
-      if (err) {
-        return next(err);
-      }
-      res.redirect('/');
-    });
   });
 });
 
