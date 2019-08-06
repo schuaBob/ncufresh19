@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel='stylesheet' href='/video/style.css' />
+        <link rel='stylesheet' href='/video/video.css' />
     </head>
     <body>
           <%/* 標題 */%>
@@ -9,7 +9,7 @@
 
             <%/* 返回按鈕 */%>
             <% if(title_bar[2] == null){ %>
-            <a href="/video/">
+            <a href="/video/<%= back_name %>">
                 <img src="/video/箭頭.png" class="back">
             </a>
             <% }else if(title_bar[4] == null ){ %>
@@ -28,7 +28,7 @@
                 <div class="line"></div>
 
                 <a href="/video/">
-                    <div class="title">
+                    <div class="title" id="faded1">
                         VIDEO<div class="small_title">影音專區</div>
                     </div>
                 </a>
@@ -36,25 +36,25 @@
                 <%/* 影片_學長姊 */%>
                 <% if(title_bar[4] != null){ %>
                     <%/* 三角形*/%>
-                    <div class="tri"></div>
+                    <div class="tri" id="faded2"></div>
 
                     <a href="../">
-                        <div class="title">
+                        <div class="title" id="faded3">
                             <%= title_bar[0] %><div class="small_title"><%= title_bar[1] %></div>
                         </div>
                     </a>
 
-                    <div class="tri"></div>
+                    <div class="tri" id="faded4"></div>
 
                     <a href="../../../<%= back_name %>">
-                        <div class="title">
+                        <div class="title" id="en1">
                             <%= title_bar[2] %><div class="small_title"><%= title_bar[3] %></div>
                         </div>
                     </a>
 
                     <div class="tri"></div>
 
-                    <div class="title">
+                    <div class="title" id="en2">
                         <font color="#ec6d4f"><%= title_bar[4] %></font><div class="small_title"><%= title_bar[5] %></div>
                     </div>
 
@@ -85,7 +85,7 @@
 
                         <div class="tri"></div>
 
-                        <div class="title">
+                        <div class="title" id="en1">
                             <font color="#ec6d4f"><%= title_bar[2] %></font><div class="small_title"><%= title_bar[3] %></div>
                         </div>
                     <%/* 學院分頁_學長姐訪談 */%>
@@ -98,7 +98,7 @@
 
                         <div class="tri"></div>
 
-                        <div class="title">
+                        <div class="title" id="en1">
                             <font color="#ec6d4f"><%= title_bar[2] %></font><div class="small_title"><%= title_bar[3] %></div>
                         </div>
                     <% } %>
@@ -111,5 +111,97 @@
                 <% } %>
             </div>
           </div>
+
+        <script>
+            //太長標題縮減
+            $(document).ready(function(){
+                var num1 = '<%= title_bar[2] %>'.length;
+                var num2 = '<%= title_bar[4] %>'.length;
+
+                //中大傳說的影片
+                if ('<%= title_bar[0] %>'==='LEGEND' && num1 > 9) {
+
+                    $("#en1").css({
+                        "font-size": "19px",
+                        "padding-top": "3px"
+                    });   
+                }
+
+                //學長姊學院、影片
+                if ('<%= title_bar[0] %>'==='INTERVIEW') {
+                    //學院
+                    //生理理工
+                    if ('<%= title_bar[3] %>'==='生醫理工學院') {
+                        $("#en1").css({
+                            "font-size": "19px",
+                            "padding-top": "3px",
+                            "max-width": "220px"
+                        });
+                    }else if(num1 > 11) {
+                        $("#en1").css({
+                            "font-size": "19px",
+                            "padding-top": "3px"
+                        });
+                    }
+
+                    //系所
+                    //資電院學士班太長了，另外寫
+                    if ('<%= title_bar[5] %>' === '資訊電機學院學士班') {
+                        $("#en2").css({
+                            "font-size": "14px"
+                        });
+                    }else if (num2 > 10) {
+                        $("#en2").css({
+                            "font-size": "19px",
+                            "padding-top": "3px"
+                        });
+                    }
+                }
+            });
+        </script>
+
+        <style>
+            /* title_bar 太長被吃掉問題 */
+
+            /* 方案二： 讓前面消失 現在會全體消失 */
+            @media only screen and (max-width: 1080px) {
+                #faded1 {
+                    display: none;
+                }
+                #faded2 {
+                    display: none;
+                }
+                #faded3 {
+                    display: none;
+                }
+                #faded4 {
+                    margin-left: 0px;
+                }
+            }
+
+            /* 方案一：改flex縮小 js比css慢載入，會被覆蓋，要改要連辛苦想出來的js一起改QQ
+            @media only screen and (max-width: 1080px) {
+                .title_bar {
+                    display: -webkit-flex;
+                    display: flex;
+                }
+                .title {
+                    -webkit-flex: initial;
+                    max-height: 85px;
+                    font-size: 14px;
+                }
+                #en1 {
+                    -webkit-flex: initial;
+                    max-height: 85px;
+                    font-size: 14px;
+                }
+                #en2 {
+                    -webkit-flex: initial;
+                    max-height: 85px;
+                    font-size: 14px;
+                }
+            }
+            */
+        </style>
     </body>
 </html>

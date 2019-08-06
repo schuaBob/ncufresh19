@@ -1,5 +1,5 @@
 <% /*管理者介面 */ %>
-
+<%_ if (user && user.role == 'admin') { -%>
 <div class="modal fade" id="edit_modify" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -79,3 +79,5 @@
         </form>
     </div>
 </div>
+
+<%_ } -%>

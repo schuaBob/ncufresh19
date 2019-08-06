@@ -4,7 +4,6 @@
 <head>
     <title>subStudy</title>
     <% include ../../layouts/head %>
-    <% include ../../layouts/script %>
     <link rel=stylesheet type="text/css" href="../../life/life_phone.css">
 </head>
 
@@ -19,13 +18,13 @@
     </div>
     <% for(var i in data1) { %>
     <% if (data1[i].type == page) { %>
-    <div class="studyTitle">
-        <div class="name">
-            <p id="name"><%- data1[i]['name']%></p>
-            <p id="college"><%- data1[i]['mainTitle']%></p>
-        </div>
-    </div>
     <div class="subContent">
+        <div class="studyTitle">
+            <div class="name">
+                <p id="name"><%- data1[i]['name']%></p>
+                <p id="college"><%- data1[i]['mainTitle']%></p>
+            </div>
+        </div>            
         <div class="subStudyContent">
             <div class="SpictureArea">
                 <div id="subStudyImg">

@@ -12,6 +12,9 @@ function shuffle(a) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+  request('http://localhost:3000/campus/%E5%85%A7%E5%AE%B9.json', function (error, response, body) {
+    content = JSON.parse(body);
+  });
   res.redirect('/campus/3D');
 });
 

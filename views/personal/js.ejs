@@ -31,6 +31,29 @@
         $(".showToggle").show();
     });
 
-    /*test*/
+    $(".ask").click(function(q) {
+        $.ajax({
+            type: "POST",
+            url: "/qna/getQuestion",
+            dataType: 'json',
+            timeout: 3000,
+            data: {
+                postID: $(this).attr("id")
+            },
+            success: function(data) {
+                $(".modal-title").text(data[0].title);
+                $("#qContent").text(data[0].qContent);
+                $("#aContent").text(data[0].aContent);
+                $("#showRecord").css("display", "block");
+            },
+            error: function(err) {
+                return next(err);
+            }
+        });
+    });
+
+    $("#closebtn").on("click", function() {
+        $("#showRecord").hide();
+    })
 
 </script>

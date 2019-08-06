@@ -4,21 +4,6 @@ body {
   background-color: #fff9dc;
 }
 
-.bg {
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-#backgroundi {
-  position: absolute;
-  top: 145px;
-  width: 1490px;
-  height: 610px;
-}
-
 .title-box {
   position: absolute;
   top: 60px;
@@ -53,21 +38,38 @@ body {
   top: 56%;
 }
 
+main {
+  position: absolute;
+  top: 145px;
+  width: 100vw;
+  height: calc(100vh - 60px - 85px);
+  overflow: hidden;
+  background-image: url("底.png");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 80%;
+}
+
 .container {
   position: absolute;
-  top: 180px;
-  left: 250px;
-  width: 1250px;
-  height: 450px;
+  top: 10%;
+  left: 15vw;
+  width: 80vw;
+  height: 70%;
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
 .links {
   background-color: #0163b0;
-  width: 300px;
-  height: 173px;
+  width: 23vw;
+  height: calc(23vw / 300 * 173);
   border-radius: 13px;
+}
+
+.links img {
+  width: 100%;
 }
 
 .links:hover .captn {
@@ -105,72 +107,181 @@ body {
 
 #portal {
   position: absolute;
-  top: 0px;
-  right: 750px;
+  top: 0%;
+  right: 51vw;
 }
 
 #UST {
   position: absolute;
-    top: 0px;
-    right: 400px;
+  top: 0%;
+  right: 26vw;
 }
 
 #LMS {
   position: absolute;
-  top: 0;
-  right: 50px;
+  top: 0%;
+  right: 1vw;
 }
 
 #ee-class {
   position: absolute;
-  top: 220px;
-  right: 750px;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 1);
+  right: 51vw;
 }
 
 #dorm-service {
   position: absolute;
-  top: 220px;
-  right: 400px;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 1);
+  right: 26vw;
 }
 
 #dorm-net {
   position: absolute;
-  top: 220px;
-  right: 50px;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 1);
+  right: 1vw;
 }
 
 #helloNCU {
   position: absolute;
-  top: 440px;
-  right: 750px;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 2);
+  right: 51vw;
 }
 
 #NCUtalk {
   position: absolute;
-  top: 440px;
-  right: 400px;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 2);
+  right: 26vw;
 }
 
 #course {
   position: absolute;
-  top: 440px;
-  right: 50px;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 2);
+  right: 1vw;
 }
 
 #service-learning {
   position: absolute;
-  top: 660px;
-  right: 750px;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 3);
+  right: 51vw;
 }
 
 #equity {
   position: absolute;
-  top: 660px;
-  right: 400px;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 3);
+  right: 26vw;
 }
 
 #plan {
   position: absolute;
-  top: 660px;
-  right: 50px;
+  top: calc(calc(23vw / 300 * 173 + 5vh) * 3);
+  right: 1vw;
+}
+
+@media only screen and (max-width:600px) {
+  main {
+    background-size: 250%;
+  }
+
+  .vertical-line {
+    left: 40px;
+  }
+
+  .eng-title {
+    left: 65px;
+  }
+
+  .ch-title {
+    left: 65px;
+  }
+
+  .title-box {
+    width: 100vw;
+  }
+
+  .container {
+    width: 100vw;
+    height: calc(100vh - 185px);
+    position: absolute;
+    top: 20px;
+    left: 0;
+    padding: 0;
+  }
+
+  .links {
+    width: 70vw;
+    height: calc(70vw / 300 * 173);
+  }
+
+  #portal {
+    position: absolute;
+    top: 0px;
+    left: 15vw
+  }
+  
+  #UST {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 1);
+    left: 15vw;
+    }
+  
+  #LMS {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 2);
+    left: 15vw;
+  }
+  
+  #ee-class {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 3);
+    left: 15vw;
+  }
+  
+  #dorm-service {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 4);
+    left: 15vw;
+  }
+  
+  #dorm-net {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 5);
+    left: 15vw;
+  }
+  
+  #helloNCU {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 6);
+    left: 15vw
+  }
+  
+  #NCUtalk {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 7);
+    left: 15vw;
+  }
+  
+  #course {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 8);
+    left: 15vw;
+  }
+  
+  #service-learning {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 9);
+    left: 15vw;
+  }
+  
+  #equity {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 10);
+    left: 15vw;
+  }
+  
+  #plan {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 11);
+    left: 15vw;
+  }
+  
 }

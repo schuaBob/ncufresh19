@@ -110,7 +110,8 @@
              //當下頁面變色
             $(".option").removeClass("page_now");
             $(this).addClass("page_now")
-                        
+            $(".box").scrollLeft("0");
+            $(".box").scrollTop("0");
             $.ajax({
                 url: "/documents/require_data/" + textid,
                 method: 'get',
@@ -136,9 +137,6 @@
         });
         $('#edit_modify').on('show.bs.modal', function () {
             $(this).css("top", "42px");
-        });
-        $('#show').on('show.bs.modal', function () {
-            $(this).css("top", "60px");
         });
 
 /*-------------------------------------------手機板--------------------------------------------*/
@@ -166,7 +164,7 @@
         });
 
         $(".p_option").mousedown(function(){
-            $(this).addClass("bg");
+            $(this).addClass("p_bg");
             textid = this.id;
             $("#show").modal("show");
             $.ajax({
@@ -183,7 +181,7 @@
         })
 
         $(".p_option").mouseup(function(){
-            $(this).removeClass("bg");
+            $(this).removeClass("p_bg");
         })
 
         $("#show").on('hide.bs.modal', function () {
