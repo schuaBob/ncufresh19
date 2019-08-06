@@ -936,8 +936,8 @@ function source_init() {
   animalsource.push({ type: 0, score: 1200, spritesheet: new createjs.SpriteSheet(bird1) });
   animalsource.push({ type: 1, score: 250, spritesheet: new createjs.SpriteSheet(fish1) });
   animalsource.push({ type: 2, score: 200, spritesheet: new createjs.SpriteSheet(fish2) });
-  animalsource.push({ type: 3, score: 100, spritesheet: new createjs.SpriteSheet(fish3) });
-  animalsource.push({ type: 4, score: 100, spritesheet: new createjs.SpriteSheet(fish4) });
+  animalsource.push({ type: 3, score: 125, spritesheet: new createjs.SpriteSheet(fish3) });
+  animalsource.push({ type: 4, score: 125, spritesheet: new createjs.SpriteSheet(fish4) });
   animalsource.push({ type: 5, spritesheet: new createjs.SpriteSheet(fish_ad_data) });
   animalsource.push({ type: 6, score: -10000,spritesheet: new createjs.SpriteSheet(dolphin_data) });
 }
