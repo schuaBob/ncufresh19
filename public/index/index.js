@@ -10,7 +10,7 @@ $(document).ready(() => {
         anchors: ['indexPage', 'newsPage', 'callenderPage'],
         slideSelector: '.fpslide',
         scrollOverflow: true,
-        normalScrollElements: '#news-body, #board-detail',
+        normalScrollElements: '#news-body, #board-detail, .modal',
         afterLoad: function (anchorLink, index) {
             if (index.index === 0) {
                 $("#topHref").css("display", "none");
