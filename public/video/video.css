@@ -71,6 +71,8 @@ a:visited {
 }
 
 .back {
+  width: 70px;
+  height: auto;
   margin-left: 17px; 
   display: inline-block;
 }
@@ -82,22 +84,29 @@ a:visited {
   margin-left: 18%;
   width: 60%;
   max-width: 60%;
-  max-height: 470px;
-  padding-top: 20px;
+  max-height: 70%;
+  padding-top: 0.5%;
   overflow: auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
-/*0.2 height:200 width:280*/
-.v_button {
-  position: relative;
-  height: 180px;
-  width: 250px;
+/*0.2 height:200 width:280
+width: 250px;
+  height: 180px;*/
+.button {
+  width: 25%;
+  height: auto;
+
   display: inline-block;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 30px;
+  margin: 0% 1.5% 3% 1.5%;
 }
-.v_button:hover {
+.img_button {
+  width: 100%;
+  height: auto;
+}
+.button:hover {
 -webkit-filter: brightness(.5);
 }
 
@@ -137,21 +146,22 @@ a:visited {
 */
 .picture_left {
   position: absolute;
-  bottom: 40px;
-  left: 60px;
+  bottom: 2%;
+  left: 3%;
   height: auto;
-  width: 200px;
+  width: 13%;
 }
 
 .picture_right {
   position: absolute;
-  bottom: 10px;
-  right: 30px;
+  bottom: 0%;
+  right: 1.5%;
   height: auto;
-  width: 300px;
+  width: 20%;
 }
 
 .harbor {
+  width: 100%;
   height: auto;
   max-width: 100%;
   overflow: hidden;
@@ -181,7 +191,7 @@ a:visited {
   min-width: 700px;
   min-height: 450px;
   border-radius: 30px;
-  margin-left: 23%;
+  margin-left: 22%;
   display: flex;
   justify-content:center;
   align-items:center;
@@ -194,8 +204,18 @@ a:visited {
   min-height: 180px;
 }
 
+/* 網頁變形，底圖消失*/
+@media screen and (max-height: 620px){
+  .picture_left {
+    display: none;
+  }
 
-/* 網頁變形 */
+  .picture_right {
+    display: none;
+  }
+}
+
+/* 後用flexbox，不需要
 @media only screen and (min-width: 1350px){
   @media screen and (max-height: 620px){
     .picture_left {
@@ -239,7 +259,7 @@ a:visited {
     display: none;
   }
 }
-
+*/
 /*video_area*/
 @media only screen and (max-width: 1155px){
   .video_area{
@@ -284,8 +304,7 @@ a:visited {
     margin-left: 15%;  
   }
 }
-
-/*button_area*/
+/*button_area，後用flexbox，不需要
 @media only screen and (max-width: 1070px){
   .button_area{
     margin-left: 20%;
@@ -314,6 +333,7 @@ a:visited {
     height: 180px;
   }
 }
+*/
 
 /*變成手機了，所以不需要
 @media only screen and (max-width: 680px) {

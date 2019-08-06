@@ -47,10 +47,8 @@
     <div class="links" id="game">小遊戲</div>
     <div class="links" id="ask-record">發問紀錄</div>      
     <div class="links" id="ask">我要發問</div>
-    <div class="links" id="logout" >
-      <a href="/logout">點我登出</a>
-    </div>
-
+    <a href="/logout"><div class="links" id="logout" >點我登出</div></a>
+    
       <% /* 頭貼外框 */ %>
       <div class="circle">
         <img class="profile-pic" src="profile-photo/<%= user.avatar %>" />
@@ -150,7 +148,7 @@
           <div class="ask-link">
             <a href="/qna">
               <p>點我發問</p>
-              <img src="提問.png" style="z-index: 1;">
+              <img src="ask.png" style="z-index: 1;">
             </a>
           </div>
         </div>
