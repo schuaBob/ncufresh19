@@ -678,6 +678,14 @@ li {
   .show3D {
     top: 50%;
   }
+
+  .MAP2D {
+    max-height: 300px;
+  }
+
+  .SAM {
+    max-height: 300px;
+  }
 }
 
 
@@ -873,7 +881,7 @@ li {
     position: relative;
     left: unset;
     height: 100px;
-    top: 80vh;
+    top: unset;
     right: 50%;
   }
 
@@ -882,8 +890,8 @@ li {
   }
 
   .MAP2D {
-    min-width: 500px;
-    min-height: 600px;
+    min-width: 700px;
+    min-height: 100%;
   }
 
   .SAM {
