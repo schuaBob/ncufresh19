@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
-        .card-link{
+        .card-link {
             cursor: pointer;
         }
+
         .modal {
             z-index: 5010;
         }
@@ -36,13 +37,13 @@
 
 <body>
     <modal>
-        <div class="myForm">
-            <form action="/adpic/commercial_urls" method="POST">
+        <div style="display: none">
+            <form action="/adpic/editUrl" method="POST" class="urlForm">
                 <div class="form-group">
-                    <label for="month">Month</label>
-                    <input type="text" class="form-control" name="commerUrl" placeholder="url" style="margin-bottom:5px">
-                    <button type="submit" class="btn btn-info">Update</button>
+                    <label>Add Url</label>
+                    <input type="text" class="form-control" name="comPic" placeholder="url">
                 </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
         <div class="modal fade" id="ScheduleNewsModal" aria-labelledby="ScheduleNewsTitle" aria-hidden="true">
@@ -72,7 +73,6 @@
                         </button>
                     </div>
                     <div class="article-title" style="margin-top: 30px;">
-
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">標題</span>
@@ -248,6 +248,7 @@
                                 <a href="/adpic/delete?pk=<%= commercial[i]['pk']%>" class="card-link">刪除</a>
                             </div>
                         </div>
+
                     </div>
                     <% } %>
                 </div>
@@ -256,19 +257,17 @@
     </main>
     <% include ../layouts/js %>
     <script>
-        $('.myForm button').click(()=>{
-            $(this).popover('toggle')
-        })
         var loadFile = function (event) {
             $('#howMany').text(`上傳${event.target.files.length}個圖片`);
         };
         $(document).ready(() => {
             $(function () {
                 $('[data-toggle="popover"]').popover({
-                    placement:"top",
-                    html:true,
-                    title:"Add links",
-                    content:$(".myForm")
+                    placement: "top",
+                    html: true,
+                    container: 'body',
+                    title: "Add Links",
+                    content:$('.urlForm')
                 })
             })
             tinyMCE.get('editboard').setContent("");
@@ -283,7 +282,9 @@
                     url: `/schedule/read?pk=${e.currentTarget.attributes.pk.value}`,
                     method: 'GET',
                     dataType: 'JSON',
-                    error: (err) => { console.log(err) },
+                    error: (err) => {
+                        console.log(err)
+                    },
                     success: (res) => {
                         $("#newsTitle").val(res.title);
                         $("#newsCategory").val(res.category)
@@ -291,7 +292,8 @@
                             enableTime: true,
                             dateFormat: "Y-m-d H:i",
                             static: true,
-                            defaultDate: new Date(new Date(res.date).getTime() - 28800000)
+                            defaultDate: new Date(new Date(res.date).getTime() -
+                                28800000)
                         })
                         tinyMCE.get('editor').setContent(res.content);
                     }
@@ -301,8 +303,12 @@
                         $.ajax({
                             url: `/schedule/delete?pk=${e.currentTarget.attributes.pk.value}`,
                             method: 'GET',
-                            error: (err) => { console.log(err) },
-                            success: (res) => { alert(res.message) }
+                            error: (err) => {
+                                console.log(err)
+                            },
+                            success: (res) => {
+                                alert(res.message)
+                            }
                         }).always(() => {
                             $('#ScheduleNewsModal').modal('hide');
                             location.reload();
@@ -391,7 +397,9 @@
                             date: $('#date').val(),
                             boardContent: tinyMCE.get('boardContent').getContent()
                         },
-                        error: (err) => { console.error(err) },
+                        error: (err) => {
+                            console.error(err)
+                        },
                         success: (res) => {
                             alert(res.message)
                         }
@@ -408,7 +416,9 @@
                     url: `/calender/read?pk=${e.currentTarget.value}`,
                     method: 'GET',
                     dataType: 'JSON',
-                    error: (err) => { console.error(err.responseText) },
+                    error: (err) => {
+                        console.error(err.responseText)
+                    },
                     success: (res) => {
                         tinyMCE.get('editboard').setContent(res.board_content);
                         $('#CalenderTime').show();
@@ -426,11 +436,18 @@
                                 pk: result.pk,
                                 month: $('#editmonth').val(),
                                 date: $('#editdate').val(),
-                                boardContent: tinyMCE.get('editboard').getContent()
+                                boardContent: tinyMCE.get('editboard')
+                                    .getContent()
                             },
-                            error: (err) => { alert(err.responseText) },
-                            success: (res) => { alert(res.message) }
-                        }).done(() => { location.reload() })
+                            error: (err) => {
+                                alert(err.responseText)
+                            },
+                            success: (res) => {
+                                alert(res.message)
+                            }
+                        }).done(() => {
+                            location.reload()
+                        })
                     })
                     $('#boardDeletebtn').off('click');
                     $('#boardDeletebtn').on('click', () => {
@@ -438,9 +455,15 @@
                             url: `/calender/delete?pk=${result.pk}`,
                             method: 'GET',
                             dataType: 'JSON',
-                            error: (err) => { alert(err.responseText) },
-                            success: (res) => { alert(res.message) }
-                        }).done(() => { location.reload() })
+                            error: (err) => {
+                                alert(err.responseText)
+                            },
+                            success: (res) => {
+                                alert(res.message)
+                            }
+                        }).done(() => {
+                            location.reload()
+                        })
                     })
                 })
             })
