@@ -17,7 +17,7 @@ a {
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  overflow: hidden;
+  /** overflow: hidden; */
   moz-user-select: none;
   /* for Firefox */
   -webkit-user-select: none;
@@ -26,7 +26,7 @@ body {
   background-repeat:no-repeat;
   background-position-y: bottom;
   background-color:#FFF9DC; 
-  background-size: 100%;
+  /*background-size: 100%;*/
 }
 
 ._modal {
@@ -39,7 +39,7 @@ body {
 }
 
 ._modal-content {
-  height: 100%;
+  /*height: 100%;*/
   background-size: 200px auto;
   background-repeat: no-repeat;
   position: relative;
@@ -534,13 +534,13 @@ thead>tr {
 /* 手機直立的通用設計 */
 @media only screen and (max-width:767px) and (orientation : portrait){
   html{
-    height: 100%;
-    overflow: hidden;
+    /*height: 100%;*/
+    /*overflow: hidden;*/
   }
   body{
     background-image: none;
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }      
   #mobileAskBtn{
     display: inline !important;
@@ -580,7 +580,7 @@ thead>tr {
     width:92%;
   }
   .content {
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     overflow-y: auto;
     width: 100%;
     margin: 0;
@@ -600,7 +600,7 @@ thead>tr {
   }
   .fa-arrow-alt-circle-up {
     visibility: hidden;  
-    position: absolute;  
+    /*position: absolute;*/  
     right: -2vw;  
     bottom: 5vh;  
     font-size: 2.5em;
