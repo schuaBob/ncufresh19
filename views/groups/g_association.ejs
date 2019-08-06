@@ -48,19 +48,19 @@
 
 
         <div id="stu_mob">
-            <div>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/association/intro">
-                    <i class="fas fa-angle-right"></i>簡介
+            <div class="stu_side">
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/association/intro" class="intro">
+                    <i class="fas fa-tint"></i>&nbsp;簡介
                 </a>
             </div>
-            <div>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/association/section">
-                    <i class="fas fa-angle-right"></i>部門介紹
+            <div class="stu_side">
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/association/section" class="section">
+                    <i class="fas fa-tint"></i>&nbsp;部門介紹
                 </a>
             </div>
-            <div>
-                <a style="text-decoration:none; color: #0D4966;" href="/groups/association/photos">
-                    <i class="fas fa-angle-right"></i>活動剪影
+            <div class="stu_side">
+                <a style="text-decoration:none; color: #0D4966;" href="/groups/association/photos" class="photos">
+                    <i class="fas fa-tint"></i>&nbsp;活動剪影
                 </a>
             </div>
         </div>
@@ -77,64 +77,67 @@
             刪除圖片
         </button>
             </div>
-            <%}%>
 
-
-                <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">edit</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">edit</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/groups/edit_association" method="post">
-                                    <div class="form-group">
-                                        <label for="intro" class="col-form-label">簡介</label>
-                                        <textarea class="form-control tinyeditor" id="intro" name="intro" rows="8" value="<%-content.intro%>"></textarea>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="section" class="col-form-label">部門介紹</label>
-                                        <textarea class="form-control tinyeditor" id="section" name="section" rows="8" value="<%-content.section%>"></textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </form>
-                            </div>
-
                         </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">edit</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                            </div>
-                            <form action="/groups/uploadimg" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <form action="/groups/edit_association" method="post">
+                                <div class="form-group">
+                                    <label for="intro" class="col-form-label">簡介</label>
+                                    <textarea class="form-control tinyeditor" id="intro" name="intro" rows="8" value="<%-content.intro%>"></textarea>
+                                </div>
 
-                                <div class="modal-body">
-
-                                    <input type="file" name="img" accept="image/*" multiple>
-
-
+                                <div class="form-group">
+                                    <label for="section" class="col-form-label">部門介紹</label>
+                                    <textarea class="form-control tinyeditor" id="section" name="section" rows="8" value="<%-content.section%>"></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">UPLOAD</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </form>
                         </div>
+
                     </div>
                 </div>
+            </div>
+            <div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">edit</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                        </div>
+                        <form action="/groups/uploadimg" method="post" enctype="multipart/form-data">
+
+                            <div class="modal-body">
+
+                                <input type="file" name="img" accept="image/*" multiple>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">UPLOAD</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <%}%>
+
+
+
 
                 <% if (content_this==="intro") {%>
 
@@ -178,11 +181,11 @@
                                                 <% for(var i in pic) {%>
                                                     <% if(i==0){%>
                                                         <div class="carousel-item active">
-                                                            <img src="<%= pic[i].pathname%>" class="d-block w-100">
+                                                            <img src="<%= pic[i].pathname%>" class="d-block w-100 stu_img">
                                                         </div>
                                                         <%}else{%>
                                                             <div class="carousel-item">
-                                                                <img src="<%= pic[i].pathname%>" class="d-block w-100">
+                                                                <img src="<%= pic[i].pathname%>" class="d-block w-100 stu_img">
                                                             </div>
                                                             <%}%>
                                                                 <%}%>
@@ -201,7 +204,7 @@
                                 </div>
 
                                 <%}%>
-                                    <img src="學生會.PNG" class=backgroundimg>
+                                    <img src="學生會.PNG" class="backgroundimg" id="ass_pic">
 
                                     <script src="/groups/js/groups.js "></script>
 

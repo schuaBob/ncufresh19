@@ -39,36 +39,6 @@ var match_num = {
              $(this).css({ "background-color": "transparent"});
          }
      )
-     $('#nightStreet').on('mouseover',
-         function() {
-            $('#LI1').css({"visibility": "visible"});
-         }
-     )
-     $('#nightStreet').on('mouseout',
-         function() {
-            $('#LI1').css({"visibility": "hidden"});
-         }
-     )
-     $('#backdoor').on('mouseover',
-         function() {
-            $('#LI2').css({"visibility": "visible"});
-         }
-     ) 
-     $('#backdoor').on('mouseout',
-         function() {
-            $('#LI2').css({"visibility": "hidden"});
-         }
-     ) 
-     $('#campus').on('mouseover',
-         function() {
-            $('#LI3').css({"visibility": "visible"});
-         }
-     ) 
-     $('#campus').on('mouseout',
-         function() {
-            $('#LI3').css({"visibility": "hidden"});
-         }
-     )
      $('#nightStreet, #nightStreet_p').click(
          function() {
             $('#areaName p').html("宵夜街");
@@ -237,9 +207,13 @@ var match_num = {
              $(this).css({'max-height': '4%', 'max-width': '4%'});
         }
      );
-     $('body').tooltip({
-        selector: '.foodIcon'
-     });
+        var width = innerWidth;
+        if (width > 1024) {
+            $('body').tooltip({
+                selector: '.foodIcon'
+            });
+        }
+
 
      $(document).on('click', '.foodIcon', function(event) {
          $('.foodIcon').tooltip('hide');
@@ -250,7 +224,7 @@ var match_num = {
 
              },
              success: function(data) {
-                 $('#foodModalTitle .t').html(data.mainTitle)
+                 $('#exampleModalLabel').html(data.mainTitle)
                  $('#foodModalDetail .d').html(data.content)
                  $('#foodModal').modal('show')
              }

@@ -7,7 +7,7 @@
     return str;
   }
   function trunc(str){
-    if(str.length>15){
+    if(str!==undefined && str.length>15){
       return str.substr(0,15)+"...";
     }else{
       return str;
@@ -31,8 +31,10 @@
               console.log(data[0]);
               if (data[0] === 'success') {                
                 $(".askmodal").css("display", "none");
-                alert("成功");
+                $("#img2").attr("src","penguin.png");
+                $("#img1").css("display","inline");                
                 $("#noticeModal").modal("hide");
+                alert("成功");
               }
             },
             error: function (err) {
@@ -110,6 +112,11 @@
         }
       });
     });
+    $("#searchImg").on("click",function(){
+      $("tbody").attr("search", "true");
+      $("tbody").empty();
+      search(c, sort);
+    });
     $("#deleteBtn").on("click",function(){
       $.ajax({
         type: "POST",
@@ -134,10 +141,10 @@
     });
 
 
-    $(".option li").mouseenter(function(){
+    $("#option li").mouseenter(function(){
       $(this).addClass("optionHover");
     });
-    $(".option li").mouseleave(function(){
+    $("#option li").mouseleave(function(){
       $(this).removeClass("optionHover");
     });
 
@@ -191,12 +198,12 @@
           {
             //小
             $("#mobileAnswerModal").modal();
-            $("#mobileAnswerTitleText").text("["+data[0].category+"]"+data[0].title);
-            $("#mobileQContentText").text(data[0].qContent);
-            $("#mobileAContentText").children("p").replaceWith(data[0].aContent);
+            $("#mobileAnswerTitleText").text("["+data[0].category+"]"+trunc(data[0].title));
+            $("#mq_c").text(data[0].qContent);
+            $("#ma_c").html(data[0].aContent);
           } else {
             //插入問題內容
-            $(".answerModelQ > p").text(data[0].qContent);         
+            $("#q_c").text(data[0].qContent);         
             //判斷是否為admin            
             if($("#answerModelAID").attr("role")==="admin"){               
               if(data[0].category === ""){                
@@ -204,7 +211,7 @@
               }else{
                 $("#dropdownMenuButton").text(data[0].category);
               }            
-              $(".answerTitleText").text(data[0].title);
+              $(".answerTitleText").text(trunc(data[0].title));
               $("#modifyInput").attr("postID",data[0].postID);
               
               tinyMCE.get('modifyInput').setContent(data[0].aContent);
@@ -214,8 +221,8 @@
                 $("#defaultCheck1").prop("checked",false);
               }
             }else{          
-              $(".answerTitleText").text("[" + data[0].category + "]" + data[0].title);
-              $(".answerModelA > p").replaceWith(data[0].aContent);
+              $(".answerTitleText").text("[" + data[0].category + "]" + trunc(data[0].title));
+              $("#a_c").html(data[0].aContent);
             }
             $(".answermodal").addClass("animated fadeIn faster");
             $(".answermodal").css("display", "block");            
@@ -254,9 +261,9 @@
     $(".content").scroll(function () {
 
       if ($(".content").scrollTop() > 10) {
-        $('#Top').css("visibility", "visible");
+        $('#Top').css("display", "inline");
       } else {
-        $('#Top').css("visibility", "hidden");
+        $('#Top').css("display", "none");
       }
       //讓scroll觸發次數減少
       window.clearTimeout(timer);
