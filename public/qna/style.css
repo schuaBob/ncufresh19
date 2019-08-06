@@ -383,6 +383,7 @@ thead>tr {
   }
   .searchBar{
     right:-6%;
+    top: -1px;
   }
   .ask{
     display: none;
@@ -492,9 +493,10 @@ thead>tr {
   }
   .searchBar{
     right:-6%;
+    top: -3px;
   }
   .option li{
-    margin-bottom: 2vh;
+    /* margin-bottom: 2vh; */
   }
   .option{
     font-size: 1.1rem;
@@ -511,7 +513,7 @@ thead>tr {
   }
 }
 /* 手機直立的通用設計 */
-@media only screen and (max-width:500px) and (orientation : portrait){
+@media only screen and (max-width:600px) and (orientation : portrait){
   html{
     height: 100%;
     overflow: hidden;
@@ -665,3 +667,53 @@ thead>tr {
   }
 }
 
+@media only screen and (max-width:768px) and (min-width:601px){
+  .option{
+    font-size:1rem;
+  }
+  .option ul{
+    width:90%;
+  }
+  .searchInput{
+    width:50%;
+  }
+  .searchBar{
+    right:-22%;
+    top: -3px;
+  }
+  .ask{
+    display: none;
+  }
+  #mobileAskBtn{
+    display: inline !important; 
+    bottom:7vh;   
+    right: 3vw;
+    width: 6vw;
+  }
+  #Top{
+    right: 3vw !important;
+    width: 6vw !important;
+    bottom: 14vh !important;
+  }
+  .mobilAnswerModalContent{
+    width:80% !important;
+  }
+  .mobilAskModalContent{
+    width:80%;
+  }
+  .titleTextSize{
+    font-size: 4vw !important;
+  }
+  .contentTextSize{
+    font-size: 3vw !important;
+  }
+  .buttonGroup{
+    font-size: 0.8rem;
+  }
+  thead > tr{
+    font-size: 1.3rem;
+  }
+  tbody > tr{
+    font-size:1.2rem;
+  }
+}

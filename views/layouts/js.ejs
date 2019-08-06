@@ -7,21 +7,23 @@
         // $(window).resize(() => {
         //     if (window.innerWidth > 768) {
         //         if ($('#myNavPics').find('.randImg').length === 0) {
-        //             // InitRandImg(Math.floor(Math.random() * 13) + 1);
+        //             InitRandImg();
 
         //         }
         //     } else {
         //         $('#myNavPics').empty()
         //     }
         // })
-
         $("#navbtn").click(() => {
-            var randNum = Math.floor(Math.random() * 13) + 1;
+            // var randNum = Math.floor(Math.random() * 13) + 1;
+            var randNum = 1;
             $(".lines-button").toggleClass("close");
             if ($("#mySidenav").hasClass("closed")) {
-
+                if (window.innerWidth > 768) {
+                    document.getElementById(`randimg-${randNum}`).style.height = "100vh";
+                    document.getElementById("myNavPics").style.height = "100%";
+                }
                 document.getElementById("myNavLinks").style.height = "100%";
-                document.getElementById("myNavPics").style.height = "100%";
                 restart_animate(".one");
                 restart_animate(".two");
                 restart_animate(".three");
@@ -30,6 +32,9 @@
                 $("#mySidenav").removeClass("closed").addClass("opened");
             } else if ($("#mySidenav").hasClass("opened")) {
                 document.getElementById("mySidenav").style.height = "0";
+                if (window.innerWidth > 768) {
+                    document.getElementById(`randimg-${randNum}`).style.height = "0";
+                }
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
         });
@@ -40,6 +45,7 @@
             }
         });
         if (document.getElementsByClassName('tinyeditor').length > 0) {
+        <% if (user && user.role ==="admin") {%>
             tinyMCE.init({
                 selector: 'textarea.tinyeditor',
                 plugins: "image, advlist, table, autolink, code, link, lists, paste, preview, searchreplace, wordcount, emoticons, media",
@@ -65,6 +71,7 @@
                     })
                 }
             })
+        <%}%>
         }
     });
 
@@ -76,18 +83,16 @@
         $("." + el.attr("class") + ":last").remove();
     }
 
-    // function InitRandImg() {
-    //     for (let i = 1; i <= 13; i++) {
-    //         $(`#randimg-${i}`).css({
-    //             "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
-    //             "background-position": "center",
-    //             "background-repeat": "no-repeat",
-    //             "background-size": "cover",
-    //             "display": "block",
-    //             "backdrop-filter": "opacity(70%)"
-    //         })
-    //     }
+    // for (let i = 1; i <= 1; i++) {
+    //     $(`#randimg-${i}`).css({
+    //         "background-image": `url("/layouts/headerPic/header-${i}.jpg")`,
+    //         "background-position": "bottom",
+    //         "background-repeat": "no-repeat",
+    //         "background-size": "cover",
+            
+    //     })
     // }
+
 
     // function chgPic(initPic) {
     //     var picNow = "#ramdImg-6";

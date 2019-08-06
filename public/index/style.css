@@ -33,12 +33,25 @@ main {
 
 /* 手機版 */
 @media only screen and (max-width: 1025px) {
+
+    #triangle {
+        z-index: 4999;
+        position: absolute;
+        height: 70px;
+        width: 70px;
+    }
+
+    #indexOneCircle {
+        height: 70px;
+        width: 70px;
+    }
+
     #indexLogo {
         position: absolute;
         z-index: 500;
         width: 220px;
         left: calc(50vw - 110px);
-        bottom: 70vh;
+        bottom: calc(50vh + 120px);
     }
 
     #indexPage1 {
@@ -56,7 +69,8 @@ main {
     }
 
     #secondSection {
-        height: 100vh;
+        height: 94vh;
+        padding: 1vh 4vw;
     }
 
     #news {
@@ -72,12 +86,10 @@ main {
 
     #news-body {
         position: relative;
-        max-height: 60vh;
+        max-height: 55vh;
         overflow-y: scroll;
         overflow-x: hidden;
         min-height: 300px;
-        /* border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px; */
     }
 
     #jellyfish {
@@ -103,7 +115,7 @@ main {
     .card-body h5 {
         font-size: 25px;
         margin: 0;
-    }    
+    }
 
     #pickMonth {
         position: absolute;
@@ -112,7 +124,7 @@ main {
         width: 100vw;
         top: 4vh;
     }
-    
+
     #pickMonth .container1 {
         width: 100vw;
         padding-left: 1vw;
@@ -123,32 +135,26 @@ main {
     .selectMonth {
         position: relative;
         display: inline-block;
-        width: 24vw;
-        margin-left: 4vw;
-        margin-right: 4vw;
+        width: 22vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
     }
-    
+
     .selectMonth h5 {
         position: absolute;
         display: block;
         right: 0;
-        top: calc(50% - 9px);
+        top: calc(50% - 8px);
         width: 100%;
         text-align: center;
         padding: 0;
         margin: 0;
-        font-size: 18px;
-    }
-    
-    .bigSvg {
-        height: 24vw;
-        width: 24vw;
+        font-size: 16px;
     }
 
-    .bigCircle {
-        cx: 12vw;
-        cy: 12vw;
-        r: 12vw;
+    .bigSvg {
+        height: 22vw;
+        width: 22vw;
     }
 
     #monthDetail {
@@ -163,7 +169,7 @@ main {
     #board {
         position: relative;
         width: 100%;
-        height: 70%;
+        height: 65%;
     }
 
     #index3start {
@@ -174,9 +180,9 @@ main {
         width: 90%;
         margin-right: 5%;
         margin-left: 5%;
-        margin-top: 4vh;
-        height: 90%;
-        border: 1px solid #0163b0;
+        margin-top: 2vh;
+        height: 95%;
+        border: 0px solid #0163b0;
         background-color: lightblue;
         border-radius: 37px;
         padding: 15px;
@@ -208,7 +214,7 @@ main {
         margin-left: 2.5vw;
         margin-right: 2.5vw;
     }
-    
+
     .dot {
         display: none;
     }
@@ -228,7 +234,8 @@ main {
         text-align: center;
     }
 
-    .prev, .next{
+    .prev,
+    .next {
         position: absolute;
         cursor: pointer;
         font-size: 11vw;
@@ -247,19 +254,74 @@ main {
     #index3crab {
         display: none;
     }
+
+    .myinvisible {
+        display: none;
+    }
 }
 
 /* 平板 */
-@media only screen and (min-width: 600px) and (max-width: 1025px) {
+@media only screen and (min-width: 768px) and (max-width: 1025px) {
+    #secondSection {
+        position: relative;
+        z-index: 500;
+        top: 0;
+        padding: 2vw 12vw;
+    }
+
     #news {
         position: relative;
-        width: 700;
+        display: block;
+        width: 76vw;
+        height: 45vh;
+    }
+
+    .news-img {
+        position: relative;
+        left: 3vw;
+        width: 7%;
+    }
+
+    #news-title {
+        position: relative;
+        top: 0;
+    }
+    
+    .card-body {
+        padding: 0.7rem;
+    }
+
+    #news-body {
+        position: relative;
+        height: 70%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        min-height: 0;
     }
 
     #carouselExampleIndicators {
-        width: 100%;
+        position: relative;
         display: block;
-        margin: 0 auto;
+        width: 80vw;
+        height: 35vh;
+    }
+
+    #fishbone {
+        display: none;
+    }
+
+    .carousel-inner {
+        position: relative;
+        left: calc( 50% - 15vmax);
+        width: 30vmax;
+    }
+
+    #indexLogo {
+        position: absolute;
+        z-index: 500;
+        width: 280px;
+        left: calc(50vw - 140px);
+        bottom: calc(calc(100vh - 30px)/2 + 36px);
     }
 
     #indexPage1 {
@@ -268,18 +330,24 @@ main {
         background-repeat: no-repeat;
         background-size: cover;
     }
-    
-    .bigSvg {
-        position: relative;
-        height: 140px;
-        width: 140px;
-        left: calc(50% - 70px);
+
+    #triangle {
+        z-index: 4999;
+        position: absolute;
+        height: 100px;
+        width: 100px;
     }
 
-    .bigCircle {
-        cx: 70px;
-        cy: 70px;
-        r: 70px;
+    #indexOneCircle {
+        height: 100px;
+        width: 100px;
+    }
+
+    .bigSvg {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        left: calc(50% - 50px);
     }
 
     .selectMonth h5 {
@@ -304,27 +372,47 @@ main {
     .target .date {
         font-size: 50px;
     }
+
 }
 
 /* 電腦版 */
 @media only screen and (min-width: 1025px) {
+    #secondSection {
+        position: relative;
+        z-index: 500;
+        top: 0;
+        padding: 3vw 5vw;
+    }
+    
     #indexLogo {
         position: absolute;
         z-index: 500;
-        width: 350px;
-        left: calc(50vw - 175px);
-        top: 3.5vw;
+        width: 400px;
+        left: calc(50vw - 200px);
+        bottom: calc(50vh + 100px);
     }
 
     #news {
         position: relative;
-        width: 100%;
+        display: inline-block;
+        width: 40vw;
+        margin-right: 2.5vw;
     }
 
     #carouselExampleIndicators {
-        max-width: 650px;
-        display: block;
-        margin: 0 auto;
+        position: relative;
+        display: inline-block;
+        width: 40vw;
+        margin-left: 2.5vw;
+        top: calc(50%-20vw);
+    }
+
+    #fishbone {
+        position: absolute;
+        z-index: 500;
+        bottom: -12%;
+        right: -12%;
+        width: 45%;
     }
 
     #news-title {
@@ -362,15 +450,15 @@ main {
     .card-body h5 {
         font-size: 2vw;
         margin: 0;
-    }    
+    }
 
     #pickMonth {
         position: absolute;
         z-index: 500;
         width: 25%;
-        left: 5%;
+        left: 8%;
     }
-    
+
     #pickMonth .container1 {
         height: 100%;
         padding-top: 4%;
@@ -383,7 +471,7 @@ main {
         margin-top: 3vh;
         margin-bottom: 7vh;
     }
-    
+
     .selectMonth h5 {
         position: absolute;
         display: block;
@@ -393,17 +481,12 @@ main {
         padding: 0;
         margin: 0;
     }
-    
+
     .bigSvg {
         height: 120px;
         width: 120px;
     }
 
-    .bigCircle {
-        cx: 60px;
-        cy: 60px;
-        r: 60px;
-    }
 
     #monthDetail {
         position: absolute;
@@ -422,19 +505,20 @@ main {
 
     #index3start {
         position: absolute;
-        right: 9vw;
+        top: 1vh;
+        right: 8vw;
         width: 12vw;
         z-index: 4000;
     }
 
     #board-detail {
-        width: 65%;
+        width: 70%;
         margin-right: 17.5%;
-        margin-left: 17.5%;
+        margin-left: 12.5%;
         margin-top: 7%;
         height: 73%;
-        border: 1px solid #0163b0;
-        background-color: lightblue;
+        border: 0px solid #0163b0;
+        background-color: rgba(173, 216, 230, .7);
         border-radius: 37px;
         padding: 15px;
         position: absolute;
@@ -452,10 +536,11 @@ main {
         display: inline-block;
         top: 1vh;
         margin-left: 0;
-        margin-right: 6%;
+        margin-right: 4%;
     }
-    
-    .prev, .next{
+
+    .prev,
+    .next {
         display: none;
     }
 
@@ -470,9 +555,19 @@ main {
         left: calc(50% - 4vw);
         bottom: 24px;
     }
+
+    #triangle {
+        z-index: 4999;
+        position: absolute;
+        height: 100px;
+        width: 100px;
+    }
+
+    #indexOneCircle {
+        height: 100px;
+        width: 100px;
+    }
 }
-
-
 
 #closenews {
     position: relative;
@@ -490,13 +585,6 @@ main {
     left: calc(50% - 35px);
 }
 
-#triangle {
-    z-index: 4999;
-    position: absolute;
-    height: 100px;
-    width: 100px;
-}
-
 #nextbtn {
     position: absolute;
     height: 40px;
@@ -511,17 +599,8 @@ main {
     transform: rotate(90deg);
 }
 
-
-
 #fullpage {
     position: absolute;
-}
-
-#secondSection {
-    position: relative;
-    z-index: 500;
-    top: 0;
-    padding: 3vw 5vw;
 }
 
 #secondSection .row {
@@ -542,14 +621,6 @@ main {
     float: right;
 }
 
-#fishbone {
-    position: absolute;
-    z-index: 500;
-    bottom: -12%;
-    right: -12%;
-    width: 45%;
-}
-
 .modal {
     z-index: 5010;
 }
@@ -568,8 +639,8 @@ main {
     width: 100vmax;
     height: 100vmin;
 }
-    
-.col-lg{
+
+.col-lg {
     padding-top: 30px;
     padding-bottom: 30px;
 }
@@ -588,12 +659,21 @@ main {
     animation-fill-mode: forwards;
 }
 
+.carousel-control-next {
+    right: 20px;
+}
+
 .carousel-control-prev-icon {
     background-image: none;
 }
 
 .carousel-control-next-icon {
     background-image: none;
+}
+
+.news-line:hover {
+    background-color: #fff9dc;
+    cursor: pointer;
 }
 
 @keyframes scaleUpAnimation {

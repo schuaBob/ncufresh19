@@ -2,31 +2,10 @@
     z-index: 6000;
 }
 
-@font-face {
-    font-family: Noto Sans CJK tc;
-    src: url("/layouts/font/NotoSansCJKtc-Regular.otf") format("opentype");
-}
-
-@font-face {
-    font-family: Noto Sans CJK tc;
-    font-weight: 500;
-    src: url("/layouts/font/NotoSansCJKtc-Medium.otf") format("opentype");
-}
-
-@font-face {
-    font-family: Noto Sans CJK tc;
-    font-weight: bold;
-    src: url("/layouts/font/NotoSansCJKtc-Bold.otf") format("opentype");
-}
-
-@font-face {
-    font-family: Noto Sans CJK tc;
-    font-weight: 300;
-    src: url("/layouts/font/NotoSansCJKtc-Light.otf") format("opentype");
-}
 
 * {
-    font-family: Noto Sans CJK tc;
+    font-family: 'Noto Sans TC',
+        sans-serif;
     scrollbar-color: #736f6e #fff9dc;
     scrollbar-width: thin;
 }
@@ -79,7 +58,7 @@
         margin: 0;
         width: 100%;
         position: relative;
-        padding:calc(calc(calc(var(--vh, 1vh) * 100) - 410px - 3vw)/20) 0;
+        padding: calc(calc(calc(var(--vh, 1vh) * 100) - 410px - 3vw)/20) 0;
         text-align: center;
     }
 
@@ -87,6 +66,7 @@
         height: calc(calc(var(--vh, 1vh) * 100) - 80px - 3vw);
         width: 100%;
         position: relative;
+        overflow-y: auto;
     }
 
     #copyright {
@@ -162,6 +142,10 @@
     #myNavPics {
         width: 70%;
         max-width: calc(100% - 330px);
+        background-image: url("/layouts/headerPic/header-1.jpg");
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     #mySidenav #links li {
@@ -174,6 +158,7 @@
 
     #mySidenav #links {
         height: calc(100vh - 57px - 4.5vw);
+        overflow-y: auto;
     }
 
     /* menu */
@@ -287,11 +272,15 @@
         padding-bottom: 0.5vw;
     }
 
-    /* .randImg {
+    .randImg {
         position: relative;
         height: 0;
-        width: 100%;        
-    } */
+        width: 100%;
+        display: block;
+        background-blend-mode: lighten;
+        background-color: rgba(255, 255, 255, 0.3);
+        transition: 0.5s;
+    }
 }
 
 

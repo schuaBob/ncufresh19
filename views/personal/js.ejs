@@ -5,6 +5,8 @@
 
     /* 遊戲積分toggle */
     $("#game-score").click(function() {
+        $(".yourLocation").removeClass("yourLocation");
+        $("#game-score").addClass("yourLocation");
         $(".showToggle").hide().removeClass("showToggle");
         $("#game-score-toggle").addClass("showToggle");
         $(".showToggle").show();
@@ -12,6 +14,8 @@
 
     /* 小遊戲toggle */
     $("#game").click(function() {
+        $(".yourLocation").removeClass("yourLocation");
+        $("#game").addClass("yourLocation");
         $(".showToggle").hide().removeClass("showToggle");
         $("#game-toggle").addClass("showToggle");
         $(".showToggle").show();
@@ -19,6 +23,8 @@
 
     /* 發問紀錄toggle */
     $("#ask-record").click(function() {
+        $(".yourLocation").removeClass("yourLocation");
+        $("#ask-record").addClass("yourLocation");
         $(".showToggle").hide().removeClass("showToggle");
         $("#ask-record-toggle").addClass("showToggle");
         $(".showToggle").show();
@@ -26,9 +32,60 @@
 
     /* 我要發問toggle */
     $("#ask").click(function() {
+        $(".yourLocation").removeClass("yourLocation");
+        $("#ask").addClass("yourLocation");
         $(".showToggle").hide().removeClass("showToggle");
         $("#ask-toggle").addClass("showToggle");
         $(".showToggle").show();
+    });
+
+    $(".ask").on("click", function(q) {
+        $.ajax({
+            type: "POST",
+            url: "/qna/getQuestion",
+            dataType: 'json',
+            timeout: 3000,
+            data: {
+                postID: $(this).attr("id")
+            },
+            success: function(data) {
+                $("#showRecord").attr("postid", data[0].postID);
+                $(".qnamodal-title").text(data[0].title);
+                $("#qContent > p").text(data[0].qContent);
+                $("#aContent > p").text(data[0].aContent);
+                $("#showRecord").css("display", "block");
+                $(".modal-backdrop").css("display", "block");
+            },
+            error: function(err) {
+                return next(err);
+            }
+        });
+    });
+
+    $("#deletebtn").on("click", function() {
+        $.ajax({
+            type: "POST",
+            url: "/qna/toDelete",
+            dataType: 'json',
+            timeout: 3000,
+            data: {
+                postID: $(this).parents("#showRecord").attr("postid")
+            },
+            success: function(data) {
+                if(data.result === "success") {
+                    alert("刪除成功");
+                    location.reload();                    
+                }
+            },
+            error: function(err) {
+                return next(err);
+            }
+        });
+    });
+
+    $("#closebtn").on("click", function() {
+        $("#showRecord").css("display", "none");
+        $(".modal-backdrop").css("display", "none");
     });
 
 </script>

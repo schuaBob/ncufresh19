@@ -10,14 +10,20 @@ $(document).ready(() => {
         anchors: ['indexPage', 'newsPage', 'callenderPage'],
         slideSelector: '.fpslide',
         scrollOverflow: true,
-        normalScrollElements: '#news-body, #board-detail',
+        normalScrollElements: '#news-body, #board-detail, .modal',
         afterLoad: function (anchorLink, index) {
-            if (index.index === 0)
+            if (index.index === 0) {
                 $("#topHref").css("display", "none");
-            else if (index.index === 1)
+                $("#footer").removeClass();
+            }
+            else if (index.index === 1) {
                 $("#topHref").css("display", "inline");
-            else
+                $("#footer").addClass("myinvisible");
+            }
+            else {
                 $("#topHref").css("display", "inline");
+                $("#footer").addClass("myinvisible");
+            }
         }
     });
 
@@ -44,25 +50,25 @@ $(document).ready(() => {
             },
             success: (res) => {
                 $('.cateTitle').html(`<h3>${res.title}</h3>`);
-                var catePicArr = ["重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-                $('.cateIcon').html(`<img src="index/icon-${catePicArr[res.category - 1]}.png" class="card-img">`);
+                var catePicArr = ["重要通知", "重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
+                $('.cateIcon').html(`<img src="index/icon-${catePicArr[res.category]}.png" class="card-img">`);
                 $('#newsdetail').html(res.content);
             }
         })
     });
 
-    $(".next").on("click", function() {
-        if(!isAnimating && nowTarget < nowTotal) {
+    $(".next").on("click", function () {
+        if (!isAnimating && nowTarget < nowTotal-1) {
             isAnimating = true;
             $("#scrollDay").animate({
-                left: (nowLeft-=15) + "vw"
+                left: (nowLeft -= 15) + "vw"
             }, {
                 duration: 500,
-                done: function() {
+                done: function () {
                     isAnimating = false;
-                    $("#"+nowTarget).removeClass("target");
+                    $("#" + nowTarget).removeClass("target");
                     nowTarget += 1;
-                    $("#"+nowTarget).addClass("target");
+                    $("#" + nowTarget).addClass("target");
                     $("#board-detail").empty();
                     var cnt = 0;
                     for (var i in current_calender) {
@@ -75,18 +81,18 @@ $(document).ready(() => {
         }
     });
 
-    $(".prev").on("click", function() {
-        if(!isAnimating && nowTarget > 0) {
+    $(".prev").on("click", function () {
+        if (!isAnimating && nowTarget > 0) {
             isAnimating = true;
             $("#scrollDay").animate({
-                left: (nowLeft+=15) + "vw"
+                left: (nowLeft += 15) + "vw"
             }, {
                 duration: 500,
-                done: function() {
+                done: function () {
                     isAnimating = false;
-                    $("#"+nowTarget).removeClass("target");
+                    $("#" + nowTarget).removeClass("target");
                     nowTarget -= 1;
-                    $("#"+nowTarget).addClass("target");
+                    $("#" + nowTarget).addClass("target");
                     $("#board-detail").empty();
                     var cnt = 0;
                     for (var i in current_calender) {
@@ -102,7 +108,9 @@ $(document).ready(() => {
     $.ajax({
         url: "calender_get_data",
         method: "POST",
-        data: { id: "aug" },
+        data: {
+            id: "aug"
+        },
         error: function (err) {
             alert("Some error occur...");
         },
@@ -118,7 +126,9 @@ $(".selectMonth").on("click", function () {
     $.ajax({
         url: "calender_get_data",
         method: "POST",
-        data: { id: this.id },
+        data: {
+            id: this.id
+        },
         error: function (err) {
             alert("Some error occur...");
         },
@@ -133,11 +143,11 @@ $(".selectMonth").on("click", function () {
 function append_circle(data) {
     $("#days").empty();
     $("#days").append('<div id="scrollDay"></div>');
-    var count = 0;	
-    var today = new Date(); 
+    var count = 0;
+    var today = new Date();
     for (var i in data) {
-        $("#scrollDay").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="40" width="40"> <circle cx="20" cy="20" r="20" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
-        if( (today.getMonth()+1) == data[i].month && today.getDate() == data[i].date )
+        $("#scrollDay").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="35" width="35"> <circle cx="17.5" cy="17.5" r="17.5" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
+        if ((today.getMonth() + 1) == data[i].month && today.getDate() == data[i].date)
             $("#" + count).append('<img id="index3crab" src="/index/首頁3_螃蟹去背.png">');
         count = count + 1;
     }
@@ -154,5 +164,58 @@ function append_circle(data) {
     });
 
     $("#0").addClass("target");
-    
+    var vw = window.innerWidth;
+    if (vw > 1025) {
+        ///電腦版
+        $("#indexOneCircle circle").attr('cx', '50');
+        $("#indexOneCircle circle").attr('cy', '50');
+        $("#indexOneCircle circle").attr('r', '40');
+        $('.bigCircle').attr('cx', '60px');
+        $('.bigCircle').attr('cy', '60px');
+        $('.bigCircle').attr('r', '60px');
+    } else if (vw < 768) {
+        ///手機板
+        $("#indexOneCircle circle").attr('cx', '35');
+        $("#indexOneCircle circle").attr('cy', '35');
+        $("#indexOneCircle circle").attr('r', '25');
+        $('.bigCircle').attr('cx', '11vw');
+        $('.bigCircle').attr('cy', '11vw');
+        $('.bigCircle').attr('r', '11vw');
+    } else if ((1025 > vw) && (vw > 768)) {
+        ///平板
+        $("#indexOneCircle circle").attr('cx', '50');
+        $("#indexOneCircle circle").attr('cy', '50');
+        $("#indexOneCircle circle").attr('r', '40');
+        $('.bigCircle').attr('cx', '50px');
+        $('.bigCircle').attr('cy', '50px');
+        $('.bigCircle').attr('r', '50px');
+    }
+    window.addEventListener('resize', () => {
+        var vw = window.innerWidth;
+        if (vw > 1025) {
+            ///電腦版
+            $("#indexOneCircle circle").attr('cx', '50');
+            $("#indexOneCircle circle").attr('cy', '50');
+            $("#indexOneCircle circle").attr('r', '40');
+            $('.bigCircle').attr('cx', '60px');
+            $('.bigCircle').attr('cy', '60px');
+            $('.bigCircle').attr('r', '60px');
+        } else if (vw < 768) {
+            ///手機板
+            $("#indexOneCircle circle").attr('cx', '35');
+            $("#indexOneCircle circle").attr('cy', '35');
+            $("#indexOneCircle circle").attr('r', '25');
+            $('.bigCircle').attr('cx', '11vw');
+            $('.bigCircle').attr('cy', '11vw');
+            $('.bigCircle').attr('r', '11vw');
+        } else if ((1025 > vw) && (vw > 768)) {
+            ///平板
+            $("#indexOneCircle circle").attr('cx', '50');
+            $("#indexOneCircle circle").attr('cy', '50');
+            $("#indexOneCircle circle").attr('r', '40');
+            $('.bigCircle').attr('cx', '50px');
+            $('.bigCircle').attr('cy', '50px');
+            $('.bigCircle').attr('r', '50px');
+        }
+    });
 }
