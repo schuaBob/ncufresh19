@@ -88,12 +88,16 @@ body {
   padding-left: 17px;
   position: relative;
   left: 8%;
+  z-index: 3;
+  overflow: hidden;
 }
 
 #banner {
+  display: inline;
   position: absolute;
   right: 13%;
   height: 100%;
+  z-index:0;
 }
 
 #qatxt {
@@ -321,6 +325,9 @@ body {
   body{
     overflow-x: hidden;
   }      
+  #banner{
+    display: none;
+  }
   .leftSide{
     display: none;
   }
