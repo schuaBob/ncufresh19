@@ -1,9 +1,9 @@
 var express = require('express');
 var request = require('request');
+var fs = require('fs');
 var router = express.Router();
 
 var content = "";
-
 
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
@@ -36,6 +36,12 @@ router.get('/2D', function (req, res, next) {
 });
 
 router.get('/indexmodal', function (req, res, next) {
+  if (content == "") {
+    fs.readFile('./public/campus/內容.json', (err, data) => {
+      if (err) throw err;
+      content = JSON.parse(data);
+    });
+  }
   if (req.query.id == "1561981206193") {
     var review = {
       'Intropic': ['20190711133634.jpg'],

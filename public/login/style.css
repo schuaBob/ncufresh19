@@ -7,9 +7,9 @@ body{
 .box {
   border: 2px #c9c3c1 solid;
   background-color: white;
-  width: 50%;
+  width: 30%;
   position: absolute;
-  left: 25%;
+  left: 35%;
   text-align: center;
 }
 

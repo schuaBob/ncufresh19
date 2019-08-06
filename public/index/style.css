@@ -32,7 +32,7 @@ main {
 }
 
 /* 手機版 */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1025px) {
 
     #triangle {
         z-index: 4999;
@@ -51,7 +51,7 @@ main {
         z-index: 500;
         width: 220px;
         left: calc(50vw - 110px);
-        bottom: 70vh;
+        bottom: calc(50vh + 120px);
     }
 
     #indexPage1 {
@@ -69,7 +69,8 @@ main {
     }
 
     #secondSection {
-        height: 100vh;
+        height: 94vh;
+        padding: 1vh 4vw;
     }
 
     #news {
@@ -85,12 +86,10 @@ main {
 
     #news-body {
         position: relative;
-        max-height: 60vh;
+        max-height: 55vh;
         overflow-y: scroll;
         overflow-x: hidden;
         min-height: 300px;
-        /* border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px; */
     }
 
     #jellyfish {
@@ -136,29 +135,27 @@ main {
     .selectMonth {
         position: relative;
         display: inline-block;
-        width: 24vw;
-        margin-left: 4vw;
-        margin-right: 4vw;
+        width: 22vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
     }
 
     .selectMonth h5 {
         position: absolute;
         display: block;
         right: 0;
-        top: calc(50% - 9px);
+        top: calc(50% - 8px);
         width: 100%;
         text-align: center;
         padding: 0;
         margin: 0;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .bigSvg {
-        height: 24vw;
-        width: 24vw;
+        height: 22vw;
+        width: 22vw;
     }
-
-    
 
     #monthDetail {
         position: absolute;
@@ -172,7 +169,7 @@ main {
     #board {
         position: relative;
         width: 100%;
-        height: 70%;
+        height: 65%;
     }
 
     #index3start {
@@ -183,9 +180,9 @@ main {
         width: 90%;
         margin-right: 5%;
         margin-left: 5%;
-        margin-top: 4vh;
-        height: 90%;
-        border: 1px solid #0163b0;
+        margin-top: 2vh;
+        height: 95%;
+        border: 0px solid #0163b0;
         background-color: lightblue;
         border-radius: 37px;
         padding: 15px;
@@ -257,10 +254,68 @@ main {
     #index3crab {
         display: none;
     }
+
+    .myinvisible {
+        display: none;
+    }
 }
 
 /* 平板 */
 @media only screen and (min-width: 768px) and (max-width: 1025px) {
+    #secondSection {
+        position: relative;
+        z-index: 500;
+        top: 0;
+        padding: 2vw 12vw;
+    }
+
+    #news {
+        position: relative;
+        display: block;
+        width: 76vw;
+        height: 45vh;
+    }
+
+    .news-img {
+        position: relative;
+        left: 3vw;
+        width: 7%;
+    }
+
+    #news-title {
+        position: relative;
+        top: 0;
+    }
+    
+    .card-body {
+        padding: 0.7rem;
+    }
+
+    #news-body {
+        position: relative;
+        height: 70%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        min-height: 0;
+    }
+
+    #carouselExampleIndicators {
+        position: relative;
+        display: block;
+        width: 80vw;
+        height: 35vh;
+    }
+
+    #fishbone {
+        display: none;
+    }
+
+    .carousel-inner {
+        position: relative;
+        left: calc( 50% - 15vmax);
+        width: 30vmax;
+    }
+
     #indexLogo {
         position: absolute;
         z-index: 500;
@@ -322,24 +377,42 @@ main {
 
 /* 電腦版 */
 @media only screen and (min-width: 1025px) {
+    #secondSection {
+        position: relative;
+        z-index: 500;
+        top: 0;
+        padding: 3vw 5vw;
+    }
+    
     #indexLogo {
         position: absolute;
         z-index: 500;
-        width: 350px;
-        left: calc(50vw - 175px);
-        top: 3.5vw;
+        width: 400px;
+        left: calc(50vw - 200px);
+        bottom: calc(50vh + 100px);
     }
 
     #news {
-        display: block;
         position: relative;
-        width: 100%;
+        display: inline-block;
+        width: 40vw;
+        margin-right: 2.5vw;
     }
 
     #carouselExampleIndicators {
-        max-width: 650px;
-        display: block;
-        margin: 0 auto;
+        position: relative;
+        display: inline-block;
+        width: 40vw;
+        margin-left: 2.5vw;
+        top: calc(50%-20vw);
+    }
+
+    #fishbone {
+        position: absolute;
+        z-index: 500;
+        bottom: -12%;
+        right: -12%;
+        width: 45%;
     }
 
     #news-title {
@@ -356,8 +429,8 @@ main {
 
     #jellyfish {
         position: absolute;
-        z-index: 500;
-        top: -10%;
+        z-index: 0;
+        top: -20%;
         left: -10%;
         width: 45%;
     }
@@ -395,8 +468,8 @@ main {
     .selectMonth {
         position: relative;
         width: 120px;
-        margin-top: 3vw;
-        margin-bottom: 6.2vw;
+        margin-top: 3vh;
+        margin-bottom: 7vh;
     }
 
     .selectMonth h5 {
@@ -443,7 +516,7 @@ main {
         margin-left: 17.5%;
         margin-top: 7%;
         height: 73%;
-        border: 1px solid #0163b0;
+        border: 0px solid #0163b0;
         background-color: lightblue;
         border-radius: 37px;
         padding: 15px;
@@ -460,7 +533,7 @@ main {
     .day {
         position: relative;
         display: inline-block;
-        top: 3vh;
+        top: 1vh;
         margin-left: 0;
         margin-right: 6%;
     }
@@ -495,8 +568,6 @@ main {
     }
 }
 
-
-
 #closenews {
     position: relative;
     float: left;
@@ -513,8 +584,6 @@ main {
     left: calc(50% - 35px);
 }
 
-
-
 #nextbtn {
     position: absolute;
     height: 40px;
@@ -529,17 +598,8 @@ main {
     transform: rotate(90deg);
 }
 
-
-
 #fullpage {
     position: absolute;
-}
-
-#secondSection {
-    position: relative;
-    z-index: 500;
-    top: 0;
-    padding: 3vw 5vw;
 }
 
 #secondSection .row {
@@ -558,14 +618,6 @@ main {
 .newsTime {
     position: relative;
     float: right;
-}
-
-#fishbone {
-    position: absolute;
-    z-index: 500;
-    bottom: -12%;
-    right: -12%;
-    width: 45%;
 }
 
 .modal {
@@ -606,12 +658,21 @@ main {
     animation-fill-mode: forwards;
 }
 
+.carousel-control-next {
+    right: 20px;
+}
+
 .carousel-control-prev-icon {
     background-image: none;
 }
 
 .carousel-control-next-icon {
     background-image: none;
+}
+
+.news-line:hover {
+    background-color: #fff9dc;
+    cursor: pointer;
 }
 
 @keyframes scaleUpAnimation {

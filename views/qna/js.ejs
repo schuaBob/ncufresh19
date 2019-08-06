@@ -63,35 +63,9 @@
           });
   }
   $(document).ready(function () {
-    // var q_ctEditor;
-    // ClassicEditor
-    //   .create(document.querySelector('#q_content'))
-    //   .then(neweditor => {
-    //     console.log(neweditor);        
-    //     q_ctEditor = neweditor;               
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
-      
-    // CKEDITOR.replace( 'q_content', {
-    //   resize_enabled : true      
-    // });
-    // $('[data-toggle="tooltip"]').tooltip();
     $('body').tooltip({
       selector: '[data-toggle=tooltip]'
     });
-
-    //tinyMCE設定 https://is.gd/yK6ifB
-    // tinyMCE.init({      
-    //   mode:"exact",
-    //   elements:"modifyInput"      
-    // });
-    // tinyMCE.remove("#q_content");
-    // $("#q_content").css("visibility","visible");
-
-
-
     var timer;
     var sort = ""; //紀錄時間、人氣的按鈕值
     var c = location.pathname.split('/')[2]; //分類的值
@@ -213,7 +187,7 @@
           $("#img1").css("display", "none");
           $("#img2").attr("src", "wtf_penguin.png");  
           
-          if(isMobile())
+          if(jQuery(window).width()<900||isMobile())
           {
             //小
             $("#mobileAnswerModal").modal();
@@ -224,8 +198,7 @@
             //插入問題內容
             $(".answerModelQ > p").text(data[0].qContent);         
             //判斷是否為admin            
-            if($("#answerModelAID").attr("role")==="admin"){  
-              alert("admin mode");              
+            if($("#answerModelAID").attr("role")==="admin"){               
               if(data[0].category === ""){                
                 $("#dropdownMenuButton").text("請選擇分類");
               }else{
@@ -240,17 +213,13 @@
               }else{
                 $("#defaultCheck1").prop("checked",false);
               }
-            }else{         
-              alert("user mode");     
+            }else{          
               $(".answerTitleText").text("[" + data[0].category + "]" + data[0].title);
               $(".answerModelA > p").replaceWith(data[0].aContent);
             }
             $(".answermodal").addClass("animated fadeIn faster");
-            $(".answermodal").css("display", "block");
-            
+            $(".answermodal").css("display", "block");            
           }         
-          //assign分類到Modal標題
-          // $("#aaa").text($(this).children('th').text());
         },
         error: function (err) {
           alert("資料庫出錯!!");
@@ -279,16 +248,9 @@
     $(".ask").mouseleave(function () {
       $("#img1").attr("src", "qtext.png");
     });
-
-
-    
-
-
     $("#Top").click(function () {
       $(".content").scrollTop(0);
-    });
-
-    
+    });    
     $(".content").scroll(function () {
 
       if ($(".content").scrollTop() > 10) {
@@ -296,7 +258,6 @@
       } else {
         $('#Top').css("visibility", "hidden");
       }
-
       //讓scroll觸發次數減少
       window.clearTimeout(timer);
       timer = window.setTimeout(function () {
@@ -305,7 +266,6 @@
     });
 
     function scrollEnd() {
-
       //如果"幾乎"到底，加載新的問題
       if (($(".content").scrollTop() + $(".content").height()) > ($(".contentTable").height() * 0.9)) {
         //如果是處在search的狀況下(意即搜尋結果超過12個)
@@ -314,11 +274,9 @@
         } else {
           getData(c, sort);
         }
-
       }
     }
     function search(category, sort) {
-
       //暫存tbody原本的內容，為了顯示搜尋的結果 
       var temp = $("tbody").html();
       $.ajax({
@@ -371,47 +329,8 @@
         error: function (err) {
           alert("資料庫出錯!!");
         }
-
       });
-
-    }
-
-    //askModal的submit觸發後，檢查字數是否符合規定
-    $(document).on("click","#submit",function () {  
-      var forms = document.getElementsByClassName('needs-validation');
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        // alert(q_ctEditor.getData());
-        // form.checkValidity() === false || $("#q_title").val() === "" || $('#q_content').val() === ""
-        if (false) {
-          event.preventDefault();
-          event.stopPropagation();
-          console.log("unfit")
-        } else {
-          //送出前將分類放進隱藏的input，使後端可以取得          
-          $.ajax({
-            type: "POST",
-            url: "/qna/toPost",
-            dataType: 'json',
-            timeout: 5000,
-            data: {              
-              title: $("#q_title").val(),
-              question: $('#q_content').val()
-            },
-            success: function (data) {
-              console.log(data[0]);
-              if (data[0] === 'success') {                
-                $(".askmodal").css("display", "none");
-                alert("成功");
-                $("#noticeModal").modal("hide");
-              }
-            },
-            error: function (err) {
-              alert("資料庫出錯!!");
-            }
-          });
-        }
-      });
-    });
+    }    
     //手機版js
     $("#simpleSieve").on("click",function(e){
       e.stopPropagation();
@@ -426,45 +345,6 @@
     });
     $("#mobileTop").on("click",function(){
       $(".content").scrollTop(0);
-    });
-
-
-
-
-    $(document).on("click","#mobilesubmit",function () {
-      
-      var forms = document.getElementsByClassName('needs-validation');
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        // alert(q_ctEditor.getData());
-        // form.checkValidity() === false || $("#mobileq_title").val() === "" || $('#mobileq_content').val() === ""
-        if (false) {
-          event.preventDefault();
-          event.stopPropagation();
-          console.log("unfit")
-        } else {
-          //送出前將分類放進隱藏的input，使後端可以取得          
-          $.ajax({
-            type: "POST",
-            url: "/qna/toPost",
-            dataType: 'json',
-            timeout: 5000,
-            data: {              
-              title: $("#mobileq_title").val(),
-              question: $('#mobileq_content').val()
-            },
-            success: function (data) {
-              if (data[0] === 'success') {
-                $(".askmodal").css("display", "none");
-                alert("成功");
-                $("#mobileNoticeModal").modal("hidden");
-              }
-            },
-            error: function (err) {
-              alert("資料庫出錯!!");
-            }
-          });
-        }
-      });
     });
   });
 </script>

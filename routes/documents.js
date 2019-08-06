@@ -1,5 +1,5 @@
 var express = require('express');
-
+var checkUser = require('./check-user');
 var mongoose = require('mongoose');
 var Document = require('../models/documents/documents');
 
@@ -90,7 +90,7 @@ router.get('/phone/common_phone', function(req, res, next) {
 /*---------------------------後台-------------------------------------*/
 
 //新增
-router.post('/edit',function(req, res, next) {
+router.post('/edit',checkUser.isAdmin,function(req, res, next) {
   new Document({
       count: req.body.id,
       title: req.body.title,
@@ -108,7 +108,7 @@ router.post('/edit',function(req, res, next) {
 
 
 //修改
-router.post('/modify/:id',function(req, res, next) {
+router.post('/modify/:id',checkUser.isAdmin,function(req, res, next) {
   Document.updateOne({ count: req.params.id}, {title: req.body.change_title, content: req.body.change_text},
     function (err, result){
         if(err){

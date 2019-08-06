@@ -51,11 +51,15 @@ router.get('/getquestion', function (req, res, next) {
     res.send({result:result});
   });
 });
-// router.get('/gethistory', function (req, res, next) {
-//   History.find({}).exec(function (err, result){
-//     res.send({result:result});
-//   });
-// });
+router.get('/gethistory', function (req, res, next) {
+  History.find({}).exec(function (err, result){
+    var h = "";
+    for(var a =0;a<result.length;a++){
+      h +=result[a].Id+"/"+result[a].Time +"/"+result[a].Date+"\n";
+    }
+    res.send(h);
+  });
+});
 router.get('/gettotalrank', function (req, res, next) {
   User.find({},{name:1,avatar:1,score_sum:1}).sort({score_sum:-1}).limit(10).exec(function (err, result){
     res.send(result);
@@ -78,7 +82,6 @@ router.get('/usergameinit',function(req,res,next){
 router.post('/updatescore', function (req, res, next) {
     User.findOne({'_id':req.user._id}).exec(function(err,result){
       var game_time =( (new Date())- result.game_date)/1000;
-      console.log(game_time);
       if(req.body.game_id == result.game_id &&game_time>54 && game_time<900){
         if(result.score_high <　req.body.score){
           result.set({'score_sum':parseInt(result.score_sum, 10)+parseInt(req.body.score, 10),'score_high':parseInt(req.body.score, 10)});
