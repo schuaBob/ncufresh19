@@ -7,6 +7,7 @@
 //------------game---------------------------------
 //var fs = require('fs');
 //console.log();
+var music_text;
 var soundcontrol = {'BGM':null,'CATCH':null,'key3':null}; 
 var muted = false;
 var BGmsound;
@@ -722,9 +723,13 @@ function load_source() {
   if(!isMobile){
     window.addEventListener("click", resumeAudioContext);
     loading_text = new createjs.Text("0%","bold 30px 微軟正黑體","#000000");
+    music_text = new createjs.Text("音樂：魔王魂","bold 15px 微軟正黑體","#000000");
+    music_text.x = canvas_width-music_text.getMeasuredWidth() ;
+    music_text.y = canvas_height-music_text.getMeasuredHeight() ;
     loading_text.x = canvas_width/2-loading_text.getMeasuredWidth() / 2 ;
     loading_text.y = canvas_height/2-loading_text.getMeasuredHeight() / 2 ;
     stage.addChild(loading_text);
+    stage.addChild(music_text);
     stage.update();
     manifest = [
       { src: "/images/coolgame/sea.png", id: "sea" },
@@ -2246,6 +2251,7 @@ var resumeAudioContext = function() {
   if(done_loading){
     window.removeEventListener("click", resumeAudioContext);
     stage.removeChild(loading_text);
+    stage.removeChild(music_text);
     init();
   }
 	// Should only need to fire once
