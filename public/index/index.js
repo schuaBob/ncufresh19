@@ -1,7 +1,8 @@
 var current_calender;
 var nowLeft = 30,
     nowTarget = 0,
-    nowTotal = 0;
+    nowTotal = 0,
+    lastClick = -1;
 var isAnimating = false;
 
 $(document).ready(() => {
@@ -124,6 +125,8 @@ $(document).ready(() => {
             $("#board-detail").append(current_calender[0].board_content);
             nowLeft = 30;
             nowTarget = 0;
+            lastClick = 0;
+            $("#" + lastClick + " div svg circle").attr("fill", "#fff9dc");
         }
     });
 
@@ -158,6 +161,7 @@ $(".selectMonth").on("click", function () {
             $("#board-detail").append(current_calender[0].board_content);
             nowLeft = 30;
             nowTarget = 0;
+            $("#" + lastClick + " div svg circle").attr("fill", "#fff9dc");
         }
     });
 });
@@ -177,7 +181,9 @@ function append_circle(data) {
     current_calender = data;
     $(".day").on("click", function () {
         var width = $(window).width();
-        if (width > 1024) {
+        if(width > 1024) {
+            if(lastClick !== -1)
+                $("#" + lastClick + " div svg circle").attr("fill", "#ec6d4f")
             $("#board-detail").empty();
             var cnt = 0;
             for (var i in current_calender) {
@@ -185,6 +191,9 @@ function append_circle(data) {
                     $("#board-detail").append(current_calender[i].board_content);
                 cnt = cnt + 1;
             }
+            lastClick = this.id;
+            $("#" + lastClick + " div svg circle").attr("fill", "#fff9dc")
+
         } else {
             var tobescroll = this.id - nowTarget;
             if (tobescroll !== 0) {

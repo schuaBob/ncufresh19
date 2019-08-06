@@ -877,7 +877,7 @@ li {
 
   .show3D {
     z-index: 10000000000000000;
-    bottom: -70%;
+    bottom: -80%;
     position: relative;
     left: unset;
     height: 100px;
@@ -891,14 +891,15 @@ li {
 
   .MAP2D {
     min-width: 700px;
-    min-height: 100%;
+    height: unset;
+    min-height: 700px;
   }
 
   .SAM {
     min-width: 200px;
     min-height: 30%;
     height: 400px;
-    margin-top: -5%;
+    margin-top: 0%;
   }
 
   .bottom {
