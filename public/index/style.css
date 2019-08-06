@@ -263,7 +263,7 @@ main {
         margin-top: 2vh;
         height: 95%;
         border: 0px solid #0163b0;
-        background-color: lightblue;
+        background-color: rgba(173, 216, 230, .7);
         border-radius: 37px;
         padding: 15px;
         position: absolute;
@@ -318,8 +318,7 @@ main {
     .next {
         position: absolute;
         cursor: pointer;
-        font-size: 11vw;
-        border: 3px black solid;
+        font-size: 10vw;
         z-index: 4000;
     }
 
