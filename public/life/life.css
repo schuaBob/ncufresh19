@@ -7,6 +7,10 @@ body {
   height: 100vh;
 }
 
+div, p {
+  cursor: default;
+}
+
 a {
   color: #00B7FF;
 }
@@ -342,15 +346,22 @@ ul.timeline > li:before {
 }
 
 #areaName {
-  margin-left: 25%;
+  padding-bottom: 0.5vw; 
+  padding-top: 2vw;
+  padding-left: 30%;
+
 }
 #areaName p {
-  font-size: 4vw;
+  font-size: 3vw;
   border-bottom: 4px solid black;
   /* padding-bottom: 5%; */
 }
-.T div{
-  display: inline-block;
+
+.T {
+  position: relative;
+  display: inline-flex;
+  height: 9vw;
+  width: 90%;
 }
 
 .foodIcon {
@@ -410,15 +421,16 @@ ul.timeline > li:before {
 
 .decoration img{
   position: absolute;
-  width:23%;
+  width: 23%;
   bottom: 0px;
 }
 
 #foodModal .modal-dialog {
   width: 70%;
   max-width: none;
-  margin-top: 2vh;
-  min-height: calc(100vh - 56px);
+  top: 10vh;
+  /* min-height: calc(100vh - 56px); */
+  min-height: 100%;
 }
 
 #foodModalDetail{
@@ -427,49 +439,25 @@ ul.timeline > li:before {
   top: 0;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 0;
+  margin-bottom: 30px;
   display: block;
   width: 70%;
   padding: 8px;
   word-wrap: break-word;
-  border-style: solid;
-  border-color: #2E627B;
-  border-top-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+  border-radius: 1rem;
   background-color: white;
+  opacity: 0.8;
   min-height: 50px;
 }
 
-#foodModalTitle {
-  position: relative;
-  right: 0;
-  top: 0;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 0;
-  display: block;
-  width: 70%;
-  padding: 8px;
-  word-wrap: break-word;
-  border-style: solid;
-  border-color: #2E627B;
-  border-top-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
-  background-color: white;
-  min-height: 50px;
-}
 
-.t {
-  text-align: center;
-  font-size: 40px;
-  font-weight: 500;
-}
 #foodModalDetail .d {
   margin: 0;
-  max-height: 300px;
-  font-size: 20px;
+  height: 25vw;
+  font-size: 2vw;
+  text-align: center;
   font-weight: lighter;
-  padding-top: 10px;
+  padding-top: 8vw;
   overflow-y: scroll;
 }
 
@@ -477,17 +465,28 @@ ul.timeline > li:before {
   border-bottom-width: 0px;
 }
 
+.modal-title {
+  font-size: 3vw;
+  display: block;
+  width: 100%;
+  padding-left: 5%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+
 #foodModal .modal-body{
   margin: 0;
   max-width: 100%;
 }
 
 #foodModal .modal-content {
-  background-color: rgb(81, 172, 207);
+  background-color: rgba(161, 212, 232, 0.966);
 }
 
 .modal-header span {
   cursor: pointer;
+  z-index: 3;
 }
 
 
@@ -508,8 +507,11 @@ ul.timeline > li:before {
   float: left;
 }
 
+.content h3 {
+  font-size: 2vw;
+}
 
-
-
-
+.page p {
+  font-size: 1.5vw;
+}
 

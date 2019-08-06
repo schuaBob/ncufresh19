@@ -16,6 +16,10 @@ a:link {
 a:visited {
   color: #000;
 }
+.img_button {
+  width: 100%;
+  height: auto;
+}
 
 /* 手機版 */
 /* 0.1 max-device-width 1024px*/
@@ -47,8 +51,8 @@ a:visited {
     float: left;
   }
   .title_bar {
-    width: 100vw;
-    min-width: 100%;
+    width: 95%;
+    /* min-width: 100%; */
     position: relative;
     margin-left: 5%;
     display:flex;
@@ -68,19 +72,13 @@ a:visited {
     font-size: 14px;
   }
   .back {
+    width: 70px;
+    height: auto;
     position: absolute;
-    right: 10%;
+    right: 5%;
     bottom: 20%;
     margin: 0px 0px 0px 0px;
     display: inline-block;
-  }
-  .button_area {
-    width: 100vw;
-    max-width: 100vw;
-    min-height: 35%;
-    max-height: 80%;
-    padding-top: 20px;
-    overflow: scroll;
   }
   .button_no_scroll {
     width: 100vw;
@@ -90,7 +88,15 @@ a:visited {
     padding-top: 20px;
     overflow: scroll;
   }
-  .v_button {
+  .button_area {
+    width: 100vw;
+    max-width: 100vw;
+    min-height: 35%;
+    max-height: 80%;
+    padding-top: 20px;
+    overflow: unset;
+  }
+  .button {
     position: relative;
     width: 50%;
     height: auto;
@@ -100,18 +106,22 @@ a:visited {
 }
 /* ---------------- 手機橫屏 ---------------- */
 @media only screen and (orientation: landscape) {
-  .v_button {
-    width: 25%;
+  .button {
+    width: 80%;
+    height: max-content;
+    min-width: 120px;
+    max-width: 150px;
     margin: 0% 1.5% 3% 1.5%;
   }
-  .button_area {
+  .button_no_scroll, .button_area {
     max-width: 80%; 
-    margin-left: 17%;
-  }
-  .button_no_scroll {
-    max-width: 80%; 
-    margin-left: 17%;
+    margin-left: 10%;
+    padding-left: 3%;
     overflow: unset;
+    
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
   #player {
     width: 50%;

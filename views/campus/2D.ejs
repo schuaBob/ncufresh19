@@ -12,6 +12,7 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
 
 <body>
@@ -33,8 +34,8 @@
       <img class="MAP2D" src="MAP_2D8.png">
       <img class="SAM" src="SAM.png" alt="">
       <div class="show3D">
-        <a href="/campus/3D">
-          <img src="3D.png">
+        <a href="/campus/3D" style="display: block;width:50%">
+          <img src="3D_btn2.png">
           <img id="wheel" src="WHEEL.png">
         </a>
       </div>
@@ -42,7 +43,7 @@
   </main>
   <div class="bottom">
     <img class="sailor" src="SAILOR_2D2.png">
-    <a href="#" onclick="mg()"><img class="mg" src="MAG.png" style="bottom:5px;z-index: 3001;"></a>
+    <a onclick="mg()" href="#"><img class="mg" src="MAG.png" style="bottom:5px;z-index: 3001;" ></a>
     <img class="tur" src="TUR22.png">
   </div>
   <% include ../layouts/js %>

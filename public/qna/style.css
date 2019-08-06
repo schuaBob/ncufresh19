@@ -17,7 +17,7 @@ a {
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  overflow: hidden;
+  /** overflow: hidden; */
   moz-user-select: none;
   /* for Firefox */
   -webkit-user-select: none;
@@ -26,7 +26,7 @@ body {
   background-repeat:no-repeat;
   background-position-y: bottom;
   background-color:#FFF9DC; 
-  background-size: 100%;
+  /*background-size: 100%;*/
 }
 
 ._modal {
@@ -39,7 +39,7 @@ body {
 }
 
 ._modal-content {
-  height: 100%;
+  /*height: 100%;*/
   background-size: 200px auto;
   background-repeat: no-repeat;
   position: relative;
@@ -75,7 +75,7 @@ body {
   position: absolute;
   top: 22%;
   left: 19%;
-  height: 47vh;
+  height: 53vh;
   font-size: 1.5rem;
 }
 
@@ -94,23 +94,27 @@ body {
 }
 
 .answerModelQ {
-  max-height: 40%;
+  max-height: 35%;
 }
 
 .answerModelA {
-  max-height: 60%;
+  max-height: 63%;
+  margin-top: 2%;
 }
 
 .contentPart {
   overflow-y: auto;
   overflow-x: hidden;
 }
-
-.contentPart>p {
+.answerArea,.questionArea{
   background-color: #EAEAEA;
+  border-radius: 4px;
+}
+.contentPart>p {
+  /* background-color: #EAEAEA;
   height: 80%;
   border-radius: 4px;
-  word-wrap:break-word;
+  word-wrap:break-word; */
 }
 #mdoption{
   display:flex;
@@ -364,13 +368,13 @@ thead>tr {
   right: 5vw;
   width: 4vw;
   z-index: 200;
-  visibility: hidden;
+  display: none;
 }
 
 /* ipad 直立設計*/
 @media only screen 
-  and (min-device-width : 768px) 
-  and (max-device-width : 1024px) 
+  and (min-width : 768px) 
+  and (max-width : 1024px) 
   and (orientation : portrait)  {
   .option{
     font-size:1.2rem;
@@ -410,6 +414,7 @@ thead>tr {
   }
   .contentTextSize{
     font-size: 3vw !important;
+    height:1%;
   }
   .buttonGroup{
     font-size: 0.9rem;
@@ -420,11 +425,18 @@ thead>tr {
   tbody > tr{
     font-size:1.2rem;
   }
+  .answerModelQ{
+    max-height:30% !important;
+  }
+  .answerModelA{
+    max-height: 68% !important;
+    margin-top:2% !important;
+  }
 }
 /* ipad 橫放設計 */
 @media only screen 
-  and (min-device-width : 768px) 
-  and (max-device-width : 1024px) 
+  and (min-width : 768px) 
+  and (max-width : 1024px) 
   and (orientation : landscape) {
     .ask{
       display: none;
@@ -446,6 +458,7 @@ thead>tr {
     }
     .contentTextSize{
       font-size:2vw !important;
+      height:1%;
     }
     .option{
       font-size:1.3rem;
@@ -485,8 +498,13 @@ thead>tr {
     height:auto !important;
     width:65% !important;
   }
-  .titleTextSize,.contentTextSize{
+  .titleTextSize{
     font-size: 2vw !important;
+  }
+  
+  .contentTextSize{
+    font-size: 2vw !important;
+    height:1%;
   }
   .searchInput{
     width:70%;
@@ -495,13 +513,19 @@ thead>tr {
     right:-6%;
     top: -3px;
   }
-  .option li{
-    /* margin-bottom: 2vh; */
-  }
   .option{
     font-size: 1.1rem;
     margin-top:7vh;
   }
+
+  /*
+.button_contener {
+  display: flex;
+  justify-content: flex-start;
+}
+*/
+
+
   .buttonGroup{
     font-size: 1rem;
   }
@@ -511,17 +535,18 @@ thead>tr {
   tbody > tr{
     font-size:1rem;
   }
+  
 }
 /* 手機直立的通用設計 */
-@media only screen and (max-width:600px) and (orientation : portrait){
+@media only screen and (max-width:767px) and (orientation : portrait){
   html{
-    height: 100%;
-    overflow: hidden;
+    /*height: 100%;*/
+    /*overflow: hidden;*/
   }
   body{
     background-image: none;
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }      
   #mobileAskBtn{
     display: inline !important;
@@ -561,7 +586,7 @@ thead>tr {
     width:92%;
   }
   .content {
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     overflow-y: auto;
     width: 100%;
     margin: 0;
@@ -581,7 +606,7 @@ thead>tr {
   }
   .fa-arrow-alt-circle-up {
     visibility: hidden;  
-    position: absolute;  
+    /*position: absolute;*/  
     right: -2vw;  
     bottom: 5vh;  
     font-size: 2.5em;
@@ -625,7 +650,7 @@ thead>tr {
     width: 50%;
   }
   .mobileFilterButton li {
-    margin-bottom: 21%;
+    margin-bottom: 12%;
     text-align: center;
     border-radius: 2px;
   }
@@ -650,7 +675,7 @@ thead>tr {
     width: 50%;
   }
   .option li {
-    margin-bottom: 21%;
+    margin-bottom: 12%;
     text-align: center;
     border-radius: 2px;
     padding: 4% 0%;
@@ -665,55 +690,22 @@ thead>tr {
   #Top{        
     width: 14vw !important;        
   }
-}
-
-@media only screen and (max-width:768px) and (min-width:601px){
-  .option{
-    font-size:1rem;
-  }
-  .option ul{
-    width:90%;
-  }
-  .searchInput{
-    width:50%;
-  }
-  .searchBar{
-    right:-22%;
-    top: -3px;
-  }
-  .ask{
-    display: none;
-  }
-  #mobileAskBtn{
-    display: inline !important; 
-    bottom:7vh;   
-    right: 3vw;
-    width: 6vw;
-  }
-  #Top{
-    right: 3vw !important;
-    width: 6vw !important;
-    bottom: 14vh !important;
-  }
-  .mobilAnswerModalContent{
-    width:80% !important;
-  }
-  .mobilAskModalContent{
-    width:80%;
-  }
   .titleTextSize{
-    font-size: 4vw !important;
+    font-size: 5.2vw;
   }
   .contentTextSize{
-    font-size: 3vw !important;
+    font-size:4.8vw;
+    height: 1%;
   }
-  .buttonGroup{
-    font-size: 0.8rem;
+  .mobilAnswerModalContent{
+    width:90%;
   }
-  thead > tr{
-    font-size: 1.3rem;
+  .answerModelQ{
+    max-height:30% !important;
   }
-  tbody > tr{
-    font-size:1.2rem;
+  .answerModelA{
+    margin-top:2%;
+    max-height: 68% !important;
   }
 }
+

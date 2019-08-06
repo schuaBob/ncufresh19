@@ -540,17 +540,16 @@ li {
 .show3D {
   position: absolute;
   left: 7%;
-  top: 25%;
+  top: 30%;
   width: 20%;
 }
 
 .show2D img {
-  width: 50%;
+  width: 100%;
 }
 
 .show3D img {
-  width: 50%;
-  min-width: 100px;
+  width: 100%;
 }
 
 .decoration img {
@@ -664,12 +663,38 @@ li {
   }
 
   .bottom_list {
-    bottom: 0%;
+    bottom: -20%;
+  }
+
+  .bottom{
+    bottom: -30%;
+  }
+
+  body{
+    height: 100vh !important;
+    overflow: scroll !important;
+  }
+  
+  .show3D {
+    top: 50%;
+  }
+
+  .MAP2D {
+    max-height: 300px;
+  }
+
+  .SAM {
+    max-height: 300px;
   }
 }
 
 
 @media only screen and (max-width: 770px) and (orientation:portrait) {
+  body{
+    height: 100vh !important;
+    overflow: scroll !important;
+  }
+
   .modal {
     z-index: 4001;
   }
@@ -852,7 +877,7 @@ li {
 
   .show3D {
     z-index: 10000000000000000;
-    bottom: -70%;
+    bottom: -80%;
     position: relative;
     left: unset;
     height: 100px;
@@ -866,14 +891,15 @@ li {
 
   .MAP2D {
     min-width: 700px;
-    min-height: 100%;
+    height: unset;
+    min-height: 700px;
   }
 
   .SAM {
     min-width: 200px;
     min-height: 30%;
     height: 400px;
-    margin-top: -5%;
+    margin-top: 0%;
   }
 
   .bottom {
@@ -886,6 +912,10 @@ li {
 
   .sbird {
     display: none;
+  }
+
+  .show3D img{
+    min-width: 100px;
   }
 }
 

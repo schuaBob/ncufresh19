@@ -8,10 +8,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel='stylesheet' href='/qna/style.css'>
 </head>
-
+  <style>
+    
+  </style>
 <body>
   <img src="add.png" alt="" id="mobileAskBtn">
-  <img src="top.png" alt="" id="Top">
+  <img src="Top.png" alt="" id="Top">
   <!-- mobileNoticeModal -->
   <div class="modal fade" id="mobileNoticeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" style="z-index: 6000;">
@@ -111,11 +113,13 @@
           <span id="mobileAnswerTitleText">mobileanswertitletext</span>
         </div>
         <div class="modal-body contentTextSize">
-          <div class="contentPart answerModelQ">Question:
-            <p id="mobileQContentText"></p>
+          <div class="contentPart answerModelQ">
+            <div>Question:</div>
+            <div class="questionArea" id="mq_c"></div>
           </div>
-          <div class="contentPart answerModelA">Answer:
-            <p id="mobileAContentText"></p>
+          <div class="contentPart answerModelA">
+            <div>Answer:</div>
+            <div class="answerArea" id="ma_c"></div>
           </div>
         </div>
         <div class="modal-footer">
@@ -151,7 +155,7 @@
       <img src="dialog.png" alt="">
       <div class="answer">
         <div class="modalTitle">
-          <% if(true){ %>
+          <% if(user && user.role=="admin"){ %>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -168,13 +172,14 @@
           <span class="answerTitleText">標題</span><i class="fas fa-times cross"></i>
         </div>
         <div class="modalContent">
-          <div class="contentPart answerModelQ">Question:
-            <p></p>
+          <div class="contentPart answerModelQ">
+            <div>Question:</div>
+            <div class="questionArea" id="q_c"></div>
           </div>
-          <div id="answerModelAID" class="contentPart answerModelA" <% if(true){ %> role="admin" <% } %>>
-            Answer:
+          <div id="answerModelAID" class="contentPart answerModelA" <% if(user && user.role=="admin"){ %> role="admin" <% } %>>
+            <div>Answer:</div>
             <!-- user && (user.role === "admin") -->
-            <% if(true){ %> 
+            <% if(user && user.role=="admin"){ %> 
               <textarea type="text" postID="" id="modifyInput" class="modifyInput tinyeditor"></textarea>
               <div id="mdoption">
                 <div class="form-check">
@@ -187,7 +192,7 @@
                 <button id="deleteBtn" class="btn btn-danger" style="position: absolute; right: 10%;">刪除</button>
               </div>
             <% }else{ %>  
-              <p>顯示問題</p>
+              <div class="answerArea" id="a_c"></div>              
             <% } %>
           </div>
         </div>
@@ -202,9 +207,9 @@
         <span id="qatxt_c">新生問答</span>
       </div>
     </div>
-    <div class="main d-flex">
+    <div class="main d-flex" id="try">
       <div class="leftSide">
-        <div class="option">
+        <div class="option" id="option">
           <ul>
             <a href="/qna">
               <li><i class="fas fa-angle-right" option="all"></i>全部問題</li>
@@ -227,14 +232,17 @@
       <div class="rightSide">
         <!-- 過濾以及搜尋框 -->
         <div class="sort_SearchBar">
+<div class="button_contener">
           <div class="buttonGroup">
             <div class="button" style="color:#0D4966">排序</div>
             <div class="button sortButton orangeBg" sort="time">時間</div>
             <div class="button sortButton" sort="count">人氣</div>
           </div>
+</div>
+
           <div class="searchBar">
             <form id="searchForm">
-              <i class="fas fa-search" aria-hidden="true" style="line-height: 2;"></i>
+              <i class="fas fa-search" aria-hidden="true" style="line-height: 2;" id="searchImg"></i>
               <input class="ml-2 searchInput" type="text" placeholder="Search" aria-label="Search"
                 onkeydown="if(event.keyCode==13){return false;}" id="search">
             </form>
@@ -318,7 +326,15 @@
     $("#mobileAskBtn").click(function () {
       $("#mobileAskModal").modal();
     });
+    $(".searchInput").focus(function(){
+      var fixed = document.querySelector("#try"),
+      distanceFromTop = fixed.getBoundingClientRect().top;
+      fixed.style.top = distanceFromTop + 'px';
+      fixed.style.bottom = 'auto';
+    });
+    
   });
+  
 </script>
 
 </html>
