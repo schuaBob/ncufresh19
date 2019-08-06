@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel='stylesheet' href='/qna/style.css'>
 </head>
-
+  <style>
+    
+  </style>
 <body>
   <img src="add.png" alt="" id="mobileAskBtn">
   <img src="Top.png" alt="" id="Top">
@@ -111,11 +113,13 @@
           <span id="mobileAnswerTitleText">mobileanswertitletext</span>
         </div>
         <div class="modal-body contentTextSize">
-          <div class="contentPart answerModelQ">Question:
-            <div class="questionArea"><p id="mobileQContentText"></p></div>
+          <div class="contentPart answerModelQ">
+            <div>Question:</div>
+            <div class="questionArea" id="mq_c"></div>
           </div>
-          <div class="contentPart answerModelA">Answer:
-            <div class="answerArea"><p id="mobileAContentText"></p></div>
+          <div class="contentPart answerModelA">
+            <div>Answer:</div>
+            <div class="answerArea" id="ma_c"></div>
           </div>
         </div>
         <div class="modal-footer">
@@ -168,11 +172,12 @@
           <span class="answerTitleText">標題</span><i class="fas fa-times cross"></i>
         </div>
         <div class="modalContent">
-          <div class="contentPart answerModelQ">Question:
-            <div class="questionArea"><p></p></div>
+          <div class="contentPart answerModelQ">
+            <div>Question:</div>
+            <div class="questionArea" id="q_c"></div>
           </div>
           <div id="answerModelAID" class="contentPart answerModelA" <% if(user && user.role=="admin"){ %> role="admin" <% } %>>
-            Answer:
+            <div>Answer:</div>
             <!-- user && (user.role === "admin") -->
             <% if(user && user.role=="admin"){ %> 
               <textarea type="text" postID="" id="modifyInput" class="modifyInput tinyeditor"></textarea>
@@ -187,9 +192,7 @@
                 <button id="deleteBtn" class="btn btn-danger" style="position: absolute; right: 10%;">刪除</button>
               </div>
             <% }else{ %>  
-              <div class="answerArea">
-                <p>顯示問題</p>
-              </div>              
+              <div class="answerArea" id="a_c"></div>              
             <% } %>
           </div>
         </div>

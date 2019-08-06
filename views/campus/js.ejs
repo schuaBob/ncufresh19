@@ -152,7 +152,7 @@
                             };
 
                             $('.mapmove').removeClass('clicked')
-                            if ($(window).width() > 770 || orient() == "landscape") {
+                            if ($(window).width() > 770 || window.matchMedia("(orientation:landscape)")) {
                                 $('.sailor1').stop().velocity({
                                     opacity: 1,
                                     translateX: '1rem'
@@ -192,7 +192,7 @@
                                 'margin-right': '26.5%'
                             };
                             $('.mapmove').addClass('clicked')
-                            if ($(window).width() > 770 || orient() == "landscape") {
+                            if ($(window).width() > 770 || window.matchMedia("(orientation:landscape)")) {
                                 $('.sailor1').stop().velocity({
                                     opacity: 0,
                                     translateX: '-1rem'
@@ -233,7 +233,7 @@
                             'margin-left': '4.5%',
                             'margin-right': '26.5%'
                         };
-                        if ($(window).width() > 770 || orient() == "landscape") {
+                        if ($(window).width() > 770 || window.matchMedia("(orientation:landscape)")) {
                             $('.sailor1').stop().velocity({
                                 opacity: 0,
                                 translateX: '-1rem'
@@ -348,7 +348,7 @@
                         'hide')
             })
 
-            if ($(window).width() > 770 || orient() == "landscape") {
+            if ($(window).width() > 770 || window.matchMedia("(orientation:landscape)")) {
                 $('.sailor1').stop().velocity({
                     opacity: 1,
                     translateX: '1rem'
@@ -553,12 +553,4 @@
             scale: 1
         }, 100)
     })
-
-    function orient() {
-        if (window.orientation == 90 || window.orientation == -90) {
-            return 'landscape';
-        } else if (window.orientation == 0 || window.orientation == 180) {
-            return 'portrait';
-        }
-    }
 </script>

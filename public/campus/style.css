@@ -540,7 +540,7 @@ li {
 .show3D {
   position: absolute;
   left: 7%;
-  bottom: 20%;
+  top: 30%;
   width: 20%;
 }
 
@@ -674,10 +674,19 @@ li {
     height: 100vh !important;
     overflow: scroll !important;
   }
+  
+  .show3D {
+    top: 50%;
+  }
 }
 
 
 @media only screen and (max-width: 770px) and (orientation:portrait) {
+  body{
+    height: 100vh !important;
+    overflow: scroll !important;
+  }
+
   .modal {
     z-index: 4001;
   }
