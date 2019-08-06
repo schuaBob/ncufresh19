@@ -489,9 +489,9 @@ main {
     #indexLogo {
         position: absolute;
         z-index: 500;
-        width: 400px;
-        left: calc(50vw - 200px);
-        bottom: calc(50vh + 100px);
+        width: 340px;
+        left: calc(50vw - 170px);
+        bottom: calc(50vh + 90px);
     }
 
     #news {
