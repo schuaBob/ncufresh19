@@ -205,6 +205,9 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
        'ECONOMICS', '經濟學系'];
       ytID = 'YKcSdCvHiiQ';
       break;
+    default:
+      return next(err);
+      break;
     }
 
   //文院
@@ -227,6 +230,9 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
        'LIBERAL ARTS', '文學院',
        'FRANÇAIS', '法國語文學系'];
       ytID = 'ZZHRWGi9DyQ';
+      break;
+    default:
+      return next(err);
       break;
     }
 
@@ -263,6 +269,9 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
        'OPTICS AND PHOTONICS', '光電科學與工程學系'];
       ytID = 'YJYJxNJw7WY';
       break;
+    default:
+      return next(err);
+      break;
     }
   
   //工院
@@ -291,6 +300,9 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
        'ENGINEERING', '工學院',
        'INTERDISCIPLINARY PROGRAM OF ENGINEERING', '工學院學士班'];
       ytID = 'vOgESAbLXi8';
+      break;
+    default:
+      return next(err);
       break;
     }
   
@@ -321,6 +333,9 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
        'COMMUNICATION ENGINEERING', '通訊工程學系'];
       ytID = 'CiAm5GRBQtw';
       break;
+    default:
+      return next(err);
+      break;
     }
   
   //地科院
@@ -338,6 +353,9 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
        'ATMOSPHERIC SCIENCES', '大氣科學學系'];
       ytID = 'QmBkO6PdWvA';
       break;
+    default:
+      return next(err);
+      break;
     }
   
   //客院
@@ -348,6 +366,9 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
        'HAKKA STUDIES', '客家學院',
        'HAKKA LANGUAGE', '客家語文暨社會科學學系'];
       ytID = 'nxeJSxLf2_g';
+      break;
+    default:
+      return next(err);
       break;
     }
   
@@ -365,6 +386,9 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
        'HEALTH SCIENCES & TECHNOLOGY', '生醫理工學院',
        'BIOMEDICAL SCIENCES AND ENGINEERING', '生醫科學與工程學系'];
       ytID = 'L38BZiVPkVU';
+      break;
+    default:
+      return next(err);
       break;
     }
   }else{
@@ -545,6 +569,7 @@ router.get('/:device/interview/:collegeID/:subjectID', function (req, res, next)
   }
   */
 
+  /* 返回的路由 */
   var view = '';
   var back_name;
   if (req.params.device === "index_com") {
