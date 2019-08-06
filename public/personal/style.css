@@ -405,7 +405,7 @@ body {
   color: white;
 }
 
-@media only screen and (max-width:1200px) {
+@media only screen and (max-width:800px) {
   .title-box {
     display: none;
   }
@@ -495,6 +495,14 @@ body {
   .ask-link {
     width: 88%;
     height: calc((98% / 1197 * 745)+4%);
-    padding: 4% 2%;
+    padding: 2%;
+  }
+
+  .ask-link img {
+    width: 100%;
+  }
+
+  .ask-link p {
+    padding-left: 20%;
   }
 }
