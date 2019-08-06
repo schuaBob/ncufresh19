@@ -486,12 +486,12 @@ router.get('/comingsoon', function(req, res, next) {
     });
 });
 
-router.get('/login', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/index', {
-    title: '新生知訊網',
-    user: req.user,
-    error: req.flash('error')
-  });
+router.get('/login', checkUser.isAllowtoLogin, function(req, res, next) {
+    res.render('login/index', {
+        title: '新生知訊網',
+        user: req.user,
+        error: req.flash('error')
+    });
 });
 
 router.post('/login', checkUser.isAllowtoLogin, function(req, res, next) {
