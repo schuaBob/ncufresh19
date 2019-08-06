@@ -1,4 +1,5 @@
 <script>
+    var lastPicNum = 1;
     $(document).ready(() => {
         if (window.innerWidth > 768) {
             loadImg();
@@ -24,25 +25,23 @@
                 restart_animate(".four");
                 document.getElementById("mySidenav").style.height = "100%";
                 $("#mySidenav").removeClass("closed").addClass("opened");
+                
                 if (window.innerWidth > 768) {
-                    setTimeout(() => {///3sec later
-                        timerID = window.setInterval(function () {//every 7 sec
-                            if ($("#mySidenav").hasClass("opened")) {
-                                var randNum = Math.floor(Math.random() * 12) + 1;
-                                var $this = $('.randImg').eq(randNum - 1);
-                                $this.show()
-                                $this.velocity({ opacity: 1 }, 2000).then(() => {
-                                    setTimeout(() => {
-                                        $this.velocity({ opacity: 0 }, 2000).then(()=>{
-                                            $this.hide().removeClass('active');
-                                        });
-                                    }, 4000)
-
-                                })
-                                $this.addClass('active');
-                            }
-                        }, 8000);
-                    }, 3000)
+                    timerID = window.setInterval(function () {//every 7 sec
+                        var $this = $('.randImg').eq(lastPicNum - 1);
+                        $this.hide();
+                        var randNum = Math.floor(Math.random() * 12) + 1;
+                        $this = $('.randImg').eq(randNum - 1);
+                        $this.show()
+                        restart_animate("randimg-" + randNum);
+                        lastPicNum = randNum;
+                        
+                        setTimeout(() => {
+                            var spl = $('.randImg').eq(lastPicNum - 1).css("background-image").split("/");
+                            var len = spl.length;
+                            $("#myNavPics").css("background-image", 'url("/' + spl[len-3] + "/" + spl[len-2] + "/" + spl[len-1]);
+                        }, 3000);
+                    }, 5000); 
                 }
 
             } else if ($("#mySidenav").hasClass("opened")) {
@@ -99,6 +98,7 @@
         el.before(newone);
         $("." + el.attr("class") + ":last").remove();
     }
+
     function loadImg() {
         'use strict';
         // Page is loaded
@@ -111,6 +111,7 @@
             // Once image is loaded replace the src of the HTML element
             item.classList.remove('asyncImage');
             img.onload = () => {
+                console.log("loadsuc");
                 return item.nodeName === 'IMG' ?
                     item.src = path :
                     item.style.backgroundImage = `url(${path})`;
