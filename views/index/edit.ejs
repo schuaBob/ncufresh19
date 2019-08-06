@@ -42,6 +42,7 @@
                 <div class="form-group">
                     <label>Add Url</label>
                     <input type="text" class="form-control" name="comPic" placeholder="url">
+                    <input type="hidden" name="pk">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -244,11 +245,14 @@
                         <div class="card">
                             <img class="card-img-top" src="<%=commercial[i]['picPath']%>">
                             <div class="card-body">
-                                <a class="card-link" data-toggle="popover">連結</a>
+                                <% if (commercial[i]['picLink'] !== "") {%>
+                                <p><a href="<%= commercial[i]['picLink']%>" target="_blank"
+                                        rel="noopener noreferrer">Link to target</a></p>
+                                <%}%>
+                                <a class="card-link editpic" pk="<%= commercial[i]['pk']%>" data-toggle="popover">連結</a>
                                 <a href="/adpic/delete?pk=<%= commercial[i]['pk']%>" class="card-link">刪除</a>
                             </div>
                         </div>
-
                     </div>
                     <% } %>
                 </div>
@@ -260,15 +264,18 @@
         var loadFile = function (event) {
             $('#howMany').text(`上傳${event.target.files.length}個圖片`);
         };
+        $(function () {
+            $('a[data-toggle="popover"]').popover({
+                placement: "top",
+                html: true,
+                title: "Add Links",
+                content: $('.urlForm')
+            })
+        })
         $(document).ready(() => {
-            $(function () {
-                $('[data-toggle="popover"]').popover({
-                    placement: "top",
-                    html: true,
-                    container: 'body',
-                    title: "Add Links",
-                    content:$('.urlForm')
-                })
+            $('.editpic').click((e) => {
+                $('.urlForm input[name="pk"]').val(e.currentTarget.attributes.pk.value)
+                console.log($('.urlForm input[name="pk"]').val())
             })
             tinyMCE.get('editboard').setContent("");
             $('#news span').click(() => {

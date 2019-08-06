@@ -126,7 +126,8 @@ router.get('/index-edit',checkUser.isAdmin, (req, res, next) => {
     docCommercial.find({}, {
       _id: 0,
       pk: 1,
-      picPath: 1
+      picPath: 1,
+      picLink:1
     }).exec()
   ]).then((doc) => {
     var news = doc[0], calender = doc[1], commercial = doc[2];
@@ -155,6 +156,7 @@ router.post('/adpic', uploadHandler.array('commercialpic', 6), checkUser.isAdmin
     var desTemp = item.destination.split('/');
     var temp = {};
     temp['picPath'] = `/${desTemp[1]}/${desTemp[2]}/${item.originalname}`;
+    temp['picLink'] = "";
     return temp;
   })
   docCommercial.countDocuments((err, number) => {
@@ -198,8 +200,17 @@ router.get('/adpic/delete', checkUser.isAdmin, (req, res, next) => {
     res.redirect('/index-edit');
   }
 })
-router.post('/adpic/commercial_urls',checkUser.isAdmin,(req,res,next)=>{
-  
+router.post('/adpic/editUrl', checkUser.isAdmin, (req, res, next) => {
+  docCommercial.findOneAndUpdate({
+    pk: req.body.pk
+  }, {
+    $set: {
+      picLink: req.body.comPic
+    }
+  },(err)=>{
+    if(err){return next(err)}
+    res.redirect('/index-edit');
+  })
 })
 router.get('/schedule/:method',checkUser.isAdmin,  (req, res, next) => {
   switch (req.params.method) {
