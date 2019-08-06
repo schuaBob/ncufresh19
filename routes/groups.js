@@ -5,9 +5,9 @@ var community_data = require('../models/groups/community');
 var others_data = require('../models/groups/others');
 var student_data = require('../models/groups/student');
 var photo_data = require('../models/groups/photo');
+var index_count = 0;
 
-
-
+var identity = require('../routes/check-user')
 
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -20,7 +20,7 @@ var storage = multer.diskStorage({
 })
 var upload = multer({ storage: storage });
 
-router.post('/uploadimg', upload.array("img"), (req, res, next) => {
+router.post('/uploadimg', identity.isAdmin, upload.array("img"), (req, res, next) => {
 
     for (let i in req.files) {
 
@@ -45,8 +45,12 @@ router.post('/uploadimg', upload.array("img"), (req, res, next) => {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-    res.render('groups/index', { title: '新生知訊網｜系所社團', user: req.user });
+    index_count += 1;
+    res.render('groups/index', {
+        title: '新生知訊網｜系所社團',
+        user: req.user,
+        counter: index_count,
+    });
 });
 
 
@@ -109,7 +113,7 @@ router.get('/department/:college/:department', function(req, res, next) {
 
 
 })
-router.post('/add_department', function(req, res, next) {
+router.post('/add_department', identity.isAdmin, function(req, res, next) {
 
     console.log("add department")
     if (req.body.name !== null) {
@@ -136,7 +140,7 @@ router.post('/add_department', function(req, res, next) {
     }
 
 });
-router.post("/get_department", function(req, res, next) {
+router.post("/get_department", identity.isAdmin, function(req, res, next) {
     console.log("give me the god damn department")
     console.log(req.body.name)
     department_data.findOne({ name: req.body.name }).exec(function(err, data) {
@@ -148,7 +152,7 @@ router.post("/get_department", function(req, res, next) {
     });
 
 });
-router.post('/edit_department', function(req, res, next) {
+router.post('/edit_department', identity.isAdmin, function(req, res, next) {
     console.log("edit department")
 
     department_data.findOne({ name: req.body.name }, function(err, data) {
@@ -171,7 +175,7 @@ router.post('/edit_department', function(req, res, next) {
 
 
 });
-router.post('/delete_department', function(req, res, next) {
+router.post('/delete_department', identity.isAdmin, function(req, res, next) {
     console.log("delete department")
 
     department_data.deleteOne({ name: req.body.name }, function(err) {
@@ -220,7 +224,7 @@ router.get('/community/:community', function(req, res, next) {
 
 
 })
-router.post('/add_community', function(req, res, next) {
+router.post('/add_community', identity.isAdmin, function(req, res, next) {
     console.log("add community")
     if (req.body.name !== null) {
 
@@ -241,7 +245,7 @@ router.post('/add_community', function(req, res, next) {
     }
 
 });
-router.post("/get_community", function(req, res, next) {
+router.post("/get_community", identity.isAdmin, function(req, res, next) {
 
     console.log(req.body.name)
     community_data.findOne({ name: req.body.name }).exec(function(err, data) {
@@ -253,7 +257,7 @@ router.post("/get_community", function(req, res, next) {
     });
 
 });
-router.post('/delete_community', function(req, res, next) {
+router.post('/delete_community', identity.isAdmin, function(req, res, next) {
     console.log("delete community")
 
     community_data.deleteOne({ name: req.body.name }, function(err) {
@@ -267,7 +271,7 @@ router.post('/delete_community', function(req, res, next) {
 
 
 })
-router.post('/edit_community', function(req, res, next) {
+router.post('/edit_community', identity.isAdmin, function(req, res, next) {
     console.log("edit community")
 
     community_data.findOne({ name: req.body.name }, function(err, data) {
@@ -329,7 +333,7 @@ router.get('/others/:others', function(req, res, next) {
 
 })
 
-router.post('/add_others', function(req, res, next) {
+router.post('/add_others', identity.isAdmin, function(req, res, next) {
     console.log("add others")
 
     if (req.body.name !== null) {
@@ -352,7 +356,7 @@ router.post('/add_others', function(req, res, next) {
     }
 
 });
-router.post("/get_others", function(req, res, next) {
+router.post("/get_others", identity.isAdmin, function(req, res, next) {
 
     console.log(req.body.name)
     others_data.findOne({ name: req.body.name }).exec(function(err, data) {
@@ -364,7 +368,7 @@ router.post("/get_others", function(req, res, next) {
     });
 
 });
-router.post('/delete_others', function(req, res, next) {
+router.post('/delete_others', identity.isAdmin, function(req, res, next) {
     console.log("delete others")
 
     others_data.deleteOne({ name: req.body.name }, function(err) {
@@ -378,7 +382,7 @@ router.post('/delete_others', function(req, res, next) {
 
 
 })
-router.post('/edit_others', function(req, res, next) {
+router.post('/edit_others', identity.isAdmin, function(req, res, next) {
     console.log("edit others")
     console.log(req.body.intro)
 
@@ -451,7 +455,7 @@ router.get('/association/:content', function(req, res, next) {
 
 
 })
-router.post('/edit_association', function(req, res, next) {
+router.post('/edit_association', identity.isAdmin, function(req, res, next) {
     student_data.find({}).exec(function(err, data) {
         if (data.length === 0) { //firstdata
             console.log(req.body.intro);

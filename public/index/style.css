@@ -482,6 +482,10 @@ main {
 
 /* 電腦版 */
 @media only screen and (min-width: 1025px) {
+    .news-line:hover {
+        background-color: #fff9dc;
+        cursor: pointer;
+    }
     .switch {
         display: none;
     }
@@ -784,10 +788,7 @@ main {
     background-image: none;
 }
 
-.news-line:hover {
-    background-color: #fff9dc;
-    cursor: pointer;
-}
+
 
 @keyframes scaleUpAnimation {
     0% {

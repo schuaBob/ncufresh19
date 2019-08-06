@@ -1,5 +1,7 @@
 body {
   background-color: #fff9dc;
+  -moz-user-select : none;
+  -webkit-user-select: none;
 }
 
 .title-box {
@@ -69,6 +71,7 @@ body {
   line-height: 5vh;
   position: absolute;
   top: calc(160px + 13vh);
+  cursor: pointer;
 }
 
 #game {
@@ -273,6 +276,10 @@ body {
   padding: 0vw;
 }
 
+.askHover {
+  cursor: pointer;
+}
+
 .askHover:hover {
   background-color: #767171;
 }
@@ -430,6 +437,7 @@ body {
   .upload-icon {
     left: calc(60vw + 80px);
     top: 165px;
+    cursor: pointer;
   }
 
   .links {
