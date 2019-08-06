@@ -35,10 +35,6 @@ body {
   background-color: #fff9dc;
 }
 
-.p_bg {
-  background-color: rgb(251,217,185);
-}
-
 /*----------------------------------------------------------------*/
 /*show文字自動縮排*/
 #show_content{
@@ -226,6 +222,10 @@ body {
     cursor: pointer;
   }
 
+  .p_bg {
+    background-color: rgb(251,217,185);
+  }
+
   .identity div {
     float: left;
   }
@@ -262,6 +262,10 @@ body {
     background-color: rgb(251,217,185);
     border-radius: 3px;
     cursor: pointer;
+  }
+  
+  .p_bg {
+    background-color: rgb(251,217,185);
   }
 
   .modal-dialog{
