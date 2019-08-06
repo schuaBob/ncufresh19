@@ -51,7 +51,7 @@ main {
         z-index: 500;
         width: 220px;
         left: calc(50vw - 110px);
-        bottom: 70vh;
+        bottom: calc(50vh + 120px);
     }
 
     #indexPage1 {
@@ -182,7 +182,7 @@ main {
         margin-left: 5%;
         margin-top: 2vh;
         height: 95%;
-        border: 1px solid #0163b0;
+        border: 0px solid #0163b0;
         background-color: lightblue;
         border-radius: 37px;
         padding: 15px;
@@ -252,6 +252,10 @@ main {
     }
 
     #index3crab {
+        display: none;
+    }
+
+    .myinvisible {
         display: none;
     }
 }
@@ -383,9 +387,9 @@ main {
     #indexLogo {
         position: absolute;
         z-index: 500;
-        width: 350px;
-        left: calc(50vw - 175px);
-        top: 3.5vw;
+        width: 400px;
+        left: calc(50vw - 200px);
+        bottom: calc(50vh + 100px);
     }
 
     #news {
@@ -512,7 +516,7 @@ main {
         margin-left: 17.5%;
         margin-top: 7%;
         height: 73%;
-        border: 1px solid #0163b0;
+        border: 0px solid #0163b0;
         background-color: lightblue;
         border-radius: 37px;
         padding: 15px;

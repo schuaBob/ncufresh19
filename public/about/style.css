@@ -239,11 +239,13 @@ body {
       display: block;
       font-size:2rem;
       text-align: center;
+      margin-bottom: 2%;
     }
     .title{
       display: none;
     }
     .introText{
+      margin-top:2%;
       font-size: 1.2rem;
     }
     .main{
@@ -271,6 +273,30 @@ body {
     }
     .main{
       height:60vh;
+    }
+    #img_all{
+      content:url("全體.jpg");
+      width: 100%;
+    }
+    #img_execute{
+      content:url("執行.jpg");
+      width: 100%;
+    }
+    #img_planning{
+      content:url("企劃.jpg");
+      width: 100%;
+    }
+    #img_programming{
+      content:url("程設.jpg");
+      width: 100%;
+    }
+    #img_video{
+      content:url("影音.jpg");
+      width: 100%;
+    }
+    #img_art{
+      content:url("美工.jpg");
+      width: 100%;
     }
   }
 /* 手機橫放的通用設計 */
@@ -319,7 +345,7 @@ body {
     display: block;
     font-size: 6.3vw;
     text-align: center;
-    margin: 1vh auto;
+    margin: 1.2vh auto;
     /* font-size: 3.8vw; */
   }
   .content{
@@ -344,5 +370,23 @@ body {
   }
   .rightSideInner{
     position: absolute;
+  }
+  #img_all{
+    content:url("全體.jpg");
+  }
+  #img_execute{
+    content:url("執行.jpg");
+  }
+  #img_planning{
+    content:url("企劃.jpg");
+  }
+  #img_programming{
+    content:url("程設.jpg");
+  }
+  #img_video{
+    content:url("影音.jpg");
+  }
+  #img_art{
+    content:url("美工.jpg");
   }
 }
