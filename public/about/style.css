@@ -184,7 +184,7 @@ body {
 .title {
   text-align: left;
   font-size: 2.7vw;
-  margin: 8vh 0;
+  margin: 8vh 0 10vh;
   color:#0D4966;
 }
 
@@ -237,9 +237,9 @@ body {
       display: block;
     }
     .photo{
-      /* height: auto;
+      height: auto;
       width: 100%;
-      position: relative; */
+      position: relative;
     }
     .mobileTitle{
       display: block;
@@ -275,9 +275,12 @@ body {
     }
     .photo{
       /* width: 80%;
-      height: auto;
-      width: 70vw;
       height: auto; */
+      width: 70vw;
+      height: auto;
+    }
+    .intro{
+      width: auto;
     }
     .main{
       height:60vh;
@@ -342,8 +345,11 @@ body {
     height:60vh;
   }
   .photo{
-    /* height: auto;
-    width: 100%; */
+    height: auto;
+    width: 100%;
+  }
+  .intro{
+    width: auto;
   }
   ._card{
     height: auto;
