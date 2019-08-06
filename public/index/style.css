@@ -1,3 +1,141 @@
+/* test */
+/* 手機版 */
+@media only screen and (max-width: 768px) {
+    #loginHref {
+        position: absolute;
+        left: 10px;
+        bottom: 40px;
+        width: 135px;
+        height: 50px;
+        text-decoration: none;
+    } 
+
+    #topHref {
+        position: absolute;
+        right: 20px;
+        bottom: 25px;
+        width: 50px;
+        height: 50px;
+    }
+
+    #topWord {
+        position: relative;
+        left: 20%;
+        bottom: 38px;
+        width: 40px;
+        color: wheat;
+    }
+}
+
+/* 電腦版 */
+@media only screen and (min-width: 768px) {
+    #loginHref {
+        position: absolute;
+        right: 120px;
+        bottom: 25px;
+        width: 140px;
+        height: 50px;
+        opacity: 0.8;
+        text-decoration: none;
+        z-index: 1;
+    } 
+    #logout {
+        position: absolute;
+        right: 120px;
+        bottom: 25px;
+        width: 140px;
+        height: 50px;
+        opacity: 0;
+        text-decoration: none;
+        background-color: black;
+        color: white;
+        z-index: 0;
+        transition: .5s ease;
+        border-radius: 250px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding-top: 15px;
+    }
+    #topHref {
+        position: absolute;
+        right: 40px;
+        bottom: 25px;
+        width: 50px;
+        height: 50px;
+        opacity: 0.8;
+    }
+
+    #topWord {
+        position: relative;
+        left: 20%;
+        bottom: 38px;
+        width: 85px;
+        color: wheat;
+    }
+}
+
+#loginHref:hover {
+    animation-name: loginAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+#big:hover  #logout {
+    transition: translate(20px);
+    opacity: 0.8; 
+    background-color: black;
+    bottom: 80px;
+}
+@keyframes loginAnimation{
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+#loginBtn {
+    position: relative;
+    width: 135px;
+    height: 50px;
+}
+
+#loginWord {
+    position: relative;
+    left: 40%;
+    bottom: 38px;
+    width: 85px;
+    color: wheat;
+}
+
+#topHref:hover {
+    cursor: pointer;
+    animation-name: topAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes topAnimation{
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+#topBtn {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+
+
 #inddexPage1,
 #indexPage2,
 #indexPage3 {
