@@ -68,27 +68,26 @@
             編輯/刪除系所
         </button>
             </div>
-            <%}%>
 
-                <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/groups/add_department" method="post">
-                                    <div class="form-group">
-                                        <label for="name" class="col-form-label">系所名稱</label>
-                                        <input type="text" class="form-control" id="name" name="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- 選擇類別 -->
-                                        <label for="type" class="form-control">系所學院</label>
-                                        <select name="type" id="type" class="form-control">
+                        </div>
+                        <div class="modal-body">
+                            <form action="/groups/add_department" method="post">
+                                <div class="form-group">
+                                    <label for="name" class="col-form-label">系所名稱</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <!-- 選擇類別 -->
+                                    <label for="type" class="form-control">系所學院</label>
+                                    <select name="type" id="type" class="form-control">
                                 <option value="1">文學院</option>
                                 <option value="2">理學院</option>
                                 <option value="3">工學院</option>
@@ -98,59 +97,59 @@
                                 <option value="7">地球科學學院</option>
                                 <option value="8">生醫理工學院</option>
                             </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="en_name" class="col-form-label">系所英文名稱</label>
-                                        <input type="text" class="form-control" id="en_name" name="en_name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="de_link" class="col-form-label">系所網站連結</label>
-                                        <input type="text" class="form-control" id="de_link" name="de_link">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="stu_link" class="col-form-label">系學會連結</label>
-                                        <input type="text" class="form-control" id="stu_link" name="stu_link">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="qna_link" class="col-form-label">系上問答連結</label>
-                                        <input type="text" class="form-control" id="qna_link" name="qna_link">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="en_name" class="col-form-label">系所英文名稱</label>
+                                    <input type="text" class="form-control" id="en_name" name="en_name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="de_link" class="col-form-label">系所網站連結</label>
+                                    <input type="text" class="form-control" id="de_link" name="de_link">
+                                </div>
+                                <div class="form-group">
+                                    <label for="stu_link" class="col-form-label">系學會連結</label>
+                                    <input type="text" class="form-control" id="stu_link" name="stu_link">
+                                </div>
+                                <div class="form-group">
+                                    <label for="qna_link" class="col-form-label">系上問答連結</label>
+                                    <input type="text" class="form-control" id="qna_link" name="qna_link">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
 
-                                </form>
-                            </div>
-
+                            </form>
                         </div>
+
                     </div>
                 </div>
+            </div>
 
 
-                <div class="modal fade" id="edit_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">edit&delete dedartment</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal fade" id="edit_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">edit&delete dedartment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="select_department_name" class="col-form-label">系所名稱</label>
-                                        <select name="name" id="select_department_name" class="form-control">
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="select_department_name" class="col-form-label">系所名稱</label>
+                                    <select name="name" id="select_department_name" class="form-control">
                                 <% for(var i in department) {%>
     <option value="<%= department[i].name%>"><%=department[i].name%></option>
     <%}%>
                                         </select>
-                                    </div>
-                                    <div class="form-group">
+                                </div>
+                                <div class="form-group">
 
-                                        <label for="edit_type" class="form-control">系所學院</label>
-                                        <select name="type" id="edit_type" class="form-control">
+                                    <label for="edit_type" class="form-control">系所學院</label>
+                                    <select name="type" id="edit_type" class="form-control">
                                         <option value="1">文學院</option>
                                 <option value="2">理學院</option>
                                 <option value="3">工學院</option>
@@ -160,35 +159,39 @@
                                 <option value="7">地球科學學院</option>
                                 <option value="8">生醫理工學院</option>
                                     </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit_en_name" class="col-form-label">系所英文名稱</label>
-                                        <input type="text" class="form-control" id="edit_en_name" name="en_name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit_de_link" class="col-form-label">系所網站連結</label>
-                                        <input type="text" class="form-control" id="edit_de_link" name="de_link">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit_stu_link" class="col-form-label">系學會連結</label>
-                                        <input type="text" class="form-control" id="edit_stu_link" name="stu_link">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit_qna_link" class="col-form-label">系上問答連結</label>
-                                        <input type="text" class="form-control" id="edit_qna_link" name="qna_link">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button id="edit_department_submit" class="btn btn-primary">Save changes</button>
-                                <button id="delete_department_submit" class="btn btn-danger">Delete</button>
-                            </div>
-
-
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit_en_name" class="col-form-label">系所英文名稱</label>
+                                    <input type="text" class="form-control" id="edit_en_name" name="en_name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit_de_link" class="col-form-label">系所網站連結</label>
+                                    <input type="text" class="form-control" id="edit_de_link" name="de_link">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit_stu_link" class="col-form-label">系學會連結</label>
+                                    <input type="text" class="form-control" id="edit_stu_link" name="stu_link">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit_qna_link" class="col-form-label">系上問答連結</label>
+                                    <input type="text" class="form-control" id="edit_qna_link" name="qna_link">
+                                </div>
+                            </form>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="edit_department_submit" class="btn btn-primary">Save changes</button>
+                            <button id="delete_department_submit" class="btn btn-danger">Delete</button>
+                        </div>
+
+
                     </div>
                 </div>
+            </div>
+
+            <%}%>
+
+
                 <%_ if(department_type!==null){ -%>
 
                     <div class=".mob_de_type" style="display: none">
@@ -214,7 +217,7 @@
 
                     <%}%>
                         <%_ if(department_this!==null){ -%>
-                            <button class="snap_so btn btn-light btn-circle"></button>
+                            <img class="snap_so infinity" src="/groups/jewels/soul.png">
                             <div class="de-info">
                                 <div class="department">
                                     <%=department_this.name%>
@@ -260,15 +263,16 @@
                                 </div>
 
                                 <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-                                <img src="/groups/系所.PNG" class=backgroundimg>
+                                <img src="/groups/系所.PNG" class="backgroundimg" id="de_pic">
                                 <img src="/groups/snap.gif" class="snap">
                                 <button class="snap_btn btn btn-danger ">SNAP!!!</button>
+                                <img class="snap_r infinity" src="/groups/jewels/real.png">
+                                <img class="snap_s infinity" src="/groups/jewels/blue.png">
+                                <img class="snap_t infinity" src="/groups/jewels/time.png">
+                                <img class="snap_p infinity" src="/groups/jewels/power.png">
+                                <img class="snap_m infinity" src="/groups/jewels/yellow.png">
 
-                                <button class="snap_r btn alert-danger btn-circle"></button>
-                                <button class="snap_s btn alert-primary btn-circle"></button>
-                                <button class="snap_t btn alert-success btn-circle"></button>
-                                <button class="snap_p btn btn-secondary btn-circle"></button>
-                                <button class="snap_m btn alert-warning btn-circle"></button>
+
 
 
 
@@ -277,7 +281,7 @@
 
                                 <script src="/groups/js/groups.js"></script>
 
-
+                                <script src="fool.min.js"></script>
                                 <% include ../layouts/js %>
 
 </body>

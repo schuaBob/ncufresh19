@@ -66,12 +66,13 @@ $(document).ready(function() { //顯示或更換顯示學院
     } else if (arr[4] === "others") {
         var others_name = decodeURI(arr[arr.length - 1])
         console.log(others_name + "getbold");
-
+        $("#" + others_name).css("font-weight", "bold")
 
     } else if (arr[4] === "association") {
         var content = arr[arr.length - 1]
         console.log(content)
         $("#" + content).css("font-weight", "bold")
+        $("." + content).css("font-weight", "bold")
 
     }
     ////////////////////////////////////////////////////////手機版///////////////////////////////////////////////////////////////
@@ -93,7 +94,7 @@ $(document).ready(function() { //顯示或更換顯示學院
 
         }
     });
-    if (width <= 600) {
+    if (width <= 768) {
         if (arr[4] === "department") {
             if (arr.length === 5) {
                 $(".sidebar").show()
@@ -193,7 +194,7 @@ $(document).ready(function() { //顯示或更換顯示學院
         console.log("snap")
         $(this).css("display", "none")
         $(".snap").css("display", "flex")
-
+        $(".sidebar").fool('flash')
 
 
     })
