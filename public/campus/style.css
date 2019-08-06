@@ -678,6 +678,14 @@ li {
   .show3D {
     top: 50%;
   }
+
+  .MAP2D {
+    max-height: 300px;
+  }
+
+  .SAM {
+    max-height: 300px;
+  }
 }
 
 
