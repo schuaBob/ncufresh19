@@ -690,7 +690,7 @@ function open_bird() {
       if (rnd < 2) {
         animal_list.push(new bird(0, false));
       }
-       else if(rnd<4){
+       else if(rnd<3){
         animal_list.push(new fish(6, false));
       }
     }
