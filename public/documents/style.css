@@ -20,7 +20,6 @@ body::-webkit-scrollbar {
 
 body {
   -ms-overflow-style: none;
-  height: 100%;
   width: calc(100vw + 18px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -157,18 +156,16 @@ body {
 
 /*--------------------------選單--------------------------*/
 .sidenav {
-  height: 75vh;
+  height: calc(100vh - 145px);
   width: 14vw;
   position: absolute;
   z-index: 1;
-  padding-top: 2vh;
   left: 0;
   padding-left: 3.5vw;
 }
 
 .sidenav2 {
-  padding-top: 2vh;
-  height: 75vh;
+  height: calc(100vh - 145px);
   width: 17vw;
   position: absolute;
   left: 14vw;
@@ -178,9 +175,7 @@ body {
   color: rgb(32, 56, 100);
   display: block;
   font-size: 1.6vw;
-  font-weight: bold;
-  padding-top: 1vh;
-  padding-bottom: 1vh;
+  margin: 0;
 }
 
 .sidenav2 p:hover {
@@ -213,7 +208,7 @@ body {
   background-color: #FFFDF1;
   position: absolute;
   width: 67vw;
-  height: 88vh;
+  height: calc(100vh - 60px);
   right: 3px;
   top:60px;
   margin-left: 1vw;
@@ -363,9 +358,7 @@ body {
   color: rgb(13, 73, 102);
   display: block;
   font-size: 1.7vw;
-  font-weight: bold;
-  padding-top: 1vh;
-  padding-bottom: 1vh;
+  margin: 0;
   }
 
   .title {
@@ -449,16 +442,17 @@ body {
   }
 
   .bg {
-    height: 88vh;
+    height: calc(var(--vh,1vh)*100 - 60px);
     background-size: 100%;
     background-image:url("手機背景.png");
     background-repeat: no-repeat;  
-    background-position: 0 bottom;
+    background-position:bottom;
+    background-color: rgba(255, 255, 255, .3);
+    background-blend-mode: lighten;
   }
 
   .choose {
-    height: 88vh;
-    background-color: rgba(255, 255, 255, .3)
+    height: calc(var(--vh,1vh)*100 - 60px);
   }
 
   .fade {
@@ -472,21 +466,16 @@ body {
 
   .bar {
     width: 100%;
-    height: 5vh;
     text-align: center;
-  }
-
-  .options {
-    margin-top: 50px;
+    margin: 0
   }
 
   .p_option {
     font-weight: 500;
     color: rgb(32, 56, 100);
-    height: 7vh;
     font-size: 4vw;
     padding-left: 32vw;
-    margin-top: 1.5vh;
+    margin: 0;
     cursor: pointer;
   }
 
@@ -498,12 +487,12 @@ body {
 
   /*大學生*/
   .undergraduate {
-    margin: 3vh 0vw;
+    padding: 3vh 0vw;
   }
 
   .link_und {
     width: 20vw;
-    margin: 1vh 4vw;
+    margin: 0 4vw;
     font-size: 5vw;
     text-decoration: none;
     color: black;
@@ -613,10 +602,6 @@ body {
     position: absolute;
   }
 
-  .options {
-    margin-top: 5vh;
-  }
-
   .modal {
     top:60px;
     background-color: white;
@@ -673,10 +658,6 @@ body {
     color: white;
   }
 
-  .bg {
-    background-size: 0%;
-  }
-
   .fade {
     display: none;
   }
@@ -688,34 +669,33 @@ body {
 
   .bar {
     width: 100%;
-    height: 5vh;
+    
     text-align: center;
   }
 
   .options {
-    height: 70vh;
-    margin-top: 8.5vw;
+    height: calc(var(--vh,1vh)*100 - var(--vh,1vh)*3 - 9vw);
     overflow-y: scroll;
   }
 
   .p_option {
+    padding-left: 40px;
     font-weight: 500;
     color: rgb(32, 56, 100);
-    height: 8vh;
     font-size: 6.5vw;
     padding-left: 22vw;
-    margin-top: 1.5vh;
+    margin-right: 0;
     cursor: pointer;
   }
 
   /*大學生*/
   .undergraduate {
-    margin: 3vh 0vw;
+    padding: 3vh 0vw;
   }
 
   .link_und {
     width: 20vw;
-    margin: 1vh 4vw;
+    margin: 0 4vw;
     font-size: 6.3vw;
     text-decoration: none;
     color: black;
@@ -812,7 +792,6 @@ body {
 
   .bar {
     width: 100%;
-    height: 9.5vh;
     text-align: center;
   }
 
@@ -828,7 +807,7 @@ body {
 
   .link_und {
     width: 20vw;
-    margin: 1vh 4vw;
+    margin: 0 4vw;
     font-size: 5.3vw;
     text-decoration: none;
     color: black;
