@@ -463,7 +463,7 @@ main {
 
 /* 電腦版 */
 @media only screen and (min-width: 1025px) {
-    .switchBtn {
+    .switch {
         display: none;
     }
 
