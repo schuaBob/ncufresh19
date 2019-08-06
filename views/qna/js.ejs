@@ -112,6 +112,11 @@
         }
       });
     });
+    $("#searchImg").on("click",function(){
+      $("tbody").attr("search", "true");
+      $("tbody").empty();
+      search(c, sort);
+    });
     $("#deleteBtn").on("click",function(){
       $.ajax({
         type: "POST",
