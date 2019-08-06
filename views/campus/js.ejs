@@ -43,7 +43,12 @@
                 success: function (data) {
                     console.log(data.Element_Intro);
                     $('#indexmodal .modal-title').text(data.Element_Name)
-                    $('#indexmodalp .p').html(data.Element_Intro)
+                    $('#indexmodalp .p').html(data.Element_Intro)                    
+                    if(data.Element_Intro == '<p></p>') $('#indexmodalp').hide();
+                    if(data.Intropic.length == 1){
+                        $('.next').hide();
+                        $('.pre').hide();
+                    }
                     for (let i = 0; i < data.Intropic.length; i++) {
                         $('.carousel-indicators').append(
                             "<li data-target='#carouselExampleIndicators' data-slide-to='" +
@@ -412,6 +417,11 @@
                     console.log(data);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
+                    if(data.Element_Intro == '<p></p>') $('#indexmodalp').hide();
+                    if(data.Intropic.length == 1){
+                        $('.next').hide();
+                        $('.pre').hide();
+                    }
                     for (let i = 0; i < data.Intropic.length; i++) {
                         $('.carousel-indicators').append(
                             "<li data-target='#carouselExampleIndicators' data-slide-to='" +
