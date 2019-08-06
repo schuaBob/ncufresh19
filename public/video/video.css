@@ -71,6 +71,8 @@ a:visited {
 }
 
 .back {
+  width: 70px;
+  height: auto;
   margin-left: 17px; 
   display: inline-block;
 }
