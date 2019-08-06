@@ -85,18 +85,23 @@ router.get('/', (req, res, next) => {
     }).exec()
   ]).then((result) => {
     var news = result[0],
-      commercial = result[1],
-      calender = result[2];
+        commercial = result[1],
+        calender = result[2];
     var newsDocs = news.filter((item) => {
       var TimeNow = new Date().getTime() + 28800000;
       var pass = (TimeNow - new Date(item.date).getTime()) / (1000 * 60 * 60 * 24)
       if (pass > 0) {
-        item.screenTime = `${Math.abs(pass.toFixed(0))}天前`;
+        //item.screenTime = `${Math.abs(pass.toFixed(0))}天前`;
+        item.screenTime = item.date.getFullYear() + "/" + (item.date.getMonth()+1) + "/" + item.date.getDate();
       }
       return pass > 0
     })
+
+    newsDocs.sort(function(a, b) {
+      return a.date > b.date ? -1 : 1;
+    });
+
     var catePicArr = ["重要通知", "重要通知", "學校活動", "課業相關", "生活日常", "網站問題", "學生組織"];
-    console.log(`User:${req.user}`);
 
     calender = calender.sort(function (a, b) {
       if (a.month !== b.month) {

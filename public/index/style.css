@@ -456,7 +456,7 @@ main {
         position: absolute;
         z-index: 500;
         width: 25%;
-        left: 5%;
+        left: 8%;
     }
 
     #pickMonth .container1 {
@@ -505,19 +505,20 @@ main {
 
     #index3start {
         position: absolute;
-        right: 9vw;
+        top: 1vh;
+        right: 8vw;
         width: 12vw;
         z-index: 4000;
     }
 
     #board-detail {
-        width: 65%;
+        width: 70%;
         margin-right: 17.5%;
-        margin-left: 17.5%;
+        margin-left: 12.5%;
         margin-top: 7%;
         height: 73%;
         border: 0px solid #0163b0;
-        background-color: lightblue;
+        background-color: rgba(173, 216, 230, .7);
         border-radius: 37px;
         padding: 15px;
         position: absolute;
@@ -535,7 +536,7 @@ main {
         display: inline-block;
         top: 1vh;
         margin-left: 0;
-        margin-right: 6%;
+        margin-right: 4%;
     }
 
     .prev,

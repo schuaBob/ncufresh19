@@ -71,7 +71,7 @@ var upload = multer({
   storage: storage
 });
 
-router.post('/editPicture', upload.single('picture'), function (req, res, next) {
+router.post('/editPicture', checkUser.isLoggedIn, upload.single('picture'), function (req, res, next) {
   var fileName = "public/personal/profile-photo/" + req.user.id + ".png";
   console.log(req.user.id + " upload picture");
   fs.access(fileName, fs.constants.F_OK | fs.constants.W_OK, (err) => {
