@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #0D4966;
 }
 #main {
   position: relative;
@@ -117,7 +117,7 @@ body {
 }
 
 .option {
-  font-size: 3vh;
+  font-size: 1.5vw;
 }
 
 .option ul {
@@ -167,56 +167,103 @@ body {
 
 ._card {
   height: 69vh;
-  text-align: center;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.content{
+  display: flex;
+  height: 90%;
+  width:96%;
+}
 .title {
-  display: block;
-  font-size: 2em;
-  position: relative;
-  top: 2%;
-  height: 10%;
+  text-align: center;
+  font-size: 2.7vw;
+  margin:3vh 0;
+  color:#0D4966;
 }
 
 .intro {
-  display: block;
-  width: 80%;
-  text-align: left;
   position: relative;
-  bottom: -3%;
-  margin: auto;
 }
 
 .photo {
-  position: relative;
-  top: 2%;
   width: auto;
-  height: 70%;
+  height: 100%;
 }
+.introText{
+  font-size: 1.3vw;
+  margin:0 1vh;
+}
+
 #mobileOption{
   display: none;
 }
+.mobileTitle{
+  display: none;
+  color:#0D4966;
+}
+@media only screen 
+  and (min-device-width : 768px) 
+  and (max-device-width : 1024px) 
+  and (orientation : landscape) {
+    .content{
+      height: 72%;
+      width: 93%;
+    }
+    .option li{
+      margin-bottom:25%;
+    }
+  }
 /* ipad 直立設計*/
 @media only screen 
   and (min-device-width : 768px) 
   and (max-device-width : 1024px) 
   and (orientation : portrait)  {
-    .option{
-      font-size:1.3rem;
-      position: absolute;
-      top: 12%;
-      width: 100%;
+    html{
+      overflow-x: hidden;
     }
-    .leftSide{
-      width:27%;
+    body{
+      overflow-x: hidden;
+    } 
+    .content{
+      display: block;
+    }
+    .photo{
+      height: auto;
+      width: 100%;
       position: relative;
     }
-    .rightSide{
-      width:73%;
+    .mobileTitle{
+      display: block;
+      font-size:2rem;
+      text-align: center;
     }
-    .rightSideInner{
-      width:100%;
+    .title{
+      display: none;
+    }
+    .introText{
+      font-size: 1.2rem;
+    }
+    .main{
+      height:63vh;
+    }
+    ._card{
+      height:63vh;
+    }
+    .option{
+      font-size:1.2rem;
+      margin-top:48%;
+    }
+    .option li{
+      margin-bottom:26%;
+    }
+    .rightSide{
+      width:77%;
+    }
+    .leftSide{
+      width: 23%;
     }
     .photo{
       width: 80%;
@@ -230,19 +277,14 @@ body {
 @media only screen 
   and (max-width:900px)
   and (orientation : landscape){
-    .title{
-      font-size:5vh;
+    html{
+      overflow-x: hidden;
     }
-    .main{
-      top:0;
-      height: auto;
-    }
-    .photo{
-      top:12px;
-      height: 60%;
-    }
-    .intro{
-      bottom:-6%;
+    body{
+      overflow-x: hidden;
+    } 
+    .option ul{
+      margin:10px 0;
     }
   }
 /* 手機直立的通用設計 */
@@ -264,11 +306,30 @@ body {
   }
   .photo{
     height: auto;
-    width: 90%;
+    width: 100%;
   }
   ._card{
-    height: 70vh;
+    height: auto;
     position: relative;
+  }
+  .title{
+    display: none;
+  }
+  .mobileTitle{
+    display: block;
+    font-size: 6.3vw;
+    text-align: center;
+    margin: 1vh auto;
+    /* font-size: 3.8vw; */
+  }
+  .content{
+    display: block;
+    position: relative;
+    height: 60vh;
+  }
+  .introText{
+    font-size: 3.6vw;
+    margin:auto;
   }
   .main{
     top:3vh;
