@@ -23,10 +23,12 @@
             <span id="life">中大生活</span>
         </div>
     </div>
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal"
+    <%_ if (user && user.role === 'admin'){ -%>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contentModal"
         style="position: absolute; z-index: 1;">新增/修改內容</button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#timeModal"
-        style="position: absolute; left: 150px; z-index: 1;">新增/修改時間軸</button> -->
+        style="position: absolute; left: 150px; z-index: 1;">新增/修改時間軸</button>
+    <%_ }-%>
     <main id="main">
         <div class="backgroundImg">
             <img class="bgImage" src="燈塔.png">
