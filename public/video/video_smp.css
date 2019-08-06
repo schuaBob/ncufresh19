@@ -1,6 +1,9 @@
 body {
   height: 100vh;
   background-color: #fff9dc;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 
 main {

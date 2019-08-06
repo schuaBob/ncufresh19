@@ -176,7 +176,7 @@ router.get('/index-edit', checkUser.isAdmin, (req, res, next) => {
     })
 });
 
-router.post('/adpic', uploadHandler.array('commercialpic', 6), checkUser.isAdmin, (req, res, next) => {
+router.post('/adpic', checkUser.isAdmin, uploadHandler.array('commercialpic', 6), (req, res, next) => {
     var picArray = req.files.map((item) => {
         var desTemp = item.destination.split('/');
         var temp = {};
