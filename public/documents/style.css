@@ -178,13 +178,6 @@ body {
   margin: 0;
 }
 
-.sidenav2 p:hover {
-  background-color: rgb(251,217,185);
-  border-radius: 3px;
-  cursor: pointer;
-  
-}
-
 .page_now {
   border-radius: 3px;
   background-color: rgb(251,217,185);
@@ -227,6 +220,12 @@ body {
 
 /*------------------------------RWD----------------------------------*/
 @media only screen and (min-width: 1400px) {
+  .sidenav2 p:hover {
+    background-color: rgb(251,217,185);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
   .identity div {
     float: left;
   }
@@ -258,7 +257,12 @@ body {
 
 }
 
-@media only screen and (min-width: 980px) and (max-width: 1400px)  {
+@media only screen and (min-width: 1025px) and (max-width: 1400px)  {
+  .sidenav2 p:hover {
+    background-color: rgb(251,217,185);
+    border-radius: 3px;
+    cursor: pointer;
+  }
 
   .modal-dialog{
     overflow-y: initial !important
@@ -300,7 +304,8 @@ body {
 
 }
 
-@media only screen and (min-width: 768px) and (max-width: 980px)  {
+@media only screen and (min-width: 768px) and (max-width: 1025px)  {
+  
 
   .modal-dialog{
     overflow-y: initial !important
@@ -374,8 +379,6 @@ body {
   }
 
 }
-
-
 
  @media only screen and (max-width: 768px)  {
 
@@ -749,7 +752,6 @@ body {
     overflow-x: scroll;
     overflow-y: scroll;
   }
-
 }
 
  @media only screen and (max-device-width: 768px) and (orientation:landscape)  {
