@@ -152,7 +152,7 @@
                             };
 
                             $('.mapmove').removeClass('clicked')
-                            if ($(window).width() > 770 || orient() == "landscape") {
+                            if ($(window).width() > 770 || window.matchMedia("(orientation:landscape)")) {
                                 $('.sailor1').stop().velocity({
                                     opacity: 1,
                                     translateX: '1rem'
@@ -192,7 +192,7 @@
                                 'margin-right': '26.5%'
                             };
                             $('.mapmove').addClass('clicked')
-                            if ($(window).width() > 770 || orient() == "landscape") {
+                            if ($(window).width() > 770 || window.matchMedia("(orientation:landscape)")) {
                                 $('.sailor1').stop().velocity({
                                     opacity: 0,
                                     translateX: '-1rem'
@@ -233,7 +233,7 @@
                             'margin-left': '4.5%',
                             'margin-right': '26.5%'
                         };
-                        if ($(window).width() > 770 || orient() == "landscape") {
+                        if ($(window).width() > 770 || window.matchMedia("(orientation:landscape)")) {
                             $('.sailor1').stop().velocity({
                                 opacity: 0,
                                 translateX: '-1rem'
@@ -348,7 +348,7 @@
                         'hide')
             })
 
-            if ($(window).width() > 770 || orient() == "landscape") {
+            if ($(window).width() > 770 || window.matchMedia("(orientation:landscape)")) {
                 $('.sailor1').stop().velocity({
                     opacity: 1,
                     translateX: '1rem'
@@ -553,34 +553,4 @@
             scale: 1
         }, 100)
     })
-
-    function getMobileOperatingSystem() {
-        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-        // Windows Phone must come first because its UA also contains "Android"
-        if (/windows phone/i.test(userAgent)) {
-            return "Windows Phone";
-        }
-
-        if (/android/i.test(userAgent)) {
-            return "Android";
-        }
-
-        // iOS detection from: http://stackoverflow.com/a/9039885/177710
-        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            return "iOS";
-        }
-
-        return "unknown";
-    }
-
-    function orient() {
-        if (window.orientation == 90 || window.orientation == -90) {
-            if(getMobileOperatingSystem() == "Android") return 'landscape';
-            else return 'portrait';
-        } else if (window.orientation == 0 || window.orientation == 180) {
-            if(getMobileOperatingSystem() == "Android") return 'portrait';
-            else return 'landscape';
-        }
-    }
 </script>
