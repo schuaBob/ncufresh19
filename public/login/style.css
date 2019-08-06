@@ -3,6 +3,8 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  -moz-user-select : none;
+  -webkit-user-select: none;
 }
 
 .bg {

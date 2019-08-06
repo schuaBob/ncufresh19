@@ -2,6 +2,8 @@
 
 body {
   background-color: #fff9dc;
+  -moz-user-select : none;
+  -webkit-user-select: none;
 }
 
 .title-box {
@@ -87,19 +89,18 @@ main {
 }
 
 .captn-title {
-  padding: 15px;
-  padding-top: 25px;
-  font-size: 23px;
+  padding: 8% 3%;
+  font-size: 1.8vw;
   font-weight: bold;
-  line-height: 25px;
+  line-height: 1.8vw;
   text-align: center;
   color: white;
 }
 
 .captn-body {
   padding: 10px 20px;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 1.1vw;
+  line-height: 1.5vw;
   text-align: center;
   color: white;
 }
@@ -227,6 +228,16 @@ main {
   .links {
     width: 70vw;
     height: calc(70vw / 300 * 173);
+  }
+
+  .captn-title {
+    display: none;
+  }
+
+  .captn-body {
+    padding: 8% 5%;
+    font-size: 4vw;
+    line-height: 5vw;
   }
 
   #portal {
