@@ -12,7 +12,7 @@
 
           <%/* 影片用_學長姊學院 */%>
           <% if(title_bar[4] != null){ %>
-            <div class="title" id="en1">
+            <div class="title" id="sp1">
                 <%= title_bar[2] %><div class="small_title"><%= title_bar[3] %></div>
             </div>
 
@@ -30,7 +30,7 @@
 
           <%/* 分頁用_學長姊學院 */%>  
           <% }else if(title_bar[0] === 'INTERVIEW' && title_bar[2] != null){ %>
-            <div class="title" id="en1">
+            <div class="title" id="sp1">
                 <%= title_bar[2] %><div class="small_title"><%= title_bar[3] %></div>
             </div>
           <% }else if(title_bar[0] === 'INTERVIEW'){ %>
@@ -80,7 +80,7 @@
                   //學院
                   //生理理工
                   if (num1 > 11) {
-                      $("#en1").css({
+                      $("#sp1").css({
                           "font-size": "14px",
                           "padding-top": "5px"
                       });

@@ -11,7 +11,7 @@
 
 <body>
   <img src="add.png" alt="" id="mobileAskBtn">
-  <img src="top.png" alt="" id="Top">
+  <img src="Top.png" alt="" id="Top">
   <!-- mobileNoticeModal -->
   <div class="modal fade" id="mobileNoticeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" style="z-index: 6000;">
@@ -112,10 +112,10 @@
         </div>
         <div class="modal-body contentTextSize">
           <div class="contentPart answerModelQ">Question:
-            <p id="mobileQContentText"></p>
+            <div class="questionArea"><p id="mobileQContentText"></p></div>
           </div>
           <div class="contentPart answerModelA">Answer:
-            <p id="mobileAContentText"></p>
+            <div class="answerArea"><p id="mobileAContentText"></p></div>
           </div>
         </div>
         <div class="modal-footer">
@@ -169,7 +169,7 @@
         </div>
         <div class="modalContent">
           <div class="contentPart answerModelQ">Question:
-            <p></p>
+            <div class="questionArea"><p></p></div>
           </div>
           <div id="answerModelAID" class="contentPart answerModelA" <% if(user && user.role=="admin"){ %> role="admin" <% } %>>
             Answer:
@@ -187,7 +187,9 @@
                 <button id="deleteBtn" class="btn btn-danger" style="position: absolute; right: 10%;">刪除</button>
               </div>
             <% }else{ %>  
-              <p>顯示問題</p>
+              <div class="answerArea">
+                <p>顯示問題</p>
+              </div>              
             <% } %>
           </div>
         </div>

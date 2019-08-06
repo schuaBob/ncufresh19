@@ -7,7 +7,7 @@
     return str;
   }
   function trunc(str){
-    if(str.length>15){
+    if(str!==undefined && str.length>15){
       return str.substr(0,15)+"...";
     }else{
       return str;
@@ -31,8 +31,10 @@
               console.log(data[0]);
               if (data[0] === 'success') {                
                 $(".askmodal").css("display", "none");
-                alert("成功");
+                $("#img2").attr("src","penguin.png");
+                $("#img1").css("display","inline");                
                 $("#noticeModal").modal("hide");
+                alert("成功");
               }
             },
             error: function (err) {
@@ -193,10 +195,10 @@
             $("#mobileAnswerModal").modal();
             $("#mobileAnswerTitleText").text("["+data[0].category+"]"+trunc(data[0].title));
             $("#mobileQContentText").text(data[0].qContent);
-            $("#mobileAContentText").children("p").replaceWith(data[0].aContent);
+            $("#mobileAContentText").replaceWith(data[0].aContent);
           } else {
             //插入問題內容
-            $(".answerModelQ > p").text(data[0].qContent);         
+            $(".answerModelQ").find("p").text(data[0].qContent);         
             //判斷是否為admin            
             if($("#answerModelAID").attr("role")==="admin"){               
               if(data[0].category === ""){                
@@ -215,7 +217,7 @@
               }
             }else{          
               $(".answerTitleText").text("[" + data[0].category + "]" + trunc(data[0].title));
-              $(".answerModelA > p").replaceWith(data[0].aContent);
+              $(".answerModelA").find("p").replaceWith(data[0].aContent);
             }
             $(".answermodal").addClass("animated fadeIn faster");
             $(".answermodal").css("display", "block");            

@@ -55,7 +55,7 @@ router.get('/gethistory', function (req, res, next) {
   History.find({}).exec(function (err, result){
     var h = "";
     for(var a =0;a<result.length;a++){
-      h +=result[a].Id+"/"+result[a].Time +"/"+result[a].Date+"\n";
+      h +=result[a].Id+"/"+result[a].Time +"/"+result[a].Date+"/"+result[a].Score+"\n";
     }
     res.send(h);
   });

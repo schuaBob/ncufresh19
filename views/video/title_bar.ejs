@@ -28,7 +28,7 @@
                 <div class="line"></div>
 
                 <a href="/video/">
-                    <div class="title" id="faded1">
+                    <div class="title faded">
                         VIDEO<div class="small_title">影音專區</div>
                     </div>
                 </a>
@@ -36,25 +36,25 @@
                 <%/* 影片_學長姊 */%>
                 <% if(title_bar[4] != null){ %>
                     <%/* 三角形*/%>
-                    <div class="tri" id="faded2"></div>
+                    <div class="tri faded"></div>
 
                     <a href="../">
-                        <div class="title" id="faded3">
+                        <div class="title faded changeti_int">
                             <%= title_bar[0] %><div class="small_title"><%= title_bar[1] %></div>
                         </div>
                     </a>
 
-                    <div class="tri" id="faded4"></div>
+                    <div class="tri" id="faded_tri"></div>
 
                     <a href="../../../<%= back_name %>">
-                        <div class="title" id="en1">
+                        <div class="title changeti_int" id="sp1">
                             <%= title_bar[2] %><div class="small_title"><%= title_bar[3] %></div>
                         </div>
                     </a>
 
                     <div class="tri"></div>
 
-                    <div class="title" id="en2">
+                    <div class="title changeti_int" id="sp2">
                         <font color="#ec6d4f"><%= title_bar[4] %></font><div class="small_title"><%= title_bar[5] %></div>
                     </div>
 
@@ -78,27 +78,27 @@
                     <%/* 影片_中大傳說 */%>
                     <% }else if(title_bar[0] === 'LEGEND'){ %>
                         <a href="../legend/">
-                            <div class="title">
+                            <div class="title changeti_led">
                                 <%= title_bar[0] %><div class="small_title"><%= title_bar[1] %></div>
                             </div>
                         </a>
 
                         <div class="tri"></div>
 
-                        <div class="title" id="en1">
+                        <div class="title changeti_led">
                             <font color="#ec6d4f"><%= title_bar[2] %></font><div class="small_title"><%= title_bar[3] %></div>
                         </div>
                     <%/* 學院分頁_學長姐訪談 */%>
                     <% }else if(title_bar[0] === 'INTERVIEW'){ %>
                         <a href="../">
-                            <div class="title">
+                            <div class="title changeti_int">
                                 <%= title_bar[0] %><div class="small_title"><%= title_bar[1] %></div>
                             </div>
                         </a>
 
                         <div class="tri"></div>
 
-                        <div class="title" id="en1">
+                        <div class="title changeti_int" id="sp1">
                             <font color="#ec6d4f"><%= title_bar[2] %></font><div class="small_title"><%= title_bar[3] %></div>
                         </div>
                     <% } %>
@@ -120,11 +120,10 @@
 
                 //中大傳說的影片
                 if ('<%= title_bar[0] %>'==='LEGEND' && num1 > 9) {
-
-                    $("#en1").css({
+                    $('.changeti_led').css({
                         "font-size": "19px",
                         "padding-top": "3px"
-                    });   
+                    });
                 }
 
                 //學長姊學院、影片
@@ -132,29 +131,50 @@
                     //學院
                     //生理理工
                     if ('<%= title_bar[3] %>'==='生醫理工學院') {
-                        $("#en1").css({
+                        $('.changeti_int').css({
+                            "font-size": "19px",
+                            "padding-top": "3px"
+                        });
+                        $("#sp1").css({
                             "font-size": "19px",
                             "padding-top": "3px",
                             "max-width": "220px"
                         });
                     }else if(num1 > 11) {
+                        $('.changeti_int').css({
+                            "font-size": "19px",
+                            "padding-top": "3px"
+                        });
+
+                        /*
                         $("#en1").css({
                             "font-size": "19px",
                             "padding-top": "3px"
                         });
+                        */
                     }
 
                     //系所
                     //資電院學士班太長了，另外寫
                     if ('<%= title_bar[5] %>' === '資訊電機學院學士班') {
-                        $("#en2").css({
+                        $('.changeti_int').css({
+                            "font-size": "19px",
+                            "padding-top": "3px"
+                        });
+                        $("#sp2").css({
                             "font-size": "14px"
                         });
                     }else if (num2 > 10) {
+                        $('.changeti_int').css({
+                            "font-size": "19px",
+                            "padding-top": "3px"
+                        });
+                        /*
                         $("#en2").css({
                             "font-size": "19px",
                             "padding-top": "3px"
                         });
+                        */
                     }
                 }
             });
@@ -165,16 +185,10 @@
 
             /* 方案二： 讓前面消失 現在會全體消失 */
             @media only screen and (max-width: 1080px) {
-                #faded1 {
+                .faded {
                     display: none;
                 }
-                #faded2 {
-                    display: none;
-                }
-                #faded3 {
-                    display: none;
-                }
-                #faded4 {
+                #faded_tri {
                     margin-left: 0px;
                 }
             }
