@@ -184,17 +184,19 @@ body {
 .title {
   text-align: left;
   font-size: 2.7vw;
-  margin:4vh 0 8vh;
+  margin: 8vh 0;
   color:#0D4966;
 }
 
 .intro {
   position: relative;
+  width:40%;
 }
 
-.photo {
-  width: auto;
-  height: 100%;
+.photo {  
+  /* width: 50vw; */
+  width: 60%;
+  height: auto;
 }
 .introText{
   font-size: 1.3vw;
@@ -235,9 +237,9 @@ body {
       display: block;
     }
     .photo{
-      height: auto;
+      /* height: auto;
       width: 100%;
-      position: relative;
+      position: relative; */
     }
     .mobileTitle{
       display: block;
@@ -272,8 +274,10 @@ body {
       width: 23%;
     }
     .photo{
-      width: 80%;
+      /* width: 80%;
       height: auto;
+      width: 70vw;
+      height: auto; */
     }
     .main{
       height:60vh;
@@ -338,8 +342,8 @@ body {
     height:60vh;
   }
   .photo{
-    height: auto;
-    width: 100%;
+    /* height: auto;
+    width: 100%; */
   }
   ._card{
     height: auto;
@@ -398,3 +402,8 @@ body {
     content:url("美工.jpg");
   }
 }
+/* @media only screen (max-width:1200px){
+  .photo{
+    height:
+  }
+} */
