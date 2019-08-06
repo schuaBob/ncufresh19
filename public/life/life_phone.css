@@ -425,7 +425,8 @@ html {
   #foodModalDetail .d {
     margin: 0;
     height: 200px;
-    font-size: 2vw;
+    font-size: 2vw;  
+    text-align: center;
     font-weight: lighter;
     padding: 35% 0;
     /* overflow-y: scroll; */

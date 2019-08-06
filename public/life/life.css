@@ -453,7 +453,7 @@ ul.timeline > li:before {
 
 #foodModalDetail .d {
   margin: 0;
-  height: 300px;
+  height: 25vw;
   font-size: 2vw;
   text-align: center;
   font-weight: lighter;
