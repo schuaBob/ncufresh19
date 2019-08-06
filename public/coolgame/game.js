@@ -790,7 +790,9 @@ function load_source() {
       { src: "/music/coolgame/QuestionBGM.mp3", id: "QuestionBGM" },
       { src: "/music/coolgame/alarm.mp3", id: "alarm" },
       { src: "/music/coolgame/bell.mp3", id: "bell" },
-      { src: "/music/coolgame/game_end.mp3", id: "game_end" }
+      { src: "/music/coolgame/game_end.mp3", id: "game_end" },
+      { src: "/images/coolgame/heard1.png", id: "heard1" },
+      { src: "/images/coolgame/heard2.png", id: "heard2" }
     ];
     loader = new createjs.LoadQueue(true);
     loader.installPlugin(createjs.Sound);
@@ -2083,6 +2085,83 @@ function show_reach_animation(){
       reach_fish.scale=0.2;
       reach_fish.y = -100;
       createjs.Tween.get(reach_fish).wait(j*30).to({y:500-(j/15)*30,scale:0.5},300-(j/15)*17)
+      reach_fish_list.push(reach_fish);
+    }
+    text01.shadow = new createjs.Shadow("#000000", 5, 6, 1);
+    text01.x=120;
+    text01.y=30;
+    text01.scale=0.1;
+    reach_conrainer.addChild(text01);
+    text02.shadow = new createjs.Shadow("#000000", 5, 5, 1);
+    text02.x=text01.x+200;
+    text02.y=30;
+    text02.scale=0.1;
+    reach_conrainer.addChild(text02);
+    text03.shadow = new createjs.Shadow("#000000", 5, 5, 1);
+    text03.x=text02.x+200;
+    text03.y=30;
+    text03.scale=0.1;
+    reach_conrainer.addChild(text03);
+    reach_conrainer.addChild(food);
+    createjs.Tween.get(food).wait(300-(149/15)*17+149*30+500).to({visible:true}).to({y:(canvas_height/2-food.getheight()/2)-100},1000).to({y:(canvas_height/2-food.getheight()/2)+100},1000).to({y:(canvas_height/2-food.getheight()/2)+50},1000).call(function(){
+      createjs.Tween.get(text01).to({scale:6},600).call(function(){
+        createjs.Tween.get(text02).to({scale:6},600).call(function(){
+          createjs.Tween.get(text03).to({scale:6},600).call(function(){
+            text_background.graphics.beginFill("#000000").drawRoundRect(food.x+150-200+3,food.y+283,385,50,10);
+            text_background.alpha=0;
+            text.x = food.x+150-200+33+3;
+            text.y = food.y+298;
+            text.alpha=0;
+            reach_conrainer.addChild(text_background);
+            reach_conrainer.addChild(text);
+            createjs.Tween.get(text_background).wait(300).to({alpha:0.8},1000);
+            createjs.Tween.get(text).wait(300).to({alpha:1},1000).call(function(){
+              food.addEventListener("mousedown",function(event){
+                createjs.Tween.get(reach_conrainer).to({alpha:0},1000).call(function(){
+                  stage.removeChild(reach_conrainer);
+                  reach_close=true;
+                });
+              });
+              food.addEventListener("mouseover",function(event){
+                food.cursor="pointer";
+              });
+                createjs.Tween.get(food).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600).to({scale:0.49},600).to({scale:0.45},600);
+            })
+          });
+        });
+      });
+    });
+  });
+}
+function show_ting_animation(){
+  reach_conrainer = new createjs.Container();
+  stage.addChild(reach_conrainer);
+  var reach_fish_list = new Array();
+  var reach_background_one = new createjs.Shape();
+  var text01 = new createjs.Text("我","Bold 20px 微軟正黑體","#FFFFFF");
+  var text02 = new createjs.Text("愛","Bold 20px 微軟正黑體","#FFFFFF");
+  var text03 = new createjs.Text("你","Bold 20px 微軟正黑體","#FFFFFF");
+  reach_background_one.graphics.beginFill("#000000").drawRect(0,0,800,500);
+  reach_background_one.alpha=0;
+  var food = new createjs.Bitmap(loader.getResult("food"));
+  var text_background = new createjs.Shape();
+  var text = new createjs.Text("恭喜獲得生活知能時數 1小時ㄇㄨㄚ","bold 20px 微軟正黑體","#FFFFFF");
+  reach_close = false;
+  food.visible= false;
+  reach_conrainer.addChild(reach_background_one);
+  createjs.Tween.get(reach_background_one).to({alpha:0.7},800).call(function(){
+    food.scale=0.47;
+    food .x = (canvas_width/2 - food.getwidth()/2);
+    food.y = 600;
+    for(var j =0;j<300;j++){
+      var reach_fish = new createjs.Bitmap(loader.getResult("heard"+(getrandom(2)+1)+""));
+      reach_fish.rotation=getrandom(180)-180;
+      //reach_fish.gotoAndStop("normal_die");
+      reach_conrainer.addChild(reach_fish);
+      reach_fish.x = getrandom(740)+20;
+      reach_fish.scale=0.2;
+      reach_fish.y = -100;
+      createjs.Tween.get(reach_fish).wait(j*30).to({y:500-(j/30)*30,scale:0.5},300-(j/30)*17)
       reach_fish_list.push(reach_fish);
     }
     text01.shadow = new createjs.Shadow("#000000", 5, 6, 1);
