@@ -873,7 +873,7 @@ li {
     position: relative;
     left: unset;
     height: 100px;
-    top: unset;
+    top: 80vh;
     right: 50%;
   }
 
@@ -882,8 +882,8 @@ li {
   }
 
   .MAP2D {
-    min-width: 700px;
-    min-height: 100%;
+    min-width: 500px;
+    min-height: 600px;
   }
 
   .SAM {
