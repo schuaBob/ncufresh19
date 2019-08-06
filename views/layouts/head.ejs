@@ -6,27 +6,10 @@
 <script type="text/javascript" src="/js/velocity.min.js"></script>
 <script type="text/javascript" src="/js/velocity.ui.min.js"></script>
 <script>
-    $(function () {
-        $("#indexOneCircle circle").on("mouseenter", function () {
-
-            var oldR = $(this).attr("r");
-
-            var newR = (((oldR * 2) / 100) * 120) / 2; // 120% width
-
-            $(this).attr("r", newR);
-
-        });
-    });
     var vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     window.addEventListener('resize', () => {
         var vh = window.innerHeight * 0.01;
-        if(vh > 768) {
-            $("#indexOneCircle circle").attr('cx','50');
-            $("#indexOneCircle circle").attr('cy','50');
-        } else {
-            $("#indexOneCircle circle").attr('r','40');
-        }
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     });
 
