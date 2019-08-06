@@ -545,11 +545,11 @@ li {
 }
 
 .show2D img {
-  width: 50%;
+  width: 100%;
 }
 
 .show3D img {
-  width: 50%;
+  width: 100%;
   min-width: 100px;
 }
 
