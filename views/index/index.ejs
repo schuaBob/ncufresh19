@@ -79,20 +79,38 @@
                         </div>
                         <div id="news-body">
                             <% for(let i in News){ %>
-                            <div class="card pernews news-line" data-toggle="modal" data-target="#newsModal"
-                                pk="<%= News[i]['pk']%>">
-                                <div class="row align-items-center pernews">
-                                    <div class="news-img">
-                                        <img src="index/icon-<%= icon[News[i]['category']]%>.png" class="card-img">
-                                    </div>
-                                    <div class="news-content">
-                                        <div class="card-body">
-                                            <h5><%= News[i]['title']%></h5>
-                                            <span class="newsTime"><small><%= News[i]['screenTime']%></small></span>
+                                <% if(News[i]['pk'] === 3) { %>
+                                    <div class="card pernews news-line" data-toggle="modal" data-target="#newsModal" pk="<%= News[i]['pk']%>">
+                                        <div class="row align-items-center pernews">
+                                            <div class="news-img">
+                                                <img src="index/icon-<%= icon[News[i]['category']]%>.png" class="card-img">
+                                            </div>
+                                            <div class="news-content">
+                                                <div class="card-body">
+                                                    <h5><%= News[i]['title']%></h5>
+                                                    <span class="newsTime"><small><%= News[i]['screenTime']%></small></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                <% } %>
+                            <% } %>
+                            <% for(let i in News){ %>
+                                <% if(News[i]['pk'] !== 3) { %>
+                                    <div class="card pernews news-line" data-toggle="modal" data-target="#newsModal" pk="<%= News[i]['pk']%>">
+                                        <div class="row align-items-center pernews">
+                                            <div class="news-img">
+                                                <img src="index/icon-<%= icon[News[i]['category']]%>.png" class="card-img">
+                                            </div>
+                                            <div class="news-content">
+                                                <div class="card-body">
+                                                    <h5><%= News[i]['title']%></h5>
+                                                    <span class="newsTime"><small><%= News[i]['screenTime']%></small></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
                             <% } %>
                         </div>
                     </div>
@@ -213,8 +231,8 @@
     </main>
 
     <% include ../layouts/footer %>
-                            <% include ../layouts/js %>
-                            <script type="text/javascript" src="index/index.js"></script>
+    <% include ../layouts/js %>
+    <script type="text/javascript" src="index/index.js"></script>
 </body>
 
 </html>

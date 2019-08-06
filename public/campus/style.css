@@ -545,11 +545,11 @@ li {
 }
 
 .show2D img {
-  width: 50%;
+  width: 100%;
 }
 
 .show3D img {
-  width: 50%;
+  width: 100%;
   min-width: 100px;
 }
 
@@ -930,5 +930,19 @@ li {
     width: 100%;
     position: relative;
     bottom: calc((540px - 100vw) * 1);
+  }
+}
+
+@media only screen and (max-width: 770px) and (min-height: 1000px) {
+  #map {
+    padding: 0;
+    width: 100%;
+    position: relative;
+    bottom: calc((540px - 100vw) * -0.4);
+  }
+  .show2D {
+    width: 200px;
+    left: 70vh;
+    top: 5%;
   }
 }
