@@ -2068,7 +2068,7 @@ function show_reach_animation(){
   reach_background_one.alpha=0;
   var food = new createjs.Bitmap(loader.getResult("food"));
   var text_background = new createjs.Shape();
-  var text = new createjs.Text("恭喜獲得生活知能時數 1小時！！！","bold 20px 微軟正黑體","#FFFFFF");
+  var text = new createjs.Text("恭喜獲得生活知能時數！！！","bold 20px 微軟正黑體","#FFFFFF");
   reach_close = false;
   food.visible= false;
   reach_conrainer.addChild(reach_background_one);
@@ -2081,7 +2081,7 @@ function show_reach_animation(){
       reach_fish.rotation=getrandom(180)-180;
       reach_fish.gotoAndStop("normal_die");
       reach_conrainer.addChild(reach_fish);
-      reach_fish.x = getrandom(700)+50;
+      reach_fish.x = getrandom(740)+30;
       reach_fish.scale=0.2;
       reach_fish.y = -100;
       createjs.Tween.get(reach_fish).wait(j*30).to({y:500-(j/15)*30,scale:0.5},300-(j/15)*17)
@@ -2109,7 +2109,7 @@ function show_reach_animation(){
           createjs.Tween.get(text03).to({scale:6},600).call(function(){
             text_background.graphics.beginFill("#000000").drawRoundRect(food.x+150-200+3,food.y+283,385,50,10);
             text_background.alpha=0;
-            text.x = food.x+150-200+33+3;
+            text.x = food.x+150-200+68+3;
             text.y = food.y+298;
             text.alpha=0;
             reach_conrainer.addChild(text_background);
@@ -2145,7 +2145,7 @@ function show_ting_animation(){
   reach_background_one.alpha=0;
   var food = new createjs.Bitmap(loader.getResult("food"));
   var text_background = new createjs.Shape();
-  var text = new createjs.Text("恭喜獲得生活知能時數 1小時ㄇㄨㄚ","bold 20px 微軟正黑體","#FFFFFF");
+  var text = new createjs.Text("恭喜獲得生活知能時數ㄇㄨㄚ","bold 20px 微軟正黑體","#FFFFFF");
   reach_close = false;
   food.visible= false;
   reach_conrainer.addChild(reach_background_one);
@@ -2158,7 +2158,7 @@ function show_ting_animation(){
       reach_fish.rotation=getrandom(180)-180;
       //reach_fish.gotoAndStop("normal_die");
       reach_conrainer.addChild(reach_fish);
-      reach_fish.x = getrandom(740)+20;
+      reach_fish.x = getrandom(740)+30;
       reach_fish.scale=0.2;
       reach_fish.y = -100;
       createjs.Tween.get(reach_fish).wait(j*30).to({y:500-(j/30)*30,scale:0.5},300-(j/30)*17)
@@ -2186,7 +2186,7 @@ function show_ting_animation(){
           createjs.Tween.get(text03).to({scale:6},600).call(function(){
             text_background.graphics.beginFill("#000000").drawRoundRect(food.x+150-200+3,food.y+283,385,50,10);
             text_background.alpha=0;
-            text.x = food.x+150-200+33+3;
+            text.x = food.x+150-200+68+3;
             text.y = food.y+298;
             text.alpha=0;
             reach_conrainer.addChild(text_background);
