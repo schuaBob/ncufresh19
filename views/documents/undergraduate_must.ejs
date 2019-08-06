@@ -24,69 +24,68 @@
                 </div>
             </div>
             <div>
-            <div class="sidenav">
-                <img src="入學須知.png" class="icon">
-                <a href="/documents/undergraduate_fresh"><img src="新生週_原.png" class="icon icon2"></a>
-                <a href="/documents/undergraduate_study"><img src="學習資訊_原.png" class="icon icon3"></a>
-            </div>
-
-            <div class="must" id="must">
-                <div class="sidenav2">      
-                    <p class="option page_now" id="1"><i class="fas fa-angle-right" ></i>&emsp;學籍登錄</p>
-                    <p class="option" id="5"><i class="fas fa-angle-right" ></i>&emsp;宿舍報到</p>
-                    <p class="option" id="2"><i class="fas fa-angle-right" ></i>&emsp;住宿注意事項</p>
-                    <p class="option" id="3"><i class="fas fa-angle-right" ></i>&emsp;兵役注意資料</p>
-                    <p class="option" id="4"><i class="fas fa-angle-right" ></i>&emsp;腳踏車證申請</p>
-                    <p class="option" id="38"><i class="fas fa-angle-right" ></i>&emsp;安心就學計畫</p>
-                    <p class="option" id="6"><i class="fas fa-angle-right" ></i>&emsp;註冊通知、日程表</p>
-                    <p class="option" id="7"><i class="fas fa-angle-right" ></i>&emsp;學費及助學金相關</p>
-                    
+                <div class="sidenav">
+                    <img src="入學須知.png" class="icon">
+                    <a href="/documents/undergraduate_fresh"><img src="新生週_原.png" class="icon icon2"></a>
+                    <a href="/documents/undergraduate_study"><img src="學習資訊_原.png" class="icon icon3"></a>
                 </div>
-            </div>
-            <% if (data === null){ %>
+
+
+                <div class="sidenav2">
+                    <p class="option page_now" id="1"><i class="fas fa-angle-right"></i>&emsp;學籍登錄</p>
+                    <p class="option" id="5"><i class="fas fa-angle-right"></i>&emsp;宿舍報到</p>
+                    <p class="option" id="2"><i class="fas fa-angle-right"></i>&emsp;住宿注意事項</p>
+                    <p class="option" id="3"><i class="fas fa-angle-right"></i>&emsp;兵役注意資料</p>
+                    <p class="option" id="4"><i class="fas fa-angle-right"></i>&emsp;腳踏車證申請</p>
+                    <p class="option" id="38"><i class="fas fa-angle-right"></i>&emsp;安心就學計畫</p>
+                    <p class="option" id="6"><i class="fas fa-angle-right"></i>&emsp;註冊通知、日程表</p>
+                    <p class="option" id="7"><i class="fas fa-angle-right"></i>&emsp;學費及助學金相關</p>
+
+                </div>
+                <% if (data === null){ %>
                 <div class="box">
-                    <div class="title" >
+                    <div class="title">
                         <p id="show_title"></p>
                     </div>
-                    <div class="content" >
-                        
+                    <div class="content">
+
                     </div>
                 </div>
-            <% }else{ %>
+                <% }else{ %>
                 <div class="box">
-                    <div class="title" >
+                    <div class="title">
                         <p id="show_title"><%= data.title %></p>
                     </div>
-                    <div class="content" >
+                    <div class="content">
                         <%- data.content %>
                     </div>
                 </div>
-            <% } %>
+                <% } %>
+            </div>
         </div>
-    </div>
     </main>
     <% include ../layouts/js %>
     <% include js %>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             var width;
-            if(innerWidth > outerWidth)
+            if (innerWidth > outerWidth)
                 width = outerWidth;
             else
                 width = innerWidth;
-            if(width <= 768)
+            if (width <= 768)
                 document.location.href = "/documents/phone/undergraduate";
-            $(window).resize(function(){
-                if(innerWidth > outerWidth)
+            $(window).resize(function () {
+                if (innerWidth > outerWidth)
                     width = outerWidth;
                 else
                     width = innerWidth;
-                if(width <= 768)
+                if (width <= 768)
                     document.location.href = "/documents/phone/undergraduate";
-                });
             });
-            
-        </script>
+        });
+
+    </script>
 </body>
 
 </html>
