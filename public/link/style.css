@@ -301,5 +301,22 @@ main {
     top: calc((70vw / 300 * 173 + 5vh) * 11);
     left: 15vw;
   }
+
+  #ncu {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 12);
+    left: 15vw;
+  }
+
+  #equal {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 13);
+    left: 15vw;
+  }
   
+  #student {
+    position: absolute;
+    top: calc((70vw / 300 * 173 + 5vh) * 14);
+    left: 15vw;
+  }
 }
