@@ -27,11 +27,7 @@ $(document).ready(() => {
             }
         }
     });
-    $('.news-line').on('touchstart', function () {
-        $(this).trigger('hover');
-    }).on('touchend', function () {
-        $(this).trigger('hover');
-    });
+    $.fn.fullpage.setMouseWheelScrolling(true)
     $.fn.fullpage.setRecordHistory(false);
     $('#newsModal').on('show.bs.modal', () => {
         $.fn.fullpage.setMouseWheelScrolling(false)
@@ -181,8 +177,8 @@ function append_circle(data) {
     current_calender = data;
     $(".day").on("click", function () {
         var width = $(window).width();
-        if(width > 1024) {
-            if(lastClick !== -1)
+        if (width > 1024) {
+            if (lastClick !== -1)
                 $("#" + lastClick + " div svg circle").attr("fill", "#ec6d4f")
             $("#board-detail").empty();
             var cnt = 0;

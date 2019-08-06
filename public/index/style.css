@@ -159,7 +159,7 @@ main {
     #news-body {
         position: relative;
         max-height: 40vh;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         min-height: 120px;
     }
@@ -398,7 +398,7 @@ main {
     #news-body {
         position: relative;
         height: 80%;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         min-height: 0;
     }
@@ -535,7 +535,7 @@ main {
     #news-body {
         position: relative;
         max-height: 25vw;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         min-height: 300px;
     }
