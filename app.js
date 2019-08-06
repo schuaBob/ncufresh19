@@ -111,7 +111,7 @@ var multerUpload = multer({
   })
 })
 
-app.post('/tinymceUploader', multerUpload.single('file'),userMiddleWare.isAdmin, (req, res, next) => {
+app.post('/tinymceUploader', userMiddleWare.isAdmin, multerUpload.single('file'), (req, res, next) => {
 
   res.json({ location: `/imguploads/${req.file.originalname}` })
 })
