@@ -1,6 +1,49 @@
 <script>
     var textid = 0;
     $(document).ready(function () {
+        if(window.innerWidth>768) {
+            var insideNum = $('.sidenav2').find('.option').length;
+            var vh = window.innerHeight*0.01;
+            var paddingHalf = ((100*vh - 60 - 85 - 2*vh - 5*vh*insideNum)/insideNum)/2;
+            $('.sidenav2 p').css({
+                'padding-top':paddingHalf,
+                'padding-bottom':paddingHalf
+            })
+            $(window).resize(()=>{
+                if(window.innerWidth>768) {
+                    var insideNum = $('.sidenav2').find('.option').length;
+                    var vh = window.innerHeight*0.01;
+                    var paddingHalf = ((100*vh - 60 - 85 - 2*vh - 5*vh*insideNum)/insideNum)/2;
+                    $('.sidenav2 p').css({
+                        'padding-top':paddingHalf,
+                        'padding-bottom':paddingHalf
+                    })
+                }
+            })
+            
+        }
+        if (window.innerWidth<768) {
+            var insideNum = 8;
+            var vh = window.innerHeight*0.01;
+            var vw = window.innerWidth*0.01;
+            var paddingHalf = ((100*vh - 60 - 4*vw - 8*vw*insideNum)/insideNum)/2;
+            $('.p_option').css({
+                'padding-top':paddingHalf,
+                'padding-bottom':paddingHalf
+            })
+            $(window).resize(()=>{
+                if(window.innerWidth<768) {
+                    var insideNum = 8;
+                    var vh = window.innerHeight*0.01;
+                    var vw = window.innerWidth*0.01;
+                    var paddingHalf = ((100*vh - 60 - 4*vw - 8*vw*insideNum)/insideNum)/2;
+                    $('.p_option').css({
+                        'padding-top':paddingHalf,
+                        'padding-bottom':paddingHalf
+                    })
+                }
+            })
+        }
 
 /*-------------------------------index------------------------------------------*/
 
