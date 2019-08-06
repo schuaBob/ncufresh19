@@ -165,12 +165,12 @@ function append_circle(data) {
         $('.bigCircle').attr('r', '60px');
     } else if (vw < 768) {
         ///手機板
-        $('.bigCircle').attr('cx', '12vw');
-        $('.bigCircle').attr('cy', '12vw');
-        $('.bigCircle').attr('r', '12vw');
         $("#indexOneCircle circle").attr('cx', '35');
         $("#indexOneCircle circle").attr('cy', '35');
         $("#indexOneCircle circle").attr('r', '25');
+        $('.bigCircle').attr('cx', '11vw');
+        $('.bigCircle').attr('cy', '11vw');
+        $('.bigCircle').attr('r', '11vw');
     }else if ((1025 > vw) && (vw > 768)){
         ///平板
         $("#indexOneCircle circle").attr('cx', '50');
@@ -192,12 +192,12 @@ function append_circle(data) {
             $('.bigCircle').attr('r', '60px');
         } else if (vw < 768) {
             ///手機板
-            $('.bigCircle').attr('cx', '12vw');
-            $('.bigCircle').attr('cy', '12vw');
-            $('.bigCircle').attr('r', '12vw');
             $("#indexOneCircle circle").attr('cx', '35');
             $("#indexOneCircle circle").attr('cy', '35');
             $("#indexOneCircle circle").attr('r', '25');
+            $('.bigCircle').attr('cx', '11vw');
+            $('.bigCircle').attr('cy', '11vw');
+            $('.bigCircle').attr('r', '11vw');
         }else if ((1025 > vw) && (vw > 768)){
             ///平板
             $("#indexOneCircle circle").attr('cx', '50');
