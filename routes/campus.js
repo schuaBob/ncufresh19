@@ -5,6 +5,11 @@ var router = express.Router();
 
 var content = "";
 
+fs.readFile('./public/campus/內容.json', (err, data) => {
+  if (err) throw err;
+  content = JSON.parse(data);
+});
+
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -15,9 +20,6 @@ function shuffle(a) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  request('http://localhost:3000/campus/%E5%85%A7%E5%AE%B9.json', function (error, response, body) {
-    content = JSON.parse(body);
-  });
   res.redirect('/campus/3D');
 });
 
@@ -36,12 +38,6 @@ router.get('/2D', function (req, res, next) {
 });
 
 router.get('/indexmodal', function (req, res, next) {
-  if (content == "") {
-    fs.readFile('./public/campus/內容.json', (err, data) => {
-      if (err) throw err;
-      content = JSON.parse(data);
-    });
-  }
   if (req.query.id == "1561981206193") {
     var review = {
       'Intropic': ['20190711133634.jpg'],
@@ -60,6 +56,9 @@ router.get('/indexmodal', function (req, res, next) {
     if (review.Intropic.includes('5b680145a1290417d991cb0d.png')) {
       review.Intropic = ['5b680145a1290417d991cb0d-1.png', '5b680145a1290417d991cb0d-2.png'];
     }
+    if (review.Intropic.includes('5b680145a1290417d991cb0d.png')) {
+      review.Intropic = ['5b680145a1290417d991cb0d-1.png', '5b680145a1290417d991cb0d-2.png'];
+    }
     if (review.Intropic.includes('5b6658808ddec3339ce66490.png')) {
       var index = review.Intropic.indexOf('5b6658808ddec3339ce66490.png');
       review.Intropic.splice(index, 1);
@@ -72,6 +71,9 @@ router.get('/indexmodal', function (req, res, next) {
     }
     if (review.Element_Name == "宿舍服務中心") {
       review.Element_Name = "住宿服務組";
+    }
+    if (req.query.id == "5b62c34d5d6ed6615680a44a") {
+      review.Intropic = ['5b66d75ea37fa82be640e8bd.png', '5b66d77c856b112bfcdd74e0.png'];
     }
     if (content[review.Element_Name]) {
       review.Element_Intro = content[review.Element_Name];
