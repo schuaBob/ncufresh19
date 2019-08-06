@@ -51,8 +51,8 @@ a:visited {
     float: left;
   }
   .title_bar {
-    width: 100vw;
-    min-width: 100%;
+    width: 95%;
+    /* min-width: 100%; */
     position: relative;
     margin-left: 5%;
     display:flex;

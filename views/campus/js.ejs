@@ -1,5 +1,8 @@
 <script>
     $(document).ready(function () {
+        $('#indexmodal').on('shown.bs.modal', function () {
+            $('.indexmodalp').scrollTop();
+        })
 
         var temp;
         var lasyway = false;
@@ -157,34 +160,34 @@
                                     opacity: 1,
                                     translateX: '1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.sbird').stop().velocity({
                                     opacity: 1,
                                     translateX: '-1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.sailor2').stop().velocity({
                                     opacity: 0,
                                     translateX: '-1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.show2D').stop().velocity({
                                     opacity: 1,
                                     translateX: '1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                             }
                         } else {
                             properties1 = {
@@ -197,34 +200,34 @@
                                     opacity: 0,
                                     translateX: '-1rem'
                                 }, {
-                                    display: 'none'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'none'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.sbird').stop().velocity({
                                     opacity: 0,
                                     translateX: '1rem'
                                 }, {
-                                    display: 'none'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'none'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.sailor2').stop().velocity({
                                     opacity: 1,
                                     translateX: '1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.show2D').stop().velocity({
                                     opacity: 0,
                                     translateX: '-1rem'
                                 }, {
-                                    display: 'none'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'none'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                             }
                         }
                     } else {
@@ -238,34 +241,34 @@
                                 opacity: 0,
                                 translateX: '-1rem'
                             }, {
-                                display: 'none'
-                            }, {
-                                duration: 200
-                            }, 'easeInOutSine');
+                                    display: 'none'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
                             $('.sbird').stop().velocity({
                                 opacity: 0,
                                 translateX: '1rem'
                             }, {
-                                display: 'none'
-                            }, {
-                                duration: 200
-                            }, 'easeInOutSine');
+                                    display: 'none'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
                             $('.sailor2').stop().velocity({
                                 opacity: 1,
                                 translateX: '1rem'
                             }, {
-                                display: 'block'
-                            }, {
-                                duration: 200
-                            }, 'easeInOutSine');
+                                    display: 'block'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
                             $('.show2D').stop().velocity({
                                 opacity: 0,
                                 translateX: '-1rem'
                             }, {
-                                display: 'none'
-                            }, {
-                                duration: 200
-                            }, 'easeInOutSine');
+                                    display: 'none'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
                         }
                         $('.mapmove').addClass('clicked')
                         if ($('.main_list_detail').hasClass('clicked')) {
@@ -353,34 +356,34 @@
                     opacity: 1,
                     translateX: '1rem'
                 }, {
-                    display: 'block'
-                }, {
-                    duration: 200
-                }, 'easeInOutSine');
+                        display: 'block'
+                    }, {
+                        duration: 200
+                    }, 'easeInOutSine');
                 $('.sbird').stop().velocity({
                     opacity: 1,
                     translateX: '-1rem'
                 }, {
-                    display: 'block'
-                }, {
-                    duration: 200
-                }, 'easeInOutSine');
+                        display: 'block'
+                    }, {
+                        duration: 200
+                    }, 'easeInOutSine');
                 $('.sailor2').stop().velocity({
                     opacity: 0,
                     translateX: '-1rem'
                 }, {
-                    display: 'none'
-                }, {
-                    duration: 200
-                }, 'easeInOutSine');
+                        display: 'none'
+                    }, {
+                        duration: 200
+                    }, 'easeInOutSine');
                 $('.show2D').stop().velocity({
                     opacity: 1,
                     translateX: '1rem'
                 }, {
-                    display: 'block'
-                }, {
-                    duration: 200
-                }, 'easeInOutSine');
+                        display: 'block'
+                    }, {
+                        duration: 200
+                    }, 'easeInOutSine');
             }
 
             properties1 = {
@@ -466,26 +469,26 @@
             $('#wheel').animate({
                 deg: 360
             }, {
-                duration: 500,
-                step: function (now) {
-                    $(this).css({
-                        '-webkit-transform': 'rotate(' + now + 'deg)',
-                        '-moz-transform': 'rotate(' + now + 'deg)',
-                        'transform': 'rotate(' + now + 'deg)'
+                    duration: 500,
+                    step: function (now) {
+                        $(this).css({
+                            '-webkit-transform': 'rotate(' + now + 'deg)',
+                            '-moz-transform': 'rotate(' + now + 'deg)',
+                            'transform': 'rotate(' + now + 'deg)'
+                        });
+                    }
+                }).animate({
+                    deg: -360
+                }, {
+                        duration: 500,
+                        step: function (now) {
+                            $(this).css({
+                                '-webkit-transform': 'rotate(' + now + 'deg)',
+                                '-moz-transform': 'rotate(' + now + 'deg)',
+                                'transform': 'rotate(' + now + 'deg)'
+                            });
+                        }
                     });
-                }
-            }).animate({
-                deg: -360
-            }, {
-                duration: 500,
-                step: function (now) {
-                    $(this).css({
-                        '-webkit-transform': 'rotate(' + now + 'deg)',
-                        '-moz-transform': 'rotate(' + now + 'deg)',
-                        'transform': 'rotate(' + now + 'deg)'
-                    });
-                }
-            });
         },
         function () {
             $('#wheel').stop();
