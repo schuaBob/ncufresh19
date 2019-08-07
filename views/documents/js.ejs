@@ -1,7 +1,7 @@
 <script>
     var textid = 0;
     $(document).ready(function () {
-        $('.p_option').click(()=>{
+        $('#show').on('shown.bs.modal', function () {
             $('.modal-body').scrollTop(0);
         })
         if(window.innerWidth>768) {
