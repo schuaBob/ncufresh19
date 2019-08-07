@@ -16,6 +16,9 @@ a {
 #q_title,#mobileq_title,#q_content,#mobileq_content{
   box-shadow: none;
 }
+html{
+  overflow: hidden;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -29,6 +32,7 @@ body {
   background-position-y: bottom;
   background-color:#FFF9DC; 
   background-size: 100%;
+  overflow: hidden;
 }
 
 ._modal {
