@@ -234,21 +234,25 @@ router.post("/getQuestion",function(req,res){
   });    
 });
 router.post("/toModify",function(req,res){
-  //判斷是否登入
-  qnaDB.updateOne({postID:req.body.postID},{category:req.body.category,aContent:req.body.content,reviewed:req.body.reviewed},function(err,result){
-    if(err){
-      return err;
-    }
-    res.send({"result":"success"});
-  });
+  //判斷是否為admin
+  if(req.user && req.user.role==="admin"){
+    qnaDB.updateOne({postID:req.body.postID},{category:req.body.category,aContent:req.body.content,reviewed:req.body.reviewed},function(err,result){
+      if(err){
+        return err;
+      }
+      res.send({"result":"success"});
+    });
+  }
 });
 router.post("/toDelete",function(req,res){
-  qnaDB.deleteOne({postID:req.body.postID},function(err,result){
-    if(err){
-      return err;
-    }
-    res.send({"result":"success"});    
-  });
+  if(req.user && req.user.role==="admin"){
+    qnaDB.deleteOne({postID:req.body.postID},function(err,result){
+      if(err){
+        return err;
+      }
+      res.send({"result":"success"});    
+    });
+  }  
 });
 function getPostID(){  
   var date = new Date();   
