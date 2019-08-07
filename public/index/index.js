@@ -157,6 +157,7 @@ $(".selectMonth").on("click", function () {
             $("#board-detail").append(current_calender[0].board_content);
             nowLeft = 30;
             nowTarget = 0;
+            lastClick = 0;
             $("#" + lastClick + " div svg circle").attr("fill", "#fff9dc");
         }
     });
