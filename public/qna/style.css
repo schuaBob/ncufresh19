@@ -13,7 +13,9 @@ a {
 .orangeBg {
     background-color: rgb(251, 217, 185) !important;
 }
-
+#q_title,#mobileq_title,#q_content,#mobileq_content{
+  box-shadow: none;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -528,7 +530,6 @@ thead>tr {
   justify-content: flex-start;
 }
 */
-
 
   .buttonGroup{
     font-size: 1rem;

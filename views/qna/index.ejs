@@ -8,9 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel='stylesheet' href='/qna/style.css'>
 </head>
-  <style>
-    
-  </style>
 <body>
   <img src="add.png" alt="" id="mobileAskBtn">
   <img src="Top.png" alt="" id="Top">
@@ -89,16 +86,15 @@
           <span id="mobileAskTitleText">我要發問</span>
         </div>
         <div class="modal-body contentTextSize">
-          <form action="/qna/toPost" class="needs-validation" method="POST">
+          <form action="/qna/toPost" class="mobileAskForm" method="POST">
             <span style="color:rgb(32, 56, 100)" class="contentTextSize">標題</span>
-            <input type="text" class="formElement contentTextSize" id="mobileq_title" placeholder="請簡略描述你的問題">
+            <input type="text" class="formElement contentTextSize" id="mobileq_title" required placeholder="請簡略描述你的問題(必填)" pattern="^.{1,20}$">
             <span style="color:rgb(32, 56, 100)" class="contentTextSize">內容</span>
-            <textarea id="mobileq_content" class="formElement contentTextSize" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
+            <textarea id="mobileq_content" class="formElement contentTextSize" placeholder="(限200字)" required pattern="^.{1,200}$"></textarea>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary titleTextSize" data-toggle="modal"
-            data-target="#mobileNoticeModal">送出</button>
+          <button type="button" class="btn btn-primary titleTextSize" id="submit2">送出</button>
           <button type="button" class="btn btn-secondary titleTextSize" data-dismiss="modal">關閉</button>
         </div>
       </div>
@@ -135,15 +131,14 @@
       <div class="question">
         <div class="modalTitle"><span>我要發問</span><i class="fas fa-times cross"></i></div>
         <div class="modalContent">
-          <form action="/qna/toPost" class="needs-validation" method="POST">
+          <form action="/qna/toPost" method="POST" class="askForm">
             <h4 style="color:rgb(32, 56, 100)">標題</h4>
-            <input type="text" class="formElement" id="q_title" placeholder="請簡略描述你的問題">
+            <input type="text" class="formElement" id="q_title" placeholder="請簡略描述你的問題(必填)" required pattern="^.{1,20}$">
             <h4 style="color:rgb(32, 56, 100)">內容</h4>
-            <textarea id="q_content" class="formElement" placeholder="(限200字)" pattern="^.{1,200}$"></textarea>
+            <textarea id="q_content" class="formElement" placeholder="(限200字)" required pattern="^.{1,200}$"></textarea>
           </form>
           <input type="button" value="提交"
-            style="float:right;font-size:1em;margin-top:5px;background-color:#FFCC00; border:none;" data-toggle="modal"
-            data-target="#noticeModal">
+            style="float:right;font-size:1em;margin-top:5px;background-color:#FFCC00; border:none;" id="submit1">
         </div>
       </div>
     </div>
@@ -178,7 +173,6 @@
           </div>
           <div id="answerModelAID" class="contentPart answerModelA" <% if(user && user.role=="admin"){ %> role="admin" <% } %>>
             <div>Answer:</div>
-            <!-- user && (user.role === "admin") -->
             <% if(user && user.role=="admin"){ %> 
               <textarea type="text" postID="" id="modifyInput" class="modifyInput tinyeditor"></textarea>
               <div id="mdoption">
@@ -312,22 +306,9 @@
       </div>
     </div>
   </main>
-
-
-
-
-
-
 </body>
 <% include ../layouts/js %>
 <% include js %>
-<script type="text/javascript">
-  $(document).ready(function () {
-    $("#mobileAskBtn").click(function () {
-      $("#mobileAskModal").modal();
-    });
-  });
-  
-</script>
+
 
 </html>
