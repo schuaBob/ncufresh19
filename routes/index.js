@@ -112,7 +112,7 @@ router.get('/', (req, res, next) => {
         });
 
         res.render('index/index', {
-            title: "新生知訊網 | 首頁",
+            title: "2019中央大學新生知訊網",
             News: newsDocs,
             commercial: commercial,
             icon: catePicArr,
