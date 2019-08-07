@@ -53,7 +53,7 @@ router.get('/:device/nculife/:id', function (req, res, next) {
   switch (req.params.id) {
     case 'eating':
       title_bar = ['LIFE', '中大生活', 'EATING', '食'];
-      ytID = '8eUCmcJOByc';
+      ytID = 'cUP3XWsNxMk';
       break;
     case 'living':
       title_bar = ['LIFE', '中大生活', 'LIVING', '住'];
