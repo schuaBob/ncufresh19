@@ -10,7 +10,6 @@
 </head>
 <body>  
   <% include ../layouts/header %>
-  <!-- The Modal -->
   <div id="myModal">
     <div id="modalcontent">
       <img src="程設組.jpg" alt="">
@@ -106,27 +105,6 @@
     </div>
   </div>
   <% include ../layouts/js %>
-  <script>
-    $(document).ready(function () {   
-      if (location.href.split("#")[1] === "") {
-        $(".option li").css("background-color", "transparent");
-        $("a[href='#all']").parent("li").css("background-color", "rgb(251,217,185)");
-      } else {
-        $(".option li").css("background-color", "transparent");
-        $("a[href='#" + location.href.split("#")[1] + "']").parent("li").css("background-color",
-        "rgb(251,217,185)");
-      }
-      $(".option li").click(function () {
-        $(".option li").css("background-color", "transparent");
-        $(this).css("background-color", "rgb(251,217,185)");
-      });
-      $(".option li").mouseenter(function () {
-        $(this).addClass("optionHover");
-      });
-      $(".option li").mouseleave(function () {
-        $(this).removeClass("optionHover");
-      });
-    });
-  </script>
+  <% include js %>
 </body>
 </html>

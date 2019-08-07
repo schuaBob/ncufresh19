@@ -28,7 +28,6 @@
               question: $('#q_content').val()
             },
             success: function (data) {
-              // console.log(data[0]);
               if (data[0] === 'success') {                
                 $(".askmodal").css("display", "none");
                 $("#img2").attr("src","penguin.png");
