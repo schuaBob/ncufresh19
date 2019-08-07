@@ -26,7 +26,7 @@ body {
   background-repeat:no-repeat;
   background-position-y: bottom;
   background-color:#FFF9DC; 
-  /*background-size: 100%;*/
+  background-size: 100%;
 }
 
 ._modal {
@@ -369,6 +369,10 @@ thead>tr {
   width: 4vw;
   z-index: 200;
   display: none;
+}
+
+#searchImg:hover {
+  cursor: pointer;
 }
 
 /* ipad 直立設計*/

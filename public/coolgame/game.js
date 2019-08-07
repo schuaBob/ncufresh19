@@ -2005,22 +2005,14 @@ function update_rank(){
     rank_container.children[3].scale = 1.0/(( rank_container.children[3].image.width> rank_container.children[3].image.height? rank_container.children[3].image.width: rank_container.children[3].image.height)/80.0);
     rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
     rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
-    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
-    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
-    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
-    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
    var second_image=new createjs.Bitmap(((now == 3?rank_user_list[1].score_high:rank_user_list[1].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[1].avatar));
    second_image.image.onload=()=>{
     rank_container.children[4].image =second_image.image;
     rank_container.children[4].scale = 1.0/(( rank_container.children[4].image.width> rank_container.children[4].image.height? rank_container.children[4].image.width: rank_container.children[4].image.height)/80.0);
-    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
-    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
     rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
     rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
-    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
-    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
  var third_image=new createjs.Bitmap(((now == 3?rank_user_list[2].score_high:rank_user_list[2].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[2].avatar));
@@ -2028,10 +2020,6 @@ function update_rank(){
  third_image.image.onload=()=>{
     rank_container.children[5].image =third_image.image;
     rank_container.children[5].scale = 1.0/(( rank_container.children[5].image.width> rank_container.children[5].image.height? rank_container.children[5].image.width: rank_container.children[5].image.height)/80.0);
-    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
-    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
-    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
-    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
     rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
     rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
@@ -2068,7 +2056,7 @@ function show_reach_animation(){
   reach_background_one.alpha=0;
   var food = new createjs.Bitmap(loader.getResult("food"));
   var text_background = new createjs.Shape();
-  var text = new createjs.Text("恭喜獲得生活知能時數 1小時！！！","bold 20px 微軟正黑體","#FFFFFF");
+  var text = new createjs.Text("恭喜獲得生活知能時數！！！","bold 20px 微軟正黑體","#FFFFFF");
   reach_close = false;
   food.visible= false;
   reach_conrainer.addChild(reach_background_one);
@@ -2081,7 +2069,7 @@ function show_reach_animation(){
       reach_fish.rotation=getrandom(180)-180;
       reach_fish.gotoAndStop("normal_die");
       reach_conrainer.addChild(reach_fish);
-      reach_fish.x = getrandom(700)+50;
+      reach_fish.x = getrandom(740)+30;
       reach_fish.scale=0.2;
       reach_fish.y = -100;
       createjs.Tween.get(reach_fish).wait(j*30).to({y:500-(j/15)*30,scale:0.5},300-(j/15)*17)
@@ -2109,7 +2097,7 @@ function show_reach_animation(){
           createjs.Tween.get(text03).to({scale:6},600).call(function(){
             text_background.graphics.beginFill("#000000").drawRoundRect(food.x+150-200+3,food.y+283,385,50,10);
             text_background.alpha=0;
-            text.x = food.x+150-200+33+3;
+            text.x = food.x+150-200+68+3;
             text.y = food.y+298;
             text.alpha=0;
             reach_conrainer.addChild(text_background);
@@ -2145,7 +2133,7 @@ function show_ting_animation(){
   reach_background_one.alpha=0;
   var food = new createjs.Bitmap(loader.getResult("food"));
   var text_background = new createjs.Shape();
-  var text = new createjs.Text("恭喜獲得生活知能時數 1小時ㄇㄨㄚ","bold 20px 微軟正黑體","#FFFFFF");
+  var text = new createjs.Text("恭喜獲得生活知能時數ㄇㄨㄚ","bold 20px 微軟正黑體","#FFFFFF");
   reach_close = false;
   food.visible= false;
   reach_conrainer.addChild(reach_background_one);
@@ -2158,7 +2146,7 @@ function show_ting_animation(){
       reach_fish.rotation=getrandom(180)-180;
       //reach_fish.gotoAndStop("normal_die");
       reach_conrainer.addChild(reach_fish);
-      reach_fish.x = getrandom(740)+20;
+      reach_fish.x = getrandom(740)+30;
       reach_fish.scale=0.2;
       reach_fish.y = -100;
       createjs.Tween.get(reach_fish).wait(j*30).to({y:500-(j/30)*30,scale:0.5},300-(j/30)*17)
@@ -2186,7 +2174,7 @@ function show_ting_animation(){
           createjs.Tween.get(text03).to({scale:6},600).call(function(){
             text_background.graphics.beginFill("#000000").drawRoundRect(food.x+150-200+3,food.y+283,385,50,10);
             text_background.alpha=0;
-            text.x = food.x+150-200+33+3;
+            text.x = food.x+150-200+68+3;
             text.y = food.y+298;
             text.alpha=0;
             reach_conrainer.addChild(text_background);
@@ -2302,6 +2290,7 @@ function ranking_init() {
   score_board_text.visible = false;
   sea.visible = false;
   now = 3;
+  rank_background.image = loader.getResult("rank_single");
   BGM_change();
   for (var j = 0; j < animal_list.length; j++)animal_list[j].visible = false;
   close_fishmanwalk();

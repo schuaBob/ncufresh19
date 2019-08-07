@@ -47,8 +47,8 @@
     
     .backgroundimg {
         position: absolute;
-        top: 17vh;
-        width: 60vw;
+        top: 20vh;
+        width: 45vw;
         right: 1vw;
         z-index: -1;
     }
@@ -212,7 +212,7 @@
     
     .sideli {
         line-height: 40px;
-        margin-top: 3vh;
+        margin-top: 2vh;
         font-weight: lighter;
         padding-left: 1vw;
         padding-right: 1vw
@@ -358,10 +358,18 @@
     
     #snap {
         position: absolute;
-        top: 70px;
-        left: 20px;
-        height: 75px;
+        top: 60px;
+        left: 10px;
+        height: 90px;
         z-index: 30;
+        display: none;
+    }
+    
+    #sign {
+        position: absolute;
+        top: 115px;
+        left: 5px;
+        width: 100px;
         display: none;
     }
     
@@ -441,10 +449,16 @@
             height: 25vw;
             width: inherit;
         }
+        .backgroundimg {
+            position: absolute;
+            top: 30vh;
+            z-index: -10;
+        }
     }
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%phone%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     
     @media screen and (max-width: 850px) and (orientation: landscape) {
+        /*手機橫放排版*/
         .backgroundimg {
             position: absolute;
             top: 40vh;
@@ -459,7 +473,11 @@
     }
     /*---------------------------------------------------------------ipad-------------------------------------------------------------*/
     
-    @media screen and (max-width: 1024px) and (orientation: portrait) {
+    @media screen and (max-width: 1030px) and (orientation: portrait) {
+        /*ipad排版*/
+        .snap_so {
+            display: flex
+        }
         .backgroundimg {
             position: absolute;
             top: 25vh;
@@ -501,12 +519,29 @@
             display: none;
         }
         #stu_mob {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             width: 100vw;
-            justify-content: Space-around;
             position: absolute;
             top: 18vh;
-            font-size: 3vw;
+            font-size: 4.5vw
+        }
+        .stu_side {
+            text-align: center;
+        }
+        #others_com {
+            display: none;
+        }
+        #others_mob {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 100vw;
+            position: absolute;
+            top: 18vh;
+            font-size: 3vw
+        }
+        .other_side {
+            text-align: center;
         }
         .sideli {
             margin-top: 3vh;
@@ -618,7 +653,10 @@
         }
     }
     
-    @media screen and (max-width: 500px) and (orientation: portrait) {
+    @media screen and (max-width: 700px) and (orientation: portrait) {
+        .snap_so {
+            display: flex
+        }
         .container {
             border: 0px;
             padding: 0px;
@@ -847,15 +885,24 @@
         }
         #snap {
             position: absolute;
-            top: 70px;
-            right: 1px;
-            height: 95px;
+            top: 60px;
+            left: 10px;
+            height: 90px;
+            z-index: 30;
+            display: none;
+        }
+        #sign {
+            position: absolute;
+            top: 115px;
+            left: 5px;
+            width: 100px;
             display: none;
         }
         .snap_btn {
             position: absolute;
             top: 85px;
-            right: 100px;
+            left: 10px;
+            z-index: 40;
             display: none;
         }
     }

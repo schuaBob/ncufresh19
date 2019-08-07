@@ -91,18 +91,19 @@ router.get('/:category', function(req, res, next) {
 
 
 router.post('/toPost',function(req,res){ 
-  //判斷是否登入  
-  new qnaDB({
-    authorID:(req.user && req.user.id) ? req.user.id : "anonymous", 
-    postID:getPostID(),
-    title:req.body.title,
-    qContent:req.body.question,     
-  }).save(function(err){
-    if(err){
-      return err;
-    }           
-    res.send(['success']);
-  });  
+  if(!req.user||(req.user.id && req.user.name)||req.user.role==="admin"){
+    new qnaDB({
+      authorID:(req.user && req.user.id) ? req.user.id : "anonymous", 
+      postID:getPostID(),
+      title:req.body.title,
+      qContent:req.body.question,     
+    }).save(function(err){
+      if(err){
+        return err;
+      }           
+      res.send(['success']);
+    });
+  }    
 });
 router.post('/search',function(req,res){
   var category1;
