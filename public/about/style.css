@@ -195,10 +195,8 @@ body {
 }
 
 .photo {  
-  /* width: 50vw; */
   width: 60%;
   height: auto;
-  /* align-self: flex-start; */
 }
 .introText{
   font-size: 1.3vw;
@@ -212,6 +210,7 @@ body {
   display: none;
   color:#0D4966;
 }
+/* ipad 橫放設計 */
 @media only screen 
   and (min-device-width : 768px) 
   and (max-device-width : 1024px) 
@@ -222,7 +221,7 @@ body {
     }
     .option li{
       margin-bottom:25%;
-    }
+    }    
   }
 /* ipad 直立設計*/
 @media only screen 
@@ -247,7 +246,7 @@ body {
       display: block;
       font-size:2rem;
       text-align: center;
-      margin-bottom: 2%;
+      padding:6% 0 2%;
     }
     .title{
       display: none;
@@ -261,6 +260,7 @@ body {
     }
     ._card{
       height:63vh;
+      display: block;
     }
     .option{
       font-size:1.2rem;
@@ -276,8 +276,6 @@ body {
       width: 23%;
     }
     .photo{
-      /* width: 80%;
-      height: auto; */
       width: 70vw;
       height: auto;
     }
@@ -327,7 +325,7 @@ body {
     }
   }
 /* 手機直立的通用設計 */
-@media only screen and (max-width:500px) and (orientation : portrait){
+@media only screen and (max-width:767px) and (orientation : portrait){
   html{
     overflow-x: hidden;
   }
@@ -344,7 +342,7 @@ body {
     width:100%;
     position: relative;
     top: 16%;
-    height:60vh;
+    height:62vh;
   }
   .photo{
     height: auto;
@@ -356,6 +354,8 @@ body {
   ._card{
     height: auto;
     position: relative;
+    display: block;
+    height: 65vh;
   }
   .title{
     display: none;
@@ -364,8 +364,7 @@ body {
     display: block;
     font-size: 6.3vw;
     text-align: center;
-    margin: 1.2vh auto;
-    /* font-size: 3.8vw; */
+    padding: 4% 0 2%;
   }
   .content{
     display: block;
@@ -408,10 +407,5 @@ body {
   }
   #img_art{
     content:url("美工.jpg");
-  }
-}
-@media only screen (max-width:1200px){
-  .option li{
-    margin-bottom: 22%;
   }
 }

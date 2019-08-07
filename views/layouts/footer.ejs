@@ -1,20 +1,18 @@
 <footer id="footer">
     <%_ if (user) { -%>
-    <div id="big">
+    <div id = "big">
         <a id="loginHref" href="/personal">
             <svg id="loginBtn" xmlns="http://www.w3.org/2000/svg">
-                <rect cx="20" cy="20" x="0" y="0" rx="25" ry="32" width="135" height="50"
-                    style="fill:#ec6d4f;stroke-width:5;" />
-                <defs>
-                    <clipPath id="circleView">
-                        <circle cx="29" cy="25" r="18" style="fill:wheat;" />
-                    </clipPath>
-                </defs>
-                <image width="41%" height="96%" xlink:href="/personal/profile-photo/<%= user.avatar %>"
-                    clip-path="url(#circleView)" />
+                <rect cx="20" cy="20" x="0" y="0" rx="25" ry="32" width="135" height="50" style="fill:#ec6d4f;stroke-width:5;" />
+                    <defs>
+                        <clipPath id="circleView">
+                            <circle cx="29" cy="25" r="18" style="fill:wheat;"/> 
+                        </clipPath>
+                    </defs>
+                    <image width="41%" height="96%" xlink:href="/personal/profile-photo/<%= user.avatar %>" clip-path="url(#circleView)" />
                 <div id="loginWord"><%= user.name  %></div>
             </svg>
-
+            
         </a>
         <a id="logout" href="/logout">
             <div>登出</div>

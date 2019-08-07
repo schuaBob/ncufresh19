@@ -48,6 +48,7 @@
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
                     if (data.Element_Intro == '<p></p>') $('#indexmodalp').hide();
+                    else $('#indexmodalp').show();
                     if (data.Intropic.length == 1) {
                         $('.carousel-control-next').hide();
                         $('.carousel-control-pre').hide();
@@ -424,6 +425,7 @@
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
                     if (data.Element_Intro == '<p></p>') $('#indexmodalp').hide();
+                    else $('#indexmodalp').show();
                     if (data.Intropic.length == 1) {
                         $('.carousel-control-next').hide();
                         $('.carousel-control-pre').hide();
