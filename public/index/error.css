@@ -1,7 +1,13 @@
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
 main {
     position: relative;
     width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100% - 120px);
 }
 
 .hint {
@@ -32,7 +38,7 @@ main {
 #background_image {
     height: 100vmin;
     width: 100vmax;
-    background-image: url("/index/首頁1.png");
+    background-image: url("/index/首頁1_small.png");
     background-repeat: no-repeat;
     background-size: cover;
     overflow-x: hidden;
