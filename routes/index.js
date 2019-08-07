@@ -486,28 +486,29 @@ router.get('/comingsoon', function(req, res, next) {
     });
 });
 
-// router.get('/login', checkUser.isAllowtoLogin, function(req, res, next) {
-//     res.render('login/index', {
-//         title: '新生知訊網',
-//         user: req.user,
-//         error: req.flash('error')
-//     });
-// });
+router.get('/login', checkUser.isAllowtoLogin, function(req, res, next) {
+    res.render('login/index', {
+        title: '新生知訊網',
+        user: req.user,
+        error: req.flash('error')
+    });
+});
 
-// router.post('/login', checkUser.isAllowtoLogin, function(req, res, next) {
-//     let grade = req.body.id.substring(0, 3);
-//     if (grade !== '108')
-//         return res.redirect('auth/provider');
-//     Users.findOne({
-//         'id': req.body.id
-//     }, function(err, user) {
-//         if (err) res.redirect('/login');
-//         if (user && user.password)
-//             res.redirect('/password?id=' + req.body.id);
-//         else
-//             res.redirect('/register?id=' + req.body.id);
-//     })
-// });
+router.post('/login', checkUser.isAllowtoLogin, function(req, res, next) {
+    let grade = req.body.id.substring(0, 3);
+    if (grade !== '108')
+        return res.redirect('auth/provider');
+    Users.findOne({
+        'id': req.body.id
+    }, function(err, user) {
+        if (err) res.redirect('/login');
+        // if (user && user.password)
+        //     res.redirect('/password?id=' + req.body.id);
+        // else
+        //     res.redirect('/register?id=' + req.body.id);
+        res.redirect('/')
+    })
+});
 
 // router.get('/password', checkUser.isAllowtoLogin, function(req, res, next) {
 //     res.render('login/password', {
@@ -578,92 +579,92 @@ router.get('/comingsoon', function(req, res, next) {
 
 // });
 
-// router.get('/logout', function(req, res, next) {
-//     req.logout();
-//     res.redirect('/');
-// });
+router.get('/logout', function(req, res, next) {
+    req.logout();
+    res.redirect('/');
+});
 
-// router.get('/auth/provider', checkUser.isAllowtoLogin, function(req, res, next) {
-//     var url = 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize?response_type=code&scope=user.info.basic.read&client_id=' + CLIENT_ID;
-//     res.redirect(url);
-// });
+router.get('/auth/provider', checkUser.isAllowtoLogin, function(req, res, next) {
+    var url = 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize?response_type=code&scope=user.info.basic.read&client_id=' + CLIENT_ID;
+    res.redirect(url);
+});
 
-// router.get('/auth/provider/callback', function(req, res, next) {
-//     //Parse the callback query to get code which is required to exchanging access token
-//     url.parse(req.url, true);
-//     //If user decline the permissoion to read profile from NCU OAuth2,redirect to login page
-//     if (req.query.error || !req.query.code) {
-//         return res.redirect('/');
-//     }
+router.get('/auth/provider/callback', function(req, res, next) {
+    //Parse the callback query to get code which is required to exchanging access token
+    url.parse(req.url, true);
+    //If user decline the permissoion to read profile from NCU OAuth2,redirect to login page
+    if (req.query.error || !req.query.code) {
+        return res.redirect('/');
+    }
 
-//     // Grab accessToken by exchanging code with NCU OAuth2
-//     request.post({
-//         url: 'https://api.cc.ncu.edu.tw/oauth/oauth/token',
-//         form: {
-//             'grant_type': 'authorization_code',
-//             'code': req.query.code,
-//             'client_id': CLIENT_ID,
-//             'client_secret': CLIENT_SECRET
-//         }
-//     }, function Callback(err, httpResponse, token) {
-//         if (err)
-//             return console.error('failed to grab accessToken:', err);
-//         if (!httpResponse.statusCode === 200) {
-//             console.log('https://api.cc.ncu.edu.tw/oauth/oauth/token response error!');
-//             return res.redirect('/login');
-//         }
-//         // accessToken
-//         obj = JSON.parse(token);
+    // Grab accessToken by exchanging code with NCU OAuth2
+    request.post({
+        url: 'https://api.cc.ncu.edu.tw/oauth/oauth/token',
+        form: {
+            'grant_type': 'authorization_code',
+            'code': req.query.code,
+            'client_id': CLIENT_ID,
+            'client_secret': CLIENT_SECRET
+        }
+    }, function Callback(err, httpResponse, token) {
+        if (err)
+            return console.error('failed to grab accessToken:', err);
+        if (!httpResponse.statusCode === 200) {
+            console.log('https://api.cc.ncu.edu.tw/oauth/oauth/token response error!');
+            return res.redirect('/login');
+        }
+        // accessToken
+        obj = JSON.parse(token);
 
-//         //Grab personal info by the accessToken
-//         request({
-//             url: 'https://api.cc.ncu.edu.tw/personnel/v1/info',
-//             headers: {
-//                 'Authorization': 'Bearer' + obj.access_token,
-//             }
-//         }, function Callback(err, httpResponse, info) {
-//             if (err)
-//                 return console.error('failed to grab personal info:', err);
-//             if (!httpResponse.statusCode === 200) {
-//                 console.log('https://api.cc.ncu.edu.tw/personnel/v1/info response error!');
-//                 return res.redirect('/login');
-//             }
-//             // personal info
-//             personalObj = JSON.parse(info);
+        //Grab personal info by the accessToken
+        request({
+            url: 'https://api.cc.ncu.edu.tw/personnel/v1/info',
+            headers: {
+                'Authorization': 'Bearer' + obj.access_token,
+            }
+        }, function Callback(err, httpResponse, info) {
+            if (err)
+                return console.error('failed to grab personal info:', err);
+            if (!httpResponse.statusCode === 200) {
+                console.log('https://api.cc.ncu.edu.tw/personnel/v1/info response error!');
+                return res.redirect('/login');
+            }
+            // personal info
+            personalObj = JSON.parse(info);
 
-//             if (!personalObj.id) {
-//                 console.log(personalObj.id + ' is not allowed to login');
-//             }
-//             Users.findOne({
-//                 'id': personalObj.id
-//             }, function(err, user) {
-//                 if (err) next(err);
-//                 // If found, login
-//                 if (user) {
-//                     req.login(user, function(err) {
-//                         if (err) return next(err);
-//                         console.log(user.id + "登入 via Oauth");
-//                         res.redirect('/');
-//                     });
-//                 } else { // else, create user
-//                     Users.createUser(new Users({
-//                         id: personalObj.id,
-//                         name: personalObj.name,
-//                         unit: personalObj.unit,
-//                     }), function(err, user) {
-//                         if (err) return next(err);
-//                         req.login(user, function(err) {
-//                             if (err) return next(err);
-//                             console.log(user.id + " 建立via OAuth");
-//                             console.log(personalObj.id + " 登入via OAuth");
-//                             res.redirect('/');
-//                         });
-//                     });
-//                 }
-//             });
-//         });
-//     });
-// });
+            if (!personalObj.id) {
+                console.log(personalObj.id + ' is not allowed to login');
+            }
+            Users.findOne({
+                'id': personalObj.id
+            }, function(err, user) {
+                if (err) next(err);
+                // If found, login
+                if (user) {
+                    req.login(user, function(err) {
+                        if (err) return next(err);
+                        console.log(user.id + "登入 via Oauth");
+                        res.redirect('/');
+                    });
+                } else { // else, create user
+                    Users.createUser(new Users({
+                        id: personalObj.id,
+                        name: personalObj.name,
+                        unit: personalObj.unit,
+                    }), function(err, user) {
+                        if (err) return next(err);
+                        req.login(user, function(err) {
+                            if (err) return next(err);
+                            console.log(user.id + " 建立via OAuth");
+                            console.log(personalObj.id + " 登入via OAuth");
+                            res.redirect('/');
+                        });
+                    });
+                }
+            });
+        });
+    });
+});
 
 // router.get('/adduser', function (req, res, next) {
 //   Users.createUser(new Users({
