@@ -1,4 +1,6 @@
 <script>
+    var lastPicNum = 1;
+    var acyImgNum = 4;
     $(document).ready(() => {
         if (window.innerWidth > 768) {
             loadImg();
@@ -24,33 +26,26 @@
                 restart_animate(".four");
                 document.getElementById("mySidenav").style.height = "100%";
                 $("#mySidenav").removeClass("closed").addClass("opened");
+                
                 if (window.innerWidth > 768) {
-                    setTimeout(() => {///3sec later
-                        timerID = window.setInterval(function () {//every 7 sec
-                            if ($("#mySidenav").hasClass("opened")) {
-                                var randNum = Math.floor(Math.random() * 12) + 1;
-                                var $this = $('.randImg').eq(randNum - 1);
-                                $this.show()
-                                $this.velocity({ opacity: 1 }, 2000).then(() => {
-                                    setTimeout(() => {
-                                        $this.velocity({ opacity: 0 }, 2000).then(()=>{
-                                            $this.hide().removeClass('active');
-                                        });
-                                    }, 4000)
-
-                                })
-                                $this.addClass('active');
-                            }
-                        }, 8000);
-                    }, 3000)
+                    timerID = window.setInterval(function () {//every 7 sec
+                        var $this = $('.randImg').eq(lastPicNum - 1);
+                        $this.hide();
+                        var randNum = Math.floor(Math.random() * acyImgNum) + 1;
+                        $this = $('.randImg').eq(randNum - 1);
+                        $this.show()
+                        restart_animate("randimg-" + randNum);
+                        lastPicNum = randNum;
+                        
+                        setTimeout(() => {
+                            var spl = $('.randImg').eq(lastPicNum - 1).css("background-image").split("/");
+                            var len = spl.length;
+                            $("#myNavPics").css("background-image", 'url("/' + spl[len-3] + "/" + spl[len-2] + "/" + spl[len-1]);
+                        }, 3000);
+                    }, 6500); 
                 }
 
             } else if ($("#mySidenav").hasClass("opened")) {
-                // if (window.innerWidth > 768) {
-                //     alert(timerID)
-                //     window.clearInterval(timerID);
-                //     alert("remove")
-                // }
                 document.getElementById("mySidenav").style.height = "0";
                 $("#mySidenav").removeClass("opened").addClass("closed");
             }
@@ -75,16 +70,16 @@
                     images_upload_url: '/tinymceUploader',
                     setup: (ed) => {
                         ed.on('init', function (e) {
-                            console.log(`${e.target.id} textarea is initialized.`);
+                            // console.log(`${e.target.id} textarea is initialized.`);
                         });
                         ed.on('keyup', function () {
-                            console.log(ed.getContent());
+                            // console.log(ed.getContent());
                         });
                         ed.on('GetContent', (e) => {
-                            console.log(`${e.target.id}'s Content get caught.`);
+                            // console.log(`${e.target.id}'s Content get caught.`);
                         })
                         ed.on('SetContent', (e) => {
-                            console.log(`${e.target.id}'s Content get set.`);
+                            // console.log(`${e.target.id}'s Content get set.`);
                         })
                     }
                 })
@@ -99,6 +94,7 @@
         el.before(newone);
         $("." + el.attr("class") + ":last").remove();
     }
+
     function loadImg() {
         'use strict';
         // Page is loaded
@@ -117,16 +113,4 @@
             };
         });
     };
-
-
-
-
-
-    //interval function works only when pause is false
-
-
-
-
-
-
 </script>

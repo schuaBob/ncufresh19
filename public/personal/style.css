@@ -219,7 +219,7 @@ body {
   height: calc(80vh - 200px);
   min-height: 300px;
   position: absolute;
-  top: 320px;
+  top: calc(145px + 22vh);
   left: 15%;
   background-color: white;
   padding: 3%;
@@ -405,7 +405,7 @@ body {
   color: white;
 }
 
-@media only screen and (max-width:1200px) {
+@media only screen and (max-width:800px) {
   .title-box {
     display: none;
   }
@@ -480,13 +480,13 @@ body {
     display: none;
   }
 
-  .toggle-container {
+  /*.toggle-container {
     left: 11vw;
     width: 80vw;
     top: calc(250px + 5vh);
     height: calc(95vh - 300px);
     padding: 5%;
-  }
+  }*/
 
   .ask p {
     font-size: 13px;
@@ -495,6 +495,14 @@ body {
   .ask-link {
     width: 88%;
     height: calc((98% / 1197 * 745)+4%);
-    padding: 4% 2%;
+    padding: 2%;
+  }
+
+  .ask-link img {
+    width: 100%;
+  }
+
+  .ask-link p {
+    padding-left: 20%;
   }
 }

@@ -371,6 +371,10 @@ thead>tr {
   display: none;
 }
 
+#searchImg:hover {
+  cursor: pointer;
+}
+
 /* ipad 直立設計*/
 @media only screen 
   and (min-width : 768px) 
@@ -517,6 +521,15 @@ thead>tr {
     font-size: 1.1rem;
     margin-top:7vh;
   }
+
+  /*
+.button_contener {
+  display: flex;
+  justify-content: flex-start;
+}
+*/
+
+
   .buttonGroup{
     font-size: 1rem;
   }

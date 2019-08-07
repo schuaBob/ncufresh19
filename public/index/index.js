@@ -27,11 +27,7 @@ $(document).ready(() => {
             }
         }
     });
-    $('.news-line').on('touchstart', function () {
-        $(this).trigger('hover');
-    }).on('touchend', function () {
-        $(this).trigger('hover');
-    });
+    $.fn.fullpage.setMouseWheelScrolling(true)
     $.fn.fullpage.setRecordHistory(false);
     $('#newsModal').on('show.bs.modal', () => {
         $.fn.fullpage.setMouseWheelScrolling(false)
@@ -161,6 +157,7 @@ $(".selectMonth").on("click", function () {
             $("#board-detail").append(current_calender[0].board_content);
             nowLeft = 30;
             nowTarget = 0;
+            lastClick = 0;
             $("#" + lastClick + " div svg circle").attr("fill", "#fff9dc");
         }
     });
@@ -181,8 +178,8 @@ function append_circle(data) {
     current_calender = data;
     $(".day").on("click", function () {
         var width = $(window).width();
-        if(width > 1024) {
-            if(lastClick !== -1)
+        if (width > 1024) {
+            if (lastClick !== -1)
                 $("#" + lastClick + " div svg circle").attr("fill", "#ec6d4f")
             $("#board-detail").empty();
             var cnt = 0;
@@ -240,9 +237,9 @@ function append_circle(data) {
         $('.bigCircle').attr('r', '11vw');
     } else if ((1025 > vw) && (vw > 768)) {
         ///平板
-        $("#indexOneCircle circle").attr('cx', '50');
-        $("#indexOneCircle circle").attr('cy', '50');
-        $("#indexOneCircle circle").attr('r', '40');
+        $("#indexOneCircle circle").attr('cx', '35');
+        $("#indexOneCircle circle").attr('cy', '35');
+        $("#indexOneCircle circle").attr('r', '25');
         $('.bigCircle').attr('cx', '50px');
         $('.bigCircle').attr('cy', '50px');
         $('.bigCircle').attr('r', '50px');
@@ -267,9 +264,9 @@ function append_circle(data) {
             $('.bigCircle').attr('r', '11vw');
         } else if ((1025 > vw) && (vw > 768)) {
             ///平板
-            $("#indexOneCircle circle").attr('cx', '50');
-            $("#indexOneCircle circle").attr('cy', '50');
-            $("#indexOneCircle circle").attr('r', '40');
+            $("#indexOneCircle circle").attr('cx', '35');
+            $("#indexOneCircle circle").attr('cy', '35');
+            $("#indexOneCircle circle").attr('r', '25');
             $('.bigCircle').attr('cx', '50px');
             $('.bigCircle').attr('cy', '50px');
             $('.bigCircle').attr('r', '50px');

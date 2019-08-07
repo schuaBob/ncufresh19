@@ -171,6 +171,7 @@ body {
 
 ._card {
   height: 69vh;
+  margin-bottom: 12vh;
   display: flex;
   align-items: center;
   justify-content: center;
