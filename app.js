@@ -16,7 +16,7 @@ var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
 
 // cache views
-app.set('view cache', false);
+app.set('view cache', true);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
