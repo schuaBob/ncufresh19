@@ -237,9 +237,9 @@ function append_circle(data) {
         $('.bigCircle').attr('r', '11vw');
     } else if ((1025 > vw) && (vw > 768)) {
         ///平板
-        $("#indexOneCircle circle").attr('cx', '50');
-        $("#indexOneCircle circle").attr('cy', '50');
-        $("#indexOneCircle circle").attr('r', '40');
+        $("#indexOneCircle circle").attr('cx', '35');
+        $("#indexOneCircle circle").attr('cy', '35');
+        $("#indexOneCircle circle").attr('r', '25');
         $('.bigCircle').attr('cx', '50px');
         $('.bigCircle').attr('cy', '50px');
         $('.bigCircle').attr('r', '50px');
@@ -264,9 +264,9 @@ function append_circle(data) {
             $('.bigCircle').attr('r', '11vw');
         } else if ((1025 > vw) && (vw > 768)) {
             ///平板
-            $("#indexOneCircle circle").attr('cx', '50');
-            $("#indexOneCircle circle").attr('cy', '50');
-            $("#indexOneCircle circle").attr('r', '40');
+            $("#indexOneCircle circle").attr('cx', '35');
+            $("#indexOneCircle circle").attr('cy', '35');
+            $("#indexOneCircle circle").attr('r', '25');
             $('.bigCircle').attr('cx', '50px');
             $('.bigCircle').attr('cy', '50px');
             $('.bigCircle').attr('r', '50px');
