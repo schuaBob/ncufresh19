@@ -486,12 +486,12 @@ router.get('/comingsoon', function(req, res, next) {
     });
 });
 
-router.get('/login', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/index', {
-    title: '新生知訊網',
-    user: req.user,
-    error: req.flash('error')
-  });
+router.get('/login', checkUser.isAllowtoLogin, function(req, res, next) {
+    res.render('login/index', {
+        title: '新生知訊網',
+        user: req.user,
+        error: req.flash('error')
+    });
 });
 
 router.post('/login', checkUser.isAllowtoLogin, function(req, res, next) {
@@ -502,81 +502,82 @@ router.post('/login', checkUser.isAllowtoLogin, function(req, res, next) {
         'id': req.body.id
     }, function(err, user) {
         if (err) res.redirect('/login');
-        if (user && user.password)
-            res.redirect('/password?id=' + req.body.id);
-        else
-            res.redirect('/register?id=' + req.body.id);
+        // if (user && user.password)
+        //     res.redirect('/password?id=' + req.body.id);
+        // else
+        //     res.redirect('/register?id=' + req.body.id);
+        res.redirect('/')
     })
 });
 
-router.get('/password', checkUser.isAllowtoLogin, function(req, res, next) {
-    res.render('login/password', {
-        title: '新生知訊網',
-        user: req.user
-    });
-});
+// router.get('/password', checkUser.isAllowtoLogin, function(req, res, next) {
+//     res.render('login/password', {
+//         title: '新生知訊網',
+//         user: req.user
+//     });
+// });
 
-router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-}));
+// router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
+//     successRedirect: '/',
+//     failureRedirect: '/login',
+//     failureFlash: true
+// }));
 
-router.get('/register', checkUser.isAllowtoLogin, function(req, res, next) {
-    res.render('login/register', {
-        title: '新生知訊網',
-        user: req.user
-    });
-});
+// router.get('/register', checkUser.isAllowtoLogin, function(req, res, next) {
+//     res.render('login/register', {
+//         title: '新生知訊網',
+//         user: req.user
+//     });
+// });
 
-router.post('/register', checkUser.isAllowtoLogin, function(req, res, next) {
-    let id = req.body.id;
-    let name = req.body.name;
-    let password = req.body.password;
-    let checkpassword = req.body.checkpassword;
+// router.post('/register', checkUser.isAllowtoLogin, function(req, res, next) {
+//     let id = req.body.id;
+//     let name = req.body.name;
+//     let password = req.body.password;
+//     let checkpassword = req.body.checkpassword;
 
-    if ((id && name && password && checkpassword) && (password == checkpassword)) {
-        Users.findOne({
-            'id': id
-        }, function(err, obj) {
-            if (err) {
-                res.redirect('/');
-            }
-            if (!obj) {
-                console.log(id + ': 不存在於新生列表');
-                req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
-                res.redirect('/login');
-                return;
-            }
+//     if ((id && name && password && checkpassword) && (password == checkpassword)) {
+//         Users.findOne({
+//             'id': id
+//         }, function(err, obj) {
+//             if (err) {
+//                 res.redirect('/');
+//             }
+//             if (!obj) {
+//                 console.log(id + ': 不存在於新生列表');
+//                 req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
+//                 res.redirect('/login');
+//                 return;
+//             }
 
-            if (obj.name !== name) {
-                console.log(id + ': 真實姓名不合');
-                req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
-                res.redirect('/login');
-            } else {
-                obj.password = password;
-                Users.createUser(obj, function(err, user, next) {
-                    if (err) {
-                        return next(err);
-                    } else {
-                        console.log(id + ': 建立');
-                        req.login(user, function(err) {
-                            if (err) {
-                                return next(err);
-                            }
-                            console.log(obj.id + ': 登入');
-                            res.redirect('/');
-                        });
-                    }
-                });
-            }
-        });
+//             if (obj.name !== name) {
+//                 console.log(id + ': 真實姓名不合');
+//                 req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
+//                 res.redirect('/login');
+//             } else {
+//                 obj.password = password;
+//                 Users.createUser(obj, function(err, user, next) {
+//                     if (err) {
+//                         return next(err);
+//                     } else {
+//                         console.log(id + ': 建立');
+//                         req.login(user, function(err) {
+//                             if (err) {
+//                                 return next(err);
+//                             }
+//                             console.log(obj.id + ': 登入');
+//                             res.redirect('/');
+//                         });
+//                     }
+//                 });
+//             }
+//         });
 
-    } else {
-        res.redirect('/register');
-    }
+//     } else {
+//         res.redirect('/register');
+//     }
 
-});
+// });
 
 router.get('/logout', function(req, res, next) {
     req.logout();
