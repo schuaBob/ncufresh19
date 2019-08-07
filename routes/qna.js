@@ -91,7 +91,7 @@ router.get('/:category', function(req, res, next) {
 
 
 router.post('/toPost',function(req,res){ 
-  if(!req.user||(req.user.id && req.user.name)||req.user.role=="admin"){
+  if(!req.user||(req.user.id && req.user.name)||req.user.role==="admin"){
     new qnaDB({
       authorID:(req.user && req.user.id) ? req.user.id : "anonymous", 
       postID:getPostID(),
