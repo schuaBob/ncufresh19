@@ -5,6 +5,9 @@ html {
 body {
   background-color: #fff9dc;
   height: 100vh;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 
 div, p {
