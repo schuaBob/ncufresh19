@@ -2005,22 +2005,14 @@ function update_rank(){
     rank_container.children[3].scale = 1.0/(( rank_container.children[3].image.width> rank_container.children[3].image.height? rank_container.children[3].image.width: rank_container.children[3].image.height)/80.0);
     rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
     rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
-    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
-    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
-    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
-    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
    var second_image=new createjs.Bitmap(((now == 3?rank_user_list[1].score_high:rank_user_list[1].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[1].avatar));
    second_image.image.onload=()=>{
     rank_container.children[4].image =second_image.image;
     rank_container.children[4].scale = 1.0/(( rank_container.children[4].image.width> rank_container.children[4].image.height? rank_container.children[4].image.width: rank_container.children[4].image.height)/80.0);
-    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
-    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
     rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
     rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
-    rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
-    rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
   }
  var third_image=new createjs.Bitmap(((now == 3?rank_user_list[2].score_high:rank_user_list[2].score_sum) == 0)?"":("/personal/profile-photo/"+rank_user_list[2].avatar));
@@ -2028,10 +2020,6 @@ function update_rank(){
  third_image.image.onload=()=>{
     rank_container.children[5].image =third_image.image;
     rank_container.children[5].scale = 1.0/(( rank_container.children[5].image.width> rank_container.children[5].image.height? rank_container.children[5].image.width: rank_container.children[5].image.height)/80.0);
-    rank_container.children[3].x=205+(80-rank_container.children[3].getwidth())/2.0;
-    rank_container.children[3].y=110+(80-rank_container.children[3].getheight())/2.0;
-    rank_container.children[4].x=100+(80-rank_container.children[4].getwidth())/2.0;
-    rank_container.children[4].y=170+(80-rank_container.children[4].getheight())/2.0;
     rank_container.children[5].x=310+(80-rank_container.children[5].getwidth())/2.0;
     rank_container.children[5].y=200+(80-rank_container.children[5].getheight())/2.0;
     stage.update();
