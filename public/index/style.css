@@ -1,3 +1,141 @@
+/* test */
+/* 手機版 */
+@media only screen and (max-width: 768px) {
+    #loginHref {
+        position: absolute;
+        left: 10px;
+        bottom: 40px;
+        width: 135px;
+        height: 50px;
+        text-decoration: none;
+    } 
+
+    #topHref {
+        position: absolute;
+        right: 20px;
+        bottom: 25px;
+        width: 50px;
+        height: 50px;
+    }
+
+    #topWord {
+        position: relative;
+        left: 20%;
+        bottom: 38px;
+        width: 40px;
+        color: wheat;
+    }
+}
+
+/* 電腦版 */
+@media only screen and (min-width: 768px) {
+    #loginHref {
+        position: absolute;
+        right: 120px;
+        bottom: 25px;
+        width: 140px;
+        height: 50px;
+        opacity: 0.8;
+        text-decoration: none;
+        z-index: 1;
+    } 
+    #logout {
+        position: absolute;
+        right: 120px;
+        bottom: 25px;
+        width: 140px;
+        height: 50px;
+        opacity: 0;
+        text-decoration: none;
+        background-color: black;
+        color: white;
+        z-index: 0;
+        transition: .5s ease;
+        border-radius: 250px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding-top: 15px;
+    }
+    #topHref {
+        position: absolute;
+        right: 40px;
+        bottom: 25px;
+        width: 50px;
+        height: 50px;
+        opacity: 0.8;
+    }
+
+    #topWord {
+        position: relative;
+        left: 20%;
+        bottom: 38px;
+        width: 85px;
+        color: wheat;
+    }
+}
+
+#loginHref:hover {
+    animation-name: loginAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+#big:hover  #logout {
+    transition: translate(20px);
+    opacity: 0.8; 
+    background-color: black;
+    bottom: 80px;
+}
+@keyframes loginAnimation{
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+#loginBtn {
+    position: relative;
+    width: 135px;
+    height: 50px;
+}
+
+#loginWord {
+    position: relative;
+    left: 40%;
+    bottom: 38px;
+    width: 85px;
+    color: wheat;
+}
+
+#topHref:hover {
+    cursor: pointer;
+    animation-name: topAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes topAnimation{
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+#topBtn {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+
+
 #inddexPage1,
 #indexPage2,
 #indexPage3 {
@@ -52,7 +190,7 @@ main {
     .switch input {
         display: none;
     }
-    
+
     .switch small {
         display: inline-block;
         width: 120px;
@@ -87,20 +225,20 @@ main {
         top: 3px;
         left: 3px;
         transition: .3s;
-        box-shadow: -3px 0 3px rgba(0,0,0,0.1);
+        box-shadow: -3px 0 3px rgba(0, 0, 0, 0.1);
     }
 
-    .switch input:checked ~ small {
+    .switch input:checked~small {
         background: #4fc5c5;
         transition: .3s;
     }
 
-    .switch input:checked ~ small:before {
+    .switch input:checked~small:before {
         transform: translate(85px, 0px);
         transition: .3s;
     }
 
-    .switch input:checked ~ small:after {
+    .switch input:checked~small:after {
         content: "Commerical";
         text-align: left;
     }
@@ -150,7 +288,7 @@ main {
     #news {
         position: relative;
         display: block;
-        top:  4vh;
+        top: 4vh;
         width: 100%;
         height: 90%;
     }
@@ -162,7 +300,7 @@ main {
     #news-body {
         position: relative;
         max-height: 40vh;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         min-height: 120px;
     }
@@ -195,7 +333,7 @@ main {
     #carouselExampleIndicators {
         position: relative;
         display: block;
-        top:  4vh;
+        top: 4vh;
         width: 100%;
         height: 90%;
     }
@@ -268,7 +406,7 @@ main {
     #index3start {
         display: none;
     }
-    
+
     #board-detail {
         width: 90%;
         margin-right: 5%;
@@ -393,7 +531,7 @@ main {
         position: relative;
         top: 0;
     }
-    
+
     .card-body {
         padding: 0.7rem;
     }
@@ -401,7 +539,7 @@ main {
     #news-body {
         position: relative;
         height: 80%;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         min-height: 0;
     }
@@ -442,13 +580,13 @@ main {
     #triangle {
         z-index: 4999;
         position: absolute;
-        height: 100px;
-        width: 100px;
+        height: 70px;
+        width: 70px;
     }
 
     #indexOneCircle {
-        height: 100px;
-        width: 100px;
+        height: 70px;
+        width: 70px;
     }
 
     .bigSvg {
@@ -461,7 +599,7 @@ main {
     .selectMonth h5 {
         position: absolute;
         top: calc(50% - 13px);
-        font-size: 26px;
+        font-size: 24px;
     }
 
     #board-detail {
@@ -489,6 +627,7 @@ main {
         background-color: #fff9dc;
         cursor: pointer;
     }
+
     .switch {
         display: none;
     }
@@ -499,7 +638,7 @@ main {
         top: 0;
         padding: 3vw 5vw;
     }
-    
+
     #indexLogo {
         position: absolute;
         z-index: 500;
@@ -538,9 +677,11 @@ main {
     #news-body {
         position: relative;
         max-height: 25vw;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         min-height: 300px;
+        z-index: 8000;
+        -webkit-overflow-scrolling: touch;
     }
 
     #jellyfish {
