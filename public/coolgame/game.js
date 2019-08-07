@@ -2290,6 +2290,7 @@ function ranking_init() {
   score_board_text.visible = false;
   sea.visible = false;
   now = 3;
+  rank_background.image = loader.getResult("rank_single");
   BGM_change();
   for (var j = 0; j < animal_list.length; j++)animal_list[j].visible = false;
   close_fishmanwalk();
