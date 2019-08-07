@@ -495,35 +495,27 @@ router.get('/login', checkUser.isAllowtoLogin, function (req, res, next) {
 });
 
 router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
-    if (typeof req.body.id === "number") {
-        let grade = req.body.id.substring(0, 3);
-        if (grade !== '108')
-            return res.redirect('auth/provider');
-        Users.findOne({
-            'id': req.body.id
-        }, function (err, user) {
-            if (err) res.redirect('/login');
-            // if (user && user.password)
-            //     res.redirect('/password?id=' + req.body.id);
-            // else
-            //     res.redirect('/register?id=' + req.body.id);
-            res.redirect('/')
-        })
-    } else {
-        res.redirect('/login')
-    }
+    let grade = req.body.id.substring(0, 3);
+    if (grade !== '108')
+        return res.redirect('auth/provider');
+    Users.findOne({
+        'id': req.body.id
+    }, function (err, user) {
+        if (err) res.redirect('/login');
+        // if (user && user.password)
+        //     res.redirect('/password?id=' + req.body.id);
+        // else
+        //     res.redirect('/register?id=' + req.body.id);
+        res.redirect('/')
+    })
 });
 
-router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
-    if (typeof req.query.id === 'number') {
-        res.render('login/password', {
-            title: '新生知訊網',
-            user: req.user
-        });
-    } else {
-        res.redirect('/login')
-    }
-});
+// router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
+//     res.render('login/password', {
+//         title: '新生知訊網',
+//         user: req.user
+//     });
+// });
 
 // router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
 //     successRedirect: '/',
@@ -531,17 +523,12 @@ router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
 //     failureFlash: true
 // }));
 
-router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
-    if (typeof req.query.id === 'number') {
-        res.render('login/register', {
-            title: '新生知訊網',
-            user: req.user
-        });
-    } else {
-        res.redirect('/login')
-    }
-
-});
+// router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
+//     res.render('login/register', {
+//         title: '新生知訊網',
+//         user: req.user
+//     });
+// });
 
 // router.post('/register', checkUser.isAllowtoLogin, function(req, res, next) {
 //     let id = req.body.id;
