@@ -55,7 +55,7 @@ router.get('/gethistory', function (req, res, next) {
   History.find({}).exec(function (err, result){
     var h = "";
     for(var a =0;a<result.length;a++){
-      h +=result[a].Id+"/"+result[a].Time +"/"+result[a].Date+"/"+result[a].Score+"\n";
+      h +=result[a].Id+"/"+result[a].Name+"/"+result[a].Time +"/"+result[a].Date+"/"+result[a].Score+"\n";
     }
     res.send(h);
   });
@@ -94,6 +94,7 @@ router.post('/updatescore', function (req, res, next) {
         });
         var new_history = new History({
           Id:req.user.id,
+          Name:req.user.name,
           Time:game_time,
           Date: new Date(),
           Score:req.body.score
