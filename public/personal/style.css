@@ -86,7 +86,7 @@ body {
   left: 41vw;
 }
 
-#logout {
+#logoutbtn {
   left: 54vw;
 }
 
@@ -116,11 +116,11 @@ body {
   text-decoration: none;
 }
 
-#logout {
+#logoutbtn {
   background-color: #bfe8f2;
 }
 
-#logout:hover {
+#logoutbtn:hover {
   background-color: rgb(32, 56, 100);
 }
 
@@ -460,7 +460,7 @@ body {
     left: 50vw;
   }
 
-  #logout {
+  #logoutbtn {
     left: 70vw;
   }
 
