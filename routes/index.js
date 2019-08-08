@@ -514,7 +514,7 @@ router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
 
 router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
     res.render('login/password', {
-        title: '新生知訊網 | 新生登入',
+        title: '新生知訊網 | 新生登入'
     });
 });
 
@@ -526,7 +526,7 @@ router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local'
 
 router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
     res.render('login/register', {
-        title: '新生知訊網 | 註冊',
+        title: '新生知訊網 | 註冊'
     });
 });
 
