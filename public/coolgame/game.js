@@ -2392,6 +2392,9 @@ function labby_init() {
   sea.y = 0;
   labbybutton_container.visible = true;
   dolphin_container.visible=false;;
+  for (var j = 0; j < 3; j++) {
+    question_num[j] = question_list[j].length;
+  }
   open_fishmanwalk();
   open_fish_ad();
   open_fish();
