@@ -13,11 +13,16 @@ a {
 .orangeBg {
     background-color: rgb(251, 217, 185) !important;
 }
-
+#q_title,#mobileq_title,#q_content,#mobileq_content{
+  box-shadow: none;
+}
+html{
+  overflow: hidden;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  overflow: hidden;
+  /** overflow: hidden; */
   moz-user-select: none;
   /* for Firefox */
   -webkit-user-select: none;
@@ -27,6 +32,7 @@ body {
   background-position-y: bottom;
   background-color:#FFF9DC; 
   background-size: 100%;
+  overflow: hidden;
 }
 
 ._modal {
@@ -39,7 +45,7 @@ body {
 }
 
 ._modal-content {
-  height: 100%;
+  /*height: 100%;*/
   background-size: 200px auto;
   background-repeat: no-repeat;
   position: relative;
@@ -371,10 +377,14 @@ thead>tr {
   display: none;
 }
 
+#searchImg:hover {
+  cursor: pointer;
+}
+
 /* ipad 直立設計*/
 @media only screen 
-  and (min-device-width : 768px) 
-  and (max-device-width : 1024px) 
+  and (min-width : 768px) 
+  and (max-width : 1024px) 
   and (orientation : portrait)  {
   .option{
     font-size:1.2rem;
@@ -435,8 +445,8 @@ thead>tr {
 }
 /* ipad 橫放設計 */
 @media only screen 
-  and (min-device-width : 768px) 
-  and (max-device-width : 1024px) 
+  and (min-width : 768px) 
+  and (max-width : 1024px) 
   and (orientation : landscape) {
     .ask{
       display: none;
@@ -513,13 +523,18 @@ thead>tr {
     right:-6%;
     top: -3px;
   }
-  .option li{
-    /* margin-bottom: 2vh; */
-  }
   .option{
     font-size: 1.1rem;
     margin-top:7vh;
   }
+
+  /*
+.button_contener {
+  display: flex;
+  justify-content: flex-start;
+}
+*/
+
   .buttonGroup{
     font-size: 1rem;
   }
@@ -534,13 +549,13 @@ thead>tr {
 /* 手機直立的通用設計 */
 @media only screen and (max-width:767px) and (orientation : portrait){
   html{
-    height: 100%;
-    overflow: hidden;
+    /*height: 100%;*/
+    /*overflow: hidden;*/
   }
   body{
     background-image: none;
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }      
   #mobileAskBtn{
     display: inline !important;
@@ -580,7 +595,7 @@ thead>tr {
     width:92%;
   }
   .content {
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     overflow-y: auto;
     width: 100%;
     margin: 0;
@@ -600,7 +615,7 @@ thead>tr {
   }
   .fa-arrow-alt-circle-up {
     visibility: hidden;  
-    position: absolute;  
+    /*position: absolute;*/  
     right: -2vw;  
     bottom: 5vh;  
     font-size: 2.5em;
@@ -644,7 +659,7 @@ thead>tr {
     width: 50%;
   }
   .mobileFilterButton li {
-    margin-bottom: 21%;
+    margin-bottom: 12%;
     text-align: center;
     border-radius: 2px;
   }
@@ -669,7 +684,7 @@ thead>tr {
     width: 50%;
   }
   .option li {
-    margin-bottom: 21%;
+    margin-bottom: 12%;
     text-align: center;
     border-radius: 2px;
     padding: 4% 0%;

@@ -1,5 +1,8 @@
 <script>
     $(document).ready(function () {
+        $('#indexmodal').on('shown.bs.modal', function () {
+            $('.indexmodalp').scrollTop();
+        })
 
         var temp;
         var lasyway = false;
@@ -41,10 +44,11 @@
 
                 },
                 success: function (data) {
-                    console.log(data.Element_Intro);
+                    // console.log(data.Element_Intro);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
                     if (data.Element_Intro == '<p></p>') $('#indexmodalp').hide();
+                    else $('#indexmodalp').show();
                     if (data.Intropic.length == 1) {
                         $('.carousel-control-next').hide();
                         $('.carousel-control-pre').hide();
@@ -89,7 +93,7 @@
             $('.indexelepic[val=' + event.currentTarget.attributes.val.value + ']').stop().tooltip(
                 'hide')
             if (lasyway) {
-                console.log(verylasy);
+                // console.log(verylasy);
                 $('.indexelepic.hide[val=' + verylasy + ']')
                     .show()
                 $('.indexelepic[val=' + verylasy + ']').css(
@@ -157,34 +161,34 @@
                                     opacity: 1,
                                     translateX: '1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.sbird').stop().velocity({
                                     opacity: 1,
                                     translateX: '-1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.sailor2').stop().velocity({
                                     opacity: 0,
                                     translateX: '-1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.show2D').stop().velocity({
                                     opacity: 1,
                                     translateX: '1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                             }
                         } else {
                             properties1 = {
@@ -197,34 +201,34 @@
                                     opacity: 0,
                                     translateX: '-1rem'
                                 }, {
-                                    display: 'none'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'none'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.sbird').stop().velocity({
                                     opacity: 0,
                                     translateX: '1rem'
                                 }, {
-                                    display: 'none'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'none'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.sailor2').stop().velocity({
                                     opacity: 1,
                                     translateX: '1rem'
                                 }, {
-                                    display: 'block'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'block'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                                 $('.show2D').stop().velocity({
                                     opacity: 0,
                                     translateX: '-1rem'
                                 }, {
-                                    display: 'none'
-                                }, {
-                                    duration: 200
-                                }, 'easeInOutSine');
+                                        display: 'none'
+                                    }, {
+                                        duration: 200
+                                    }, 'easeInOutSine');
                             }
                         }
                     } else {
@@ -238,34 +242,34 @@
                                 opacity: 0,
                                 translateX: '-1rem'
                             }, {
-                                display: 'none'
-                            }, {
-                                duration: 200
-                            }, 'easeInOutSine');
+                                    display: 'none'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
                             $('.sbird').stop().velocity({
                                 opacity: 0,
                                 translateX: '1rem'
                             }, {
-                                display: 'none'
-                            }, {
-                                duration: 200
-                            }, 'easeInOutSine');
+                                    display: 'none'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
                             $('.sailor2').stop().velocity({
                                 opacity: 1,
                                 translateX: '1rem'
                             }, {
-                                display: 'block'
-                            }, {
-                                duration: 200
-                            }, 'easeInOutSine');
+                                    display: 'block'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
                             $('.show2D').stop().velocity({
                                 opacity: 0,
                                 translateX: '-1rem'
                             }, {
-                                display: 'none'
-                            }, {
-                                duration: 200
-                            }, 'easeInOutSine');
+                                    display: 'none'
+                                }, {
+                                    duration: 200
+                                }, 'easeInOutSine');
                         }
                         $('.mapmove').addClass('clicked')
                         if ($('.main_list_detail').hasClass('clicked')) {
@@ -353,34 +357,34 @@
                     opacity: 1,
                     translateX: '1rem'
                 }, {
-                    display: 'block'
-                }, {
-                    duration: 200
-                }, 'easeInOutSine');
+                        display: 'block'
+                    }, {
+                        duration: 200
+                    }, 'easeInOutSine');
                 $('.sbird').stop().velocity({
                     opacity: 1,
                     translateX: '-1rem'
                 }, {
-                    display: 'block'
-                }, {
-                    duration: 200
-                }, 'easeInOutSine');
+                        display: 'block'
+                    }, {
+                        duration: 200
+                    }, 'easeInOutSine');
                 $('.sailor2').stop().velocity({
                     opacity: 0,
                     translateX: '-1rem'
                 }, {
-                    display: 'none'
-                }, {
-                    duration: 200
-                }, 'easeInOutSine');
+                        display: 'none'
+                    }, {
+                        duration: 200
+                    }, 'easeInOutSine');
                 $('.show2D').stop().velocity({
                     opacity: 1,
                     translateX: '1rem'
                 }, {
-                    display: 'block'
-                }, {
-                    duration: 200
-                }, 'easeInOutSine');
+                        display: 'block'
+                    }, {
+                        duration: 200
+                    }, 'easeInOutSine');
             }
 
             properties1 = {
@@ -417,10 +421,11 @@
 
                 },
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     $('#indexmodal .modal-title').text(data.Element_Name)
                     $('#indexmodalp .p').html(data.Element_Intro)
                     if (data.Element_Intro == '<p></p>') $('#indexmodalp').hide();
+                    else $('#indexmodalp').show();
                     if (data.Intropic.length == 1) {
                         $('.carousel-control-next').hide();
                         $('.carousel-control-pre').hide();
@@ -466,26 +471,26 @@
             $('#wheel').animate({
                 deg: 360
             }, {
-                duration: 500,
-                step: function (now) {
-                    $(this).css({
-                        '-webkit-transform': 'rotate(' + now + 'deg)',
-                        '-moz-transform': 'rotate(' + now + 'deg)',
-                        'transform': 'rotate(' + now + 'deg)'
+                    duration: 500,
+                    step: function (now) {
+                        $(this).css({
+                            '-webkit-transform': 'rotate(' + now + 'deg)',
+                            '-moz-transform': 'rotate(' + now + 'deg)',
+                            'transform': 'rotate(' + now + 'deg)'
+                        });
+                    }
+                }).animate({
+                    deg: -360
+                }, {
+                        duration: 500,
+                        step: function (now) {
+                            $(this).css({
+                                '-webkit-transform': 'rotate(' + now + 'deg)',
+                                '-moz-transform': 'rotate(' + now + 'deg)',
+                                'transform': 'rotate(' + now + 'deg)'
+                            });
+                        }
                     });
-                }
-            }).animate({
-                deg: -360
-            }, {
-                duration: 500,
-                step: function (now) {
-                    $(this).css({
-                        '-webkit-transform': 'rotate(' + now + 'deg)',
-                        '-moz-transform': 'rotate(' + now + 'deg)',
-                        'transform': 'rotate(' + now + 'deg)'
-                    });
-                }
-            });
         },
         function () {
             $('#wheel').stop();

@@ -1,6 +1,9 @@
 <script>
     var textid = 0;
     $(document).ready(function () {
+        $('#show').on('shown.bs.modal', function () {
+            $('.modal-body').scrollTop(0);
+        })
         if(window.innerWidth>768) {
             var insideNum = $('.sidenav2').find('.option').length;
             var vh = window.innerHeight*0.01;
@@ -14,7 +17,7 @@
                     var insideNum = $('.sidenav2').find('.option').length;
                     var vh = window.innerHeight*0.01;
                     var paddingHalf = ((100*vh - 60 - 85 - 2*vh - 5*vh*insideNum)/insideNum)/2;
-                    $('.sidenav2 p').css({
+                    $('.option').css({
                         'padding-top':paddingHalf,
                         'padding-bottom':paddingHalf
                     })

@@ -47,8 +47,8 @@
     
     .backgroundimg {
         position: absolute;
-        top: 17vh;
-        width: 60vw;
+        top: 20vh;
+        width: 45vw;
         right: 1vw;
         z-index: -1;
     }
@@ -88,11 +88,11 @@
     .buttonimg {
         height: 15vw;
         border: #D0CECE 5px;
-        transition: all 1s !important;
+        transition: all 1s;
     }
     
     .buttonimg:hover {
-        transform: scale(1.4)!important;
+        transform: scale(1.4);
     }
     
     a.indexa {
@@ -100,7 +100,7 @@
         font-size: 2.5vw;
         text-decoration: none;
         cursor: pointer;
-        transition: all 0.6s !important;
+        transition: all 0.6s;
     }
     /*-----------------------------------------------------------title------------------------------------------------------*/
     
@@ -154,7 +154,7 @@
     }
     
     a.nava:hover {
-        transform: scale(1.3);
+        transform: scale(1.1);
     }
     
     .a {
@@ -212,7 +212,7 @@
     
     .sideli {
         line-height: 40px;
-        margin-top: 3vh;
+        margin-top: 2vh;
         font-weight: lighter;
         padding-left: 1vw;
         padding-right: 1vw
@@ -231,6 +231,10 @@
     }
     
     #stu_mob {
+        display: none
+    }
+    
+    #others_mob {
         display: none
     }
     /*---------------------------------------------edit---------------------------------------------------*/
@@ -266,7 +270,7 @@
     
     .content {
         position: relative;
-        top: 1vh;
+        top: 20px;
         font-size: 1.5vw;
         width: 90%;
         margin: 0 auto;
@@ -304,13 +308,13 @@
     
     .linkimg {
         position: relative;
-        width: 15vw;
+        width: 13vw;
         margin: auto;
         top: 0;
     }
     
     .de-en {
-        font-size: 2vw;
+        font-size: 1.5vw;
     }
     
     .linkbuttons {
@@ -330,26 +334,42 @@
         width: 100%;
         text-decoration: none;
         color: #0D4966;
+        font-size: 2vw;
     }
     
     .shell {
         position: relative;
         display: inline-block;
-        width: 15vw;
+        width: 14vw;
         vertical-align: top;
     }
     
     .stu_img {
-        height: 20vh;
+        height: 60vh;
     }
     /* eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
     
-    .snap {
+    #com_alert {
         position: absolute;
-        top: 70px;
-        left: 20px;
-        height: 75px;
+        width: 40%;
+        left: 30vw;
+        top: 40vh
+    }
+    
+    #snap {
+        position: absolute;
+        top: 60px;
+        left: 10px;
+        height: 90px;
         z-index: 30;
+        display: none;
+    }
+    
+    #sign {
+        position: absolute;
+        top: 115px;
+        left: 5px;
+        width: 100px;
         display: none;
     }
     
@@ -361,22 +381,16 @@
         display: none;
     }
     
-    .btn-circle {
-        width: 15px;
-        height: 15px;
-        text-align: center;
-        padding: 6px 0;
-        font-size: 12px;
-        line-height: 1.428571429;
-        border-radius: 15px;
+    .infinity {
+        width: 5vh;
     }
     
     .snap_so {
-        background-color: #FB8360;
         position: absolute;
         z-index: 3000;
         top: 100px;
         left: 20vh;
+        display: none;
     }
     
     .snap_m {
@@ -388,7 +402,6 @@
     }
     
     .snap_p {
-        background-color: blueviolet;
         display: none;
         z-index: 3000;
         position: absolute;
@@ -436,10 +449,214 @@
             height: 25vw;
             width: inherit;
         }
+        .backgroundimg {
+            position: absolute;
+            top: 30vh;
+            z-index: -10;
+        }
     }
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%phone%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     
-    @media screen and (max-width: 600px) and (orientation: portrait) {
+    @media screen and (max-width: 850px) and (orientation: landscape) {
+        /*手機橫放排版*/
+        .backgroundimg {
+            position: absolute;
+            top: 40vh;
+            z-index: -10;
+        }
+        .buttonimg {
+            height: 30vh;
+        }
+        .de-info {
+            top: 50vh;
+        }
+    }
+    /*---------------------------------------------------------------ipad-------------------------------------------------------------*/
+    
+    @media screen and (max-width: 1030px) and (orientation: portrait) {
+        /*ipad排版*/
+        .snap_so {
+            display: flex
+        }
+        .backgroundimg {
+            position: absolute;
+            top: 25vh;
+            z-index: -10;
+        }
+        #de_pic {
+            display: none;
+        }
+        #ass_pic,
+        #com_pic,
+        #others_pic {
+            width: 100vw;
+            left: calc(50% - 50vw);
+        }
+        .sidebar {
+            left: 10vw;
+            top: 15vh;
+            position: absolute;
+            height: auto;
+            width: auto;
+            padding-left: 2vw;
+            font-size: 5vw;
+            color: rgb( 32, 56, 100);
+            overflow: auto;
+            font-weight: lighter;
+        }
+        .sidebar2 {
+            left: 10vw;
+            top: 15vh;
+            position: absolute;
+            height: auto;
+            width: auto;
+            font-size: 5vw;
+            color: rgb( 32, 56, 100);
+            overflow: auto;
+            font-weight: lighter;
+        }
+        #stu_com {
+            display: none;
+        }
+        #stu_mob {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 100vw;
+            position: absolute;
+            top: 18vh;
+            font-size: 4.5vw
+        }
+        .stu_side {
+            text-align: center;
+        }
+        #others_com {
+            display: none;
+        }
+        #others_mob {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 100vw;
+            position: absolute;
+            top: 18vh;
+            font-size: 3vw
+        }
+        .other_side {
+            text-align: center;
+        }
+        .sideli {
+            margin-top: 3vh;
+            font-weight: lighter;
+            padding-left: 1vw;
+            padding-right: 1vw
+        }
+        .horizontal {
+            display: inline;
+            position: relative;
+        }
+        .navbar {
+            position: absolute;
+            left: calc(50% - 50vw);
+            top: 85vh;
+            display: flex;
+            flex-direction: row;
+            width: 100vw;
+            z-index: 100;
+            justify-content: Center;
+        }
+        a.nava {
+            position: static;
+            z-index: 100;
+            font-size: 4vw;
+        }
+        .navimg {
+            height: 13vw;
+        }
+        a.nava:hover {
+            transform: scale(1);
+        }
+        .buttonimg:hover {
+            transform: scale(1);
+        }
+        .info {
+            position: absolute;
+            font-size: 3vw;
+            width: 90vw;
+            left: calc(50% - 45vw);
+            height: 60vh;
+            top: 25vh;
+            background-color: #FFFDF1;
+            overflow: auto;
+        }
+        .info_title {
+            font-size: 7vw;
+        }
+        .content_pic {
+            top: 5vh;
+            width: 90%;
+        }
+        .stu_img {
+            height: 40vh;
+        }
+        .content {
+            font-size: 3vw;
+            top: 3vh;
+        }
+        .de-info {
+            position: absolute;
+            top: 25vh;
+            width: 100vw;
+            font-size: 7vw;
+        }
+        .cutline {
+            width: 50vw;
+        }
+        .de-en {
+            font-size: 3vw;
+        }
+        .shell a .link {
+            font-size: 5vw
+        }
+        .shell {
+            position: relative;
+            display: inline-block;
+            width: 30vw;
+            vertical-align: top;
+        }
+        .linkbuttons {
+            position: relative;
+            top: 8vh;
+        }
+        .linkimg {
+            position: relative;
+            width: 30vw;
+            margin: auto;
+            top: 0;
+        }
+        /*eeeeee*/
+        #com_alert {
+            position: absolute;
+            width: 90vw;
+            left: calc(50% - 45vw);
+        }
+        #snap {
+            position: absolute;
+            top: 70px;
+            right: 1px;
+            height: 95px;
+            display: none;
+        }
+        .snap_btn {
+            position: absolute;
+            top: 85px;
+            right: 100px;
+            display: none;
+        }
+    }
+    
+    @media screen and (max-width: 700px) and (orientation: portrait) {
+        .snap_so {
+            display: flex
+        }
         .container {
             border: 0px;
             padding: 0px;
@@ -480,12 +697,18 @@
             transition: all 0.6s !important;
         }
         .backgroundimg {
-            visibility: hidden;
             position: absolute;
-            top: 17vh;
-            width: 60vw;
-            right: 1vw;
-            z-index: -1;
+            top: 35vh;
+            z-index: -10;
+        }
+        #de_pic {
+            display: none;
+        }
+        #ass_pic,
+        #com_pic,
+        #others_pic {
+            width: 100vw;
+            left: calc(50% - 50vw);
         }
         .buttons {
             display: none;
@@ -518,12 +741,29 @@
             display: none;
         }
         #stu_mob {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             width: 100vw;
-            justify-content: Space-around;
+            position: absolute;
+            top: 25vh;
+            font-size: 4.5vw
         }
-        .fas .fa-angle-right .fa-mob {
+        .stu_side {
+            text-align: center;
+        }
+        #others_com {
             display: none;
+        }
+        #others_mob {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 100vw;
+            position: absolute;
+            top: 25vh;
+            font-size: 3vw
+        }
+        .other_side {
+            text-align: center;
         }
         .sideli {
             margin-top: 1vh;
@@ -575,6 +815,12 @@
         .navimg {
             height: 13vw;
         }
+        a.nava:hover {
+            transform: scale(1);
+        }
+        .buttonimg:hover {
+            transform: scale(1);
+        }
         /*--%%%%%%%%%%%%%%%%%%%%--info--%%%%%%%%%%%%%%%%%%%%-*/
         .info {
             position: absolute;
@@ -593,13 +839,16 @@
             top: 5vh;
             width: 90%;
         }
+        .stu_img {
+            height: 30vh;
+        }
         .content {
             font-size: 4vw;
             top: 3vh;
         }
         .de-info {
             position: absolute;
-            top: 45vw;
+            top: 30vh;
             width: 100vw;
             font-size: 7vw;
         }
@@ -618,10 +867,42 @@
             width: 30vw;
             vertical-align: top;
         }
+        .linkbuttons {
+            position: relative;
+            top: 8vh;
+        }
         .linkimg {
             position: relative;
             width: 30vw;
             margin: auto;
             top: 0;
+        }
+        /*eeeeee*/
+        #com_alert {
+            position: absolute;
+            width: 90vw;
+            left: calc(50% - 45vw);
+        }
+        #snap {
+            position: absolute;
+            top: 60px;
+            left: 10px;
+            height: 90px;
+            z-index: 30;
+            display: none;
+        }
+        #sign {
+            position: absolute;
+            top: 115px;
+            left: 5px;
+            width: 100px;
+            display: none;
+        }
+        .snap_btn {
+            position: absolute;
+            top: 85px;
+            left: 10px;
+            z-index: 40;
+            display: none;
         }
     }

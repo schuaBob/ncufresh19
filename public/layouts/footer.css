@@ -3,11 +3,12 @@
 @media only screen and (max-width: 768px) {
     #loginHref {
         position: absolute;
-        left: 20px;
-        bottom: 25px;
-        width: 140px;
+        left: 10px;
+        bottom: 40px;
+        width: 135px;
         height: 50px;
         text-decoration: none;
+        z-index: 2;
     } 
 
     #topHref {
@@ -25,6 +26,32 @@
         width: 40px;
         color: wheat;
     }
+    #logout {
+        position: absolute;
+        left: 10px;
+        bottom: 40px;
+        width: 135px;
+        height: 50px;
+        text-decoration: none;
+        background-color: black;
+        color: white;
+        z-index: 0;
+        transition: .5s ease;
+        border-radius: 250px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding-top: 15px;
+    }
+
+    #big:hover  #logout {
+        transition: translate(20px);
+        opacity: 0.8; 
+        background-color: black;
+        bottom: 150px;
+    }
+
+
 }
 
 /* 電腦版 */
@@ -37,8 +64,26 @@
         height: 50px;
         opacity: 0.8;
         text-decoration: none;
+        z-index: 1;
     } 
-
+    #logout {
+        position: absolute;
+        right: 120px;
+        bottom: 25px;
+        width: 140px;
+        height: 50px;
+        opacity: 0;
+        text-decoration: none;
+        background-color: black;
+        color: white;
+        z-index: 0;
+        transition: .5s ease;
+        border-radius: 250px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding-top: 15px;
+    }
     #topHref {
         position: absolute;
         right: 40px;
@@ -63,6 +108,12 @@
     animation-fill-mode: forwards;
 }
 
+#big:hover  #logout {
+    transition: translate(20px);
+    opacity: 0.8; 
+    background-color: black;
+    bottom: 80px;
+}
 @keyframes loginAnimation{
     0% {
         transform: scale(1);
@@ -75,7 +126,7 @@
 
 #loginBtn {
     position: relative;
-    width: 140px;
+    width: 135px;
     height: 50px;
 }
 
