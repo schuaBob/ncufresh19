@@ -349,7 +349,6 @@
             $('#SaveNewsbtn').click(() => {
                 if (($("#newsTitle").val() !== "") && ($("#newsCategory").val() !== 0)) {
                     if ($("#timePicker").val() !== "") {
-                        var verb;
                         if (!$('#SaveNewsbtn').hasClass("editbtn")) {
                             $.ajax({
                                 url: `/schedule/create`,
@@ -362,7 +361,7 @@
                                     content: tinyMCE.get('editor').getContent()
                                 },
                                 error: (err) => {
-                                    console.log(err.responseJSON);
+                                    alert(err.responseJSON);
                                 },
                                 success: (res) => {
                                     alert(res.message)
