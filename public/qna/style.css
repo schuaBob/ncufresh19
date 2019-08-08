@@ -82,7 +82,7 @@ body {
   top: 22%;
   left: 19%;
   height: 53vh;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .modalTitle {
@@ -91,7 +91,7 @@ body {
 }
 
 .modalContent {
-  height: 90%;
+  height: 100%;
   margin-top: 1%;
 }    
 .formElement {
@@ -100,11 +100,11 @@ body {
 }
 
 .answerModelQ {
-  max-height: 35%;
+  max-height: 25%;
 }
 
 .answerModelA {
-  max-height: 63%;
+  max-height: 72%;
   margin-top: 2%;
 }
 
