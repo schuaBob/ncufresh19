@@ -488,7 +488,7 @@ router.get('/comingsoon', function (req, res, next) {
 
 router.get('/login', checkUser.isAllowtoLogin, function (req, res, next) {
     res.render('login/index', {
-        title: '新生知訊網',
+        title: '新生知訊網 | 登入',
         user: req.user,
         error: req.flash('error')
     });
@@ -514,8 +514,7 @@ router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
 
 router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
     res.render('login/password', {
-        title: '新生知訊網',
-        user: req.user
+        title: '新生知訊網 | 新生登入',
     });
 });
 
@@ -527,8 +526,7 @@ router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local'
 
 router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
     res.render('login/register', {
-        title: '新生知訊網',
-        user: req.user
+        title: '新生知訊網 | 註冊',
     });
 });
 
@@ -546,10 +544,10 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
             if (err) {
                 res.redirect('/');
             } else if (!obj) {
-                req.flash('error', `${id}的新生學號目前不存在，若有需要請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理`);
+                req.flash('error', `${id}的新生學號目前不存在，請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理`);
                 res.redirect('/login');
             } else if (obj.name !== name) {
-                req.flash('error', `${id}的真實姓名不合， 若有需要請以email: ncufreshweb @gmail.com或fb粉專與我們聯絡會有專人負責處理 `);
+                req.flash('error', `${id}的真實姓名不合， 請以email: ncufreshweb @gmail.com或fb粉專與我們聯絡會有專人負責處理 `);
                 res.redirect('/login');
             } else {
                 obj.password = password;
