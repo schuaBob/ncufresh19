@@ -27,7 +27,6 @@ html {
     padding: 0;
     /* padding-top: 4.5vh; */
     z-index: 300;
-    overflow: hidden;
   }
   
   .navSubBtn {
