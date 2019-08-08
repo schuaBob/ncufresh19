@@ -1,11 +1,14 @@
 <script type="text/javascript" src="/js/tinymce.min.js"></script>
 <script type="text/javascript">
+  
+  //將mongodb的_id轉換成yyyy/mm/dd的格式
   function convertDateToString(_id) {
     let timestamp = _id.toString().substring(0, 8);
     let date = new Date(parseInt(timestamp, 16) * 1000)
     var str = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
     return str;
   }
+  //字超過15個字後省略為"..."
   function trunc(str){
     if(str!==undefined && str.length>15){
       return str.substr(0,15)+"...";
@@ -13,10 +16,12 @@
       return str;
     }    
   }
+  //判斷是不是觸控螢幕
   function isMobile(){
     try{ document.createEvent("TouchEvent"); return true; }
     catch(e){ return false;}
   }
+  //電腦版的送出問題功能，這麼做的目的是因為直接使用bootstrap的data-toggle功能好像會有送出兩次的狀況
   function submit(){    
     $.ajax({
             type: "POST",
@@ -42,6 +47,7 @@
           });
     
   }
+  //手機版的送出問題功能
   function mobileSubmit(){
     $.ajax({
             type: "POST",
@@ -65,18 +71,22 @@
           });
   }
   $(document).ready(function () {
+    //讓滑鼠移到標題可以出現tooltip
     $('body').tooltip({
       selector: '[data-toggle=tooltip]'
     });
     var timer;
     var sort = ""; //紀錄時間、人氣的按鈕值
     var c = location.pathname.split('/')[2]; //分類的值
+    //手機版發問按鈕觸發手機版發問modal
     $("#mobileAskBtn").click(function () {
       $("#mobileAskModal").modal();
     });
+    //更新bootstrap的dropdown text
     $(document).on("click",".dropdown-item",function(){
       $("#dropdownMenuButton").text($(this).text());    
     });
+
     $("#modifyBtn").on("click",function(){      
       let category;
       switch($("#dropdownMenuButton").text()){
@@ -114,11 +124,13 @@
         }
       });
     });
+    //搜尋時增加一個attr到tbody，好讓getData()不要取得非搜尋的資料
     $("#searchImg").on("click",function(){
       $("tbody").attr("search", "true");
       $("tbody").empty();
       search(c, sort);
     });
+
     $("#deleteBtn").on("click",function(){
       $.ajax({
         type: "POST",
@@ -142,21 +154,23 @@
       });
     });
 
-
+    //option按鈕的css變化
     $("#option li").mouseenter(function(){
       $(this).addClass("optionHover");
     });
     $("#option li").mouseleave(function(){
       $(this).removeClass("optionHover");
     });
-
+    //搜尋
     $(".searchInput").on("keyup", function (e) {
+      //在searchInput按下enter時
       if (e.keyCode == "13") {
         $("tbody").attr("search", "true");
         $("tbody").empty();
         search(c, sort);
       }
     });
+    //送出問題前先檢查格式是否符合要求(電腦版)
     $(document).on("click","#submit1",function(){
       var forms = document.getElementsByClassName('askForm');
       var validation = Array.prototype.filter.call(forms, function(form) {
@@ -169,6 +183,7 @@
           }          
         }, false);    
     });
+    //送出問題前先檢查格式是否符合要求(手機版)
     $(document).on("click","#submit2",function(){
       var forms = document.getElementsByClassName('mobileAskForm');
       var validation = Array.prototype.filter.call(forms, function(form) {
@@ -182,13 +197,13 @@
         }, false);   
       });
 
-
+    //一開始載入網頁時，去分辨在哪個category，好讓該category上色
     if (c == "") {      
       $("i[option='all']").parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
     }else {     
       $("i[option='"+c+"']").parents("li").css({"background-color":"rgb(251,217,185)","color":"rgb(32,56,100)"});
     }
-
+    
     $(".sortButton").click(function () {
       $(".mobileFilterContent").css("display","none");
       $("tbody").empty();
@@ -215,13 +230,13 @@
           postID: $node.attr("postid")
         },
         success: function (data) {
+          //更新點擊數(前端)
           $node.children(".count").text(parseInt($node.children(".count").text()) + 1);
           $("#img1").css("display", "none");
           $("#img2").attr("src", "wtf_penguin.png");  
-          
+          //觸控螢幕或者螢幕寬度<900px，使用mobileaAswermodal
           if(jQuery(window).width()<900||isMobile())
           {
-            //小
             $("#mobileAnswerModal").modal();
             $("#mobileAnswerTitleText").text("["+data[0].category+"]"+trunc(data[0].title));
             $("#mq_c").text(data[0].qContent);
@@ -229,7 +244,7 @@
           } else {
             //插入問題內容
             $("#q_c").text(data[0].qContent);         
-            //判斷是否為admin            
+            //判斷是否為admin，是的話就可以編輯       
             if($("#answerModelAID").attr("role")==="admin"){               
               if(data[0].category === ""){                
                 $("#dropdownMenuButton").text("請選擇分類");
@@ -300,7 +315,7 @@
     function scrollEnd() {
       //如果"幾乎"到底，加載新的問題
       if (($(".content").scrollTop() + $(".content").height()) > ($(".contentTable").height() * 0.9)) {
-        //如果是處在search的狀況下(意即搜尋結果超過12個)
+        //如果是處在search的狀況下，避免取到非搜尋的資料
         if ($("tbody").attr("search") === "true") {
           search(c, sort);
         } else {
@@ -310,7 +325,6 @@
     }
     function search(category, sort) {
       //暫存tbody原本的內容，為了顯示搜尋的結果 
-      var temp = $("tbody").html();
       $.ajax({
         type: "POST",
         url: "/qna/search",
