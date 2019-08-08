@@ -80,9 +80,9 @@ router.get('/', (req, res, next) => {
         docCalender.find({
             month: "8"
         }, {
-                _id: 0,
-                __v: 0
-            }).exec()
+            _id: 0,
+            __v: 0
+        }).exec()
     ]).then((result) => {
         var news = result[0],
             commercial = result[1],
@@ -241,17 +241,17 @@ router.post('/adpic/editUrl', checkUser.isAdmin, (req, res, next) => {
     docCommercial.findOneAndUpdate({
         pk: req.body.pk
     }, {
-            $set: {
-                picLink: req.body.comPic
-            }
-        }, (err) => {
-            if (err) {
-                return next(err)
-            }
-            res.redirect('/index-edit');
-        })
+        $set: {
+            picLink: req.body.comPic
+        }
+    }, (err) => {
+        if (err) {
+            return next(err)
+        }
+        res.redirect('/index-edit');
+    })
 })
-router.get('/schedule/delete', (req, res, next) => {
+router.get('/schedule/delete', checkUser.isAdmin, (req, res, next) => {
     docNews.findOneAndDelete({
         pk: req.query.pk
     }, (err) => {
@@ -281,7 +281,7 @@ router.post('/schedule/:method', checkUser.isAdmin, (req, res, next) => {
         case "create":
             var temp = new docNews({
                 title: req.body.title,
-                date: new Date(`${req.body.time}GMT`),
+                date: new Date(`${req.body.time} GMT`),
                 category: req.body.category,
                 content: req.body.content
             });
@@ -324,20 +324,20 @@ router.post('/schedule/:method', checkUser.isAdmin, (req, res, next) => {
             docNews.findOneAndUpdate({
                 pk: req.body.pk
             }, {
-                    title: req.body.title,
-                    date: new Date(`${req.body.time}GMT`),
-                    category: req.body.category,
-                    content: req.body.content
-                }).exec((err, doc) => {
-                    console.log(doc)
-                    if (err) {
-                        return next(err)
-                    }
-                    var resMes = {
-                        message: "Data changed successfully!"
-                    }
-                    res.json(resMes)
-                })
+                title: req.body.title,
+                date: new Date(`${req.body.time}GMT`),
+                category: req.body.category,
+                content: req.body.content
+            }).exec((err, doc) => {
+                console.log(doc)
+                if (err) {
+                    return next(err)
+                }
+                var resMes = {
+                    message: "Data changed successfully!"
+                }
+                res.json(resMes)
+            })
             break;
         default:
             res.status(404).send('Wrong Page');
@@ -348,15 +348,15 @@ router.get('/calender/read', (req, res, next) => {
     docCalender.findOne({
         pk: req.query.pk
     }, {
-            _id: 0,
-            __v: 0
-        }).exec((err, doc) => {
-            console.log(doc)
-            if (err) {
-                return next(err)
-            }
-            res.json(doc)
-        })
+        _id: 0,
+        __v: 0
+    }).exec((err, doc) => {
+        console.log(doc)
+        if (err) {
+            return next(err)
+        }
+        res.json(doc)
+    })
 });
 router.get('/calender/delete', checkUser.isAdmin, (req, res, next) => {
     docCalender.findOneAndDelete({
@@ -419,18 +419,18 @@ router.post('/calender/:method', checkUser.isAdmin, (req, res, next) => {
             docCalender.findOneAndUpdate({
                 pk: req.body.pk
             }, {
-                    month: req.body.month,
-                    date: req.body.date,
-                    board_content: req.body.boardContent
-                }).exec((err, doc) => {
-                    if (err) {
-                        return next(err)
-                    }
-                    var resMes = {
-                        message: "Data edited successfully!"
-                    }
-                    res.json(resMes)
-                })
+                month: req.body.month,
+                date: req.body.date,
+                board_content: req.body.boardContent
+            }).exec((err, doc) => {
+                if (err) {
+                    return next(err)
+                }
+                var resMes = {
+                    message: "Data edited successfully!"
+                }
+                res.json(resMes)
+            })
             break;
         default:
             res.status(404).send('Wrong Page');
@@ -487,11 +487,11 @@ router.get('/comingsoon', function (req, res, next) {
 });
 
 router.get('/login', checkUser.isAllowtoLogin, function (req, res, next) {
-  res.render('login/index', {
-    title: '新生知訊網',
-    user: req.user,
-    error: req.flash('error')
-  });
+    res.render('login/index', {
+        title: '新生知訊網',
+        user: req.user,
+        error: req.flash('error')
+    });
 });
 
 router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
@@ -501,83 +501,78 @@ router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
     Users.findOne({
         'id': req.body.id
     }, function (err, user) {
-        if (err) res.redirect('/login');
-        // if (user && user.password)
-        //     res.redirect('/password?id=' + req.body.id);
-        // else
-        //     res.redirect('/register?id=' + req.body.id);
-        res.redirect('/')
+        if (err) {
+            res.redirect('/login')
+            return;
+        };
+        if (user && user.password)
+            res.redirect('/password?id=' + req.body.id);
+        else
+            res.redirect('/register?id=' + req.body.id);
     })
 });
 
-// router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
-//     res.render('login/password', {
-//         title: '新生知訊網',
-//         user: req.user
-//     });
-// });
+router.get('/password', checkUser.isAllowtoLogin, function (req, res, next) {
+    res.render('login/password', {
+        title: '新生知訊網',
+        user: req.user
+    });
+});
 
-// router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
-//     successRedirect: '/',
-//     failureRedirect: '/login',
-//     failureFlash: true
-// }));
+router.post('/password', checkUser.isAllowtoLogin, passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+}));
 
-// router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
-//     res.render('login/register', {
-//         title: '新生知訊網',
-//         user: req.user
-//     });
-// });
+router.get('/register', checkUser.isAllowtoLogin, function (req, res, next) {
+    res.render('login/register', {
+        title: '新生知訊網',
+        user: req.user
+    });
+});
 
-// router.post('/register', checkUser.isAllowtoLogin, function(req, res, next) {
-//     let id = req.body.id;
-//     let name = req.body.name;
-//     let password = req.body.password;
-//     let checkpassword = req.body.checkpassword;
+router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
+    let id = req.body.id;
+    let name = req.body.name;
+    let password = req.body.password;
+    let checkpassword = req.body.checkpassword;
 
-//     if ((id && name && password && checkpassword) && (password == checkpassword)) {
-//         Users.findOne({
-//             'id': id
-//         }, function(err, obj) {
-//             if (err) {
-//                 res.redirect('/');
-//             }
-//             if (!obj) {
-//                 console.log(id + ': 不存在於新生列表');
-//                 req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
-//                 res.redirect('/login');
-//                 return;
-//             }
-
-//             if (obj.name !== name) {
-//                 console.log(id + ': 真實姓名不合');
-//                 req.flash('error', '如果多次登不進去請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理');
-//                 res.redirect('/login');
-//             } else {
-//                 obj.password = password;
-//                 Users.createUser(obj, function(err, user, next) {
-//                     if (err) {
-//                         return next(err);
-//                     } else {
-//                         console.log(id + ': 建立');
-//                         req.login(user, function(err) {
-//                             if (err) {
-//                                 return next(err);
-//                             }
-//                             console.log(obj.id + ': 登入');
-//                             res.redirect('/');
-//                         });
-//                     }
-//                 });
-//             }
-//         });
-
-//     } else {
-//         res.redirect('/register');
-//     }
-
-// });
+    if ((id && name && password && checkpassword) && (password == checkpassword)) {
+        Users.findOne({
+            'id': id
+        }, function (err, obj) {
+            console.log(obj);
+            if (err) {
+                res.redirect('/');
+            } else if (!obj) {
+                req.flash('error', `${id}的新生學號目前不存在，若有需要請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理`);
+                res.redirect('/login');
+            } else if (obj.name !== name) {
+                req.flash('error', `${id}的真實姓名不合， 若有需要請以email: ncufreshweb @gmail.com或fb粉專與我們聯絡會有專人負責處理 `);
+                res.redirect('/login');
+            } else {
+                obj.password = password;
+                Users.createUser(obj, function (err, user, next) {
+                    if (err) {
+                        return next(err);
+                    } else {
+                        console.log(id + ': 建立');
+                        req.login(user, function (err) {
+                            if (err) {
+                                return next(err);
+                            }
+                            console.log(obj.id + ': 登入');
+                            res.redirect('/');
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        res.redirect('/register');
+    }
+});
 
 router.get('/logout', function (req, res, next) {
     req.logout();
@@ -633,35 +628,37 @@ router.get('/auth/provider/callback', function (req, res, next) {
             personalObj = JSON.parse(info);
 
             if (!personalObj.id) {
-                console.log(personalObj.id + ' is not allowed to login');
-            }
-            Users.findOne({
-                'id': personalObj.id
-            }, function (err, user) {
-                if (err) next(err);
-                // If found, login
-                if (user) {
-                    req.login(user, function (err) {
-                        if (err) return next(err);
-                        console.log(user.id + "登入 via Oauth");
-                        res.redirect('/');
-                    });
-                } else { // else, create user
-                    Users.createUser(new Users({
-                        id: personalObj.id,
-                        name: personalObj.name,
-                        unit: personalObj.unit,
-                    }), function (err, user) {
-                        if (err) return next(err);
+                req.flash('error', `${personalObj.id} is not allowed to login`);
+                res.redirect('/login');
+            } else {
+                Users.findOne({
+                    'id': personalObj.id
+                }, function (err, user) {
+                    if (err) next(err);
+                    // If found, login
+                    if (user) {
                         req.login(user, function (err) {
                             if (err) return next(err);
-                            console.log(user.id + " 建立via OAuth");
-                            console.log(personalObj.id + " 登入via OAuth");
+                            console.log(user.id + "登入 via Oauth");
                             res.redirect('/');
                         });
-                    });
-                }
-            });
+                    } else { // else, create user
+                        Users.createUser(new Users({
+                            id: personalObj.id,
+                            name: personalObj.name,
+                            unit: personalObj.unit,
+                        }), function (err, user) {
+                            if (err) return next(err);
+                            req.login(user, function (err) {
+                                if (err) return next(err);
+                                console.log(user.id + " 建立via OAuth");
+                                console.log(personalObj.id + " 登入via OAuth");
+                                res.redirect('/');
+                            });
+                        });
+                    }
+                });
+            }
         });
     });
 });
