@@ -170,8 +170,8 @@ function append_circle(data) {
     var today = new Date();
     for (var i in data) {
         $("#scrollDay").append('<div class="day" id="' + count + '"> <div class="dot"> <svg height="35" width="35"> <circle cx="17.5" cy="17.5" r="17.5" fill="#ec6d4f" /> </svg> </div> <div class="date">' + data[i].month + '/' + data[i].date + '</div> </div>');
-        if ((today.getMonth() + 1) == data[i].month && today.getDate() == data[i].date)
-            $("#" + count).append('<img id="index3crab" src="/index/首頁3_螃蟹去背.png">');
+        // if ((today.getMonth() + 1) == data[i].month && today.getDate() == data[i].date)
+        //     $("#" + count).append('<img id="index3crab" src="/index/首頁3_螃蟹去背.png">');
         count = count + 1;
     }
     nowTotal = count;

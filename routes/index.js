@@ -502,7 +502,7 @@ router.post('/login', checkUser.isAllowtoLogin, function (req, res, next) {
         'id': req.body.id
     }, function (err, user) {
         if (err) {
-            res.redirect('/login')
+            res.redirect('/login');
             return;
         };
         if (user && user.password)
