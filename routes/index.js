@@ -546,10 +546,10 @@ router.post('/register', checkUser.isAllowtoLogin, function (req, res, next) {
             if (err) {
                 res.redirect('/');
             } else if (!obj) {
-                req.flash('error', `${id}的新生學號目前不存在，請以email:ncufreshweb@gmail.com或fb粉專與我們聯絡會有專人負責處理`);
+                req.flash('error', `${id}的新生學號目前不存在，請填寫<a href="https://forms.gle/UN9LGYfGuTHdxLvx8" target="_blank" rel="noopener noreferrer">表單</a>我們會有專人負責處理`);
                 res.redirect('/login');
             } else if (obj.name !== name) {
-                req.flash('error', `${id}的真實姓名不合， 請以email: ncufreshweb @gmail.com或fb粉專與我們聯絡會有專人負責處理 `);
+                req.flash('error', `${id}的真實姓名不合， 請填寫<a href="https://forms.gle/UN9LGYfGuTHdxLvx8" target="_blank" rel="noopener noreferrer">表單</a>我們會有專人負責處理`);
                 res.redirect('/login');
             } else {
                 obj.password = password;

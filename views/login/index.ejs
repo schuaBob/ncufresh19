@@ -25,9 +25,7 @@
 
           <div id="input_area">
             <% if(error.length) { %>
-              <% for(let i in error) { %>
-              <p style="color: red; font-weight: bold;"><%= error[i] %></p>
-              <% } %>
+              <p style="color: red; font-weight: bold;"><%- error[0] %></p>
             <% } %>
             <input type="text" placeholder="學號" name="id" id="student_id" required /><br>
           </div>
