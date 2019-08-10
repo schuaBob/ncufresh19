@@ -195,14 +195,12 @@ router.post('/adpic', checkUser.isAdmin, uploadHandler.array('commercialpic', 6)
             docCommercial.create(picArray).then(() => {
                 res.redirect('/index-edit');
             }).catch((error) => {
-                console.log(error);
                 return next(error);
             })
         } else {
             docCommercial.find().sort({
                 pk: -1
             }).limit(1).exec((err, maxPkDoc) => {
-                console.log(maxPkDoc);
                 if (err) {
                     return next(err)
                 }
