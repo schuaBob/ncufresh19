@@ -223,7 +223,6 @@ router.get('/adpic/delete', checkUser.isAdmin, (req, res, next) => {
             pk: req.query.pk
         }).exec((err, doc) => {
             if (err) return next(err);
-            console.log(doc)
             fs.unlink(`./public${doc.picPath}`, (err) => {
                 if (err) {
                     return next(err)
@@ -266,7 +265,6 @@ router.get('/schedule/read', (req, res, next) => {
     docNews.findOne({
         pk: req.query.pk
     }).exec((err, doc) => {
-        console.log(doc)
         if (err) {
             return next(err)
         }
@@ -323,11 +321,10 @@ router.post('/schedule/:method', checkUser.isAdmin, (req, res, next) => {
                 pk: req.body.pk
             }, {
                 title: req.body.title,
-                date: new Date(`${req.body.time}GMT`),
+                date: new Date(`${req.body.time} GMT`),
                 category: req.body.category,
                 content: req.body.content
             }).exec((err, doc) => {
-                console.log(doc)
                 if (err) {
                     return next(err)
                 }
@@ -349,7 +346,6 @@ router.get('/calender/read', (req, res, next) => {
         _id: 0,
         __v: 0
     }).exec((err, doc) => {
-        console.log(doc)
         if (err) {
             return next(err)
         }
