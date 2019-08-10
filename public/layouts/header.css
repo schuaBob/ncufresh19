@@ -67,7 +67,7 @@
         height: calc(calc(var(--vh, 1vh) * 100) - 80px - 3vw);
         width: 100%;
         position: relative;
-        overflow-y: auto;
+        overflow-y: scroll;
     }
 
     #copyright {
@@ -163,7 +163,6 @@
 
     #mySidenav #links {
         height: calc(100vh - 57px - 4.5vw);
-        overflow-y: auto;
     }
 
     /* menu */
@@ -393,8 +392,6 @@
     list-style: none;
     position: relative;
     padding: 0;
-    overflow-y: hidden;
-    overflow-x: hidden;
     scrollbar-width: none;
     margin: 0;
 }

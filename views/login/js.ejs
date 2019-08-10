@@ -3,21 +3,22 @@
     var id = $("input[name=id]").val(url.searchParams.get('id'));
     document.getElementById("id").defaultValue = id;
 
-    function checklength(){
-        var name = $("#student_id").val();
-        if(name.length != 9){
-            $("#student_id").popover({
-                content: "長度有誤" 
-            })
-            $("#student_id").popover('show') ;
-            return false;
-        }
-        return true;
-    }
     $("#student_id").focus();
 
     function login(){
         var url = new URL(window.location.href);
         $("input[name=id]").val(url.searchParams.get('id'));
+    }
+
+    function checkname() {
+        name = $("#student_id").val();
+        if(name.length !== 9){
+            $("#student_id").popover({
+                content: "長度有誤" 
+            })
+            $("#student_id").popover('show') ;
+            return false ;
+        }
+        return true ;
     }
 </script>

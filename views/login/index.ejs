@@ -11,7 +11,7 @@
   <% include ../layouts/header%>
   <div class="bg">
     <main style="position: relative; top: 80px;">
-      <form method="post" action="/login" onsubmit="return checklength()">
+      <form method="post" action="/login" onsubmit="return checkname()">
         <div class="box" id="login_box">
             <a href="/">
               <div class="close" style="width: 40px; height: 40px;">
@@ -25,14 +25,16 @@
 
           <div id="input_area">
             <% if(error.length) { %>
-              <p style="color: red; font-weight: bold;"><%= error[0] %></p>
+              <p style="color: red; font-weight: bold;"><%- error[0] %></p>
             <% } %>
             <input type="text" placeholder="學號" name="id" id="student_id" required /><br>
           </div>
 
-          <button type="submit" value="submit" name="regist">> 登入</button>
-
-        </div>
+          <div id="box-footer">
+            <button type="submit" value="submit" name="regist">登入</button>
+          </div>
+          
+         </div>
       </form>
     </main>
   </div>

@@ -86,7 +86,7 @@ body {
   left: 41vw;
 }
 
-#logout {
+#logoutbtn {
   left: 54vw;
 }
 
@@ -116,11 +116,11 @@ body {
   text-decoration: none;
 }
 
-#logout {
+#logoutbtn {
   background-color: #bfe8f2;
 }
 
-#logout:hover {
+#logoutbtn:hover {
   background-color: rgb(32, 56, 100);
 }
 
@@ -219,7 +219,7 @@ body {
   height: calc(80vh - 200px);
   min-height: 300px;
   position: absolute;
-  top: 320px;
+  top: calc(145px + 22vh);
   left: 15%;
   background-color: white;
   padding: 3%;
@@ -460,7 +460,7 @@ body {
     left: 50vw;
   }
 
-  #logout {
+  #logoutbtn {
     left: 70vw;
   }
 
@@ -480,13 +480,13 @@ body {
     display: none;
   }
 
-  .toggle-container {
+  /*.toggle-container {
     left: 11vw;
     width: 80vw;
     top: calc(250px + 5vh);
     height: calc(95vh - 300px);
     padding: 5%;
-  }
+  }*/
 
   .ask p {
     font-size: 13px;
