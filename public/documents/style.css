@@ -167,7 +167,13 @@ body {
   color: rgb(32, 56, 100);
   display: block;
   font-size: 1.6vw;
+  border-radius: 3px;
   margin: 0;
+}
+
+
+.option_sp {
+  padding: 15px 0px !important;
 }
 
 .page_now {
@@ -359,7 +365,7 @@ body {
 .sidenav2 p {
   color: rgb(13, 73, 102);
   display: block;
-  font-size: 1.7vw;
+  font-size: 1.6vw;
   margin: 0;
   }
 
